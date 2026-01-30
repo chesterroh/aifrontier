@@ -1,14 +1,30 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { buildPodcastSeriesJsonLd } from '../../lib/seo';
 
 const episodes = await getCollection('episodes', ({ data }) => data.lang === 'en');
 const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
 
 const [featured, ...rest] = sortedEpisodes;
+const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
+const description = 'AI Frontier - AI Deep Dive Podcast';
+const jsonLd = buildPodcastSeriesJsonLd({
+  site,
+  lang: 'en',
+  name: 'AI Frontier',
+  description,
+});
 ---
 
-<BaseLayout title="AI Frontier" lang="en">
+<BaseLayout
+  title="AI Frontier"
+  description={description}
+  lang="en"
+  canonicalPath="/en"
+  alternatePath="/ko"
+  jsonLd={jsonLd}
+>
   <div class="max-w-4xl mx-auto px-4 py-8">
     {featured && (
       <section class="mb-12">

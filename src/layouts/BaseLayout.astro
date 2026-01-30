@@ -2,12 +2,17 @@
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import Search from '../components/Search.astro';
+import { buildCanonicalUrl, buildHreflangLinks } from '../lib/seo';
 
 interface Props {
   title: string;
   description?: string;
   lang?: 'ko' | 'en';
   alternateSlug?: string | null;
+  canonicalPath?: string;
+  alternatePath?: string | null;
+  ogImage?: string | null;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>> | null;
 }
 
 const {
@@ -15,10 +20,24 @@ const {
   description = 'AI Frontier - AI 심층 대화 팟캐스트',
   lang = 'ko',
   alternateSlug = null,
+  canonicalPath,
+  alternatePath = null,
+  ogImage = null,
+  jsonLd = null,
 } = Astro.props;
 
 const siteTitle = 'AI Frontier';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
+const resolvedCanonicalPath = canonicalPath ?? `/${lang}`;
+const canonicalUrl = buildCanonicalUrl({ site, path: resolvedCanonicalPath });
+const hreflangLinks = buildHreflangLinks({
+  site,
+  lang,
+  alternatePath,
+  canonicalPath: resolvedCanonicalPath,
+});
+const twitterCard = ogImage ? 'summary_large_image' : 'summary';
 ---
 
 <!doctype html>
@@ -29,14 +48,33 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{fullTitle}</title>
+    <link rel="canonical" href={canonicalUrl} />
+    {hreflangLinks.map((link) => (
+      <link rel="alternate" hreflang={link.hreflang} href={link.href} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteTitle} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    {jsonLd && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(jsonLd)}
+      />
+    )}
   </head>
   <body class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">

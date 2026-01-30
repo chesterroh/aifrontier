@@ -11,7 +11,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: 'AI Frontier (한국어)',
     description: 'AI 심층 대화 팟캐스트 - 노정석, 최승준',
-    site: context.site || 'https://aifrontier.show',
+    site: context.site || 'https://aifrontier.kr',
     items: sortedEpisodes.map((episode) => ({
       title: `EP ${episode.data.episodeNumber}: ${episode.data.title}`,
       pubDate: episode.data.publishedAt,
