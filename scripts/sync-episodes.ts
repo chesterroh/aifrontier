@@ -16,11 +16,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PROJECT_ROOT = path.resolve(__dirname, '../..');
 const BLOG_ROOT = path.resolve(__dirname, '..');
-const EXAMPLES_DIR = path.join(PROJECT_ROOT, 'examples');
+const SRT2MD_ROOT = process.env.SRT2MD_ROOT || path.resolve(BLOG_ROOT, '../srt2md');
+const EXAMPLES_DIR = path.join(SRT2MD_ROOT, 'examples');
 const CONTENT_DIR = path.join(BLOG_ROOT, 'src/content/episodes');
-const YOUTUBE_METADATA_FILE = path.join(PROJECT_ROOT, 'data/youtube_metadata.json');
+const YOUTUBE_METADATA_FILE = path.join(SRT2MD_ROOT, 'data/youtube_metadata.json');
 
 interface YouTubeVideo {
   id: string;
@@ -316,7 +316,7 @@ function findPublishFile(epDir: string, lang: 'ko' | 'en'): string | null {
   const files = fs.readdirSync(outputsDir);
   const patterns =
     lang === 'ko'
-      ? ['_kor_paragraphed_publish.md', '_publish.md']
+      ? ['_kor_paragraphed_publish.md', '_publish.md', '_kor_paragraphed_codex.md']
       : ['_en_publish.md', '_en_paragraphed_publish.md'];
 
   for (const pattern of patterns) {
