@@ -1,0 +1,336 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+import ChapterNav from '../components/ChapterNav.astro';
+import { getCollection } from 'astro:content';
+
+interface Chapter {
+  time: string;
+  title: string;
+}
+
+interface Props {
+  episodeNumber: number;
+  title: string;
+  description: string;
+  publishedAt: Date;
+  duration: string;
+  youtubeId: string;
+  hosts: string[];
+  chapters: Chapter[];
+  lang: 'ko' | 'en';
+  alternateSlug?: string | null;
+}
+
+const {
+  episodeNumber,
+  title,
+  description,
+  publishedAt,
+  duration,
+  youtubeId,
+  hosts,
+  chapters,
+  lang,
+  alternateSlug,
+} = Astro.props;
+
+const formattedDate = publishedAt.toLocaleDateString(lang === 'ko' ? 'ko-KR' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Get all episodes for prev/next navigation
+const allEpisodes = await getCollection('episodes');
+const langEpisodes = allEpisodes
+  .filter(ep => ep.data.lang === lang)
+  .sort((a, b) => a.data.episodeNumber - b.data.episodeNumber);
+
+const currentIndex = langEpisodes.findIndex(ep => ep.data.episodeNumber === episodeNumber);
+const prevEpisode = currentIndex > 0 ? langEpisodes[currentIndex - 1] : null;
+const nextEpisode = currentIndex < langEpisodes.length - 1 ? langEpisodes[currentIndex + 1] : null;
+
+const homeUrl = `/${lang}`;
+const homeLabel = lang === 'ko' ? '홈' : 'Home';
+---
+
+<BaseLayout title={`EP ${episodeNumber}: ${title}`} description={description} lang={lang} alternateSlug={alternateSlug}>
+  <div class="max-w-7xl mx-auto px-4 lg:pl-0 lg:pr-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+        <li>
+          <a href={homeUrl} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {homeLabel}
+          </a>
+        </li>
+        <li class="text-gray-300 dark:text-gray-600">/</li>
+        <li class="text-gray-900 dark:text-gray-100 font-medium">
+          EP {episodeNumber}
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Main content with sidebar -->
+    <div class="lg:flex lg:gap-6">
+      <!-- Left sidebar (desktop only) -->
+      <aside class="hidden lg:block lg:w-80 flex-shrink-0">
+        <div class="sticky top-20 flex flex-col gap-4 max-h-[calc(100vh-6rem)]">
+          <!-- Mini player slot (at top of sidebar) -->
+          <div id="sidebar-player-slot" class="hidden flex-shrink-0 aspect-video w-full"></div>
+          <!-- Chapters -->
+          <div class="flex-1 overflow-y-auto">
+            <ChapterNav chapters={chapters} episodeNumber={episodeNumber} episodeTitle={title} />
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main column -->
+      <article class="lg:flex-1 max-w-4xl">
+        <!-- Episode Header -->
+        <header class="mb-8">
+          <p class="text-sm font-medium text-primary-600 dark:text-primary-400 mb-2">
+            EP {episodeNumber}
+          </p>
+          <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            {title}
+          </h1>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 dark:text-gray-400">
+            <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
+            <span>·</span>
+            <span>{hosts.join(', ')}</span>
+            <span>·</span>
+            <span>{duration}</span>
+          </div>
+        </header>
+
+        <!-- YouTube Player -->
+        <section class="mb-8">
+          <YouTubeEmbed videoId={youtubeId} title={title} />
+        </section>
+
+        <!-- Chapters (mobile only) -->
+        <div class="lg:hidden">
+          <ChapterNav chapters={chapters} />
+        </div>
+
+        <!-- Transcript -->
+        <section class="prose prose-transcript max-w-none">
+          <slot />
+        </section>
+
+        <!-- Episode Navigation -->
+        <nav class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex justify-between items-stretch gap-4">
+            {prevEpisode ? (
+              <a
+                href={`/${lang}/episodes/ep${prevEpisode.data.episodeNumber}`}
+                class="flex-1 group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              >
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">← {lang === 'ko' ? '이전' : 'Previous'}</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                  EP {prevEpisode.data.episodeNumber}
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">
+                  {prevEpisode.data.title}
+                </div>
+              </a>
+            ) : (
+              <div class="flex-1"></div>
+            )}
+
+            {nextEpisode ? (
+              <a
+                href={`/${lang}/episodes/ep${nextEpisode.data.episodeNumber}`}
+                class="flex-1 group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors text-right"
+              >
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">{lang === 'ko' ? '다음' : 'Next'} →</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                  EP {nextEpisode.data.episodeNumber}
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">
+                  {nextEpisode.data.title}
+                </div>
+              </a>
+            ) : (
+              <div class="flex-1"></div>
+            )}
+          </div>
+        </nav>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Transcript base font size */
+  .prose-transcript {
+    font-size: 1.125rem; /* 18px - one step larger */
+  }
+
+  /* Transcript styling */
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose h2 {
+      border-color: #1f2937;
+    }
+  }
+
+  .prose h2:hover {
+    color: var(--color-primary-600);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose h2:hover {
+      color: var(--color-primary-400);
+    }
+  }
+
+  /* Timestamp in h2 */
+  .prose h2 em {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6b7280;
+    margin-left: 0.5rem;
+    font-style: normal;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose h2 em {
+      color: #9ca3af;
+    }
+  }
+
+  /* Speaker names */
+  .prose strong {
+    font-weight: 600;
+    color: var(--color-primary-700);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose strong {
+      color: var(--color-primary-400);
+    }
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+    color: #1f2937;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose p {
+      color: #e5e7eb;
+    }
+  }
+
+  /* Transcript with hanging timestamps */
+  .prose-transcript {
+    padding-left: 0;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* Desktop: enable hanging indent */
+  @media (min-width: 768px) {
+    .prose-transcript {
+      padding-left: 4rem;
+    }
+  }
+
+  /* Paragraph timestamps - hanging indent style */
+  .prose .paragraph-timestamp {
+    font-size: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease;
+
+    /* Mobile: inline timestamp */
+    display: none;
+    margin-right: 0.25rem;
+  }
+
+  /* Desktop: hanging indent */
+  @media (min-width: 768px) {
+    .prose .paragraph-timestamp {
+      display: inline-block;
+      font-size: 0.875rem;
+      padding: 0.125rem 0.375rem;
+      width: auto;
+      margin-left: -4rem;
+      margin-right: 0.5rem;
+      min-width: 3.25rem;
+      text-align: center;
+    }
+  }
+
+  .prose .paragraph-timestamp:hover {
+    color: var(--color-primary-600);
+    background-color: var(--color-primary-50);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose .paragraph-timestamp {
+      color: #6b7280;
+    }
+
+    .prose .paragraph-timestamp:hover {
+      color: var(--color-primary-400);
+      background-color: rgba(14, 165, 233, 0.1);
+    }
+  }
+
+  /* Keep h2 chapter headings full width (desktop only) */
+  @media (min-width: 768px) {
+    .prose-transcript h2 {
+      margin-left: -4rem;
+    }
+  }
+</style>
+
+<script>
+  // Make chapter headings clickable
+  document.querySelectorAll('.prose h2').forEach((h2) => {
+    const em = h2.querySelector('em');
+    if (em) {
+      const timestamp = em.textContent?.trim();
+      if (timestamp) {
+        h2.setAttribute('data-timestamp', timestamp);
+        h2.setAttribute('role', 'button');
+        h2.setAttribute('tabindex', '0');
+      }
+    }
+  });
+
+  // Handle paragraph timestamp clicks
+  document.querySelectorAll('.prose .paragraph-timestamp').forEach((span) => {
+    span.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ts = (span as HTMLElement).dataset.ts;
+      if (ts && typeof window.seekToTime === 'function') {
+        const parts = ts.split(':').map(Number);
+        let seconds = 0;
+        if (parts.length === 3) {
+          seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+        } else if (parts.length === 2) {
+          seconds = parts[0] * 60 + parts[1];
+        }
+        window.seekToTime(seconds);
+      }
+    });
+  });
+</script>

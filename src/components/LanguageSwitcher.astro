@@ -1,0 +1,76 @@
+---
+interface Props {
+  currentLang: 'ko' | 'en';
+  alternateSlug?: string | null;
+  currentSlug?: string;
+}
+
+const { currentLang, alternateSlug, currentSlug } = Astro.props;
+
+const languages = [
+  { code: 'ko', label: '한국어' },
+  { code: 'en', label: 'English' },
+] as const;
+
+function getAlternateUrl(langCode: string): string {
+  if (langCode === currentLang) {
+    return '#';
+  }
+
+  // If alternate version exists, link to it
+  if (alternateSlug) {
+    return `/${langCode}/episodes/${alternateSlug}`;
+  }
+
+  // Otherwise, go to language home
+  return `/${langCode}`;
+}
+---
+
+<div class="relative inline-block">
+  <select
+    id="lang-switcher"
+    class="appearance-none bg-transparent border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1.5 pr-8 text-sm cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500"
+    data-current-lang={currentLang}
+    data-alternate-slug={alternateSlug || ''}
+  >
+    {languages.map((lang) => (
+      <option value={lang.code} selected={lang.code === currentLang}>
+        {lang.label}
+      </option>
+    ))}
+  </select>
+  <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</div>
+
+<script>
+  const switcher = document.getElementById('lang-switcher') as HTMLSelectElement;
+  if (switcher) {
+    switcher.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      const newLang = target.value;
+      const currentLang = switcher.dataset.currentLang;
+      const alternateSlug = switcher.dataset.alternateSlug;
+
+      if (newLang === currentLang) return;
+
+      // Get current path
+      const path = window.location.pathname;
+
+      // Check if we're on an episode page
+      const episodeMatch = path.match(/\/(?:ko|en)\/episodes\/([^\/]+)/);
+
+      if (episodeMatch && alternateSlug) {
+        // Navigate to alternate episode
+        window.location.href = `/${newLang}/episodes/${alternateSlug}`;
+      } else {
+        // Navigate to language home
+        window.location.href = `/${newLang}`;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,46 @@
+---
+interface Chapter {
+  time: string;
+  title: string;
+}
+
+interface Props {
+  chapters: Chapter[];
+  episodeNumber?: number;
+  episodeTitle?: string;
+}
+
+const { chapters, episodeNumber, episodeTitle } = Astro.props;
+---
+
+{chapters.length > 0 && (
+  <nav class="chapter-nav border border-gray-200 dark:border-gray-800 rounded-lg p-4 my-6 lg:my-0 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
+    {episodeNumber && episodeTitle && (
+      <div class="mb-4 pb-3 border-b border-gray-200 dark:border-gray-700">
+        <p class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-1">EP {episodeNumber}</p>
+        <h2 class="text-sm font-bold text-gray-900 dark:text-gray-100 leading-snug">{episodeTitle}</h2>
+      </div>
+    )}
+    <h3 class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+      챕터
+    </h3>
+    <ul class="space-y-0.5">
+      {chapters.map((chapter) => (
+        <li>
+          <button
+            type="button"
+            data-timestamp={chapter.time}
+            class="w-full text-left px-2 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+          >
+            <span class="block text-xs font-mono text-gray-400 dark:text-gray-500 group-hover:text-primary-600 dark:group-hover:text-primary-400">
+              {chapter.time}
+            </span>
+            <span class="block text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary-700 dark:group-hover:text-primary-300 leading-snug">
+              {chapter.title}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
