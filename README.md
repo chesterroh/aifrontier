@@ -1,43 +1,24 @@
-# Astro Starter Kit: Minimal
+# AI Frontier Blog
 
-```sh
-npm create astro@latest -- --template minimal
+[AI Frontier](https://aifrontier.kr) 팟캐스트의 에피소드 트랜스크립트와 챕터 네비게이션을 제공하는 블로그입니다.
+
+YouTube: https://www.youtube.com/@chester_roh
+
+## Tech Stack
+
+- [Astro 5](https://astro.build/) - 정적 사이트 생성
+- [MDX](https://mdxjs.com/) - 에피소드 콘텐츠
+- [Tailwind CSS](https://tailwindcss.com/) - 스타일링
+- [Pagefind](https://pagefind.app/) - 정적 검색
+
+## Development
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # 프로덕션 빌드 + 검색 인덱싱
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Deployment
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`main` 브랜치에 push하면 GitHub Actions를 통해 자동 배포됩니다.
