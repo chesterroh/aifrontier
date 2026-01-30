@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 import ChapterNav from '../components/ChapterNav.astro';
 import { getCollection } from 'astro:content';
+import { buildPodcastEpisodeJsonLd, resolveEpisodeThumbnail } from '../lib/seo';
 
 interface Chapter {
   time: string;
@@ -16,6 +17,7 @@ interface Props {
   publishedAt: Date;
   duration: string;
   youtubeId: string;
+  thumbnail?: string | null;
   hosts: string[];
   chapters: Chapter[];
   lang: 'ko' | 'en';
@@ -29,6 +31,7 @@ const {
   publishedAt,
   duration,
   youtubeId,
+  thumbnail,
   hosts,
   chapters,
   lang,
@@ -39,6 +42,23 @@ const formattedDate = publishedAt.toLocaleDateString(lang === 'ko' ? 'ko-KR' : '
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+});
+const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
+const canonicalPath = `/${lang}/episodes/ep${episodeNumber}`;
+const alternatePath = alternateSlug
+  ? `/${lang === 'ko' ? 'en' : 'ko'}/episodes/${alternateSlug}`
+  : null;
+const ogImage = resolveEpisodeThumbnail({ thumbnail: thumbnail ?? null, youtubeId });
+const jsonLd = buildPodcastEpisodeJsonLd({
+  site,
+  lang,
+  episodeNumber,
+  title,
+  description,
+  publishedAt: publishedAt.toISOString().slice(0, 10),
+  duration,
+  youtubeId,
+  thumbnail: ogImage,
 });
 
 // Get all episodes for prev/next navigation
@@ -55,7 +75,16 @@ const homeUrl = `/${lang}`;
 const homeLabel = lang === 'ko' ? '홈' : 'Home';
 ---
 
-<BaseLayout title={`EP ${episodeNumber}: ${title}`} description={description} lang={lang} alternateSlug={alternateSlug}>
+<BaseLayout
+  title={`EP ${episodeNumber}: ${title}`}
+  description={description}
+  lang={lang}
+  alternateSlug={alternateSlug}
+  canonicalPath={canonicalPath}
+  alternatePath={alternatePath}
+  ogImage={ogImage}
+  jsonLd={jsonLd}
+>
   <div class="max-w-7xl mx-auto px-4 lg:pl-0 lg:pr-4 py-8">
     <!-- Breadcrumb -->
     <nav class="mb-6 text-sm" aria-label="Breadcrumb">
