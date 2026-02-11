@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
 Sitemap: https://aifrontier.kr/sitemap.xml
+
+# AI agent content index
+# See https://llmstxt.org for specification
+# llms.txt: concise overview, llms-full.txt: detailed with chapters
