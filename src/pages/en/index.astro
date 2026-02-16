@@ -8,7 +8,7 @@ const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.epi
 
 const [featured, ...rest] = sortedEpisodes;
 const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
-const description = 'AI Frontier - A deep-dive AI podcast by Chester Roh (노정석), Seungjun Choi (최승준), and Sunghyun Kim (김성현), exploring the latest in AI technology, industry, and philosophy';
+const description = 'AI Frontier - A deep-dive AI podcast by Chester Roh (노정석), Seungjoon Choi (최승준), and Seonghyun Kim (김성현), exploring the latest in AI technology, industry, and philosophy';
 const jsonLd = buildPodcastSeriesJsonLd({
   site,
   lang: 'en',
@@ -27,7 +27,7 @@ const jsonLd = buildPodcastSeriesJsonLd({
 >
   <div class="max-w-4xl mx-auto px-4 py-8">
     <p class="text-center text-gray-600 dark:text-gray-400 mb-8">
-      A deep-dive AI podcast by Chester Roh, Seungjun Choi, and Sunghyun Kim, exploring the latest in AI technology, industry, and philosophy.
+      A deep-dive AI podcast by Chester Roh, Seungjoon Choi, and Seonghyun Kim, exploring the latest in AI technology, industry, and philosophy.
     </p>
     {featured && (
       <section class="mb-12">

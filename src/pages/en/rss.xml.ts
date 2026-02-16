@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'AI Frontier (English)',
-    description: 'AI Deep Dive Podcast - Jungsuk Noh, Seungjun Choi',
+    description: 'AI Deep Dive Podcast - Chester Roh, Seungjoon Choi, Seonghyun Kim',
     site: context.site || 'https://aifrontier.kr',
     items: sortedEpisodes.map((episode) => ({
       title: `EP ${episode.data.episodeNumber}: ${episode.data.title}`,
