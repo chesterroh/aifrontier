@@ -131,6 +131,12 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
             <span>{hosts.join(', ')}</span>
             <span>·</span>
             <span>{duration}</span>
+            <button id="copy-all-btn" type="button" class="copy-btn copy-all-btn ml-auto" title={lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}>
+              <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="copy-label">{lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}</span>
+              <span class="copied-label">{lang === 'ko' ? '복사됨' : 'Copied'}</span>
+            </button>
           </div>
         </header>
 
@@ -329,6 +335,88 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
       margin-left: -4rem;
     }
   }
+
+  /* --- Transcript copy buttons --- */
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem;
+    border: none;
+    border-radius: 0.25rem;
+    color: #9ca3af;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.15s ease;
+    line-height: 1;
+  }
+
+  .copy-btn:hover {
+    color: var(--color-primary-600);
+  }
+
+  .copy-btn.copied {
+    color: #10b981;
+  }
+
+  .copy-btn .check-icon,
+  .copy-btn .copied-label {
+    display: none;
+  }
+
+  .copy-btn.copied .copy-icon,
+  .copy-btn.copied .copy-label {
+    display: none;
+  }
+
+  .copy-btn.copied .check-icon,
+  .copy-btn.copied .copied-label {
+    display: inline;
+  }
+
+  .copy-all-btn {
+    gap: 0.25rem;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .copy-btn {
+      color: #6b7280;
+    }
+
+    .copy-btn:hover {
+      color: var(--color-primary-400);
+    }
+
+    .copy-btn.copied {
+      color: #34d399;
+    }
+  }
+
+  /* Chapter copy button (injected into h2) */
+  .prose-transcript h2 {
+    position: relative;
+  }
+
+  .copy-chapter-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .prose-transcript h2:hover .copy-chapter-btn {
+    opacity: 1;
+  }
+
+  /* Show chapter copy button on touch devices (no hover) */
+  @media (hover: none) {
+    .copy-chapter-btn {
+      opacity: 1;
+    }
+  }
 </style>
 
 <script>
@@ -361,5 +449,107 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
         window.seekToTime(seconds);
       }
     });
+  });
+
+  // --- Transcript copy functionality ---
+
+  const COPY_ICON_SVG = '<svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const CHECK_ICON_SVG = '<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  // Extract clean text from a range of sibling elements
+  function extractText(elements: Element[]): string {
+    const lines: string[] = [];
+    for (const node of elements) {
+      if (node.tagName === 'H2') {
+        // Get chapter title text, excluding <em> (timestamp) and copy button
+        let title = '';
+        for (const child of node.childNodes) {
+          if (child.nodeType === Node.TEXT_NODE) {
+            title += child.textContent;
+          }
+        }
+        lines.push(`\n## ${title.trim()}\n`);
+      } else if (node.tagName === 'P') {
+        let text = '';
+        for (const child of node.childNodes) {
+          const el = child as HTMLElement;
+          if (el.classList?.contains('paragraph-timestamp')) continue;
+          if (el.classList?.contains('copy-chapter-btn')) continue;
+          if (el.tagName === 'STRONG') {
+            text += el.textContent + ':';
+          } else {
+            text += child.textContent;
+          }
+        }
+        const trimmed = text.trim();
+        if (trimmed) lines.push(trimmed);
+      }
+    }
+    return lines.filter(Boolean).join('\n\n').trim();
+  }
+
+  // Get all transcript content elements (children of .prose-transcript, excluding the copy bar)
+  function getAllTranscriptElements(): Element[] {
+    const container = document.querySelector('.prose-transcript');
+    if (!container) return [];
+    return Array.from(container.children).filter(
+      el => !el.classList.contains('transcript-copy-bar')
+    );
+  }
+
+  // Get elements belonging to a specific chapter (from its H2 to the next H2)
+  function getChapterElements(h2: Element): Element[] {
+    const elements: Element[] = [h2];
+    let sibling = h2.nextElementSibling;
+    while (sibling && sibling.tagName !== 'H2') {
+      elements.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    return elements;
+  }
+
+  // Copy text and show feedback
+  async function copyWithFeedback(text: string, btn: HTMLButtonElement) {
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    }
+  }
+
+  // "Copy all" button handler
+  const copyAllBtn = document.getElementById('copy-all-btn') as HTMLButtonElement;
+  if (copyAllBtn) {
+    copyAllBtn.addEventListener('click', () => {
+      const text = extractText(getAllTranscriptElements());
+      copyWithFeedback(text, copyAllBtn);
+    });
+  }
+
+  // Inject chapter copy buttons into each H2
+  document.querySelectorAll('.prose-transcript h2').forEach((h2) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn copy-chapter-btn';
+    btn.innerHTML = COPY_ICON_SVG + CHECK_ICON_SVG;
+    btn.title = document.documentElement.lang === 'ko' ? '이 챕터 복사' : 'Copy chapter';
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const text = extractText(getChapterElements(h2));
+      copyWithFeedback(text, btn);
+    });
+    h2.appendChild(btn);
   });
 </script>
