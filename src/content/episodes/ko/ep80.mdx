@@ -432,7 +432,7 @@ hallucination이 있는 LLM 모델이지만 조사할 수 있는 도구들이 �
 저도 그냥 느낌상 우리는 어디로 도망가야 할 것인가라는 그런 질문에 대한 답으로 첫째는 당연히 현실의 문제를 지금 현재 frontier 모델의 harness를 가지고 만드는 건데 또 뒤에서 드는 기시감은 이 computation 대비 효율이 계속 증가하고 있거든요. 알고리즘의 증가, 데이터셋의 증가, 데이터셋의 오픈, 이런 것 때문에 어쩌면 Andrej Karpathy가 얘기하던 cognitive core 같은 수준, 한 10B 파라미터 이하에서도 하나의 비즈니스는 완벽하게 커버하는 그런 모델들이 나올 것 같아요.
 그리고 그런 것들을 학습시켜 주는 RLVR 환경의 회사들도 조금 새로운 SI 회사로 생겨날 거고 그런데 이게 차이가 있다면 그런 걸 하기 위해서 갖춰야 하는 어떤 기본 정보들이 굉장히 많다는 것들이 이제 차이고요.
 
-그래서 그런 세상이 올 것 같아서 저는 harness를 만드는 것 플러스 이 model work도 training과 그다음에 fine-tuning하고 RLVR 하고 evaluation하는 것들의 loop도 어떤 비즈니스 로직 안에서도 안에서 가지고 있어야 될 것 같다는 생각은 하고 있거든요. 그래서 그 부분 저희 회사도 내재화하려고 노력하고 있는데 Nemotron 얘기로 다시 돌아오면 저희가 SSM이랑 Mamba 이야기가 한 1~2년 전, 한 1년 반 전에 한 번 크게 왔었고 24년 말 정도에 Falcon 같은 데서 Mamba-based 모델 만들어내고 했었는데 이게 SSM이랑 Mamba가 굉장히 재밌거든요.
+그래서 그런 세상이 올 것 같아서 저는 harness를 만드는 것 플러스 이 model work도 training과 그다음에 fine-tuning하고 RLVR 하고 evaluation하는 것들의 loop도 어떤 비즈니스 로직 안에서도 안에서 가지고 있어야 될 것 같다는 생각은 하고 있거든요. 그래서 그 부분 저희 회사도 내재화하려고 노력하고 있는데 Nemotron 얘기로 다시 돌아오면 저희가 SSM이랑 Mamba 이야기가 한 1\~2년 전, 한 1년 반 전에 한 번 크게 왔었고 24년 말 정도에 Falcon 같은 데서 Mamba-based 모델 만들어내고 했었는데 이게 SSM이랑 Mamba가 굉장히 재밌거든요.
 
 이것도 언제 한번 저희가 어떻게 만들어졌는지에 대해서 리뷰를 하면 좋을 것 같은데 그냥 intuition만 얘기하면 그래요. 저희가 처음에 RNN 있었죠. RNN 가지고 사실상의 language modeling은 RNN 가지고 했었고 그런데 그게 맨 마지막에 context vector 하나만 가지고 모든 맥락을 다 추론해야 하니까 성능이 잘 안 나온다.
 
@@ -447,7 +447,7 @@ hallucination이 있는 LLM 모델이지만 조사할 수 있는 도구들이 �
 
 그런데 Mamba가 갖고 있는 문제는 얘는 RNN처럼 하나의 context vector 안으로 이 sequence를 다 요약하는 그런 느낌이고 attention은 token들 사이의 관계를 끊임없이 계산하는 느낌이고 그래서 RNN은 요약에 능하고 Transformer는 관계를 기억하는 것에 능하고 이런 것들에 서로의 장단점이 있는데 요새 나오는 모델들이 이 hybrid라고 그러거든요.
 
-예를 들어 지금 현재 우리가 익숙한 Transformer 모델들이 소위 Transformer block이 몇십 개 쌓여 있잖아요. Nemotron은 Mamba block이 한 8개 쌓인 거 위에 self-attention 놓고 그리고 그 사이에 FFN 놓고요. 그 MoE 방식으로 FFN은 똑같이 들어있는 거고 또 Mamba block이 8개씩 쌓이고 그 위에 attention block이 하나 있고 그래서 그 그룹이 한 8~9개가 구성돼 있는 구조로 돼 있거든요.
+예를 들어 지금 현재 우리가 익숙한 Transformer 모델들이 소위 Transformer block이 몇십 개 쌓여 있잖아요. Nemotron은 Mamba block이 한 8개 쌓인 거 위에 self-attention 놓고 그리고 그 사이에 FFN 놓고요. 그 MoE 방식으로 FFN은 똑같이 들어있는 거고 또 Mamba block이 8개씩 쌓이고 그 위에 attention block이 하나 있고 그래서 그 그룹이 한 8\~9개가 구성돼 있는 구조로 돼 있거든요.
 그래서 30B 전체 크기의 한 3B 정도 activation 되는 모델로 돼 있는데 무지하게 빨라요. 그냥 몇 배라고 해서 저는 이게 한 1년 반 전에 탄생을 했는데 이 hybrid, 이것도 일종의 새로운 알고리즘 유전자잖아요.
 
 이 모델로 또 세상이 많이 굴러가겠구나 이 hybrid로 해놓은 것의 이점이 압도적으로 크기 때문에 계산 부분에서, 그다음에 inference time에서 훨씬 적은 연산량과 적은 모델 사이즈로 Transformer보다 조금은 더 나은 몇 배 낫다는 표현은 지금은 조금 위험한 것 같은데 이걸 내고 있기 때문에 저의 개인적인 예상은 다음 세대 frontier도 이런 hybrid Mamba 플러스 Transformer hybrid 모델로 이동할 가능성이 매우 높겠다는 생각이 들어요.
