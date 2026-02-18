@@ -86,6 +86,15 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary';
         set:html={JSON.stringify(jsonLd)}
       />
     )}
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYCQJD49DW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DYCQJD49DW');
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
