@@ -514,11 +514,24 @@ const { videoId, title = 'YouTube video' } = Astro.props;
 
         // Find and scroll to corresponding heading in prose
         const headings = document.querySelectorAll('.prose h2');
+        let targetHeading: HTMLElement | null = null;
         for (const h2 of headings) {
           const em = h2.querySelector('em');
           if (em && em.textContent?.trim() === timestamp) {
-            h2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            targetHeading = h2 as HTMLElement;
+            targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
             break;
+          }
+        }
+
+        if (!targetHeading && link.matches('h2')) {
+          targetHeading = link as HTMLElement;
+        }
+
+        if (targetHeading?.id) {
+          const hash = `#${targetHeading.id}`;
+          if (window.location.hash !== hash) {
+            window.history.replaceState(null, '', hash);
           }
         }
 

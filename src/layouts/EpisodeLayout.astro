@@ -131,12 +131,41 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
             <span>{hosts.join(', ')}</span>
             <span>·</span>
             <span>{duration}</span>
-            <button id="copy-all-btn" type="button" class="copy-btn copy-all-btn ml-auto" title={lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}>
-              <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span class="copy-label">{lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}</span>
-              <span class="copied-label">{lang === 'ko' ? '복사됨' : 'Copied'}</span>
-            </button>
+            <div class="header-actions-group ml-auto">
+              <span class="header-actions-label">{lang === 'ko' ? '페이지 전체' : 'Page'}</span>
+              <div class="header-actions">
+                <button
+                  id="copy-page-link-btn"
+                  type="button"
+                  class="copy-btn page-link-btn"
+                  title={lang === 'ko' ? '페이지 링크 복사' : 'Copy page link'}
+                  aria-label={lang === 'ko' ? '페이지 링크 복사' : 'Copy page link'}
+                >
+                  <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+                <button
+                  id="copy-all-btn"
+                  type="button"
+                  class="copy-btn copy-all-btn"
+                  title={lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}
+                  aria-label={lang === 'ko' ? '페이지 전체 복사' : 'Copy entire page'}
+                >
+                  <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              <button
+                id="download-all-btn"
+                type="button"
+                class="copy-btn download-all-btn"
+                title={lang === 'ko' ? '페이지 전체 다운로드' : 'Download entire page'}
+                aria-label={lang === 'ko' ? '페이지 전체 다운로드' : 'Download entire page'}
+                data-download-filename={`ep${episodeNumber}-${lang}-transcript.txt`}
+              >
+                <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              </button>
+              </div>
+            </div>
           </div>
         </header>
 
@@ -363,6 +392,8 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
   }
 
   .copy-btn.copied .copy-icon,
+  .copy-btn.copied .download-icon,
+  .copy-btn.copied .link-icon,
   .copy-btn.copied .copy-label {
     display: none;
   }
@@ -372,10 +403,29 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
     display: inline;
   }
 
-  .copy-all-btn {
+  .header-actions-group {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.125rem;
+  }
+
+  .header-actions-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    line-height: 1;
+  }
+
+  .header-actions {
+    display: inline-flex;
+    align-items: center;
     gap: 0.25rem;
-    font-size: inherit;
-    font-family: inherit;
+  }
+
+  .copy-all-btn,
+  .page-link-btn,
+  .download-all-btn {
+    padding: 0.25rem;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -397,22 +447,24 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
     position: relative;
   }
 
-  .copy-chapter-btn {
+  .chapter-actions {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    display: inline-flex;
+    gap: 0.25rem;
     opacity: 0;
     transition: opacity 0.15s ease;
   }
 
-  .prose-transcript h2:hover .copy-chapter-btn {
+  .prose-transcript h2:hover .chapter-actions {
     opacity: 1;
   }
 
-  /* Show chapter copy button on touch devices (no hover) */
+  /* Show chapter action buttons on touch devices (no hover) */
   @media (hover: none) {
-    .copy-chapter-btn {
+    .chapter-actions {
       opacity: 1;
     }
   }
@@ -453,6 +505,7 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
   // --- Transcript copy functionality ---
 
   const COPY_ICON_SVG = '<svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const LINK_ICON_SVG = '<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
   const CHECK_ICON_SVG = '<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
   // Extract clean text from a range of sibling elements
@@ -507,6 +560,12 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
     return elements;
   }
 
+  function getChapterPermalink(h2: Element): string {
+    const heading = h2 as HTMLElement;
+    const hash = heading.id ? `#${heading.id}` : '';
+    return `${window.location.origin}${window.location.pathname}${window.location.search}${hash}`;
+  }
+
   // Copy text and show feedback
   async function copyWithFeedback(text: string, btn: HTMLButtonElement) {
     try {
@@ -528,6 +587,15 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
     }
   }
 
+  // "Copy page link" button handler
+  const copyPageLinkBtn = document.getElementById('copy-page-link-btn') as HTMLButtonElement;
+  if (copyPageLinkBtn) {
+    copyPageLinkBtn.addEventListener('click', () => {
+      const pageLink = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+      copyWithFeedback(pageLink, copyPageLinkBtn);
+    });
+  }
+
   // "Copy all" button handler
   const copyAllBtn = document.getElementById('copy-all-btn') as HTMLButtonElement;
   if (copyAllBtn) {
@@ -537,18 +605,53 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
     });
   }
 
-  // Inject chapter copy buttons into each H2
+  // "Download all" button handler
+  const downloadAllBtn = document.getElementById('download-all-btn') as HTMLButtonElement;
+  if (downloadAllBtn) {
+    downloadAllBtn.addEventListener('click', () => {
+      const text = extractText(getAllTranscriptElements());
+      const filename = downloadAllBtn.dataset.downloadFilename || 'transcript.txt';
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  // Inject chapter action buttons (permalink + copy) into each H2
   document.querySelectorAll('.prose-transcript h2').forEach((h2) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'copy-btn copy-chapter-btn';
-    btn.innerHTML = COPY_ICON_SVG + CHECK_ICON_SVG;
-    btn.title = document.documentElement.lang === 'ko' ? '이 챕터 복사' : 'Copy chapter';
-    btn.addEventListener('click', (e) => {
+    const actionGroup = document.createElement('span');
+    actionGroup.className = 'chapter-actions';
+
+    const permalinkBtn = document.createElement('button');
+    permalinkBtn.type = 'button';
+    permalinkBtn.className = 'copy-btn permalink-chapter-btn';
+    permalinkBtn.innerHTML = LINK_ICON_SVG + CHECK_ICON_SVG;
+    permalinkBtn.title = document.documentElement.lang === 'ko' ? '이 챕터 링크 복사' : 'Copy chapter permalink';
+    permalinkBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const link = getChapterPermalink(h2);
+      copyWithFeedback(link, permalinkBtn);
+    });
+
+    const copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'copy-btn copy-chapter-btn';
+    copyBtn.innerHTML = COPY_ICON_SVG + CHECK_ICON_SVG;
+    copyBtn.title = document.documentElement.lang === 'ko' ? '이 챕터 복사' : 'Copy chapter';
+    copyBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const text = extractText(getChapterElements(h2));
-      copyWithFeedback(text, btn);
+      copyWithFeedback(text, copyBtn);
     });
-    h2.appendChild(btn);
+
+    actionGroup.appendChild(permalinkBtn);
+    actionGroup.appendChild(copyBtn);
+    h2.appendChild(actionGroup);
   });
 </script>
