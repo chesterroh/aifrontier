@@ -288,6 +288,8 @@ function generateFrontmatter(meta: EpisodeMetadata): string {
   const chaptersYaml = meta.chapters
     .map((c) => `  - time: "${c.time}"\n    title: "${c.title.replace(/"/g, '\\"')}"`)
     .join('\n');
+  const thumbnail =
+    meta.thumbnail?.trim() || `https://i.ytimg.com/vi/${meta.youtubeId}/maxresdefault.jpg`;
 
   return `---
 episodeNumber: ${meta.episodeNumber}
@@ -296,7 +298,7 @@ description: "${meta.description.replace(/"/g, '\\"')}"
 publishedAt: ${meta.publishedAt}
 duration: "${meta.duration}"
 youtubeId: "${meta.youtubeId}"
-thumbnail: "https://i.ytimg.com/vi/${meta.youtubeId}/maxresdefault.jpg"
+thumbnail: "${thumbnail.replace(/"/g, '\\"')}"
 hosts:
   - 노정석
   - 최승준

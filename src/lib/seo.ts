@@ -31,6 +31,18 @@ export type SitemapEntry = { loc: string; lastmod?: string };
 export type SitemapEpisode = { lang: 'ko' | 'en'; episodeNumber: number; publishedAt: Date };
 export type SitemapEntriesInput = { site: string; episodes: SitemapEpisode[] };
 
+const DEFAULT_THUMBNAIL_CACHE_BUSTER = new Date().toISOString();
+
+function withCacheBuster(url: string, cacheBuster = DEFAULT_THUMBNAIL_CACHE_BUSTER): string {
+  try {
+    const u = new URL(url);
+    u.searchParams.set('v', cacheBuster);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function durationToIso(duration: string): string {
   const parts = duration.split(':').map((value) => Number(value));
   if (parts.some((value) => Number.isNaN(value))) return 'PT0S';
@@ -121,12 +133,14 @@ export function buildPodcastEpisodeJsonLd(input: EpisodeJsonLdInput) {
 export function resolveEpisodeThumbnail({
   thumbnail,
   youtubeId,
+  cacheBuster,
 }: {
   thumbnail?: string | null;
   youtubeId?: string | null;
+  cacheBuster?: string;
 }): string | null {
-  if (thumbnail) return thumbnail;
-  if (youtubeId) return `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+  if (thumbnail) return withCacheBuster(thumbnail, cacheBuster);
+  if (youtubeId) return withCacheBuster(`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`, cacheBuster);
   return null;
 }
 

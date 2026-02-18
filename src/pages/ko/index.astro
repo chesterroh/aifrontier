@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildPodcastSeriesJsonLd } from '../../lib/seo';
+import { buildPodcastSeriesJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
 
 const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
 const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
@@ -36,7 +36,7 @@ const jsonLd = buildPodcastSeriesJsonLd({
             {featured.data.thumbnail && (
               <div class="aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden">
                 <img
-                  src={featured.data.thumbnail}
+                  src={resolveEpisodeThumbnail({ thumbnail: featured.data.thumbnail, youtubeId: featured.data.youtubeId }) ?? featured.data.thumbnail}
                   alt={featured.data.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="eager"
@@ -68,7 +68,7 @@ const jsonLd = buildPodcastSeriesJsonLd({
                 {episode.data.thumbnail && (
                   <div class="aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden">
                     <img
-                      src={episode.data.thumbnail}
+                      src={resolveEpisodeThumbnail({ thumbnail: episode.data.thumbnail, youtubeId: episode.data.youtubeId }) ?? episode.data.thumbnail}
                       alt={episode.data.title}
                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
