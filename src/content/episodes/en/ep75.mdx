@@ -1,0 +1,528 @@
+---
+episodeNumber: 75
+lang: "en"
+title: "Reinforcement Learning (Without Math Formulas)"
+description: "China's Moonshot Kimi K2 Thinking model has achieved benchmark scores surpassing GPT-5 and Sonnet 4.5, demonstrating rapid model advancements in the post-training era. This video explains the core concepts of Reinforcement Learning (RL), the differences between on-policy and off-policy learning, how the capabilities of models formed during pre-training are strengthened into generalizable patterns through RL, and why accurate feedback is crucial."
+publishedAt: 2026-01-30
+duration: "1:04:40"
+youtubeId: "7pGfU6AC4XY"
+thumbnail: "https://i.ytimg.com/vi/7pGfU6AC4XY/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+chapters:
+  - time: "0:00"
+    title: "Opening: Kimi K2 model announcement and reinforcement learning"
+  - time: "0:38"
+    title: "Features and benchmarks of the Kimi K2 model"
+  - time: "1:14"
+    title: "The post-training era and the model development cycle"
+  - time: "2:55"
+    title: "Model lightweighting through MoE and quantization"
+  - time: "5:43"
+    title: "The importance of post-training recipes"
+  - time: "7:26"
+    title: "A new perspective on reinforcement learning (RL)"
+  - time: "9:30"
+    title: "Supervised learning vs reinforcement learning: the self-driving analogy"
+  - time: "12:43"
+    title: "The core of reinforcement learning: the Credit Assignment Problem"
+  - time: "15:10"
+    title: "Why reinforcement learning was introduced to LLMs: RLHF"
+  - time: "17:18"
+    title: "Limitations of SFT and the hallucination problem"
+  - time: "20:15"
+    title: "Concepts of On-Policy vs. Off-Policy learning"
+  - time: "23:31"
+    title: "A model’s problem-solving ability for generalization"
+  - time: "30:28"
+    title: "Limits of internet data: absence of intermediate steps"
+  - time: "33:38"
+    title: "Pretraining and shrinking the search space"
+  - time: "36:25"
+    title: "LLM training and the meaning of perplexity"
+  - time: "39:17"
+    title: "The branching point of reasoning: high-entropy tokens"
+  - time: "42:04"
+    title: "Learning collective reasoning: the internet forum case"
+  - time: "44:14"
+    title: "Emergence of reasoning ability through reinforcement learning"
+  - time: "49:01"
+    title: "Is reinforcement learning about bringing out existing abilities?"
+  - time: "52:26"
+    title: "Conditions for successful reinforcement learning"
+  - time: "57:27"
+    title: "DeepSeek R1’s approach to reasoning training"
+  - time: "1:00:05"
+    title: "Closing: On-policy RL and life: Jason Wei’s story"
+---
+
+## Opening: Kimi K2 model announcement and reinforcement learning    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we are recording, is November 8th, 2025, a Saturday morning. We've really been waiting for Gemini 3.0, and it seems like it's about to be released soon.
+
+The day before yesterday, or yesterday in Korean time, Moonshot, one of China's frontier labs, announced the Kimi K2 Thinking model. In various benchmarks, it's showing results that surpass other American frontier models. So, since reinforcement learning, RL, is still a major topic, today with Seonghyun, I'd like to dig deeper into the RL part. Yes, hello.
+
+## Features and benchmarks of the Kimi K2 model    *00:38*
+
+<span class="paragraph-timestamp" data-ts="00:38">00:38</span> **Seonghyun Kim** Hello. The release of the Kimi K2 model has become a huge topic, and it still is. What became the biggest topic was probably its benchmark scores.
+
+In the benchmark scores, it's being compared with just two other models. They are GPT-5 and Sonnet 4.5 Thinking.
+
+So, it's being compared with the models that are currently at the top, and compared to those models, it's not falling behind, and in some benchmarks, it's even recording better performance. Another interesting point is that before Kimi K2, it wasn't an inference model, it was an instruct model, and that instruct model came out around September.
+
+## The post-training era and the model development cycle    *01:14*
+
+<span class="paragraph-timestamp" data-ts="01:14">01:14</span> **Seonghyun Kim** So the cycle of new models being released is getting faster and faster. Now, we're moving away from the pre-training era into the post-training era, and now each company is improving its post-training recipes, and those improved recipes are being incorporated into models. The speed at which improved models are released is much faster compared to the speed of improving pre-training, then doing post-training again, and then releasing a new model. That cycle is becoming extremely fast. Probably for GPT-5, or models from OpenAI or Anthropic, that cycle will continue to speed up. They're introducing various things, like being able to perform 200-300 tool uses for a single instruction, and so on.
+
+They're saying the scores are good, the performance is good, and besides that, another interesting point is that in the case of Kimi K2, and I think it was the same for previous Kimi models, they don't just emphasize coding and math-related things. If you look at them, they always emphasize creative writing, and writing abilities as well. They emphasize it a lot.
+
+And when I use them, the Kimi K2 and Moonshot models definitely seem to have a certain writing style or tone of the Moonshot models. That aspect in writing is also interesting, and they continue to emphasize and carry forward general abilities as well. I think these are the interesting parts. Especially these days, what's often called 'spiky intelligence'— models that are only good at math and coding, or models that are only good at specific areas— interest in these areas seems to be rising again. But separate from that, frontier companies still have a high interest in general-purpose intelligence and models that can perform various tasks, and they continue to pursue those areas.
+
+## Model lightweighting through MoE and quantization    *02:55*
+
+
+<span class="paragraph-timestamp" data-ts="02:55">02:55</span> **Seonghyun Kim** And for a bit more detail, they talk about 'inference efficiency,' and this inference efficiency means service efficiency. While talking about service efficiency, they say that during the post-training process, they did quantization-aware training. That's what they're saying. Quantization-aware training is a technique to reduce performance degradation during the training stage when reducing the model's size through so-called quantization. Here, it says they performed INT4 quantization on the MoE part, the MoE FFN part. Similar to gpt-oss from OpenAI, they did 4-bit quantization.
+
+They did 4-bit quantization in the form of MXFP4, and similarly, they are incorporating INT4 quantization at the post-training stage, and these trends seem to be becoming more mainstream. This is probably something that needs to be looked into more deeply in relation to MoE research, but there's a lot of talk that MoE, especially the MoE part, quantizes better compared to more general dense models. There's a lot of talk that it works better.
+
+It's natural because as a model trains more, the model's weights... the more it trains, the harder quantization becomes. Because more information gets packed into the model's weights. The more it trains. But in the case of MoE, each module of the model isn't trained on all the data, it's trained partially, so you can say there's a higher potential for compression. That's why in the case of gpt-oss as well, they specifically quantized the MoE part, and now in the case of Kimi too, they are quantizing that part. So these trends will probably become a basic technique that we'll see more and more often in the future.
+
+<span class="paragraph-timestamp" data-ts="04:38">04:38</span> **Chester Roh** Then the model size must have been reduced a lot thanks to that. This is supposed to be a 1 trillion parameter model, so the size would be less than 1TB then. In theory, should it be around 500GB? About 600GB?
+
+<span class="paragraph-timestamp" data-ts="04:51">04:51</span> **Seonghyun Kim** Since most of the weights are in the MoE part, it probably won't be at the 1TB level. It won't be that much. Of course, when it's quantized and loaded into memory, it won't be 1TB, but around 500GB, just as you said, it will load at about that size.
+
+<span class="paragraph-timestamp" data-ts="05:11">05:11</span> **Chester Roh** At that size, it could really run on a single machine with 8 GPUs.
+
+<span class="paragraph-timestamp" data-ts="05:20">05:20</span> **Seonghyun Kim** Yes, it seems like you could just barely squeeze it in.
+
+<span class="paragraph-timestamp" data-ts="05:22">05:22</span> **Chester Roh** Exactly. The performance is maintained, but it keeps getting smaller and the computing efficiency is increasing.
+
+<span class="paragraph-timestamp" data-ts="05:30">05:30</span> **Seungjoon Choi** So the parameters are in the 1 trillion class, but in terms of size, you're estimating it to be around 500GB.
+
+<span class="paragraph-timestamp" data-ts="05:38">05:38</span> **Seonghyun Kim** Yes, the actual size will be reduced to about that much. Because it becomes half the size.
+
+## The importance of post-training recipes    *05:43*
+
+<span class="paragraph-timestamp" data-ts="05:43">05:43</span> **Seonghyun Kim** We'll probably continue to see this trend. As the focus shifts to post-training and RL, RL training recipes are being rapidly improved, and those rapidly improved recipes are applied to models, so the release cycle is getting faster. We'll likely keep seeing things like that, and for things like those recipe improvements, they don't even release separate tech reports.
+
+How good of a recipe they have will probably be the competitive edge for frontier companies. In the case of pre-training, if it has been more about using existing data well until now, post-training is closer to the feeling of creating data. It's much closer.
+
+So now, how well they do that creation, this part will become their know-how, and in that area, the competitiveness of frontier companies will diverge very significantly, I believe. The recipes or tricks for post-training are probably very different for each company.
+
+<span class="paragraph-timestamp" data-ts="06:38">06:38</span> **Chester Roh** Yes, they must have become very different. Yes, and philosophically, where they place their emphasis, for example, companies like Anthropic place a strong emphasis on coding, practical problems, and B2B use.
+
+Whereas OpenAI or Kimi, as you mentioned, seem to place much more emphasis on generalization and things like that.
+
+<span class="paragraph-timestamp" data-ts="06:59">06:59</span> **Seonghyun Kim** Yes, Anthropic will of course continue to address general aspects, but the question is whether they will go in the direction of specializing in that area, or if they will try to cover everything. There's that aspect.
+
+However, I believe the basic stance of frontier labs is to advance all the general aspects together. I don't think that general intelligence and ability can be completely separated from other abilities. But this is a bit of a philosophical point.
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> **Seungjoon Choi** Let's keep going.
+
+## A new perspective on reinforcement learning (RL)    *07:26*
+
+<span class="paragraph-timestamp" data-ts="07:26">07:26</span> **Seonghyun Kim** Okay, then now I'll move on to what I originally planned, which is reinforcement learning. Last time, I covered RLVR, and after covering it, I thought that would be sufficient. But after actually doing it, I felt strongly that I should have covered it more deeply and better. So, I'm going to talk about reinforcement learning once again. For engineers of my generation, reinforcement learning is often very special. Because we started with AlphaGo. Deep learning, that is. So for many, recreating AlphaGo was probably their first project.
+
+But compared to that, I didn't start with reinforcement learning. I just started with supervised learning, and regarding reinforcement learning, I felt like, 'Why bother with something so troublesome?' I felt that way until recently, but with the advent of the LLM era, I couldn't avoid reinforcement learning anymore, and eventually, I ended up talking about reinforcement learning.
+
+But in that sense, compared to those who started with reinforcement learning, my perspective or impression of reinforcement learning might be a bit different. Compared to those who have had a deep affection for reinforcement learning For those who have had a deep affection for it, I saw reinforcement learning as a bit of a headache, and from that perspective, I came to it out of necessity. As someone who became interested in reinforcement learning again, my perspective might be a bit different. However, a new perspective might also be interesting, I think.
+
+So, to briefly introduce what reinforcement learning is again, there is an agent, and the agent takes actions in an environment. When it takes an action, the environment will change in some way due to the agent's action. We describe this as the state changing. And in some cases, what's called a reward, a reward defined in this environment, may be given. So, getting a high score in a game could be one such reward. In that case, the agent acting in this environment is trained to maximize this reward. That method of learning is reinforcement learning.
+
+## Supervised learning vs reinforcement learning: the self-driving analogy    *09:30*
+
+<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **Seonghyun Kim** And this part is a bit different from supervised learning. However, supervised learning, of course, is not entirely different from reinforcement learning. There are some difficulties in seeing it that way. Because some techniques of supervised learning can be considered as a part of reinforcement learning.
+
+But when we talk about reinforcement learning, what's different from supervised learning is that the agent is not taught how it should act by human experts or the like. They don't teach it.
+
+<span class="paragraph-timestamp" data-ts="09:56">09:56</span> **Seungjoon Choi** A slightly confusing part is, isn't that the context of unsupervised learning? Not RL during supervised learning, but isn't it RL during unsupervised learning?
+
+<span class="paragraph-timestamp" data-ts="10:04">10:04</span> **Chester Roh** It's also correct to call it supervised learning. What Seonghyun meant was that as reinforcement learning progresses, for the things that succeed, the part of getting a reward and updating is actually similar to the process in supervised learning of learning according to labels.
+
+<span class="paragraph-timestamp" data-ts="10:21">10:21</span> **Seonghyun Kim** I think it's good to use self-driving as an analogy here. If we use self-driving as an analogy, if you were to train a self-driving car with supervised learning, a person would create a driving trajectory. They would create a record of the driving process, and things like that, and training the model to imitate that record is closer to the supervised learning perspective.
+
+If you use reinforcement learning, you instead give it a goal, and successfully reaching the goal, the destination, is given as a reward. As for how to drive, the agent, the AI model, is made to find the way itself. That is the biggest difference when comparing supervised learning and reinforcement learning. So, it doesn't teach you how to solve the problem. It's closer to just giving the objective: "Solve the problem." But because of that, an advantage arises.
+
+If you take data created by a human and train a model to imitate that human-created data, you will ultimately get human-level performance. Of course, you can't say it's always the case, but generally, reaching human-level performance will be the goal. Because it's imitating the human method. In fact, it's highly likely to be worse than a human. Imitation is like that.
+
+But reinforcement learning makes the model find the method itself, so the possibility of surpassing the human level arises. So, in the game of Go, this is demonstrated very well. Because the model finds how to play Go on its own, it becomes able to play Go at a level that surpasses humans. In that sense, among machine learning-related methods, it can be seen as the only method that can reach superhuman, i.e., beyond-human, performance. Reinforcement learning, that is.
+
+What are the techniques of reinforcement learning? If you ask how it happens, approaching it mathematically is very complex, but Karpathy summarized it very simply. About reinforcement learning, he expressed it in a brutal way, but it's not an entirely incorrect expression. The basic gist is that the agent performs an action. After having it perform an action in the environment, if it happens to perform actions, a reward will come in eventually. Then, for the actions it took until the reward came in, you increase their probability. You can think of this as the most basic idea. After making it take an action, if a reward comes in, when that reward comes in, for all the actions taken until the reward came in, you increase all their probabilities.
+
+## The core of reinforcement learning: the Credit Assignment Problem    *12:43*
+
+<span class="paragraph-timestamp" data-ts="12:43">12:43</span> **Seonghyun Kim** Then, a slightly strange thought comes to mind. Among those actions, some would have been unhelpful, and some would have been helpful. Especially if it acts randomly, that's more likely to happen. Then, it would be better to increase the probability of only the actions that were actually helpful. But this is a problem called the Credit Assignment Problem. It's a tricky concept, but essentially, it boils down to this: how do you figure out which action was actually helpful? and if you think about it carefully, it's not an easy problem.
+
+Even for a person, with no prior knowledge, when a good outcome occurs, what was the action that led to that result? If you think about how to figure that out, it's not an easy problem. People figure it out through prior experience or reasoning; when just thrown into a situation, it's very difficult to figure out which action was helpful. And people also make a lot of mistakes in this area.
+
+For example, trying to find a pattern where there is none, or thinking an action was helpful when it was completely unrelated. These kinds of things happen a lot. This suggests that it's a generally difficult problem. That's what it implies. So, in things like gambling, people make that kind of mistake a lot. They think there's a pattern, and they think a certain action was helpful, which leads to things like jinxes.
+
+So this problem is quite difficult, and thanks to AlphaGo, reinforcement learning has seen many glorious moments, but still, in this area, especially when rewards are given very sparsely, like only after hundreds or thousands of actions, in cases where a reward is given, this problem is still a difficult one.
+
+Reinforcement learning is a difficult problem, and when we were solving Atari games with reinforcement learning, many Atari games were solved. But among them, there was a game called Montezuma's Revenge. It's the game shown in the screenshot here, and as far as I know, this game has still only reached the average human level, and without using unconventional methods, like a human guide or the ability to reset the environment, without giving it such things, I believe it still hasn't reached superhuman ability. So, for environments that are not well-suited for reinforcement learning, that is, where a reward only comes after many actions have been taken, it's still a difficult situation. So, overall, it's not an easy problem.
+
+## Why reinforcement learning was introduced to LLMs: RLHF    *15:10*
+
+<span class="paragraph-timestamp" data-ts="15:10">15:10</span> **Seonghyun Kim** So, regarding LLMs, why this reinforcement learning was introduced, and in what form it was introduced, I'd like to start by introducing that. It seems to have been first introduced as something called RLHF. That's how I see it. Of course, even before that, in slightly different forms, there were cases where it was introduced, but the most mainstream case of its introduction is RLHF. There's a lot of debate about whether RLHF is really RL or not, and reinforcement learning practitioners say it's not RL, but anyway, I think it is RL. The basic idea is this. It's like this.
+
+You give the LLM a prompt and have it generate two responses. Then, when it generates two responses, there will be a good response and a bad response among them. Then, a person labels which response was good and which response was not so good in comparison. They label it. After labeling, using these label results, you create a reward model. This reward model takes responses and predicts whether the response is good or not, similar to a human's evaluation. That's the model you create.
+
+And this reward model, in RL, or reinforcement learning, plays the role of the reward function that provides the reward. After creating the reward model like this, you take the LLM and have it generate multiple responses again. After generating multiple responses, if you put them into the reward model, it will evaluate whether the response was good or not. The reward model then maximizes that evaluation score, in other words, you do RL to maximize the reward. Then, the model will be trained to produce responses that maximize the reward, meaning responses that humans evaluate positively.
+
+So this process becomes alignment with humans. You train the model to generate responses that humans prefer, and as you train the model, it becomes aligned with humans. It learns in this way with human preferences. This is the basic idea of RLHF. If you think about it, I think you might wonder, "Why do this?" And in fact, because people thought, "Why do this?" there were many cases where it wasn't done. Especially in the case of open-source models, there were many instances of "Do we really have to do it this way?" and many opinions asking, "Why do it?" so it often wasn't done.
+
+## Limitations of SFT and the hallucination problem    *17:18*
+
+
+<span class="paragraph-timestamp" data-ts="17:18">17:18</span> **Seonghyun Kim** While there could be various reasons for this issue, the most representative one I can mention is probably the hallucination problem. First, if you ask, "Why do it?" then you might wonder if there's another method besides RLHF. You might think that, and the most representative method for that is what's called SFT. This is where an expert or a person writes the correct answer.
+
+In fact, it's not even a person writing it, but already aligned models like GPT-4 are used to generate responses and create the correct answers. In any case, an expert writes the correct answer. The capital of Liechtenstein, I also learned this by looking it up, is apparently Vaduz. You create data like this. And the model learns to imitate the correct answer written by this expert. It uses Next Token Prediction as is. For the input "The capital of Liechtenstein is," it's trained to predict the token "Vaduz."
+
+This is the basic idea of SFT, and in many cases, people thought, "Is it really necessary to do RLHF?" If we just do it this way, many approached it thinking, "Won't this work?" In fact, many open-source models were trained this way, and are still being trained this way.
+
+But the important thing to see here is that the LLM, the model being trained, and the expert are different agents. The LLM is an agent called LLM, and the expert, being a person, is a different agent. These two are not the same entity. We need to address this point and think about it carefully.
+
+So, if we look at what can happen, let's imagine the model is trained with a question it knows. With this question, "The capital of France is Paris," if we train it with the question and the correct answer, let's assume the model, of course, already knows that the capital of France is Paris. Then, if we think about what the model is learning, for the question, it already knows the answer is Paris. So, using the fact it already knows, it learns the behavior pattern of "I should just respond."
+
+But let's assume it's a question the model doesn't know. In the case of the capital of Liechtenstein, LLMs probably all know it, but assuming it doesn't, and we use "The capital of Liechtenstein is Vaduz" to train it, the model doesn't know where the capital of Liechtenstein is. Then what does the model learn? Of course, it will learn what the capital of Liechtenstein is. It will learn that. But at the same time, it can also learn that even when it doesn't know, "Let's just respond anyway." It learns this behavior pattern as well.
+
+That's why when OpenAI recently published a paper on hallucination, they pointed out something similar: that the model is rewarded for just giving an answer. It's the same thing. It learns the behavior pattern of just answering. And because of this, it changes the model significantly. It has to acquire new knowledge, and also learn to respond even when it doesn't know. It has to acquire this, which significantly changes the model, and things that significantly change the model usually lead to bad results. Hallucination occurs. In cases like this, it learns the pattern of "Let's just respond even if I don't know," "anything."
+
+## Concepts of On-Policy vs. Off-Policy learning    *20:15*
+
+<span class="paragraph-timestamp" data-ts="20:15">20:15</span> **Seonghyun Kim** Let's think a bit more deeply about why this kind of problem arises. There's a concept called On-Policy and Off-Policy. It's a very important concept in RL. Off-Policy is when the learning agent and the acting agent are separate. The acting agent acts to create data, and the learning agent learns using this data. This is Off-Policy. Usually, Off-Policy is a much more difficult problem. For example, to give the most extreme example, I brought this example from Sutton's book, if the acting agent is cooking, the learning agent cannot learn to drive. It can't learn what it wants with that data.
+
+So, whether they are aligned or not has a very big impact on the difficulty of learning. You might be thinking, "Then why on earth do it?" You might think, "Can't we just use On-Policy?" but there are learning patterns that are only possible with Off-Policy. An expert has an experience, that expert generates data, and a student learns from it. For example, a teacher actually experiences something, accumulates certain experiences in the process, summarizes that process, that data, and gives it to the student. This is more efficient, isn't it?
+
+Because you can also learn from the results of a different agent's learning, and from the experiences gained from their actions, it's data-efficient. And On-Policy has quite extreme constraints. Your past self and your present self are also different agents. The agent will continuously change during the learning process, so it's difficult for the present self to use the experiences of the past self. That's why in terms of data efficiency, there's a big difference.
+
+That's why we want to do Off-Policy, but Off-Policy is a very difficult problem, and if we look again at how that difficult problem manifests, there is this chronic problem. What we call Off-Policy, where an expert... a typical form is when an expert acts, and the model learns from the expert's action process. And to use the example of autonomous driving from before, after a human drives, the case where a model learns from the human's driving can be seen as a basic example of Off-Policy. I think so.
+
+But it learned from the process of a human driving, and the human has the ability to take a certain path, but let's assume the model doesn't have that ability. From point A, a human can go to point B, but the model doesn't yet have the ability to go to point B. So the model only learned from going from A to B and then arriving at the destination. But when the model actually goes out into the real world, it doesn't have the ability to go to point B. It ends up going to point C.
+
+So, after it goes to point C, a situation it has never seen before occurs. A situation it didn't see during the learning process occurs. Then, it can no longer solve the problem from here. This problem is combined with the issue of whether a certain model can or cannot solve that problem. It's combined.
+
+When a model is given a certain task, does the model have the ability to solve that problem or not? But if the model doesn't have the ability, and you make it solve a problem assuming it does have the ability, it won't work in the real world.
+
+## A model’s problem-solving ability for generalization    *23:31*
+
+<span class="paragraph-timestamp" data-ts="23:31">23:31</span> **Seonghyun Kim** And in machine learning, this can be linked to the concept of overfitting. It has similarities. Overfitting, as we commonly see it, is often described as a problem that occurs when you overfit too much to a given set of data. When you have these points, because you try to connect all these points, a very complex curve is created. But in reality, a much simpler straight line would probably generalize better. The basic intuition about overfitting, usually the textbook-level intuition, is that if the data has few variables and the model is simple, the possibility of overfitting is low. It's often expressed this way.
+
+But if you think about this a bit more deeply, I think you can also see it this way. When overfitting occurs, each of these data points gets completely memorized. You could say it has been memorized. This point about memorization is a bit interesting. We often say things like, "The model memorized some data and solved it as is." We use expressions like that a lot. If we think about this by contrasting memorization and generalization, the overfitting state can be thought of as memorization, and although it's an over-generalization, it's a state of having memorized the data. A state where generalization is possible is one that goes beyond memorization and has predicted some fundamental pattern.
+
+But one interesting point about this is that it's not just about the number of variables in the data being small and the model being simple. Whether you give the model a problem it can solve has a very big impact. There's a small picture here. Let's assume we're solving an image classification problem. A very small picture, so to speak, could be described as having few variables. Because it has few pixels. So, is it better to give it a picture with few pixels? Is overfitting prevented? Not necessarily, you can't just see it that way. There's a small picture here. What is this picture? This is a picture of an apple. I resized the apple picture and made it very small. If you give it a picture that's too small, it's good that the number of variables is reduced, but with this picture, it's impossible to solve a real image classification problem. Because there's no information. Giving it a problem it can solve is one important point.
+
+We can think about this from the data perspective, but let's think about it from the model's perspective. Does overfitting always occur as a model gets bigger? That's not always the case either. There's a point where you can't just see it that way. In a neural network model, let's say that for every layer, it can perform one addition. Let's think about it that way. You could think of it as something like attention. In that case, every time a layer is added, the number of additions it can solve, the number of additions it can solve at once, increases by one. Assuming there are 2 layers, it will be able to solve two additions. So it can solve a problem that requires one addition. It can also solve a problem that requires two. From problems requiring three additions, the model can no longer solve them.
+
+For a problem the model can't solve, how will the model behave? If the neural network model is very weak, it won't learn at all. But usually, neural network models are very powerful. Because they are very powerful, they often have the ability to memorize all the data. So for this problem, it's highly likely to just memorize the problem. How will it memorize? There are several possibilities, but if the number 4 appears, it outputs 10. It could memorize things like that. It just memorizes the data as is. Memorizing the data for a problem it can't solve could result in a type of overfitting. The model learns in a way that overfits. So in this case, it would need 3 layers. Having 3 layers means the model has gotten bigger, but when the model gets bigger, overfitting actually decreases.
+
+So if we think about the best generalization, the things we can call the best generalization are, in many cases, learning the algorithm. Here, we've given it numbers and the correct answers. When there are numbers and answers, it can learn by memorizing all these many patterns. But the method that allows for the best generalization is for the model to learn the sorting algorithm. So, for the model to be able to generalize in this situation, the model must have the ability to learn the sorting algorithm. If it doesn't have the ability to learn the sorting algorithm, it will just memorize all these patterns, and then generalization will become impossible. This means that only when the model is large enough to be able to learn the sorting algorithm can generalization occur for the model.
+
+Let's expand on this a bit more. The operations a single layer can perform are limited. Usually, one layer of a transformer, like attention, can perform limited operations, and the number of layers is finite. Therefore, the amount of computation that can be performed on a single token is limited. But if, when predicting a token, the amount of computation needed for that prediction is much greater than this, it becomes a problem the model cannot solve. I've brought a simple quadratic equation problem here. Let's assume the model is not large enough to solve this quadratic equation in one go. Let's think about it that way. Then the model won't be able to solve this problem. So when given this problem, what the model can do is just memorize it. "If this equation appears, produce this result." Then, unless it learns every type of quadratic equation that exists in the world, it won't generalize.
+
+But what if we distribute the amount of computation needed to solve this problem across multiple tokens? Meaning, we solve this quadratic equation problem step-by-step, approaching it one step at a time. Then, in this quadratic equation problem, compared to the computation of going straight to the answer, the computation for each of these steps will be smaller. First, bring up the quadratic formula, plug the numbers into the quadratic formula, perform calculations for each plugged-in number, and after calculating, simplify it to get the answer. For these, the amount of computation needed for each token, the amount of computation needed for each step, will be less than solving it all at once. Then it becomes a problem the model can solve. Because it becomes a problem the model can solve, generalization becomes possible from this point. If the model memorizes problems it can't solve, and because it memorizes, generalization is impossible, then if we break down the problem into steps that the model can solve, it can learn the algorithm through those steps, and if it can learn the algorithm, generalization occurs, and generalization becomes possible.
+
+<span class="paragraph-timestamp" data-ts="29:55">29:55</span> **Chester Roh** I'm starting to understand the logic you're trying to follow. I think it makes sense. Please continue. This is interesting.
+
+<span class="paragraph-timestamp" data-ts="30:02">30:02</span> **Seonghyun Kim** So, regarding generalization, making the model solve problems it can solve, this is a very important part. It goes beyond simply using a small, simple model and using fewer variables; when necessary, you have to make the model bigger, and when necessary, you have to increase the sequence length.
+
+In order to give the model a problem it can solve. That's when generalization is possible.
+
+## Limits of internet data: absence of intermediate steps    *30:28*
+
+<span class="paragraph-timestamp" data-ts="30:28">30:28</span> **Seonghyun Kim** But the problem is, there's almost no data like this on the internet. This is a case of a very famous user named Cleo from Math Stack Exchange. A user posted an integration problem like this. After a few hours, I think, a user named Cleo gave the answer like this, all at once. But for that answer, there was no process, no explanation at all of how it was derived. People were very suspicious. So they thought the person who posted the problem was the same person who solved it and posted the answer, that it was the same person, or if it was the same person, they created the problem backwards, meaning they started from the integral and created this differentiation problem. There were many speculations.
+
+They were very suspicious, but apparently, that wasn't the case. I think they said they actually solved the integration problem. But anyway, regardless of whether that person actually had the ability to solve the integration problem or not, the internet is full of data like this. A person who can solve this integration problem all at once without any intermediate steps would be extremely rare, as there are almost none in the world.
+
+But in internet data, it looks like people solve it like this, it seems like they are solving the problem. In the data available on the internet, it's as if people just solve integration problems of this level all at once without any intermediate steps. That's how it's presented. But the model has to learn through internet data, and everything the model can learn is like this.
+
+<span class="paragraph-timestamp" data-ts="31:47">31:47</span> **Chester Roh** So the data the model learns from in pre-training is all in that question-and-answer format, without showing what kind of computation goes in the middle, that thing you call a trajectory, you're saying that's almost non-existent in the data.
+
+<span class="paragraph-timestamp" data-ts="32:01">32:01</span> **Seonghyun Kim** It's extremely rare. Because it's extremely rare, this is a chronic problem that occurs in LLMs. So it would be good if it thought about the question a bit before answering, but it just gives the answer first. That kind of pattern occurs. So if we actually bring up a simple example like this, "Was Newton born in an even-numbered year or an odd-numbered year?" If you give it a question like this, it can't overcome the impulse to give an answer immediately.
+
+So the LLM, without any process, just answers "even." But what's interesting is, the probability of responding immediately is the highest, generally. But although the probability is low, the probability of thinking and then answering, that possibility does exist.
+
+Meaning, "Newton was born in 1643, and since it's 1643, it must be an odd-numbered year." After thinking like this, the pattern of answering is not entirely absent. It does exist. And this part becomes a very important clue. In most cases, it can't overcome the impulse to respond immediately, but the ability, or pattern, to think does exist in the model. That's how it is. So the ability to respond through reasoning does exist in LLMs. But it's buried. With a very low probability.
+
+<span class="paragraph-timestamp" data-ts="33:13">33:13</span> **Chester Roh** So even if the same question comes in, the subsequent possibilities for answering have many different paths, among them, answering impulsively, or reaching the correct answer by explaining in more detail, there are various processes. How to make it think more through those processes, is this line of logic, that this aspect is used in RL, the correct way to understand it?
+
+## Pretraining and shrinking the search space    *33:38*
+
+<span class="paragraph-timestamp" data-ts="33:38">33:38</span> **Seonghyun Kim** Ultimately, the way these LLMs acquire this ability is through pre-training, so in fact, in conjunction with pre-training, I'll start by explaining how they acquire these abilities. I'll begin with that first. First of all, pre-training plays a very important role in RL.
+
+So, let's consider a problem of generating text corresponding to 100 tokens. Let's say it's a problem that can be solved by generating about 100 tokens. Let's think about it. Then the number of possibilities is the number of tokens in the LLM's vocabulary, the number of words it has, to the power of 100. If we take Kimi K2 as an example, the Kimi K2 vocabulary has about 163,840 tokens. So it's about 163,840 to the power of 100. The search space of Go, while the number of possible moves in Go is said to be enormous, this is much, much larger than that.
+
+This is the training loss of Kimi K2, I checked the graph and plotted it, and it seems to be around 1.32. So, what 1.32 means is, in terms of perplexity, it comes out to about 3.7. And what this 3.7 means is that for each token, there are 3.7 choices. You can think of it that way.
+
+So, originally, for all tokens, if you assign an equal probability, there are 163,840 choices. But through pre-training, the number of choices is greatly reduced. It changes into a problem of picking one from about 3.7 choices. And since this is an average over the entire sequence, when a context is given, the number of choices practically decreases even more, and it decreases even further for especially obvious tokens. So it's a bit like the Library of Babel.
+
+<span class="paragraph-timestamp" data-ts="35:17">35:17</span> **Chester Roh** So, the fact that the choices have been reduced, as a result of learning, means that from countless random paths, certain defined and organized paths are beginning to be established by the model. Is it correct to interpret it that way?
+
+<span class="paragraph-timestamp" data-ts="35:31">35:31</span> **Seonghyun Kim** Yes, you can think of it as something like the Library of Babel. So, all possible sequences of 100 tokens, the number of cases to explore, if you consider all combinations, is infinitely vast.
+
+But among them, the actually meaningful sequences are far fewer in comparison. So, most of them would be nonsensical sequences. If you arrange those tokens randomly, most of it won't make sense, and the ones that do make sense are an extremely small minority. Through pre-training, those extremely few possibilities, those cases, are filtered out.
+
+<span class="paragraph-timestamp" data-ts="36:10">36:10</span> **Chester Roh** So we should think of it as the model learning meaningful paths that make sense. That's how we should think of it.
+
+## LLM training and the meaning of perplexity    *36:14*
+
+<span class="paragraph-timestamp" data-ts="36:14">36:14</span> **Chester Roh** Seonghyun, because here, our vocabulary size, the meaning of cross-entropy loss, and in fact, the concept of perplexity derived from it, I think for the audience, the gap might be a bit too large here. How would you briefly recap this?
+
+<span class="paragraph-timestamp" data-ts="36:30">36:30</span> **Seonghyun Kim** To explain a bit more, it's often said that LLMs are trained by predicting the next token. That's a common expression. But what "next token prediction" actually means is, we can think of a very simple word. So, let's think of it as next word prediction.
+
+Then, the words that can come after a certain sentence will have a certain number. It will be the number of words in the dictionary. Among all the words in that dictionary, it becomes a problem of predicting one. That becomes a kind of classification problem. A problem of selecting the correct word from among them.
+
+Then, the number of possible words is the vocabulary, what we usually call the vocabulary size. So, it's the number of choices. In the case of Kimi K2, the number of choices is 163,840. You have to pick one out of those.
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **Chester Roh** The number of words it can express is 163,840.
+
+<span class="paragraph-timestamp" data-ts="37:23">37:23</span> **Seonghyun Kim** And it's not enough to predict one of those 163,840 just once; you have to predict it multiple times. Therefore, the number of possible cases increases exponentially by powers of that number. It becomes an enormous number. But if you train the model on next word prediction, that training loss, the cross-entropy, ultimately becomes the loss related to how accurately it makes that prediction. You train it to make this prediction better.
+
+But for this training loss, if you take the exponential of it, you can understand the value a bit more intuitively. One of those intuitive ways of understanding is this number, the exponential of the loss, can be seen as the probability of picking one out of this many choices. From a problem of picking one out of 163,840 choices, a problem of picking with equal probability, it changes to a problem of having about 3.7 words and picking one from among them. You can think of it that way. The number of possible cases is reduced tremendously.
+
+<span class="paragraph-timestamp" data-ts="38:30">38:30</span> **Chester Roh** That's right. So what I wanted to convey to the audience was not so much the meaning of these numbers, but how to explain things like loss or perplexity in an easy way.
+
+<span class="paragraph-timestamp" data-ts="38:41">38:41</span> **Seungjoon Choi** Yes, but if the listeners pause the slide right now and take a screenshot, it would be great to ask GPT-5 about it.
+
+<span class="paragraph-timestamp" data-ts="38:50">38:50</span> **Chester Roh** Yes, that's right.
+
+So, because this content includes very difficult foundational concepts and machine learning topics that require long study, all these aspects of LLMs, you can intuitively understand that the LLM itself, in this vast space of possibilities, organizes things into a very structured form to reduce the number of branches. You can understand it as a very summarized explanation that this process is learning. That's how you can understand what was said.
+
+## The branching point of reasoning: high-entropy tokens    *39:17*
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **Seonghyun Kim** Through pre-training, nonsensical tokens are all pruned, reducing the choices. So, to see what actually happens when the model performs inference, if we look at what happens, here, the blue color represents the model's entropy, which is called entropy, but I'll call it uncertainty.
+
+The uncertainty is low. The model is almost certain about these tokens. The bluer the color, the more certain it is. As it goes towards red, the entropy is higher, meaning it's uncertain. Almost all of the tokens are blue.
+
+So, through pre-training, for these tokens, the model is almost certain. In other words, predicting these parts is not difficult. So, for these few red tokens, if it predicts these parts well, the rest just follows along.
+
+<span class="paragraph-timestamp" data-ts="40:07">40:07</span> **Chester Roh** Then, can we consider those sections with high entropy as perhaps the crucial branching points?
+
+<span class="paragraph-timestamp" data-ts="40:14">40:14</span> **Seonghyun Kim** Yes, I see it that way.
+
+These days, these parts are the most important tokens within inference.
+
+So if you look closely, these are the tokens that slightly change the flow.
+
+So, things like these basic calculations, the calculations just continue on and on, like arithmetic operations, they just continue.
+
+Among them, tokens like 'Should I change my thinking?', 'How about thinking this way?' 'What if...?' In this way, surprisingly, for parts like these numerical math calculations, the model has low uncertainty.
+
+The parts where uncertainty increases, the parts worth predicting, are these tokens that change the flow of thought.
+
+The ones that create branches.
+
+<span class="paragraph-timestamp" data-ts="40:53">40:53</span> **Seungjoon Choi** I see things like 'maybe' and so on.
+
+<span class="paragraph-timestamp" data-ts="40:56">40:56</span> **Seonghyun Kim** Yes, parts like drawing a conclusion surprisingly have high uncertainty for these kinds of tokens. So, if people think about it, calculating things like numbers seems very difficult and uncertain, and these plain tokens seem easy. But rather, for a plain token, because it becomes a fork in the road, calling it uncertain might sound negative, but that token becomes a starting point of a fork.
+
+<span class="paragraph-timestamp" data-ts="41:23">41:23</span> **Seungjoon Choi** Since that's not the internal representation itself, it's just revealed as a token. If we were to see the internal representation, it might be very meaningful, right?
+
+<span class="paragraph-timestamp" data-ts="41:30">41:30</span> **Seonghyun Kim** Yes, that could be the case. And it might be thinking of these as important branches.
+
+The model itself, in this situation, for example, when it needs to shift its thinking, it might be deciding whether to shift its thinking in this state or just continue as is.
+
+You could see it as the moment these things are decided.
+
+<span class="paragraph-timestamp" data-ts="41:47">41:47</span> **Chester Roh** So, even for these numerous tokens,
+
+<span class="paragraph-timestamp" data-ts="41:50">41:50</span> **Seonghyun Kim** most of them are predicted automatically, so the actual search space is really small. What actually needs to be searched are these few red tokens.
+
+<span class="paragraph-timestamp" data-ts="41:59">41:59</span> **Chester Roh** So there are those decisive "But, by the way..." kind of tokens. Yes.
+
+## Learning collective reasoning: the internet forum case    *42:04*
+
+<span class="paragraph-timestamp" data-ts="42:04">42:04</span> **Seonghyun Kim** And as for how this might have been learned during pre-training, if we consider how it was learned, there could be various possibilities and cases, but one that I found very interesting is forums. Internet forums. Here, a user named songoku brought their homework, and if you look at internet forums, there are often rules like "We don't solve homework for you." And there's a tendency to avoid just giving the answer to homework. Perhaps because of that, this user named BvU doesn't give the answer directly. Instead, they keep making the person think.
+
+"How about thinking about this case?" "How about thinking about it this way?" They keep giving feedback like this. So, as the original user thinks about it, they say things like, "I think I made a mistake here," "Is this right?", "Is that right?" They say things like that. This is a typical pattern we see in reasoning models. A reasoning model thinks, thinks about what it would be like to consider this case, then thinks, "Oh, did I make a mistake?" and reflects. These patterns appear in reasoning models.
+
+This kind of data is rarely found on the internet, but it sometimes appears in places like forums. And what's more surprising is, this isn't written by just one person, right? It's not one person who meticulously lays out the problem and summarizes it by explaining the intermediate steps. Instead, multiple people participate and interact, creating this kind of collective reasoning data.
+
+<span class="paragraph-timestamp" data-ts="43:30">43:30</span> **Chester Roh** A while ago, Andrej Karpathy talked about why he founded Eureka Lab on the Dwarkesh Podcast.
+
+I think he said something similar. If you have a perfect teaching assistant who knows all your perplexities, your learning efficiency increases tremendously. He said he was going to build that, and this feels like déjà vu. A teaching assistant perfectly suited to my level.
+
+<span class="paragraph-timestamp" data-ts="43:50">43:50</span> **Seonghyun Kim** And as various people interact, the result of their interactions becomes a kind of record of reasoning. Reaching the correct answer through text.
+
+So, very familiar reasoning tokens appear in this example. And these rare but existing examples become the data from which LLMs learn the ability to reason.
+
+## Emergence of reasoning ability through reinforcement learning    *44:14*
+
+<span class="paragraph-timestamp" data-ts="44:14">44:14</span> **Seonghyun Kim** Then, the question becomes how to elicit this ability. In most cases, it's buried and doesn't surface easily. The probability of it surfacing isn't zero, but the probability of not reasoning is much higher. A recent interesting paper came out on this topic, so I'll explain the intuition from that paper. There's a probability of generating reasoning, and a probability of the answer being correct when it reasons. There's a probability of not generating reasoning.
+
+And without reasoning, there's a probability of the answer being correct. In that case, an LLM basically has a much higher probability of not reasoning. But when it does reason, the probability of the answer being correct is high. Higher than when it doesn't reason. So, it generally doesn't generate reasoning, but the probability of being correct when it does is higher than the probability of being correct without reasoning. This is an asymmetric situation.
+
+So then, in the process of reinforcement learning, how this works is, although the probability of generating reasoning is low, compared to the probability of reasoning being generated, the probability of being correct is high. Reinforcement learning increases the probability for correct answers, right? Then, cases that generated reasoning will be reinforced.
+
+<span class="paragraph-timestamp" data-ts="45:22">45:22</span> **Chester Roh** So it's a direction that incentivizes it to keep talking longer.
+
+<span class="paragraph-timestamp" data-ts="45:27">45:27</span> **Seonghyun Kim** Yes, it works in that direction. Because it's asymmetric, in cases where it reasoned, it pays more attention. Because the probability of being correct is higher then.
+
+Even if the probability of reasoning is very low, since there are many correct cases relative to that low probability, those correct answers get more emphasis. In reinforcement learning, because reinforcement learning only looks at whether the answer is correct or not. So, the very act of evaluating based on the correct answer means that even if the probability is low, if there are many correct cases, it receives stronger reward reinforcement than its probability of occurrence would suggest.
+
+<span class="paragraph-timestamp" data-ts="45:59">45:59</span> **Chester Roh** Yes, so from the perplexity perspective mentioned earlier, it's simply that the more compute that goes into the tokens, the better it eventually gets. It can be summarized like that, if we oversimplify.
+
+<span class="paragraph-timestamp" data-ts="46:12">46:12</span> **Seonghyun Kim** Actually, it's a better result than that. According to the intention of this paper, compared to learning this pattern in pre-training, reinforcement learning makes this happen very quickly, they say.
+
+So, at each step, the probability of appearance increases at each step. If there's a reasoning sequence, a response, that has a high probability of being correct but a low rate of appearance, the probability of that response increases, and they describe it as increasing exponentially. It increases geometrically. So, because it increases geometrically at each step, the ability is learned very quickly.
+
+<span class="paragraph-timestamp" data-ts="46:52">46:52</span> **Chester Roh** So, if you look at our tech papers, for a pre-training model, from pre-training to post-training, if you consider the compute needed to release it as 100, almost over 90 is used for pre-training, and the remaining under 10% is used for post-training. In fact, the things seen in pre-training, as Seonghyun mentioned earlier, the ability to find the right path among numerous possibilities is in an undertrained state.
+
+But if you use RL to bring that out, despite investing a small amount of compute, the quality of the resulting output increases incredibly quickly. We can see it that way, right?
+
+<span class="paragraph-timestamp" data-ts="47:29">47:29</span> **Seonghyun Kim** For example, regarding pre-training, as I mentioned, most cases involve giving only the correct answer without reasoning, so that probability remains high, and the probability of giving the correct answer through reasoning is very low.
+
+But cases of giving the correct answer through reasoning, since they have a high probability of being correct, in the context of reinforcement learning, that part asymmetrically receives a larger reward. It receives strong reinforcement. Every time it goes through reinforcement learning.
+
+<span class="paragraph-timestamp" data-ts="47:53">47:53</span> **Seungjoon Choi** So what's being reinforced here is ultimately the action of outputting a CoT, right? It gives some advantage to that, doesn't it?
+
+
+<span class="paragraph-timestamp" data-ts="48:00">48:00</span> **Seonghyun Kim** Compared to not doing CoT, the side that does CoT receives stronger reinforcement. Compared to the actual probability of doing CoT, the actual probability might be only 1%, but the reinforcement, for example, can be seen as being received at a level of about 2%. Then 1 becomes 2. Then 2 becomes 4, and 4 becomes 8. It increases rapidly like this.
+
+<span class="paragraph-timestamp" data-ts="48:21">48:21</span> **Seungjoon Choi** It goes up quickly and geometrically.
+
+<span class="paragraph-timestamp" data-ts="48:23">48:23</span> **Seonghyun Kim** That's why, for actual pre-training, just by going through pre-training, the probability of CoT being generated is very low, and it would remain low, but through reinforcement learning, it very quickly becomes a very mainstream pattern.
+
+In reality, with relatively little computation, or compute, this happens.
+
+So through reinforcement learning, a pre-trained model that had a very low probability of a reasoning pattern, which had a very low probability, suddenly emerges.
+
+<span class="paragraph-timestamp" data-ts="48:52">48:52</span> **Seungjoon Choi** Then, can we say that the distribution of the model's responses itself has shifted?
+
+<span class="paragraph-timestamp" data-ts="48:56">48:56</span> **Seonghyun Kim** Yes, it shifts. It shifts very quickly. It shifts towards a pattern of getting longer and longer.
+
+## Is reinforcement learning about bringing out existing abilities?    *49:01*
+
+<span class="paragraph-timestamp" data-ts="49:01">49:01</span> **Chester Roh** So, this inevitably raises a bit of a philosophical question.
+
+So, through reinforcement learning, is the model's ability to get the right answer not truly being cultivated, but rather, the tendency to increase the probability of getting the right answer by speaking at length has just been continuously rewarded?
+
+It kind of sounds that way too.
+
+<span class="paragraph-timestamp" data-ts="49:21">49:21</span> **Seonghyun Kim** To address that point, getting the answer right by generating reasoning is a generalizable ability. The probability of getting the answer right without generating reasoning, although not always the case, is largely a possibility based on memorization, which is why the probability of being correct is lower. So the model moves towards a generalizable pattern. From a non-generalizable pattern of responding with what it knew through memorization, it moves in the direction of a generalizable ability. Through RL.
+
+<span class="paragraph-timestamp" data-ts="49:54">49:54</span> **Chester Roh** And those directions are incentivized, and to continuously strengthen that tendency, the parameters are continuously updated. That's post-training.
+
+<span class="paragraph-timestamp" data-ts="50:05">50:05</span> **Seonghyun Kim** So, if you think of it that way, the question of whether it's just bringing out an existing ability immediately follows. This is also a topic of ongoing debate. So, in the end, that reasoning ability was learned during the pre-training process, and isn't it just bringing out that reasoning ability? This question arises. It's a point of continuous debate, but there are also points that suggest it can't be seen only that way.
+
+Through pre-training, and this is a recurring story, when we taught it the ability to reason with mathematics, it also started reasoning when writing poetry. There's this expansion into other domains, and that is also one of the roles of pre-training. Through pre-training, because various domains are connected, it generalizes to those other connected domains. This can be seen as one type of expansion.
+
+And another thing that's being discussed recently is that it develops a combinatorial ability. For example, regarding the reasoning process, if there's an ability to solve problem A and an ability to solve problem B, by combining the ability to solve problem A and the ability to solve problem B, the ability to solve a new problem emerges during the reasoning process. But if it learns about this process, they say it develops the ability to combine method A and method B to create method C. So, the existing... by combining partial abilities and creating new combinations that the ability to solve problems emerges. This idea is also being discussed these days. There's also talk that this kind of generalization is possible.
+
+One thing that came up about Kimi K2 is that Kimi K2 learned the ability to use 200 to 300 tools for a single instruction. But some people say that this ability itself emerged in this way. So, the ability to use tools could emerge more and more, and the ability to combine even more tools could also potentially emerge.
+
+<span class="paragraph-timestamp" data-ts="51:57">51:57</span> **Seungjoon Choi** Seeing the composite function on the slide reminds me of lambda calculus. After all, the very act of using a composite function has a very important meaning in computation.
+
+<span class="paragraph-timestamp" data-ts="52:07">52:07</span> **Seonghyun Kim** Yes, what kind of basic abilities can also emerge, that's another question, but the ability to newly combine existing basic abilities and combine them in longer sequences is said to emerge through reinforcement learning.
+
+But how that happens needs to be studied more in the future. I think it's an interesting topic.
+
+## Conditions for successful reinforcement learning    *52:26*
+
+<span class="paragraph-timestamp" data-ts="52:26">52:26</span> **Seonghyun Kim** Let me summarize all the points we've discussed so far. You might have felt that the flow branched out in several directions, so to reorganize this, to summarize what was scattered, the earlier point was, to enable a model to generalize, you have to give the model problems it can solve. This was one important idea. And that can also be stated as you have to let it solve problems in a way that allows for generalization. In a way that the model can solve. So, you have to provide problems that are within the model's capacity to solve.
+
+And it has to be on-policy. Why on-policy? Because in the case of off-policy, if an expert solves a problem, the abilities that expert has might not be possessed by the model. Then, as I showed you earlier, it's like being forced to only see path B. When in fact, with the model's own abilities, it should go down path C, but it can't, and it only learns about path B.
+
+But if the model goes down path C according to its own abilities, the model gets stuck from that point on. That's why, for the model to solve problems within its own capabilities, it has to be on-policy. The model has to solve the problem itself, solve the problem in its own way, and then receive a reward for it and learn. Not by having someone else give it a guide saying, "Solve it like this," and learning from that.
+
+<span class="paragraph-timestamp" data-ts="53:56">53:56</span> **Seungjoon Choi** So it has to go through trial and error with its own experience.
+
+
+<span class="paragraph-timestamp" data-ts="53:59">53:59</span> **Seonghyun Kim** Yes, and that's when generalization becomes possible. Because it performed reinforcement learning within the scope of its own abilities. Not by solving a problem in a way the model cannot. And it's not just about whether it can or cannot solve it, the model will have its own preferred way of solving things. Different from humans, which is why it has to be on-policy.
+
+And imposing a structure on the reasoning process, for example, if you think of a search problem like MCTS, you break it down into steps and impose a structure on those steps. But imposing that specific structure is a human idea. From the perspective of a human expert, the idea of "I think this problem should be solved this way" is incorporated. But that might be disconnected from how the model actually approaches and can solve the problem. That's why imposing a structure can be unnecessary or even harmful.
+
+And as I showed you earlier, in pre-training, we have reasoning with a very low probability, but because the probability of that reasoning path being correct is high, I mentioned that its probability increases sharply. What's important in this process is that you need to accurately judge the correct answer as correct.
+
+So, for parts where it solves by memorization without reasoning, where many incorrect answers are likely to occur, for those parts, if it's not the correct answer, you have to call it incorrect, and when it solves the problem correctly through reasoning in a generalizable way, and gets the right answer then, only in those cases should you give a reward for the correct answer. You shouldn't give feedback that an incorrect answer is correct. That's the only way to prevent non-generalizable patterns from being incorrectly reinforced.
+
+<span class="paragraph-timestamp" data-ts="55:39">55:39</span> **Seungjoon Choi** When you talked about false positives in the last session, that's what you meant.
+
+<span class="paragraph-timestamp" data-ts="55:43">55:43</span> **Seonghyun Kim** Relatively generalizable patterns become relatively more reinforced through the accurate judgment of correct answers. These conditions must be met.
+
+Regarding reasoning, if we assume there are cases where answers are judged harshly, where it's only considered correct when it's a perfect match, if such cases existed, then the case of giving a correct reward for an incorrect answer I'll assume doesn't exist for now.
+
+Then, what receives a relatively high reward is only in generalizable cases. You can think of it as receiving a high reward.
+
+So, if you compare the case of doing CoT in a generalizable way and then giving the answer, with the case of giving the answer without CoT, in the non-generalizable case, there will be many incorrect answers. Then, because of those incorrect answers, the proportion of that part will decrease, and a certain behavior pattern that produces correct answers well, in a generalizable way across various problems, will receive relatively stronger reinforcement.
+
+Because it accurately judges the correct answer as correct. When it produces an answer that is not generalizable, and that answer is mistakenly seen as correct, reinforcing it, that kind of non-generalizable behavior pattern...
+
+The role of not providing reinforcement for that behavior pattern is played by accurate feedback. So, it suppresses guessing the answer correctly. If you judge the answer accurately, the cases of guessing correctly are relatively suppressed.
+
+But if you can't judge the answer accurately, the probability of guessing correctly and getting reinforced will increase. Then, that would hinder generalizable patterns from emerging.
+
+So, giving this accurate feedback helps in discovering generalizable patterns. Yes, it can be seen that way.
+
+## DeepSeek R1’s approach to reasoning training    *57:27*
+
+<span class="paragraph-timestamp" data-ts="57:27">57:27</span> **Seonghyun Kim** So, coming back to DeepSeek R1, DeepSeek R1's method was very simple. If you look at the prompt, it says, "Perform the reasoning process and then provide the response to the user. Put the reasoning process inside tags and wrap the response in ."
+
+And the reward was only based on whether the response from matched the correct answer. Within , it said to wrap it with the tag, and there was a reward for this, but as for what should go inside , regarding that, there was no intervention at all. It was left untouched. And with just this, reasoning emerged.
+
+<span class="paragraph-timestamp" data-ts="58:02">58:02</span> **Seungjoon Choi** What's interesting is that at Anthropic, was it about a year ago, there was also that XML tag called . So users later discovered it and did things like just revealing that part. Even before the reasoning model was officially announced.
+
+<span class="paragraph-timestamp" data-ts="58:17">58:17</span> **Seonghyun Kim** That's probably because, I don't know how it was post-trained back then, but they were training things like CoT back then too. That's why. However, the method back then might have been a bit different. Because one way to train CoT is to simply have an expert, a human, write down, "Think in this way." That's also a possible method. And in fact, they trained a lot that way. So whether that CoT, the CoT, was actually trained through reinforcement learning and its contents were left untouched, or if they were touched, we don't know how much they were touched. But things like CoT did exist back then.
+
+And it's a minor influence, but Anthropic prefers to use XML or HTML tags. Yes, so I think DeepSeek also chose to use this tag-based method.
+
+Anyway, to summarize again, the model not solving a problem through some expert's ability that it doesn't possess, but solving the problem in a way it can, and after solving it, receiving feedback through the correct answer, was the path that led to the emergence of reasoning. And many concepts came into play regarding that part. We can think about it by connecting many concepts.
+
+We can think about on-policy and off-policy. Now, the problem of generalization and overfitting, the model... Only when given a problem it can solve, only when provided in a form it can solve, can generalization occur. These aspects came into play, and through these aspects, we can understand why reasoning could emerge, why reasoning enables powerful generalization, and what the role of pre-training is in that process. We can think about it by combining these things.
+
+Just like we did before, This is a bit of a "pie in the sky" topic from the last slide. But since Jason Wei said it, calling it a "pie in the sky" story... ...wouldn't be a fair assessment, but it is a completely different topic.
+
+## Closing: On-policy RL and life: Jason Wei’s story    *1:00:05*
+
+<span class="paragraph-timestamp" data-ts="1:00:05">1:00:05</span> **Seonghyun Kim** About on-policy and off-policy. Jason Wei, who was at OpenAI... ...and is now a researcher at Meta, said something. Humans also learn by imitation at first. They learn as their teacher taught them, or... ...they take examples that they think look good... ...and learn a lot by trying to imitate them.
+
+But in the end, every person has different abilities. Their abilities are different, and the conditions they are given are all different. To make successful choices under those given conditions, there is a realm, a point, where you can no longer imitate.
+
+At that point where imitation is no longer possible, you have no choice but to be on-policy. You have to try for yourself, gain experience from it, and have no choice but to get a reward. That's what he says.
+
+In the end, humans always face a somewhat similar dilemma. If there were a target that everyone could just imitate, it would be great to just replicate it.
+
+But because everyone's environment and abilities are different, between that environment and ability, for a truly generalizable pattern, through acting on your own, he says you have no choice but to gain experience. And that is also the reason why you must go beyond imitation.
+
+So whenever I talk about on-policy and off-policy, I think of this story, so I brought it up to conclude.
+
+<span class="paragraph-timestamp" data-ts="1:01:15">1:01:15</span> **Chester Roh** That's really interesting. It's interesting.
+
+<span class="paragraph-timestamp" data-ts="1:01:17">1:01:17</span> **Seungjoon Choi** This connects to a lot of things to say about education. There's a lot connected to this.
+
+<span class="paragraph-timestamp" data-ts="1:01:22">1:01:22</span> **Chester Roh** That's right. In fact, our lives themselves are on-policy RL. The rewards that come are things like getting a pretty girlfriend, making a lot of money, or winning an award somewhere. In the form of money and fame, the reward function is structured in society.
+
+And besides such explicit reward functions, people who, from their own internal structure, formulate reward functions with higher-level values seem to be the ones who move in a great direction.
+
+Actually, Seonghyun, today, even as I was having this conversation, in my head, as Seonghyun was speaking, trying to keep up with the next token was, so to speak, very difficult. The perplexity of the next token appearing was very high. I think so too, but I think we need to provide some more things that will be helpful to the audience.
+
+<span class="paragraph-timestamp" data-ts="1:02:13">1:02:13</span> **Seungjoon Choi** From that perspective, let me ask a few questions. Actually, LLMs and RL... just the thought of how to connect them is something beginners... I was like that.
+
+Why is the LLM the policy, the action, the actor? And for that to happen, the LM has to output probabilities, there's an action to take, the next token prediction, there's a context called the state, this notion itself is actually quite difficult at first.
+
+So even if you know LLMs and know some RL, the task of building that bridge itself has been completely glossed over just now.
+
+<span class="paragraph-timestamp" data-ts="1:02:47">1:02:47</span> **Chester Roh** Today, regarding the parts that correspond to that bridge, Seonghyun, in the pre-train phase, regarding what things the model possesses, you actually explained it so well using an analogy.
+
+And how RL, in that context, has a certain tendency, what should I call it... I guess I should call it a propensity. In increasing that kind of tendency, you really pinpointed the fundamental role of RL, what it does. You really nailed it.
+
+<span class="paragraph-timestamp" data-ts="1:03:12">1:03:12</span> **Seungjoon Choi** But to do it properly, you'd have to start with SARSA and gather all those formulas, but that gets too difficult.
+
+<span class="paragraph-timestamp" data-ts="1:03:18">1:03:18</span> **Chester Roh** Right. But for RL, maybe we don't need to do that anymore? Learning all the formulas for Q-learning, SARSA, TD, and then teaching policy gradient, that's how it's done.
+
+But what if we get rid of all that stuff at the beginning and just start from the point that the policy gradient theory is this, and it aims to maximize this. I think starting from there would be right.
+
+<span class="paragraph-timestamp" data-ts="1:03:39">1:03:39</span> **Seungjoon Choi** I do think it would be good to start from there, actually.
+
+<span class="paragraph-timestamp" data-ts="1:03:41">1:03:41</span> **Seonghyun Kim** Among those, for policy gradient, actually just REINFORCE is almost enough for LLMs.
+
+<span class="paragraph-timestamp" data-ts="1:03:47">1:03:47</span> **Chester Roh** Right. Yes, if we just take that part out later and ask Seonghyun to cover that part a bit more, I think that would be very helpful.
+
+<span class="paragraph-timestamp" data-ts="1:03:59">1:03:59</span> **Seungjoon Choi** Right. I'm looking forward to that too. You've got another mission. Still, you pointed out a lot of interesting parts, so while the beginning was difficult, as we got to the latter half, it all started to click. I couldn't follow well in the beginning.
+
+<span class="paragraph-timestamp" data-ts="1:04:12">1:04:12</span> **Chester Roh** That's right. Yes, while listening to Seonghyun, earlier with cross-entropy, perplexity, it all... in my head, I also got a lot of new directions, so after this is over, I think I'll have to ask an LLM.
+
+I'll have to learn together with the model. Well, today's topic was difficult.
+
+Seonghyun, for making this part as concise as possible and turning it into a single, complete narrative, I'm truly grateful for your tremendous effort. Thank you.

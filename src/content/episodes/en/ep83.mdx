@@ -1,0 +1,400 @@
+---
+episodeNumber: 83
+lang: "en"
+title: "Transformers: The Pilgrimage of the Reincarnated Token"
+description: "This session intuitively explores why Transformers work the way they do, focusing on the journey a token undergoes when it's created. Connecting elements like KV cache, attention, RoPE, and MoE with metaphors like the \"memory palace\" and the \"pilgrimage of reincarnated tokens,\" we explore how token creation ultimately creates a landscape of meaning. Furthermore, in an era where 10x productivity is becoming the new normal, the discussion expands to encompass the sense that \"humans are the bottleneck,\" the explosion of tools and harnesses, and how to build Minimum Viable Knowledge (MVK). Finally, we'll also be discussing Prompt and AI in Munrae-dong on February 6-7, 2026."
+publishedAt: 2026-01-28
+duration: "53:56"
+youtubeId: "AuF7V7bqsrQ"
+thumbnail: "https://i.ytimg.com/vi/AuF7V7bqsrQ/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+chapters:
+  - time: "00:00"
+    title: "Opening: Jan 24, 2026, Continuing Transformer Basics"
+  - time: "01:11"
+    title: "“Pilgrimage of the Reincarnating Token” and the 10x New Normal problem awareness"
+  - time: "05:43"
+    title: "The era of zero production cost: software supply explosion and AI slop"
+  - time: "10:09"
+    title: "“Humans are the bottleneck” and loop-based tools like Claude Code·Oh-My-Opencode"
+  - time: "13:45"
+    title: "Brain–Transformer analogy: viewing humans through machine thinking"
+  - time: "16:23"
+    title: "Generation from the token’s first-person perspective: prefill·KV cache, the “memory palace”"
+  - time: "18:03"
+    title: "Inner-layer journey (1): embedding→norm→QKV split·RoPE"
+  - time: "21:18"
+    title: "Inner-layer journey (2): attention=soft lookup (Andrej Karpathy)"
+  - time: "22:31"
+    title: "Mental model of MoE routing: 384 experts·top-k selection and scaling"
+  - time: "35:17"
+    title: "How far should you study: linear algebra+toy implementations, Andrej Karpathy curriculum"
+  - time: "44:41"
+    title: "Minimum Viable Knowledge: upgrading quality and expanding domains by “grinding tokens”"
+  - time: "51:53"
+    title: "2/6~2/7 문래동 event intro and prompt sharing, wrap-up"
+---
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is January 24th, 2026 Saturday morning.
+
+<span class="paragraph-timestamp" data-ts="00:06">00:06</span> **Seungjoon Choi** It's already late January.
+
+<span class="paragraph-timestamp" data-ts="00:08">00:08</span> **Chester Roh** That's right. Yes, it feels like January just started, but we're already in the latter half Continuing from last time, today we'll cover the basics of transformers The part about why exactly it works this way Without going too deep into algorithms or mathematics We'll try to explain it as simply as possible That's what this attempt will be about. As Seungjoon mentioned This is probably the only time we have.
+
+Actually, as we passed through late December and January Even though no new models were announced Looking at all these harnesses pouring out There's a sense that something is moving to the next stage, isn't there? It feels like time is being compressed more and more Soon there will be another timing for an infinite sprint So before that, if not now Let's do what can only be done now We're trying to create an interesting session.
+
+Today, continuing from last time, still with Seungjoon How exactly does a token pop out from a transformer Let's talk more about this. Yes
+
+<span class="paragraph-timestamp" data-ts="01:11">01:11</span> **Seungjoon Choi** Yes, so last time we did a buildup on prompting while thinking about principles And today we're going to take some time to learn about the principles. I've created a story. It's called "The Pilgrimage of the Reincarnating Token" Where a token auto-regressively gets sampled from hidden state to token That process is one life And the next turn is its reincarnation - I created this imagery to build the story. And what I've expressed here was probably influenced by a game called Journey released in 2011 That somewhat artistic game I think it influenced me. So it has that kind of feel.
+
+So if we dive into what I've prepared today, the background of this exploration As Chester mentioned in the introduction There are so many harnesses and such coming out these days. So development continues, not just Claude but Various versions of CLIs from all over Plugins, skills are coming out My curiosity has somewhat diminished. And while that happened, I started thinking about some things.
+
+So as the background thought for this exploration When 10x becomes the new normal and becomes 1x, what happens? This isn't about having an answer I just thought of the question. So these days, looking at AI squads Small teams running multi-agents naturally And small teams interacting with each other Building a federation where they can learn from each other Using cooperation and competition as leverage There are many such attempts happening The emergence of varied forms of contracts Chester has also introduced those And discussions seem to be ongoing.
+
+When I observed the timeline Everyone is quickly building products And now since anyone can create more than just a PoC alone They'll want to experiment and improve in the market. So when trying to find PMF It will naturally become a Cambrian explosion of software Can the market absorb all of that? Might there be fatigue? I thought about this vaguely. So at the beginning of this year I played a game called Animal Well that came out in 2024 I really enjoyed playing it.
+
+But it's hard to even play one GOTY game per year. As you get older, so even before opening my wallet Even in selecting that game I end up choosing just one or two from what's buzzworthy There are so many games out there If software also has a Cambrian explosion Not everything can get attention That's what I'm thinking Well, that's already the case these days.
+
+So therefore, teams and engineers who produce code and products at 10x Need to translate that into 10x profit That seems to be the problem. But can everyone do that? Then currently, with various AI harnesses And using AI multi-agents They say productivity goes up 10x But could that be fake 10x productivity? I wonder if we'll start saying such things I imagined that a bit.
+
+So when 10x becomes the new normal And everyone can now do 10x How much time until it becomes 1x? Same goes for 100x. And also If you're operating within the existing system You'll just live your days more densely Handling multiple contexts in a busy state While making AIs do the work A new normal, or if you can't keep up If 1x means everyone is at 10x Wouldn't you be living at 0.1x? I don't have answers But I spent the early New Year thinking about this. Please go ahead.
+
+<span class="paragraph-timestamp" data-ts="04:47">04:47</span> **Chester Roh** Yes, well this is actually a timely topic Everyone is waking up to this. If last year was a time when early movers Could reap the fruits Of getting ahead quickly
+
+Now, at least those likely to enter this space Are all arriving one after another So their productivity is all going up too
+
+What Seungjoon mentioned about 10x becoming the new normal means That 10x productivity Is now becoming the 1x standard That's what you're saying, right? That's already happening now. Yes
+
+<span class="paragraph-timestamp" data-ts="05:25">05:25</span> **Seungjoon Choi** So that's Since we're dogfooding and bootstrapping I think the evidence is all these tools popping out Too many of them. Productivity has increased to make them We might already be experiencing The Cambrian explosion of CLI-type tools
+
+<span class="paragraph-timestamp" data-ts="05:40">05:40</span> **Chester Roh** When that happens, since we're familiar with The software industry In the software industry, in the past anyway The time and effort required to build something That basic production cost, who can build better Who has a better pool of engineers The market used to be divided by such things
+
+But now the cost of production has become zero. So now anyone can achieve that quality Supply is exploding, so to speak. Well, according to the supply and demand logic From the Economics 101 we learned when young It naturally moves market prices and demand So prices will keep falling.
+
+<span class="paragraph-timestamp" data-ts="06:24">06:24</span> **Seungjoon Choi** Right, so The reason I used the GOTY game analogy Is that many things Even though they put them in the market to improve Could be software that qualifies as What's now called AI slop And then people will eventually Focus on works of art, won't they? I've been thinking about that too.
+
+<span class="paragraph-timestamp" data-ts="06:45">06:45</span> **Chester Roh** Yes, economics was naturally about scarcity In fact, the economy is always about scarce things being expensive And when something is too abundant, prices fall It operates on very simple principles Because we're inside it We might be overestimating this phenomenon.
+
+Actually, the examples of neighborhood bakeries Neighborhood snack shops, hair salons, chicken restaurants And then things we commonly see on Coupang or Sites like 11st What we consider commodities Those kinds of things But looking back 30 or 40 years ago Before this explosive growth In manufacturing Each one was a scarce item And the people making them were all getting rich But now, everywhere in the world Everyone can make such things That's what we call commoditization. Becoming commodities And software has now entered that era.
+
+So because we're Directly affected by it We're having a kind of Luddite Movement-like pushback But if we shift our perspective And look more broadly from different angles What happened in numerous industries Is just happening to us.
+
+Simply put, as Seungjoon mentioned 10x becomes the new 1x And then 100x becomes the new 1x That timing seems to be coming Incredibly fast.
+
+Now software is As we see with Chrome Claude plugins and such Everyone is moving toward Personalized software. Then will B2B SaaS Or large enterprise software Is there really a need for these things? With just the browser and OS Isn't that all we need? Hasn't that already become the prevailing view?
+
+But planning has become much more important because of this. If you just build things without planning And keep pouring in tokens, as Seungjoon mentioned, You get AI slop.
+
+For proper software that's not that, There's still effort at a different level of planning, Emotional effort, and things like that involved, So actually the competitive perspective has just moved to a more abstract level, Meaning it's just shifted to a higher level, But the essence hasn't changed.
+
+Even before, there were really many people making software, And there was still plenty of slop software. But now that's coming at us in much greater volume, And those who maintained their own ecosystem Unaffected by such slop software, The so-called elites who graduated from good schools And worked at good companies and such, Since this is now hitting them directly, This is being interpreted as somewhat of an overproduction, An overexpansion, But it's a natural process.
+
+The time frame is just extremely compressed, Happening very rapidly, That's what feels suffocating and difficult, but if you step back And look at it from a third-party perspective, It's just what was bound to happen happening. Isn't it something consumers should applaud?
+
+<span class="paragraph-timestamp" data-ts="09:52">09:52</span> **Seungjoon Choi** From the consumer's perspective, choices definitely expand, Even if too much comes out, Only one or two can actually enter my cognition, So ultimately most things get ignored, And it seems like only what's within manageable range Will be visible.
+
+Anyway, various thoughts are flowing through my mind. But even if we become 10x more productive, When we become 10x, the story that ultimately emerges Is that humans are the bottleneck, And this seems to be gaining some consensus.
+
+<span class="paragraph-timestamp" data-ts="10:20">10:20</span> **Chester Roh** Yes, that could be true.
+
+But there are also many examples that go beyond that.
+
+For instance, If you just use bare metal Claude Code or Codex, the human bottleneck becomes very apparent.
+
+Yes, because every time you cross those intervals, You need to make decisions and keep giving direction.
+
+But by borrowing that framework itself And embedding it entirely, like Ralph loop for example, Or Oh-My-Opencode, I'm really using Oh-My-Opencode well.
+
+And now it has just the right amount of A squeezing framework well-built, So every night before bed, Oh-My-Opencode Picks tasks that can run overnight, And I've been enjoying that lately.
+
+<span class="paragraph-timestamp" data-ts="11:05">11:05</span> **Seungjoon Choi** So it's essentially a while loop. And now with some ensembling,
+
+<span class="paragraph-timestamp" data-ts="11:10">11:10</span> **Chester Roh** That's right, but if you pour in tokens, Quality converges and improves somehow, So the output quality is really good. Yes, 'humans are the bottleneck,' but Even the parts where humans become bottlenecks Are getting encapsulated And keep going into the layers below, So I think we're also getting past These parts as well.
+
+Yes, lately about 6 hours of my work Involves Codex, Oh-My-Opencode, and Antigravity, And I do all my work through them. But in the past, tasks I used to do directly With email and PowerPoint, Now I do with this as one layer, So I feel like I have employees on standby just for me, Like working with about 7 or 8 of them.
+
+<span class="paragraph-timestamp" data-ts="12:00">12:00</span> **Seungjoon Choi** You still have to manage context though, right? To manage them. No? Have you gotten past that too?
+
+<span class="paragraph-timestamp" data-ts="12:05">12:05</span> **Chester Roh** That's a very, very good question. The effort to focus on context Has become much less than before. So the goal point, We set year-end goals, daily goals, And write something on the to-do list in the morning. So I focus more on the energy level That the to-do list carries. Whether it's measurable, Can be finished today, And can be created through combination With resources around me, I compress that context in my head To create goals.
+
+That context, so the energy level Contained in just one or two lines In the to-do list I set, Actually determines dramatically different quality Of what agents do.
+
+Seungjoon, you're both right and wrong. The part that's right is that effort going into context Has greatly increased, But that also gets Constant self-reinforcement through tools, So that improves too, And if something isn't working, I do eval prompting for ambiguous things. It's a method Seungjoon taught me too, So I create prompts with higher energy levels And use that as the starting point for tasks, and it works well.
+
+So depending on how you look at it, It can't be organized into any single layer or perspective, Things are progressing in a very graph-like manner, So it's hard for me to answer too. As we kept going, the conversation just flowed.
+
+<span class="paragraph-timestamp" data-ts="13:41">13:41</span> **Seungjoon Choi** Yes, but I think we'll return To a related topic. So anyway, I've been thinking about humans, And though it's a bit unusual, changing the approach, I thought about looking through the lens of machine thinking As a metaphor. So while the brain and transformer aren't identical, If they do similar things, I wondered if there might be things we can infer from that, Which is my unusual hypothesis.
+
+So the first premise is that Neither is a blank slate. The transformer also has all its parameters filled. Even if it's random at first, it gets rewired. Circuits are created, weights are adjusted, It's just rewiring neurons. So it's filled from the beginning, not an empty existence, And humans were also empty at first, But once born, from an already filled state, After childhood, neurons themselves Don't increase much, they say. I don't know exactly either, but rewiring and such Still happens due to brain plasticity, Or myelin gets strengthened, Or flows better in certain directions. So I had that mental image to begin with,
+
+And then, as I'm now Getting older, Rewiring my own brain, Learning something that's possible, There must be a corresponding Physical phenomenon, right? Something must change for learning to occur. How can we make that happen well? I've been pondering such things.
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **Chester Roh** I'm someone who thinks The human brain and transformer are machines of the same principle. Yes, there's a simple interesting experiment. Seungjoon, do you know about speech jammer? When there's someone who talks a lot, There's an interesting tool to stop them from talking. What it does is your own speech, When you're wearing headphones, Gets played back with a subtle delay, About a few hundred milliseconds offset, Played back out of sync. Then people can't speak properly.
+
+What this demonstrates is that The human brain is just an autoregressive Machine. When we speak, it seems like we're just speaking, But actually while speaking, that output becomes input Going right back into the brain, combining together, That's how the structure works.
+
+So when that's disrupted, embedding gets tangled, and while speaking, People's thoughts stop. They can't think anymore, And quickly reach that situation Of "why is this happening, why is this happening?" The point is, our brain is just an autoregressive machine too.
+
+<span class="paragraph-timestamp" data-ts="16:18">16:18</span> **Seungjoon Choi** I see. That's a perfect fit for what we're discussing today. So I'll introduce this link later, And I've made a story called "The Pilgrimage of Reincarnating Tokens" Into some slides. I've already shared this on my timeline. Let's take a look.
+
+<span class="paragraph-timestamp" data-ts="16:34">16:34</span> **Chester Roh** This looks fun. Yes, you did the prompting for this too, Seungjoon, So you had AI do the image generation And text and everything, right?
+
+<span class="paragraph-timestamp" data-ts="16:42">16:42</span> **Seungjoon Choi** That's right. This came out in slide form Just 1 minute before we started recording. That was possible because I trusted Claude. If I let it run for about 10 minutes, it would come out.
+
+<span class="paragraph-timestamp" data-ts="16:55">16:55</span> **Chester Roh** You already knew it would work. Yes.
+
+
+<span class="paragraph-timestamp" data-ts="16:57">16:57</span> **Seungjoon Choi** First of all, I thought of the token as the protagonist. Then what I'm thinking about this time is When you input a prompt, prefill happens, right? So it runs through in parallel, And KV caches are already built up. Basically when we use it, The system prompt would have been prefilled too, And with the initial user prompt, From a state where some structure already exists, Generation happens, so thinking about that, from the first-person perspective of generating the next token, let's take a closer look at it.
+
+So I thought of these structures being stacked up here as key and these key-shaped key-value structures standing like buildings as a starting point for visualization. And today, a new tower will be built at the edge of the palace— I thought, that's me. So for example, in this analogy, there are 32 layers, and starting from the beginning, after passing through all 32 layers, the next thing happens— it's an image of reincarnation occurring. Let's go through it.
+
+So first, the token gets embedded into hidden space. So this is an image of that. So at this point, a specific vocabulary is numericalized by corresponding to some number, and that gets embedded into hidden space without context yet, and you can think of that flowing through as the residual stream. So this hidden space x keeps adding to itself through various operations.
+
+But to do that well, what was this again? Was it RMS? What is it? It starts with normalizing itself a bit, right? So nowadays, yes, many transformers when doing pre-norm post-norm, while vanilla was post-norm, nowadays they first reduce it like this before proceeding. So this feels like getting a standard breath.
+
+Then after catching your breath, you prepare to differentiate. Differentiation happens. After differentiation into Q, K, V regions, then splitting that into multi-heads. Multiple heads or multiple eyes, then multiple keys, multiple values— having all of these, through them, it adds to itself again. But nowadays there's something called GQA, to use KV cache more effectively, apparently there are shared parts. I didn't know this well either.
+
+<span class="paragraph-timestamp" data-ts="19:29">19:29</span> **Chester Roh** Group Query Attention.
+
+<span class="paragraph-timestamp" data-ts="19:31">19:31</span> **Seungjoon Choi** So through attention, these things don't split themselves apart, but replicate and then create different perspectives, look from multiple perspectives and merge them back together. So Q is the question I throw, K is the marker I'll leave, V is the water I'll leave behind— expressed poetically like that. Then there's RoPE, which is position encoding, right? So unlike before, nowadays it has a rotating feel, winding it up so the token's position in the sequence becomes a marker— I tried to express that visually.
+
+And then when starting next, the hidden state leaves behind K and V before moving on. So as it keeps going, it seems to work by accumulating structures. So at first, this protagonist— the hidden state or x—goes along like this, and each time it passes through a layer, it looks with many multi-heads, and with what it gains from there, it creates K and V, drinks that to change itself, while continuously leaving records of those markers as it goes.
+
+But at this point, what's usually called attention score is scoring which sequence to focus on, and using that, the V that came from itself— some value that might contain certain knowledge— there's a part that does weighted summation, and I expressed changing oneself as drinking something. But Andrej Karpathy and others use the expression "soft lookup." So normally when looking something up, you throw a query with a key, and using the key, you get the value—that's how it works.
+
+But soft lookup means you don't get exactly just one thing, you get several and give them scores— this is 0.1, this is 0.4—and getting the weighted sum is what Andrej Karpathy usually calls soft lookup. Attention is ultimately soft lookup, and the FFN—feed forward network—that comes later, combining two dense layers, that's also soft lookup, and MoE is also soft lookup repeating in that manner. So it's not about choosing one thing, but mixing in ratios.
+
+Making a mixture through weighted sums of V's to add to the residual stream, to itself— I tried to express that in images. So it doesn't get replaced, it keeps adding delta to x, and this keeps adding more meaning, adding context to itself.
+
+Then 384—DeepSeek had 384 and Kimi K2 had 384. In sparse auto Mixture-of-Experts, but I think DeepSeek was 256. So I expressed that recent trend metaphorically: when you reach a certain floor, there are 384 doors, and among them, the gate or router selects only the top-k 8 that are most connected to the current protagonist x— that's the feeling, and what happens when you enter is now the router being expressed. The x gets replicated and simultaneously enters all 8 rooms to acquire knowledge there. Then it merges back into itself. It's the same weighted sum. Similar feeling to the attention from before.
+
+So actually, it's not just reading, it's transforming itself, but after writing it, expressing it like reading felt more like gathering information, so I changed the image a bit. So again, residual— the residual connection overlapping again— I tried to express that. So what the router does is important. And this way, you can greatly increase parameters. Usually, with enormously large parameters, if you make it with one FFN, the computation requires much more FLOPs, but if you divide into multiple experts of moderate size, you can scale up parameters much more— that's how scaling is being done now, so this is also about that. That happens in parallel.
+
+But the thing about this approach is that the 32 layers—for example, when I said there are 384 experts earlier, that's not 384 across the entire transformer. It's 384 per transformer block, so there are 384 MoE in one transformer block, and if there are, say, 32 layers, with sparsely selecting 8 each time, if there are 32 total transformer blocks, there are 384 across 32 floors, but what actually gets activated is only 8 times 32—much fewer.
+
+But when doing that, no records are left. There's no KV cache here. When computing with MoE, so in terms of a building-like feeling, the tower keeps being generated, but the 32-layer K and V markers leaving traces—that doesn't happen on the MoE side, it happens on the attention side. So what the transformer ultimately does is communicate, think, communicate—repeatedly, expanding that layer by layer, going deeper, doing that.
+
+But interestingly, you need at least two layers for things like induction circuits to emerge. It's early transformer research, and with two layers, what the induction head does is copy some information to another place and handle it, but to do that, you need to create a record and then utilize it, so it can't be handled in one layer— it needs to be handled in multiple layers, at least 2, for circuits to form. When you think about it, that's quite obvious. You have to write something down to utilize it.
+
+<span class="paragraph-timestamp" data-ts="25:49">25:49</span> **Chester Roh** One of the papers we covered a lot about 2 years ago, "Physics of LLM," widened the transformer block width, then reduced the depth, made the embedding space narrow or wide, and experimented with small models to create a kind of conjecture. They made an estimation that this seems to play this role.
+
+Lower layers handle some low-level embedding space deciding where to place things, and as you go to higher layers, more abstract information gets processed— that's how layers get structured. As you go to higher layers, more abstract information is processed This is how the layers are arranged.
+
+But that's not something anyone specified It emerges during the training process. Yes
+
+<span class="paragraph-timestamp" data-ts="26:31">26:31</span> **Seungjoon Choi** Right, that's how it settles into place. Those roles, so the protagonist is being represented with the same silhouette but actually strictly speaking it's in a somewhat different shape now.
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **Chester Roh** Various other information has been attached and accumulated onto its original form continuously transforming.
+
+<span class="paragraph-timestamp" data-ts="26:49">26:49</span> **Seungjoon Choi** Experience points have gone up, it's grown and contains various contexts in that state. And as those things keep repeating it's now ready to be passed on to the next. But before that, a boundary forms You can't just pass it on directly, you have to convert it again. Into numbers or characters, that's sampling.
+
+So assuming the vocab is about 32,000 tokens for instance from that, you probabilistically get ones that fall into this good distribution and pass that to the next token So this one disappears but the successor receives it and does auto-regression. Meaning it performs self-regression. But that self-regressive entity looks at all the KV that the predecessor left behind. Each auto sampling process starts from layer 1 and goes up to layer 32 where it gets passed on
+
+And those traces, for every single token generation all those towers are stacked up. The KV, and then looking at that again with multi-attention pondering what to do and how layer by layer, considering at each level So the reason I titled it "pilgrimage" is because it reincarnates and undertakes this kind of grand journey That's what I wanted to convey. And in the process, in those records structures like buildings are erected. So when we do prompting we're suddenly erecting a massive structure all at once here. Shouldn't that structure also be beautiful?
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **Chester Roh** Yes, exactly. Is this the last slide?
+
+<span class="paragraph-timestamp" data-ts="28:43">28:43</span> **Seungjoon Choi** No, no. This is actually the last one now.
+
+<span class="paragraph-timestamp" data-ts="28:46">28:46</span> **Chester Roh** What you represented as one person is actually referring to one token. Right.
+
+<span class="paragraph-timestamp" data-ts="28:52">28:52</span> **Seungjoon Choi** So starting from a token it's now in a hidden state.
+
+<span class="paragraph-timestamp" data-ts="28:55">28:55</span> **Chester Roh** Right. And that single token that becomes the next input token is what you're representing as a person here and after going through this journey, what comes out as output goes back in as the next token You're describing exactly that one process. Yes
+
+<span class="paragraph-timestamp" data-ts="29:13">29:13</span> **Seungjoon Choi** It's one round, and this is the journey where a single token is generated.
+
+So the KV cache is kind of a growing memory palace while the parameters are fixed.
+
+It's an immovable terrain and the KV cache is a memory palace growing on top of it and the token is a pilgrim traveling between the two.
+
+So those things keep repeating and the trajectory of that chain creates the landscape we call meaning.
+
+That's the story I crafted. I'm not sure if this is helpful though.
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> **Chester Roh** Yes, while listening to this I was thinking about that.
+
+Because for someone who has followed this architecture and the tensor journey through PyTorch or similar even just once this storytelling would immediately make sense but for those without that background knowledge listening to this might result in "I kind of get it but I don't really get it." Yes
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **Seungjoon Choi** It's more interesting when you have some background knowledge So rather than helping to learn or convey knowledge I hope it helps with appreciation and contemplation.
+
+<span class="paragraph-timestamp" data-ts="30:23">30:23</span> **Chester Roh** That's right. But actually, when we first learned neural nets thinking back to 2015, ten years ago we started with MNIST using fully FFN what we called perceptrons back then just making it in FFN form FCN fully connected network only as the first step then adding convolution then learning various things from convolution like VGG to ResNet and such then moving on to RNN learning various simple RNN things and when it gets a bit more advanced things like LSTM or GRU, but from there it's just concepts we don't actually implement them. We just use libraries and from there, moving on I think implementing attention was the advanced level. That transition was also difficult to overcome. Going from RNN to attention
+
+But once you understand attention why transformers work the way they do becomes intuitive again. So Seungjoon also probably invested a tremendous amount of time in transformers First you create the vocabulary and need to understand the tokenizer then those outputs go into embedding and back then we used to add position embedding too.
+
+Then it goes into the attention block and in the attention block, honestly incomprehensible things happen a lot. Why is this designed this way I don't philosophically understand but there were many things we just understood to understand the architecture and moved on. What I really couldn't understand back then was when splitting into multi-head if the embedding in attention is say 256 with multi-head you just slice that 256 from the front. Into 8 pieces
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **Seungjoon Choi** You slice it into small pieces.
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **Chester Roh** Yes, if you slice it small, it's all bundled together as one embedding, but you split it do attention operations and merge it back at the end
+
+what philosophical meaning this has I still don't really understand. Yes, I just understood it as splitting embedding into multiple spaces to explore more diverse possibilities and moved on
+
+<span class="paragraph-timestamp" data-ts="32:32">32:32</span> **Seungjoon Choi** Oh right, right I understand it to that extent too handling it from various perspectives.
+
+<span class="paragraph-timestamp" data-ts="32:36">32:36</span> **Chester Roh** Exactly. So the attention block forms and then everything gets concatenated back into one goes up and passes through layer norm once Yes, then enters FFN and Seungjoon, the soft lookup you just mentioned happens then when the result pops out in the same dimension again
+
+<span class="paragraph-timestamp" data-ts="32:54">32:54</span> **Seungjoon Choi** So this protagonist has the same dimension. It keeps going as the same character throughout.
+
+<span class="paragraph-timestamp" data-ts="32:58">32:58</span> **Chester Roh** Yes, then enters the next transformer block and this keeps repeating layer by layer Yes, and in between those there were residuals that add itself
+
+The reason this exists is so that even in very deep blocks the gradient doesn't die and survives all the way to the front that's the purpose it was created for
+
+but thinking about it now it has very philosophical meaning too. Seungjoon
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **Seungjoon Choi** Yes, residual connection doesn't just prevent gradient from diminishing the meaning where it originally started is the same thing. It maintains gravity from where it originally started so related things attach more easily that kind of feeling.
+
+<span class="paragraph-timestamp" data-ts="33:42">33:42</span> **Chester Roh** Right. And what brought innovation to that part is that thing. DeepSeek's MHC that was recently announced
+
+<span class="paragraph-timestamp" data-ts="33:50">33:50</span> **Seungjoon Choi** MHC creates multiple highways and uses that algorithm, SyncOn or something to prevent it from exploding
+
+<span class="paragraph-timestamp" data-ts="34:00">34:00</span> **Chester Roh** I think it was Manifold Constrained Hyper Connection
+
+<span class="paragraph-timestamp" data-ts="34:01">34:01</span> **Seungjoon Choi** That's something Seonghyun should cover well.
+
+<span class="paragraph-timestamp" data-ts="34:05">34:05</span> **Chester Roh** Right. By doing it that way they optimized that section once more and another paper DeepSeek released recently was N-gram
+
+<span class="paragraph-timestamp" data-ts="34:12">34:12</span> **Seungjoon Choi** N-gram, that's
+
+<span class="paragraph-timestamp" data-ts="34:15">34:15</span> **Chester Roh** That's also about that. The attention block
+
+<span class="paragraph-timestamp" data-ts="34:18">34:18</span> **Seungjoon Choi** Right? It's optimizing that.
+
+<span class="paragraph-timestamp" data-ts="34:20">34:20</span> **Chester Roh** Yes, since it's doing word by word too much if you bundle them by meaning and pass them wouldn't it be much more meaningful
+
+<span class="paragraph-timestamp" data-ts="34:27">34:27</span> **Seungjoon Choi** So then it actually uses more computational power for inference
+
+<span class="paragraph-timestamp" data-ts="34:30">34:30</span> **Chester Roh** That's right. So we have Seonghyun regarding the MHC and N-gram that DeepSeek released last year and this year About MHC and N-gram, we'll be attending a lecture on that soon, and as those things get added, here's another interesting thing— Seungjoon, that Nemotron I mentioned last time, it's a mix of Mamba blocks and transformer blocks.
+
+And the Mamba block itself inherently has the concept of sequence, so there's no section where positional embedding is added.
+
+After passing through several Mamba blocks, it assumes sequence information has been generated within, then passes it to the attention block and MoE. But somehow it still works.
+
+<span class="paragraph-timestamp" data-ts="35:13">35:13</span> **Seungjoon Choi** Well, anyway, interesting things— there are various derivatives, which makes it fun.
+
+<span class="paragraph-timestamp" data-ts="35:17">35:17</span> **Chester Roh** So the reason I explained this at length is because, Seungjoon, I wanted to ask you this question. In terms of continuing to understand this world going forward, how deeply do you think one needs to know?
+
+For example, I think the transformer's, what is it? This journey of a tensor—the journey a single token experiences— you need to look into it at least once to gain the ability to interpret the news and developments happening now.
+
+Otherwise, you're just following the crowd. When people say "this works, that works," you end up just following along with your thoughts kind of floating around.
+
+I have a desire to properly understand the fundamentals of this field, and if it's truly important in your life, I think you should do it at least once— that's what I think.
+
+Seungjoon, if I ask you, at minimum, Seungjoon, to understand what we just discussed, what level of knowledge do you think is necessary? If you could give a harsh comment, what would you say?
+
+<span class="paragraph-timestamp" data-ts="36:27">36:27</span> **Seungjoon Choi** Well, I don't know it that well either, but actually, what you just asked is what I wanted to talk about. Like, why explore this and to what extent? So this was something I planned to discuss later.
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **Chester Roh** Let's bring it up and discuss it together.
+
+<span class="paragraph-timestamp" data-ts="36:49">36:49</span> **Seungjoon Choi** The area of interest is about being able to handle problems correctly even when you don't know. So for example, if we talked about transformers today, that might be difficult, but if there's something new you want to learn or problems you want to solve that are in a domain you didn't originally know, learning is naturally about learning what you didn't know, so if the problem you're trying to solve is like that, using AI as a lever, even though you don't know, you need to be able to handle it in the right direction— how can you achieve that? That's my current interest these days.
+
+And the title "principle-based prompting" that I chose is based on the hypothesis that if you do prompting well based on principles, it might help. And whether such hypotheses might be orthogonal MVK— MVK is a term we became aware of last year. Minimum Viable Knowledge. Does Minimum Viable Knowledge exist? Something orthogonal, so if there's some minimal orthogonal knowledge, you can linearly combine it or use it like composite functions to accomplish other things— if there's some minimum something, shouldn't I update that into my brain? That's the idea.
+
+So to answer your question, what methods are there to find that out? You have to eat your own dog food. It's hard to do something completely unknown at once, so for things you know somewhat but also don't know, whether you can form this MVK-like thing— I think we need to experiment with that. Personally, I've tried making it into stories, and after making the story, my mental image of MoE became very clear, and my image of KV cache also became very clear.
+
+<span class="paragraph-timestamp" data-ts="38:44">38:44</span> **Chester Roh** Right. Yes.
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **Seungjoon Choi** Then what knowledge enabled that achievement? Is it the ability to create stories?
+
+Well, I don't have an answer either, but let's try doing some CoT. Pulling myself up. What were the very basic capabilities? I think I had some basic capability in mathematics, at least a little, and converting that into story form helped me personally.
+
+But this might not be a common axis or basis for everyone. So anyway, there can be various ones, and we need a process to notice these things. Whatever the context may be.
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> **Chester Roh** I want to talk about two points here. First point—so Seungjoon, to understand the mental image of transformers, how much do you need to know about the transformer's architecture, algorithms, and what actually happens inside to at least engage in this kind of philosophical thinking or interpretation of the world? Even if someone says DeepSeek released a new paper, instead of just "DeepSeek's new paper, clap clap clap," to understand what it means and why it's needed— how much studying is required? That was my very direct question, and Seungjoon, you've been...
+
+<span class="paragraph-timestamp" data-ts="40:04">40:04</span> **Seungjoon Choi** I was beating around the bush, but the answer is already written here.
+
+<span class="paragraph-timestamp" data-ts="40:07">40:07</span> **Chester Roh** Yes, to what extent should one...
+
+<span class="paragraph-timestamp" data-ts="40:09">40:09</span> **Seungjoon Choi** You need to know linear algebra at the freshman/sophomore level.
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **Chester Roh** Okay. And?
+
+<span class="paragraph-timestamp" data-ts="40:12">40:12</span> **Seungjoon Choi** And you should have implemented it at least once, even as a toy. About transformers, yes. Even if not training, at least inference— making a toy version definitely helps. It would be better if you trained it too, but...
+
+<span class="paragraph-timestamp" data-ts="40:28">40:28</span> **Chester Roh** Having a sense of what journey a token goes through— you need to look at that at least once. Actually, the curriculum Seungjoon just mentioned is exactly what Andrej Karpathy is building at Eureka Labs, right?
+
+<span class="paragraph-timestamp" data-ts="40:41">40:41</span> **Seungjoon Choi** But even if you just implement it, the appreciation might not follow, I think. You implement it and can use it to some extent, but I think there are many cases where people don't try to understand the meaning behind it. But that's not necessarily required.
+
+<span class="paragraph-timestamp" data-ts="40:59">40:59</span> **Chester Roh** So when someone asks me, what milestone—if you achieve this, you have sufficient knowledge, so from there, don't dig deeper into papers, close them, and come back to the business world— that turning point is when we throw this at the transformer block, the dimension of the tensor block we're throwing— the embedding, then sequence length, then the batch size— these three bundled together go in. Those three go in, and understanding how they split and recombine— how the dimension gets broken apart and meets again— if you can calculate that, I tell them "you understand everything."
+
+<span class="paragraph-timestamp" data-ts="41:48">41:48</span> **Seungjoon Choi** Right, but I bought this book again recently— the Korean edition came out in December, Gilbert Strang's Linear Algebra 6th edition, and I'm reading the Korean edition too. When 3Blue1Brown talked about transformers, he said viewing matrix-vector multiplication not from the dot product perspective but from the linear combination perspective is important. Two years ago.
+
+<span class="paragraph-timestamp" data-ts="42:13">42:13</span> **Chester Roh** That's such well-made content.
+
+<span class="paragraph-timestamp" data-ts="42:17">42:17</span> **Seungjoon Choi** I took that at face value, and I did have an "aha" moment then, but I didn't know that this became the mainstream curriculum for linear algebra in the early 2000s thanks to Strang. I didn't know that.
+
+Because I learned it in the '90s.
+
+So seeing how this linear algebra was artistically and foundationally established, I was amazed and am reviewing it again.
+
+<span class="paragraph-timestamp" data-ts="42:42">42:42</span> **Chester Roh** Looking at this diagram, this is literally just a transform.
+
+<span class="paragraph-timestamp" data-ts="42:46">42:46</span> **Seungjoon Choi** Right. But this represents subspaces orthogonally, and he explained it remarkably well. So I'm reviewing it too, partly because the basics are interesting, but also discovering many things I didn't know.
+
+Going back to the dense layer FFN— these columns have meaning, and the question—ultimately the prompt becomes an embedding and gets multiplied with some weight, right? With a large weight. If that embedding's state is like a kind of weight or question, then the knowledge contained in column vectors gets combined—that mental image is possible. And when I realized that, I understood that all of this can be seen as soft lookup. That's when it clicked.
+
+Then, what we've been discussing— today's protagonist, the hidden state— what's contained in it, if we consider it as some score or weight, anything that's 0 in there can't pull out the information in the columns. They can't be combined. But where did this start from? It started from tokens. So ultimately in the prompt, the ability to extract this information—
+
+<span class="paragraph-timestamp" data-ts="44:03">44:03</span> **Chester Roh** All the keys are contained in there.
+
+<span class="paragraph-timestamp" data-ts="44:05">44:05</span> **Seungjoon Choi** They have to be in there. When prompting, you need to enable combination to happen. But this soft lookup repeats across all blocks as an image. So this is quite a leap to say, but that was the feeling I had at the beginning of the year.
+
+
+<span class="paragraph-timestamp" data-ts="44:19">44:19</span> **Chester Roh** The first point we were trying to make earlier was about how far you need to study transformers, and I think we roughly covered that— knowledge around linear algebra level, then about transformer blocks, understanding the logic of how it runs through once, and having some grasp of the vector space within it.
+
+Then the second point is actually this minimum viable knowledge. On this point, I have my own crude philosophy.
+
+<span class="paragraph-timestamp" data-ts="44:50">44:50</span> **Seungjoon Choi** What is it?
+
+<span class="paragraph-timestamp" data-ts="44:51">44:51</span> **Chester Roh** My answer to this is actually quantity-to-quality transformation. For example, let's say there's a chaebol chairman somewhere. By our standards, this chairman has virtually infinite resources. Now, this person knows nothing about biology or drug development, but wants to create a new business related to pharmaceuticals. So what do they do? They just use the power of money to hire all the people they think are experts in that field, hire McKinsey, hire Bain, and throw money at it. Then they'll have those people do report generation. And among the generated reports, there will be common keywords, and thinking "ah, these have high energy levels," they'll extract just the common keywords and have someone, like a chief of staff, create a compressed report. Then at the very end, reading the remaining 5 pages of reports, they'll form a mental image and learn what the right questions with the highest energy levels are, and start from there.
+
+That connects exactly to what Seungjoon just said. Once you have those keys and queries with the highest energy levels that you can retrieve, you then ask various questions to the expert class who knows everything about the world, getting feedback from them, and at a really fast pace, you fill in the gaps about that unknown domain— what's essential, what's sub, and what's main. Then while doing that, you decide "I should do this new business" or "I shouldn't," and if you do, how much money you should spend— that's what emerges. That's the methodology of how that chaebol chairman acquires minimum viable knowledge. Now, flipping back to our reality, we're now in a world where anyone can do this.
+
+For example, if I'm making cosmetics and need to do something with a new substance, I don't have deep chemistry knowledge, so I don't know about that substance. Then I take Oh-My-Opencode and these days things like Claude Code with lots of skills bundled together— scientist skill, marketing skill, and so on— there are lots of well-organized collections of these. I bring those in, fit them to my purpose, do a round of figuring out which skills to choose, and select about 50 skills. Seungjoon, then I load up those skills and just run it through Oh-My-Opencode while I sleep. Then that methodology that those chairmen were using— I'm running frontier models that are perhaps much smarter than McKinsey consultants. In the morning, something's there— reports.
+
+Then I just look at those and learn "this has the highest energy level, this is how things are grouped," and this MVK forms. But without that formed, going to a model— whether doing Deep Research with Gemini or whatever— nothing comes out. So Seungjoon, connecting to what you said last time, that's where a light bulb went off for me.
+
+Right, exactly in the two weeks since, Seungjoon, you told me that to be good at a domain, I don't know, but if you stuff in all those terms about that domain, the complex ones, the model's capability increases significantly. I experimented with that, and it works well.
+
+And so with the chairman's mental image and my experiences at Google working on search-related things, I had many experiences of quantity-to-quality transformation. There's lots of garbage, but if you just have enough quantity, with a little thought about how to sift through it, quality always emerges. Later, after repeating such work continuously, I realized that quality is always just a dependent variable of quantity.
+
+So this minimum viable knowledge is formed that way, and because we're living in a time where we can endlessly expand domains if we just have the will, what's important now is— whether in our Defectors' Alliance group chat or lately, Seungjoon, what I've been feeling is that the world clicked again with the new year— I've been talking about that feeling. Saying "everyone's gone crazy" and such, everyone is adopting this methodology.
+
+<span class="paragraph-timestamp" data-ts="49:30">49:30</span> **Seungjoon Choi** That's what we talked about earlier.
+
+<span class="paragraph-timestamp" data-ts="49:33">49:33</span> **Chester Roh** Yes, they're grinding tokens. And I think that's the answer. Grinding tokens— this has enormous significance.
+
+<span class="paragraph-timestamp" data-ts="49:45">49:45</span> **Seungjoon Choi** Right, you have to do a lot of it for eventually the circuit for doing that to form in your brain.
+
+<span class="paragraph-timestamp" data-ts="49:53">49:53</span> **Chester Roh** So those harnesses themselves have meaning, handling and using the harness well, and to handle the harness well, when I see people who can envision how models should be combined—
+
+<span class="paragraph-timestamp" data-ts="50:08">50:08</span> **Seungjoon Choi** They've probably done it a lot. That ultimately has to get into your head, and that methodology needs to become an embodied experience.
+
+Anyway, that's an important point you made, I think. I very much agree. It's obvious you need to practice a lot.
+
+I briefly mentioned a game earlier. This might go off-track, but quickly—that game is like a work of art, I enjoyed it. But one section is extremely difficult.
+
+I challenged it about 150 to 200 times and eventually did it, but to do it, muscle memory has to form. If you take a week off, you can't do it again— though recovery is possible, but having the thought that you can do it and knowing someone else has already done it, and then repeating it to completely make it your own— there are sections in games that require that to pass.
+
+So I had similar thoughts. Oh, this requires at least 100 tries.
+
+<span class="paragraph-timestamp" data-ts="51:03">51:03</span> **Chester Roh** Yes, it's like an RLVR section.
+
+<span class="paragraph-timestamp" data-ts="51:07">51:07</span> **Seungjoon Choi** Right, right, that seems important. And the core image I wanted to convey today— this is about the prompting attitude I've introduced several times before, where even the thousandth generation you view as if seeing the first generation— I wanted to talk about marveling at it once more. It's actually so abundant now, everyone does it, but generating one token can actually be a wondrous thing. And I think there's a lot of meaning in it. And if you make tokens the protagonist of what Chester just said, several things work. Looking at many, thinking, establishing, choosing— these things exist, so I brought it up.
+
+Now time has passed quite a bit, so I think we need to wrap up. On February 6th and February 7th, I'll be introducing the prompts I've been honing recently. But it's not just me— people who want to talk about AI, the future is uneven, it's a lumpy future, and it might be an unchosen future. So media artists are getting together to discuss this, and we're preparing that. So I did a bit of advertising. This is in Mullae-dong on February 6-7, 2026, but the registration form hasn't been created yet. So that's all I'll introduce for now.
+
+There, I'll be introducing prompts I've been making lately. For those interested, please check it out, and These are things I've been pondering lately, compressed and put together. Let me briefly touch on a few points.
+
+When you put in one or two sentences like this, it expands them into about four pages of reading material. So this might be my personal philosophy, but I prefer reading longer texts over summaries. Rather than condensing things down, I take the approach of expanding what's been condensed. I created this prompt so that for things I want to study, instead of putting in the entire document, I put about one paragraph into this prompt, and let's see how interesting stories get generated.
+
+So I'll share the materials with you, and I think it would be good for you to take a look. So that's what I've prepared up to this point. We'll wrap up here for today.
+
+<span class="paragraph-timestamp" data-ts="53:25">53:25</span> **Chester Roh** Remember when we watched that 3Blue1Brown transformer video? We could just watch it together and follow along with it— that would connect perfectly to this series and be a good attempt, I think.
+
+<span class="paragraph-timestamp" data-ts="53:39">53:39</span> **Seungjoon Choi** It's still relevant content even now.
+
+<span class="paragraph-timestamp" data-ts="53:42">53:42</span> **Chester Roh** Anyway, following last week, let's wrap up this week as the second session of Seungjoon's token story. We'll conclude here. Yes, it was another enjoyable time today. Thank you, Seungjoon.

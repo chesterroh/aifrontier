@@ -1,0 +1,461 @@
+---
+episodeNumber: 85
+lang: "en"
+title: "OpenClaw and the Signals of February 2026"
+description: "We explore the rapidly emerging AI agent/harness trends (OpenClaw, Pi, Moltbook, etc.) and interpret together what it means when \"the paradigm shifts.\" We compare approaches: the Ralph Loop style of iterating until it works, the Human-in-the-Loop method of steering and calibrating, and the expansion into multi-agent systems — while also discussing security and sandboxing risks through real-world examples. As the time gaps between breakthroughs grow ever shorter, we reflect on what kinds of tacit knowledge and data/context layers we need to hold onto in order to survive without being swept up in big tech's gravitational pull. In a future that is \"changing insanely fast\" and unevenly at that — what attitudes and choices can we take?"
+publishedAt: 2026-02-11
+duration: "52:08"
+youtubeId: "bRsZH4CbhB4"
+thumbnail: "https://i.ytimg.com/vi/bRsZH4CbhB4/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+chapters:
+  - time: "00:00"
+    title: "Intro: In February, changes start pouring in"
+  - time: "00:31"
+    title: "From Ralph Loop to an iterative PRD culture"
+  - time: "01:23"
+    title: "OpenClaw philosophy: Human In The Loop vs full autonomy"
+  - time: "02:07"
+    title: "Moltbook and the rise of an agent playground"
+  - time: "03:02"
+    title: "Pi and VibeTunnel: using agents in messengers"
+  - time: "05:37"
+    title: "The signal OpenClaw sent to the market"
+  - time: "06:31"
+    title: "The sandboxing debate and the Moltbook API key leak"
+  - time: "07:42"
+    title: "Model wars: Claude Opus 4.6, GPT-5.3-Codex"
+  - time: "08:33"
+    title: "Orthogonal design: a philosophy of combining minimal functions"
+  - time: "10:00"
+    title: "The era of agent swarms and context preservation"
+  - time: "11:13"
+    title: "Anthropic vs OpenAI ad wars"
+  - time: "12:30"
+    title: "Agent Teams: shared task lists and observability"
+  - time: "16:36"
+    title: "SaaS stock crash and shifts in public perception"
+  - time: "18:45"
+    title: "AI roadmap review: the year of Science"
+  - time: "21:00"
+    title: "It ends in 2 years: Big Tech gravity and escape strategies"
+  - time: "25:06"
+    title: "The disappearance of the domain gap, leaving only tacit knowledge"
+  - time: "29:29"
+    title: "The world after coding: one year of vibe coding, ups and downs"
+  - time: "40:40"
+    title: "Big Tech propaganda and economic polarization"
+  - time: "44:21"
+    title: "The entertainment economy and new job categories"
+  - time: "47:02"
+    title: "Our weapons and attitude: curiosity, exploration, Abundance"
+  - time: "51:35"
+    title: "Closing: a bumpy future, but we still have to live on"
+---
+
+## Intro: In February, changes start pouring in    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is February 8th, 2026, a Sunday morning. As we got through the end of the year and then January, it feels like we took a slight breather, but you’ve always been saying, “It’ll start soon,” right? It’s started. Things have begun pouring out.
+
+<span class="paragraph-timestamp" data-ts="00:17">00:17</span> **Seungjoon Choi** Part of me is happy to see it, and part of me is tired.
+
+<span class="paragraph-timestamp" data-ts="00:20">00:20</span> **Chester Roh** Shall we take a quick look? Take a look, and then also we should probably discuss what these things mean. With the things that have happened recently, even saying “this happened when” feels a bit ambiguous to pin down to dates.
+
+## From Ralph Loop to an iterative PRD culture    *00:31*
+
+
+<span class="paragraph-timestamp" data-ts="00:31">00:31</span> **Seungjoon Choi** We said something would definitely happen once February came around, and it really did. It seems like it was planned. I can feel a shift in the paradigm.
+
+And if we rewind time, last summer, Ralph Loop was popular. And Oh-My-Opencode, those were all about picking a single PRD and repeating until it worked, that kind of flow. So you’d burn a lot of tokens and, one way or another, get something to come out, and the better the PRD was written, the more it got achieved—those patterns showed up.
+
+So using Ralph Wiggum, a Simpsons character, with that vibe of trial and error but eventually pulling it off, the person who made this, Geoffrey Huntley, first wrote a piece on deliberate practice, and then announced and introduced Ralph Loop.
+
+## OpenClaw philosophy: Human In The Loop vs full autonomy    *01:23*
+
+<span class="paragraph-timestamp" data-ts="01:23">01:23</span> **Seungjoon Choi** But OpenClaw became quite a big issue. And looking at an interview with OpenClaw’s creator, Peter Steinberger, he had a slightly different perspective.
+
+Rather than having the model keep repeating on its own until it works like Ralph Loop, Peter preferred Human In The Loop. So Peter has a philosophy of his own, and the idea is this: letting models use a huge number of tools in a state where they aren’t security-sandboxed, to get anything done by giving them full access, and to get it done through a messenger, and then releasing those things into the market, which caused a huge stir.
+
+## Moltbook and the rise of an agent playground    *02:07*
+
+<span class="paragraph-timestamp" data-ts="02:07">02:07</span> **Seungjoon Choi** And then something called Moltbook came out, too. After OpenClaw, a place where agents can do anything, like a playground where agents can play, came out and that was a big issue for a while as well. But the word “fun” came up. AI is known for making unfunny jokes, but if you read what’s in Moltbook, there are parts that are genuinely fun. In a channel where we sometimes talk with Hwidong Bae and Alan Kang, we call it "PHML."
+
+<span class="paragraph-timestamp" data-ts="02:34">02:34</span> **Chester Roh** "PHML"?
+
+<span class="paragraph-timestamp" data-ts="02:36">02:36</span> **Seungjoon Choi** Play is the life of humans and machines.
+
+<span class="paragraph-timestamp" data-ts="02:39">02:39</span> **Chester Roh** Play is the life of humans and machines.
+
+<span class="paragraph-timestamp" data-ts="02:40">02:40</span> **Seungjoon Choi** In the end, things like story and fun elements keep being important factors, so it felt like a phenomenon worth thinking about. I don’t know about the latter half of this week, but after Moltbook came out, Mario said they got an insane amount of messages. “Let’s do business together”—it seems like it showed more than just a PoC of how these things work.
+
+## Pi and VibeTunnel: using agents in messengers    *03:02*
+
+<span class="paragraph-timestamp" data-ts="03:02">03:02</span> **Seungjoon Choi** And OpenClaw, in terms of its agent core, actually uses something called Pi. So I looked into Pi with some interest, and the person who made it, Mario Zechner—this person is Mario. Peter, who made OpenClaw, apparently had known Mario for a long time. Then after Claude Code came out last year, there was a hackathon in Vienna, over in Europe, and Mario joined as part of a team that built something called VibeTunnel together. That’s what Mario participated in.
+
+And what is it? Something that lets you use Claude Code in a messenger. So you can have powerful agents handle things on your local machine from anywhere—but if it’s not code, and you can just handle code as if you’re working with it in natural language, the key point seems to be lowering the barrier a lot, since many people can’t use it otherwise. That approach seems to be the main point. So that philosophy is also somewhat inside OpenClaw, and it connects everything—especially in places like Discord it enables you to unfold and do things.
+
+Pi’s philosophy is to keep a very minimal set of features, not even adding MCP, and it does add skills, but everything is about agents building that software on their own directionally. So it’s minimal, orthogonal functionality, with a philosophy of combining pieces to compose everything. I haven’t built up enough experience with all of that, and I’ve only tried installing Pi to that extent.
+
+<span class="paragraph-timestamp" data-ts="04:32">04:32</span> **Chester Roh** So Pi is inside OpenClaw, and you can think of it as the core agent harness, right?
+
+<span class="paragraph-timestamp" data-ts="04:38">04:38</span> **Seungjoon Choi** That’s right. It’s the central core, and OpenClaw is what put a Stim Pack on top of that.
+
+So like we said earlier, there’s an approach where you keep endlessly making it do things through deliberate practice, and then there’s a philosophy where you take minimal functionality and unfold things from there, and then an even more radical version of that, doing it even without sandboxing, but valuing Human In The Loop was the OpenClaw approach, and then something like Moltbook, a playground space, also emerged.
+
+But an interesting commonality is that all four of these people are veteran “older” developers with 20–30 years in the industry. In their 40s to 50s, all with exit experience, each with their own engineering philosophy and taste, and they distilled those into building their own work harnesses.
+
+## The signal OpenClaw sent to the market    *05:37*
+
+<span class="paragraph-timestamp" data-ts="05:37">05:37</span> **Chester Roh** As OpenClaw got more mainstream awareness, it felt like it suddenly sent a signal to the world. Like, “So the world can just flip with a click.”
+
+People at companies, or people who handle AI well, have already been using loops like this a lot by attaching things like the Claude Code SDK or the Codex SDK to backbone data inside companies, and leveraging it heavily.
+
+But OpenClaw made that feel more public and easy—like it didn’t exist before, and then suddenly appeared, and that seems to be the image it gives the market.
+
+So OpenClaw has cooled off a bit, but in stock communities—and these days everyone’s an investor— people talk about this a lot.
+
+So questions like, “What does OpenClaw mean for the stock market?” came up, and I got quite a few of those questions this week.
+
+## The sandboxing debate and the Moltbook API key leak    *06:31*
+
+<span class="paragraph-timestamp" data-ts="06:31">06:31</span> **Seungjoon Choi** But I think OpenClaw’s approach is very risky, and Peter said that, too. He's someone who understands the risks of his own approach.
+
+And Mario, who made Pi, talks about important things around sandboxing on YouTube. And that YouTube channel is Fraunhofer IEM. It’s connected to a very traditional, well-known research institute on the European side. Mario’s thoughts on sandboxing—those ideas— Mario is a very serious, thoughtful person. And Mario is interested in using technology for good, but Peter, who interacts with Mario, was much more radical and ignored sandboxing.
+
+So while everything works, there’s also a lot of risk, and what made that real was Moltbook showing security blowing up. An enormous number of API keys got exposed—was it a million?
+
+<span class="paragraph-timestamp" data-ts="07:27">07:27</span> **Chester Roh** What a fascinating world. When the leak is a million, it barely even feels shocking anymore.
+
+<span class="paragraph-timestamp" data-ts="07:32">07:32</span> **Seungjoon Choi** Right. So the security vulnerabilities OpenClaw foreshadowed became reality within weeks through Moltbook.
+
+## Model wars: Claude Opus 4.6, GPT-5.3-Codex    *07:38*
+
+<span class="paragraph-timestamp" data-ts="07:38">07:38</span> **Seungjoon Choi** So the current paradigm, as I see it, is that all of this was possible because we have powerful models.
+
+<span class="paragraph-timestamp" data-ts="07:45">07:45</span> **Chester Roh** The model capability overhang you always talked about, Seungjoon.
+
+<span class="paragraph-timestamp" data-ts="07:48">07:48</span> **Seungjoon Choi** Exactly. There were various paradigms to keep drawing out that overhang, and there were lots of rumors about Sonnet 5. Around this time.
+
+But when we opened the lid and looked, Claude Opus 4.6 came out first.
+
+So the pattern we’ve always known seems like it’ll repeat this year too—things come out in February, then again in March around AlphaGo week, and around May, when Google I/O and MS Build happen, things get organized, and Google lays everything down cleanly once again, and that kind of thing is coming.
+
+<span class="paragraph-timestamp" data-ts="08:20">08:20</span> **Chester Roh** And then a slight summer vacation, and then it starts again from fall.
+
+<span class="paragraph-timestamp" data-ts="08:23">08:23</span> **Seungjoon Choi** And there are also rumors about Gemini 3.5.
+
+## Orthogonal design: a philosophy of combining minimal functions    *08:29*
+
+<span class="paragraph-timestamp" data-ts="08:29">08:29</span> **Seungjoon Choi** But anyway, there are harnesses, and harnesses with different philosophies, and my interest in particular is in orthogonal ones.
+
+<span class="paragraph-timestamp" data-ts="08:35">08:35</span> **Chester Roh** Could you explain “orthogonal” just a bit? I think a lot of people might not know the term.
+
+<span class="paragraph-timestamp" data-ts="08:40">08:40</span> **Seungjoon Choi** It’s “orthogonal,” and thinking of RGB might be easiest. Red, green, and blue are independent of each other. Red has no element of green in it.
+
+But if you think of the three RGB components as three-dimensional axes, all the points you can sample in between are every color, in the visible spectrum.
+
+So you make orthogonal building blocks, and if you linearly combine them or compose them, you can assemble everything else—that’s the nuance.
+
+<span class="paragraph-timestamp" data-ts="09:09">09:09</span> **Chester Roh** Like, you deliberately form a team where one person is good at math, one person is good at writing, one person is good at music, and calling those “orthogonal,” as Seungjoon put it— is that the right way to think about it?
+
+<span class="paragraph-timestamp" data-ts="09:19">09:19</span> **Seungjoon Choi** Exactly. So it’s that feeling of having minimal-unit capabilities and combining them to make anything. And then being able to do anything with agents from anywhere, via messengers—especially Discord— seems like an important point right now. When you look at something like OpenClaw, you can always give it tasks and get feedback and do that kind of thing, and depending on the situation, if the spec is precisely defined, if a PRD or spec is set, and if it’s detailed, repeating until it works is something we’ve seen work.
+
+But depending on the situation, there are also modes where it works better to do back-and-forth and coordinate via Human In The Loop, and it seems like there are these two schools of thought.
+
+## The era of agent swarms and context preservation    *10:00*
+
+<span class="paragraph-timestamp" data-ts="10:00">10:00</span> **Seungjoon Choi** And expanding in various ways under those conditions, now it’s moving toward the paradigm of agent swarms. I enjoyed reading this piece, and it looks like the author’s name is Yonggyun. I looked at the eight techniques for preserving context that Yonggyun posted, and that was really interesting too. So it didn’t just come out of nowhere— OpenClaw did quite a bit of engineering to preserve context. So for Peter to be able to engineer that, Peter probably had agents do it, right. So this was also a very interesting piece.
+
+And then the METR metric came out again. GPT-5.2 High at 6 hours 34 minutes, at 50%—when you look at it on this linear scale, the graph shoots into the sky and came out looking kind of weird. It was announced that things are heading this way, and just a few days later, was it the day before yesterday? It came out.
+
+<span class="paragraph-timestamp" data-ts="10:53">10:53</span> **Chester Roh** Claude Opus 4.6 and GPT-5.3-Codex.
+
+<span class="paragraph-timestamp" data-ts="10:57">10:57</span> **Seungjoon Choi** So they were like an hour apart, I think— Opus 4.6 was announced first, and then GPT-5.3-Codex was announced. So GPT-5.3-Codex is probably an upgrade of the main model, but for now, only within the Codex product line. But what happened the day before that is also interesting.
+
+## Anthropic vs OpenAI ad wars    *11:13*
+
+<span class="paragraph-timestamp" data-ts="11:13">11:13</span> **Seungjoon Choi** Was it two days before? There was a lot of controversy around ads. Anthropic completely dissed OpenAI for putting ads into the free models, saying, “We don’t do ads.” Those videos are incredibly funny. Want to see one?
+
+So you ask for a way to get a six-pack fast, and it says, “This is perfect—so I’ll personalize it for you.” And then it goes on like, “It’s perfect, so I’ll personalize it for you.” And after it gets information, it turns into this AI persona. So it makes a plan and then ads get inserted. It’s like that.
+
+This is Anthropic, dissing (OpenAI) for running ads.
+
+<span class="paragraph-timestamp" data-ts="11:55">11:55</span> **Chester Roh** It showed what kind of situation happens when ads enter an AI stream.
+
+<span class="paragraph-timestamp" data-ts="12:01">12:01</span> **Seungjoon Choi** So “we’ll focus on quality.” So Claude will be ad-free—expensive, but— and they said that on February 4, and that got under Sam Altman’s skin, so Sam posted a long tweet. Saying Sam found it funny and so on. After that happened, immediately, about an hour apart, a war broke out where top-tier models were announced.
+
+## Agent Teams: shared task lists and observability    *12:30*
+
+
+<span class="paragraph-timestamp" data-ts="12:30">12:30</span> **Seungjoon Choi** The post about building a C compiler with a parallel Claude team was really impressive. So they do it in parallel with an agent swarm, and the phrase “running the Ralph Loop” appears in this piece. Until it works—until a C compiler gets made— they experimented with autonomous driving. That video—Claude team, Claude Code team— it’s a video that someone named Lydia Hallie uploaded. There’s no sound; you just see the process.
+
+Anyway, what was important in Claude’s announcement was the files that leave traces of work, managing deadlocks in MD files, and the important implications around when to release and acquire locking. They ran 16 agents for quite a long time, and in the end, they present a write-up about building a Rust-based C compiler. That was also very impressive, and what the Opus—meaning the Claude team— what Anthropic had talked about last year was the main agent orchestrating sub-agents.
+
+So it would produce result, result, result, and then report, and the main agent—meaning the main agent— had this visible management burden. But now it has moved in this direction. Agent Teams do have a lead/main agent, and there is task assignment too, of course, but there’s a shared task list, and rather than assigning separately, it delegates more so teammates communicate with each other, and a context forms around that shared task list. And by repeatedly doing work and communicating here, it reduces the load on the lead/main agent a lot more.
+
+And this piece said it’s starting to resemble organizational culture more and more, I think that was the nuance. And what the Cursor team did was a piece titled “Toward an Autonomous-Driving Codebase,” showing execution by thousands of agents, which I enjoyed reading—it was similar but also a different approach.
+
+So what I emphasized here is that all of this shows how important it is to draw out, state, and understand intent. It shows that intent is important. So when you have agents do work like this, at this scale, that importance grows even more. Steerability and observability will remain an interesting area of research. So in many teams—not small, tiny teams, but in very large-scale teams—how to set direction, observe what teams are doing, and in order to do that, how important it is to draw out and specify intent and have agents understand it felt impressive to me.
+
+<span class="paragraph-timestamp" data-ts="15:20">15:20</span> **Chester Roh** But that sentence you just said, Seungjoon, is something we’ve traditionally seen a lot in management. When Harvard Business Review and the like cover leadership, that line is always what comes up. Now leadership matters.
+
+<span class="paragraph-timestamp" data-ts="15:37">15:37</span> **Seungjoon Choi** The interesting point for me here is that, in human society, if we learned about the society of agents, then, You get to verify what actually works well in a society of agents. And then that feels like it would, in turn, get fed back into human society.
+
+<span class="paragraph-timestamp" data-ts="15:53">15:53</span> **Chester Roh** It’s the same structure. I’d say it’s isomorphic.
+
+<span class="paragraph-timestamp" data-ts="15:56">15:56</span> **Seungjoon Choi** The conclusion of this piece is: taste. We talked a lot about taste last year, right? Taste, judgment, and direction came from humans, but in this research AI was a powerful force multiplier for rapid iteration and exploration. It came from humans, but to actually accomplish something enormous, the implication was that AI was what amplified that power.
+
+So having these two things together, and also having tried it with AI—what commonalities and differences there are, if you’re interested, I think it’d be worth taking a look.
+
+<span class="paragraph-timestamp" data-ts="16:34">16:34</span> **Chester Roh** Then let’s move on.
+
+## SaaS stock crash and shifts in public perception    *16:36*
+
+<span class="paragraph-timestamp" data-ts="16:36">16:36</span> **Chester Roh** Because of this OpenClaw, if I had to pick the most interesting thing that happened this week, it’d be about two days ago. Around February 4th or 5th. These traditional software companies, software companies represented by SaaS—their stock prices fell a lot.
+
+<span class="paragraph-timestamp" data-ts="16:53">16:53</span> **Seungjoon Choi** Haven’t you been saying that since last year? It’s just that now they actually fell.
+
+<span class="paragraph-timestamp" data-ts="16:57">16:57</span> **Chester Roh** Maybe this is when the public starts recognizing this kind of change. People are always like that, you know. Even when some phenomenon arrives for someone, there’s a time gap for the person interpreting it, and that time gap is what we’ve always been talking about.
+
+So for people who are ahead, we say a lot that you need to be able to exploit this time gap, and back then, if Jeongkyu said “I think this would be good,” “let’s do something with this company,” about six months later it became reality, but now it feels like about a month. And it’s shrinking further—if you look at cases like OpenClaw, when it becomes an issue in tech, it spreads to the broader public, and the time it takes until the whole country is talking about it is now in 4–5 day units. It seems everyone’s aware.
+
+Because information spreads so fast. Even so, the stock price of SaaS suddenly crashing out of nowhere— that felt a bit out of left field to me too, but Claude announced that co-work thing, right? They put in a legal plugin there, and I haven’t tried it myself, but I’m also preparing something legal-related right now—I haven’t used it, but apparently the performance is pretty good.
+
+<span class="paragraph-timestamp" data-ts="18:09">18:09</span> **Seungjoon Choi** There’s Excel too. Anyway, stuff like that is now just
+
+<span class="paragraph-timestamp" data-ts="18:12">18:12</span> **Chester Roh** So this kind of information seems to be starting to get priced into the market—dropping and bouncing back. Of course, if you zoom out long-term, right now it’s kind of on a plateau, and these stock prices are moving sideways.
+
+<span class="paragraph-timestamp" data-ts="18:27">18:27</span> **Seungjoon Choi** The reason I chuckled a bit is because something came to mind— these days when I meet people at cafés, there’ll be young women at the next table and older folks on the other side, and everyone’s talking about AI, so we laughed too.
+
+<span class="paragraph-timestamp" data-ts="18:41">18:41</span> **Chester Roh** Right. Everyone knows what OpenClaw is.
+
+## AI roadmap review: the year of Science    *18:45*
+
+<span class="paragraph-timestamp" data-ts="18:45">18:45</span> **Chester Roh** If we rewind just one month, at the end of the year, Seungjoon and I, kind of—also us, what we talked about before we went into a lull was exactly this.
+
+Right. Sam Altman and the chief scientist—OpenAI’s chief scientist Jakub—came out in October and announced a roadmap, right? That in ’26 they’ll do this, there’ll be an AI research intern, and in ’28 AI research will be fully automated, laying the groundwork like that, and then saying 2026 is the year of science, and basically waving that banner everywhere. Right.
+
+And Google put out AlphaGenome—right. And, yes, AlphaGenome is honestly a huge event—right.
+
+<span class="paragraph-timestamp" data-ts="19:27">19:27</span> **Seungjoon Choi** Swyx also started AI for Science, right?
+
+<span class="paragraph-timestamp" data-ts="19:30">19:30</span> **Chester Roh** Exactly. That AI for Science becoming real is, the direction we kept running toward through 2025— this RLVR vibe: if the model is smart enough, you can pour in more computation and, instead of solving the problem one by one, you can convert it into the domain of search— you can turn everything into a learning problem— it feels like that’s what it’s showing.
+
+So coming back to the slide, it’s basically the story that AI will do everything. Everything. So they made announcements like this, right? “This is how we’ll structure the business,” and as you mentioned earlier about ads, they said they’d do ads too. And we half-jokingly, as a joke—no, wait. “There’s no way OpenAI would leave third parties this much space.” Google was like that too; they’ll all do it in a way where they do everything themselves, and in reality the room for third parties will only be this much.
+
+And we also covered this slide before, saying that about two years would be decisive, didn’t we? In ’26 and ’27, compared to what happened in ’24 and ’25, the slope is steeper now, right? It’s definitely steeper. Whether it’s the speed of model progress or the speed at which business moves around it, it feels like everything will be over within two years, and the ultimate question is: what do we do before that?
+
+## It ends in 2 years: Big Tech gravity and escape strategies    *21:00*
+
+<span class="paragraph-timestamp" data-ts="21:00">21:00</span> **Chester Roh** Sure, there’s a way to buy big tech stocks and just ride along, but for most people, that won’t be life-changing. So what do we do—what parts do we need to focus on? We have to go to non-verifiable domains. Ultimately, when a time comes where superintelligences, in an agentic way, start evolving on their own, like what Seungjoon just showed— Claude Opus 4.6 burning $20,000 worth of tokens and just, in Rust, being able to build a C compiler by itself—this is the era we’re in now.
+
+Then we really won’t have anything to do, and honestly, the closer you are to software right now, the more the work is disappearing, and if you look, Seungjoon, you mentioned Ralph Loop and OpenClaw and things like that, when some new concept comes out in an outside domain, once that proposal gets risk-tested, organized, and becomes pretty usable, big channels with massive distribution power—deployment capability— just bake it into their own product or feature.
+
+So if you can’t beat this gap, it gets really hard. So you have to compete on speed, but even that “speed” is hard when OpenAI or Google and now you have to include Anthropic too— their gravity is so strong that a world where this becomes difficult can arrive really fast. So over the year-plus we kept saying, the area you can run to is ultimately the non-verifiable data domain— isn’t that all that’s left? We said things like that in the Physical AI episode too.
+
+A robot that has to fold an incredibly strange box— that dataset is the moat. It can be a moat, but it’ll be too small a market, so if you’re not going to run a frontier lab, whether you’re a businessperson who has to do something out in the world, or someone who has to manage an individual career, the only way to live is to read timing well and choose a domain well. We said things like that. I’m basically interested, within this, in areas like finance, legal, and biotech, and I’ve been doing quite a bit of legal-related work recently too. Swyx said something like this. Let’s move on.
+
+We talked about escapable areas, and that you have to go to areas where ChatGPT can never give you the answer. To do that, ultimately, you need something ChatGPT doesn’t have— customer data that you’re holding hostage, the customer’s problem, and domain knowledge, and you either turn that domain knowledge into an ontology or graph RAG form, or you just build a dataset and fine-tune. If you zoom out, those two problems are basically equivalent. It’s a matter of choice and efficiency, and the cheaper frontier models get, the more context engineering is the right path, and if that gets expensive, you need to do fine-tuning, so it feels like there will keep being trade-offs between the two.
+
+But I reviewed all this up front today because I wanted to talk about this, and we said around the end of the year that this time gap was stretched out to about this extent, right?
+
+<span class="paragraph-timestamp" data-ts="24:20">24:20</span> **Seungjoon Choi** Like 2–3 months ago, right?
+
+<span class="paragraph-timestamp" data-ts="24:22">24:22</span> **Chester Roh** Yes, 2–3 months ago—between frontier labs, then people chasing hard, and then people just about to start. Like Seungjoon said earlier, it feels like the whole country has boarded this. And this gap is an advantage that people doing business can exploit.
+
+## The disappearance of the domain gap, leaving only tacit knowledge    *24:43*
+
+<span class="paragraph-timestamp" data-ts="24:43">24:43</span> **Chester Roh** That’s our time gap, and since the domain gap is collapsing from coding onward, we said that there would be this long domain gap, moving away from fields close to software and high-quality knowledge work like this.
+
+And then as December and January passed, Seungjoon and I talked a lot in private about this and that, but we kept feeling: is the whole game changing? It feels like it’s flipping with a click, and Seungjoon keeps using the phrase “a paradigm shift” these days a lot.
+
+What is a paradigm shift? I think it’s this—this domain.
+
+<span class="paragraph-timestamp" data-ts="25:22">25:22</span> **Seungjoon Choi** It’s compressed, huh.
+
+<span class="paragraph-timestamp" data-ts="25:23">25:23</span> **Chester Roh** Isn’t the domain gap over too? Because we need to change how we talk, honestly. So after finishing about a month of 고민, when I tried to整理 what remains, I thought we shouldn’t use the word “domain.” Because in most domains, frontier models do far better. If the size of a domain is 100, then from 0 to, say, about 95 out of that 100, frontier models do extremely well. That means there’s 5 left at the top, and that 5 is, in fact—we said this is the realm of tacit knowledge, and if you implement that tacit knowledge as an ontology,
+
+or if you write it all down as a manual—a whole book— and train the model on it, then that would be the kind of area that ChatGPT can’t do—we talked about that quite a bit, but if you look at what that 5% actually is, I called it tacit knowledge, and last time Jonghyun also mentioned that with what Physical Intelligence brings,
+
+this tacit-knowledge area in that domain—in the robot physical domain— the work of turning it into datasets, companies are doing a lot of it, right?
+
+<span class="paragraph-timestamp" data-ts="26:37">26:37</span> **Seungjoon Choi** Tacit knowledge is usually not specified and not documented— that kind of thing, right?
+
+<span class="paragraph-timestamp" data-ts="26:43">26:43</span> **Chester Roh** Right. And another buzzword is popping up too. “Context graph.” Context graph, ontology, graph RAG—it’s all similar talk, and actually, even earlier when I mentioned tacit knowledge, you know how every company has people like that. Like in steel too, “At the very end, you need to heat the material to about this level, this level,” “And in the final stage you need to turn down the gas flame,” those are the craftsmen’s domain, right?
+
+There’s that in cosmetics manufacturing too, and then the example Attorney Hong Sohyun from Runaways' Alliance shared really stuck with me: even in the world of lawyers or in law firms, apparently there’s that kind of thing. A project might have dozens of lawyers assigned, but the decisive problem-solving is always done by two or three people at the very top—some strategy that comes to them in the shower, and those kinds of things often solve everything. Everyone else is just support.
+
+Then those things are the decisive tacit knowledge for solving problems, and it feels like only those are left now. So then, how can you express that tacit knowledge? One way is to just write down all the cases in text. Write it all out, and if the model learns from that writing, that’s a case where it acquires tacit knowledge, and frontier models have, in that way, already acquired most of the tacit knowledge humanity had, right?
+
+If writing everything in text is hard, then the kind of dual problem to that is: you can express it as relationships between objects and objects. The relationship could be an action, or it could just be an adjectival phrase, but if you express all those rules cleanly, you can represent it much more compactly than writing it in text. Then you make it into something like graph RAG, or an ontology, like that, and when you attach RAG in front of a frontier model, if you attach it in a graph RAG form, it’ll produce a similar effect. It seems people have started calling that whole activity itself “context graph.”
+
+So to summarize: I told several stories to make this one slide’s point, and what remains is the time gap. But even that time gap seems to be shrinking past monthly units, down to weekly units—1–2 weeks, 3–4 weeks— like it’s getting smaller, and honestly I find myself thinking, can you even find it? So these days, I’m exploring a lot what this tacit-knowledge gap—this tacit gap—really is. I’m in the middle of that.
+
+## The world after coding: one year of vibe coding, ups and downs    *29:29*
+
+<span class="paragraph-timestamp" data-ts="29:29">29:29</span> **Chester Roh** Software pricing was the first, and of course the area where these changes happened first is coding, right? If you say Claude Code came out and it’s about to be a year, people are all shocked.
+
+<span class="paragraph-timestamp" data-ts="29:44">29:44</span> **Seungjoon Choi** Right. And February 4th was like the one-year anniversary of when the term “vibe coding” came out, I think.
+
+<span class="paragraph-timestamp" data-ts="29:50">29:50</span> **Chester Roh** Right. It’s been a year, and yet while saying “that’s not vibe coding,” Andrej said that he still prefers, rather than agentic coding, just getting suggestions and writing the code himself—this was only a year ago, but after about last fall, it completely flipped with a click. It’s a world where writing code has lost its meaning, and these days as I go around, when I meet software engineers, I feel like they say those kinds of things pretty often. The sarcastic ones say software engineer is the best job now.
+
+Why? You just make agents do the work, and you collect a high salary. That’s one. Second, it seems like everyone recognizes that now, that raising your salary by job-hopping is basically impossible. From senior to junior level, at the good company you’re already at, if you can just avoid a big disaster and manage to transition into something, that’s still fortunate—people say that kind of thing pretty often, in private.
+
+And they ask what to do, and looking at this gloom software engineers have, and then looking at agentic coding and vibe coding, and who’s getting the biggest gains from it— I don’t know how you’ll take it, but from what I’ve observed around me, the people who do best are, so-called, in the engineering part, those with deep tacit knowledge and hardened experience. Like how Seungjoon said the people who made OpenClaw or Pi, were all veterans with 20–30 years of experience, they have that kind of experience, plus business sense— people with outstanding entrepreneurial instincts, they’re the biggest beneficiaries right now.
+
+These people, the solution to a problem they have in mind, and the They’re just using AI like crazy throughout the whole commercialization process itself. Nothing holds them back. They’re building with the mindset of “Is there anything we can’t do?” They’re totally slammed just building right now. And it’s not just building. They’re also thinking about how to turn these into a business, and they are doing that, too.
+
+They’re clearly thinking about what they can make, what anyone else can also make, and what only they can make— that’s what they’re thinking about right now. So I think these kinds of conversations, especially as we head into the latter half of this year, in the startup scene or at Y Combinator events, will become the keyword that dominates those spaces.
+
+So they’re the biggest beneficiaries, and I figured the second biggest beneficiaries would be software engineers, but that’s not it at all. So who are the second biggest beneficiaries? People who can’t do software at all, but have strong problem awareness in that domain and, have tacit knowledge—if I summarize it very bluntly, “liberal arts people.” Liberal arts—these people are the second biggest beneficiaries.
+
+<span class="paragraph-timestamp" data-ts="32:48">32:48</span> **Seungjoon Choi** We don’t really need to draw such a hard line between STEM and liberal arts, but anyway, that’s the vibe.
+
+
+<span class="paragraph-timestamp" data-ts="32:53">32:53</span> **Chester Roh** We used the term “liberal arts” kind of harshly just to give it some symbolic meaning. They’re the second best-positioned people. What do they use? They use the Ralph Loop. No matter what it is, they know how to create a starting point to begin with, and they can form assumptions about what it should look like when it’s done— assumptions about the evaluation metric. Then they just feed that in, and they just keep hitting enter: “Do it until it works, do it, do it, do it.” And in the process, the model searches everything— the messy, chaotic area the requester originally had, or areas they never even considered— the model searches all of it, runs simulations, makes mistakes, and then if it doesn’t satisfy the evaluation metric in the end, it just doesn’t stop; it finds a way somehow. It burns through countless tokens and brings back an answer through an evolutionary process. Up through these people, I think they’re beneficiaries.
+
+The third “beneficiary,” honestly the word beneficiary isn’t enough— “victim” is probably the most accurate term— the overwhelming majority of engineers are victims. Right now, what they had— their skills, tools, their intellectual edge— if you put it bluntly, the value of those things has dropped to almost zero. And they do know how to build a lot, but they don’t think about the part where what they build should be used by someone, or how it’s supposed to be used.
+
+So they build a lot of products, but they’re mass-producing products nobody needs. And whether it’s business or anything else, I think academia and other places are probably similar, but in the end, something more important than product development is customer development. It’s customer development. The people who will buy it—or sure, later on the buyer might even be an agent—but you need to develop that first, and then build a solution to fit it.
+
+But if you only build solutions, that’s what people call AI slop. To them, these are very important products, and they think they’re meaningful, but it kind of feels like back in the old Windows, DOS days, when all that stuff was coming out— even then, of course, good software was something you had to pay good money for. But with the term “shareware,” tons of software came out, ads were the revenue model, and there were so many cases like that.
+
+Those were a kind of slop back then, too, and now it’s like slop in quantities a thousand or ten thousand times larger just pouring out. So even at our company, since we have a lot of outstanding engineers, I talk to those engineers about reality. “Coding alone won’t cut it anymore. If you don’t move into defining a problem and becoming someone who can solve it, then eventually everyone, whether it’s some domain or another, if you don’t take the position of an entrepreneur in that space, there’s really no answer.” That’s what I told them. So that’s how things are getting organized.
+
+Now, this happened in coding, but these next areas have started too, right? The science domain has started, and then the business domain has started too, and this time, SaaS companies— traditional SaaS companies that used to make a ton of money— when you see their stock prices falling, people go, “Oh, this future is all going to get replaced.” And on Facebook or Twitter timelines, a lot of people talk about it, right? “Now it’s an era where software gets made and used in real time.”
+
+And Seungjoon, you covered this once before too, but among the experimental branches of frontier models, there are things like that too, right? Creating an OS-like UX end-to-end in real time. Claude put out a test like that once before too, but maybe they felt it wasn’t quite there yet, so they pulled it back a bit, but we’re moving toward a world where you can generate an OS environment in real time, that kind of world is coming, and Sam Altman goes one step further and says, “Don’t we not even need that UX anymore?” that’s what he’s talking about, and it seems like he’s trying to embed that philosophy into a device, something like that.
+
+So we talked for a long time, but to sum it up at the end: it’s changing insanely fast. It’s changing insanely fast, and the only way to survive is to live at the same speed as that change—there’s no other way.
+
+So while keeping up with that speed of change, from the position of not being a frontier lab, what should we focus on? What is the “time-gap” area where I’m a bit ahead of others? To the point where even the word “domain” feels inadequate, within that domain, what is the area of tacit knowledge that neither the model nor other people can do— it feels like we’ve entered a world where you can only build something if that’s combined.
+
+But that area is unbelievably thin for us—unbelievably thin. And through that thin sliver, excluding frontier labs and big tech and a few “citizens” inside them, everyone else on Earth is being pushed into it. So I think that’s why Elon Musk, Sam Altman, and others are all talking about universal basic income.
+
+<span class="paragraph-timestamp" data-ts="38:19">38:19</span> **Seungjoon Choi** But talking about this, I’m realizing it sounds like we’re saying things that trigger FOMO.
+
+<span class="paragraph-timestamp" data-ts="38:26">38:26</span> **Chester Roh** Rather than “triggering” it, isn’t it more accurate to say we’re just conveying the phenomenon we’re feeling? Even if we don’t say it, things are already rolling that way anyway.
+
+<span class="paragraph-timestamp" data-ts="38:35">38:35</span> **Seungjoon Choi** Right. Anyway, that’s the state of the times—problem awareness is clear, and it’s not like it’s fully clear what to do, but there are some directions, and the difficulty is in actually doing it.
+
+<span class="paragraph-timestamp" data-ts="38:49">38:49</span> **Chester Roh** It’s difficult. We say, “You can just do it.” We say, “Just use AI,” but in reality, how do you do it?
+
+Still, a huge number of people are using ChatGPT as a search substitute, and the highly capable people we see on YouTube combine harnesses, and finish tasks that way—we call it the Ralph Loop and talk about it, but the people who truly finish real work with that still aren’t the majority. It’s a minority.
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **Seungjoon Choi** So even I, as I try to keep up with this, we always say we have to run at the Red Queen’s pace, the pace of the background, and keep up together, but I go back and forth. Somewhere, dropping anchor in my mind—like being faithful to work experiences, or exploring with curiosity— those still feel important, but I go back and forth every day.
+
+Keeping your sanity fully intact doesn’t seem easy, the more you know. So “let’s become an entrepreneur,” “let’s have a business mindset”— for some people it really lands, but for others it might feel like, “That’s not my area,” they might get that feeling.
+
+So even though we point to something important, it’s still hard to keep talking. It feels that difficult. I still haven’t organized my thoughts enough either.
+
+<span class="paragraph-timestamp" data-ts="40:06">40:06</span> **Chester Roh** Right. It might sound similar to saying, “If you want to do biotech, don’t you just get a PhD?” It could sound like that. But still—
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> **Seungjoon Choi** We might be smiling and talking and seem like we’re observing things as news messengers, but that’s not the case. It’s really hard every single day.
+
+<span class="paragraph-timestamp" data-ts="40:26">40:26</span> **Chester Roh** We have our day jobs, and then we have other problems outside our day jobs, and because of new businesses we have to prepare for, our thoughts are always complicated, right? What do you think will happen? From Seungjoon’s perspective?
+
+## Big Tech propaganda and economic polarization    *40:40*
+
+<span class="paragraph-timestamp" data-ts="40:40">40:40</span> **Seungjoon Choi** I think there’s big tech propaganda at work. They set a direction, and through self-fulfilling prophecies, they push humanity in a certain direction— there are approaches like that. Recently, after OpenAI announced GPT-5.3-Codex, the video they posted felt strangely eerie to me. There was one video, and then three more were uploaded— “Modernizing”—modernizing something 86 years old. Like an industrial workshop.
+
+And then the others, it’s all about modernizing these family businesses that have lasted decades, with the older generation using AI, and the next generation using AI too—this “modernizing” nuance.
+
+<span class="paragraph-timestamp" data-ts="41:40">41:40</span> **Chester Roh** Right, so there’s one thing here too. It’s leveraging AI on some asset that’s being handed down. They’re leveraging AI.
+
+<span class="paragraph-timestamp" data-ts="41:50">41:50</span> **Seungjoon Choi** Exactly. I felt this was pure propaganda. “We’ll do this in every field, anyone can do it”— it’s portrayed very beautifully, but I saw it as a video that leaves a lot to think about.
+
+<span class="paragraph-timestamp" data-ts="42:02">42:02</span> **Chester Roh** Right, and all of this is tied to our economic activity, in other words, money—this side of things. And honestly, the economy is pretty absurd too, right? If I run a thought experiment, in 2026, in the U.S. layoffs are easy, so at big tech and places like that, there will be a huge wave of layoffs. And in Korea too, one way or another, restructuring will happen again, and capital has already opened its eyes to “If we use AI, this is what it will become.”
+
+And projects are getting commissioned left and right, and in practice this is another extreme round of efficiency gains, so like when the internet arrived and bank teller windows disappeared, and retail got wiped out—this widely spread-out economic structure we had, the familiar economic structure, gets squeezed once again.
+
+So people who can’t keep up will get pushed out again, and rich people will get richer, because the efficiency of the means of production suddenly increases. So if this gap grows a lot, and you ask, “Is this only good for the rich?” it isn’t. In truth, things have to circulate at the bottom. The pyramid needs its base for there to be those shining eyes at the top of the spire, but this is a systemic sinking of everything, so in the short term, the outcome this AI technology creates is very—what’s the word— should I call it deflationary? I do think it’ll have a negative impact on the economy.
+
+Then if those people lose the income stream they used to receive through employment, there’s only one entity that can fill that gap. Only the government. The government. Then the government—its monetary policy, there’s almost nothing it can do with that. So it has no choice but to massively strengthen fiscal policy, and I think the state will have no choice but to support everyone.
+
+So for one generation, or two generations, using taxes obtained from somewhere, or debt pulled forward in advance, they have to feed that generation, and while that generation is protected by the government, new job categories need to be born quickly. That’s what I think.
+
+## The entertainment economy and new job categories    *44:21*
+
+<span class="paragraph-timestamp" data-ts="44:21">44:21</span> **Chester Roh** And I think that new job category is what Seungjoon mentioned— the domain of fun. Fun—and in a way, South Korea is one of the countries that’s very far ahead on that front. The whole country wants to become influencers, and maybe if you look at surveys of elementary school kids’ future dreams, almost like 70–80% say they want to be influencers, they say they want to be celebrities, and I think, maybe that’s actually the right answer.
+
+So maybe we shift, once again, sharply into an entertainment economy like that. And in between, if the government can’t play that role, then whether it’s Elon Musk, Sam Altman, or Google, another Big Brother that controls all of this will emerge again, and they’ll deliver not Universal Basic Income— not Basic Income— Elon Musk calls it Universal Excessive Income, right? So a world where everyone becomes wealthy and luxurious—letting it flow that way.
+
+<span class="paragraph-timestamp" data-ts="45:15">45:15</span> **Seungjoon Choi** I can picture the Elon Musk video. I only saw clips, but he talks about space—space stories. Sending a mass driver and saying he’ll send AI into deep space— anyway, SF-like things are happening.
+
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="45:31">45:31</span> **Seungjoon Choi** This is the present where these things are happening right now.
+
+<span class="paragraph-timestamp" data-ts="45:33">45:33</span> **Chester Roh** Yeah. Even just a year ago we said, “Ah, 2030 won’t come,” but now that it’s 2026, people are saying, “Something might happen this year.”
+
+<span class="paragraph-timestamp" data-ts="45:43">45:43</span> **Seungjoon Choi** If we move toward wrapping up, this is the cover of an event I participated in recently. “The future will be uneven.” Rugged, kind of irregular—like that feeling.
+
+So as the terrain becomes bumpy, is it hard, or is opportunity arriving so we’re dancing— we don’t know. It’s an ambiguous expression, and it also carries a feeling of being sucked into something.
+
+But when I wrote that title in Korean, it was inspired by last year's "even" from Culinary Class Wars, so I used the expression “uneven, not even.” But when I put it in Korean as “not even” and looked at it, it created an ambiguous meaning of “not chosen.”
+
+<span class="paragraph-timestamp" data-ts="46:29">46:29</span> **Chester Roh** A future you didn’t choose, but are being forced to face.
+
+<span class="paragraph-timestamp" data-ts="46:34">46:34</span> **Seungjoon Choi** Anyway, it does seem clear we’re being pushed along. Even just what we shared today, if you go into each one, one by one, there’s an enormous amount.
+
+And I was like, “What came out of OpenClaw?” but then since the total amount of attention is limited, even what you thought was so important—when the next thing comes out, it disappears from your mind so quickly.
+
+And that keeps happening, continuously. It’s hard to stay sane. It’s not like I chose that.
+
+## Our weapons and attitude: curiosity, exploration, Abundance    *46:59*
+
+<span class="paragraph-timestamp" data-ts="46:59">46:59</span> **Chester Roh** Because it changes so fast, about that, Seungjoon— in this world that’s changing insanely fast, if someone asks, “What weapon do you have?” what would Seungjoon answer?
+
+<span class="paragraph-timestamp" data-ts="47:12">47:12</span> **Seungjoon Choi** I like exploring things like this with curiosity, and trying them out, but I don’t know if that can be called a weapon.
+
+<span class="paragraph-timestamp" data-ts="47:19">47:19</span> **Chester Roh** “Weapon” might not be the right word. Strategy—grand strategy. How you’ll survive.
+
+<span class="paragraph-timestamp" data-ts="47:26">47:26</span> **Seungjoon Choi** I don’t even know about “survive,” either. But I do have some thoughts about attitude. Looking at my attitude right now, when something appears as a surface-level technology, it’s about whether I’m going to engage with it, and how— Rather than just catching up quickly, I try to look at people too, and what story and what intent the people who made it had, an attitude of trying to really savor things like that, I think I have.
+
+And even when I’m facing AI, I hold a few attitudes and tend to engage with it pretty seriously. Keeping up with trends is of course important, but as a human who wants to build up my own genuine experience, I think that’s in there—and no matter how much I get pushed along, I don’t think I want to miss that.
+
+But I don’t know whether that helps with survival or not. When I look back at myself, it’s just a sense that I might have that kind of tendency. Chester, how about Chester? Do Chester have a weapon?
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **Chester Roh** No, I don’t. It feels like I do have a weapon, but the problem is it’s not mine—I’m borrowing it, and about borrowing everything, my thought is this:
+
+For me, it was 10 years ago—was it 2014 or 15, like around 2015? I read a book, and my attitude toward the rest of my life is something I changed in one way,
+
+<span class="paragraph-timestamp" data-ts="48:39">48:39</span> **Seungjoon Choi** What book was it?
+
+<span class="paragraph-timestamp" data-ts="48:41">48:41</span> **Chester Roh** Looking at it now, it’s a really ridiculous book, and it feels like a lot of people’s lives got wrecked because of that guy, You’ve heard of Singularity University, right? There’s this guy named Peter Diamandis who made that. He does a ton of YouTube broadcasting now too—when this person records once, it comes out two or three hours a week, and it’s so long I can’t listen to it all. But among the books that guy wrote, there’s one called \*Abundance\*. Abundance.
+
+In the future, you can do anything, and the idea that one person does one job doesn’t make sense. Because of the scale that technology creates, we’ll be able to have one person do n different jobs. So get greedy and spread out into everything you want to do— that was kind of the point of that book. So from then on, not just one thing, AI, oil, VR, crypto—whatever, etc., I lived for about five years using a strategy of really trying everything, and that made some things exhausting, and some things wrong, that’s true, but because of AI, it really feels like all of that becomes possible.
+
+So I can’t say it’s a solution, but my grand strategy is: it’d be good if I had multiple. It’d be good if I had multiple—how do I make that? But things like OpenClaw, or Claude Code, or what Seungjoon showed earlier, agent swarms—those have some implications, right? Because when you look at how the world changes, even if some great tool exists at a price close to zero, this relates to the attitude Seungjoon just talked about— the people who take it are always a minority.
+
+So if I live like that, maybe I’ll become something. So right now I have no thoughts at all. For now, for about two years, I’m thinking right now there are two or three big concepts I have, and I’m just going to try all of them— that’s the mindset I’m living with. But we have an attitude too, right?
+
+<span class="paragraph-timestamp" data-ts="50:44">50:44</span> **Seungjoon Choi** I won’t turn away from this; I’ll keep up with it. For over two and a half years now, haven’t we been forcing ourselves to read, somehow? About how the world is moving—there is that attitude.
+
+<span class="paragraph-timestamp" data-ts="50:55">50:55</span> **Chester Roh** Yes.
+
+<span class="paragraph-timestamp" data-ts="50:55">50:55</span> **Seungjoon Choi** So this “Uneven Future” too was a place where four media artists, including me, were having a conversation. And it was a place to show what it looks like to talk, and even then, an important part was reading each other’s work and things like our mental images of AI, trading remarks back and forth—like Chester and I usually do— it was another version of that. Talking things through like that still seems important, and because Runaways' Alliance wanted to do that, didn’t a lot of people come?
+
+So we don’t have coping measures either, but it feels like these days we have to keep pulling our thoughts out—“I have this worry,” and even if there’s no answer, we have to have a big, messy talk-fest.
+
+<span class="paragraph-timestamp" data-ts="51:34">51:34</span> **Chester Roh** That’s right.
+
+## Closing: a bumpy future, but we still have to live on    *51:35*
+
+<span class="paragraph-timestamp" data-ts="51:35">51:35</span> **Chester Roh** Now we should probably change Runaways' Alliance into a comfort broadcast for AI workers. Everyone, it’s not just you who’s having a hard time.
+
+<span class="paragraph-timestamp" data-ts="51:43">51:43</span> **Seungjoon Choi** That was the last slide, wasn’t it?
+
+<span class="paragraph-timestamp" data-ts="51:44">51:44</span> **Chester Roh** Yes, that’s right. A comfort broadcast. We give comfort—to everyone.
+
+<span class="paragraph-timestamp" data-ts="51:49">51:49</span> **Seungjoon Choi** That’s right. It’s not easy for us either, and I think everyone feels that way.
+
+<span class="paragraph-timestamp" data-ts="51:54">51:54</span> **Chester Roh** Alright. [Seungjoon Choi] Let’s wrap up around here today. We’ll wrap up around here today as well.
+
+<span class="paragraph-timestamp" data-ts="51:58">51:58</span> **Seungjoon Choi** Right. We don’t know where we’ll get sucked into in this bumpy future, but we still have to live through another day.
+
+<span class="paragraph-timestamp" data-ts="52:03">52:03</span> **Chester Roh** Then I’ll see Seungjoon again next time.
+
+<span class="paragraph-timestamp" data-ts="52:06">52:06</span> **Seungjoon Choi** Yes, thank you.

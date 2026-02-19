@@ -1,0 +1,715 @@
+---
+episodeNumber: 81
+lang: "en"
+title: "Everything DeepSeek Changed: MoE and RLVR, 2025 AI Year in Review"
+description: "Saturday morning, December 27, 2025 — Chester Roh, Seonghyun Kim, and Seungjoon Choi look back on 2025 in AI and forecast 2026. They discuss how MoE and RLVR (agent post-training) became mainstream after DeepSeek, and trace how China-led open frontier models have driven the ecosystem. From 'recipes' under limited compute to the evolution of RL infrastructure and the importance of data, they offer grounded perspectives. Together, they imagine what changes scale-up, continual learning, self-play, and more autonomous agents might bring next year."
+publishedAt: 2026-01-28
+duration: "1:11:40"
+youtubeId: "iDd-7trU3VE"
+thumbnail: "https://i.ytimg.com/vi/iDd-7trU3VE/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+  - Seonghyun Kim
+chapters:
+  - time: "00:00"
+    title: "2025 AI Retrospective and 2026 Forecast"
+  - time: "01:14"
+    title: "Explosive Growth of Frontier Models and the Rise of China"
+  - time: "04:34"
+    title: "MoE, Higher Performance with Less Computation"
+  - time: "09:01"
+    title: "How MoE Works and the Contribution of DeepSeek"
+  - time: "12:01"
+    title: "RLVR, Opening New Horizons in Agent Learning"
+  - time: "18:22"
+    title: "Deep Dive into RL: Emergence of Abilities or Combination?"
+  - time: "28:01"
+    title: "Tacit Knowledge Beyond Papers: The Hidden Recipe of Frontier Models"
+  - time: "33:40"
+    title: "Data Defines the Model"
+  - time: "40:06"
+    title: "2026 Forecast 1: The Unstoppable Scale-Up Competition"
+  - time: "48:07"
+    title: "2026 Forecast 2: The Dawn of a New Paradigm"
+  - time: "49:37"
+    title: "Towards More Autonomous Agents"
+  - time: "53:10"
+    title: "Self-play and Intrinsic Motivation: Conditions for AI Aligned with Humans"
+  - time: "01:00:13"
+    title: "How Should We Live in the Age of AI?"
+  - time: "01:08:24"
+    title: "Closing Remarks and New Year's Greetings"
+---
+
+## 2025 AI Retrospective and 2026 Forecast    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we are recording, is December 27, 2025, a Saturday morning. The year 2025 is finally coming to an end. So many things have happened.
+
+Especially since 2025 had such a steep pace of change, I thought it would be good to do a recap and then predict what might happen in 2026. I thought it would be a good idea to make some predictions, so we've invited Seonghyun to have this valuable time together. Seonghyun, welcome.
+
+<span class="paragraph-timestamp" data-ts="00:29">00:29</span> **Seonghyun Kim** I didn't expect to be doing a 2025 retrospective in this format. But I think it will be an interesting opportunity. It does seem like a lot happened in 2025.
+
+However, as I was preparing for this retrospective and looking back through past records, I realized that there wasn't as much change as I initially thought. After the R1 and DeepSeek events in early 2025, which caused a major paradigm shift, what happened afterward seems to have been more like gradual progress. RLVR and agent post-training, a new paradigm emerged, and in early 2025, and throughout 2025, by developing, understanding, and exploring that paradigm. It seems that's how 2025 went by.
+
+## Explosive Growth of Frontier Models and the Rise of China    *01:14*
+
+<span class="paragraph-timestamp" data-ts="01:14">01:14</span> **Seonghyun Kim** Separate from the academic side, or perhaps overlapping with it, the most interesting thing was the emergence of numerous open frontier models. I think that was the biggest point. DeepSeek, MiniMax, Z.ai, Xiaomi, Tencent, Moonshot, Ant, Alibaba, Meituan, and so on. Numerous companies released models, and whereas previously, these models were around the scale of Llama 2, at 70B, or 70B at most, developing a model and releasing it was a common format, but the models released in 2025 are almost all frontier or near-frontier level models. And most of these companies are aiming for the frontier. I think this is one of the biggest changes of 2025.
+
+In 2024, for instance, the approach was to do what we could within the resources we had. And rather than being frontier models, there was a lot of interest in so-called smaller models or efficient models. Or rather than high interest, you could say that was the limit. That's one way to think about it. It seems that was the case, but in 2025, such models have become much rarer.
+
+Almost all major companies releasing models are aiming for the frontier level, aiming for bigger, more powerful models. And I believe this represents a very significant shift in thinking and trends.
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **Seungjoon Choi** They're all Chinese.
+
+<span class="paragraph-timestamp" data-ts="02:44">02:44</span> **Chester Roh** Aren't all the models you listed 100% Chinese?
+
+<span class="paragraph-timestamp" data-ts="02:46">02:46</span> **Seonghyun Kim** Yes, they are 100% Chinese. Among the models from outside China, there have been almost no models that could be called frontier models and that produced impressive results. There was something like Llama 4, but Llama 4 didn't leave much of an impression. Now, towards the end of the year, Mistral is planning to release a model, but it seems their frontier-level model was not an open model. So China has been leading the way.
+
+And China, despite having relatively limited computing power, is also aiming for the frontier and trying to move to the next level. I think that's a significant paradigm shift. Interest in smaller, moderately-sized models doesn't seem to be that high anymore. Everyone seems to be pursuing higher-performance models, bigger models. And I think this is one of the biggest changes of 2025. So many different companies are creating models.
+
+<span class="paragraph-timestamp" data-ts="03:39">03:39</span> **Chester Roh** It's really only China.
+
+<span class="paragraph-timestamp" data-ts="03:41">03:41</span> **Seonghyun Kim** It's only China. Especially when it comes to releasing models, it's only China. And the reason this change was possible... In fact, China is still very limited in terms of computing power. So, if you think about it, the trend was, "Let's do what we can with this computing power," "Let's make small, but powerful models."
+
+If that was the trend, it's because it was proven that even with this small computing power, you can aim for the frontier level. I think that's why this change occurred. The biggest player in that is still DeepSeek, I believe. DeepSeek showed that with limited computing resources, around 800 to 2,000 units of computing resources, you can still aim for the frontier.
+
+And once that was proven, everyone started to shift towards aiming for the frontier. That's when the shift began. Everyone started moving towards bigger, more powerful models. That's how it started.
+
+## MoE, Higher Performance with Less Computation    *04:34*
+
+<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **Seungjoon Choi** How should I read this graph?
+
+<span class="paragraph-timestamp" data-ts="04:36">04:36</span> **Seonghyun Kim** Actually, I debated a lot about whether to include this graph or not. If you think about how to understand it intuitively, the lightest blue part can be seen as the so-called dense model. And these lines above are the MoE models. You can think of it that way. The legend here is a bit wrong, these are the MoE models.
+
+This graph is very important and impactful because the bottom axis is the training compute. If the training compute is around 10 to the power of 24, that's a scale that's slightly below that of a frontier model. At this compute scale, the performance of an MoE model is more than 7 times better than a dense model. In other words, when comparing models that used 10^24 compute, compared to a dense model, an MoE model performs similarly to a dense model that has had about 7 times the compute invested in it. It achieves similar performance.
+
+So, if you use 10^24 compute on a dense model, and use the same amount of compute to make an MoE, if you make an MoE model, you get performance equivalent to about 7 times 10^24. This is very impactful because as the training compute increases, this multiplier gets bigger. This is a very rare phenomenon. In models, in fact, just maintaining a linear doubling is a huge discovery, but from what we know so far, in the case of MoE models, as the training compute increases, this multiplier gets even bigger. So it gets better and better. Compared to dense models, there's no reason not to use MoE models. At this point, it becomes strange not to use them.
+
+<span class="paragraph-timestamp" data-ts="06:14">06:14</span> **Seungjoon Choi** But why are there three different MoE models shown here? Why are they separated?
+
+<span class="paragraph-timestamp" data-ts="06:20">06:20</span> **Seonghyun Kim** This is what's called sparsity. It's the ratio of the total parameters to the number of parameters actually used when predicting a single inference token.
+
+<span class="paragraph-timestamp" data-ts="06:32">06:32</span> **Seungjoon Choi** So it's like, it's broken down into smaller pieces?
+
+<span class="paragraph-timestamp" data-ts="06:35">06:35</span> **Seonghyun Kim** Yes, for example, this one uses only one-fourth of the total parameters.
+
+But the one above uses only one-fiftieth of the total parameters. For example, as the number of parameters used decreases, the fewer parameters are used, or the sparser it becomes, this multiplier, should I say? It's called the compute multiplier. The compute multiplier, the computation multiplier, gets bigger. The slope is getting steeper.
+
+Of course, this is calculated in FLOPs, so if you consider actual inference conditions and things like memory bandwidth, it doesn't necessarily turn out this way. However, just looking at it purely from the training compute perspective, the fact that this kind of pattern emerges is quite surprising.
+
+<span class="paragraph-timestamp" data-ts="07:20">07:20</span> **Seungjoon Choi** It's not quite a scaling law, but it has a similar feel to it.
+
+<span class="paragraph-timestamp" data-ts="07:24">07:24</span> **Seonghyun Kim** It is a type of scaling law. This scaling law also has two components: there's the exponent, what's called the exponent of the power, and there's a coefficient in front of it. When the pattern is one where the exponent changes, things like this appear. In that case, if you don't use this, if you don't use it, so to speak, it becomes a technological advancement that it would be strange not to use. MoE played that role.
+
+Until 2024, MoE models were rare, but the models coming out now in 2025 are almost all MoE models. Except for cases like so-called edge devices, they are all MoE models, and even models like GPT-OSS were quite sparse MoE models.
+
+And what really established the recipe for this MoE was a huge contribution from DeepSeek. And in a way, the architecture designed by DeepSeek became like the Llama architecture of the previous generation, it became the base architecture. So in the case of models like Kimi, Moonshot's Kimi, they said that trying to improve the DeepSeek architecture is unnecessary. Because this architecture is good enough, you can just take the basic structure of this architecture and run with it. Saying things like that, they did work where they just adopted it as is, and I think Mistral probably did something similar. That's how well-established the MoE architecture pioneered by DeepSeek was, and through this, everyone realized that if they use this architecture, If we adopt this architecture even with our very limited computing power we experienced that we could aim for something beyond GPT-4. This was a very important component.
+
+## How MoE Works and the Contribution of DeepSeek    *09:01*
+
+<span class="paragraph-timestamp" data-ts="09:01">09:01</span> **Chester Roh** Intuitively, with MoE, you think, 'Yes, that would be great,' and you understand it, but at the same time, you don't understand it. It's that kind of domain.
+
+When we say 'expert,' it's easy to think that this expert does math, and that expert does science, but that's not actually the case.
+
+For every token, it goes through completely different expert routing, and even within that, some things are shared, seven are activated simultaneously, and all these things are configured as hyperparameters.
+
+Seonghyun, is there any theoretical background for MoE that has been revealed? Like why it works.
+
+
+<span class="paragraph-timestamp" data-ts="09:37">09:37</span> **Seonghyun Kim** For recent MoE models, it's best to view it as sparsity. That would be the best way. It's very good to think of it in terms of the concept of sparsity, and when you have hundreds of potential modules, what you actually use each time is only a part of those modules. This situation can be described as sparse.
+
+And through that sparsity, the amount of computation actually used each time is limited. Because the parameters that are actually used are only a portion of the total. That part is fixed.
+
+Since the total number of parameters is very large, and because different modules are used each time depending on the case, depending on the token, because different modules are used, the actual total parameters can be seen as having an amplifying effect. The explanation seems a bit difficult, though.
+
+<span class="paragraph-timestamp" data-ts="10:26">10:26</span> **Chester Roh** Yes, it's difficult. It's difficult, and explaining it is quite tricky.
+
+<span class="paragraph-timestamp" data-ts="10:30">10:30</span> **Seungjoon Choi** It's a bit vague, but is there a sense that it's modularized and orthogonal, making it combinable?
+
+<span class="paragraph-timestamp" data-ts="10:37">10:37</span> **Seonghyun Kim** Yes, that's right. It was also DeepSeek that opened up the possibility of combination. It's modularized, and only a part of each of those modules is used. It depends on the case, but because there are many modules prepared, from the perspective of the entire system, it produces the effect of a very large model. I think we can think of it that way.
+
+In '23 and '24, many thought that MoE was a good direction, but I don't think anyone expected it to be this good.
+
+Even at the point when it became known that GPT-4 was an MoE, as we continued to gain experience, it wasn't just good, but we started feeling, 'This seems too good.' That's the feeling we got.
+
+<span class="paragraph-timestamp" data-ts="11:13">11:13</span> **Seungjoon Choi** So this is number one, in 2025.
+
+<span class="paragraph-timestamp" data-ts="11:15">11:15</span> **Seonghyun Kim** MoE is number one. And all these models have now changed to MoE, and it's a situation where non-MoE models are very rare.
+
+<span class="paragraph-timestamp" data-ts="11:23">11:23</span> **Seungjoon Choi** In the Kimi k2 that Chester reviewed, the units split in the MoE were very numerous, was it several thousand?
+
+<span class="paragraph-timestamp" data-ts="11:30">11:30</span> **Chester Roh** No, it was on the level of a few hundred. They did it by increasing the number more than DeepSeek, but the overall architecture was the same, and as Seonghyun mentioned earlier, they seemed to have done some experiments on what level of efficiency related to that sparsity is optimal. They seemed to have done a few experiments like this.
+
+<span class="paragraph-timestamp" data-ts="11:46">11:46</span> **Seungjoon Choi** So another important keyword becomes sparsity. Connected to MoE.
+
+<span class="paragraph-timestamp" data-ts="11:49">11:49</span> **Chester Roh** The number one pick for 2025 is MoE. MoE stands for Mixture of Experts, meaning experts are mixed. That's what it means.
+
+<span class="paragraph-timestamp" data-ts="11:58">11:58</span> **Seungjoon Choi** The name is a bit strange. Let's keep going.
+
+## RLVR, Opening New Horizons in Agent Learning    *12:01*
+
+<span class="paragraph-timestamp" data-ts="12:01">12:01</span> **Seonghyun Kim** And the next one would be RLVR. As this almost completely revealed o1's method, it created a huge change, and this too was ultimately something DeepSeek did.
+
+<span class="paragraph-timestamp" data-ts="12:14">12:14</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="12:15">12:15</span> **Seungjoon Choi** It's amazing when you think about it.
+
+<span class="paragraph-timestamp" data-ts="12:18">12:18</span> **Chester Roh** They did a great job. At the end of '24, the DeepSeek-V3 paper came out, defining things like MoE, and RLVR, in January 2025, with the release of the DeepSeek-R1 model, was the methodology that came out with that paper.
+
+<span class="paragraph-timestamp" data-ts="12:35">12:35</span> **Seonghyun Kim** Actually, DeepSeek's influence seems to be rather underestimated. This itself changed the paradigm and the market situation so much. And the RLVR method, by giving rewards using correct answers in a verifiable way, reasoning is learned. Among the things people explored throughout 2024, with the simplest method imaginable, it put a final stop to the core of this method. And as this gave strong clues about o1's method, based on this, it became possible to develop reasoning models like o1.
+
+Reasoning itself greatly improved the model's performance, and it also opened up one aspect of what is called agent post-training. Reasoning isn't just about thinking hard to solve a math problem, but it's about the model using tools, interacting with an external environment, and through that interaction, performing a task as an agent.
+
+For that entire process, rewards are given under the concept of RLVR, and as the model is trained, the model itself begins to learn as an agent. This itself had a very large impact, it has impacted the current market, and for the frontier models coming out now, whereas in the past, for example, after just doing a simple base pre-training, you would do a little bit of post-training. Just by doing a little bit of instruction-following post-training, you could proudly release a model.
+
+But now, models have agent post-training and reasoning capabilities built-in as a very basic feature. This itself brought about a very big change, and in terms of the model's usability and potential, it brought about a massive change. The impact that agent models have had on the actual market doesn't really need to be emphasized. The coding agents that are out now, and all the various agents, are all results made possible through this kind of agent post-training.
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **Seungjoon Choi** Then, would it be an overstatement to say this? If RLHF was post-training for making chatbots, RLVR is post-training for making agents.
+
+<span class="paragraph-timestamp" data-ts="14:35">14:35</span> **Seonghyun Kim** Yes, and through RLVR, it became possible to train a model as an agent. I think we can think of it that way.
+
+<span class="paragraph-timestamp" data-ts="14:43">14:43</span> **Chester Roh** Regarding this, I remember we went deep into this topic with Seonghyun in the last session, and it was a really interesting session, so for those who are more curious, it would be great to listen to that last session with Seonghyun.
+
+<span class="paragraph-timestamp" data-ts="14:56">14:56</span> **Seungjoon Choi** But back then, I don't think you used the term 'agent post-training'.
+
+
+<span class="paragraph-timestamp" data-ts="15:01">15:01</span> **Seonghyun Kim** Right, I didn't talk about how RLVR connects to being an agent. For example, it's like this. For a model to function as an agent, the model must be given various tools. For example, calling a tool to use an editor, or if it's a source code, a coding agent, it reads code and files within a source code repository, writes changes to it, all these things happen through tools. Through these tools, the model interacts with the outside world. In this process, then, how can we make the model do this well, how can we train it? Using tools like this, to be able to perform the desired task, if we think about how we can train it, RLVR has given a very concise answer to that. First, after enabling the model to use tools, how the model will use the tools, let's set that part aside and evaluate based on the final result. It's a shift to this paradigm.
+
+So, for a certain coding task, the final result of the coding task, we evaluate whether this produces a satisfactory result. That's what we evaluate. For example, unit tests, unit tests would be a prime example. Through unit tests, we can verify whether the coding was done properly, we can verify the final result. Then, the process leading up to that final result is something humans don't necessarily think about for now.
+
+The model uses the tools on its own, and somehow through the use of those tools, it's made to reach that kind of result. And if it has reached the desired result, a reward is given. Through this, through RLVR, agent post-training occurs. Of course, this is very simplified, and there are various issues like the cold start problem, but the basic idea is this. Through this, by evaluating based only on the final result, it has become possible for the model to be trained as an agent. In the past, you would have had to design all of these things.
+
+<span class="paragraph-timestamp" data-ts="16:58">16:58</span> **Seungjoon Choi** What is this graph?
+
+<span class="paragraph-timestamp" data-ts="17:00">17:00</span> **Seonghyun Kim** The graph, actually, I was wondering what graph could explain RLVR well, but there wasn't a suitable one.
+
+From the DeepSeek-V3.2 paper, I just brought one result that shows performance improving along with the model's RL training. This, to be more specific, is a result of RL training by creating a synthetic environment, but that seems to be an unimportant detail.
+
+<span class="paragraph-timestamp" data-ts="17:30">17:30</span> **Chester Roh** The x-axis is the training step, and the left is the performance metric according to that,
+
+<span class="paragraph-timestamp" data-ts="17:35">17:35</span> **Seonghyun Kim** It's a performance change indicator.
+
+<span class="paragraph-timestamp" data-ts="17:36">17:36</span> **Chester Roh** It's a benchmark metric.
+
+In the session Seonghyun did last time, about whether RL, this RLVR, what kind of impact it has, you gave a reflection on that last time, and it was really impressive to me. These were abilities that the baseline originally had, but through RL, those abilities are made easier to bring out. That has remained as my biggest learning.
+
+<span class="paragraph-timestamp" data-ts="18:00">18:00</span> **Seonghyun Kim** I think I'll be able to talk a bit more about things related to that now.
+
+And what I mentioned at the very beginning was that there was a new paradigm shift, a paradigm shift called RLVR, and the understanding of it, that 2025 itself was about broadening the understanding of it, improving and developing it, I think a lot of time was spent on that.
+
+## Deep Dive into RL: Emergence of Abilities or Combination?    *18:22*
+
+<span class="paragraph-timestamp" data-ts="18:22">18:22</span> **Seonghyun Kim** This might be a slightly different issue from model performance, but one of the very interesting things that emerged regarding RL is the development of RL infrastructure. LLM RL has very cumbersome requirements. Because you have to be able to train the model, you need a training infrastructure. And because you have to actually generate with this model and interact with the environment, you need a sampling engine infrastructure for generation. Through the sampling results, you interact with the environment to get some change or result from the environment. That kind of infrastructure must exist.
+
+And all these infrastructures are interconnected. The training results go to the sampling engine, the samples from the sampling engine go to the environment, and the results from the environment go back to training. But from an actual infrastructure perspective, doing just one of these is very difficult. The training part, just taking this one part, doing this efficiently in itself is a very difficult task. This was almost everything in the pre-training infrastructure.
+
+But besides that, very heterogeneous infrastructures have come to interact with each other. You have to train the model quickly, sample generation must also be fast, the switch between training and generation must be fast, you have to evaluate and give rewards quickly, and this entire process must be accurate. If there's even a slight error in this process, a lot of research has come out showing that it hinders learning.
+
+During 2025, but being fast and being accurate at the same time is always a difficult thing. But this has caused a lot of new problems. And as MoE became mainstream, how to do MoE RL stably, how to stably train MoE models with RL, this itself also became a very important topic. But it's a very difficult problem, but maybe because the Chinese side tackled it, it developed very quickly. This was one of the very important pillars among the things that happened in 2025, I think. And the understanding of RL has advanced a great deal.
+
+One axis in the understanding of RL would probably be improvements in RL methods. How exactly does RL happen? When this RL happens, what on earth are the changes that occur in the LLM? Why with an LLM does RL work so well? A lot of research like this has come out.
+
+But in terms of understanding RL, one study I find very interesting, one study I personally find interesting, was that when LLMs or RL first appeared, a problem that came up from the beginning was whether RL can grant new abilities or if it just brings out existing ones. Meaning, it's an ability that was already there but was buried. So it's about pulling that up. And the idea that this is probably almost all there is to it was a common talking point in the early days.
+
+But as the understanding of this part deepened, the idea of new abilities granted by RL emerged. That is what's called an "atomic skill," an atomic ability, and the ability to combine these atomic abilities. An atomic ability can be thought of as something like the four basic arithmetic operations. Things like arithmetic operations are atomic abilities, and the ability to combine these operations well to solve more complex problems, this can be seen as the ability of composition. This atomic ability is important, and the ability to combine this ability is also clearly an important ability. How people think about RL right now is that these atomic abilities are learned during pre-training. Abilities like arithmetic are learned during the pre-training process. But the ability that can be learned through RL is the ability to combine the abilities learned in pre-training. People think the model can learn this.
+
+<span class="paragraph-timestamp" data-ts="21:55">21:55</span> **Seungjoon Choi** Isn't that similar to what you said about MoE earlier?
+
+<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **Seonghyun Kim** It's a bit different from MoE. This is about simple, basic abilities like arithmetic operations. It's thought that RL has a hard time learning these basic abilities themselves.
+
+But the ability to combine these basic abilities in the right order to solve a new problem, this compositional ability is something that can be learned through RL, that's what people are saying. I think this is also one of the most interesting topics in 2025 in terms of understanding RL.
+
+<span class="paragraph-timestamp" data-ts="22:28">22:28</span> **Seungjoon Choi** Yes, from what I'm hearing, this progression of skill 1, 2, 3 seems to be a somewhat different part. Is this important?
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **Seonghyun Kim** Skill 1, skill 2, skill 3, these can all be thought of as independent skills. These are skills that appear not just in this problem, but in other problems as well. It's generally thought that these skills are learned during pre-training. These individual skills are learned in pre-training. But to actually solve a problem, you have to combine these skills well.
+
+<span class="paragraph-timestamp" data-ts="22:58">22:58</span> **Seungjoon Choi** Is this composition, combination? It feels a bit like chaining, doing one thing and then connecting it to the next, is it that kind of feeling?
+
+<span class="paragraph-timestamp" data-ts="23:05">23:05</span> **Seonghyun Kim** Yes, chaining would be one way of using composition. You take the result of this skill and connect the next skill, and then the next skill, the result of this skill is connected to the next skill again. It's that kind of composition you can think of.
+
+For example, even with a simple arithmetic problem, by combining the arithmetic operations in various ways, you can do many tasks. So, while the individual skills of arithmetic exist, how to combine those skills, this can also be seen as another form of ability.
+
+And it's often said that this compositional ability seems to be granted by RL. And through this understanding, our understanding of how we should perceive pre-training and so-called mid-training, post-training has greatly improved.
+
+Of course, what exactly an atomic skill is, how one should define it, is a bit subtle. They say atomic skills are learned in pre-training, but what on earth is an atomic skill? It could be related to more than just simple arithmetic operations. It could be a larger unit, and in that regard, there are still many things to understand.
+
+Nevertheless, through this, how the model can be improved, and what kind of job RL does, a lot of understanding has been gained. If the ability to compose, if a compositional ability is gained through RL, then in pre-training, if you cultivate a lot of these atomic abilities and hone these basic abilities well, then the model will become more powerful and be able to do more things. This kind of understanding emerges.
+
+<span class="paragraph-timestamp" data-ts="24:36">24:36</span> **Seungjoon Choi** Is this an empirical observation? Why RL gains a new, I mean, a compositional ability, is unknown, right?
+
+<span class="paragraph-timestamp" data-ts="24:43">24:43</span> **Seonghyun Kim** Yes, it hasn't been theoretically analyzed to that extent. Empirically, through some simple types of settings, empirical results were obtained. So, through RL, the model's basic... for example, it's like this. If there are no basic abilities, RL itself doesn't work well. If those basic abilities exist, then combining them, and the length of the composition, the abilities to combine in longer, more complex ways are gained through RL. These things have been empirically verified, empirically verified.
+
+Since these are often analyzed in somewhat simple settings, what kind of impact this actually has and things like that need a bit more thought. But already, people, some people are now thinking, let's focus on individually instilling these atomic abilities, the atomic abilities needed for an agent, during the pre-training or mid-training stages. This kind of shift in thinking seems to be already happening. Because if those atomic abilities, if the abilities needed for the agent are well injected, then combining them can be done with RL. That's the idea that emerges.
+
+<span class="paragraph-timestamp" data-ts="25:51">25:51</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="25:51">25:51</span> **Seungjoon Choi** Was mid-training the part that does domain-specific training?
+
+<span class="paragraph-timestamp" data-ts="25:56">25:56</span> **Seonghyun Kim** Mid-training is not a well-defined concept. But before moving on to post-training, it can be seen as a learning process that can help with post-training. Therefore, if under post-training, one learns the ability to combine things, from the mid-training perspective, these atomic abilities can be taught with a focus on learning. This kind of flow has become possible. And as our understanding of RL deepened like this, we became able to answer various questions. So, through RL, can we do things we couldn't model before? Are we able to do that? Questions like these, and whether we can solve more complex problems. For these kinds of questions, we became able to provide answers.
+
+It seems that such things are possible through RL. The more the computational power of RL increases, the more complex problems we will be able to solve through the combination of individual skills. We've been able to have a more optimistic outlook on these things.
+
+Rather than it just being about drawing out existing abilities. If you see it as just drawing out existing abilities, you might think, "Doesn't that mean if it's not in the pre-training, it's impossible?" You'd tend to think that way. However, the fact that pre-training can go beyond its initial scope seems to be getting proven.
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **Chester Roh** Exactly. This is a funny story, but for us too, the math tests we took in high school are all structured this way. You learn all the basic skills through example problems, but by experiencing the variety of practice problems at the end, its usefulness increases, right?
+
+<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **Seungjoon Choi** Do they still use the term "example problems"? In high school?
+
+<span class="paragraph-timestamp" data-ts="27:24">27:24</span> **Chester Roh** Actually, even if you just deeply understand the example problems, you can theoretically solve everything in the universe, but you have to solve about 30 practice problems at the end to be able to take the test.
+
+<span class="paragraph-timestamp" data-ts="27:33">27:33</span> **Seonghyun Kim** There are things you can't learn without actually doing them, and through that, you can actually learn how to use these skills in a way that fits the problem. That is probably the biggest role of RL, as people think of it now.
+
+<span class="paragraph-timestamp" data-ts="27:46">27:46</span> **Chester Roh** So 2025 was the year of RL. MoE and RL are actually stories on different layers, one is about architecture and the other is about learning on top of it, a story of curriculum, so they are different things. RL was a really big issue. In 2025, yes.
+
+## Tacit Knowledge Beyond Papers: The Hidden Recipe of Frontier Models    *28:01*
+
+<span class="paragraph-timestamp" data-ts="28:01">28:01</span> **Seungjoon Choi** The debate about whether this is real RL or not, is that over now?
+
+<span class="paragraph-timestamp" data-ts="28:04">28:04</span> **Seonghyun Kim** It's still there. It still exists. There is still conflict, and people who do RL in a more, let's say, fundamentalist way keep saying that this is not true RL.
+
+But I'm not so sure. I kind of feel that pursuing true RL, or what is called true RL, I wonder how meaningful that is. And was RL, the RL of the previous stage, really a method that could solve all good problems well?
+
+In fact, through pre-training, the things that can be done through the form of LLM RL have become much broader.
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **Seungjoon Choi** Right, for one. It's about leveraging a strong prior.
+
+<span class="paragraph-timestamp" data-ts="28:42">28:42</span> **Seonghyun Kim** Yes, it's using a prior, and in fact, if it weren't for that, solving problems the way we do now would have been clearly impossible, I believe. Things like atomic skills or skills, or combining skills, these kinds of problems were not major topics of interest in RL. But through LLMs, this perspective became possible, and when thinking from this perspective, if we say we are learning the ability to combine, then we can also think that abilities like atomic skills learned during LLM pre-training are very important to cultivate. We can think about it in reverse like that.
+
+As Chester mentioned, 2025 really seems to have been the year of RL. Everyone has now become interested in RL, everyone realized they have to do RL, they acknowledged and accepted it, and research has also been focused on creating infrastructure to do RL efficiently, improving RL methods, creating slightly better objectives, and also increasing the understanding of RL, increasing the understanding of what on earth is happening, and also improving the preparatory work needed for RL, such as mid-training.
+
+All these things, making improvements, were ultimately topics related to RL. And as I mentioned again earlier, I'll say it again, broadening this understanding, laying the foundation, and then honing the skills, polishing them, seems to have been the important work that happened in 2025.
+
+So, somewhat ironically, it would have been fun if there were paradigm shifts or earth-shattering events multiple times in 2025, but that event seems to have been concentrated in the early part. It seems to have been concentrated on the DeepSeek moment, and the rest of it, rather than some earth-shattering, "Wow, this paradigm has completely changed!" feeling, I felt it was more a time of refinement.
+
+<span class="paragraph-timestamp" data-ts="30:23">30:23</span> **Chester Roh** Right. It was a time when that methodology was scaled up, I think we should see it that way. The latter half of 2025.
+
+<span class="paragraph-timestamp" data-ts="30:30">30:30</span> **Seungjoon Choi** But if the recipe is so well-known, why is it that only the US and China have been able to do it?
+
+<span class="paragraph-timestamp" data-ts="30:35">30:35</span> **Seonghyun Kim** Well. I'm not sure about that either. Someone wrote something like that on Twitter. DeepSeek revealed the whole recipe, and in China, they are all doing it based on that recipe, so why is it only coming out of China? They were saying something like that.
+
+But perhaps it could have been a matter of will, or there could have been issues with various environments or resources. But if a little more time passes, won't we see some results? Since Korea is also doing things like RLVR now.
+
+<span class="paragraph-timestamp" data-ts="31:06">31:06</span> **Chester Roh** Yes, we're seeing a lot of it right next to us, aren't we? How these abilities are improving. Seungjoon made an important point here.
+
+Actually, what Seonghyun and I are talking about, the methodology we see in papers, that it's like this, the intuition is like that, these things should be seen as the tip of the iceberg, in a way. In reality, we might say, "Ah, so that's what it looks like," but underneath that, there's the refinement of datasets, then the computation infrastructure, and as Seonghyun showed earlier, there's a training pipeline for the model that has become very complex because of RL.
+
+We lump all of these things together and call it the so-called "recipe," but these things have, how should I put it? A lot of tacit knowledge that isn't neatly written down in papers. "If you set the hyperparameters like that, it will fail here, it will fail there." Things like that seem to be well-kept in the minds of those who have experienced it.
+
+That's why the people who possess the entire recipe are so highly valued.
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **Seonghyun Kim** Especially, the parts that aren't revealed are related to data. It was true for pre-training data, but how to create the data for post-training, that part is even more hidden knowledge, and in fact, many companies are competing in this area. This part is even more of a hidden knowledge. They are developing their own technologies, accumulating know-how on how data should be created, and this know-how ultimately manifests in the quality of the final product.
+
+So, in a way, you could say that frontier companies are competing with that. For example, if the goal now is to make a better coding agent, there must be good data that needs to be created to make this coding agent. How to create that data, what form it should take, these things are hidden know-how.
+
+Those things can probably only be learned by trying them out and improving through experience. And that kind of knowledge is also hidden knowledge.
+
+<span class="paragraph-timestamp" data-ts="33:02">33:02</span> **Seungjoon Choi** Because it's contained within people and can be dirty engineering, it ultimately means that it works within the cohort where those people are. Be it in China or the US.
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **Seonghyun Kim** Yes, but in my opinion, seeing so many companies reaching that level, if certain underlying conditions are met, it's not like you can absolutely never know it if you don't know some critical secret. If a certain environment or conditions are met, this might be a bit of a misstatement, but I think it's something anyone can reach. It can be done. To say you can't do it if you don't know the secret, too many companies are doing it. That's what I think.
+
+## Data Defines the Model    *33:40*
+
+<span class="paragraph-timestamp" data-ts="33:40">33:40</span> **Seonghyun Kim** And in that respect, the model is becoming less of a research object and more and more like a product. From a research perspective, reaching about 90% might be okay. Yes, but to be successful as a product, you have to polish it even more and aim for 99%, 99.9%.
+
+And in that respect, the perspective of accepting AI models as products, that kind of perspective, and that kind of culture, I think that's playing an important role. We need to build AI models as if we're building products, and we need to do R&D as if we're building products.
+
+<span class="paragraph-timestamp" data-ts="34:17">34:17</span> **Chester Roh** Seonghyun, earlier you were talking about the Chinese frontier models. You mentioned that all the Chinese models, fortunately, have their model sizes and architectures disclosed.
+
+When we talk about frontier models, for example, with Opus or Gemini Pro, in these cases, they are in the 1T class, from 1T to 2T, meaning from 1,000B to 2,000B parameters. That's the estimate. And the models announced by DeepSeek or Kimi are between 600B and 700B. And then down below, models like Sonnet or Gemini Flash are estimated to be under 100B. There are these kinds of estimates, and many models are being released in between.
+
+But in reality, once you go past 30B, they seem so smart that it's hard for humans to distinguish, and they appear very intelligent. In Seonghyun's mind, what is the correlation between the frontier and model size? How do you see it? Like, a model size has to be at least this big to be a frontier model, and this size might be a certain turning point. I'm curious if you have a sense of this, so I'm asking.
+
+<span class="paragraph-timestamp" data-ts="35:21">35:21</span> **Seonghyun Kim** Rather than the model size itself, I think how that model was trained and built is actually a more important issue for the frontier. But previously, in the case of DeepSeek, it was a model exceeding around 600B, and one might think it needs to be between 600B and 1T. However, models like MiniMax or Z.ai are around 100B, with 100B total parameters, but the actually activated, the actually used parameters are around 10B, which are very small models. But even those models are producing very interesting results, it seems.
+
+And as you probably mentioned, if models like Flash or Sonnet are around 100B, then even in a model of about 100B, a model with about 100B total parameters, I think we can already see traces of the frontier. And if you train those models well, they seem to be able to perform very meaningful tasks in practice.
+
+<span class="paragraph-timestamp" data-ts="36:11">36:11</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="36:11">36:11</span> **Seonghyun Kim** I don't think people really consider anything below that. Generally.
+
+<span class="paragraph-timestamp" data-ts="36:14">36:14</span> **Chester Roh** So, roughly now, even at around 100B, even in a model of this size, we're starting to get a hint of the frontier.
+
+<span class="paragraph-timestamp" data-ts="36:22">36:22</span> **Seonghyun Kim** If it's well-made.
+
+<span class="paragraph-timestamp" data-ts="36:23">36:23</span> **Chester Roh** Yes, and those with a lot of money and resources are now exploring larger domains.
+
+<span class="paragraph-timestamp" data-ts="36:29">36:29</span> **Seonghyun Kim** Yes, and even though it's 100B, the actually used parameters are only about 10B. These are very small models, in a way.
+
+<span class="paragraph-timestamp" data-ts="36:36">36:36</span> **Chester Roh** Made possible by MoE.
+
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> **Seonghyun Kim** It's possible because of MoE. Possible because of MoE, and beyond MoE, various things like model training methods and a much deeper understanding seem to have made it possible.
+
+If it's a model of about 100B, it's ultimately not that different in scale from the previous 70B models. But even at that scale, very interesting things have now become possible.
+
+This is some kind of...
+
+<span class="paragraph-timestamp" data-ts="37:01">37:01</span> **Seungjoon Choi** This is an area I'm not familiar with, but then, in the frontier, when people said GPT-4 was around 2T, that was ultimately related to serving limits, right? But nowadays, in reality, even at around 4T, can you serve it if it's an MoE model?
+
+<span class="paragraph-timestamp" data-ts="37:20">37:20</span> **Chester Roh** According to the rumors floating around the Bay Area, Silicon Valley, the current Opus-class frontier models are said to be around 1T. 1T.
+
+<span class="paragraph-timestamp" data-ts="37:29">37:29</span> **Seungjoon Choi** But that is ultimately intertwined with serving limits, right?
+
+<span class="paragraph-timestamp" data-ts="37:33">37:33</span> **Chester Roh** You could see it that way, but whether that's really true, we can't know. Yes.
+
+<span class="paragraph-timestamp" data-ts="37:38">37:38</span> **Seonghyun Kim** There might be difficulties with serving, but I'm not too sure about that part. Yes.
+
+<span class="paragraph-timestamp" data-ts="37:43">37:43</span> **Chester Roh** To make a long story short, ultimately, this deep learning or the progress of the models we're seeing, some people reduce it severely, saying it's all a data problem. At the recent NeurIPS, Professor Yejin Choi gave a keynote, and I remember her strongly making the point that data is everything.
+
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **Seonghyun Kim** I heard this expression recently: "The model is the product, and the data is the model."
+
+Someone said that, and I think it's true. Data is important. There are no AI researchers or engineers who would deny that data is important, but you always have to emphasize that data is the most important thing so that people don't forget.
+
+<span class="paragraph-timestamp" data-ts="38:21">38:21</span> **Chester Roh** And on the quality of data, they are actually putting in tremendous effort.
+
+The frontier labs, and also the recently published Nemotron paper, more than half of the tech paper is about data. Things like hyperparameters or architecture are barely mentioned. They dedicate a lot of space to what efforts they made to create this dataset. They dedicate a lot of space to things like that.
+
+<span class="paragraph-timestamp" data-ts="38:43">38:43</span> **Seonghyun Kim** In deep learning, data has always been the most important issue. We should never forget it, but the very act of constantly saying that data is important means that people tend to keep forgetting it. That data is the most important thing.
+
+<span class="paragraph-timestamp" data-ts="38:55">38:55</span> **Chester Roh** Yes, from our perspective as observers, we're naturally more interested in things like diagrams, architectures, or how doing something this way led to that result. We can't help but be more interested. Because it's interesting.
+
+<span class="paragraph-timestamp" data-ts="39:05">39:05</span> **Seonghyun Kim** But refining the data has always been a crucial issue. And from a product perspective, from a product standpoint, improving the data for making the product to the point where the data itself could be the product will be a very important issue, and it still is.
+
+<span class="paragraph-timestamp" data-ts="39:21">39:21</span> **Chester Roh** In that Nemotron paper, if I may add one last thing, for processing the data, they mostly used a Qwen 30B model. Yes.
+
+<span class="paragraph-timestamp" data-ts="39:33">39:33</span> **Seonghyun Kim** It's paradoxical, but those open models are playing a very big role in data processing.
+
+<span class="paragraph-timestamp" data-ts="39:37">39:37</span> **Chester Roh** That's mostly correct. Yes.
+
+<span class="paragraph-timestamp" data-ts="39:39">39:39</span> **Seonghyun Kim** To build a model, you need data, but to create data, you need a model. So, the role of that first-stage model is now being filled by open models.
+
+<span class="paragraph-timestamp" data-ts="39:49">39:49</span> **Seungjoon Choi** Is that data processing? Or generation?
+
+<span class="paragraph-timestamp" data-ts="39:52">39:52</span> **Seonghyun Kim** It's both. Yes, both, both are increasingly becoming model-based, so a model is needed. But anyway, that was my take on 2025.
+
+<span class="paragraph-timestamp" data-ts="40:02">40:02</span> **Chester Roh** It was the year of MoE and RL.
+
+<span class="paragraph-timestamp" data-ts="40:04">40:04</span> **Seonghyun Kim** I've covered it to the extent I've explained.
+
+## 2026 Forecast 1: The Unstoppable Scale-Up Competition    *40:06*
+
+<span class="paragraph-timestamp" data-ts="40:06">40:06</span> **Seonghyun Kim** I'm thinking about the next step, and in this next step, what all companies want, especially what I think Chinese companies want, is to scale up. Everyone seems to have a sense of regret about scaling up. "Ah, if only we could make the model bigger," "it would be great if we could do pre-training on a larger scale." "We feel we've done enough RL, and based on this experience," "it would be nice if we could scale up the pre-training." "it would be nice if we could try it." I feel like these kinds of motivations are palpable in the technical papers.
+
+All the Chinese companies want it, and they want it even more because people tend to want what's hard to do. They want it more. In the case of China right now, since there are constraints on computational power anyway, because of these constraints on computational power, I think they are craving this even more.
+
+And in that sense, I think scaling up next year will definitely happen. It seems like a natural progression. And I think models that are bigger and trained for longer than the current ones will probably emerge.
+
+<span class="paragraph-timestamp" data-ts="40:57">40:57</span> **Chester Roh** Seonghyun, could you explain "scale-up" in a bit more detail? When Seonghyun says "scale-up" here, what does that mean? The expansion of hardware computational resources, the resulting increase in model size, dataset size, the increase in the RL environment, are you talking about all of these things?
+
+
+<span class="paragraph-timestamp" data-ts="41:14">41:14</span> **Seonghyun Kim** Yes, it refers to all of those things, but what's more important here is the model's base size, its fundamental weight class. That's more related to the weight class of the pre-training. So, although we talk about models being 1T or 2T now, the actually used parameters in most models are, as I mentioned earlier, around 10B or 30B, 40B, 50B. It's on that scale. It's under 100B. The actually used scale. If the total parameters are 1T or 2T, you can think of only about 100B of that, or less than 100B, being used.
+
+But as we do RL, this thought occurs. "If it works this well even at this scale," "what would happen if we made it bigger?" "What if we used not 100B, but 200B, 300B" "of active parameters?" They will definitely have this thought.
+
+And the length of pre-training right now... In the case of Chinese models, they train with about 15T tokens. If it's around 15T, then if they train with 50T or 100T, they start to think, "what would happen?" That's the thought they start to have. Then, what would happen at that point? Of course, since we haven't tried it, we don't know what will happen. We don't know for sure. But the possibility of making another leap, they are anticipating things like that. That it could make a leap.
+
+Yes, so they are scaling up, and I believe everyone wants to. If more computational power is given, and they can train models on a larger scale, through those large-scale models, more powerful RLVR and agent training would be possible. That's what they are thinking.
+
+<span class="paragraph-timestamp" data-ts="42:35">42:35</span> **Seungjoon Choi** Is that kind of story from this link, which seems to be a Chinese podcast?
+
+<span class="paragraph-timestamp" data-ts="42:39">42:39</span> **Seonghyun Kim** Ah, this is a slightly different story. This story is from the DeepSeek technical reports, something that has been coming out recently. They are mentioning things like, "It would be great if we could enhance pre-training more." They are mentioning these kinds of things. They want to handle longer contexts, they want the model to be bigger, and in fact, in DeepSeek-V3, one of the interesting points was that because the model got bigger, RLVR worked better. They experienced these effects.
+
+Ah, in the aspect of R1, in the R1 paper, so, it doesn't work well with small models, but when they used a larger model, RLVR suddenly started to work quite well. They observed this as well, so, will such a jump only happen here? Won't things that didn't work before work with even larger models? They will naturally start to think about these things.
+
+<span class="paragraph-timestamp" data-ts="43:20">43:20</span> **Seungjoon Choi** In November, there was talk that for Gemini 3, in the end, the pre-training breakthrough was very important. It's ultimately the same direction.
+
+<span class="paragraph-timestamp" data-ts="43:28">43:28</span> **Seonghyun Kim** Yes, it's the same direction. There will be improvements in pre-training methods, and there will also be improvements in the scale of pre-training itself. It seems everyone is conscious of those aspects. It's what everyone wants.
+
+<span class="paragraph-timestamp" data-ts="43:37">43:37</span> **Seungjoon Choi** So if you scale up in pre-training, the scale-up of RL or performance improvements will naturally follow.
+
+<span class="paragraph-timestamp" data-ts="43:43">43:43</span> **Seonghyun Kim** Yes, it will naturally follow. And this performance improvement isn't just about the score going up, but about things that were impossible becoming possible. It's very likely to appear in that form.
+
+<span class="paragraph-timestamp" data-ts="43:50">43:50</span> **Seungjoon Choi** It might even be that new abilities could emerge, and new capabilities could appear.
+
+<span class="paragraph-timestamp" data-ts="43:54">43:54</span> **Seonghyun Kim** That is now one of the goals that Chinese companies are aiming for in 2026. So, they are trying to gather more computational power somehow, trying to pull it together, debating whether to buy H200s or not, everyone is probably doing that.
+
+And it's a story that has come up repeatedly, something we've always said, that if we continue with the current methods, people often say that economic value will be created. Just like that, continuing to advance performance as an extension of current methods, expanding domains, and doing more of the things that didn't work before, for example, expanding into what are called white-collar jobs, and in the case of science, actual science, actual experiments would be needed. And also with things that require experiments, connecting that to agent training, expanding domains like this will be a very natural goal.
+
+Of course, there's no reason not to do this, and it would naturally be a worthwhile goal. But the biggest bottleneck will be the data problem. This podcast also came out yesterday or the day before, and what they say here is the same. Right now, frontier companies are using enormous resources to create good data, but "how long do we have to keep doing this?" You can't help but think that this itself is too difficult.
+
+So, if through models, through agents, we are to do more complex work, if we are to do more complex and higher-quality work, the data itself must also be more complex and of higher quality. Then, to create higher quality data, and more diverse data, enormous resources will be invested there, and that becomes the bottleneck.
+
+In this podcast, they use the analogy that it's a problem similar to self-driving, and I think that's the most interesting analogy. To what extent do you make it work? I can easily achieve about 90% self-driving, but now, to try to create 99%, 99.9%, you have to collect numerous edge cases, corner cases, and data that exists in the long tail.
+
+You have to constantly collect data, collect it and gradually improve bit by bit. That itself is a huge bottleneck. "How long can we keep doing this?" you'll start to think, and you'll start to think if there's a way to break through this. And I think this is probably the biggest problem that is delaying the speed of development right now.
+
+<span class="paragraph-timestamp" data-ts="45:58">45:58</span> **Seungjoon Choi** This might be a bit of a tangent, but the discourse in Chinese podcasts seems to be quite good. I also saw the one translated by Dongsung Hwang, and the level of the discussions really reached the frontier, that's the kind of feeling I got. The discussions were quite interesting.
+
+<span class="paragraph-timestamp" data-ts="46:17">46:17</span> **Seonghyun Kim** Not every episode was interesting to me, but there are many very interesting discussions. About robotics or AI, and researchers just come and talk there.
+
+For example, in the case of a podcast like this, surprisingly, it's not just CEO-level people, but researchers, like Chief Scientists, researchers of that level come and talk a lot about what problems they are currently solving, and what they consider important. But that kind of information, I think, is actually not that common even in the English-speaking world.
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **Chester Roh** But this is something Professor Yejin Choi mentioned as a joke in her keynote, that the current frontier is being built by Chinese people in the US and Chinese people in China.
+
+<span class="paragraph-timestamp" data-ts="47:00">47:00</span> **Seonghyun Kim** And the Chief Scientists and other researchers coming out of China, are ultimately researchers belonging to frontier companies, so it's also an opportunity to hear stories about the inside of these frontier companies. So I think it's a very good...
+
+<span class="paragraph-timestamp" data-ts="47:11">47:11</span> **Seungjoon Choi** So you're saying we need to watch news from China as well.
+
+<span class="paragraph-timestamp" data-ts="47:14">47:14</span> **Seonghyun Kim** Yes, the Chinese side, if you're interested, if you look into it, there are many things worth learning.
+
+<span class="paragraph-timestamp" data-ts="47:20">47:20</span> **Chester Roh** Yes, the podcast name itself is unusual. Xiaoyuzhou, I don't know the pinyin, but I think it's "Small Universe" (小宇宙).
+
+<span class="paragraph-timestamp" data-ts="47:28">47:28</span> **Seonghyun Kim** I think the podcast title was 'Language is World'. It was something like that. It's very interesting. This episode is also very interesting, but it's a bit tricky to share things like the transcript, so it's a bit difficult to share the content.
+
+<span class="paragraph-timestamp" data-ts="47:41">47:41</span> **Chester Roh** It's a conversation in Chinese, right?
+
+<span class="paragraph-timestamp" data-ts="47:43">47:43</span> **Seonghyun Kim** Yes, it's in Chinese.
+
+<span class="paragraph-timestamp" data-ts="47:44">47:44</span> **Seungjoon Choi** But now we can translate and watch it, so...
+
+<span class="paragraph-timestamp" data-ts="47:46">47:46</span> **Chester Roh** Yes, you can extract the Chinese conversation transcript and convert it to English or Korean to read it.
+
+<span class="paragraph-timestamp" data-ts="47:51">47:51</span> **Seonghyun Kim** I translate it into English and read it.
+
+<span class="paragraph-timestamp" data-ts="47:52">47:52</span> **Chester Roh** Yes, in fact, Chinese-to-English translation is almost perfect, so there should be no problem watching it. Yes.
+
+<span class="paragraph-timestamp" data-ts="47:58">47:58</span> **Seonghyun Kim** Gemini 3 is doing a good job. And up to this point, it seems to be an extension of the current paradigm.
+
+## 2026 Forecast 2: The Dawn of a New Paradigm    *48:05*
+
+<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **Seonghyun Kim** Beyond the extension of that paradigm, thinking about a completely different paradigm is something I still think is important. And what I hope for or expect is that next year, aspects of a new paradigm will become visible.
+
+But regarding a new paradigm, a very important part is that more autonomous agents will be a very important issue for creating economic value, I think. Even now, coding agents are doing a lot very autonomously, but a person keeps giving instructions. You give instructions, and when the result comes out, if you don't like it, you request a revision.
+
+This kind of feedback loop is in place, and while that itself automates a great many things, to create more powerful economic value, I think they need to be more autonomous. Meaning, the agent improves the code on its own.
+
+If you just leave it to the agent, the agent will keep optimizing the code on its own. Even without human instruction, for example, you could think of something like that. If you let it run, it will improve the code on its own overnight until the next human instruction, add more features, and keep optimizing the code.
+
+Taking it a step further, you could think of an autonomous agent that could complete an entire project. If that happens, the value created by such an agent, compared to current coding agents, will be enormous, qualitatively much greater, I think. And only when that happens do I think true economic value will be created.
+
+Only when the model can work on its own... Humans have autonomy. With autonomy, they improve code on their own and implement features on their own. Only when such capabilities also exist in agents will it lead to greater economic value, I believe.
+
+## Towards More Autonomous Agents    *49:37*
+
+<span class="paragraph-timestamp" data-ts="49:37">49:37</span> **Chester Roh** Personally, I see this as a solvable problem. Right now, many people are already simulating this through Harness. They are mimicking this, right? Yes, but for it to do so within a single model to continue taking actions with this kind of autonomy, isn't that also a problem that will be solved soon?
+
+<span class="paragraph-timestamp" data-ts="49:57">49:57</span> **Seonghyun Kim** This is also a problem I want to see solved. Whether it will be solved or not, from here on out, we need to think about the technical problems to move to that stage, the technical problems. It's closer to a problem I hope gets solved.
+
+And when such an agent emerges, right now, it's still ultimately close to a chat interface. A person gives a command, and according to that command, it performs a task and waits for the next command. It's that kind of interface, but with this kind of agent, the flow of the interface itself will change. The agent will keep working on its own, and then people will look at the results, the intermediate results, and it will change to a form where people give feedback. The agent will continue to work. I hope that such paradigm shifts will happen.
+
+And it will become continual learning. Earlier, in a Chinese podcast, for example, they put it this way. Right now in Silicon Valley, and in the San Francisco Bay Area, everyone is talking about continual learning, and it's the biggest topic. Everyone is interested in it.
+
+Yes, continual learning I think will be a very important paradigm shift, and this is also related to the problem of data. As I mentioned earlier, creating all the data is very difficult. So, instead of a person creating data for learning, the model discovers the data on its own and learns from it. That would be ideal. That is also related to continual learning.
+
+Continual learning, goes beyond simply adding more data continuously. The continual learning mentioned here is closer to the model learning on its own. If that happens, for each scenario, and for each complex situation, a person doesn't need to create all the data. Instead, the model will learn about that scenario by creating the data on its own.
+
+However, regarding this problem of continual learning, there are various technical limitations, but what many people are thinking is, "Should we expand in-context learning?" Many think about these aspects, but I think the more important problem is what the model will learn, why it will learn it, and discovering these things is the most important component of continual learning.
+
+The ability to learn itself is not what's important. When you have the ability to learn, you need the ability to use it to learn important things in real situations. It's not that being able to learn is important, but the ability to learn what's necessary when thrown into a real situation, that's what's needed. And this is probably the most important component that will lead to a paradigm shift.
+
+<span class="paragraph-timestamp" data-ts="52:25">52:25</span> **Chester Roh** Now, something like out of sci-fi will happen. A model controlling its own learning.
+
+<span class="paragraph-timestamp" data-ts="52:31">52:31</span> **Seungjoon Choi** So, since we're talking about 2026, Seonghyun, what are the odds of this happening?
+
+<span class="paragraph-timestamp" data-ts="52:39">52:39</span> **Seonghyun Kim** About 50%.
+
+<span class="paragraph-timestamp" data-ts="52:40">52:40</span> **Seungjoon Choi** 50%, so there's about a 50% chance that continual learning could happen in 2026.
+
+<span class="paragraph-timestamp" data-ts="52:45">52:45</span> **Seonghyun Kim** Yes, I think at least a very important component of continual learning could emerge.
+
+Because everyone says they are researching it. They say they're researching it, and in the case of OpenAI, they say they are quite advanced in this area.
+
+Seeing these kinds of stories come out, I think we might be able to see what it looks like around 2026. That's what I'm hoping for.
+
+It might be a hope-filled expectation. That's right.
+
+## Self-play and Intrinsic Motivation: Conditions for AI Aligned with Humans    *53:10*
+
+<span class="paragraph-timestamp" data-ts="53:10">53:10</span> **Seonghyun Kim** And something that always comes up in relation to RL is so-called "self-play." In the case of AlphaGo, the case of AlphaGo improving its performance through self-play has left a strong impression on people.
+
+So through that self-play—this is also a data-related problem— people have high hopes that we can develop something where the model can learn on its own without being provided data. They have high expectations.
+
+However, the math problems we're dealing with, or agent coding, these problems are not games like Go. Because this is not a zero-sum game, implementing self-play is very difficult.
+
+For example, it's like this. There's an agent that creates problems, and then there's an agent that solves those created problems. The problem-creating agent makes increasingly difficult problems, and the problem-solving agent interacts by solving those increasingly difficult problems, and the model improves. We can imagine something like this.
+
+Then, the agent that writes the problems will continuously create more difficult problems. The more difficult the problems it creates, the more reward it will get.
+
+But there's a trap here. I'm not sure about Go, but if you think about math problems, it's very easy to create a problem with a 0% success rate. You just have to make a nonsensical problem.
+
+So, instead of just making difficult problems with a 0% rate, let's make problems of a very appropriate level. Problems that yield about a 50% success rate, let's make problems that are solved half the time.
+
+But this is also very easy. For example, if you're doing four basic arithmetic operations, you can just keep increasing the length of the operations to adjust the difficulty.
+
+What this tells us is that for the problems we find interesting, thinking about them, it's quite difficult to make self-play work. The important thing isn't to lower the success rate to make more difficult problems. You have to create problems that are interesting from a human perspective. You have to create problems of truly high value.
+
+This is a very difficult problem, and it's a problem many researchers are working on. And the thinking in recent papers is that this won't work unless it's aligned with humans. This won't work unless the model is aligned with humans. They are thinking a lot along these lines.
+
+<span class="paragraph-timestamp" data-ts="55:21">55:21</span> **Seungjoon Choi** What you just said in point 2 resonates a bit with this. It's like going up another level.
+
+The things that go one level up from the current one are present in both point 2 and point 3.
+
+Learning to learn, and also what's non-trivial now, having curiosity or anyway, creating the problem itself is the key point right now.
+
+<span class="paragraph-timestamp" data-ts="55:42">55:42</span> **Seonghyun Kim** So I think these three problems converge on this one problem. Intrinsic motivation, alignment with humans. I think they converge on this problem. Even when doing self-play, you have to create problems that are interesting to humans. And the model itself would benefit from having that kind of motivation.
+
+For example, humans also create math problems and try to solve them. They have a sense that "this is an interesting problem." It's the same for continual learning. When a person learns something, they think, "Ah, this is interesting," or "If I learn this, I can use it to solve problems." They have this kind of motivation.
+
+It's the same for autonomous agents. For example, even when thinking about a problem like optimization, when a person looks at code, they have the motivation to think, "Ah, it would be great if I could optimize this more," or "It would be great to add this feature."
+
+<span class="paragraph-timestamp" data-ts="56:27">56:27</span> **Seungjoon Choi** That's right.
+
+<span class="paragraph-timestamp" data-ts="56:28">56:28</span> **Seonghyun Kim** And if such motivation is given to a model, that motivation must be aligned with human goals and values. A motivation that is valuable from a human perspective, a motivation to pursue what is valuable, must be given to the model.
+
+<span class="paragraph-timestamp" data-ts="56:42">56:42</span> **Seungjoon Choi** Is this somewhat related to what we discussed in the Ilya Sutskever episode, that emotion is a value function?
+
+<span class="paragraph-timestamp" data-ts="56:48">56:48</span> **Seonghyun Kim** It might be slightly related. Emotion and motivation are not necessarily the same, but in many cases, they are very strongly connected. The issue of emotion and motivation... in psychology, emotion is seen as something temporary, while motivation is seen as something much more long-term. I believe that's how it was viewed. But they are significantly related. Because for the things we feel motivated by, emotions are also strongly coupled. Yes, all of those things are related, and probably Ilya Sutskever's SSI, or Mira's thinking machine, and other such companies, there are rumors that they are all very interested in these things.
+
+And I hope that this problem, in 2026, will start to show its face. If it shows its face in 2026, I think the most important paradigm shift will emerge in relation to this. And when that happens, the change in agents we will experience will be immense, I think.
+
+For example, before RLVR, even in the stage before the current coding agents, there were definitely agents. Even with RLHF models, there were agents that were created. But compared to those agents, today's coding agents are much more powerful and are creating much greater economic value.
+
+But then, through a paradigm shift, the agents have qualitatively changed. Yes, the agents combined with the next paradigm shift will create value that, compared to the previous coding agents, I think will be qualitatively different. And they will be much more useful.
+
+<span class="paragraph-timestamp" data-ts="58:17">58:17</span> **Seungjoon Choi** It's a headache, really.
+
+<span class="paragraph-timestamp" data-ts="58:19">58:19</span> **Seonghyun Kim** Yes, it's a headache. That's right. And I think this is probably, for the enormous investment funds now, to create enough value to justify them, I think it's an essential element. So what everyone is doubting right now is, "The investment is so huge, so can you create enough value with this to justify it?" That's the question being asked.
+
+Yes, things like domain expansion or current performance improvements will also certainly help in creating such value, in expanding the value, but I think that to justify all this investment, there must be a paradigm shift, and there must be a corresponding qualitative improvement for it to be possible.
+
+<span class="paragraph-timestamp" data-ts="58:57">58:57</span> **Chester Roh** Well, people like Elon Musk or Sam Altman speak in exactly the same vein as what Seonghyun just said. They say that the value created by AI will increase to a near-infinite level, so an era of infinite abundance is coming. So they talk about it from the perspective of overall wealth, but within that, within that system, for the people who were making a living, it's going to be a big shock in the short term.
+
+<span class="paragraph-timestamp" data-ts="59:24">59:24</span> **Seungjoon Choi** The word "hyperstition" comes to my mind. That, a self-fulfilling prophecy. Meaning, to justify the investment money now, we have to reach that stage, so for this to be right, something like this has to happen in 2026 as a milestone. That's the logic, isn't it?
+
+<span class="paragraph-timestamp" data-ts="59:42">59:42</span> **Seonghyun Kim** I think so. To justify the current investments, and there's still talk of an AI bubble, if there isn't this kind of innovation, then with just gradual improvements in 2026, I think it will raise a lot of doubts. Of course, there will continue to be arguments that gradual improvements are enough.
+
+<span class="paragraph-timestamp" data-ts="59:59">59:59</span> **Chester Roh** Regarding the question Seungjoon asked Seonghyun earlier, the answer that the probability is 50% is also directly related to this. Probably with a probability of 50% or more, some kind of progress will happen again in 2026.
+
+## How Should We Live in the Age of AI?    *1:00:13*
+
+<span class="paragraph-timestamp" data-ts="1:00:13">1:00:13</span> **Seungjoon Choi** Then that creates FOMO again.
+
+
+<span class="paragraph-timestamp" data-ts="1:00:15">1:00:15</span> **Chester Roh** Yes, but we should consider that a given and make our plans accordingly.
+
+Right now, because of the desire for scale we mentioned, people are asking, "Aren't semiconductors a bubble?" "Isn't this circular investment?" People say things like that, and logically, people might want to understand it that way, but in reality, the incentive to keep the cycle going, even if it's like that, is actively spinning.
+
+<span class="paragraph-timestamp" data-ts="1:00:38">1:00:38</span> **Seonghyun Kim** A bubble...
+
+<span class="paragraph-timestamp" data-ts="1:00:39">1:00:39</span> **Chester Roh** Do you think it's a bubble? Seonghyun, Seungjoon, shall we talk amongst ourselves? Is it a bubble?
+
+<span class="paragraph-timestamp" data-ts="1:00:44">1:00:44</span> **Seungjoon Choi** Rather than my own opinion, last time when we talked about the Demis Hassabis episode, Demis Hassabis said that there is some bubble mixed in.
+
+<span class="paragraph-timestamp" data-ts="1:00:55">1:00:55</span> **Chester Roh** Yes, but in a transitional period... Seonghyun, please go ahead.
+
+<span class="paragraph-timestamp" data-ts="1:00:58">1:00:58</span> **Seonghyun Kim** Actually, watching this, I wonder if in the history of human technological development, there has ever been a situation like this. That's the thought I had. A situation where you have to keep developing a new technology, and the development of that technology has to justify the investment. I wonder if such a situation has ever existed in human technological history. That's what I was thinking. But I think the expression FOMO is fitting. I mean, it's not a technology that's available right now. It's definitely not a completed technology yet. But if the probability of that technology being developed is not zero, and if someone develops that technology while someone else fails to, then the ripple effect is seen as being incredibly large, I believe.
+
+In that sense, it becomes a kind of AI war. Whether we will succeed in developing this technology or not is hard to know. I certainly guessed 50%, but that's a statement made with no prior information. That's what I'm saying. But if someone succeeds in developing the technology, the ripple effect, the economic value that comes from it, is so unimaginably large that losing in that race has become a situation people don't even want to think about.
+
+So, to prevent that situation, they are pulling all the remaining money to compete. If I may say it again, I wonder if situations like this have existed in human history, if there has been a precedent. But the people experiencing it now, the emotion that the actors are feeling, I think it might be something like that.
+
+<span class="paragraph-timestamp" data-ts="1:02:20">1:02:20</span> **Chester Roh** Weren't there a few similar cases?
+
+<span class="paragraph-timestamp" data-ts="1:02:24">1:02:24</span> **Seonghyun Kim** Yes, I'm sure there must have been.
+
+<span class="paragraph-timestamp" data-ts="1:02:26">1:02:26</span> **Chester Roh** The Manhattan Project, the Apollo Project. At the time, an absurd, astronomical amount of money was invested, but back then, the main actors were nations, whereas now, private companies have actually grown to a level that transcends nations. Yes, so in this game too, the person who comes in first has a chance of kicking away the ladder for those behind them, and yes, as we see from the case of nuclear development, only the nations that possessed the nuclear umbrella lived as superpowers for a century. I think it's the same logic.
+
+For us, as individual human beings, it's too big of a discourse to think about, but here again, the concept of 'escape' comes up. So what should we do? Yes, we are left with 'What should we do?' For us who have to live our reality within that, the question of what we should do still remains large. When we started 2025, we talked about how much better seniors, juniors, and coding agents would get, things like that, but now, at the end of 2025, the discourse among people is, as Andrej Karpathy also posted, that now, rather than seniors who had some kind of prior, the natives who encountered AI tools from the beginning, the AI-native juniors, are much better at their jobs.
+
+But if the model that Seonghyun just mentioned gains this kind of autonomy on its own, then all these stories also come to an end.
+
+<span class="paragraph-timestamp" data-ts="1:03:52">1:03:52</span> **Seungjoon Choi** That's right. Even if just signs of the three things you mentioned appear, they are actually very impactful things. And it's not that they happen one by one, but they are interlocked, so if one happens, the others are likely to follow. That's a real headache.
+
+<span class="paragraph-timestamp" data-ts="1:04:07">1:04:07</span> **Chester Roh** So, Seonghyun, how are you planning to live? Sorry for suddenly throwing such a deep question at you, but from your perspective of calmly observing this world, you must sometimes have thoughts about how you should live. You must, right?
+
+<span class="paragraph-timestamp" data-ts="1:04:21">1:04:21</span> **Seonghyun Kim** I've just decided to enjoy it.
+
+<span class="paragraph-timestamp" data-ts="1:04:24">1:04:24</span> **Seungjoon Choi** I've heard that somewhere before. If you can't avoid it, enjoy it. Chester said something similar, right?
+
+<span class="paragraph-timestamp" data-ts="1:04:28">1:04:28</span> **Seonghyun Kim** Yes, and in fact, all of this also depends on predictions. There is still uncertainty, and questions like whether it will happen or not still remain, but I've just decided to enjoy it. The future seems to be becoming unpredictable.
+
+Especially when everything depends entirely on something probabilistic, it seems even harder to predict. So I've just decided to enjoy it.
+
+<span class="paragraph-timestamp" data-ts="1:04:56">1:04:56</span> **Seungjoon Choi** But although it's hard to predict, since everything is unfolding through competition, even if we don't know if that final result will come, it's certain that there will be byproducts. Because there is a process of pursuit, a significant level of byproducts is likely to emerge. That's how I see it now.
+
+I can predict one thing, though. The things that made you think, "Ah, this works" in 2025, there's a very high probability you'll have to unlearn them.
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **Seonghyun Kim** Yes, that could be the case. Regarding agent AI products right now, I think that's true for many of them.
+
+Everyone says, "This doesn't work yet." They tend to focus on what doesn't work.
+
+Because it doesn't work yet, there are still opportunities. But there's also the possibility that we'll have to throw all that away and rethink everything.
+
+<span class="paragraph-timestamp" data-ts="1:05:36">1:05:36</span> **Chester Roh** It's a situation where you have to aim for something two or three steps ahead and say, "I'm going to do this," for it to make sense.
+
+<span class="paragraph-timestamp" data-ts="1:05:43">1:05:43</span> **Seungjoon Choi** Right. Next year, there will definitely be a point where you think, "Oh, this worked well, and I'm used to it, can't I just keep doing it?" I think there will be a point like that. I don't want to learn, but I have no choice but to follow this again.
+
+<span class="paragraph-timestamp" data-ts="1:05:56">1:05:56</span> **Chester Roh** Let's have this conversation once we're in 2026.
+
+<span class="paragraph-timestamp" data-ts="1:05:59">1:05:59</span> **Seungjoon Choi** Aren't we ending the year on a slightly depressing or ambiguous note? We're supposed to end on a cheerful note.
+
+<span class="paragraph-timestamp" data-ts="1:06:06">1:06:06</span> **Chester Roh** Our first podcast two and a half years ago, when Seungjoon and I started, the title was "The Melancholy of Geoffrey Hinton."
+
+But he is someone who contemplates things far ahead of us. He must have seen everything we couldn't, and the things he said back then, two and a half years ago, many of them have become reality,
+
+<span class="paragraph-timestamp" data-ts="1:06:28">1:06:28</span> **Seonghyun Kim** If we focus on the technological development itself, I think it will be the most enjoyable in its own way. The development of the technology itself makes you think, "Wow, this is possible?" "Can we really reach this level?" I think we can focus on it like that.
+
+Yes, the potential social impacts that could derive from it... It weighs on my mind a bit when I think about it.
+
+<span class="paragraph-timestamp" data-ts="1:06:44">1:06:44</span> **Chester Roh** Yes, it's so much fun living as a hobbyist, but now...
+
+<span class="paragraph-timestamp" data-ts="1:06:48">1:06:48</span> **Seungjoon Choi** My life is an overlap. I live as a hobbyist, but I also have to live my real life. Anyway, that's what 2025 was like.
+
+<span class="paragraph-timestamp" data-ts="1:06:57">1:06:57</span> **Chester Roh** We've summarized 2025. And an even faster pace of change is expected for 2026. And Seonghyun pointed out some major directions for that. The first was scale, that the investment in this scale... ...shows no signs of stopping. That was one.
+
+And the second was... ...that it won't be a paradigm like what we've seen so far, but a different, discontinuous, next-layer paradigm... ...is likely to emerge, you said. And for that, there's continual learning, and what was the other one? I think you pointed those out.
+
+<span class="paragraph-timestamp" data-ts="1:07:32">1:07:32</span> **Seonghyun Kim** They are all related issues, like continual learning, self-play, or, well, what's achieved through that, which would be more autonomous agents.
+
+<span class="paragraph-timestamp" data-ts="1:07:42">1:07:42</span> **Seungjoon Choi** And you're not just talking about coding agents, right? It could be like a co-scientist, or the 'co' could be dropped.
+
+<span class="paragraph-timestamp" data-ts="1:07:48">1:07:48</span> **Seonghyun Kim** Yes, that's right. To create greater value, naturally, it will have to extend to at least what we call white-collar jobs. It will have to go beyond that. And perhaps, I'm not sure what form this will actually take, but if it can be implemented, I think it will be a huge help in that area as well.
+
+Because right now, for those kinds of tasks, you have to create data for each and every one. How to do Photoshop, how to use it... You'd have to teach all of these things.
+
+But if the model can learn on its own, the model could watch a video, learn how to use Photoshop on its own, and then use Photoshop. Something like that could happen.
+
+## Closing Remarks and New Year's Greetings    *1:08:24*
+
+<span class="paragraph-timestamp" data-ts="1:08:24">1:08:24</span> **Chester Roh** Alright, then shall we wrap up our year... ...and finish up as well? Yes, after learning from Seonghyun again, my mind is all abuzz, and all these different thoughts... ...are weaving together like warp and weft.
+
+Yes, being able to learn these things from you two every Saturday... ...is truly a great blessing in my life. Thank you.
+
+<span class="paragraph-timestamp" data-ts="1:08:44">1:08:44</span> **Seungjoon Choi** Of course, the same goes for me. First of all, the conversation itself was just so interesting.
+
+Today, too, Seonghyun... ...crafted a very interesting storyline, weaving it together so I could listen with great focus. It felt like the whole year just flashed by.
+
+But then again, 2026... isn't this a time that gets the dopamine flowing? It's so exciting, and I look forward to what will unfold. What will happen in January, what will happen around AlphaGo week, what will happen around Google I/O... I'm looking forward to all of it.
+
+<span class="paragraph-timestamp" data-ts="1:09:14">1:09:14</span> **Chester Roh** As soon as mid-January hits next week, things will start pouring out again. Right.
+
+<span class="paragraph-timestamp" data-ts="1:09:20">1:09:20</span> **Seungjoon Choi** Yes, so let's plan to meet again around that time, and now we should get some rest. Seonghyun, do you have any last comments... ...or anything you'd like to say?
+
+<span class="paragraph-timestamp" data-ts="1:09:29">1:09:29</span> **Seonghyun Kim** Nothing special, really. I also write a retrospective around this time every year, I think I've been doing that consistently. And being able to do that retrospective in this format... ...seems like a very fun thing for me.
+
+And when I write my retrospectives, I always used to write predictions for what would happen next year. I think that habit has carried over, so while doing this retrospective here, for next year, 2026, I ended up writing about what might happen. Since there's so much uncertainty, if we welcome 2026 while anticipating what might happen, I think it could be fun.
+
+<span class="paragraph-timestamp" data-ts="1:10:01">1:10:01</span> **Chester Roh** Still, well, we're confined to our human frames, so... ...stay healthy. Yes, in 2026, I'm thinking of investing more... ...in businesses related to this health aspect.
+
+<span class="paragraph-timestamp" data-ts="1:10:12">1:10:12</span> **Seungjoon Choi** I guess we'll see each other in the new year then.
+
+<span class="paragraph-timestamp" data-ts="1:10:14">1:10:14</span> **Chester Roh** Yes, you've all worked hard this year, 2025. Thank you, Seonghyun and Seungjoon.
+
+We had a really, really fun 2025. It was tough at times, but it was so, so, so much fun.
+
+2026 seems like it will change even faster than this, so I think we need to brace ourselves, and it makes me think we need to live more diligently.
+
+And also to our subscribers, the subscribers of the Fugitive Alliance, thank you so very much.
+
+Alright, Seungjoon, Seonghyun, please say one last thing each, and let's wrap this up.
+
+<span class="paragraph-timestamp" data-ts="1:10:46">1:10:46</span> **Seungjoon Choi** Yes, this past year has been very enjoyable for me too, and while Saturdays can be tiring at times, especially when we meet so often, it was always a time I looked forward to.
+
+So being able to talk together, the scenery we see together, and discussing the scenery we see differently... ...it was a very enjoyable time.
+
+And being conscious of the subscribers... ...who are always watching this... ...seems to be very helpful. So I always want to say thank you. To everyone in the new year of 2026, I wish you all a Happy New Year.
+
+<span class="paragraph-timestamp" data-ts="1:11:15">1:11:15</span> **Seonghyun Kim** Yes, I haven't been on this podcast for a full year, but I was still grateful to be able to participate continuously.
+
+And regarding 2025, we talked about this and that, but it was still, technologically, a very interesting year, I think. In the new year of 2026, I wish you a Happy New Year, and I hope you stay healthy.
+
+<span class="paragraph-timestamp" data-ts="1:11:33">1:11:33</span> **Chester Roh** Everyone, stay healthy, and we'll see you in the new year.
+
+<span class="paragraph-timestamp" data-ts="1:11:36">1:11:36</span> **Seungjoon Choi** We'll see you in the new year.
+
+<span class="paragraph-timestamp" data-ts="1:11:38">1:11:38</span> **Chester Roh** Yes, great work, everyone.

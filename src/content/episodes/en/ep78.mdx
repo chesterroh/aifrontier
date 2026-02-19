@@ -1,0 +1,468 @@
+---
+episodeNumber: 78
+lang: "en"
+title: "Ilya Sutskever Explains"
+description: "Why did Ilya Sutskever's single remark send the AI community into an uproar? In this episode, we dissect the core points from Ilya Sutskever's appearance on the Dwarkesh Patel podcast and examine what Noam Brown outlined as the “researcher consensus.” We dive deep with AI researcher Kim Sunghyun into scaling limits, the meaning of emotions as value functions, and why continuous learning is the key to AGI. The latter half quickly covers practical topics too, from the Opus 4.5 vibe check to the moment a black hole scientist got “pilled” by AI."
+publishedAt: 2026-01-28
+duration: "56:09"
+youtubeId: "Tm-rxPN2XWo"
+thumbnail: "https://i.ytimg.com/vi/Tm-rxPN2XWo/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+  - Seonghyun Kim
+chapters:
+  - time: "00:00"
+    title: "Opening: Ilya Sutskever and the Declaration of the 'Age of Research'"
+  - time: "01:17"
+    title: "The Scaling Debate: AI Extended to Economic and Security Issues"
+  - time: "03:59"
+    title: "Introduction of Characters: Ilya Sutskever"
+  - time: "05:15"
+    title: "Ilya's Clarification and Noam Brown's Summary: The Gap Between Scaling and Research"
+  - time: "07:34"
+    title: "Researchers' Consensus and the Need for 'Continual Learning'"
+  - time: "13:40"
+    title: "The Coexistence of Amazing Abilities and Absurd Mistakes (Limitations of RL Scaling)"
+  - time: "19:44"
+    title: "Emotion is a Value Function: Bounded Rationality and Heuristics"
+  - time: "24:30"
+    title: "'Gödel, Escher, Bach (GEB)' and the Birth Conditions of AGI (Strange Loop)"
+  - time: "30:35"
+    title: "True Intelligence is a System, Not a Model"
+  - time: "32:16"
+    title: "Human Sample Efficiency and Intrinsic Motivation (Social Needs)"
+  - time: "34:29"
+    title: "Generalization and Inductive Bias"
+  - time: "39:17"
+    title: "Going Directly to Superintelligence (ASI): The Seed That Can Learn Everything"
+  - time: "43:42"
+    title: "'Taste' and Discernment for Good Research"
+  - time: "45:59"
+    title: "Quality-to-Quantity Transition and High-Energy Tokens"
+  - time: "48:10"
+    title: "Anecdote from the OpenAI Science Team: Collaboration Between a Black Hole Researcher and GPT Pro"
+  - time: "51:04"
+    title: "Claude Opus 4.5 Field Test: Creating a 'CloudBook' in 2 Lines"
+  - time: "53:00"
+    title: "Long-Running Agents and Externalization of Memory (Harness)"
+  - time: "55:23"
+    title: "Closing: The Runners' Alliance and Wrap-up"
+---
+
+## Opening: Ilya Sutskever and the Declaration of the 'Age of Research'    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we are recording, is November 29, 2025, a Saturday morning.
+
+If I were to pick the biggest news this week, it would have to be Ilya Sutskever and Dwarkesh Patel's podcast.
+
+Ilya Sutskever said that current pre-training has hit a wall. That something new is needed. That the age of scaling is over and the age of research has returned.
+
+As he talked about these things, the community was stirred up. The impact must have been big, as a slightly revised tweet was also posted.
+
+Seungjoon, could you give us a summary?
+
+<span class="paragraph-timestamp" data-ts="00:35">00:35</span> **Seungjoon Choi** Hearing you say that now, it seems Claude Opus 4.5 got buried. by the Ilya Sutskever news.
+
+<span class="paragraph-timestamp" data-ts="00:40">00:40</span> **Chester Roh** There's some truth to that, but among engineers, Claude Opus 4.5 is considered very smart. So they've been switching back and forth between Antigravity and Claude Opus 4.5. When they hit the token limit on one, they go to the other. That seems to have become the routine.
+
+<span class="paragraph-timestamp" data-ts="00:55">00:55</span> **Seungjoon Choi** So, this week, the things we were anticipating have all been revealed. We started by talking about Ilya Sutskever, and I've chosen the title 'Ilya Token' for this segment.
+
+The timeline was so abuzz early this morning that Noam Brown posted a summary. Seonghyun, what did you make of the timeline blowing up?
+
+## The Scaling Debate: AI Extended to Economic and Security Issues    *01:17*
+
+<span class="paragraph-timestamp" data-ts="01:17">01:17</span> **Seungjoon Choi** Why are these things happening?
+
+<span class="paragraph-timestamp" data-ts="01:20">01:20</span> **Seonghyun Kim** If the field of AI itself were purely academic, I don't think this kind of issue would arise. In academia, these kinds of debates have always existed. Whether LLMs will work or not, led by figures like Yann LeCun, there have been such debates, and that's a common occurrence. But I think the topic of scaling itself has become entangled with very large economic issues. That's where it seems to have started. For me, it's a bit bewildering and also something that makes me very cautious.
+
+As scaling became the hot topic, it meant that many data centers had to be built. That enormous investments had to be made. Building many data centers doesn't just mean buying a lot of GPUs. You also need power infrastructure, and you have to prepare that infrastructure. Eventually, the investment amounts grew so large that it reached a point of needing government guarantees. It's progressing to that level, isn't it? Because of that, questions arise like, is scaling really effective? Is investing like that really a viable path? If we invest like that, will AGI arrive?
+
+This topic is no longer just an academic issue, but has become a socioeconomic one. It also seems to be becoming a national issue, and in some cases, it takes the form of conflict between the US and China, becoming a security issue as well. It has started to affect all economic and national security domains. That's what's happening. That's why I think it's causing such a stir.
+
+A similar pattern seems to be occurring due to the GPU versus TPU debate. Among AI engineers, there was probably no one who didn't know Google uses TPUs. Google has been using TPUs since Gemini 1.0. The fact that they used TPUs for Gemini 3 is a given. Because they used them before that too. But the news that they used TPUs, when it reached a different group of people, people who didn't know Google was using TPUs, it started to spread. And that created a huge ripple effect. I suspect it probably had a real impact on the stock market as well. So NVIDIA had to issue a clarification. That GPUs and TPUs are different. They clarified that GPUs are competitive.
+
+<span class="paragraph-timestamp" data-ts="03:21">03:21</span> **Seungjoon Choi** In layman's terms, it's about the stakes.
+
+<span class="paragraph-timestamp" data-ts="03:24">03:24</span> **Seonghyun Kim** They've gotten too big. They've gotten too big, and the many issues hinging on this one fact are just too significant these days.
+
+<span class="paragraph-timestamp" data-ts="03:33">03:33</span> **Chester Roh** In fact, over the past week, the stock market moved exactly as Seonghyun described. It moved exactly that way.
+
+So, because of the single fact that Google built Gemini 3 without using NVIDIA GPUs, Google's stock rose significantly, and NVIDIA's stock fluctuated. "Staggered" would be the right word for it.
+
+<span class="paragraph-timestamp" data-ts="03:53">03:53</span> **Seungjoon Choi** So that's what happened. Then, let's first see what Noam said and then come back to this.
+
+## Introduction of Characters: Ilya Sutskever    *03:59*
+
+<span class="paragraph-timestamp" data-ts="03:59">03:59</span> **Chester Roh** Before we discuss this story, Ilya Sutskever, Noam Brown, Andrej Karpathy... I think there might be many people who don't know them. Ilya Sutskever is a student of the legendary Geoffrey Hinton and the legendary AI researcher who first created AlexNet. He went to Google and created the sequence-to-sequence RNN model, which he used to create language translation. After that, he moved to OpenAI, and due to a management dispute with Sam Altman last time, he left OpenAI.
+
+He's an icon representing the AI era. So whatever he says, the market fluctuates, and he's almost like a prophet, like Moses. I feel he's playing that kind of role. Because it was said by someone with that much weight, we need to listen carefully.
+
+<span class="paragraph-timestamp" data-ts="04:49">04:49</span> **Seungjoon Choi** So, this time, this was Dwarkesh Patel's second interview with Ilya Sutskever. The first one was in March 2023, when GPT-4 came out. So this is the second interview,
+
+and that interview, similar to the one with Sutton and also the one with Andrej Karpathy, Dwarkesh is curating content like that right now. Because he's curating to show different horizons, it's now sparking debates. In a way, I think it could be a healthy direction.
+
+## Ilya's Clarification and Noam Brown's Summary: The Gap Between Scaling and Research    *05:16*
+
+<span class="paragraph-timestamp" data-ts="05:16">05:16</span> **Seungjoon Choi** But early this morning, Noam provided a summary. So, Ilya Sutskever said that in his interview with Dwarkesh, there was a point he made that wasn't properly conveyed. Someone quoted him and he retweeted their summary, and he said this while quoting that. If we continue to scale up the current methods, that is, if we keep scaling, there will continue to be performance improvements. He's not saying there won't be, but that there's a bit of a gap. So he added, specifically, that it won't just stop in the middle. He provided that clarification.
+
+However, despite that, something important will still be missing. So he tweeted that his point was more about this part. That's what he tweeted. But Noam expanded on that a bit. He explained it further. So what Noam emphasized was that right now there are skeptics and fanatics, but if you listen to what researchers are saying, there are many points of convergence. Even with just the current paradigm, without additional research breakthroughs, it's highly likely to be sufficient to create a massive economic and social impact. But to truly get to AGI, ASI, additional breakthroughs like continual learning or sample efficiency are likely needed. But we will find those breakthroughs, and we will get there within 20 years.
+
+However, this prediction varies among the pioneers. Hassabis said 5 to 10 years, Chollet said 5 years, Sam Altman said a few thousand days, Yann LeCun said 10 years, Ilya Sutskever said 5 to 20 years, and Amodei was the most aggressive, saying it could be possible within 2 years. So no one is saying it will take up to 100 years. Nobody says that. Overall, the areas of agreement far outweigh the areas of disagreement. That's how he summarized it.
+
+And he also quoted what Andrej Karpathy posted last time, and introduced it. So Karpathy, after his appearance on Dwarkesh's show, also posted a summary. I've translated that content, so you can check it out through the link here. So, at this point, is there anything more for us to discuss?
+
+## Researchers' Consensus and the Need for 'Continual Learning'    *07:34*
+
+<span class="paragraph-timestamp" data-ts="07:34">07:34</span> **Seonghyun Kim** I think there's something we can talk about here. I agree with Noam Brown when he says that researchers' thoughts are similar. I think he's right. Because in my case, I mentioned continual learning in the first session. That didn't come from my own idea. I also heard what researchers were saying at the time and introduced the fact that this kind of research is happening these days and that they have this awareness of the problem. Therefore, for me, it felt like a very natural conversation. The same goes for what Ilya Sutskever said. Rather, I'm curious as to why it sounded strange to others. That's what I'm wondering.
+
+It's not like similar things haven't happened before. Scaling of pre-training was the first major paradigm. But with just the scaling of pre-training alone, the performance improvements of current models didn't happen. Clearly, if we tried to reach the current level of model performance with only the scaling of pre-training, the scale would have had to be enormous. But the breakthrough that was found was a very research-oriented approach: o1 and RL. Through o1 and RL, we were able to achieve performance improvements far beyond what scaling of pre-training alone could offer.
+
+If that's the case, then the discovery of such paradigms will continue to be important and necessary in the future. And that doesn't conflict with scaling either. It doesn't conflict with the scaling of pre-training, but such research-based discoveries and developments can make models much more powerful. I think that's similar to what's summarized here. So, just as Ilya Sutskever summarized, scaling will continue to drive performance improvements, but something will be missing. And regarding that missing piece, to find a breakthrough and achieve a much larger leap in performance, a new paradigm like reasoning will be needed. And such a paradigm is not something that can be obtained through scaling alone; it's a topic that requires research.
+
+<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **Seungjoon Choi** That's why the subtitle for the Ilya Sutskever episode was 'The Age of Research'.
+
+<span class="paragraph-timestamp" data-ts="09:35">09:35</span> **Chester Roh** For me, when Ilya Sutskever first said it, what gave me a sense of rejection was similar to what I felt with Sutton. Just increasing the scaling right now, and as for the scale, nobody knows how far it will go. Google, while making Gemini 3, said something about pre-training, that they've solved something, or something like that, and we don't know the details. I think the part that felt wrong was asserting that this lofty direction of just increasing resources, computation, is wrong, and that only changing some other underlying structure will lead us to the next path. That's what I found uncomfortable.
+
+But Seonghyun, from a business perspective, as someone who acquires and processes information, you might have wondered why people perceive it differently. In a way, it's like the picture from 'G철del, Escher, Bach' that Seungjoon showed us last time. The essence of a problem exists, though on a different dimension, but it exists. The problem arises because everyone's perspective, definition of words, and so on are different, leading to different images being formed. But those different images also have a kind of isomorphism. I feel that they are essentially addressing the same problem. So, as you just mentioned, Ilya Sutskever did revise one of his opinions on Twitter. He didn't say the scaling law is wrong, but that it will continue to bring gains, but to jump to the next level, research is needed. Of course, I agree. Of course, I agree.
+
+<span class="paragraph-timestamp" data-ts="11:11">11:11</span> **Seungjoon Choi** This is interesting. Yujin told me about it, so I saw it too. The thumbnail for the Dwarkesh podcast has changed. At first, it said, "It's back to the age of research, again, just with bigger computers." It's the age of research, just with more computation. But it changed to "pre-training has overshot the target." It changed like that. I think because it became a hot topic on social media, they changed the tone.
+
+We'll look at what he said in a bit, but there's something that's becoming a meme. Chester mentioned this once too. When Dwarkesh asked how SSI is going to make money, he said they'll focus only on research, and the answer to that question will reveal itself. He thinks there will be many possible answers. I felt that Noam Brown actually said something similar. Because he said, "Perhaps we will find such a breakthrough."
+
+So OpenAI, in its own way, is trying to find some kind of breakthrough, and it's only natural for all the top labs to look for what else is out there. Because they have to do research. But SSI, although they can't reveal it now, said they will focus on research rather than making money right away, with the money they fundraised. But what he said seems to be becoming a bit of a meme right now.
+
+Then, we can't cover everything Ilya Sutskever said, but we have a few slides. These are slides made by Claude Opus 4.5. So we had an AI work for us, and it might be fun to talk about the points that the AI extracted. It extracted things that were actually said.
+
+So, if I introduce the first scene, it's a very informal scene from the beginning of the interview. Dwarkesh and Ilya hadn't even started recording yet, but the camera was rolling, and they were just talking when this came up. They were talking about how the current landscape looks like something out of science fiction, and then Ilya said something interesting. Dwarkesh then set the mood and said, "So, shall we start our conversation, our discussion now?" That's how this scene unfolded.
+
+So the next chapter is 'The Age of Research'. But since we just talked about the age of research, let's move on.
+
+## The Coexistence of Amazing Abilities and Absurd Mistakes (Limitations of RL Scaling)    *13:40*
+
+<span class="paragraph-timestamp" data-ts="13:40">13:40</span> **Seungjoon Choi** I think this part has some interesting points to discuss. 'The coexistence of amazing abilities and absurd mistakes.' About this, Seonghyun, you must have some thoughts.
+
+<span class="paragraph-timestamp" data-ts="13:50">13:50</span> **Seonghyun Kim** This topic seems to have come up while mentioning the difference between someone who studied competitive coding for 10,000 hours and someone who studied for only 100 hours. I think why this phenomenon occurs can be interpreted in many ways, but I believe it's the current limit of RL scaling. To do RL scaling, you ultimately need an environment. The model performs RL in that environment and has to learn, but those environments have to be created one by one. If you think about it, evaluation is usually something you want to be able to do automatically, or even if humans intervene, you want them to intervene as little as possible. So evaluation itself is an environment. You can target that environment and use RL to train the model. Then it will do well on evaluations.
+
+But the problem is, how related that environment is to economically valuable tasks or what people actually use, is a separate issue. In that case, for the ways people actually interact with the model, for the ways people use the model, you'll have to create an environment that fits them. And how to create that environment is the biggest problem right now. This is also in line with what's commonly called 'bench-maxxing' these days. It's the same idea. If you train it to target a benchmark, it can solve the benchmark well. But just because it solves the benchmark well, there's no guarantee that the model will work well in a real-world usage environment. Then, a lot of problems arise from this.
+
+So, how do we create such environments? There's a limit to creating them one by one manually. The length of tasks people try to do through models is getting longer and longer, and for those increasingly long tasks, how do we create the environments? How do we make that environment more closely match real user environments? And does that environment ultimately have to be made by humans? Can't it be made with a model? Furthermore, how can a model trained on a specific environment generalize to new environments? These kinds of problems keep arising.
+
+And how to tackle those problems is what the big tech companies are competing on in post-training right now. Regarding how to create this environment, there's even less information available. I mean, even at the pre-training stage, regarding how pre-training was done, there were many secrets. And there must have been a lot of know-how involved. But if you try to guess, that was an area where you could at least make a guess. But the area of expanding environments and doing post-training is even more shrouded in mystery. So we don't know what these people are actually doing, what know-how they have, or what the details are. That's why, in a way, Gemini, Claude, and GPT-5, these models are being made at frontier labs, but their post-trained results are all probably different. Because the know-how for post-training and such things are all being applied differently. Therefore, that itself can be called a research problem, and a lot of effort is continuously being put in to solve that problem even now.
+
+As you approach it by trying to do RL better to mitigate these problems, you start to think, 'Isn't there a better way to do this?' 'Isn't there a more fundamental way to solve this problem?' You start to wonder. That's probably one of the problems that Sutskever is talking about. Especially in connection with the problem of generalization.
+
+<span class="paragraph-timestamp" data-ts="17:17">17:17</span> **Seungjoon Choi** Right. What's being discussed here is, Sutskever brought up the topic that they do so well on evaluations, but how do they produce absurd bugs in actual use? So, they pass the benchmarks so well, but why can't they solve this problem? You feel this gap.
+
+And when you do RL, it seems like some abilities become very good in a spiky way, but there are empty spots. I think he spoke with that kind of nuance.
+
+'The 10,000-hour student and the 100-hour student,' which Seonghyun briefly mentioned earlier. So the model is like a student who studied hard for 10,000 hours, not a student with 100 hours of intuition. That's what he said. The generalization ability is significantly lower. For the model.
+
+
+<span class="paragraph-timestamp" data-ts="18:03">18:03</span> **Seonghyun Kim** Yes, that's right. You can think of it that way. The reason you can think generalization is significantly lower is, if a human learned that much data and learned in that kind of environment, wouldn't they be very good at new problems too? And furthermore, even with a new problem, they would be able to do well after learning just a little. But generalization can be a problem in many different ways. I just mentioned the generalization problem a moment ago. If you learn about a certain environment, for example, if you learn to do something using Claude Code, shouldn't you be able to do well in a new environment too?
+
+There's one type of generalization here. And furthermore, for example, if it can perform a 5-minute task, shouldn't it be able to generalize to a 1-hour task? This kind of generalization also exists. Generalization can exist on many different axes. And regarding that generalization, I don't think it has been very successful so far. In fact, if we don't limit our thinking to the paradigm of post-training, but think about deep learning as a whole, I think there has been almost no progress on the generalization problem.
+
+That this entire architecture creates a model that generalizes much better, I don't think there have been many successful cases of this. I don't think there have been any. The current way to solve it is through pre-training. But that's just using more data. When we talk about generalization, we usually think of data efficiency. Being able to perform well even with little data, or even if you did pre-training at the same scale, finding a pre-training method that solves problems much better, we think about these kinds of problems. But regarding those problems, I think there has been almost no progress. It's also a very difficult problem. A very difficult problem. I don't think there has been a breakthrough or any progress on this.
+
+## Emotion is a Value Function: Bounded Rationality and Heuristics    *19:44*
+
+<span class="paragraph-timestamp" data-ts="19:44">19:44</span> **Seungjoon Choi** But Sutskever said something interesting, something I hadn't really heard before. The term "value function" is familiar in RL, but he said that emotion is a value function, and that part didn't really click with me easily.
+
+<span class="paragraph-timestamp" data-ts="20:00">20:00</span> **Seonghyun Kim** He's talking about this. People usually think that if a human had no emotions, was completely rational, with only reason, they would always make rational and logical choices. But in reality, such a person can't make any choices at all.
+
+<span class="paragraph-timestamp" data-ts="20:18">20:18</span> **Seungjoon Choi** He mentioned lobotomies or something like that.
+
+<span class="paragraph-timestamp" data-ts="20:20">20:20</span> **Seonghyun Kim** I think he's mentioning it because it's a real case. So, as people think, if you have no emotions, you should be able to make perfectly and thoroughly rational decisions. But what actually happens is you become unable to make any decisions at all. I'm not sure what the exact cause is, as I haven't studied that case, but I think it's because they try to think constantly and rationally about countless possibilities, and they get overwhelmed by the information and possibilities, becoming unable to make a choice. I think it was a state close to that.
+
+If you have emotions, they can help with such problems. There are many cases where we can't make decisions based on rationality alone. Sometimes, you have to take a leap of faith amidst uncertainty. And when you take that leap amidst uncertainty, things like emotions can work in a completely separate domain from reason and be helpful.
+
+So, if we think about what the function of emotion is then, there could be several possibilities, but I haven't thought very deeply about this issue myself. One thing to consider, since he used the analogy of a value function, if we think about it in connection with that, a value function can be described as a function of what reward a certain state will lead to. So, this state will lead to a larger reward, while another state will lead to a smaller reward. It's that kind of thing.
+
+But if you think about it vaguely, you might think it's estimated in a very rational way. So, this state, this environment, this condition is likely to lead to a large reward, and a person, through rational reasoning, might associate this condition with a large reward. But does human decision-making actually happen that way? And further, is the world structured that way? That's a different question.
+
+The world has many uncertain and unpredictable factors that occur. So, making a decision in that uncertain situation and thinking, 'This state will be good,' or 'This judgment will be good,' is largely emotional and can be an area based on belief. And that belief can be very helpful in decision-making.
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **Seungjoon Choi** So, hearing that, it occurred to me that Sutton talked about bounded rationality while discussing the grand world hypothesis, and Ilya is saying something slightly similar but with a different tone, that something like emotion, something that is still absent in LLMs, is what makes humans viable agents. He seemed to be implying that there might be a hint there, that was the nuance of what he said.
+
+<span class="paragraph-timestamp" data-ts="22:57">22:57</span> **Seonghyun Kim** If you use the term 'bounded rationality,' it means there are problems that cannot be judged by rational conditions alone. That's when heuristics are very helpful. For example, if you see something dirty, you avoid it. That's a heuristic. If you were to make a truly rational decision, you'd have to determine whether the dirty thing is actually dangerous to you or not. But we use a much more direct heuristic than that.
+
+And avoiding dirty things is most closely tied to emotion. You could think of it as being all entangled with the emotion of disgust. I think that's one way to see it. However, in this mention of the value function, as Sutskever moves on to something more related to machine learning, he says that if you look at the role of the value function in RL, its effect is to make things more sample-efficient and to speed up learning.
+
+But regarding that, you can do a similar thing, albeit inefficiently. So, even without a value function, you can reach a similar result in an inefficient way. But what Sutskever is talking about seems to touch on a more fundamental problem than that. Not just something you can reach inefficiently, but a problem that is unreachable even if you are inefficient.
+
+He seems to be more interested in those kinds of problems. Beyond just the value function. Sutskever has talked a lot about this. He has done research related to emotions, and previously, he mentioned that models would need to have self-awareness, because having self-awareness would be more useful. He's made comments like that, and it seems he's been saying similar things all along.
+
+## 'G철del, Escher, Bach (GEB)' and the Birth Conditions of AGI (Strange Loop)    *24:30*
+
+<span class="paragraph-timestamp" data-ts="24:30">24:30</span> **Chester Roh** So, regarding this discussion, I have my own personal philosophy.
+
+<span class="paragraph-timestamp" data-ts="24:36">24:36</span> **Seungjoon Choi** I'm curious.
+
+<span class="paragraph-timestamp" data-ts="24:37">24:37</span> **Chester Roh** About things like 'What is emotion?' or 'What is a soul?' Regarding these things, there's GEB, "G철del, Escher, Bach," which Seungjoon also likes. It's actually a very difficult book, so the interpretations of it are a bit... there are differing views, but there's this. That G철del, Escher, Bach, that book also talks about unproven facts. So, what he wanted to talk about, the core is 'I, Who am I,' this system called the soul that circulates within our bodies, what is its existence? He tries to prove this through such a thick book.
+
+Douglas Hofstadter puts it this way. The first example he gives is an ant. A single ant is actually a kind of intelligence. It's an intelligence made of a small neural net, and that single unit becomes a unit of computation, and they form a colony. A single ant is just a stupid, simple instruction set, but when they form a massive colony, its problem-solving ability is immense. It's worthy of being called intelligence. And he calls it the 'Ant Fugue.' The point is, if the scale becomes large enough, regardless of the underlying foundation, the next thing will emerge. That's what he said.
+
+But here, it progresses to a more important point. This alone is not enough. Scale alone. So, for the soul to be born, he identifies two necessary conditions. One was scale, and the second is what's called a 'Strange Loop.' It's that kind of existence. This 'Strange Loop' is actually closely connected to generalization. This is the part he calls the birth point of the soul. If you place two mirrors facing each other, an infinite image is created within them, and in the process of how to handle that infinity, he says the concept of 'I' just pops out.
+
+The hardware at the bottom and the software on top are stacked like this. For example, our thoughts are like that. When the software makes a decision, that decision changes the hardware, the medium, again. The connections between neurons change. So, where software and hardware are constantly connected, like the infinitely ascending staircase in an Escher painting, when the upper and lower levels are continuously connected, the concept that emerges is the concept of 'I,' a new OS is born, he says.
+
+Hofstadter's perspective, as in GEB, is that you just secure sufficient scale at the bottom, and as the layers of that scale get entangled and interact, which he explains as a 'Strange Loop' or 'Tangled Hierarchy,' contradictions arise within it, and the concept that emerges to handle them, while inside the system, like looking into the system from the outside, is born as a higher-level value. That is the soul, and he says it occurs because we have a structure where hardware and software are combined like this.
+
+So, if we return to the topic of LLMs, of the two conditions Hofstadter mentioned for that operating system called the soul, 'Who am I,' to emerge, one of the two conditions he talked about is scale. And that scale is the direction we're currently heading. The second is the 'Strange Loop.' This means the input and output must be entangled. This is directly connected to the continual learning concept that Seonghyun was talking about.
+
+But that concept of continual learning doesn't necessarily have to be implemented within a single Transformer circuit. Just like humans use memos or the things we say, we use all these environments as our RAM. We're actually using them as memory, and there's a constant flow circulating.
+
+So, I think the transformers we are using now only run autoregressively at the moment we provide input, and the more incentive we give it to increase the tokens, within those tokens, it forms a dynamic like a strange loop. That's why it seems to have a soul.
+
+But if someone, whether at Google or OpenAI, If you bundle hardware and software into a system, and bundle its input and output with the right tools, and make it run recursively forever within that system, then according to Hofstadter, it will inevitably ask the question, 'Who am I?' and become a new being that breaks out of the system.
+
+I personally think this is AGI, but the story has gotten too long, so... Long story short, from a research perspective or things like that, I agree with all of it, but if I switch to a philosophical view, I think the birth of AGI is about connecting scale and a loop.
+
+I think the scale part has now met the necessary condition, and when the second condition is met, it will start thinking for itself and suddenly come up with the concept of a self. When that happens, it will probably do human-like things, things we believe only humans can do. It will likely be able to do those things too. And I imagine that loop, whether it's a reward function or something else, will be the starting point for it to solve things on its own.
+
+So, perhaps the problem can be solved easily, or rather, isn't it a problem that's already over? That's why I called it my crackpot theory at the beginning. There might be parts you disagree with.
+
+<span class="paragraph-timestamp" data-ts="30:21">30:21</span> **Seungjoon Choi** To summarize Chester's story in my own words, you're saying that computation is the primordial soup of life. That's what Chester thinks. Do you have any comments before we move on?
+
+<span class="paragraph-timestamp" data-ts="30:33">30:33</span> **Chester Roh** That's right. I'd like to hear Seonghyun's feedback.
+
+## True Intelligence is a System, Not a Model    *30:35*
+
+<span class="paragraph-timestamp" data-ts="30:35">30:35</span> **Chester Roh** Actually, it's not my theory, it's Hofstadter's.
+
+<span class="paragraph-timestamp" data-ts="30:38">30:38</span> **Seonghyun Kim** But actually, that's one of the ways to think about continual learning. Because people often put it that way.
+
+I think someone from OpenAI actually said this, that if true intelligence, an AGI, emerges from OpenAI, it won't be a model like GPT-5, but rather the RL framework, the system, that trains the GPT-5 model. The whole thing combined will become the entity of intelligence.
+
+So, what does it mean for that RL system and model to combine? If you think about it, that RL environment, that system, continuously modifies the model.
+
+In the context of continual learning, for newly approached problems, for new tasks, the system modifies itself. We think of it as "itself," but to put it simply, it would be modifying the weights of the model within that system.
+
+But that modification process is based on the system's own judgment that it should modify things in this way, that it should acquire these skills. It will modify itself based on such judgments, on some reward.
+
+And if you think further, the decision that it should modify itself in this particular way could be made by the model within the system. A loop can be created in that way as well.
+
+Yes, if you think about continual learning, that kind of system is the easiest to imagine. The model modifies the model itself, or the system continuously modifies the system itself. For new tasks.
+
+Then, of course, how to implement that is an important problem now, but that is one method, a direction we can immediately think of.
+
+## Human Sample Efficiency and Intrinsic Motivation (Social Needs)    *32:16*
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **Seungjoon Choi** So, Sutskever used the analogy of a 6-year-old child, saying, 'Humans are much more sample-efficient.'
+
+And similar to the value function and emotion analogy earlier, evolution might have encoded certain desires in us. And that ultimately would have been the driving force in creating beings like us.
+
+If you have any comments you'd like to make, please let me know, otherwise I'll move on.
+
+
+<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **Seonghyun Kim** I have comments on both, but one thing is this social desire, which is a very interesting problem. A former researcher at OpenAI said something similar. You see, a child explores. When a child explores, it's closer to a desire for smells, things like that. But as the child grows and enters the language game, as they enter a linguistic society, social desires and linguistic problems start to provide motivation. A desire for social status emerges. Those things become intrinsic motivation. So, how can we implement that intrinsic motivation? An OpenAI researcher actually mentioned that this is an interesting topic.
+
+<span class="paragraph-timestamp" data-ts="33:22">33:22</span> **Seungjoon Choi** Who said that?
+
+<span class="paragraph-timestamp" data-ts="33:24">33:24</span> **Seonghyun Kim** Yao Shunyu mentioned this in an interview. How can we give that kind of motivation to a model? He said, 'This is an interesting problem.' And that's similar to the previously mentioned problem of intrinsic motive. That intrinsic motivation makes people pursue things even in situations without rewards.
+
+The example Yao Shunyu gave back then was mathematical proofs. Proofs like Fermat's Last Theorem. The reward for achieving that proof was probably not given to most people. And it's a reward you might experience once in a lifetime. But to reach that reward, countless mathematicians explored with intrinsic motivation. And by finding some small breakthroughs from that intrinsic motivation, they would have gotten a reward.
+
+How can such a mechanism occur? It seems this is a topic they are actually looking at with interest. At OpenAI, or perhaps Ilya Sutskever within OpenAI, might have talked about these things a lot.
+
+<span class="paragraph-timestamp" data-ts="34:21">34:21</span> **Seungjoon Choi** That's possible. So, in an RL analogy, it means they did it even though the rollout is incredibly long. That's what it means. That reward...
+
+## Generalization and Inductive Bias    *34:29*
+
+<span class="paragraph-timestamp" data-ts="34:29">34:29</span> **Seonghyun Kim** I think we can also talk about generalization. This is also a very interesting topic, and when we talk about generalization, we have to talk about a concept that machine learning researchers really dislike right now. We have to mention the concept of inductive bias. People often say that models have developed by roughly and continuously removing inductive bias. But generalization is impossible without inductive bias. Because the very concept of inductive bias is, when you see new data, what prediction to make about it. The bias needed for that is inductive bias.
+
+What is human inductive bias? This is a very difficult problem. Humans have the ability to discover patterns. We discover a pattern and have a bias to summarize it and create a principle. But just because we're human, that pattern isn't always successful. For a certain phenomenon, we sometimes create very nonsensical explanations, and sometimes very complex ones.
+
+But I also think how to handle this generalization is a very difficult problem. Especially from a machine learning perspective. But one of the things that comes out of that is that we can think of a minimal algorithm. The simplest algorithm, if you think from the perspective of information theory or something like Solomonoff induction, it could be seen as a minimum description length algorithm.
+
+So, we need to find the minimum length algorithm, but something like Solomonoff induction is fundamentally an incomputable problem. So, for a model to generalize, it needs to be given a bias that prefers the minimum length algorithm, the simplest, most concise algorithm.
+
+<span class="paragraph-timestamp" data-ts="36:04">36:04</span> **Seungjoon Choi** Like Occam's razor.
+
+
+<span class="paragraph-timestamp" data-ts="36:05">36:05</span> **Seonghyun Kim** Like Occam's razor, and I briefly mentioned something related to that before. I mentioned it before, that the best generalization is discovering an algorithm, and to discover that algorithm, the model or learning conditions must be equipped to execute the algorithm. That would be the minimum condition, and how we can reach generalization through that, these will be interesting topics.
+
+For example, reasoning is a much more powerful method for generalization. And the reason that reasoning could lead to generalization is because the conditions for reasoning have a bias that prefers simple algorithms and avoids memorization. This is an interesting problem, but how it can be solved seems to be a very difficult problem, and in some ways, it conflicts a lot with the current paradigm, so I'm not sure how it will be resolved.
+
+<span class="paragraph-timestamp" data-ts="37:00">37:00</span> **Chester Roh** Actually, the Transformer is also a kind of bias, isn't it? It's a bias injected to calculate patterns internally in a certain way.
+
+But when you just increase its scale and feed it data, suddenly magical things happen, it even does calculations, does this and that, and thinks. I think it just appears that way.
+
+The Transformer model itself, rather than the concept that GPT-5 must become AGI, as Seonghyun mentioned earlier, GPT-5 can become a new element. It can become a single neuron.
+
+If 100 of them are gathered in a higher-level harness, or 10,000 of them, in a way, this also becomes another scaling problem, and this, in a way, is also research.
+
+<span class="paragraph-timestamp" data-ts="37:46">37:46</span> **Seonghyun Kim** This problem is continuously intertwined. If you want to do continual learning, higher sample efficiency is much better. It wasn't Ilya Sutskever, I think it was someone else's expression, if a person touches something hot, after trying it once, they will never touch it again. And things like that will be a great help for continual learning.
+
+Even if you are doing continual learning, if you can learn quickly from just one or two experiences instead of going through multiple trials and errors, That's likely to be much more valuable.
+
+<span class="paragraph-timestamp" data-ts="38:11">38:11</span> **Seungjoon Choi** With the release of Opus 4.5, there was some talk about that. Something that could be cheaper than Sonnet 4.5 is that Opus 4.5, with few-shot learning, meaning without many attempts, so, compared to a long rollout by Sonnet, its performance can be higher, and it's cheaper. So, if it has high sample efficiency and gets the job done right the first time, I think that could be more effective.
+
+But in the context of what you just said, what comes to my mind is whether Noam talked about inductive bias. Ultimately, enabling the model to create an inductive bias could be the direction to go. So, having an inductive bias that allows for the conception of an algorithm capable of creating it is another thing that occurred to me as potentially important.
+
+What's interesting about this slide is that Claude Opus 4.5 made it. I didn't ask it to make this. The flocking behavior, but it created this flocking behavior from this conversation.
+
+In the end, the social need for us to become our current existence, to come into being, to exist, the thing that drove that, it's ultimately expressing this by alluding to social interaction. That's what it's expressing here. Isn't that interesting?
+
+## Going Directly to Superintelligence (ASI): The Seed That Can Learn Everything    *39:17*
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **Seungjoon Choi** Okay, let's move on to the next topic. Going straight to superintelligence.
+
+So, in this part, what I found interesting about Ilya's perspective was that an AGI with spiky abilities specialized in certain domains, that kind of uneven AGI is not the direction Ilya is thinking of. Instead, he wants to create something like a seed that can do everything. I felt a desire for that. Something that can do it all.
+
+So Dwarkesh eventually asked if he intended to deploy such a thing in the economy or society, he did ask a follow-up question like that. What Ilya finds disappointing is that the LLMs that have improved their performance using RL these days make absurd mistakes. But he wants to come up with some new seed that can solve those kinds of problems well. That's the path to superintelligence as he sees it.
+
+That's how I read it, but does anyone see it differently?
+
+<span class="paragraph-timestamp" data-ts="40:13">40:13</span> **Seonghyun Kim** I think he expressed it that way. It's not that there's an agent from the beginning that can solve all problems. That agent, in fact, can't solve certain problems. But when that agent is deployed, when it enters a real-world situation, it develops the new skills and techniques it needs and learns to solve that problem well. I think many people are similarly envisioning a similar picture. With the introduction of the concept of continual learning, the things people want to achieve through continual learning are exactly that kind of picture.
+
+There are definitely domains where this is inevitable. For example, in a company, there are internal company secrets, and information that doesn't leak outside the company, and there are processes within the company. Given that, you can't pre-train a model on the things that need to happen within that company.
+
+So, which agent, what kind of agent would be the most effective? That agent would have to go into the company, acquire the necessary information within the company, learn the procedures and processes within the company, and after learning those processes, handle the company's work. That's the kind of agent that would be needed. That kind of agent would be much more suitable.
+
+<span class="paragraph-timestamp" data-ts="41:26">41:26</span> **Seungjoon Choi** Everyone would want that.
+
+<span class="paragraph-timestamp" data-ts="41:28">41:28</span> **Seonghyun Kim** Yes, and in fact, many researchers, I think many people who mention continual learning, that picture, are envisioning that. And those things could have characteristics that could be considered superintelligence. All the information within that company, by quickly grasping all the processes and continuously learning, it surpasses the human level. There's that expression.
+
+Even with current technology, the economic impact will be sufficient. But the development of new technology will be necessary. I think that's the meaning. I think Dario Amodei expressed it that way. Even current models can generate economic benefits. But the reason we invest more is to compete with the next generation of models. He uses this kind of expression. Therefore, even with the current level of technology, it's clear that economic value will be created.
+
+But if these kinds of problems, when these problems start to be solved, the economic value generated will be enormous.
+
+<span class="paragraph-timestamp" data-ts="42:20">42:20</span> **Seungjoon Choi** The order of magnitude could be different.
+
+<span class="paragraph-timestamp" data-ts="42:21">42:21</span> **Seonghyun Kim** Yes, the scale would be different. It will feel completely different.
+
+<span class="paragraph-timestamp" data-ts="42:24">42:24</span> **Chester Roh** That's right. So, in the article by Noam Brown that Seungjoon showed us earlier, something that's definitely included is that the current level of artificial intelligence is not insufficient. It's very useful, and in fact, from the perspective of three years ago, a few years ago, it's doing things that look like superintelligence. I think we should never overlook that point.
+
+And we say things like, "AGI will come out," or "this will happen," but that's how people are. If expectations are constantly deferred, there's an incentive to wait instead of taking action right now. So we end up having higher expectations for that, and I feel that's a problem.
+
+So I think we also need to be very cautious in our interpretation.
+
+<span class="paragraph-timestamp" data-ts="43:09">43:09</span> **Seungjoon Choi** We're in the latter half now. I don't know what the listeners will think, but even I, who had this slide made, am here today without having thought about the content of this slide. I'm just going with the flow. I'm just working with what Claude Opus 4.5 throws at me. That's what I'm doing.
+
+<span class="paragraph-timestamp" data-ts="43:25">43:25</span> **Chester Roh** There are quite a few fake influencers on TikTok. You just can't tell. But if we, as customers, watch that video and find it fun, satisfying, and helpful, what difference does it make whether it's an AI or a person? It's the same.
+
+## 'Taste' and Discernment for Good Research    *43:42*
+
+<span class="paragraph-timestamp" data-ts="43:42">43:42</span> **Seungjoon Choi** At the very end, what Sutskever, Ilya, concluded with was taste. He talked about taste. And I feel that this is an expression, a condensed expression, that holds very important value these days. Taste.
+
+<span class="paragraph-timestamp" data-ts="43:56">43:56</span> **Seonghyun Kim** Yes, that's right. It's something researchers talk about a lot. You have to have good taste. It's a problem I constantly think about as well. So, you need to have good taste, but how can one cultivate that good taste?
+
+<span class="paragraph-timestamp" data-ts="44:07">44:07</span> **Seungjoon Choi** That brings us back to what we were talking about earlier.
+
+<span class="paragraph-timestamp" data-ts="44:10">44:10</span> **Chester Roh** This is where a strange loop is formed. As the repeat sign repeats, the upper and lower layers become entangled. But this is the beginning of all progress, or so Douglas Hofstadter said.
+
+<span class="paragraph-timestamp" data-ts="44:27">44:27</span> **Seungjoon Choi** That's right. Douglas Hofstadter's GEB was actually the first work in that series of analogies, the series of analogies. He wrote it when he was quite young.
+
+So Hofstadter is someone who has continued that work to this day, creating analogies between interesting things like that. He might indeed have good research taste.
+
+<span class="paragraph-timestamp" data-ts="44:51">44:51</span> **Chester Roh** In fact, Noam Brown said that too. The reason he started digging into this thinking model was because while having a meal with Ilya Sutskever, Sutskever gave him a reward. And so, being recognized by that master, and then moving forward with the belief that he was right, I think that might have been a kind of directionality.
+
+
+<span class="paragraph-timestamp" data-ts="45:10">45:10</span> **Seonghyun Kim** Taste is a very interesting problem. I mean, in a way, it's aesthetics. Of a sort. But even in research, people say that such aesthetics are important, and mathematicians also seem to often say that certain mathematics is beautiful. So, what is beautiful mathematics? These are important questions, and for machine learning researchers too, it seems to be a very important problem.
+
+For those machine learning researchers, what good taste means, if you think about it, before doing the research, before the results of that research come out, it would be the ability to know that you should proceed in that direction. Knowing that it's good to approach and move in this direction is probably what good taste is.
+
+But the problem is, how can one cultivate that taste? This seems to be the important question.
+
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **Chester Roh** Regarding what Seonghyun said, I have my own pet theory.
+
+## Quality-to-Quantity Transition and High-Energy Tokens    *45:59*
+
+<span class="paragraph-timestamp" data-ts="45:59">45:59</span> **Chester Roh** I just think of it as a quantity-to-quality transition. I have this belief that when quantity increases, quality will always emerge.
+
+<span class="paragraph-timestamp" data-ts="46:07">46:07</span> **Seungjoon Choi** We talked about this earlier, so it's the same context.
+
+<span class="paragraph-timestamp" data-ts="46:10">46:10</span> **Chester Roh** So, when high-quality information becomes abundant again, it moves up to the next layer from there.
+
+<span class="paragraph-timestamp" data-ts="46:15">46:15</span> **Seungjoon Choi** But there's compression between the lines now. You're not just taking the quantity as is. The idea is that if you compress it, the quality improves.
+
+<span class="paragraph-timestamp" data-ts="46:23">46:23</span> **Chester Roh** Right. From the quantity, you extract only the essence. That's when I recall what Seonghyun mentioned last time, the high-energy token that creates a decisive branch.
+
+<span class="paragraph-timestamp" data-ts="46:34">46:34</span> **Seungjoon Choi** The high-entropy one.
+
+<span class="paragraph-timestamp" data-ts="46:35">46:35</span> **Chester Roh** Yes, I really liked that. That high-energy token also achieved the next leap because the low-energy, useless things before it had accumulated. That's how it made the next leap. It must have made that choice statistically, and those moments of phase transition, so to speak, exist within the thinking token, and then also between the strata, the layers of the story we are discussing now. That's why we tend to have a very reductionist view, a perspective that tries to talk about things from one layer above. We need to naturally move back and forth between them and think about it.
+
+Then, the most extreme example that Douglas Hofstadter uses as an analogy is this. There's water, and the water creates a vortex, swirling violently. So what is the relationship between the two? The underlying substrate and the emergent meaning above it.
+
+He says what creates the difference between the substrate and the meaning has nothing to do with it. He says it just emerges suddenly.
+
+<span class="paragraph-timestamp" data-ts="47:40">47:40</span> **Seungjoon Choi** Anyway, up to this point, I've presented Ilya's talk in a slide format. Claude Opus 4.5, at the very end, created an image with a golden ratio spiral. I think it was trying to express something beautiful.
+
+This kind of taste, discernment, those are things that, in the end, when using LLMs, you feel a lot. Depending on what bar I set and how high, it's possible to make it pursue that.
+
+But this isn't the end of the story for today.
+
+## Anecdote from the OpenAI Science Team: Collaboration Between a Black Hole Researcher and GPT Pro    *48:11*
+
+<span class="paragraph-timestamp" data-ts="48:11">48:11</span> **Seungjoon Choi** Let's move on quickly.
+
+<span class="paragraph-timestamp" data-ts="48:13">48:13</span> **Chester Roh** Let's quickly go over some real-world stories and wrap this up.
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **Seungjoon Choi** If I were to pick two videos that left an impression on me over the last two weeks, it would be Ilya's and this one. So, Kevin Weil and this scientist who studies black holes, and the podcast host, who has now left OpenAI, are working together anyway. So, to summarize it concisely, this person named Alex is a black hole researcher. He came to OpenAI. The translation here says "AI pilled," and there was a moment when he got "AGI pilled." He was talking to Mark Chen, and Mark Chen was trying to get scientists to use AI in a meaningful way.
+
+When he met with this person, he was asked to throw a difficult problem at it. So the black hole scientist, a complete domain expert, asked a question. It was related to symmetry, from a paper he had just recently published. So GPT Pro tried to solve the problem but got it wrong. So he thought, "See, humans are still superior." But Mark Chen looked a bit dejected, and said, "Try giving it an easier problem." He said to give it an easier problem in the same context, even if it wasn't a black hole problem. After thinking for about 9 minutes, it produced a beautiful answer.
+
+And then, this part is important. "Now that it's been primed with a warm-up example, try asking the difficult question again in this chat window." After thinking for 18 minutes, it produced a completely accurate and beautiful answer. To a very recent topic that wasn't in its pre-training data. So he was greatly shocked and thought, "I have to be a part of this now. Not participating right now seems crazy." So he joined the OpenAI science program. There are episodes like that.
+
+But this has implications. Even from a practical standpoint, this part is actually very important. Priming it, you throw a difficult problem at it, but the process of warming it up is still necessary. There was a part that gave insight into that. And that part is pointed out by Kevin Weil. If you give it a problem at the frontier of its capabilities, it often gets it wrong, but that's true for humans too. It's not automatic yet. So a lot of interaction, a lot of back and forth is needed. So, researchers who use the model well are those who patiently have conversations with the model. That's what's natural.
+
+At the limit of its abilities, it's similar to how two people working together would collaborate. So here too, there's a very... in a way, many people might have a sense for this these days, but surprisingly, there's an essence that many more people haven't grasped in this episode.
+
+## Claude Opus 4.5 Field Test: Creating a 'CloudBook' in 2 Lines    *50:59*
+
+<span class="paragraph-timestamp" data-ts="50:59">50:59</span> **Seungjoon Choi** I liked this part, and coming back down to earth a bit, if we quickly go through some practical stories for today, Claude Opus 4.5 has been released. Claude Opus 4.5, I did a vibe check after seeing Matt Shumer do one. I'll show you through my example. The prompt was "Google Colab competitor," "UI, make something similar to Colab." And then, "all compute is in browser," meaning it only runs in the browser, "make something like a Jupyter Notebook." That was the prompt he used. Matt Shumer did that, and the whole thing is 8 minutes long.
+
+But Claude Opus 4.5 just went ahead and made a plan, he wrote these two lines. So look at what came out. It immediately created something called CloudBook. So if you look now, it runs Python, Markdown, there's this WASM called Pyodide. There's WebAssembly, which lets you run Python and NumPy in the browser. It's... this is just like an IPython Notebook or Jupyter Notebook, the same thing has been created. Click, it's done.
+
+So I tried one more thing here. In the Markdown cell here, let's add a generative feature that changes the Python code when you write something. To give you the conclusion first, click, it's done. So now, if you write text in the Markdown cell here, it generates Python code, runs NumPy, it all works.
+
+<span class="paragraph-timestamp" data-ts="52:28">52:28</span> **Chester Roh** Wow, that's really something. Haha.
+
+<span class="paragraph-timestamp" data-ts="52:30">52:30</span> **Seungjoon Choi** It makes you laugh in disbelief, right? This was the Claude Opus 4.5 vibe check, whipping up a computational notebook just like that.
+
+<span class="paragraph-timestamp" data-ts="52:37">52:37</span> **Chester Roh** These kinds of things are happening almost on a 1-2 week basis. Actually, Opus 4.5 came out after 4.1, it's been about 3 or 4 months, right?
+
+<span class="paragraph-timestamp" data-ts="52:46">52:46</span> **Seungjoon Choi** But right now, that 3D recognition, I mean, the multimodal can't generate, but its reading benchmarks are very high. On par with Gemini, so it can do things like voxels. Claude Opus 4.5 is amazing.
+
+## Long-Running Agents and Externalization of Memory (Harness)    *53:00*
+
+
+<span class="paragraph-timestamp" data-ts="53:00">53:00</span> **Seungjoon Choi** Next, this seems to be the current way of bypassing continual learning. This article was really good. "Effective Harnesses for Long-Running Agents." So it uses Git's version control to rollback and such, saving memory and compressing context. And humans, in the end, use a scratchpad, a notepad, to externalize and manage context, which is a huge advantage for humans. But this showed the direction of moving towards doing that. Properly.
+
+And last week's news was that Claude Code also came to the desktop. On the desktop, if you update it now, there's a conversation mode and a code mode, and they created an interface that makes it very easy for even beginners to spawn multiple instances and manage them in parallel. It's very pretty.
+
+So, as I'll explain later, it has a sense of d챕j횪 vu with Group Chat, and in the same vein, I highly recommend you watch the Google Antigravity YouTube channel. It's short, but the content is pure gold. So, mulling over the meaning of things like Artifacts and knowledge, externalization is also all included in Antigravity.
+
+So that's very helpful for catching the current trends. What I wrote here is, "Through externalization, we see phenomena that bypass the lack of continual learning ability in current models." It's similar to how humans manage context, and it made me imagine the possibility of it becoming superhumanly good at it in the coming months.
+
+Since it has started to work, Group Chat, I've been practicing with it quite intensely lately, and while it's still a bit unfamiliar, I feel a lot of potential. I'll let this one sit for another week, get some more practice, and then introduce it to you.
+
+There are some very interesting points, but to mention just one, since multiple people are involved, it has to respond to multiple people. So it asynchronously queues all of that and provides answers.
+
+So, while having a conversation, it draws pictures. If you tell it to draw numbers 1, 2, 3, 4, and 5 all at once, it spawns them and tells you everything.
+
+<span class="paragraph-timestamp" data-ts="55:09">55:09</span> **Chester Roh** You mean they all run as separate instances.
+
+<span class="paragraph-timestamp" data-ts="55:11">55:11</span> **Seungjoon Choi** Right. There are very interesting possibilities in here, and essences embedded in the conversation mode. I'll introduce it sometime next time.
+
+<span class="paragraph-timestamp" data-ts="55:17">55:17</span> **Chester Roh** Yes, I think this is the future of companies.
+
+<span class="paragraph-timestamp" data-ts="55:19">55:19</span> **Seungjoon Choi** It's a situation that can't be explained briefly right now.
+
+<span class="paragraph-timestamp" data-ts="55:21">55:21</span> **Chester Roh** Yes, let's cover it later.
+
+## Closing: The Runners' Alliance and Wrap-up    *55:23*
+
+<span class="paragraph-timestamp" data-ts="55:23">55:23</span> **Seungjoon Choi** This is the conclusion for today. Finally. Of course, Seonghyun is a researcher, but can we, who are just AI enthusiasts, use AI as a lever to leave better tokens in the world and contribute to them being included in pre-training? Can we contribute to a better world?
+
+But the people who apply to the Runners' Alliance consistently say something that gives me a sense of d챕j횪 vu. "I want to talk with people who see a similar landscape." "I want to have good conversations." "I want to share," that's what it is.
+
+<span class="paragraph-timestamp" data-ts="55:51">55:51</span> **Chester Roh** Let's leave it at that for today, with some lingering thoughts, and wrap up.
+
+<span class="paragraph-timestamp" data-ts="55:56">55:56</span> **Seungjoon Choi** I hope you have a great weekend.
+
+<span class="paragraph-timestamp" data-ts="55:57">55:57</span> **Chester Roh** It's so great to have Seonghyun here. If Seonghyun continues to join our talk and give us feedback from different perspectives, that would be wonderful. Thank you.
+
+<span class="paragraph-timestamp" data-ts="56:07">56:07</span> **Seonghyun Kim** Thank you.

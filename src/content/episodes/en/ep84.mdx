@@ -1,0 +1,627 @@
+---
+episodeNumber: 84
+lang: "en"
+title: "Let's Explore Physical AI: with Jong Hyun Park (sudoremove)"
+description: "Explore why Physical AI and Vision-Language-Action (VLA) models are at the forefront of robotics today with Jong Hyun Park from sudoremove, examining the latest demonstrations from Boston Dynamics' Atlas to Figure's Helix and tactile-enabled systems. Discover what's driving the shift from \"impossible to possible\" and dive deep into the fundamental challenge of scaling robot action data—and the strategies like teleoperation, simulation, and data augmentation being used to solve it. We discuss how far robot foundation models might go and what opportunities lie ahead in this emerging market."
+publishedAt: 2026-02-11
+duration: "1:24:02"
+youtubeId: "MZdhBBvUmvU"
+thumbnail: "https://i.ytimg.com/vi/MZdhBBvUmvU/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Jong Hyun Park
+chapters:
+  - time: "00:00"
+    title: "Intro and Guest Introduction: Jong Hyun Park (sudoremove)"
+  - time: "02:26"
+    title: "Latest Robot Demo: Boston Dynamics Atlas and the Meaning of Intelligence"
+  - time: "05:14"
+    title: "VTLA with Tactile Sense: Sharpa CraftNet"
+  - time: "06:12"
+    title: "Figure Helix: The Emergence of End-to-End Control"
+  - time: "08:17"
+    title: "Definition and Scope of Physical AI"
+  - time: "10:49"
+    title: "The Era of Making the Impossible Possible: Folding Laundry and Deformable Objects"
+  - time: "14:45"
+    title: "From Specialist to Generalist: Robot Foundation Model"
+  - time: "17:53"
+    title: "Physical Intelligence π0.5: Generalization Demo"
+  - time: "19:55"
+    title: "VLA Terminology: RFM, VLA, LBM"
+  - time: "24:01"
+    title: "Key Bottleneck: Action Data Is Not on the Internet"
+  - time: "25:55"
+    title: "The Reality of Data Collection: Teleoperation and Various Approaches"
+  - time: "29:20"
+    title: "Simulation-Based Approach: NVIDIA Cosmos and the Sim-to-Real Gap"
+  - time: "38:46"
+    title: "Scaling Law and Timeline Outlook"
+  - time: "44:04"
+    title: "Convergent Evolution of VLA Models and Remaining Debates"
+  - time: "48:04"
+    title: "VLA Genealogy: System 1/2 Architecture"
+  - time: "55:59"
+    title: "Continuous Action and Diffusion-Based Approaches"
+  - time: "01:03:48"
+    title: "What is Physical Intelligence: Moravec's Paradox"
+  - time: "01:14:27"
+    title: "Business Direction: Community Strategy and Game Simulation"
+  - time: "01:17:10"
+    title: "Introduction Guide: LeRobot, Physical Intelligence Paper"
+  - time: "01:19:45"
+    title: "The Future of Robots Entering Our Lives and Closing"
+---
+
+## Intro and Guest Introduction: Jong Hyun Park (sudoremove)    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording this, is January 31st, 2026, a Saturday morning.
+
+Today I've invited someone from a channel I really love and have been watching so much lately. We have Jong Hyun from the sudoremove channel here with us.
+
+Jong Hyun and I have had several meetings, and our biggest interest right now is Physical AI.
+
+Every time we meet, he keeps telling us about the opportunities he sees in Physical AI, and he's been continuously tracking this space.
+
+So today, through Jong Hyun, we're going to learn about the fundamentals of VLA, what's happening in this space, what it looks like under the hood, and what are the things we need to think about.
+
+We'd like to hear about all of these topics. We've invited him as our instructor today. Welcome.
+
+<span class="paragraph-timestamp" data-ts="00:48">00:48</span> **Jong Hyun Park** Hello. First of all, I'm no instructor. I'm the one learning a lot. I always tell everyone that we're all fellow travelers on this journey together, because I have many shortcomings myself. First, in our case, I think it's been about a year for me.
+
+About a year ago, I was diligently following up on LLMs, and when DeepSeek R1 came out, I was building reasoning models myself, doing that kind of work. That's when I first tried running a VLA and thought, "Oh, this actually has potential."
+
+And looking back on last year, this keyword "Physical AI" seems to have gained a lot of traction in the media. Honestly, I think it's because NVIDIA pushed it, but if you think about why this keyword is trending— LLMs have entered our world, and we're thinking that the era of AGI seems like it's coming. But if you break down intelligence a bit more, the things LLMs are doing are mostly focused on coding, math, reasoning— those kinds of areas. But we've noticed that this kind of intelligence and the intelligence for performing physical actions are somewhat different as we've been following this space.
+
+So regarding this physical intelligence— the intellectual activities that existing LLMs are solving, I've arbitrarily categorized as "Cognitive Intelligence," and alongside that, Physical Intelligence— what are its characteristics, and how are we tackling it? Let's talk about these things.
+
+<span class="paragraph-timestamp" data-ts="02:24">02:24</span> **Chester Roh** I think today's going to be really fun.
+
+## Latest Robot Demo: Boston Dynamics Atlas and the Meaning of Intelligence    *02:26*
+
+<span class="paragraph-timestamp" data-ts="02:26">02:26</span> **Jong Hyun Park** First, let's start with demos, but since many of you are listening via podcast— there are a lot of videos involved, robotics has a lot of videos, so if possible I'd recommend watching on screen.
+
+First, this is the demo from this CES that was the hottest. This wasn't just big in Korea— the hottest demo worldwide was this one from Boston Dynamics' Atlas, a humanoid that showed movements like this.
+
+<span class="paragraph-timestamp" data-ts="02:56">02:56</span> **Chester Roh** It was impressive.
+
+
+<span class="paragraph-timestamp" data-ts="02:57">02:57</span> **Jong Hyun Park** This was especially the most popular motion, I think. These human-like, wave-like movements and the new body design— showing all of this, the stock price of its parent company Hyundai actually surged. It got a lot of attention, but if you look at these actions and think, "What kind of intelligence is really behind this?"— when I think about it, it hasn't been publicly disclosed so we can't be sure, but I actually think there isn't much intelligence involved. If you look at the demo, it just stands up, walks, and performs the same motions.
+
+So this is different from something that adapts—like doing this when this happens, doing that when that happens, suddenly balancing when about to fall, or catching any object thrown at it with its hands. So I don't think it's the kind of intelligence-driven part that we've been learning about before. However, the body itself is so impressive that people took notice.
+
+But this Boston Dynamics Atlas— although at this CES demo they didn't show demos requiring that kind of intelligence, there was research that came out last year. Using this Atlas, they demonstrated tasks that can only be performed with intelligence. It's actually doing physical labor. What requires intelligence is— things are just lying around randomly over there. So you don't know what object will need what kind of interaction, but it performs actions adapted to all those situations. And being Boston Dynamics, they poke at it with a hockey stick. No matter how much they harass it, it handles everything on its own.
+
+This is actually really easy for humans, but covering all these dynamic situations was something that originally couldn't be done. It seems like this is now becoming possible. So no matter what object is there, it grabs it, folds it, and does the labor.
+
+The system running this Atlas in this configuration uses a model called LBM. It's similar to VLA. Although the parent company is Hyundai, this was done in collaboration with Toyota Research Institute to create LBM, and the demo was running this model on the robot. In any case, these things ultimately require intelligence, and they're starting to emerge one by one.
+
+## VTLA with Tactile Sense: Sharpa CraftNet    *05:15*
+
+<span class="paragraph-timestamp" data-ts="05:15">05:15</span> **Jong Hyun Park** So among the robots and models that came out at this CES, the one we found most impressive was this company called Sharpa—I'd never heard of them either. They released a VLA called CraftNet, and what they demonstrated with it was dealing playing cards like this.
+
+From what I can tell, this is probably the first demo— a hand dealing playing cards. This CraftNet thing, which I called a VLA, they gave it yet another name. They call it VTLA, which includes tactile—it's a demo with tactile sensing.
+
+If you look at the earlier demo, there's one where it folds a pinwheel like origami. Without tactile sensing, this is quite a difficult demo to perform. Receiving tactile input as well— using vision, language, and tactile feedback to generate actions—models like this are starting to emerge for the first time. I think that's where we are right now.
+
+## Figure Helix: The Emergence of End-to-End Control    *06:12*
+
+<span class="paragraph-timestamp" data-ts="06:12">06:12</span> **Jong Hyun Park** To look at one more fresh body demo— Figure, a company that's received quite a lot of funding, uploaded this model called Helix just last week, and they just have it working in a kitchen. It walks around, picks up objects, and organizes things— that's what it does. But one thing I want to point out here— let me show this just once. Seeing it bump things in with its hip like that, I thought, "Wow, they really trained this to act like a human." This demo is labeled as autonomous. But if I think about it a little— honestly, compared to doing it with teleoperation, this demo is about 4 minutes long.
+
+A demo that's just under 4 minutes, and lifting things with the foot and all— this is what we say: A 4-minute demo is no different from advanced teleoperation. If we just do teleoperation hundreds of times, collect motion data exactly like that, and train on it, it's honestly not that different— that's what we say. But still, it's impressive. The fact that they made a model where full-body teleoperation moves like a human—that in itself is remarkable. Okay, so that's about it. What they wanted to show off was that 4 minutes is still a pretty long continuous sequence of actions completed, and what surprised people was seeing it bump with its hip or lift things with its foot— showing these human-like behaviors. And what they also wanted to highlight was that about 100,000 lines of code— written in C++— that kind of low-level control was all just replaced end-to-end by the model. This is ultimately the same thing that Tesla's FSD wants to brag about in self-driving, right? Code disappears with end-to-end. All the rule-based logic gets eliminated. That seems to be the direction things are heading.
+
+<span class="paragraph-timestamp" data-ts="08:03">08:03</span> **Chester Roh** That's exactly the trajectory Tesla demonstrated. That same path.
+
+<span class="paragraph-timestamp" data-ts="08:08">08:08</span> **Jong Hyun Park** It seems like robots are going down that exact same road. Anyway, up to here we've taken a quick look at the latest demos.
+
+## Definition and Scope of Physical AI    *08:17*
+
+<span class="paragraph-timestamp" data-ts="08:17">08:17</span> **Jong Hyun Park** So this keyword "Physical AI" is being used so widely out there, but for today let's narrow the definition of Physical AI a bit and establish what we'll be referring to. So what I think Physical AI is— all the rule-based logic that used to be written before, I think those will disappear. Just as Helix claimed, through end-to-end learning, intelligence that covers all sorts of unstructured situations— real physical intelligence coming in— something that changes through that process, that's what I want to define as Physical AI. Let me look at this in a bit more detail.
+
+First, the term Physical AI itself has been used by NVIDIA since about two years ago, and in robotics too, they've been saying a ChatGPT moment is coming soon— and I actually think it really is, I agree with that. But NVIDIA seems to be using the term Physical AI in a rather broad sense. Anything that performs physical actions and has AI in it—not just humanoids like these, but robot arms moving around in simulators, or the robots we see a lot at restaurants— the ones that deliver food to your table— they seem to consider all of that as Physical AI.
+
+That's certainly not wrong, but what we're interested in on our channel is rather than those things, it's VLA— or it might not even be VLA. In whatever form, robots that learn end-to-end and can perform general tasks— robots equipped with that kind of intelligence— that's what we'll define as Physical AI for now, and within that scope, we'll have today's discussion.
+
+<span class="paragraph-timestamp" data-ts="10:16">10:16</span> **Chester Roh** Sounds good.
+
+<span class="paragraph-timestamp" data-ts="10:17">10:17</span> **Jong Hyun Park** So why did I define it this way? I feel like there was a clear inflection point. Even before LLMs, there were many things we could call some form of intelligence, but things completely changed after LLMs came out.
+
+Similarly, the implementation of physical intelligence based on LLMs is also completely different, I think. So what's different? Simply put, it's actually the same reason the Physical AI keyword is trending—things that couldn't be done before can now be done.
+
+## The Era of Making the Impossible Possible: Folding Laundry and Deformable Objects    *10:49*
+
+<span class="paragraph-timestamp" data-ts="10:49">10:49</span> **Jong Hyun Park** Things that didn't work in the past. So what couldn't be done before? Things like this couldn't be done. Folding laundry. I actually filmed this myself. So if you watch this demo— if laundry is just laid out, it unfolds the laundry by itself, folds it, neatly arranges it, and does all that. When you think about robots, walking was actually possible even before. Not as well as this, but— walking is, to me, a very small task. Because honestly, the number of joints you need to move isn't that many, and if you think of it as just maintaining balance while walking—
+
+the truth is, even walking doesn't work well when there are uneven surfaces or stairs, or obstacles—responding to all kinds of terrain is really difficult. Like mud in a forest. Laundry is actually the same. If there's intelligence inside this, the walking surface is unstructured. You don't know what will be on the ground. Laundry, moving objects— laundry might seem like nothing special, but it's a completely different problem from moving rigid bodies. What we call these are deformable objects.
+
+First of all, they don't simulate well. It's folding any random piece of clothing, but because clothing is soft and floppy, depending on what motion you make, the shape changes in so many different ways. Being able to cover all these incredibly diverse shapes— for all these enormously varied cases— that's actually a task that requires intelligence, and handling such deformable objects is now becoming possible.
+
+So what else is possible? That Helix we saw earlier—the second version of Helix is what came out this time, and when the first Helix launched, they showed off something like this. It's doing physical labor in logistics— and these are vinyl boxes. These vinyl boxes are deformable. These vinyl boxes are deformable. So simulation doesn't work well either, and it requires way too much computation. And since you don't know what's inside, when we grab it, the shape changes unpredictably. Humans, even without knowing exactly what's inside, handle these things incredibly well. So when these demos started coming out, you could feel that intelligence is being added here too, one by one, and I think that was quite remarkable.
+
+This demo is even an hour long. Short demos can be shown by cherry-picking, but by showing a one-hour demo and saying "this really works," I think it was a case where they proved it. I actually watched nearly the entire hour carefully, and it doesn't succeed every time. It drops things and misses them on the floor in between — that does happen too. Even here, if you look, it's only the upper body. So at this point, it was just the whole upper body operating fully autonomously — that was the logic behind it.
+
+And if I could add just one more thing, this is something I'll talk about later, but ultimately, almost all of these are built on top of LLMs. Today's models have a kind of common sense embedded in LLMs. There's something called World Knowledge, and this common sense works. Previous models had no common sense. Walking doesn't require common sense. But if we say, for example, "pick up the red cup," then even if it's a cup with a completely new and creative shape, if it looks like a cup, we all know it's a cup. But in the past, they didn't know that. So because there's a kind of common sense about what a cup is and what picking up something means, no matter what shape of cup comes along, we can pick them all up. So this kind of common sense is something LLMs acquired by training on internet-scale data, and that's what made this possible. So various companies' approaches are emerging, but we'll look at that again in a little bit.
+
+## From Specialist to Generalist: Robot Foundation Model    *14:40*
+
+<span class="paragraph-timestamp" data-ts="14:40">14:40</span> **Jong Hyun Park** So things that didn't work before now work, and to explain this a bit more, models that were specialists became generalists, becoming general-purpose models that handle every situation. I brought one example from vision — vision and LLMs are all the same. If you think back to the old days, you'd give it an image and ask "what is this?" and there was a separate model that would classify it. When deep learning came into the world, everything was solved with CNNs, but instead of just giving an image and asking "what is this," if you also asked "where is it," you needed a model that detects objects and extracts coordinates — the most famous being YOLO and similar models.
+
+Even now in our video conferences, we can blur the background in Zoom, and even without a chroma key, it can trace the contours of your face and blur the background. That segmentation too — there was a separate model for segmentation. Language was the same way. If you asked for a translation, there was a separate model for translation. If you asked for sentiment analysis to determine whether text is positive or negative, there were separate models for all of that.
+
+But now, both vision and language alike, we don't use separate models like that anymore. You open ChatGPT, throw in an image, ask "what is this," and it roughly figures it out and explains everything well. The distinction between tasks has disappeared. A single model does everything. Whether it's GPT or the LLMs and VLMs we're using heavily — all of these are general models.
+
+It's the same with robots. For a specific body, if you want that body to play pool, you have to code specifically for it or build some rule-based model or do something like that. Even if you want to use it as a barista to make coffee, you have to build it that way. Even if you're assigning the exact same barista tasks, if the body changes, you have to build it again from scratch.
+
+That was the existing logic, but what they're trying to do going forward is have a single model handle any body and any task — do everything. So we can call this a Robot Foundation Model, I think. Since LLMs do all kinds of general tasks, we call them Foundation Models, and we're applying the same concept to the robot side.
+
+So if you ask why this generalist, this general capability became possible, it's because pre-training has scaled up. These days, this Robot Foundation Model is mostly referred to as VLA.
+
+And how VLAs are typically made is they're built from VLMs. You start with an LLM, and then add actions on top of it. So it has common sense. They collect as much data as possible across cross-embodiment — gathering data from all kinds of different robots — train on it, collecting as much data as possible and training on it, just like how scaling laws worked for LLMs. The idea is that if you gather all tasks and train on them, it'll work — it'll become general — these assumptions underlie everything.
+
+## Physical Intelligence π0.5: Generalization Demo    *17:53*
+
+<span class="paragraph-timestamp" data-ts="17:53">17:53</span> **Jong Hyun Park** So when you ask "how far has this gotten," I think Physical Intelligence as a company demonstrated it well. It's called π0.5, a model released last April, and here's what they showed.
+
+In the video, they load the robot and go to a new house. They place the robot in a completely new house and make it work. They have it do dishes — if someone told us to do dishes at someone else's house, we might not know where the sponge is, but we'd look around and find something that looks like a sponge. Even if it looks different, if it looks roughly like a sponge, we find it and do the dishes on our own. It needs to do all this well even in a new environment. So that was the example they showed.
+
+If a similar house looks similar enough, it can go there and do everything. "We've achieved this level of generalization" — I think that's what this demo was showing.
+
+<span class="paragraph-timestamp" data-ts="18:43">18:43</span> **Chester Roh** This Physical Intelligence that made π0 — that's the company founded by Stanford's Professor Chelsea Finn, right?
+
+<span class="paragraph-timestamp" data-ts="18:46">18:46</span> **Jong Hyun Park** That's right. This person here who was having it do tasks next to them is Professor Chelsea Finn.
+
+<span class="paragraph-timestamp" data-ts="18:55">18:55</span> **Chester Roh** Right. I remember that lab making OpenVLA and other things, so that's how I recall it.
+
+<span class="paragraph-timestamp" data-ts="19:01">19:01</span> **Jong Hyun Park** They've done so many things.
+
+Both the models and the methodologies, and the embodiments too — among the founders, there are two from academia, and the most prominent ones are from Stanford and I believe Berkeley. Chelsea Finn and Sergey Levine — these two researchers have contributed so much research to the VLA field.
+
+<span class="paragraph-timestamp" data-ts="19:27">19:27</span> **Chester Roh** Let's keep going. These are changes that happened in roughly the past two years. Back when DeepMind's RT-1, RT-2, and OpenVLA came out, it was still at the toy level, but exactly as you said, just last year — the development during last year was enormous. That's the feeling I have.
+
+<span class="paragraph-timestamp" data-ts="19:47">19:47</span> **Jong Hyun Park** That's right. VLAs really poured out last year.
+
+## VLA Terminology: RFM, VLA, LBM    *19:49*
+
+<span class="paragraph-timestamp" data-ts="19:49">19:49</span> **Jong Hyun Park** So let me briefly organize some terms that might be a bit confusing — I've been using RFM for Robot Foundation Model, VLA for Vision-Language-Action Model, or LBM for Large Behavior Model. I've been using these similar terms interchangeably, so let me organize them just once. First, the most important element identified for creating this physical intelligence, Physical Intelligence, is currently the VLA. The name VLA itself is very straightforward — we have LLMs.
+
+I deliberately brought up SmolLM, which is a specific LLM — it's a project led by HuggingFace. You attach a vision encoder to an LLM to create a VLM. The ChatGPT and other services we're using already look at images — they attached vision to an LLM, giving it eyes. So in SmolLM's case, they attached a vision encoder to create SmolVLM, and it's all out there.
+
+On top of that, you add one more thing: action. You add action, and it becomes SmolVLA. So it's a model where you take an LLM, attach eyes on one side and actions on the other — that's a VLA, and most VLAs are made exactly this way.
+
+So currently, SmolVLA is just one example of a VLA made by HuggingFace, and in this case, the entire recipe from SmolLM to SmolVLM to SmolVLA is fully open and published. So it's a reproducible VLA. However, it's not incredibly good. It's hard to call it a frontier model — since it's HuggingFace's, think of it as something you can follow along and try yourself.
+
+<span class="paragraph-timestamp" data-ts="21:36">21:36</span> **Chester Roh** For our subscribers' understanding, let me organize what "action" means a bit more. There's a robot, and what we usually call the body, or embodiment — depending on its form, motors are attached in different places, some have fingers and so on, but by giving coordinates to those motors, actual actions happen.
+
+Would it be easier to understand if I say it's about outputting those motor coordinates?
+
+<span class="paragraph-timestamp" data-ts="22:08">22:08</span> **Jong Hyun Park** You could express it as the angle of each joint of the robot. Or you could express it as the coordinates of the hand — I think saying "angle" is the easiest way to put it. Humans move through muscles, but robots ultimately have motors inside that rotate, so how many degrees the elbow is extended — all of that is represented as action values.
+
+If we think of an even simpler example, think of it as a game — that makes it easy. Instead of a robot, think of a game character — you press arrow keys. The arrow keys are the action. Go forward, go sideways, extend your arm — those are all actions.
+
+<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **Chester Roh** Great.
+
+<span class="paragraph-timestamp" data-ts="22:51">22:51</span> **Jong Hyun Park** Since we brought up games, let me add just one more thing — they're actively trying to use VLAs in games too. Gaming companies are very interested in this as well. To classify and organize VLAs a bit more, ultimately, the Robot Foundation Model — a general-purpose model for controlling robots — is the goal, and the means to achieve it are what people have been calling VLA, LBM, naming them as they please, but now it seems to be converging under the name VLA.
+
+Alternatively, Robot Foundation Models can be implemented without VLAs, though I haven't introduced those here. You don't necessarily have to build them from LLMs. Since Robot Foundation Models can be implemented in other ways too, there are efforts in that direction as well.
+
+For now, up to this point, VLA and Robot Foundation Model can be considered roughly aligned terms. So when you think about whether this will work well, I think it will, and the reason I'm optimistic is because we've seen LLMs work well. If we do the same thing, shouldn't this work too? — that's simply how I think about it.
+
+## Key Bottleneck: Action Data Is Not on the Internet    *23:59*
+
+<span class="paragraph-timestamp" data-ts="23:59">23:59</span> **Jong Hyun Park** So when you look at why LLMs are smart, in my view, the biggest reason is obviously scaling. And the first part of that is pre-train scaling. Because they've seen all the text on the internet, they have enormous knowledge, and they act based on that knowledge. They're responding based on it. So shouldn't we just scale action the same way? — I think everyone is thinking that way right now.
+
+But if you think about whether it'll actually work, there's a possibility it might not work well — you can point to problems with this approach. Because in the case of LLMs, the data called text — or if you include images, the data called images for this vision problem — is scattered all over the internet. You just grab it and learn from it. So at minimum, you could think they were able to reach around the GPT-3, 3.5 level, but the problem is that action data doesn't exist on the internet.
+
+This action data actually looks like this. Let me show you — this is actual action data logged while a robot is operating. So each camera, like human eyes, is watching from its field of view, and they also attach cameras to the wrists, watching through these screens, and what's at the bottom — that's the action data. These flowing values here are the action values, and these are the angles of each joint. The arm extending and folding — that's what it is. This movement data, this action data, doesn't exist on the internet, don't exist on the internet, so there's nothing to learn from. That's why scaling is difficult.
+
+## The Reality of Data Collection: Teleoperation and Various Approaches    *25:49*
+
+<span class="paragraph-timestamp" data-ts="25:49">25:49</span> **Jong Hyun Park** That's the first problem, and if you ask how to solve it, the simplest method is obviously teleoperation. Teleoperation is— I brought a rather surprising example, I didn't even know something like this existed. This was from 1957. That's about 60 years ago from now. Or is it 70 years? It's been about 70 years, and teleoperation worked this well even back then. Teleoperation is controlling something remotely like this.
+
+A person behind the scenes, in whatever way, operates the robot to perform actions, and you log all of that as-is. Of course, logging wasn't possible back then. It was so long ago that computers and things like that weren't well developed. So the approach is to log the robot's movements from that era exactly as they are, and this is one of the most famous robots— it's a teleoperation system with two arms, and a person controls it while performing tasks. You log this exact situation, and the action data gets stored, and then you train on it. Then similar tasks can all be performed.
+
+So who was doing this and how? Tesla—Tesla said they're collecting this training data through human teleoperation. They're collecting it wearing VR like this. While operating the robot, this kind of footage was released. They were showing it off. "We're running a data factory like this." Reportedly, they're no longer doing it this way. They've moved on to other methods, but anyway, Tesla hired people for this teleoperation data collection— I think it was about 2 years ago. About 2 years ago, they were paying $50 an hour to hire people.
+
+But if you look at the application requirements, your height had to be similar to the robot's. You had to be able to walk for more than 7 hours a day carrying 10 kilograms. They really meant to have people do physical work. But I don't think I could do that. Carrying 10 kilograms and walking for more than 7 hours doesn't seem easy. This kind of teleoperation— we actually tried doing it ourselves in our last live session. I was wearing a Vision Pro like this, and this wasn't an actual robot— I was controlling it in a simulator.
+
+If you actually try doing this, you can get a bit dizzy. Since I'm just screen-capturing what I'm doing in the VR world, this becomes the data. There's the handle-moving task. If you try this, after about 2 hours, your face hurts. And after about 4 hours, you get motion sickness. Working for extended periods is really difficult. And even if you do it for a long time, the data isn't scalable. One per person—one robot, one person, one dataset. So to get data at internet scale— the text data at internet scale that exists in our world today is essentially all the writings every human has produced since the internet was created, aggregated to that level of scale— this just isn't scalable.
+
+Anyway, since teleoperation is so demanding, the research trying to make it even slightly more scalable is this kind of work. Since it wasn't working well, there's something called UMI. It's a research project called UMI, where they created this UI and are logging data like that. It's a way for people to log data much more comfortably, and there are many models trained on action data collected this way. Currently there are other approaches as well, but this is doing teleoperation.
+
+## Simulation-Based Approach: NVIDIA Cosmos and the Sim-to-Real Gap    *29:21*
+
+<span class="paragraph-timestamp" data-ts="29:21">29:21</span> **Jong Hyun Park** This is one of the methods NVIDIA is pushing. With teleoperation like this, they collect data in a simulator just like I showed you earlier. Then what they do is inflate the data. In the simulation, they similarly randomize the robot and make it move around. Then since it's in a simulator, it's fine even if it fails a lot. They collect only the successful data from these attempts. They filter and select. Then they use that to train.
+
+Then these are called trajectories— they diversify the robot's trajectories, and it's not just that— for the same movements, they change things like material, background, lighting, and so on to create more diverse data. So they diversify the situations, and this uses a model called Cosmos, which NVIDIA claims is a world model, to inflate the data. Creating data like this in bulk and scaling it up is one of NVIDIA's approaches.
+
+
+<span class="paragraph-timestamp" data-ts="30:24">30:24</span> **Chester Roh** Exactly. The first part is exactly reinforcement learning, and the latter part is the dataset augmentation we used to see when training ImageNet or CNNs. That's exactly it.
+
+So at this point, since the dataset topic came up—what was it? Earlier we just gave the definitions of LLM, VLM, and VLA and jumped straight to here, so there might be some confusion for some people. What the dataset for that "action" actually is— Jong Hyun showed it earlier on screen with a graph, there's one with 3 cameras attached, and using those 3 cameras for a certain objective— that objective usually comes in as text.
+
+But to carry out that objective, the motors we saw need to move by how many degrees, and the combination of those values represents a position— at the end of the manipulator arm. These are the datasets, and the model is designed to learn from this kind of data.
+
+Just like how a transformer takes words below and produces the next word at the top, this one also takes in images, text, and all of this, and can continuously output actions— there's an architecture for that. That's what Jong Hyun defined as VLA, and in order to train that, the constructed dataset was shown once, and then why that dataset, unlike language data, is hard to obtain, and to get it, simulators, and then hands-on teleoperation in this form— that's how they acquire the dataset— that's how I understand what was explained. Shall we move on to the next stage?
+
+<span class="paragraph-timestamp" data-ts="32:06">32:06</span> **Jong Hyun Park** Let me add a brief explanation on this diagram. It's clearly divided like this—vision and language are the input, and action is the output. So the thing that generates this is the VLA.
+
+<span class="paragraph-timestamp" data-ts="32:18">32:18</span> **Chester Roh** It might appear as task 248, but there's actually text inside it. Right.
+
+<span class="paragraph-timestamp" data-ts="32:22">32:22</span> **Jong Hyun Park** That's right.
+
+<span class="paragraph-timestamp" data-ts="32:24">32:24</span> **Chester Roh** An action like "fold clothes into a certain shape like this"— that would exist. The objective.
+
+You've actually pointed out the most important problem. And the fact that generating the dataset Jong Hyun mentioned is not scalable— that's the biggest problem and opportunity in this market right now, and even companies not the size of NVIDIA but small startups are finding lots of opportunities in this area right now.
+
+<span class="paragraph-timestamp" data-ts="32:55">32:55</span> **Jong Hyun Park** So I didn't list every method here, but for example, Meta has something like glasses. They attach cameras all over the glasses, and tell people to wear them, log data, and perform actions— they release products like that. Then those glasses become a data collection device. First, to capture how humans perform actions— in the case of those glasses, things like hand position, coordinates—even if they can't track individual fingers, there's a machine that automatically captures as much of that as possible.
+
+So it could be in the form of glasses, or it could be in the form of something like Vision Pro, and they're trying to capture data in various ways. One of the approaches I'm most excited about is actually just selling the robots. If robots are sold and data starts circulating, that itself becomes the data.
+
+<span class="paragraph-timestamp" data-ts="33:45">33:45</span> **Chester Roh** Having one form factor that's very cheap.
+
+Actually, the LeRobot from HuggingFace that Jong Hyun worked on and similar things are connected to these initiatives, right? A standardized form factor gets sold, goes out there, and datasets grow in the open domain, and I think there will be many attempts from the community as well.
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **Jong Hyun Park** That's right. HuggingFace is more of a community company than a traditional company. Well, it's a bit ambiguous, but since they're a community-oriented organization, they make robots open source, everything open source— both hardware and software—and they create tutorials, hold events, distribute robots as widely as possible so that all that data gets uploaded to HuggingFace. The model built from the data collected that way—from community data that people uploaded while studying on their own— is SmolVLA. So if you go to the SmolVLA paper, it has all the HuggingFace data repos listed just like a corporate repo. "We built it with this data—we built it with your data." Like that.
+
+And since we're on the topic, let me add just one more thing. Did I have it up? What I'm most excited about is the flywheel. This is something I've used elsewhere. There's a robot called NEO from this company called 1X. This kind of humanoid—you can see here too, they're doing teleoperation, right? They can't do things like this though. This company markets very aggressively. This also features iShowSpeed— probably a YouTuber with close to tens of millions, maybe 100 million subscribers, a streamer—and this NEO robot even appeared on MrBeast's channel. It appeared and did things like baseball human-vs-robot challenges and stuff like that—anyway, they promote hard. They're selling this robot now.
+
+They took pre-orders last year. So I placed an order too, but obviously this robot—since VLA isn't perfect yet— it's hard to do all the housework. So what they say they'll do is, like Tesla, "we'll handle the housework via teleop for you, it'll get better eventually." For now, the ads say folding laundry works perfectly, but for things that don't work, "we'll handle it via teleop." That's what they say.
+
+<span class="paragraph-timestamp" data-ts="35:54">35:54</span> **Chester Roh** That's a really great business model.
+
+First, you push the hardware out there, and since the software isn't ready yet, "we'll have humans do the software part remotely."
+
+In exchange, from what's gained there, the customer actually experiences having their problems solved, and the company gets the dataset, so it's a win-win for both sides—data acquisition happens and real-world problems get solved with immediate business value too.
+
+That's a really good approach.
+
+<span class="paragraph-timestamp" data-ts="36:22">36:22</span> **Jong Hyun Park** That robot is actually scheduled to be deployed this year, and once it's deployed and starts working in homes, data will accumulate scalably— it could become a fairly scalable channel for data accumulation, which is what I'm hoping for. That's why I immediately placed an order too.
+
+<span class="paragraph-timestamp" data-ts="36:37">36:37</span> **Chester Roh** Nice. Tesla actually used exactly this strategy too. First they sold the not-yet-complete FSD, starting with very basic Autopilot functionality, advancing Autopilot—"it only works on highways." Then "it works on expressways too." Then city driving, then rural road driving— they expanded it step by step like that.
+
+Ultimately, it sounds exactly aligned with the original dataset coverage problem that Jong Hyun first mentioned.
+
+<span class="paragraph-timestamp" data-ts="37:08">37:08</span> **Jong Hyun Park** In as many diverse environments as possible. But I think it's a good business model because labor costs actually vary enormously by country, and teleop can be done from countries with very low labor costs. Then robots get deployed in countries with high labor costs, and for the housekeeping work— as long as you have a robot body to substitute, the labor costs from cheaper countries— globally, perhaps physical labor could see its prices equalize, which is a thought that crosses my mind.
+
+<span class="paragraph-timestamp" data-ts="37:38">37:38</span> **Chester Roh** That's also part of the joy that business brings, as opposed to research. It's interesting.
+
+<span class="paragraph-timestamp" data-ts="37:43">37:43</span> **Jong Hyun Park** To summarize, data scaling is so difficult that many companies are making efforts to collect it through various methods. No one knows what the right answer will be. For now, what I'm excited about is that simulation—what NVIDIA is proposing— that simulation. On a larger scale, NVIDIA has a physics simulator called Isaac Sim, and then with world models, rather than a physics simulator, it actually becomes a simulator based on video generation models.
+
+If simulation becomes perfect, you can actually create all the data virtually, so the action scaling problem will be solved. But for now, since there's a gap between simulation and real, this is called the sim-to-real gap.
+
+Bridging this gap is still too difficult, so even NVIDIA mixes different types of data. Teleoperation data, real-world data, synthetic simulation data, and augmented data— they gather and mix all of these for training. But if simulation becomes more sophisticated, this could suddenly be solved— that's what I think.
+
+## Scaling Law and Timeline Outlook    *38:47*
+
+<span class="paragraph-timestamp" data-ts="38:47">38:47</span> **Seungjoon Choi** Is there something similar to a scaling law in this field too? That's one question, and the second is, when scaling does work, there have always been emergent phenomena, so I'm curious whether similar things have been observed in other domains.
+
+<span class="paragraph-timestamp" data-ts="39:01">39:01</span> **Jong Hyun Park** Regarding whether a scaling law applies here, I only wrote the opinions, and Claude did all the research inside, but here's the content and research. For example, there's a company called Generalist founded by some well-known people in the field. They did data scaling massively in the UMI style, collecting as much as they could, gathering everything possible, and found that with more full data—that is, teleoperation data— the more they had, the better it performed. They numerically proved the same kind of law. But the scaling here, since there obviously isn't as much data as for LLMs, isn't at that level of scaling, but the observation is that the more we collect, the better it gets—they observed the same thing.
+
+NVIDIA's GR00T also showed that when they gathered and fed in as much synthetic data as possible, it improved by this much, and Physical Intelligence has similar research as well. It's still in very early stages, but almost every organization building VLAs is saying similar things. It's certain that more data leads to better results. But no one knows how far it can go.
+
+<span class="paragraph-timestamp" data-ts="40:13">40:13</span> **Chester Roh** It's the same story.
+
+<span class="paragraph-timestamp" data-ts="40:15">40:15</span> **Jong Hyun Park** You only know by trying. As for whether such emergence has been observed, to my knowledge, there hasn't been anything particularly special yet.
+
+Currently, for in-distribution cases— meaning the cases we trained on— it almost certainly works, and for out-of-distribution, whether it works well in new environments, that's the big question, and it seems like it partially works so far.
+
+If the scale gets bigger, as you mentioned, whether something emergent will happen— I'm optimistic about it. Because LLMs worked, so this should work too. And humans can do it, so it should be possible. That's about as far as my thinking goes.
+
+<span class="paragraph-timestamp" data-ts="41:01">41:01</span> **Chester Roh** I clearly agree. Our LLMs were the same at first, right? "It can't solve this problem, it can't solve that problem"— it's been a continuous process of breaking through those limits, and now it's like "just give us the benchmarks, we'll handle everything from a single policy"—that's the stage we've reached.
+
+These robot foundation models, if I had to describe where they are, I'd say they're at roughly the GPT-2 stage, and that feels about right.
+
+<span class="paragraph-timestamp" data-ts="41:31">41:31</span> **Jong Hyun Park** Right. It's the stage where generality is first starting to show— that's how we can see it.
+
+<span class="paragraph-timestamp" data-ts="41:36">41:36</span> **Seungjoon Choi** So this is really a matter of timing—when it happens. It's really about how much the momentum has built up and to what extent. Just a general feeling.
+
+<span class="paragraph-timestamp" data-ts="41:45">41:45</span> **Chester Roh** But the market incentives— on the LLM side, there's a sense that it's kind of done, that the big companies have already finished— that perception is dominating right now, and the investment costs are also very high.
+
+So toward Physical AI, Jong Hyun being a good example, extremely smart people are pouring into this space in massive numbers. So capital and talent are meeting here too, and it's just a matter of time—it feels like it's accelerating.
+
+<span class="paragraph-timestamp" data-ts="42:14">42:14</span> **Seungjoon Choi** So we're around the time when GPT-3 is about to come out.
+
+<span class="paragraph-timestamp" data-ts="42:17">42:17</span> **Chester Roh** GPT-3 will come out soon this year, and actually, the ChatGPT moment and what Jong Hyun mentioned earlier— the point where we can call something here a foundation model—I think that might happen within this year.
+
+What's Jong Hyun's timeline prediction? By this summer, I feel like everyone here will be applauding and the atmosphere will be like that. That's my sense.
+
+<span class="paragraph-timestamp" data-ts="42:39">42:39</span> **Jong Hyun Park** It depends on how you define the GPT-3 moment, I think. If you define it as the level where real users can actually use it, then I think it'll be this year.
+
+<span class="paragraph-timestamp" data-ts="42:53">42:53</span> **Chester Roh** This year.
+
+<span class="paragraph-timestamp" data-ts="42:53">42:53</span> **Jong Hyun Park** At the latest, I think it'll be next year. The moment robots are actually deployed and start taking on specific tasks—fairly general tasks— in the market. I also think it'll be this year or next year.
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> **Chester Roh** I don't have exact data on what actual companies are doing. Most companies—it's the same with LLMs, for example. The architectures themselves have converged into a few types, and just like minor variants of Transformers keep emerging, here too, VLA has evolved from the earlier RT-1, RT-2, VLA to the changes introduced by Professor Chelsea Finn's π0, then the changes SmolVLA showed, and then NVIDIA's GR00T which was also released as open source— depending on what hardware you use, if it's smaller hardware, they'd likely use open source, and if it's larger hardware, they'd use bigger models.
+
+Once the model and hardware are decided, is it becoming a problem where you just generate datasets and it mostly works?
+
+Between algorithms and dataset acquisition, what's the ratio, the level of effort invested— what should we roughly expect?
+
+<span class="paragraph-timestamp" data-ts="44:01">44:01</span> **Jong Hyun Park** I don't think I can express it in numbers.
+
+## Convergent Evolution of VLA Models and Remaining Debates    *44:05*
+
+<span class="paragraph-timestamp" data-ts="44:05">44:05</span> **Chester Roh** Just give us your gut feeling.
+
+<span class="paragraph-timestamp" data-ts="44:07">44:07</span> **Jong Hyun Park** Rather than algorithms, the models seem to have converged to some degree. The model architecture— VLA can roughly be built like this. But there seem to be other discussions, unresolved discussions still remaining. For example, is tactile sensing necessary? Or are fingers necessary? Can you just use a gripper? Do you absolutely need five fingers? Or what else might be needed?
+
+The current VLM and VLA structure that came up through LLMs— does this architecture itself truly have no limitations at all? These are much more different-dimensional problems being tackled. So for immediate tasks, I think we can categorize it like this: tasks we can do through teleoperation will definitely work if we just collect enough data.
+
+But there are tasks that can't be done through teleoperation. When I actually try doing the motions myself, for example, when I teleop— let me quickly show you one thing. This is also Physical Intelligence's claim. Whether five fingers are needed for teleoperation— five fingers are quite difficult.
+
+<span class="paragraph-timestamp" data-ts="45:24">45:24</span> **Chester Roh** So each company has complex hardware form factors and positions complex problems as their business focus— we see a lot of that.
+
+So there are companies saying "we solve problems combining five-finger form factor robots with specific domains," but ultimately it could be a problem solvable with just two fingers or a traditional gripper rather than five fingers, and everything changes depending on those differences.
+
+
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **Jong Hyun Park** This is something I actually tried myself— it's my personal challenge. It's assembling gears. I implemented teleoperation myself to assemble gears like this, and I've been trying it, but it really doesn't work. When I thought about why it doesn't work, it's because the holes are too small. It's a precision fit assembly. Mechanical assembly—it doesn't work because I have no tactile feedback.
+
+<span class="paragraph-timestamp" data-ts="46:20">46:20</span> **Chester Roh** Real?
+
+<span class="paragraph-timestamp" data-ts="46:21">46:21</span> **Jong Hyun Park** No, that's in the simulator.
+
+<span class="paragraph-timestamp" data-ts="46:22">46:22</span> **Chester Roh** It's the simulator, right.
+
+<span class="paragraph-timestamp" data-ts="46:24">46:24</span> **Jong Hyun Park** Since I have no tactile feedback, it really doesn't work well. These tasks that require tactile sensing— there are surprisingly many in our world.
+
+Among the things humans do, that I'm personally experiencing. So whether tactile sensing is needed or not— once you move into that problem space, there seem to be companies focused on that. Each company has completely different directions.
+
+First, there are tons of tasks that can be done without tactile sensing. Doing dishes, for example, doesn't require tactile sensing. But for places that say "we're going to solve tasks that require tactile sensing," they're working on problems like how should tactile sensing work, what should the sensors look like.
+
+So coming back to the point—this got a bit long— as for what kind of research each company is doing, everyone seems to be defining their own niche problems differently.
+
+Places that aim to do all human labor— especially academia takes that approach. They seem to be doing a lot of research on tactile sensing. For example, at conferences, about half the talks are about tactile sensing.
+
+But in industry, there don't seem to be that many companies focused on that. They're focused on scaling data— concentrating on areas where they can make money right away.
+
+Most startups seem to be all focused on data, hardware companies are working on making more sophisticated hands and such, and academia is working on tactile sensing or RL— how reinforcement learning can be applied here— that kind of research. I think that's a fair summary.
+
+I was going to get into the questions you raised.
+
+## VLA Genealogy: System 1/2 Architecture    *48:05*
+
+<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **Jong Hyun Park** I want to look at these models. How much research is actually being done on these VLAs— I think looking at models released last year will help us organize things well. I actually organized them in reverse chronological order, most recent first. What you mentioned earlier is RT, right—RT. Google worked hard on this— the Robotics Transformer, meaning they made the Transformer output actions. Since it originated from language, they thought of actions like language. Tokens come out the same way, and each token maps to an individual action, and then it can do these things.
+
+The RT series kept coming out, and in 2024—that's two years ago now. Two years ago, OpenVLA came out. This was the first time the open-source community showed "this is what's possible," I think. The start of VLA— the point when people really started paying attention— the research was already underway, precisely speaking, but I think what got the public interested was π0. When π0 from the company Physical Intelligence came out, the first realization was "oh, this actually works," and π0 eventually led to π0.5 and π0.6 last year.
+
+So looking at models released last year, all these models came out. Figure released Helix, which we saw earlier, NVIDIA released GR00T, Google released Gemini Robotics, HuggingFace put out something like this too, Boston Dynamics released LBM together with Toyota Research, and all these models kept coming out— and there were actually many more beyond these.
+
+But when you look at the convergence point, in 2025, here's what I identified. This is actually an opinion our co-host J had, and I agreed with it— convergent evolution happened. So when you open up almost all the models, they all look similar. The first point is they have a System 1 and System 2 architecture. Seungjoon, I think you talked about this before— Kahneman's Thinking, Fast and Slow. This idea of how human intelligence is structured has been borrowed and embedded into the model architecture.
+
+Let me take a look. GR00T N1.6—this is the version released around fall. You can see it has a System 1 and 2 structure. There's a VLM, and there's a Diffusion Transformer, and the two are combined.
+
+This VLM is essentially the same well-known VLM we all know. The details differ slightly by version, but in this case, it takes vision input and language input, and produces an output. It's the same VLM we know. It looks exactly like GPT. But here, the output can be tokenized, It can be made into tokens, or without tokenization, it can go out in the form of a vector before being generated. It sends the output out like that, and at the end, they attach one Diffusion Transformer, and here, this interpreted result— what I need to do right now, what the environment I'm seeing with my eyes looks like, the result of understanding all this, plus the robot state, my body— what state my body is currently in— takes that as input and produces action tokens.
+
+<span class="paragraph-timestamp" data-ts="51:29">51:29</span> **Chester Roh** When you mentioned hertz up there, between these two, System 1 and System 2, when System 2 outputs one token, System 1 outputs several tens of times more tokens— that's how we should interpret it, right? That the frequencies are different.
+
+<span class="paragraph-timestamp" data-ts="51:45">51:45</span> **Jong Hyun Park** Situation awareness can be done slowly. You only need to do it once every 10 seconds, but actions, for example, need to be extremely fast. Reactions need to be fast so you can maintain balance and not miss things—you can do a lot of things.
+
+Because actions need to be much faster, that's why they separated it this way.
+
+<span class="paragraph-timestamp" data-ts="52:01">52:01</span> **Seungjoon Choi** That's interesting. System 2 comes first.
+
+<span class="paragraph-timestamp" data-ts="52:03">52:03</span> **Jong Hyun Park** They labeled it this way here. Anyway, the numbers are labeled 1, 2 like this, but the big cognition part and the part that needs to react quickly— the point is that action needs to be separated.
+
+<span class="paragraph-timestamp" data-ts="52:14">52:14</span> **Chester Roh** It seems like a slightly different concept from the System 1 and 2 we talk about in LLMs.
+
+<span class="paragraph-timestamp" data-ts="52:20">52:20</span> **Seungjoon Choi** Since intuition is originally on the System 1 side, the fast one is System 1, so that's why it's set up this way. The fact that Diffusion Transformer is used means that ultimately actions are being generated, right?
+
+<span class="paragraph-timestamp" data-ts="52:29">52:29</span> **Jong Hyun Park** The Diffusion Transformer generates the action values.
+
+<span class="paragraph-timestamp" data-ts="52:32">52:32</span> **Seungjoon Choi** In diverse ways, generated with that kind of variety.
+
+<span class="paragraph-timestamp" data-ts="52:35">52:35</span> **Jong Hyun Park** Next, if we look at Figure Helix too—
+
+
+<span class="paragraph-timestamp" data-ts="52:37">52:37</span> **Chester Roh** That part labeled "denoising" is what's different from VLA. OpenVLA just had tokens popping out from a single Transformer model, but this one completely separates the action part and the action portion is changed to a form where actions are generated by a Diffusion model. Right? The diagram turned out well.
+
+<span class="paragraph-timestamp" data-ts="53:02">53:02</span> **Jong Hyun Park** And then Helix is the same thing. Figure Helix also has a System 1 and 2 structure, so it's almost completely identical. But if there's a difference, it's that this one also receives the robot state in System 2— there are detail-level differences like this, but honestly they don't seem that important.
+
+Anyway, this one also has a large model that slowly does situation awareness and receives commands to think, then takes that recognized vector and the component that needs to create actions generates actions quickly at 200Hz.
+
+Gemini Robotics is the same way. Gemini Robotics even here, the top and bottom— they also separated it into System 1 and 2. The model for situation awareness runs in the cloud, and Gemini just runs in the cloud doing situation awareness, looking at situations through vision, also speaking, receiving commands, doing reasoning, writing code— they say it does all of that. It does everything it can, and then sends the interpreted results to a small model that needs to output actions, and that model runs locally.
+
+So Google is thinking of running that big one in the cloud as a business model to sell, I think. By separating it and running the slow part in the cloud, they can use large GPUs instead— since they can use server-grade GPUs, they can make it smarter, and I think it's a good approach.
+
+<span class="paragraph-timestamp" data-ts="54:21">54:21</span> **Chester Roh** The models you're showing now that you showed earlier— the only one that's out in the open domain with a completely open codebase is NVIDIA GR00T, right?
+
+The π model and SmolVLA would naturally be open models, I assume, but they feel like, how should I put it, models with less complexity, and since NVIDIA says it's for humanoid support, it feels like a model with a great deal of coverage— is that the right understanding? Or is that too simplistic?
+
+<span class="paragraph-timestamp" data-ts="54:50">54:50</span> **Jong Hyun Park** I think the targets are a bit different. The reason I introduced these three here is because they have the System 1, 2 structure, so I picked three. NVIDIA GR00T is completely open source, but it's not that large of a model. It's around 3B, 7B—models of that size, and since it's completely open, we can use it well. That's an advantage it has.
+
+In the case of π, it's a closed model, but there is an open version. They've released an open source version, but not everything is open. Anyway, it's open enough for us to use.
+
+Next, as for why the System 1, 2 structure is necessary— this is the story that's both today's beginning and conclusion. Intelligence actually seems to indicate that the two are separated to some degree. Judging situations, deliberating— this cognitive intelligence, and the physical intelligence that needs to react instinctively— aren't they also separated in the human brain? If we come to learn that implementing things this way is the most efficient structure as a Robot Foundation Model, we might conversely learn that our actual brains work the same way— I think it could be an opportunity for that kind of discovery.
+
+<span class="paragraph-timestamp" data-ts="55:57">55:57</span> **Chester Roh** I completely agree.
+
+## Continuous Action and Diffusion-Based Approaches    *55:58*
+
+<span class="paragraph-timestamp" data-ts="55:58">55:58</span> **Jong Hyun Park** The next convergence point is that they output continuous actions. This seems to connect to the question you asked earlier. RT and OpenVLA and those models have discrete action values. Because LLMs are originally Transformers, and LLM outputs are all tokens that are autoregressive and discrete. Words are not continuous at all. But if we think about images too, that's why we generate images a lot with Diffusion. Because images are also continuous. Similarly, actions are actually continuous too.
+
+For example, between "annyeong" and "hello"— between these two tokens, there's nothing in the middle. There's no value of 0.1 "annyeong," 0.9 "hello." Because tokens are discrete. But since actions are continuous, intermediate values all need to exist, so if you look at the behavior of RT-1 and those models, the actions are quite choppy and jerky. So things that require continuous reactions don't work well. Because of that, since actions need to be continuous, many models started referencing Diffusion to figure out how to do this.
+
+The example shown here is this thing called Diffusion Policy— this one isn't Transformer-based, it's just a pure Diffusion model that generates actions. This was one of the early studies that sensationally showed that this actually works well, and now they started combining them. They started attaching Diffusion to Transformers. Just as they attached System 1 and 2, it's continuous and can generate things quickly— but for denoising, you need to know a bit about Diffusion— because denoising needs to be done rapidly in succession, the computation is a bit different. The method. The method is different.
+
+<span class="paragraph-timestamp" data-ts="57:38">57:38</span> **Seungjoon Choi** It doesn't do the denoising all by itself, right?
+
+<span class="paragraph-timestamp" data-ts="57:41">57:41</span> **Jong Hyun Park** This Diffusion Policy does it all by itself.
+
+<span class="paragraph-timestamp" data-ts="57:44">57:44</span> **Seungjoon Choi** It does the full thing?
+
+<span class="paragraph-timestamp" data-ts="57:45">57:45</span> **Jong Hyun Park** This study did, yes. Modern VLAs do it in a mixed fashion.
+
+<span class="paragraph-timestamp" data-ts="57:49">57:49</span> **Chester Roh** Every time the Diffusion runs once, it shows multiple action steps, and even when going to intermediate states, the state keeps changing constantly. It seems like the video is trying to show how multiple states, action states, keep popping out in a constantly overlapping form like that.
+
+<span class="paragraph-timestamp" data-ts="58:08">58:08</span> **Jong Hyun Park** It outputs future actions in rapid succession, but before all those actions are completed, the Diffusion runs again. That's what you're referring to. It does as much as it can.
+
+Because it predicted the future to take actions, but once you actually perform the action, the interaction can change. Then based on those observations, it needs to generate actions again. Humans do the same thing. Things like maintaining balance are all like that. So doing it as fast as possible, as much as you can, is naturally better.
+
+So in the case of π0 as well, it looks like this. A pre-trained VLM— I think this one used PaliGemma. The model is a bit different for each version, so just take a VLM, the kind we know, a commonly used VLM, and attach it behind it— here they named it the "action expert," and here they use an algorithm called Flow Matching, which is similar to Diffusion. They attach the two together, and when input comes in— when commands, language, and camera feed come in— actions come out just like that. It's built the same way like this.
+
+This is NVIDIA GR00T— the previous one was N1.6, and this is N1. They all look similar. This was before System 1 and 2 were separated— in the N1 era, it was set up so VLM feeds directly into the Diffusion Transformer behind it, and this could also be considered a System 1, 2 structure. They just didn't use that terminology back then.
+
+And SmolVLA looks similar too. There's a VLM, and this one takes SmolVLM and attaches an action expert with Flow Matching the same way, producing actions as continuous value outputs. So if you take a quick look at the contents, they all look the same.
+
+So when you look at this, it answers the question you asked earlier. They're all not that different. It doesn't seem like this field is doing all sorts of chaotically diverse research. There are slight differences in details, but—
+
+<span class="paragraph-timestamp" data-ts="1:00:01">1:00:01</span> **Chester Roh** The starting points were each a bit different, but they all converged in this direction. The approach of vision, System 1 and 2— the part handling cognition and the part handling action have diverged.
+
+<span class="paragraph-timestamp" data-ts="1:00:14">1:00:14</span> **Seungjoon Choi** What's interesting is that Diffusion and Transformer are the working principles of the current generation. Since so many things use them, this one too—the trajectory of "this should work," though data and such are still lacking, it gives me the impression of a "this should work" trajectory.
+
+For other examples—
+
+<span class="paragraph-timestamp" data-ts="1:00:34">1:00:34</span> **Chester Roh** More than "this should work," it's "this is working really well."
+
+<span class="paragraph-timestamp" data-ts="1:00:38">1:00:38</span> **Seungjoon Choi** "It's working."
+
+<span class="paragraph-timestamp" data-ts="1:00:40">1:00:40</span> **Jong Hyun Park** I think similarly. Here too, you could see it as "it works."
+
+<span class="paragraph-timestamp" data-ts="1:00:45">1:00:45</span> **Chester Roh** Exactly. This too—"it works."
+
+<span class="paragraph-timestamp" data-ts="1:00:48">1:00:48</span> **Jong Hyun Park** I also think things beyond actions could work— the same thought that other fields could all work too comes to mind as well.
+
+<span class="paragraph-timestamp" data-ts="1:00:54">1:00:54</span> **Seungjoon Choi** Those concepts are transferable.
+
+<span class="paragraph-timestamp" data-ts="1:00:56">1:00:56</span> **Chester Roh** It's just an extension of modality.
+
+<span class="paragraph-timestamp" data-ts="1:01:00">1:01:00</span> **Jong Hyun Park** And looking at the two that came out this year, the ones I explained in the intro— if I show you the two, Sharpa and this one, they're similar here too. Because these two added tactile sensing, they call it Vision-Tactile, VTLA, and here the system is 0, 1, and 2.
+
+<span class="paragraph-timestamp" data-ts="1:01:19">1:01:19</span> **Chester Roh** There's a 0 in there.
+
+<span class="paragraph-timestamp" data-ts="1:01:20">1:01:20</span> **Jong Hyun Park** One more, 0, was added. And then tactile only goes into System 0. They separate it into three levels, and tactile is only needed for really fast reactions— that seems to be their thinking.
+
+<span class="paragraph-timestamp" data-ts="1:01:29">1:01:29</span> **Seungjoon Choi** I see, this is something that's more reflex-oriented, more strongly so. It goes up to something more primal.
+
+<span class="paragraph-timestamp" data-ts="1:01:36">1:01:36</span> **Chester Roh** But the basic framework is similar.
+
+<span class="paragraph-timestamp" data-ts="1:01:39">1:01:39</span> **Jong Hyun Park** Anyway, it thinks slowly, does situation awareness and reasoning, and progressively goes down to things that need faster reactions. And if we look inside Figure Helix, this one too is System 0, 1, and 2.
+
+<span class="paragraph-timestamp" data-ts="1:01:52">1:01:52</span> **Chester Roh** They also have something corresponding to 0—right, I see. It says "0, Human-like Soft Motor Tracking." So that subtle, how should I put it—
+
+<span class="paragraph-timestamp" data-ts="1:02:05">1:02:05</span> **Jong Hyun Park** It's Stable Motion Tracking. Let me explain this a bit further. For example, in the case of LBM, the System 0 position was rule-based. Action tokens come out, but if you control the robot with action tokens, for example, it falls over. Or since the actions aren't perfect, its fingertips might collide, or when performing actions, incorrect actions could come out.
+
+For locomotion, we've already built that well. Whether it was built using RL-based methods before or using what's called MPC— I don't know much about that myself, but there are physics-based methods from traditional robotics that calculate things like where to step to maintain balance— those logics all exist. So it receives that kind of assistance. It did receive it. Previously, action tokens would come out and they'd add some constraints or corrections as rules on top—that approach was common.
+
+But now they're eliminating all that. The approach now is that you can just use models for everything there too— that seems to be the direction they're taking. And if you look at the sizes here, System 2 is 7B, System 1 is 80M, and this was when Figure 01 had these two components. An even smaller one, at 10M parameters, was additionally added.
+
+And the smaller one, according to this diagram here, real to sim, sim to real— they created these kinds of data, meaning simulation data is mixed in together. That's how it's set up, and this ultimately seems to mean that RL was incorporated into this. From what I can tell, in the case of Helix, since it's not open source, we don't know exactly how they did it, but up to this point, VLAs have roughly undergone convergent evolution like this, and they're heading in this direction— I realized everyone is going in roughly the same direction.
+
+## What is Physical Intelligence: Moravec's Paradox    *1:03:49*
+
+<span class="paragraph-timestamp" data-ts="1:03:49">1:03:49</span> **Jong Hyun Park** Next, the last thing I want to wrap up with is what Physical Intelligence actually is— I'd like to think about that for a moment. Ultimately, building these VLAs is the process of us solving Physical Intelligence— that's how I think of it. Just as building AGI with LLMs is essentially the process of solving intelligence— that's how we've been thinking about it, and here we're making one more division. There's a very famous example of this. It was the DARPA Challenge, which happened about 10 years ago, and there were cases where nobody could even open a door. Everyone failed at it. I mean, how hard can opening a door be that nobody can do it? It became a meme, and it's still similar today.
+
+This is called Moravec's Paradox— they call it a paradox. We think things like chess require a lot of brainpower and intelligence, but when we have candy, keys, and coins all in our pocket, we pull out the key so effortlessly. Without even thinking about it. We don't usually call this intelligence. When we talk about being smart, we don't say someone's smart because they're good at pulling things out of pockets. But when we actually try to implement this, it turns out to be incredibly difficult. Why is it so hard? What's different about it?
+
+So I filmed this yesterday. Professor Sangbae Kim from MIT is someone who has been working on robotics for a long time, and after seeing his talk in person once, I was so impressed that I tried it myself. Without looking, I just pick up a pin from here. I put it in slow motion, and it's completely natural. For a human, it's something you succeed at 99.9% of the time. There's virtually no way to fail. And it's only in slow motion that it looks like this— it actually takes less than a second. The recording time is less than a second— that's how quickly it happened. Now, I picked up a specific pin, and in this situation, can you guess which pin I picked up?
+
+<span class="paragraph-timestamp" data-ts="1:05:48">1:05:48</span> **Chester Roh** No.
+
+<span class="paragraph-timestamp" data-ts="1:05:49">1:05:49</span> **Jong Hyun Park** You can't guess, right? If we think about doing this rule-based— using vision to detect and then picking it up with a gripper, if we think about building a robot that way, normally you'd think picking the one on top would be optimal. But humans don't operate that way. Extracting coordinates from object detection and controlling a robot to move an object— that's how most robots operated before VLAs came along, and it's so different from that approach.
+
+Anyway, if we look at human Physical Intelligence, when I tried to pick something up, I'd already failed once. I tried to grab whatever I could feel, but I failed, and my hand is receiving tactile input— this tactile information comes in as enormously high-dimensional data. Because there are so many contact points on this hand. Then, based on that tactile feedback, what I should pick up— I unconsciously make that judgment and just grab whatever I can feel. It was only one second, but an enormous amount of data processing and rapid decision-making happened within that time. This is actually what Physical Intelligence is.
+
+So as I watched the slow motion and organized my thoughts, there were actually 5 decisions made within that time— with a bit of exaggeration, 5 decisions. A similar example is the tongue. The tongue handles an enormous number of tasks during meals, and although I wrote "lunch," since it's morning for us now, for example, you can remember what you ate for dinner last night, but if you ask what your tongue was doing then, you actually can't remember at all. It just does its thing on its own. So this is different from Cognitive Intelligence. It's completely different from the kind of intelligence where reasoning tokens come out and you think things through— that's the thought I've come to have.
+
+All of this is from the professor's talks that I listened to and was convinced by. I'd recommend watching the talks yourself. They're on TED and many other places— the professor has given many lectures, and they provide a great opportunity to think about intelligence, explained very well. I don't agree with everything, so I've pulled out only the parts I do agree with.
+
+So if we think about why this happens, there are people who explain it from an evolutionary perspective. This kind of movement, Physical Intelligence, was created through a billion years of evolution— it's an ability that many animals possess, not just humans. But chess, Go, or abstract math— from an evolutionary perspective, these aren't abilities that took that long to develop. So maybe what we think is more obvious might actually be harder— that's the thought I've come to have.
+
+So when a squirrel flies through the air, it doesn't calculate Newtonian mechanics to do it. But the MPC algorithms that existed before VLAs— in those cases, they would calculate these mechanics to determine where to apply force and how, and the object would go exactly as planned— they could perform actions perfectly, but that's different from the Physical Intelligence operating in our brains.
+
+Next, if we think about it from the perspective of dimensionality and speed, humans have tactile sensation, and physical information like vision and touch has enormously high dimensionality. But the world of text and language is made of tokens, and the tokenizers we currently use have around 200K tokens. We're treating language as a sequence of choosing one out of 200,000 options, which is quite abstract. The dimensionality is extremely small, compared to vision or touch.
+
+So the data that needs to be processed is fundamentally enormous, and the world of text is already an extremely efficient world. For difficult thinking, learning, and such, it's actually quite efficient. There's no useless information at all. So as we do things like RLVR, we think this is necessary for creating intelligence, for making smartness— it's an efficient method. We think language is quite important, but in reality, language is something that almost only humans use perfectly, so those physical things are quite different.
+
+Moreover, this is something I saw from the Nano Banana team's talk on the Google Developers channel, where they made a nano banana, and they say there's something called Reporting Bias in language. For example, yesterday I went to visit someone else's place. And then I came home and wrote about it. How was it? I went to another company for a meeting yesterday, and the building was really grand and I could see the ocean— I talk about things like that. I talk about things that made an impression on me. Data for those things is preserved. But whether the building's walls were white or ivory, or what the chairs looked like— I don't talk about that. I don't report it. Because it's obvious. If the chair had a really unusual shape, or if the wall had a very unique decoration, then sure, I would. Only very special, meaningful information remains in the text world.
+
+We have a similar problem in LLMs too. It's learned all the text, it's learned data at internet scale, it's learned all the knowledge, but "how do you put an elephant in a fridge?"— it should say you can't, but it tells you to put it in. "Open the door and put it in." Because for humans, it's so obvious that elephants are huge and would never fit in a fridge— that kind of thing isn't written in text. The world of text actually has a lot of missing information. Fundamentally missing information.
+
+Physical Intelligence is about dealing with that kind of information. So perhaps it's a problem of a somewhat different dimension— that's the thought I've come to have.
+
+So to conclude, Physical Intelligence is quite different, and then in practice, AI—same with LLMs— also learns somewhat differently from humans, and humans learn through experience— especially physical things, rather than learning from text, most things are learned through experience, and since implementing that isn't working well right now, it might be difficult—that's the point.
+
+So is the last question then that it won't work? I think it will work. Because while there are these challenges, there are so many ways we can solve them. Same with LLMs, and same here— we don't necessarily need to learn exactly the same way humans learn. There'll be things humans are good at but robots aren't. Still, I believe we can sufficiently achieve Physical Intelligence enough to change our world.
+
+That's my thinking, and a prime example is that since tactile sensing is hard to implement, most humanoids nowadays have cameras on their palms or the backs of their hands. With that visual information alone, they can perform actions. Humans only have eyes on their face— we can't put eyes on our palms— but robots can. Same with autonomous driving— by mounting something like LiDAR to receive data on distance perception that humans aren't great at, they can solve the problem. I think it can be achieved one way or another. As long as we can scale it up, I'm optimistic about this. I'll wrap up here.
+
+<span class="paragraph-timestamp" data-ts="1:13:23">1:13:23</span> **Chester Roh** Today you gave us an overall overview, then what changes have occurred, and within each of those overview areas, the companies and research institutions doing well, the model architectures, and the various problems and philosophical questions surrounding them— you covered all of that. And at the very end, you mentioned briefly that this is ultimately a game that will be solved quickly. Cheers to the startups playing in this space, and for the many people looking to enter now— this area, unlike LLMs, whether we should call each of these domains or just call them last mile problems— I've been a bit confused about that concept lately, because even if you call them domains, what's left is all just last mile problems.
+
+The things in front are all being handled by general intelligence, and because those numerous last mile problems still remain as opportunities, this is going to be pretty hot this year and next year. Talent that missed the LLM train should consider jumping in— that's the kind of thinking I'm having.
+
+## Business Direction: Community Strategy and Game Simulation    *1:14:28*
+
+<span class="paragraph-timestamp" data-ts="1:14:28">1:14:28</span> **Jong Hyun Park** I'm thinking exactly the same thing— that I should get into this.
+
+<span class="paragraph-timestamp" data-ts="1:14:32">1:14:32</span> **Chester Roh** What kind of ideas do you have, Jong Hyun? Jong Hyun, you've actually been tracking the entire VLA space, and you've been sharpening those instincts that there might be opportunities in this area.
+
+While doing that, where are companies heading now— in our terms, where has everyone run off to? They've gone off and are each doing their thing, so what position will you take, Jong Hyun?
+
+I'm curious about that. Personal opinions, personal direction, sort of business ideas—if you have any, could you share them with us?
+
+<span class="paragraph-timestamp" data-ts="1:15:05">1:15:05</span> **Jong Hyun Park** What I want to do— right now I have roughly two ideas. First, there's the saying "if you can't beat them, join them," but with LLMs too, it's really not easy to keep up with the big players as they scale up. I think it'll be the same here. Keeping up with the big players' scaling— I don't think you can do it unless you join them.
+
+So then there must be certain parts that they're not doing, and first, I personally agree with and like HuggingFace's strategy. I think the community might be able to win—that's my belief. And then, what makes robotics a bit different from LLMs is that the hardware body is expensive. Making these bodies cheaper, distributing them, and democratizing them is something worth trying— that's my first thought.
+
+And that doesn't just mean making the body cheaper— tasks that people would use in everyday life, we'd need to build them as VLAs and provide those together. And then the community collectively gathers that data so everyone can improve the intelligence together. Everyone contributes— I think it could go in that direction.
+
+Another direction is, since I've loved games since I was young, games actually share quite a lot in common with physics simulation, so actions within game worlds— these days that's being expressed a lot as world models, I think. It could be a world model or a physics simulation, and games could be the breakthrough.
+
+Work that bridges virtual worlds and the real world— it solves the data problem, and most importantly, it solves the evaluation problem. Evaluating robots in real life is extremely expensive, so I think there are many opportunities in that direction as well.
+
+<span class="paragraph-timestamp" data-ts="1:17:00">1:17:00</span> **Chester Roh** It seems like there are connecting points here, and both are about solving scale problems that can't be solved with money alone—that's how I'm taking what you've shared.
+
+## Introduction Guide: LeRobot, Physical Intelligence Paper    *1:17:11*
+
+
+<span class="paragraph-timestamp" data-ts="1:17:11">1:17:11</span> **Chester Roh** So Jong Hyun, regarding that first approach of going together with the community, as you mentioned earlier, SmolVLA and similar models are open models.
+
+For those of us who want to jump into this field, could you share a study path for getting started now? Like, what paper should we read first, then second, what hardware form factor to get and which community to start with, or "if you're interested, come find me"— I'm sure you have various guides, so please share some. Where should we start studying?
+
+<span class="paragraph-timestamp" data-ts="1:17:53">1:17:53</span> **Jong Hyun Park** If you want to become a researcher, you need good hardware, so honestly, joining somewhere is probably the right move. A big company, or a lab, a research organization. But even without that, you can totally follow up on all of this. Because there's open-source hardware out there. I think HuggingFace's LeRobot is how I first got into it myself, and I think it's the best starting point.
+
+As for robots, in Korea there's a company called ROBOTIS that has open-source robots. You can just 3D print and assemble them. It costs about $350 to purchase, and the teleoperation system is all set up. Being able to fine-tune a VLA yourself— when I first did it, the Korean one didn't exist yet, only the HuggingFace one was available, and it took about two days. For us to buy the robot, assemble it, collect data through teleoperation, actually train a VLA— well, back then it wasn't a VLA, it was just a vision-action model without language— fine-tuning it and getting it to perform actual tasks took about two days. Anyone can really do it.
+
+So for those who like hands-on experience, you can get started with about $350. And then we have this page—I'll share it— I'm planning to add that kind of guidance to it. We've done all of that before, so I'm going to put in tutorial-like materials. And if you want to try doing research, you can do plenty in simulators, so refer to NVIDIA's Isaac Sim documentation, and then for papers, go to Physical Intelligence's site and browse through their papers—you'll quickly see the overall flow. They're the frontrunner anyway and they've published quite a lot, so I recommend just going to the Physical Intelligence page. All the papers are there.
+
+<span class="paragraph-timestamp" data-ts="1:19:44">1:19:44</span> **Chester Roh** Got it.
+
+## The Future of Robots Entering Our Lives and Closing    *1:19:46*
+
+<span class="paragraph-timestamp" data-ts="1:19:46">1:19:46</span> **Seungjoon Choi** After listening to all of today's discussion, my thoughts are getting complicated again. So then, ultimately, with this kind of technological advancement and actual implementation happening, in how many years will robots enter our daily lives? What form factor, what product, or what tasks they'll need to handle— I think we're at a point where we start imagining these things.
+
+But to add a bit more context, obviously what we're thinking about right now is essentially delegating labor, right? But is that all it is? That's what I find myself thinking about. What do you think, Jong Hyun?
+
+<span class="paragraph-timestamp" data-ts="1:20:19">1:20:19</span> **Jong Hyun Park** First of all, I think it's certain that robots will enter our lives in some form or another. Within a few years. The issue, though, is price and mass production. I don't know much about that myself, what difficulties exist or what's easy to solve, but anyone can see the market value is enormous, so it'll probably start with the labor market. And then home use will likely follow as well. As for whether robots must be humanoid— I don't think that's necessarily the case. For example, there could be a robot on every desk. Or there could be something like a robot doll. I think they'll come in many different forms, and there might even be one attached to every kitchen sink. Just an arm attached to it. Anyway, in various forms, I believe they'll emerge in one way or another.
+
+And then, as I imagine it, there will be completely new forms of environments that we can't even conceive of right now. I mean, all our furniture, the shape of our homes, the layout of our offices— everything is designed for the human form factor. Things like the width of doors.
+
+But if robots end up doing many of the things only humans could do, just like the massive factories we have today, I think objects, tools, and spaces tailored to the form factor of future robots will be created. For example, in places like cafés— right now robots navigate through human-width pathways in restaurants, but instead there could be separate small rails designed for robots.
+
+<span class="paragraph-timestamp" data-ts="1:21:55">1:21:55</span> **Seungjoon Choi** Like in hospitals.
+
+<span class="paragraph-timestamp" data-ts="1:21:56">1:21:56</span> **Jong Hyun Park** For example, like in hospitals. Then they could do all the serving, clearing, and dishwashing, riding on rails as robots move around.
+
+Anyway, I think many forms that are hard to imagine right now— especially environmental changes—will emerge, in my estimation. They'll come in ways that address many of humanity's fundamental desires.
+
+That could be liberation from labor, or it could be something like cooking well for you. Or it could be sexual, and I think it'll gradually go deeper into more fundamental levels.
+
+<span class="paragraph-timestamp" data-ts="1:22:31">1:22:31</span> **Chester Roh** It seems like you're describing a similar pattern of divergence and infinite evolution to what happened with LLMs— that it'll naturally happen here too.
+
+<span class="paragraph-timestamp" data-ts="1:22:41">1:22:41</span> **Seungjoon Choi** This "sudoremove RF" keeps catching my eye here.
+
+<span class="paragraph-timestamp" data-ts="1:22:45">1:22:45</span> **Jong Hyun Park** It's similar—looking at it now, I think it carries a similar meaning. Our channel's name "sudoremove"— developers all know what it means, it means delete everything, right?
+
+Something new has arrived, so for example, even the environment— wipe the houses, the furniture, everything, and build what fits the new world. The knowledge in our brains, our ways of thinking—that's what it means.
+
+<span class="paragraph-timestamp" data-ts="1:23:08">1:23:08</span> **Seungjoon Choi** Anyway, you've given us a great overview of the whole landscape, and this context is really sinking in for us. Next time we meet, I think we can go a bit deeper into these discussions.
+
+<span class="paragraph-timestamp" data-ts="1:23:17">1:23:17</span> **Chester Roh** We'll also be tracking SmolVLA that you introduced today, along with Physical Intelligence papers and related work more closely, and we'll come back to seek your guidance again.
+
+<span class="paragraph-timestamp" data-ts="1:23:30">1:23:30</span> **Seungjoon Choi** I was able to learn from many different perspectives. Especially the idea of going up from System 2— I hadn't even thought of that. Thank you.
+
+<span class="paragraph-timestamp" data-ts="1:23:36">1:23:36</span> **Jong Hyun Park** The big seniors did all the research, I'm just reciting it on their behalf.
+
+<span class="paragraph-timestamp" data-ts="1:23:41">1:23:41</span> **Chester Roh** We really are living in fascinating times. Today we had Jong Hyun from sudoremove join us for this AI Frontier and sudoremove crossover episode. Thank you so much for teaching us today, we really appreciate it. We had a lot of fun learning. Thank you.
+
+<span class="paragraph-timestamp" data-ts="1:23:59">1:23:59</span> **Jong Hyun Park** Great work, everyone. Thank you.

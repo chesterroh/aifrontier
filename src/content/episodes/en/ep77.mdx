@@ -1,0 +1,748 @@
+---
+episodeNumber: 77
+lang: "en"
+title: "Gemini 3 & Antigravity: The Insanely Steep Curve of Innovation"
+description: "This week, the long-awaited Gemini 3 was released, making a big splash in the AI industry. With the advent of Gemini 3, we deeply discuss the advancements in pre-training and post-training, the validity of AI scaling laws, and the impact of accelerated AI development on business and individual capabilities. Through practical application cases such as UI generation, music, and interactive visualization using Gemini 3, we re-examine the importance of flexible approaches like 'unlearn-learn' in the rapidly changing AI era."
+publishedAt: 2026-01-28
+duration: "1:15:44"
+youtubeId: "iphkBknRyjo"
+thumbnail: "https://i.ytimg.com/vi/iphkBknRyjo/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjun Choi
+chapters:
+  - time: "00:00"
+    title: "Opening: Gemini 3 Release and the Week's AI Timeline"
+  - time: "02:54"
+    title: "Rival Models' Responses: GPT-5.1-Codex-Max and Nano Banana Pro"
+  - time: "04:02"
+    title: "The Combination of AI and Science: OpenAI and Google DeepMind's Strategies"
+  - time: "07:35"
+    title: "Is the Scaling Law Over? Gemini 3's Leap in Pre-training"
+  - time: "12:00"
+    title: "Model Vintage Theory: Data Harvesting and Knowledge Renewal"
+  - time: "16:30"
+    title: "A New Computing Metric: Why Watts are More Important Than GPU Count"
+  - time: "19:14"
+    title: "OpenAI's Internal Memo and the 'Shallotpeat' Project"
+  - time: "22:20"
+    title: "Unlearn-Learn: Discard Complex Harnesses and Trust the Model"
+  - time: "25:15"
+    title: "Limitations of Benchmarks and Andrej Karpathy's 'Vibe Check'"
+  - time: "29:45"
+    title: "Gemini 3's Overwhelming Features: Generative UI and Voxel/SVG Creation"
+  - time: "33:30"
+    title: "Speed Superintelligence: The Future of 100x Faster and Cheaper Intelligence"
+  - time: "34:40"
+    title: "Historical Perspective: Agricultural and Industrial Revolutions and the Replacement of Cognitive Labor"
+  - time: "40:40"
+    title: "HWP File Recognition Function and the Implication of Data Movement"
+  - time: "43:20"
+    title: "Intention Becomes Reality: The Collapse of Barriers in Coding and Creation"
+  - time: "47:30"
+    title: "Physics Visualization Case: Utilization of Nano Banana Pro"
+  - time: "50:50"
+    title: "AI Transformation (AX) in the Field: Kindergarten Educational Material Production Case"
+  - time: "58:50"
+    title: "Antigravity Review: Agentic Tools Lowering the CLI Barrier"
+  - time: "01:06:30"
+    title: "Advice for Engineers: Focus on Problem Solving (Business) Rather Than Tool Development"
+  - time: "01:11:55"
+    title: "'Fugitive Alliance' Meeting Announcement"
+  - time: "01:12:45"
+    title: "Closing: The Importance of Diverse Perspectives in Rapidly Changing Times (Syncretism)"
+---
+
+## Opening: Gemini 3 Release and the Week's AI Timeline    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we are recording, is November 22nd, 2025, a Saturday morning. This week, the long-awaited Gemini 3 was finally released. For about two or three days, I think I had a blast playing with these two, Gemini 3 and Antigravity. Seungjoon.
+
+<span class="paragraph-timestamp" data-ts="00:23">00:23</span> **Seungjoon Choi** There was also Nano Banana Pro.
+
+<span class="paragraph-timestamp" data-ts="00:25">00:25</span> **Chester Roh** Alright, then regarding Gemini 3, let's take a look at what happened and examine the meanings within.
+
+<span class="paragraph-timestamp" data-ts="00:34">00:34</span> **Seungjoon Choi** It seems like it was a dopamine-filled week. I already feel a bit of a letdown. After the big release, the way the atmosphere dies down feels a bit disappointing, but it was an equally fun week.
+
+So, if we look at the recent timeline, it already feels like a long time ago, but on September 30th, at the beginning of fall, Claude Sonnet 4.5 was released. Then on October 1st, from places like Periodic Labs, there was a bit of a signal regarding science. Then Atlas on October 21st, and on October 30th, which Chester covered last time, OpenAI's internal goals announcement.
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> **Chester Roh** Yes, the day they declared they would become a full-stack company.
+
+<span class="paragraph-timestamp" data-ts="01:23">01:23</span> **Seungjoon Choi** That's right. Around September '26, something like an AI research intern, and then in March '28, an autonomous AI researcher, they announced things like that. Then on November 12th, GPT-5.1 came out.
+
+So, things more in the style of GPT-4o seemed to be restored in GPT-5.1. And although it's relatively less known, I've only tried it once myself, but this seems quite meaningful.
+
+Group chat, within ChatGPT. So I also invited a couple of people and had a conversation, and it was interesting.
+
+<span class="paragraph-timestamp" data-ts="02:02">02:02</span> **Chester Roh** Ah, I haven't been able to open that one.
+
+<span class="paragraph-timestamp" data-ts="02:04">02:04</span> **Seungjoon Choi** So, since it's available on the app right now, if you try it, you might get new ideas. On the other hand, it's like, "Oh, OpenAI is expanding in this area too." Creating applications and doing social-related things, you could see they are consistently moving in a certain direction.
+
+Then on November 17th, this was also the time in Korea when OpenAI DevDay was held. So we were invited, and I attended. Then on the 17th, Grok 4.1, and I remember the benchmark was quite good.
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **Chester Roh** So, since everyone knew Gemini 3 was coming out, both ChatGPT and Grok, in the meantime, similarly seemed to make announcements saying, "We've also progressed this much."
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **Seungjoon Choi** Right.
+
+## Rival Models' Responses: GPT-5.1-Codex-Max and Nano Banana Pro    *02:52*
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **Seungjoon Choi** But as always, the one that announces last is the key, so in this round, Gemini 3 on November 18th, which is US time, was released, and then right on the 19th, the name is a bit long, but GPT-5.1-Codex-Max came out, showing that they also have something to counter it.
+
+OpenAI said that, but looking at the general vibe, it seems to be leaning a bit more towards Gemini 3.
+
+<span class="paragraph-timestamp" data-ts="03:25">03:25</span> **Chester Roh** Yes, to stop Gemini 3 and Antigravity, GPT-5.1 was not enough.
+
+<span class="paragraph-timestamp" data-ts="03:31">03:31</span> **Seungjoon Choi** Yes, anyway, they sent a message that Codex is doing well, and will continue to do well.
+
+On the 20th, Nano Banana Pro was announced, and what's interesting is that it's all integrated into Google's ecosystem.
+
+Nano Banana Pro is integrated into everything that handles images, so it's creating synergy right now. In NotebookLM and others.
+
+And it even works in Antigravity.
+
+Because of that, I got the feeling that it's very well intertwined.
+
+## The Combination of AI and Science: OpenAI and Google DeepMind's Strategies    *04:01*
+
+<span class="paragraph-timestamp" data-ts="04:01">04:01</span> **Seungjoon Choi** But OpenAI, unlike the earlier Periodic Labs, which wasn't about OpenAI, but an organization derived from it, like Google DeepMind, which was also derived from OpenAI, if we could read the signals that something is happening in science, OpenAI has been consistently emphasizing the science part this fall.
+
+Summer, fall, so in science, there are signs that some discoveries are about to happen, and they are pushing with that. That's the AI scientist I mentioned earlier, I mean, it was a scientist who researches AI, but anyway, across science in general, Google DeepMind originally focused on that, as Demis Hassabis always talked about, but OpenAI is also consistently talking about it now.
+
+A few days ago, this was announced. Titled "Early experiments in accelerating science with GPT-5," a blog post, a paper, and then a podcast came out, but I was so busy with Gemini 3 that I didn't get to look at it much. But there was this signal. And this is probably a preview of 2026.
+
+<span class="paragraph-timestamp" data-ts="05:03">05:03</span> **Chester Roh** Yes, probably in 2026, in the bio sector combined with AI, a lot of progress will likely pour out, just like the models we saw this time. Well, it's probably the area most... it feels a bit strange to say this, but the part that's connected to the stock market hype is likely the bio sector, so people's attention is focused there.
+
+And anyway, whether you're a researcher or someone doing business in this field, in the end, the incentive inevitably goes to where the revenue model is solid or where the returns are massive. That's just how it is.
+
+For example, rather than beautiful stories like solving social problems or global warming, it seems to go to places where commercial objectives are well-defined. That's where it seems to be heading. Those areas seem to be mainly bio or finance, things like that.
+
+<span class="paragraph-timestamp" data-ts="05:58">05:58</span> **Seungjoon Choi** I haven't looked much into the bio sector, but simultaneously with experiments, doing something verifiable... within the various fields of science, there are many sectors, so I wondered if those things might have an overall impact. That's what I thought.
+
+<span class="paragraph-timestamp" data-ts="06:14">06:14</span> **Chester Roh** Yes, as we mentioned when we talked about Periodic Labs last time, it could be that we can't comment because we don't know all about that field. If we had even a little knowledge...
+
+I'm also very interested in the bio sector, so I come across a lot of news from that area relatively often. Maybe that's why the signals seem strong to me. In materials science, electronics, energy, and across the board, I think there will actually be many changes.
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> **Seungjoon Choi** I agree. That's why it would be very interesting to talk about how domain experts, each with their own lens, are interpreting these phenomena and this era. It seems like it would be very interesting.
+
+<span class="paragraph-timestamp" data-ts="06:55">06:55</span> **Chester Roh** That's right. Just a few months ago, we were talking about how the combination of domain experts and AI experts is important.
+
+But in fact, those AI experts, the people who traditionally played the role of software engineers, it was because of their talent for creating a kind of harness.
+
+As we talk about Gemini 3 and Antigravity, and we'll discuss this in the latter half, I'm getting a strong feeling that their role is continuously shrinking. I'm getting a strong feeling.
+
+<span class="paragraph-timestamp" data-ts="07:21">07:21</span> **Seungjoon Choi** Anyway, there's a lot to think about, but let's move on.
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> **Chester Roh** In the next section, since Seungjoon has already set the topic, and there's a lot of content, let's go.
+
+<span class="paragraph-timestamp" data-ts="07:32">07:32</span> **Seungjoon Choi** So, I've pointed out a few things.
+
+## Is the Scaling Law Over? Gemini 3's Leap in Pre-training    *07:35*
+
+<span class="paragraph-timestamp" data-ts="07:35">07:35</span> **Seungjoon Choi** What I focused on was Oriol Vinyals of Google DeepMind, who was a colleague of Ilya Sutskever. When he was at Google. So, this wasn't in '25, but last year, when Ilya Sutskever compared it to oil, he spoke with the nuance that pre-training had reached a plateau. That's what he said. But Gemini 3 is not that. It's an improvement in both pre-training and post-training.
+
+So, contrary to the popular belief that AI scaling laws are over, and that popular belief was discussed and confirmed in that presentation last year. But it's not that; there was a leap. The delta between 2.5 and 3.0, that difference is the largest we've seen so far. The limit is not yet in sight. Post-training, I mean, this is...
+
+In the context of pre-training, he said the limit is not in sight, and post-training is a complete greenfield, there are no barriers. So, there is a huge amount of room for algorithmic progress and improvement left. And he said that 3.0 is also a byproduct of that.
+
+<span class="paragraph-timestamp" data-ts="08:42">08:42</span> **Chester Roh** Yes, if we were to explain this part a bit more simply, Seungjoon, how should we explain it? Regarding pre-training, the conventional thinking was that all the high-quality data on the internet has already been used, so there's no more data to be had. There was the theory of data depletion.
+
+And secondly, most of it was considered garbage data, so there were efforts to refine that data and improve the quality of the dataset. And thirdly, there were things like the structure of the neural network that receives it, the current training algorithms, and the limits on the amount of computing power put into it. There were these kinds of issues, but they don't say exactly where the progress was made, but they're saying that's not the case. They said that we are overcoming such things,
+
+<span class="paragraph-timestamp" data-ts="09:37">09:37</span> **Seungjoon Choi** So, whether they solved the OOM issue or the data issue, we don't know exactly which one it is right now, Anyway, that's probably something the Chinese side will have to tell us, don't you think?
+
+<span class="paragraph-timestamp" data-ts="09:48">09:48</span> **Chester Roh** I hope more news leaks out and Kimi or DeepSeek will release a paper that neatly summarizes it all.
+
+<span class="paragraph-timestamp" data-ts="09:57">09:57</span> **Seungjoon Choi** Anyway, we don't know how they solved it, but they did solve it. So when I asked GPT-5.1 about it, it confirmed that it happened in '24 and said there was no wall yet, that there still isn't one.
+
+The METR time horizon, many people know about it and then forget, and I'm sometimes like that too, it's not the time the model takes to execute. It corresponds to the time a human takes to execute, right? So Gemini 3 isn't reflected yet, and GPT-5.1-Codex-Max, on a log scale, is just slightly above the straight line. The time horizon continues to extend like that.
+
+But the time a model just executes now, it's not in hours anymore, isn't it slowly moving into days? They just seem to keep running continuously.
+
+<span class="paragraph-timestamp" data-ts="10:56">10:56</span> **Chester Roh** Depending on what kind of harness you put on it, the time can be extended indefinitely. That's what people are saying these days.
+
+<span class="paragraph-timestamp" data-ts="11:04">11:04</span> **Seungjoon Choi** Right. In some comments, people ask if the time was just extended by running a repetitive task like a for loop. There is some talk like that, but anyway, the model's execution capability is now able to run for much longer times. But this whole round, with the release of Opus 4.5, once it gets sorted out—it's not out yet, but— once it's sorted out, the next round will be around March or May, right?
+
+So when that time comes, if this graph continues to hold true, right now it's a little over 2 hours, but it will be about 3.5 hours by next May. Around March, April, May. So that's something we should consistently keep in mind, just as Oriol Vinyals said earlier, that we haven't hit a wall yet and it's still going. We have to keep that in mind.
+
+## Model Vintage Theory: Data Harvesting and Knowledge Renewal    *11:59*
+
+<span class="paragraph-timestamp" data-ts="11:59">11:59</span> **Chester Roh** So, within this, both Google and OpenAI, they're probably not running just a single pipeline. They're running multiple pipelines, and I think these pipelines... my way of making a wild guess about which vintage they come from is to look at the knowledge cutoff.
+
+If you look, when Gemini 2.5 came out, the knowledge cutoff was January 2025. They used a very up-to-date dataset for training, and if you look at the 3.0 that just came out, the knowledge cutoff is the same.
+
+Which means, from the same vintage, 2.5 was sacrificed and something was continuously developed from there. I think it's a product of that process.
+
+So now we're at 3.0, and the next vintage, a completely new one, will have a knowledge cutoff that's much later.
+
+<span class="paragraph-timestamp" data-ts="12:57">12:57</span> **Seungjoon Choi** Is the "vintage" an analogy to wine?
+
+<span class="paragraph-timestamp" data-ts="12:59">12:59</span> **Chester Roh** Yes, it's about which year it was made. I'm seeing the harvest, the dataset, as a kind of grape harvest.
+
+<span class="paragraph-timestamp" data-ts="13:07">13:07</span> **Seungjoon Choi** Right, right. Which year's harvest of which grapes, that's it.
+
+<span class="paragraph-timestamp" data-ts="13:10">13:10</span> **Chester Roh** Exactly. So it's the January 2025 vintage. Both 2.5 and 3.0.
+
+<span class="paragraph-timestamp" data-ts="13:15">13:15</span> **Seungjoon Choi** What kind of soil?
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **Chester Roh** Yes.
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **Seungjoon Choi** You could also see it as the vendor.
+
+<span class="paragraph-timestamp" data-ts="13:18">13:18</span> **Chester Roh** Then, the innovations gained from this, and the intermediate products obtained here, there will be a huge number of datasets. And from our AI Studio or places like that, the data that comes from people pushing in certain questions, those numerous datasets, are very high-energy data, right? They will learn a lot from that as well, and
+
+<span class="paragraph-timestamp" data-ts="13:42">13:42</span> **Seungjoon Choi** So, while it's significant that we're giving and using data, we're also giving a lot, right?
+
+<span class="paragraph-timestamp" data-ts="13:49">13:49</span> **Chester Roh** Of course.
+
+<span class="paragraph-timestamp" data-ts="13:50">13:50</span> **Seungjoon Choi** We're giving a lot of "anko" data, I mean, the paths. Not just the data, but the paths through which data is generated. We're providing that, so...
+
+<span class="paragraph-timestamp" data-ts="13:58">13:58</span> **Chester Roh** That's actually what's important. People might easily think that we'll be on a plateau for a while because pre-training is over, but if you actually look at the past progress of humanity, from the countless Nobel laureates, starting with Einstein, in the early 1900s, there was a kind of renaissance in science.
+
+Back then, too, those people's thought tokens influenced each other, and the dataset has been continuously augmented. In that sense, pre-training and post-training now, to be precise, the vast amount of data generated from post-training, and the immense directional intent we pour into AI Studio or Antigravity, these things in turn expand the pre-training dataset. And as the pre-training dataset grows, we move to the next horizon. That's how I think we advance.
+
+<span class="paragraph-timestamp" data-ts="14:50">14:50</span> **Seungjoon Choi** There are probably completely different ideas hidden away, but because the current regime is working so well, they might be relatively overshadowed.
+
+<span class="paragraph-timestamp" data-ts="14:58">14:58</span> **Chester Roh** That's right. For now, the virtuous cycle of this regime seems to be continuing.
+
+<span class="paragraph-timestamp" data-ts="15:03">15:03</span> **Seungjoon Choi** So, there are rumors about Opus 4.5. People were wondering if it would come out yesterday or today, but it's not out yet.
+
+But these days, most rumors turn out to be true. What's interesting is that GDEs and people like that are under NDA, so they can't say anything.
+
+But rumors about the timeline have leaks from those things. So if there's a rumor that keeps recurring in a certain distribution, it's almost always right.
+
+<span class="paragraph-timestamp" data-ts="15:31">15:31</span> **Chester Roh** The Claude Code version of Antigravity is Claude Code Desktop, and it's coming out soon.
+
+<span class="paragraph-timestamp" data-ts="15:37">15:37</span> **Seungjoon Choi** Yes, there's that kind of vibe. Because Antigravity has become something of an object of interest now.
+
+<span class="paragraph-timestamp" data-ts="15:48">15:48</span> **Chester Roh** Let's talk about that in depth later when we discuss Antigravity.
+
+<span class="paragraph-timestamp" data-ts="15:51">15:51</span> **Seungjoon Choi** So, in this case too, the model card was briefly shared the day before, and it was immediately archived. People were there asking, "Hey, what's this? What's Antigravity?" and things like that.
+
+So that was the situation the day before the Gemini 3 announcement, and that's a site where you bet on rumors. Polymarket. So when I checked there, it hit 91%. The day before, so everyone knew.
+
+And this is hard to cover in detail today, but Dwarkesh Patel also wrote an interesting blog around this time related to RL.
+
+## A New Computing Metric: Why Watts are More Important Than GPU Count    *16:33*
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **Seungjoon Choi** But here, with "bits per sample," and this is a bit of a pun, playing on the word "bit," we have "watt." So, Jeongkyu recently attended that supercomputer conference, didn't he?
+
+<span class="paragraph-timestamp" data-ts="16:46">16:46</span> **Chester Roh** He's there and seems to be coming back soon. Yes, Supercomputer 25.
+
+<span class="paragraph-timestamp" data-ts="16:50">16:50</span> **Seungjoon Choi** But he tipped me off that these days, nobody talks about the number of GPUs, they talk about watts.
+
+<span class="paragraph-timestamp" data-ts="16:57">16:57</span> **Chester Roh** Now, rather than talking about the computing power or number of GPUs, because it's approaching an asymptote with watts, just like it's much easier to talk about things by weighing them, it seems they're talking about it by weight.
+
+<span class="paragraph-timestamp" data-ts="17:12">17:12</span> **Seungjoon Choi** With high information efficiency, energy is now being converted into intelligence.
+
+<span class="paragraph-timestamp" data-ts="17:17">17:17</span> **Chester Roh** The total amount of computing input ultimately represents intelligence, and for that total amount of computing input, the precursor, the leading indicator that holds the most information, is the amount of power.
+
+Watts, yes.
+
+So, how many watts were consumed here now speaks to the amount of intelligence it contains, I think.
+
+<span class="paragraph-timestamp" data-ts="17:42">17:42</span> **Seungjoon Choi** That's right. So this post was quite good. It was posted on Twitter on the 19th by someone named Gavin Baker. I've translated it. But it's not just me; it seems several people have posted this timeline.
+
+<span class="paragraph-timestamp" data-ts="17:57">17:57</span> **Chester Roh** Please give us a summary.
+
+
+<span class="paragraph-timestamp" data-ts="17:58">17:58</span> **Seungjoon Choi** The AI scaling law of pre-training is still valid. I think Gemini 3 shares the same perception. What's important in pre-training is consistent FLOPs, and it doesn't matter if it's Blackwell or TPU. So he touches on token economics. Grok 4.1 can also make a splash because it has the infrastructure. So, connecting that, he points out the part about the power shortage. So when watts are the bottleneck, what becomes important?
+
+Tokens per watt will drive decision-making. Because tokens are literally revenue, anyway, he explained it along those lines. And of course, regarding infrastructure, optical cables, cooling—cooling wasn't covered here, but Jeongkyu seems to consider cooling important too. So the conclusion is that all of this suggests we are still in the very early stages of AI. And he finished by talking about OpenAI's anxiety. That's how he concluded. So I only brought a few paragraphs from the whole meeting.
+
+<span class="paragraph-timestamp" data-ts="19:06">19:06</span> **Chester Roh** Right. The story about OpenAI's anxiety, you'll talk about that later in relation to Sam Altman's tweet, and here it is.
+
+## OpenAI's Internal Memo and the 'Shallotpeat' Project    *19:14*
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **Seungjoon Choi** It was an article in The Information. I mean, I didn't read The Information directly, but looking at the stories being talked about on Twitter, ah, it seems Gemini 3 has put on a lot of pressure. They must have known about it in advance, so there must have been a memo sent to employees.
+
+So this is about that, but here, Sam Altman mentions a new model called Shallotpeat, improvements in pre-training, the ambitious automation of AI research, this ambitious automation is what was talked about in October, and then, the fact that they also mention improvements in pre-training here can be seen. So I did some research to see what that was, and shallots are like onions, and in a soil called peat, they apparently don't grow well.
+
+So because the soil is bad, it's a metaphor for a plant that doesn't grow well. This means the pre-training soil, in other words, there was a problem with the data, methodology, and infrastructure, and it metaphorically expresses something new that grows well even there. There's speculation that this might be the codename, which I was able to look into.
+
+<span class="paragraph-timestamp" data-ts="20:27">20:27</span> **Chester Roh** To put it simply, it's true that Google made some progress in the pre-training stage with Gemini 3, they did achieve something, and OpenAI has some kind of action to counter that.
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> **Seungjoon Choi** Meaning it already exists. It already exists but isn't ready to be announced yet, or they have the model but can't serve it. Couldn't it be something like that?
+
+<span class="paragraph-timestamp" data-ts="20:53">20:53</span> **Chester Roh** That could be possible. This is a kind of conspiracy theory of mine, with no evidence, but if you look at these advancements, many of them are often just ideas.
+
+We are now entering a world where idea = output, and in that world, the places that do pre-training, even at Google, when they do pre-training, there must be some intuition that creates it, and that will spread quickly through word of mouth.
+
+I believe OpenAI will do it soon too, and I think we should assume xAI will do it as well. There's just a time lag, but the speed of upward leveling seems to be getting faster and faster.
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **Seungjoon Choi** Right. Looking at the current trend, next June is the right timing for a Chinese version of today's Gemini 3 to come out.
+
+<span class="paragraph-timestamp" data-ts="21:42">21:42</span> **Chester Roh** Half a year, right. Back when o1 came out, it was in September, and DeepSeek's R1, which uncovered its secret, came out in January of the following year. That's about 5 months, so by the end of next spring, it's about time for DeepSeek to release a paper on how they raised the plateau of pre-training.
+
+<span class="paragraph-timestamp" data-ts="22:02">22:02</span> **Seungjoon Choi** So, even as I'm saying this, it feels quite absurd, but we have to be able to imagine it.
+
+When we talk about business six months from now, how the environment will change, if we don't believe this, we can't even imagine it, so we must always be able to.
+
+## Unlearn-Learn: Discard Complex Harnesses and Trust the Model    *22:20*
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **Chester Roh** This is where the unlearn-learn framework that we always talk about comes up again. When we were talking about Claude Code, what we discussed just two months ago was how to build a good harness to increase its working time, and increasing its working time meant improving the quality of the output. How can we make it do those things? That's why things like Claude's skills came out, and recently, a lot of frameworks have emerged on how to further expand Claude Code, and harnesses are being patched on all over the place.
+
+But to put it another way, as we'll discuss in the Antigravity section, that era also ends in just 3-4 months.
+
+<span class="paragraph-timestamp" data-ts="23:05">23:05</span> **Seungjoon Choi** Exactly. The sense for this is, in a way, felt to be very important these days.
+
+<span class="paragraph-timestamp" data-ts="23:14">23:14</span> **Chester Roh** That's right.
+
+So in the past, engineers would refine this model by strengthening the harness, but those harnesses have once again been absorbed into the model as a capability overhang. Rather than bureaucratically constraining it, just setting up minimal guardrails and leaving it to the model is actually leading us faster to a world with better output.
+
+<span class="paragraph-timestamp" data-ts="23:43">23:43</span> **Seungjoon Choi** That's what Noam Brown said this spring.
+
+<span class="paragraph-timestamp" data-ts="23:45">23:45</span> **Chester Roh** Exactly. What you just said, Seungjoon, connects directly to this: it's time to unlearn again.
+
+At my company, the harness has become very thick, but by shedding many parts of that harness and giving more freedom to the model, I'm getting the insight these days that the quality of our output will increase.
+
+<span class="paragraph-timestamp" data-ts="24:08">24:08</span> **Seungjoon Choi** So, while Gemini 3 surprises us today, in six months, it's possible that this will become very cheap and commonplace. It's hard to imagine, but...
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **Chester Roh** Exactly. That guy from the All-In Podcast, Chamath Palihapitiya, came on and said AI is a refrigerator. It's the refrigerator of the refrigerator industry, and delicious food is made in it, and he says the real things haven't come out yet.
+
+Just as you said, Seungjoon, this intelligence we're experiencing is getting cheaper, and because intelligence gets cheaper, the cost of software also becomes zero, and the price of making a desired product also becomes zero. At least in the software domain, it will become zero.
+
+When the time comes, what will happen? It requires imagination.
+
+<span class="paragraph-timestamp" data-ts="24:59">24:59</span> **Seungjoon Choi** It requires imagination, but it's not easy, and when imagining, you always have to think about what will happen and what won't happen, both sides. It's actually quite a difficult task.
+
+<span class="paragraph-timestamp" data-ts="25:13">25:13</span> **Chester Roh** Let's talk about it a bit later.
+
+## Limitations of Benchmarks and Andrej Karpathy's 'Vibe Check'    *25:15*
+
+<span class="paragraph-timestamp" data-ts="25:15">25:15</span> **Seungjoon Choi** I did a bit of a vibe check, and first, what Andrej Karpathy said was quite interesting. But rather than it being a very important point, it was ultimately about the back-and-forth with the model, where the model said something very funny. "Oh my god," it said. Andrej Karpathy said something, and it said that can't happen because it's cut off.
+
+But what Andrej Karpathy did was turn off the web search feature and had a conversation. But when he turned it on, it said, "Oh my god, everything you said was right." So, it was like a cryogenically frozen person learning about reality. Through that surprising part of the model, by talking about it, he actually highlighted the model's capabilities. The fact that the model can notice this, correct its own errors, and conclude "so it's this" shows its ability.
+
+But Andrej Karpathy's point was to be cautious about benchmarks, because they can be hacked in any number of ways. That's why he talked about actually conversing, doing a vibe check, talking with other models, and honing one's own senses. So, there's a rather meaningful quote here: "When you're clearly off the hiking trail and somewhere in the jungle of generalization," "it is in these unintended moments" "that you can best grasp the essence of the model." It's a bit confusing what that means.
+
+Anyway, the best way to grasp the model's essence is not to trust benchmarks but to use it yourself and feel it out. And at Every, they usually try things out a bit early, but it seems they didn't get to try it that much earlier this time. They did a vibe check. I've translated it, but I think the key point is this: The benchmark set they are cultivating, meaning they are a prepared team. Whenever any model comes out, they immediately onboard themselves and can share this within a few days. They can quickly learn the model's vibe, what's possible, and what's not. I could feel once again that they are a prepared team.
+
+But when Gemini 3 came out, I asked around, and there were various scenes. There are people who don't know the news came out, and people who saw the news but only look at the news. You can try it out right away, the model has been released. But there are people who don't try inputting anything. Then there are people who enjoy talking about the model's strengths, and people who enjoy talking about the model's weaknesses.
+
+So I feel like there's a bit of a split in tendencies there too. And then, there are those who don't say anything but have already gotten an idea and are in a state of stealth, I presume.
+
+<span class="paragraph-timestamp" data-ts="28:06">28:06</span> **Chester Roh** There are many.
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **Seungjoon Choi** So when something comes out, I did get the feeling that the temperature difference is quite stark.
+
+<span class="paragraph-timestamp" data-ts="28:16">28:16</span> **Chester Roh** That's right. I think there are exactly two types of people. One type says, "It will keep getting better," and in the past, many companies that started up hastily were all wiped out because of this model's superhuman abilities.
+
+So if they're going to build an application anyway, they'll wait until the very end, and when they feel the model is complete, they'll do it then.
+
+The second type are the people who just follow all these changes, people who experience countless successes and failures as they follow along.
+
+Between those two types of people, I think the winner is very clearly decided. The second type, the latter. Clearly.
+
+The first type doesn't know when it will end, and since this could continue to accelerate exponentially forever, the timing to start something might not come. It might never come.
+
+<span class="paragraph-timestamp" data-ts="29:11">29:11</span> **Seungjoon Choi** I don't know much about business, but on a personal level, I sometimes feel that way too.
+
+When I'm writing my first prompt, I can just type anything, but sometimes I pause for a moment. Thinking, "A new model, how should I use this well?" I might actually stop.
+
+But I believe you just have to try it first. When a new model comes out, have the news on one side, and on the other, you should try it, even if it's just copying and pasting the examples that are provided.
+
+So I wanted to touch on that point.
+
+## Gemini 3's Overwhelming Features: Generative UI and Voxel/SVG Creation    *29:45*
+
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **Seungjoon Choi** Of the things I saw on my timeline this week, I think this one left the biggest impression on me. This is a site called Vibe Check, which was made entirely in AI Studio. So here on the left side, you can actually change this part itself. You can change the code, and what you're seeing now, which is labeled as "silly," isn't silly at all, but actually quite fun. The voxel is moving, right? This was made by Gemini 3. But it doesn't just create the shape, it makes it work. So it's not just making a 3D model, it's doing this right now. So, for example, what should we do? A skeleton, a scene of a skeleton running. I won't look at it right away, but if I reduce the sample to just two, it becomes an SVG. I should have used voxel, so I'll do it again. Then it gets put in a queue. We can check on it later, but it gets created like that.
+
+<span class="paragraph-timestamp" data-ts="30:54">30:54</span> **Chester Roh** This connects to the Generative UI in the second section.
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **Seungjoon Choi** How did they do this? It's not just a rumor. People who actually tried it beforehand posted that it's really good at SVG, and also things like 3D voxel. I knew it was very good at that, but trying it myself felt different.
+
+So, what this implies is, anyway, there's still an issue with speed, but it has become a model that's incredibly good at things related to the front-end or user interface. It's become a model that does it so well. It can create anything.
+
+But to do that, there's a blog post here that I've translated, and there's a paper too. But they created a curriculum to do that, so now it's incredibly good at making things like website onboarding landing sites and so on.
+
+And it might not be available to all users yet, but this has appeared. If you look here, Visual Layout Labs is included. So besides this, it seems the agent is still only available to ultra users, but it's out now. A scene of a skeleton running.
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **Chester Roh** It is. This is insane, right?
+
+<span class="paragraph-timestamp" data-ts="32:14">32:14</span> **Seungjoon Choi** You might be surprised by this, but the question is how they made it. They can improve it by giving feedback.
+
+In an area that's usually not as verifiable as coding, they've now made it verifiable. For visual aspects, design aspects, things like that, the quality is still lower than what a human could create with maximum effort, but it explains how they managed to get it quite close.
+
+That's written in the blog and the paper. In the blog and the paper.
+
+
+<span class="paragraph-timestamp" data-ts="32:43">32:43</span> **Chester Roh** As for what the methodology might be, we understand it in a general sense. Even for those parts that seem non-verifiable,
+
+during the model's training phase, they create a reward signal that says "this is good" or "this is bad." It could be a kind of simulator or a decision maker, which could be the model itself or another policy model.
+
+<span class="paragraph-timestamp" data-ts="33:07">33:07</span> **Seungjoon Choi** That's what they did in the algorithm.
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **Chester Roh** You're saying that if you just throw enough computers at it, it works.
+
+<span class="paragraph-timestamp" data-ts="33:15">33:15</span> **Seungjoon Choi** So at the very end, they cite "The Magic Loop of this research," which was announced around the middle of this year. This is bootstrapping. It's going to keep getting better.
+
+## Speed Superintelligence: The Future of 100x Faster and Cheaper Intelligence    *33:26*
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **Seungjoon Choi** When you look at this and try to read its meaning, because it's Gemini 3, there are many aspects to appreciate, but my number one pick is this.
+
+This is happening, and if we use our imagination here, it still takes time right now. It took about a minute to generate this, right? And when making a decent page, it's funny to say it, but it takes about 5 minutes. 5 minutes is all it takes, 5 minutes.
+
+It's incredibly short, though. Hahaha.
+
+<span class="paragraph-timestamp" data-ts="33:56">33:56</span> **Chester Roh** It's a world where you can't help but laugh.
+
+<span class="paragraph-timestamp" data-ts="33:59">33:59</span> **Seungjoon Choi** If that's what Nick Bostrom called "speed superintelligence" in his book Superintelligence, if the current intelligence level or performance of Gemini 3 just becomes 10 or 100 times faster, what happens then? This is also one of the points for imagination.
+
+And if the price goes down, if it becomes 100 times faster at 1/100th of the price, if it's 100 times faster at 1/100th the price, is that impossible?
+
+You start to imagine things like this, and if by any chance that becomes possible in the near future, even if intelligence stops at this level, it will have a huge impact.
+
+## Historical Perspective: Agricultural and Industrial Revolutions and the Replacement of Cognitive Labor    *34:35*
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **Chester Roh** That's true, but in fact, the work that Gemini 3 or AI models are doing for us, the work they are replacing, is actually what we considered to be our cognitive abilities. Because it's replacing that work, we are marveling and feeling anxious about it and judging it from our perspective.
+
+But now, if we take this lens of judgment beyond the stage where I'm looking at Seungjoon's eyes like this, and raise it up to the sky to look at it from a historical perspective, if we take that view, these kinds of things have happened very often throughout history. First, it happened in agriculture, and then in the Industrial Revolution's weaving, the textile industry.
+
+To take agriculture as an example, as you know, there was a time when almost all industry was in agriculture. But now, only about 2-3% of the total population is probably engaged in agriculture. Back when all of humanity was engaged in agriculture, the things people talked about every day, just like what Seungjoon and I are talking about, would be, "Sowing seeds this way was good," or "Doing that would be good." "Someone in that village made fertilizer and the harvest increased," or "The sugar content is higher." They would talk about things like that, and all of that would have been part of their daily lives.
+
+But in fact, because of the agricultural and industrial revolutions, and the mechanical revolution, machines started tilling the fields, chemistry advanced and fertilizers improved. If you think about what happened in that industry, all the people who worked in it lost their jobs. And it all became corporatized. And the price of agricultural products dropped tremendously, and society itself became very abundant.
+
+So, from the perspective of the people who worked in that industry, they lost all the means of production they had, but for humanity as a whole, we entered an era of great abundance. No one starves to death.
+
+Now, for the first time in human history, we're not worried about starving to death from famine, but we're worried about how to lose weight with GLP-1. We've entered that kind of era. From our current perspective, it's a world that seems so obvious, but from the perspective of someone 200 or 150 years ago, it would be incomprehensible.
+
+So, with this kind of magnitude, an order of magnitude change, we also need to look at this world. Then it will just be over.
+
+<span class="paragraph-timestamp" data-ts="37:11">37:11</span> **Seungjoon Choi** It's non-linear. It's not linear, it's non-linear. So what took 200 years now...
+
+<span class="paragraph-timestamp" data-ts="37:15">37:15</span> **Chester Roh** will happen in 2 years.
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **Seungjoon Choi** That's what's happening.
+
+<span class="paragraph-timestamp" data-ts="37:19">37:19</span> **Chester Roh** Yes, so what happened over 200 years might be right to say it will happen in the next 2 years.
+
+<span class="paragraph-timestamp" data-ts="37:25">37:25</span> **Seungjoon Choi** In some areas, it might not be in all areas, but still...
+
+
+<span class="paragraph-timestamp" data-ts="37:30">37:30</span> **Chester Roh** It will come differently for each vertical, but if you look at the development of models and the domains they are consuming, in fact, things in the pure information domain are ending the fastest. Things in verifiable domains are becoming a world where the model just invests computing power, searches, and finishes it themselves. So now, even within our company, I say that the next 2 years should be seen as 20 years.
+
+Think of one month as one year, and if we live the next 20 months with the intensity of 20 years, if we live like crazy, we will find the answer in the next world. Otherwise, we'll just be discarded entirely.
+
+And another interesting thing is, in the case of agriculture, one generation was discarded, the Industrial Revolution was about one to 1.5 generations, and agriculture was about two generations that were discarded, but humanity moved on to the next domain. So now we've built a service economy and things like that, but AI is simply eliminating the most unique and greatest human ability, cognitive ability, cognitive intelligence. So where do we run to?
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **Seungjoon Choi** And I feel so strongly these days that a new bottleneck is emerging. I didn't include it in today's content, but when I use models, I often use them in parallel these days. Even with the same prompt, I run it multiple times, in multiple sessions, or on multiple models, and it gets very tiring. And it's not easy for people to do context switching. But for a model, you can just open a new session, so there's a pretty big bottleneck in managing that.
+
+And then, if the speed gets faster than now and it generates more—not necessarily a large amount, but content containing more compressed knowledge very quickly, if a person ultimately has to do the orchestration for some parts, it's a problem if you don't do it. You get tired very quickly. So I feel like different kinds of bottlenecks are happening now.
+
+<span class="paragraph-timestamp" data-ts="39:40">39:40</span> **Chester Roh** The information we actually process and receive, or produce, and then while managing and supervising, the amount of information we need to make decisions on has actually exploded.
+
+So for me too, things that happened yesterday and the day before, I have this strange experience where they all disappear from my context.
+
+But I can't remember at all what happened the day before yesterday.
+
+<span class="paragraph-timestamp" data-ts="40:02">40:02</span> **Seungjoon Choi** These days, you have to use your brain so much. Because you have to keep reading, keep executing something, managing, it's tiring, really.
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **Chester Roh** So, in getting ahead of this time gap, because of the thought that there might be some opportunity, we live so diligently, but there's also a sense of predetermined defeat. Is there any meaning in doing this? The harness I worked hard to create today, in three months, the model will do it for me.
+
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **Seungjoon Choi** Okay, let's leave it at that for now.
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **Chester Roh** Since we can't answer, let's move on. We went too deep.
+
+## HWP File Recognition Function and the Implication of Data Movement    *40:37*
+
+<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **Seungjoon Choi** And then, what's interesting is, I saw it on my timeline and experimented with it, I gave it an HWP file, not the binary HWPX, but HWP, and it read it and reformatted it for me. What does this mean?
+
+<span class="paragraph-timestamp" data-ts="40:54">40:54</span> **Chester Roh** Does this mean all of Korea's government and education-related data will now enter the AI?
+
+<span class="paragraph-timestamp" data-ts="41:00">41:00</span> **Seungjoon Choi** Right. So it can't write HWP files yet. That's a bit more difficult.
+
+But reading HWP, there are already good libraries for it, but I don't know how it did this. It's highly likely that it didn't do this specifically for the Korean market, but anyway, it goes in and comes out. I don't see anything like code being executed in the middle, the model just does it. Why would it do this?
+
+<span class="paragraph-timestamp" data-ts="41:29">41:29</span> **Chester Roh** I'm not sure. Other than using HWP for a recent lawsuit, I'm not very familiar with the HWP ecosystem.
+
+<span class="paragraph-timestamp" data-ts="41:38">41:38</span> **Seungjoon Choi** I also very much want to be unfamiliar with it...
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **Chester Roh** You have to use it, you have no choice.
+
+<span class="paragraph-timestamp" data-ts="41:43">41:43</span> **Seungjoon Choi** Yes. But in our country, many things are in HWP, and in a way, while that created a sort of walled garden, it also served as a safety net. But now, it seems all that information will flow there.
+
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **Chester Roh** In my opinion, this type of mechanism, like OpenAI's app SDK, in any case, from a platform provider's perspective, information from the outside coming into their system is always a benefit.
+
+And that incoming information, it all has different energy levels.
+
+There's garbage data, but when a user directly expresses their intention like that, by typing something into a chat window, even if it's just one line, it can contain the same amount of information as a 10-page web page.
+
+<span class="paragraph-timestamp" data-ts="42:36">42:36</span> **Seungjoon Choi** The density is much higher.
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> **Chester Roh** It's information with much higher density. So, within our company, when we process this kind of information, as we talked about in our previous episode, "Right Questions Are All You Need," we talked about it in that episode, the most important thing is what people really want, their intention, what is it?
+
+The energy level of the prompt typed directly by the person speaking, and its quality, that turned out to be the most important. So we ended up creating a framework that focuses on managing just that. In a broader sense, we are giving Google and OpenAI all these precious, energy-filled tokens, funneling them all.
+
+<span class="paragraph-timestamp" data-ts="43:14">43:14</span> **Seungjoon Choi** Anyway, this was another memorable scene. And then, I...
+
+## Intention Becomes Reality: The Collapse of Barriers in Coding and Creation    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:19">43:19</span> **Seungjoon Choi** well, I haven't been able to dig into it very deeply yet, but there were a few moments that surprised me. The very first thing I made was this. So, the first prompt for Gemini, whether I did it in Gemini's web app or in AI Studio, my memory is already faint, but the reason I chose AI Studio is that it can already do a lot. The feature that turns a prompt into a spec is more strongly built into AI Studio than the Gemini web app, so I tried it there.
+
+But right now, there's a live coding library called Strudel, which musicians and media artists use, a library they use, and I suggested we make something similar to that. So, music is playing like this right now, and it's being generated by the code written here. So if I change the numbers in real-time like this, it becomes live coding right away.
+
+But then, I put in a prompt here asking it to make something like lo-fi hip hop, and this was made in just a few shots. Then, regarding this, this code, it's a kind of DSL. But it's not what Strudel uses; it created something similar.
+
+And then the music... so, the speed is slow right now, but if I make it about 0.5... When I showed this to the artists and media artists around me, they were quite surprised. Right now, chat, live coding, visualization, it just came out.
+
+<span class="paragraph-timestamp" data-ts="45:18">45:18</span> **Chester Roh** Exactly. This is what's important. In the past, if we had an intention, we would evaluate a person's ability based on their skill to turn that into reality. But the skills we spent decades accumulating, this thing has eliminated them.
+
+<span class="paragraph-timestamp" data-ts="45:38">45:38</span> **Seungjoon Choi** So, the moment I think of something, I get this feeling of 'it'll work.' That's been happening a bit lately.
+
+I mean, it depends on the model, but with something at the Gemini 3.0 level, if I think of something, it'll happen.
+
+Should I say that sense is starting to form? It's the feeling of knowing before you even run it.
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **Chester Roh** Right. So when I think I need to make something, I run the process of writing the three most essential lines of description in my head. I do it while taking a bath, while showering, while walking down the street, and when about three lines are formed, those three lines with the highest energy, I tell the top-tier thinking model, "Hey, I'm going to put this into Claude Code, so blow it up into a spec for me." When I put that in, it just creates it for me. The energy level of the information contained in the three lines I input is really important at that moment. That's why I said that the ability to create the essence of an idea like this seems to be becoming the most important thing. That's the reason I said that, Then a very high-quality spec sheet comes out, and if you throw that spec sheet into Claude Code, Claude Code equipped with a harness, or something like Antigravity or Codex, it's just over.
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **Seungjoon Choi** Then it just comes out.
+
+<span class="paragraph-timestamp" data-ts="46:49">46:49</span> **Chester Roh** It comes out.
+
+<span class="paragraph-timestamp" data-ts="46:50">46:50</span> **Seungjoon Choi** You think of the initial prompt, and you're going to run the prompt to blow it up, and from there, you get a few questions that need more confirmation, and after receiving some necessary questions, and the checklist that comes out after one or two back-and-forths, if you just run it, it comes out.
+
+Of course, there are cases where it doesn't work, but in many cases, it does.
+
+<span class="paragraph-timestamp" data-ts="47:07">47:07</span> **Chester Roh** Right. Of course, taking that to production is a different story, but that's also a problem that will soon be over. Because the DevOps for production is a game where you just need to attach a model that specializes in it. It's a game where you just have to attach it well.
+
+<span class="paragraph-timestamp" data-ts="47:24">47:24</span> **Seungjoon Choi** Anyway, I tried things like this, and Yi Tay went back to Google, right?
+
+## Physics Visualization Case: Utilization of Nano Banana Pro    *47:29*
+
+
+<span class="paragraph-timestamp" data-ts="47:29">47:29</span> **Seungjoon Choi** So he posted some prompts there too, and I tried them. Should we take a look at that here? It makes something like Minecraft, and Yi Tay just wrote one paragraph. So he said to create an infinitely expanding space where autumn leaves are falling, but it didn't work for me in one go.
+
+I added some sound, so that whenever you walk, if you pick up something like an acorn, it makes a sound. It just came out like that. Anyway, the place that's full of things like this is that 'Vibe Check,' the bundle in AI Studio I showed you earlier.
+
+So there's that, and then this one, I saw on my timeline from physicist Professor Jeong-Hoon Han, a picture, something related to quantum mechanics, I don't understand it, but after seeing what he posted, this was yesterday, I thought, what if I input this into Nano Banana Pro? And it was created like this. It goes discretely like this, showing the path of calculation, something like that.
+
+<span class="paragraph-timestamp" data-ts="48:40">48:40</span> **Chester Roh** I can't read all of this notation, but is this exactly correct?
+
+<span class="paragraph-timestamp" data-ts="48:45">48:45</span> **Seungjoon Choi** Yes, Dr. Jeong-Hoon Han commented that it's correct, but it drew it so beautifully that he thought it would be helpful for writing his book. He gave that feedback.
+
+But in the comments there, another scholar said that the path shouldn't be a clean, discrete arc like that, it shouldn't be an arc like this, but should be more of a zigzag, anyway, that it should go back and forth a bit. So I gave it that feedback.
+
+And then Nano Banana Pro drew it like this. So I inputted this. What did I input it into? Into AI Studio. And this is what came out. Of course, I didn't just input the picture, I also gave it the context of the conversation. So now, if I do an auto-run, auto-run or one step, the vector is moving discretely like this.
+
+<span class="paragraph-timestamp" data-ts="49:34">49:34</span> **Chester Roh** It's moving well.
+
+<span class="paragraph-timestamp" data-ts="49:35">49:35</span> **Seungjoon Choi** This is actually related to quantum error correction, I think it was something related to that.
+
+But now the visualization has become interactive. This is something that started working yesterday.
+
+There are so many use cases for Nano Banana Pro right now. Good ones. But, just as one example, I have infographics or things like that, but...
+
+<span class="paragraph-timestamp" data-ts="50:01">50:01</span> **Chester Roh** When you say, "This is something that started working yesterday," does that mean Nano Banana Pro was released yesterday? Is that what you're saying?
+
+<span class="paragraph-timestamp" data-ts="50:10">50:10</span> **Seungjoon Choi** This was the second prompt I wrote using Nano Banana Pro. Before I did it, I had a hunch that it would work. This would become this, and then this would become this.
+
+<span class="paragraph-timestamp" data-ts="50:27">50:27</span> **Chester Roh** Rather than a hunch, you were 99% certain, weren't you?
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> **Seungjoon Choi** Not 99%, but I was pretty sure it would work, or at least I thought it would...
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **Chester Roh** Let's make it 97%. Yes.
+
+<span class="paragraph-timestamp" data-ts="50:40">50:40</span> **Seungjoon Choi** But the recognition itself is still a bit inconsistent. So, the final part is about AX.
+
+## AI Transformation (AX) in the Field: Kindergarten Educational Material Production Case    *50:52*
+
+<span class="paragraph-timestamp" data-ts="50:52">50:52</span> **Chester Roh** AI Transformation, yes. Only Korea uses the term AX. Globally, the expression AX doesn't exist.
+
+<span class="paragraph-timestamp" data-ts="50:58">50:58</span> **Seungjoon Choi** Oh, really? Then I should probably fix this a bit.
+
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **Chester Roh** AI Transformation. In a world that hasn't even achieved Digital Transformation, we are now being forced into AI Transformation.
+
+
+<span class="paragraph-timestamp" data-ts="51:09">51:09</span> **Seungjoon Choi** Through the last episode, I think many people now know that I run a kindergarten. After Gemini 3 came out, I thought I should do a hands-on workshop with it, so I tried something. But while I speak relatively freely on YouTube, it's actually difficult to talk about the amount of information. I think you have to be very careful. So I carefully created some cases. So for this one, this example seems good. The teachers input into AI Studio a text of about two or three paragraphs related to education that they send home. Then I prompted it with two or three lines, asking it to turn that into interactive content.
+
+And then, here, it was about an experiment on the physical properties of sound. So there was a short story supporting children to explore various sounds. After seeing a picture of that, it drew this, made it interactive, and enabled Q&A about it. All of that came out in one shot. So I made that into a case for every class.
+
+When you do this in someone else's context, it might not resonate well. So, how what they did changes, how it's augmented, or where points of concern arise. I quoted those things from the text the teacher wrote and while creating the interactive content, I showed them how to pinpoint the meaning. They were surprised by this, but it didn't quite click with them. So, what more should I do?
+
+So my strategy for AI Transformation was to do 1-on-1s at first. I could have done a group training session and given a short lecture, but kindergartens are so busy, so you have to be careful about asking for their time. So first, I used my own time to do 1-on-1s, and then after I developed a better feel for it, I thought about what would be better to do next.
+
+A few days later, no, in just two days, Nano Banana Pro came out. I had a feeling that this would work. What I did with Nano Banana Pro... Ah, it's up here. If you look at this, here too, it's about some play records. Creating an infographic, of course, creating an infographic for a certain story in one go worked, but what resonated more with the teachers was that if they just keep their records systematically organized, as they usually do, then having slides generated like this that highlight the meaning, even if they don't intend to use it as is, seemed to be quite helpful. I was able to elicit that feedback.
+
+<span class="paragraph-timestamp" data-ts="54:17">54:17</span> **Chester Roh** It's a world where PowerPoint slides are generated in one shot.
+
+<span class="paragraph-timestamp" data-ts="54:22">54:22</span> **Seungjoon Choi** Right. But the interesting thing here is you can also see the prompt I used. So, "Create a slide deck introducing the teacher's intention, process, and its meaning. It would be good to show how the teacher listened to the children's stories and reconstructed them." It's about a paragraph long, and when I got feedback on this, of course, the images are generated, so it would be better to replace them with actual images from our classroom, but I received feedback that it contained quite meaningful content. So I was able to do this in a general meeting.
+
+So there were two stages. One was the initial 1-on-1s. Then, based on the feedback I got from the use cases and the 1-on-1s, I introduced a use case that might resonate more to the entire group. And then I did 1-on-1s again. It was a short time, but regarding that, what impression did they have, did they find it difficult or not? When I asked, I was able to hear more honest stories. So I did that this week.
+
+This came out, but what concerns there are, what the members of the organization think about it, and exploring the path to learning this, I think I proceeded with that work quickly. And since the teachers are not developers, something that requires a shift in perception, I just pasted some notes I had taken about things like that.
+
+This is hard, and this method doesn't actually scale up easily, but it was also surprisingly fun and rewarding. So this is my approach, but I was able to do this almost from day zero. By finding a meaningful use case.
+
+<span class="paragraph-timestamp" data-ts="56:22">56:22</span> **Chester Roh** Yes, that's right. A person who has accumulated enough context, when they press a button with a certain direction of will, magical things just unfold right before their eyes. You're showing that with this case.
+
+<span class="paragraph-timestamp" data-ts="56:38">56:38</span> **Seungjoon Choi** Right. But to do that, should I say the target audience? Anyway, you have to approach it in a way that fits the context of the people you want to bring change to. That's the learning point, that it seems to have more impact that way.
+
+<span class="paragraph-timestamp" data-ts="56:49">56:49</span> **Chester Roh** That's right. So, as Seungjoon is saying this, there's no bottleneck between Seungjoon and AI. The topics you're almost always talking about now are not about the bottleneck between you and AI, but the bottleneck between you and other people. It's probably the same for most companies and organizations. That's why there needs to be a champion within the company who plays a role like Seungjoon. And then, there shouldn't be anyone holding that champion back. If a champion is under an incompetent manager, they will probably be held back by the extent of that manager's incompetence.
+
+So, those in decision-making positions need to clearly understand these dynamics and be able to set up the organization accordingly. To do that, they need to have their own thoughts and a framework for what this is. Going back to what Seungjoon said in the early days, if you don't have a feel for it by trying it yourself, by getting hands-on, this isn't something you can just watch the news and think, "Let's do it this way," or "Let's do it that way." That's what I want to say.
+
+<span class="paragraph-timestamp" data-ts="58:04">58:04</span> **Seungjoon Choi** Right. But not all organizations are development organizations. So from the perspective of trying to generalize more, I think healthy friction is helpful.
+
+Earlier, when the teachers didn't react positively at first, of course, I might have been secretly disappointed. But then, I can think about how I can reach them better, or what a better use case would be.
+
+And not from my perspective, but from other perspectives, for example, an analog approach, or the important points in education that we should never forget.
+
+When there are people who apply the brakes a little, since we're not a development organization, we can find a more meaningful direction, a meaningful direction in education. So I think healthy friction is important.
+
+<span class="paragraph-timestamp" data-ts="58:48">58:48</span> **Chester Roh** Good. That story leads right into this Antigravity.
+
+## Antigravity Review: Agentic Tools Lowering the CLI Barrier    *58:53*
+
+<span class="paragraph-timestamp" data-ts="58:53">58:53</span> **Seungjoon Choi** Antigravity, Chester. I heard you were very surprised.
+
+<span class="paragraph-timestamp" data-ts="58:58">58:58</span> **Chester Roh** Well, rather than being surprised, it was something I naturally expected to work.
+
+Actually, the UX seems well-designed, and then, because Claude Code was confined to the terminal, there were some shortcomings.
+
+And after trying out Antigravity, I'm reminded once again of how big a barrier just launching the command line, the CLI, the terminal, must have been for ordinary people, for non-engineers.
+
+Just installing npx with Homebrew and setting up Node.js would be a huge barrier for people who haven't done it before.
+
+But downloading, installing, and turning on this Antigravity, the agent inside it handles the rest letting it do things on its own, just by changing that small hurdle, I think this could be quite meaningful.
+
+<span class="paragraph-timestamp" data-ts="59:50">59:50</span> **Seungjoon Choi** Right, so for me, right now, something... I haven't been able to make anything very plausible, but there was a point where I thought, "This will work."
+
+So it's not just the terminal, for general users, editing in the terminal is very inconvenient because it's not easy. Not being able to move back and forth, having to use only shortcuts.
+
+<span class="paragraph-timestamp" data-ts="1:00:12">1:00:12</span> **Chester Roh** And the concept of folders, how projects in folders are laid out in subfolders, people with an engineering background are used to it, but for those who aren't, that itself is a very unfamiliar concept.
+
+<span class="paragraph-timestamp" data-ts="1:00:24">1:00:24</span> **Seungjoon Choi** But the batch jobs that you can't do in web apps or in places like this, there are so many of them in daily life. Like converting a bunch of files at once, or weaving together the images and videos we have to create content.
+
+These things might not have been easy to do, but now I feel like they will be.
+
+<span class="paragraph-timestamp" data-ts="1:00:46">1:00:46</span> **Chester Roh** And with Antigravity or Claude Code, I think there's a direction like Claude Code, and then there's Antigravity or Codex, and I think these two directions are a bit different. Claude Code, from what I feel, is like sitting in the cockpit of a spaceship with a lot of controls, whereas Codex or Antigravity feels like sitting in a Tesla spaceship.
+
+<span class="paragraph-timestamp" data-ts="1:01:15">1:01:15</span> **Seungjoon Choi** It's much more agentic.
+
+<span class="paragraph-timestamp" data-ts="1:01:16">1:01:16</span> **Chester Roh** Much more agentic. That's why for those with an engineering background who want to increase their own controllability, their control, Claude Code will feel much more comfortable and better. So, the engineering community actually adds skills to it and certain agentic guardrails, things like MD files, in the form of stringing together chunks of prompts. And often, that itself is packaged. And they feel comfortable with that.
+
+But Antigravity or Codex, in fact, sees those things as very, too bureaucratic. Because even your ability to propose a certain process, the model probably knows much more in terms of knowledge. Why bother restricting it with team processes and such? We are far superior. It seems these two directions are diverging, and I also found Claude Code very comfortable at first, but with the things that it does on its own agentically, I felt a bit of inconvenience.
+
+With Claude Code, I had many harnesses, like making it write TDD specs first, making it write tests, and only implementing what passed the tests. I had put strong harnesses like these, but I removed almost all of them over about two days. Just giving Antigravity a high-energy-level, a well-supplied essence of what I really want to build, is a much more profitable deal. For about two days, my thinking completely changed in that direction.
+
+<span class="paragraph-timestamp" data-ts="1:02:50">1:02:50</span> **Seungjoon Choi** But this kind of talk, back in May when Codex came out, OpenAI talked about it with the phrase "abundance mind."
+
+<span class="paragraph-timestamp" data-ts="1:02:59">1:02:59</span> **Chester Roh** Abundance mindset.
+
+<span class="paragraph-timestamp" data-ts="1:03:01">1:03:01</span> **Seungjoon Choi** Yes, abundance mindset, anyway, they talked about that. But back then, the vibe wasn't quite...
+
+<span class="paragraph-timestamp" data-ts="1:03:07">1:03:07</span> **Chester Roh** It didn't really hit home.
+
+<span class="paragraph-timestamp" data-ts="1:03:08">1:03:08</span> **Seungjoon Choi** But now, there's a part of me that goes, "Ah, so that's what it was."
+
+<span class="paragraph-timestamp" data-ts="1:03:12">1:03:12</span> **Chester Roh** That's right. In Claude Code, there were parts that felt awkward. There was an inconvenience that felt like it was clumsily integrated with the IDE. It was just like having one window pane attached, not like Cursor's level of clean integration with the editor.
+
+So I just chose to use the terminal and Emacs instead. To be honest, I'm not an avid user of Cursor, so the shock I'm getting from Antigravity now... this might already be implemented in Cursor. I hardly ever use Cursor. I've never even paid for it.
+
+So it might just be a shock I'm feeling because of that, but the inconveniences that were awkwardly present in Claude Code seem to be so well integrated here that I found it comfortable.
+
+<span class="paragraph-timestamp" data-ts="1:04:03">1:04:03</span> **Seungjoon Choi** Right. And wasn't the testing process quite a spectacle?
+
+Instead of doing it through something like Playwright, it just guides you to install a Chrome extension once, and then it directly uses the browser, I think it's probably using CDP. Using the Chrome DevTools Protocol, it directly presses buttons, runs user tests on the front end, and then based on that, it checks what logs are printed in the console and keeps fixing it.
+
+There are many things that don't work, but the number of things that work well has increased dramatically. And it records that process.
+
+<span class="paragraph-timestamp" data-ts="1:04:35">1:04:35</span> **Chester Roh** Yes, it records it and leaves them all as artifacts. It shows all the cases of passed and failed tests, and the process of such decision-making is branched and handled very well in an agentic way.
+
+Since the model is much better at making such judgments, I, as I mentioned earlier, think that building on a Claude Code base, continuously strengthening some kind of harness, and putting in skill sets inside, is meaningless.
+
+That direction, it's just better to quickly make a U-turn, I'm starting to think.
+
+<span class="paragraph-timestamp" data-ts="1:05:09">1:05:09</span> **Seungjoon Choi** Right, the model is Gemini, but ultimately the harness is made by the key figures from Windsurf, and the name Cascade was briefly mentioned.
+
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **Chester Roh** No matter what model comes out, or what agent comes out, the harness will always be there. The word "harness" doesn't refer to a specific layer, but whatever layer emerges, the act of abstracting on top of that layer is what we will continue to call a harness. So the harness will be eternal.
+
+However, the role of that harness and the level of a certain layer will continue to move upwards, in the direction of abstraction. So this time, when the founder of Antigravity, Windsurf, came out and did a demo of about 10-something minutes, the prompts they used were just the clearest and most concise explanation of the target object they wanted. That's what's important. What happens in the middle is not important. Because I'll take care of everything.
+
+<span class="paragraph-timestamp" data-ts="1:06:14">1:06:14</span> **Seungjoon Choi** It just clicked over one step.
+
+So, instead of making it do something in a verbose way, meaning, rather than being redundant, if you just state the core point, the model does it neatly and sensibly on its own. That seems to be a point that Gemini 3.0 is emphasizing.
+
+## Advice for Engineers: Focus on Problem Solving (Business) Rather Than Tool Development    *1:06:27*
+
+<span class="paragraph-timestamp" data-ts="1:06:27">1:06:27</span> **Chester Roh** But the clear direction is that the model's capability will continue to increase, and then the trails of the work we leave in this Antigravity or Claude Code, the successful jobs, will go into the dataset, and the unsuccessful ones will be discarded. Therefore, the trend of it improving exponentially will continue to accelerate.
+
+So, it's right for us to judge it this way. Because we understand these engineering-related parts a bit earlier, we can create a better harness and gain a 2-3 month advantage, but that world will end very quickly, so digging into the harness itself and digging into the engineering aspects is something we should gradually put less effort into.
+
+In the end, it's the ability to find problems in the real world, and the ability to define them. In the past, it was what consultants, business consultants, people from McKinsey, used to come and do.
+
+<span class="paragraph-timestamp" data-ts="1:07:29">1:07:29</span> **Seungjoon Choi** But if we extrapolate a bit now, compared to having problem-solving abilities, isn't having or finding problems asymmetrical? Isn't that side much more advantageous?
+
+<span class="paragraph-timestamp" data-ts="1:07:41">1:07:41</span> **Chester Roh** Right, what Seungjoon just said is the key point. There are very many people who have problems, but the perspective shift that "because the world of AI has changed like this, my problem can be solved easily in this way" hasn't happened for most problem holders. It hasn't occurred to them.
+
+But now, those cases, we will be seeing a lot of them in the next 1-2 years. And to interpret it from a business perspective, it's like this. For example, the holder of that problem, let's say it's some mid-sized company. To solve that problem in the traditional way, they might be paying for a very expensive B2B SaaS or something like that, for example, let's say they were paying about $7.14 million a year. The people doing AI, while they were paying that $7.14 million, one company would be hired, with 30 to 50 people, and if you include maintenance, the work that was done by members in the hundreds will probably be done by about 5 people here.
+
+If about 5 people do it, they will charge about $2.14 million for what used to be done for $7.14 million, but the actual cost, because of this model's capability, will be less than $36,000. So for these 5 people, a margin of about $2.1 million is created, and the industry over there, which was a lump of inefficiency, that $7.14 million industry will just disappear entirely. So when will this happen? When the problem holder who was paying $7.14 million discovers a company like Palantir that can solve it this way, or when they see that a competitor of theirs is using such a method to drastically reduce costs and has built a much more dynamic software environment, the moment they see that, drastic changes will start to happen.
+
+So the right direction for us to go now is to focus on the time gap and domain gap that exists between the problem holders who are unaware of the solution and the world of AI, the domain gap, the extremely human parts that are not the domain of AI, and I think almost all the value is gathered there.
+
+<span class="paragraph-timestamp" data-ts="1:09:54">1:09:54</span> **Seungjoon Choi** What I'm hearing and feeling is that the signal of that time gap is ultimately the point in time when a best practice emerges that fast followers can adopt. After that, people can do it because they know "it works," right?
+
+<span class="paragraph-timestamp" data-ts="1:10:11">1:10:11</span> **Chester Roh** That's right. When that happens, the number of suppliers and demanders will increase again, and we'll reach a different equilibrium point in the market. People only look at those results and predict this or that, but...
+
+The people who always seize wealth are those who enter that transition period and organize that chaos, and in some form or another, market leadership is inevitably secured by someone. So that period is important, and because that period is what will happen over the next two years, we need to be preparing for it now.
+
+So, to make a long story short, if I were to say something to software engineers, to put it in a very condensed way, being good at using things like Claude Code or Antigravity right now and developing the ability to create a good harness for it is not that important.
+
+As long as you have that ability to a certain extent, it's about quickly finding someone with a problem, solving that problem, and having the workflow you've built lock that person in, and from there, continuously generate retention, or show signs of scale.
+
+Moving into this human-centric phase is much more important. To put it more directly, quickly let go of being a software engineer. Quickly switch to an entrepreneurial mindset.
+
+Approaching it from the perspective of an entrepreneur who just happens to have started using Antigravity and Claude Code a bit early is what I define as the most correct approach right now. As of now.
+
+## 'Fugitive Alliance' Meeting Announcement    *1:11:54*
+
+<span class="paragraph-timestamp" data-ts="1:11:54">1:11:54</span> **Seungjoon Choi** It seems like it's about time for the conversation to flow towards the topic of the Fugitive Alliance.
+
+<span class="paragraph-timestamp" data-ts="1:11:58">1:11:58</span> **Chester Roh** That's right.
+
+But regarding the story of the Fugitive Alliance, we're recording this on a Saturday, and probably this afternoon, to the Fugitive Alliance, I will be sending out an email, and after sending the email, so many great people have applied, and within that group, there are problem solvers, and problem holders who have problems, all mixed together.
+
+So a place for holders and solvers to meet and talk, I realized such a venue is necessary, whether it's in an offline format or an online format. I think that might be the direction the Fugitive Alliance should take.
+
+<span class="paragraph-timestamp" data-ts="1:12:36">1:12:36</span> **Seungjoon Choi** Then by the time this video is published, the notice will have already gone out.
+
+<span class="paragraph-timestamp" data-ts="1:12:41">1:12:41</span> **Chester Roh** It will have gone out. It probably will have.
+
+## Closing: The Importance of Diverse Perspectives in Rapidly Changing Times (Syncretism)    *1:12:44*
+
+<span class="paragraph-timestamp" data-ts="1:12:44">1:12:44</span> **Seungjoon Choi** Then for our final topic today, one of the advantages of our podcast is that while we talk about similar things, our members, Seonghyun, Chester, Yujin, and myself, we all have different perspectives, don't we? Because of that, I think there's a part that appeals to our listeners.
+
+I felt it while talking today as well, the current phenomenon is much more high-dimensional, and even when looking at its shadow, the manifold, that itself is also high-dimensional, so I feel we need to look at it from various angles.
+
+<span class="paragraph-timestamp" data-ts="1:13:21">1:13:21</span> **Chester Roh** That's right. Depending on the perspective, the image formed is completely different.
+
+<span class="paragraph-timestamp" data-ts="1:13:25">1:13:25</span> **Seungjoon Choi** That's why this landscape, is not fixed but is changing, and whether I see it from an engineer's perspective or a businessperson's perspective, depending on that path of movement, the landscape will look different. That's why when multiple people look at these things and talk about them together, we can obtain more dense information. That's the speculation I'm making. That's what it means to be contemporary.
+
+In that case, if I were to make one suggestion, rather than excluding each other for having different values, there's a term called Syncretism. It means that even if you have different opinions or beliefs, if there's a situation with a greater enemy or a situation with greater meaning, you can cooperate as much as you want. It's the perspective that you can put things in the same basket.
+
+So I think for those who are optimistic about the acceleration of tech and those who are cautious, being able to see things this way, or that way, if we can communicate about that, it would be a better situation.
+
+It might be a bit of a naive thought.
+
+Because if beliefs are truly different, it's hard to get along, in fact.
+
+<span class="paragraph-timestamp" data-ts="1:14:40">1:14:40</span> **Chester Roh** Yes, that's right. But just as we say it's important to learn and unlearn, quickly discarding things is also important.
+
+Until just a little while ago, there was a trendy term, 'kkondae'. People whose perspectives were rigidly fixed in one direction and who wouldn't compromise with other viewpoints were called 'kkondae'.
+
+Now, it's a world where those people are the most at risk. We have to quickly, plastically, like a child...
+
+<span class="paragraph-timestamp" data-ts="1:15:09">1:15:09</span> **Seungjoon Choi** It's neuroplasticity, in a way.
+
+<span class="paragraph-timestamp" data-ts="1:15:11">1:15:11</span> **Chester Roh** Yes, we have to learn. That's why in the last episode, Seungjoon, from what you said about what needs to be done for children's education, I conversely learned a lot of insights for my company. It feels like everyone has become a kindergartener.
+
+<span class="paragraph-timestamp" data-ts="1:15:27">1:15:27</span> **Seungjoon Choi** I know, right? There are many more things to think about regarding that, but since we've already gone on for quite long today,
+
+<span class="paragraph-timestamp" data-ts="1:15:31">1:15:31</span> **Chester Roh** Since we've gone on for long, we should probably stop here.
+
+<span class="paragraph-timestamp" data-ts="1:15:35">1:15:35</span> **Seungjoon Choi** It was fun today as well.
+
+<span class="paragraph-timestamp" data-ts="1:15:36">1:15:36</span> **Chester Roh** Yes, Seungjoon, thank you again for your many teachings today.
+
+<span class="paragraph-timestamp" data-ts="1:15:41">1:15:41</span> **Seungjoon Choi** Yes, thank you.
