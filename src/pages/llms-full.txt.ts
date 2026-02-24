@@ -51,6 +51,9 @@ export async function GET(context: APIContext) {
     lines.push('');
     lines.push(`- Transcript: ${url}`);
     lines.push(`- YouTube: ${ytUrl}`);
+    if (d.notionUrl) {
+      lines.push(`- Resources: ${d.notionUrl}`);
+    }
     lines.push(`- Published: ${d.publishedAt.toISOString().slice(0, 10)}`);
     lines.push(`- Duration: ${d.duration}`);
     lines.push(`- Hosts: ${d.hosts.join(', ')}`);

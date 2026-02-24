@@ -46,6 +46,9 @@ export async function GET(context: APIContext) {
     lines.push(`- Duration: ${d.duration}`);
     lines.push(`- Hosts: ${d.hosts.join(', ')}`);
     lines.push(`- ${d.description}`);
+    if (d.notionUrl) {
+      lines.push(`- Resources: ${d.notionUrl}`);
+    }
     if (d.chapters.length > 0) {
       lines.push(`- Topics: ${d.chapters.map((c) => c.title).join(' | ')}`);
     }

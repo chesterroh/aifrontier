@@ -36,6 +36,7 @@ export async function GET(context: APIContext) {
         ...(hasEn ? { transcript_en: `${site}/en/episodes/ep${d.episodeNumber}` } : {}),
         detail_api: `${site}/api/episodes/ep${d.episodeNumber}.json`,
         youtube: `https://www.youtube.com/watch?v=${d.youtubeId}`,
+        ...(d.notionUrl ? { resources: d.notionUrl } : {}),
       },
     };
   });
