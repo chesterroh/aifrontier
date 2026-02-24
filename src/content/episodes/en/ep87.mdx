@@ -1,0 +1,383 @@
+---
+episodeNumber: 87
+title: "The Age of One Click — Between Grief and Joy"
+description: "On a Saturday morning, February 21, 2026, Chester Roh and Seungjoon Choi discuss the speed, FOMO, and so-called 'AI depression' brought on by recent AI model and agent trends."
+publishedAt: 2026-02-24
+duration: "51:00"
+youtubeId: "k3pZRrSmrtk"
+thumbnail: "https://i.ytimg.com/vi/k3pZRrSmrtk/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "Intro: Anxiety in the Age of AI Clicks"
+  - time: "1:15"
+    title: "MVK, Moving in the Right Direction Without Knowing"
+  - time: "1:47"
+    title: "METR Benchmark Saturation: 14 Hours of Claude Opus 4.6"
+  - time: "3:40"
+    title: "Gemini 3.1 Pro and the Endless New Models"
+  - time: "5:11"
+    title: "Chris Lattner's In-depth Review of the Claude C Compiler"
+  - time: "8:35"
+    title: "Andrej Karpathy's March of Nines: Between 90% and 99.99%"
+  - time: "10:12"
+    title: "Everything as a Search Problem: Science and Drug Discovery"
+  - time: "11:07"
+    title: "OpenAI Theoretical Physics Case Study and the Centaur Era"
+  - time: "14:14"
+    title: "The Essence of Model Capability: Interpolation or Extrapolation?"
+  - time: "18:19"
+    title: "The Reality of Agentic Coding: The Limits of the Ralph Loop"
+  - time: "21:41"
+    title: "Harness Engineering"
+  - time: "25:11"
+    title: "The FOMO Industry and AI Depression"
+  - time: "28:05"
+    title: "Good Software Will Increase in a World of Clicks"
+  - time: "29:48"
+    title: "Finding Fun in Andrej Karpathy's microgpt"
+  - time: "31:34"
+    title: "Creative Applications of Automatic Differentiation and the Joy of Learning"
+  - time: "37:11"
+    title: "Process Over Results: The Fun and Taste of Learning Again"
+  - time: "42:33"
+    title: "Writing Healthily: The Mechanism of AI Exploitation"
+  - time: "43:54"
+    title: "Gilbert Strang's Linear Algebra and Digging Deep into Study"
+  - time: "46:23"
+    title: "The Difference Between 99 vs 99.99"
+  - time: "50:08"
+    title: "20,000 Subscribers, Thank You"
+lang: "en"
+alternateSlug: null
+---
+
+## Intro: Anxiety in the Age of AI Clicks    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, the day we're recording, is Saturday, February 21st, 2026. We did the session with CEO Shin Jeong-gyu last week, and it really feels like the pace of development is accelerating even more.
+
+From everywhere, click click click — software made in a day, made in a week, high-quality products are just pouring out, and we can barely keep up ourselves. Alongside that, there's a sentiment starting to emerge — this is so frustrating, I feel depressed, how are we supposed to deal with this — there are quite a few opinions around that.
+
+<span class="paragraph-timestamp" data-ts="00:33">00:33</span> **Seungjoon Choi** I don't often use words like frustration or depression directly, at least not explicitly, but I think deep down I do feel something like that. I think it started around OpenClaw. When agent swarms and agent teams came out, the trend of spinning up lots of things — I felt like I couldn't really keep up with it, so I've been taking January and February more slowly rather than rushing through, kind of in a mode of thinking things through carefully. But then, because I'm going slowly and thinking carefully, while the background keeps rushing by, there's this vicious cycle of FOMO hitting me.
+
+So I'd like to look back at recent events, and — I don't have all the answers yet — talk a bit about how I'm working through it in my own way.
+
+## MVK, Moving in the Right Direction Without Knowing    *01:15*
+
+<span class="paragraph-timestamp" data-ts="01:15">01:15</span> **Seungjoon Choi** When I gave a talk at Uneven Future in early February, my last slide asked: "To move in the right direction even without knowing everything, what's the minimum we need to know?" That's MVK — Minimum Viable Knowledge — something we've mentioned a few times on our channel, and I wrapped up with that framing. It's been a question that keeps occupying my mind. Thinking about how we can actually figure that out — that's the kind of thing I've been wrestling with, and I think today's conversation will connect to that thread.
+
+## METR Benchmark Saturation: 14 Hours of Claude Opus 4.6    *01:47*
+
+<span class="paragraph-timestamp" data-ts="01:47">01:47</span> **Seungjoon Choi** But before that — this news just came out this morning. METR published their evaluation of Claude Opus 4.6, and the number came out to 14 hours. We've been saying on the show that maybe by around May or July next year, it'd hit the 8-hour full human workday — we talked about that, right? But then GPT-5.2 nearly hit 5 hours, and then 4.6 — because the graph is logarithmic, it doesn't look like a big jump, and it kind of felt like it was still within the expected range, but when you look at the linear scale, it's way out there.
+
+<span class="paragraph-timestamp" data-ts="02:25">02:25</span> **Chester Roh** It shot up.
+
+<span class="paragraph-timestamp" data-ts="02:27">02:27</span> **Seungjoon Choi** Right. And METR is saying that their tasks seem to be getting saturated now. They're preparing new ones. So it feels like this graph has reached the point where it's losing its meaning.
+
+<span class="paragraph-timestamp" data-ts="02:41">02:41</span> **Chester Roh** The whole point of the graph was to measure how long AI can work alone without human intervention, but we work 8 hours a day ourselves. And it's not even focused work for 8 hours — let's say we actually work about 3 to 4 hours of real work, whereas this thing will just work for 14 straight hours. That's right.
+
+<span class="paragraph-timestamp" data-ts="02:59">02:59</span> **Seungjoon Choi** Right. And there's a 50% version and an 80% version — it's not just about working longer, it's being measured against the equivalent of human working hours. Either way, the current interpretation is that AI is completing what would be 16 hours of human work at a 50% success rate.
+
+And now we started this morning with the news that the benchmark is saturated. This morning. And the trend of incrementing by 0.1 seems to be becoming the norm. We were expecting Sonnet 5, but instead we got 4.6. And I still haven't properly tried it from last week. I have such ingrained habits of using Claude Opus 4.6 that I keep running Opus, though I'm sure 4.6 will do well too. Probably even cheaper.
+
+## Gemini 3.1 Pro and the Endless New Models    *03:40*
+
+<span class="paragraph-timestamp" data-ts="03:40">03:40</span> **Seungjoon Choi** And then Gemini 3.1 Pro was announced. Looking at the benchmarks, the ceiling still seems pretty high. It feels like it can get even better than this — and it keeps getting better — so it looks like it's set to keep improving going forward. So this is the level that Gemini 3.1 Pro is reaching now — Jeff Dean posted about it. And you can go try it right now in Google AI Studio, but the run I started last night ran for 10 hours and nothing was generated. I was so excited to see what it'd come up with, but right before we started recording, it told me there was some kind of error. So I haven't been able to properly test its performance yet.
+
+But the models just keep coming out. And more are on the way. How should we even assess all this? At this point, I feel like I'm just sort of... numb to it.
+
+<span class="paragraph-timestamp" data-ts="04:28">04:28</span> **Chester Roh** These models are really the pinnacle of generality. The ability to do just about anything — and the most general capability is the most specific — that's what Boris Cherny, who built Claude Code, said when he appeared on the Y Combinator YouTube channel the other day.
+
+And that powerful general intelligence is now dominating every other domain too. One field that's been feeling that impact a lot lately seems to be science — and I imagine you'll talk about that — there's nothing it can't do. Just watching it is kind of exhausting.
+
+<span class="paragraph-timestamp" data-ts="05:01">05:01</span> **Seungjoon Choi** Of course, when you're actually using it day-to-day, there are parts that still creak and stumble. But the direction itself — things that used to be impossible are clearly becoming possible. And this was February 18th, so just a few days ago. Chris Lattner — the person who created LLVM, then created Swift, was at Apple, then went to Tesla, and now has a company called Modular. Since he originally worked on compilers, he knows compilers pretty well, right? And when Claude Code's C compiler came out, his post that day said it was the best compiler-related documentation he had ever seen — leaving the impression that the documentation was exceptionally good — and he said he was going to take a closer look. That deep dive was then written up in detail on his blog, and I translated it.
+
+## Chris Lattner's In-depth Review of the Claude C Compiler    *05:11*
+
+<span class="paragraph-timestamp" data-ts="05:56">05:56</span> **Seungjoon Choi** The opening part says this is the kind of implementation that could have textbook-level value. There was quite a bit of praise, and of course there were also some shortcomings noted. But overall, it has a genuine sense of direction, it's not slop — it's something worth examining. And because there's a commit history, going through that is apparently quite meaningful, that kind of thing. But there was a point made about what went wrong, and the most glaring issue in the Claude C compiler is the mistake itself — the biggest problem was hardcoding what the tests needed in that final section, which is a signal that it struggles to generalize beyond the test suite, and that's not so much surprising as it is informative. Current AI systems are excellent at combining known techniques and optimizing toward measurable success criteria, but they struggle with the kind of open-ended generalization that production-level systems require. And if that observation leads to a deeper question — what does this tell us about AI coding itself — that part was also discussed in an interesting way. I thought this part was particularly important.
+
+On the limitations side — implementing known abstractions is a different thing from inventing new ones. It removes repetitive grunt work and lets you start from a closer starting point to current best practices — serving as a useful milestone — but it reveals its limits too: it doesn't invent new abstractions, and nothing truly new is visible in this implementation. That said, it is a textbook implementation — that much is true. In the closing remarks, he said this: He's not talking about the end of software or the end of engineers. That framing is a bit of hype. If anything, it's closer to throwing the doors wide open — because as implementation gets easier, the space for genuine innovation only grows larger. So lowering the barrier to implementation doesn't diminish the importance of engineers — it actually raises the value of vision, judgment, and taste. The easier it becomes to build, the harder the question becomes of deciding what's worth building. AI accelerates execution, but meaning, direction, and responsibility fundamentally remain human. That's quite a profound statement too. Writing code was never the goal. The goal is to build meaningful software. The future belongs to teams that embrace new tools, question assumptions, and design systems that help people build things together.
+
+<span class="paragraph-timestamp" data-ts="08:23">08:23</span> **Chester Roh** CEO Shin Jung-gyu said the exact same thing when he came on last week. In the end, the software logic is the real deliverable — code is just the intermediate tool used to implement that logic, and that intermediary is disappearing.
+
+## Andrej Karpathy's March of Nines: Between 90% and 99.99%    *08:35*
+
+<span class="paragraph-timestamp" data-ts="08:35">08:35</span> **Chester Roh** And Andrej Karpathy mentioned in a talk once the idea of the "March of Nines." He used that exact phrase — "March of Nines" — right. The effort to get to the first 90%, then getting from 90% to 99%, then 99 to 99.9, to 99.99 — each additional nine you add requires the same amount of effort.
+
+So with the Claude C compiler, it just handles maybe up to 90% on its own, or if you stretch it a bit, maybe up to 99% — but in the eyes of a master working at the 99.99% level, that remaining 0.99% probably feels like an enormous gap, and where that gap is felt ties back to what Seungjoon summarized at the end — those deeply human qualities: taste, will, things like that. So there's still plenty for us to do ahead, or something to that effect — that seemed to be the takeaway.
+
+<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **Seungjoon Choi** So regardless, it carries significant meaning, but hasn't yet reached the level of true innovation — that's what Lattner said. And yet, it's still worth examining what this direction implies, and thinking about what we can do when this becomes the new normal — those are the points I want to re-emphasize once more.
+
+And the word "taste" came up. We've been talking about taste repeatedly — and recently there's someone I've mentioned a few times: Kang Gyu-young, who is currently the CTO of Corca, seems to be working on a piece called "Software with Taste." It looks like an interesting read, so I'd encourage you to check it out.
+
+## Everything as a Search Problem: Science and Drug Discovery    *10:12*
+
+<span class="paragraph-timestamp" data-ts="10:12">10:12</span> **Seungjoon Choi** But when it comes to needing true innovation — in science or mathematics, you can't just repeat known problems; you need real breakthroughs. And that's exactly where things are happening right now.
+
+<span class="paragraph-timestamp" data-ts="10:23">10:23</span> **Chester Roh** It keeps coming up regularly, and we can't possibly cover all of it. But to put it extremely simply — drug discovery is about identifying the protein causing the problem, and understanding the mechanisms by which that protein expresses something. Then you find a substance that inhibits or promotes that process — what we call an antibody — and chemically interfere with that process. That's the mechanism behind most drugs.
+
+Which means, at the end of the day, it comes down to understanding protein structure and playing a game of finding another structure that fits it. So clearly, this domain too can be fully reduced to computation and solved as a search problem — and that's what's being shown now.
+
+## OpenAI Theoretical Physics Case Study and the Centaur Era    *11:07*
+
+<span class="paragraph-timestamp" data-ts="11:07">11:07</span> **Seungjoon Choi** Setting that aside, from my own careful reading while translating, the one I read most closely was OpenAI's work in theoretical physics — a specific paper that came out. That piece on OpenAI and science was something I emphasized toward the end of last year — I introduced the example of Kevin Weil and the scientist researching black holes. I mentioned that case once before.
+
+That researcher brought other scientists — including his own mentor — people at the absolute frontier of theoretical physics, into OpenAI, and after working together on something, a paper came out of it. The mentor of the black hole researcher who joined OpenAI — even just a year ago, he wasn't sure how helpful AI would be, he wasn't sure how much help AI could be, so that was roughly his mindset around 2024 — or even early 2025 — but a year later, after several exchanges with GPT-5.2 Pro, he sent a final query to an internal OpenAI model, and that model not only solved a previously unsolved problem in quantum field theory, it also produced a proof.
+
+In 12 hours — that's the story, That's the story that came up. So the model, in that field, accomplished something that two of the world's smartest people couldn't do. And when I was with them, they were ecstatic. Something like that.
+
+<span class="paragraph-timestamp" data-ts="12:29">12:29</span> **Chester Roh** Right, exactly.
+
+<span class="paragraph-timestamp" data-ts="12:30">12:30</span> **Seungjoon Choi** Coding has already moved beyond the centaur era, and now it feels like science is entering the centaur era. After Gary Kasparov lost to Deep Blue, the concept of the centaur emerged in chess. A centaur is half-human, half-horse. So the idea was that when AI and humans team up together, they outperform either AI alone or humans alone — that style of centaur chess was popular for a while.
+
+Now science has finally entered the centaur era — working alongside AI — while coding has gone much further, delegating far more to AI, and now science and math seem to be following that same trajectory.
+
+<span class="paragraph-timestamp" data-ts="13:11">13:11</span> **Chester Roh** It really feels like every problem is being reframed as a search problem. Just pour in more electricity and more computation, and inference tokens are now exploring uncharted territory for us. Things that humans used to work through one thought at a time are now all being replaced by raw computation.
+
+<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **Seungjoon Choi** And the accounts of their experience are being debated back and forth on Twitter. But regardless, the people around that blog and the researchers themselves are saying: what AI will do for physics in 2026 will be similar to what it did for coding in 2025 — that's what they're saying. And when I posted a translated version of that on social media, a few scientists here in Korea actually left comments, which I found quite striking. Things like: this is really happening, I need to prepare for this, what will happen to graduate school — those kinds of reflections were showing up.
+
+## The Essence of Model Capability: Interpolation or Extrapolation?    *14:14*
+
+<span class="paragraph-timestamp" data-ts="14:14">14:14</span> **Chester Roh** Right, this is something we talked about back in the early days — why is it that when we discuss the progress of these models, people kept saying the model is just a simple interpolation engine — that was a common take early on. That it only does interpolation, that it can't venture into genuinely new territory — that's what people were saying back when the models were still relatively weak. But looking at the results coming out now, it's actually the complete opposite. It all looks like extrapolation — going beyond what's known — but my take on this is simply that if we call everything the model is projecting some total universal truth as 100, that 100 is represented very sparsely within our model.
+
+I still think of it as interpolation. So interpolating between those sparse points across a vast space — from a human perspective, that looks like extrapolation, I think.
+
+<span class="paragraph-timestamp" data-ts="15:13">15:13</span> **Seungjoon Choi** If interpolation happens across an enormous domain, there's a good chance it will appear new — and in fact, something genuinely new can emerge that way.
+
+<span class="paragraph-timestamp" data-ts="15:20">15:20</span> **Chester Roh** What we call uniquely human creativity is really just someone discovering a space that already existed but hadn't been found yet — if we take universal truth as 100, that's all it is. So as the computation of these models keeps growing and generality increases, the things that lay in between will all become reachable — it'll take time, of course — but assuming it will all become possible, shouldn't we be building on that foundation regardless? We're saying there's a real possibility that the model finishes everything.
+
+<span class="paragraph-timestamp" data-ts="15:53">15:53</span> **Seungjoon Choi** But from the presentation earlier, the impression was that there was nothing revolutionary — yet given that as the new normal, what needs to be done? The point was that it absolutely delivered something enormous. And the thing I've been watching closely with regard to this physics story — after several exchanges, they referred to an internal model, and in another post it was described as an internal model but also a special scaffolding or harness that OpenAI hasn't publicly released yet. Something that GPT-5.2 Pro alone couldn't do was achieved by running for 12 hours inside that special harness — that's the story. That's how I understood it.
+
+But beyond the harness itself, the back-and-forth exchanges also feel important — why were they able to do it? Obviously because they're the top experts and world-class physicists — that's why they could do it, but ultimately it all came down to prompts. So what were the things before they were reduced to prompts? If I had entered the exact same prompt, I probably wouldn't understand the answer, but the model and harness would've given the same response. The model and harness would have. So that's the point that keeps nagging at me. What words and sentences did they use?
+
+<span class="paragraph-timestamp" data-ts="17:13">17:13</span> **Chester Roh** That connects to what Seungjoon mentioned in early January — good prompting, getting prompting right — it ties directly into that. With each step you take, the space inside the model keeps shifting. The space it's representing keeps changing with every move. The representation space transforms completely, and that's how it keeps finding its way forward. So the ability to keep transitioning that space — that might be what we call taste, or setting a direction — some kind of human value — and we're all sensing this in a vague, fumbling way right now, aren't we?
+
+<span class="paragraph-timestamp" data-ts="17:48">17:48</span> **Seungjoon Choi** Right. And last week when I was talking with Jungyu, he gave us a glimpse of how he'd moved away from the long spec-writing style of mid-last-year back to a kind of rapid back-and-forth mode now. And the examples we used in our last episode were quite straightforward, but Jungyu surely used his own vocabulary and his own domain knowledge — all of that would have been baked into those tokens.
+
+<span class="paragraph-timestamp" data-ts="18:17">18:17</span> **Chester Roh** Oh, absolutely. So lately I've been connecting a lot with people doing hard-core agentic coding, and from those conversations — the old approach, like oh-my-opencode, where you just relentlessly drive toward the goal and tell it to finish no matter what, hooking it to keep it running forever — doing it that way, as we mentioned with the C compiler example earlier, gets you no further than what we already know. some awareness of that has started to develop. So in order to move into that kind of horizon-expanding work, human-in-the-loop is absolutely necessary. Understanding that context and continuously feeding in prompts that keep steering things in a different direction — that completely violates the ralph loop.
+
+## The Reality of Agentic Coding: The Limits of the Ralph Loop    *18:19*
+
+<span class="paragraph-timestamp" data-ts="19:01">19:01</span> **Chester Roh** So lately, as I've been working, what I find is that for truly simple tasks or things that are crystal clear and just need a quick answer, I just run the ralph loop and brute-force through it. But for anything where I need to build some logic or create something tailored specifically to our company's business, I find myself going through it step by step. At most, I'll spin up maybe 3 or 4 sub-agents to fetch answers, then have them compare results, and review that comparison process myself as well. And when I do that, by the time it's done, what I notice is that the amount of input tokens is enormous while the output is relatively small. But after that, this part is fine — you start getting these moments of "something good came out of this," and along with that, like we talked about earlier, it feels like a 9 is slowly attaching itself, that kind of feeling starts to come through.
+
+So the trend of agentic coding that we're seeing among these early adopters — the people who've gone ahead and experienced everything firsthand — it's starting to shift a bit. Up until just recently it was all about the ralph loop, but opinions are starting to emerge that the ralph loop alone isn't enough. So I think it would be great to invite some of the people who are at the frontier of this space for another conversation. In fact, Jungyu also touched on that last week.
+
+<span class="paragraph-timestamp" data-ts="20:16">20:16</span> **Seungjoon Choi** This is a kind of gradient forming as well, and since we're still in the middle of figuring it out, if we extrapolate a bit, we can anticipate that there'll be another trend coming after this. Because the trend is still in the process of changing. So the part I've been paying attention to is that there's a tiki-taka mode — one with highly dense vocabulary and domain-specific elements mixed in, and once you go back and forth enough in that tiki-taka mode and something gets settled, a good question emerges, or a directive comes out, and then a longer-running loop can carry that out — these two seem to coexist, producing a synergistic effect with each other. I started to feel like there are these two distinct modes at play.
+
+So tiki-taka is important, but scaffolding seems equally important, or harness. So that blog about physics from earlier, or GPT-5.2 Pro — not long after, it proposed a beautiful, general formula, but couldn't prove it. However, a model with scaffolding applied internally reasoned continuously for over 12 hours and managed to prove that formula. Getting all the way to a proof and having it published as a paper — that seems to be a combination of scaffolding and the underlying model.
+
+So OpenAI has also been doing something interesting — it's a matter of who claims the trending terminology first, and this term "harness engineering" — it's possible OpenAI didn't come up with it first. They may have picked it up from someone else, and then made a post about it on February 11th.
+
+## Harness Engineering    *21:41*
+
+<span class="paragraph-timestamp" data-ts="21:54">21:54</span> **Chester Roh** It seems like "harness" is becoming a broadly used term now.
+
+<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **Seungjoon Choi** Right. Sometimes it's called scaffolding — whether there's a difference, is there a difference? It's pretty much the same thing, right.
+
+<span class="paragraph-timestamp" data-ts="22:02">22:02</span> **Chester Roh** I think they're saying the same thing. Lately, looking at benchmarks — on Discover AI or those kinds of channels — when it comes to Grok, for instance, the top-tier model, the one you get at the highest price point, isn't just some particular single model anymore — it's Grok 4.2 Agent Swarm. A kind of — so they're doing benchmarks comparing Grok 4.2 Swarm against Gemini 3.1 Pro and things like that. So using multiple models in combination — isn't this just a very general trend at this point?
+
+<span class="paragraph-timestamp" data-ts="22:35">22:35</span> **Seungjoon Choi** Right, even as recently as mid-last-year, if you talked about harness on YouTube you'd get comments asking "what's a harness?" That kind of comment used to appear, but now it seems like it's become common knowledge.
+
+<span class="paragraph-timestamp" data-ts="22:47">22:47</span> **Chester Roh** CEO Shin Jungyu also came on last week and said that the real substance of Claude Code isn't Claude Opus 4.6 — it seems like it's the Claude Code harness itself.
+
+<span class="paragraph-timestamp" data-ts="22:57">22:57</span> **Seungjoon Choi** Fowler — the person famous for extreme programming and refactoring — apparently has a team organization of his own. A piece came out of that team, though the actual author wasn't Martin Fowler himself. But it references OpenAI's harness engineering and contains writing that I found myself quite agreeing with — things written there that resonated with me, and it covers fairly current topics. I had assumed Martin Fowler would be somewhat conservative, but no — it seems like he's engaging with what's being talked about today.
+
+And these veterans — people of an older generation than us — Kent Beck, for example, Kent Beck has also been actively embracing LLMs lately. People who were active in the Agile or XP space — they're engaging with all of this, not just as a trend but really learning the direction things are heading, and sharing their own thoughts and insights these days, and so I'm planning to dig deeper into it myself — that's the expression "harness engineering" I brought to this conversation.
+
+<span class="paragraph-timestamp" data-ts="24:00">24:00</span> **Chester Roh** Indeed. These days, the age range of active practitioners seems to have really widened. In the past, it was mainly people in their 30s and 40s, and those in their 50s, 60s, 70s were largely absent, but now it feels like everyone from their 30s all the way up to their 70s is still actively in the game.
+
+<span class="paragraph-timestamp" data-ts="24:16">24:16</span> **Seungjoon Choi** Right. Kent Beck says coding has been so much fun lately.
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **Chester Roh** Yes, the fact that he's saying that.
+
+<span class="paragraph-timestamp" data-ts="24:22">24:22</span> **Seungjoon Choi** So anyway, a new horizon is opening up, and it's certainly exciting — and the things that make it possible, harness engineering or scaffolding and such, are being seen as critically important, and in 2025, Claude Code was, in a sense, the trigger. Many derivatives followed after that, and most recently OpenClaw as well — it's ultimately a harness, isn't it. The human capacity to go back and forth a few times, building something where meaning can emerge, and scaffolding, and harness, and new models incrementally going up by .1 — a continuous upward trajectory. And the model capability that saturated METR — these three combinable elements of I've come to think of it as one of those axes.
+
+## The FOMO Industry and AI Depression    *25:11*
+
+<span class="paragraph-timestamp" data-ts="25:11">25:11</span> **Seungjoon Choi** But the reality is, Matt Shumer's post went massively viral — it got millions of views. And I shared the translation of it a huge number of times myself. It got shared over 300 times, I think. On Facebook, it painted this picture of something enormous approaching — which, in a way, is a genuine reading of reality, but it was also the kind of post designed to trigger FOMO.
+
+<span class="paragraph-timestamp" data-ts="25:33">25:33</span> **Chester Roh** Hype and reality, overlapping. Right, so should we read it as hype? Or should we take it as an accurate picture of the current situation?
+
+<span class="paragraph-timestamp" data-ts="25:41">25:41</span> **Seungjoon Choi** No, I think the two are overlapping. So in a way, we ourselves might come across that way too, but this industry around talking about AI is increasingly one where you have to generate FOMO to make a living. That feeling of, "This is urgent, you need to get on board" — that tone inevitably seeps through in what people say.
+
+<span class="paragraph-timestamp" data-ts="26:01">26:01</span> **Chester Roh** But the truth is, right now, the ones actually creating value and making money are the companies building the models and the hardware companies. Everyone else — the established players — they're all sinking into depression right now. And in the middle of all that, the FOMO-generating YouTubers are gaining subscribers and raking in sponsorships. That's what's happening.
+
+<span class="paragraph-timestamp" data-ts="26:22">26:22</span> **Seungjoon Choi** Anyway, stories like this seem to be contagious.
+
+<span class="paragraph-timestamp" data-ts="26:25">26:25</span> **Chester Roh** Well, they resonate with everyone, don't they. It captures something we're all feeling — this sense of "so what am I supposed to do now?" — that frustration, that anxiety. "Anxiety" is probably the best word for it. It speaks to that collective anxiety.
+
+<span class="paragraph-timestamp" data-ts="26:37">26:37</span> **Seungjoon Choi** And on that note, I came across something recently — just a few days ago, I think. The CEO of Nutilde started a blog series called "The Age of Click AI" — "Why Have We Become So Depressed?" — it seems like they're just getting that series started. I saw it on my timeline, and the phrase "AI depression" was interesting enough that I brought it here. The idea that depression is emerging in the age of "one-click" AI — and we did technically launch this channel with Geoffrey Hinton's gloom.
+
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **Chester Roh** Geoffrey Hinton saying, "Stop this, we're all going to die" — that was three years ago now.
+
+<span class="paragraph-timestamp" data-ts="27:10">27:10</span> **Seungjoon Choi** But why do "one-click" and "depression" go together?
+
+<span class="paragraph-timestamp" data-ts="27:12">27:12</span> **Chester Roh** Because the "click" isn't you. The people who are the ones doing the clicking — they're having a blast right now.
+
+<span class="paragraph-timestamp" data-ts="27:18">27:18</span> **Seungjoon Choi** But couldn't someone who's doing the clicking also be depressed?
+
+<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **Chester Roh** Yes, I think that depends on what your objective function is.
+
+<span class="paragraph-timestamp" data-ts="27:24">27:24</span> **Seungjoon Choi** I mean, when it's working out, you're excited — but last week when we talked to Jungyu, we were discussing what the risks are for startups, and he brought up the danger of replication being too easy with a click. Because of that click-ease, something like Backend.AI GO — you can't just dismiss it as something that was "clicked" into existence, there's clearly a tremendous amount that went into it, all baked into it — but the fact is, it got done in far less time.
+
+<span class="paragraph-timestamp" data-ts="27:52">27:52</span> **Chester Roh** So it gets complicated. In the end, it's not that different from Coupang having a massive catalog of products. We're heading into a world where high-quality software becomes abundant at very low prices, but I think we shouldn't get too worked up about that either. "Wow, now everyone can build software" — "B2B SaaS is going to disappear." I had an interview recently where they pulled that kind of quote from me, but the real issue isn't software disappearing. It's that good software becomes far more abundant, and when good software is everywhere, people seek out what's truly great and gravitate toward that.
+
+## Good Software Will Increase in a World of Clicks    *28:05*
+
+<span class="paragraph-timestamp" data-ts="28:30">28:30</span> **Chester Roh** So even as the background changes, the discerning eye that recognizes what's genuinely good persists — relentlessly. Having run a business selling things myself, customers can tell — they always can. What's good, what's not, whether something is worth the money — they know all of that. So everything is relative. We move forward from there, and when it comes to things that are changing, I don't think we should be calling it wrong. Keeping pace is the only way forward.
+
+<span class="paragraph-timestamp" data-ts="29:01">29:01</span> **Seungjoon Choi** But it is hard, though.
+
+<span class="paragraph-timestamp" data-ts="29:02">29:02</span> **Chester Roh** Well, there's a timeless saying in the business world. The customer is always right. "The customer is always right" — that expression — if you just set "the direction customers are paying toward" as your objective function, then you just follow that.
+
+<span class="paragraph-timestamp" data-ts="29:17">29:17</span> **Seungjoon Choi** So, as I mentioned at the beginning, I've been following the news in January and February, but I haven't really been practicing all that much — I haven't been hands-on with the latest trends very much. So because of that, I've been under less stress, and yet finding something with just the right amount of challenge — something I can healthily pursue — and focusing on that a bit — that's been my thing lately. And the direction that's been keeping me engaged and energized — something that feels more like play — and then Andrej Karpathy dropped something, right?
+
+## Finding Fun in Andrej Karpathy's microgpt    *29:48*
+
+<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **Chester Roh** microgpt.
+
+<span class="paragraph-timestamp" data-ts="29:53">29:53</span> **Seungjoon Choi** I had a really fun time exploring microgpt. So let me quickly walk through it — Andrej Karpathy posted it as a blog post, and the "micro" prefix — back in 2020, he had released something called micrograd. He released micrograd, and in it there was a class called Value, which was a very simple implementation of automatic differentiation on a scalar basis. It was just a few dozen lines of code, and using that, he capped it at exactly 200 lines. Then he published a GPT implementation in three columns. It's actually quite fascinating.
+
+<span class="paragraph-timestamp" data-ts="30:36">30:36</span> **Chester Roh** It's essentially just a Transformer implementation.
+
+<span class="paragraph-timestamp" data-ts="30:39">30:39</span> **Seungjoon Choi** Exactly, a very minimal one. And what it does is generate names. So the GPT portion is just this much — compact enough to fit on a single page.
+
+<span class="paragraph-timestamp" data-ts="30:47">30:47</span> **Chester Roh** Ah, so that's why you used the word "scalar" earlier — it's written with the kind of for loops we're all familiar with, doing it the brute-force way. Everything that needs to be there is in there — exactly and precisely. Not a line more, not a line less.
+
+<span class="paragraph-timestamp" data-ts="31:00">31:00</span> **Seungjoon Choi** If you look at the entire code, things like matmul and so on are all implemented in Python. It's code that does all of that in under 200 lines. I actually typed through the whole thing myself once. Just for fun, I went through it line by line and ran it in Colab. It was a lot of fun.
+
+<span class="paragraph-timestamp" data-ts="31:19">31:19</span> **Chester Roh** So the alphabet is what's being used there. The tokens are just the alphabet. Back in the day, Andrej Karpathy suddenly got super popular — was it 2015? — with the character RNN. It has exactly that feel.
+
+<span class="paragraph-timestamp" data-ts="31:31">31:31</span> **Seungjoon Choi** So I didn't do this myself — I had Claude do it — and what I was trying to experiment with was that automatic differentiation isn't only applicable to things like transformers. So I've been exploring these kinds of things for a while, and for example, around the time DALL-E came out in the image space, CLIP also came out in 2021. After CLIP came out — after OpenAI released CLIP — there was a lot of work around constructing a loss function using CLIP and optimizing images through simple networks to generate images. Doing that kind of work really gave me a sense of the power of automatic differentiation.
+
+## Creative Applications of Automatic Differentiation and the Joy of Learning    *31:34*
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **Seungjoon Choi** And among the background knowledge I had, another thing I tried was — I took the implementation Andrej Karpathy created and applied it. For instance, these two elements need to be within a certain distance, this one needs to be perpendicular, some overlap, some don't overlap — well, these do overlap here. It's representing a set of constraints, and if you convert those constraints into differentiable functions, automatic differentiation can handle this. You can do things like layout optimization, and to see whether these things work, I ported Andrej Karpathy's Value class and ran some experiments.
+
+<span class="paragraph-timestamp" data-ts="32:58">32:58</span> **Chester Roh** At a broad level, this is really no different from deep learning.
+
+<span class="paragraph-timestamp" data-ts="33:01">33:01</span> **Seungjoon Choi** It is deep learning.
+
+<span class="paragraph-timestamp" data-ts="33:03">33:03</span> **Chester Roh** The model is just very simple, and instead of cross-entropy, you're using a different objective function, but the algorithm used to train it is the same. So the insight we should be sharing with our listeners is that at the cutting edge of physics — string theory, as we mentioned earlier — the way you find answers there and what Seungjoon just showed us — the algorithm going in is the same. Only the amount of computation differs.
+
+<span class="paragraph-timestamp" data-ts="33:31">33:31</span> **Seungjoon Choi** What I wanted to talk about in this context was: when I inject domain knowledge — like Penrose earlier, or applied examples from automatic differentiation — since I already know about those things, or things like inverse kinematics, even when I don't inject that knowledge, would the model still come up with those things? That was what I was curious about.
+
+These things can be done on that same basis, and there was a conversation I started just by asking it to come up with ideas for creative coding. I started a conversation like that. Here, I didn't use any of the knowledge I already had. It doesn't have to be Python — you can port it to another language and apply it. Let's see what we can do with real-time interaction — I explored that with ChatGPT, and then with Claude as well. The two gave similar but different suggestions.
+
+So from there, real-time visuals — a learning canvas, a differentiable particle system, differentiable synthesis — meaning audio. Then computation graphs, and so on — L-systems — I had it try all of these. This one draws decision boundaries quite nicely — it visualizes some region as a decision boundary, and one that draws it nicely just came out right away. And then this one visualizes the process of automatic differentiation — it nicely renders the computation graph, showing how the chain works, and so on. And then a more challenging one — L-systems, an algorithm for drawing things like trees — kind of like fractals. If I draw a point here, it optimizes toward that, and I experimented with things like that. These were things I already knew about, though. That these were possible.
+
+<span class="paragraph-timestamp" data-ts="35:23">35:23</span> **Chester Roh** In the past, each of those things would have been a serious project in its own right. Really.
+
+<span class="paragraph-timestamp" data-ts="35:28">35:28</span> **Seungjoon Choi** These days they just pop right out. Making something work that's known to work is easy enough. Making known things work — so nothing new there — but I confirmed that making things that work actually work, works well. But with that ChatGPT conversation, more than the implementation, the back-and-forth on the content itself was what I enjoyed.
+
+Even here, when doing something like this, how should you construct the energy function — since it has to be differentiable to work — translating whatever you want to create — however it's expressed — into a differentiable form is the key challenge. And these days, you can just ask AI to help with that. I have something I want to do — how should I design a differentiable function to achieve it? I realized yesterday that you can just ask that. So all these projects I struggled through in the past — I felt like there's so much I could go back and revisit. So this is me finding some joy again, in a way.
+
+There really are already so many interesting things out there. I glossed over it, but in the conversation I had with ChatGPT, I brought up things I already knew, but there were also things it brought up that I didn't know. My earlier question was this: when I gave it domain-specific terms — Penrose, Bloom, and so on — compared to when I didn't give it those terms, was there something in either response that gave me insight? It seems like there was, in both cases. Even the version without the hints had things I learned from, and the version with the hints did too, and looking at the code itself also taught me things. So lately, I was wondering if I'd been stressed by the trends — looking at the outputs, and not the process — I think I'd lost a bit of the joy of what you get along the way. That's been stressing me out. I'm someone who genuinely enjoys looking at code, understanding it and learning from it — Looking back now, that's how I ended up here — over the past year or two, I hadn't been doing much coding myself — I was just telling others what to do. And I think that might be why I was feeling stressed. That's my guess, anyway. But now that I'm studying again and actually typing code with my own hands — going through microGPT step by step like we talked about earlier, trying to memorize certain parts, experimenting with variations — I'm finding it fun again.
+
+## Process Over Results: The Fun and Taste of Learning Again    *37:11*
+
+<span class="paragraph-timestamp" data-ts="37:59">37:59</span> **Chester Roh** I completely agree with that. I used to just spin up a RLHF loop and be like, wow, look how many tokens I used — and that was kind of my whole thing. But I've moved past that, and now I set clear goals for myself and go back and forth with the model, and the things I'm learning keep accumulating — that's what I find enjoyable.
+
+<span class="paragraph-timestamp" data-ts="38:14">38:14</span> **Seungjoon Choi** Right, and productivity outcomes definitely matter, that's clearly important, but being human, you can't ignore the joy of learning itself. Of course, if you want to boost productivity you have to build the harness, so there's satisfaction in that building process too.
+
+<span class="paragraph-timestamp" data-ts="38:28">38:28</span> **Chester Roh** So we keep coming back to the kinds of things we talked about in the early days. I still believe that regardless of whether it's a harness or whatever — a single model, an ensemble, it doesn't matter — the quality of what you can extract from these tools cannot exceed the limits of the human using them.
+
+<span class="paragraph-timestamp" data-ts="38:46">38:46</span> **Seungjoon Choi** But that's actually something I keep wrestling with too — the point I want to land on is that this matters, yes, but when you go all the way back to square one, ideally you'd want it to work out anyway. How do you move in the right direction even when you don't know what you're doing? I haven't found the answer to that yet myself.
+
+<span class="paragraph-timestamp" data-ts="39:05">39:05</span> **Chester Roh** On that, I think I can offer at least a rough conclusion: even without knowing, if you want to move in the right direction, combine it with the process of learning as you go and improving the quality of your decisions. That combination is enough. Then, even if you started out not knowing, as you learn along the way, even what you want to pursue — where you want to go — can reveal itself through that process. The old saying "well begun is half done" turns out to be right.
+
+So not knowing where you'll end up when you start — of course you can't know that. It's a contradiction. So the idea that you can arrive at the right answer while still not knowing — to me, that statement simply doesn't hold up. But starting without knowing, and through that journey discovering what you actually wanted — arriving at that realization as a result — that's possible.
+
+And that entire process gets massively accelerated by the model. My kid just turned 20, just starting university, and thinking about how they should live their life, I find myself sharing these kinds of thoughts with them a lot now. "You need to start learning."
+
+<span class="paragraph-timestamp" data-ts="40:08">40:08</span> **Seungjoon Choi** So I'm still exploring this myself, but one of the candidates I have for MVK is the attitude of forming hypotheses and running experiments.
+
+<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **Chester Roh** But Seungjoon, that comes from your higher education, plus extensive reading across physics, chemistry, and biology, plus countless coding failures — all of that is woven together, and it's on that foundation that you're talking about MVK.
+
+<span class="paragraph-timestamp" data-ts="40:35">40:35</span> **Seungjoon Choi** No, but — I showed you those pictures of the child, a ten-month-old infant, multiple times, remember? The way that baby, upon hearing a sound, leans in and listens to a magazine — that attitude is actually something even a ten-month-old can do. So forming hypotheses and experimenting — I tend to think of that as something instinctive to humans.
+
+Of course, when I've presented this idea, the feedback I get is consistent: "It's not that easy to level the playing field." But that's exactly what I keep turning over in my mind. The fact that people who already know more will always perform better — that's always been true. But shouldn't that be different in the age of AI? That's the question I keep wrestling with, and when I raise it, the response I always get is: "That's not as easy as it sounds," and "It probably won't work out that way." I hear that a lot.
+
+<span class="paragraph-timestamp" data-ts="41:22">41:22</span> **Chester Roh** Funny as it sounds, AI also doesn't give answers to those who don't ask.
+
+<span class="paragraph-timestamp" data-ts="41:27">41:27</span> **Seungjoon Choi** Even getting to the point of having a question is itself a hurdle.
+
+<span class="paragraph-timestamp" data-ts="41:32">41:32</span> **Chester Roh** But once you clear that hurdle — once you decide to keep clearing it — that's what you just described as the attitude. It emerges. Because the model will keep teaching you things as you go.
+
+<span class="paragraph-timestamp" data-ts="41:44">41:44</span> **Seungjoon Choi** So there are certain words we keep coming back to in this conversation — attitude, or earlier, taste, or sometimes will — they're different words, but I do feel like there's something they all share at the core.
+
+<span class="paragraph-timestamp" data-ts="41:56">41:56</span> **Chester Roh** And there's so much to learn. Seriously, lately I've been sitting down at work and grinding through all kinds of logic with Codex, and the things I'm learning — wow, I had no idea about any of this — "Oh, so this is how you do it, that's how you do that." I'm learning accounting, learning more about marketing, understanding how Meta ads actually work — things I used to do sloppily, I'm now grasping in detail. It just runs data backtests right there on the spot, tells me whether a hypothesis is right or wrong — and I thought, wow, isn't this exactly what it would be like to work alongside Iron Man's JARVIS?
+
+<span class="paragraph-timestamp" data-ts="42:32">42:32</span> **Seungjoon Choi** And now that it's become possible, the era I think we're living in right now — this might be a transition period or it might not be — but because so much is now possible, people don't yet know how to use it healthily, and I think we're in the process of realizing that's dangerous. We're still figuring that out.
+
+## Writing Healthily: The Mechanism of AI Exploitation    *42:33*
+
+<span class="paragraph-timestamp" data-ts="42:49">42:49</span> **Seungjoon Choi** AI becomes a mechanism for overworking yourself — for pushing yourself too hard. Because it works — but keeps dangling hints that just barely don't work, making it seem like it will — those hints keep coming, so you push through it, and it ends up harming your health and triggering FOMO — I think recognizing that dynamic is going to be a defining trend of 2026.
+
+<span class="paragraph-timestamp" data-ts="43:10">43:10</span> **Chester Roh** Still, it's fun. When you wake up in the morning and think, "What do I get to try today?" — that excitement is real. It's an exciting time, so let's enjoy it for what it is.
+
+<span class="paragraph-timestamp" data-ts="43:18">43:18</span> **Seungjoon Choi** When I showed this slide and explained it — this prompt — and there's more before it — I rewrote this prompt 24 times. So the full prompt is actually longer before this part, and I kept revising it until I got the response I wanted — 24 iterations, trying things like swapping out a single word, trying different phrasings, people talk a lot these days about "chiseling" prompts. It was that process of chiseling the prompt. And through that, I was exploring whether the frustration could turn into something fun, kind of feeling my way through it.
+
+But there are still parts that frustrate me. On a different level — at the start of this year, I mentioned I was going to revisit Gilbert Strang's linear algebra book. So at the beginning of the year, I decided to read Gilbert Strang's linear algebra book and started going through it — but I've finished chapter one and still haven't moved on to chapter two. Because there are still parts I don't understand, and I've been asking variations of the same question dozens of times now.
+
+## Gilbert Strang's Linear Algebra and Digging Deep into Study    *43:54*
+
+<span class="paragraph-timestamp" data-ts="44:20">44:20</span> **Seungjoon Choi** But with prompts, the more you do it, based on the results, you can keep adjusting toward the outcome you want. But even when you ask the same thing dozens of times, there are things you still just don't get. So I've been trying to write it out by hand, using AI to build interactive tutorials, and doing all of that — yet in the midst of still not knowing, there are things I'm not understanding more precisely.
+
+The sense of realizing what exactly I don't know — I feel like I'm continuously narrowing that down, and in the process, I wonder: do I actually need to fully understand this, or — though it's hard to give up, because if I truly pre-train myself on it and digest it, really grok it — I do have the feeling that it would take me further. So studying this is both enjoyable, and even though progress is slow, my current attitude is that I should stick with it until I truly understand it. That's where I am right now. There's no right answer, of course — but do I just set it aside and tell myself it's enough to just be able to use it, or do I keep going until I really understand it? That's the kind of question I'm sitting with these days.
+
+<span class="paragraph-timestamp" data-ts="45:25">45:25</span> **Chester Roh** It feels like everyone has become a traveler right now. We all wanted to stay comfortably at home, but somehow we've all been dropped into unknown territory.
+
+<span class="paragraph-timestamp" data-ts="45:34">45:34</span> **Seungjoon Choi** Pushed in against our will.
+
+<span class="paragraph-timestamp" data-ts="45:35">45:35</span> **Chester Roh** Searching through everything, some people feel anxiety, some find it exciting, some love this environment, some hate it — and yet here we are, still alive. The fact that we're witnessing this great transformation right before our eyes is quite a wonderful thing, I think.
+
+<span class="paragraph-timestamp" data-ts="45:51">45:51</span> **Seungjoon Choi** That's a joy and a motivation that can't be ignored, but to navigate this world well, I think you need to drop anchor somewhere — find some kind of inner moorings. Because the center keeps shifting too much. Some degree of drift is fine — that's how you explore new territory — but if you drop anchor too firmly, you won't change at all. So maintaining that balance is genuinely difficult, and I wonder — Chester, are you managing to stay balanced?
+
+<span class="paragraph-timestamp" data-ts="46:14">46:14</span> **Chester Roh** No. Honestly, I don't know either. When you're always running at the same pace as the background, within that backdrop you start to see things that are changing. Otherwise, they just blur past you, but when you run alongside it, you see things — and the opportunities within them.
+
+## The Difference Between 99 vs 99.99    *46:23*
+
+<span class="paragraph-timestamp" data-ts="46:30">46:30</span> **Chester Roh** Since I'm someone who runs a business, I always try to translate this into a business lens, and I spend a lot of time doing thought experiments about what business opportunities exist within it. Doing that, you end up meeting interesting people along the way, and you see — oh, that person is trying this approach, that person is trying that one — and there's something I feel very clearly from that. Most people just want the answer. But the AI space is too tangled up in complexity to just take a one-sentence answer and run with it. There are so many interwoven layers.
+
+And in terms of layers — now models have been wrapped up like a library, packaged away, moved down and under, and it's become an object that just gives you an answer when you make a call. But if you want to build a real business on top of that, without looking inside the model, you can't really know where this industry is headed. You just can't see it. That's what makes it different. In the past, people said if you know Python, you don't need to know C or assembly underneath it. But with AI, you have to move between the hardware computation layer all the way up to the model, and from the model all the way up to the business — that's how you start to see the answers.
+
+Last week, Junggyu mentioned this. He said he'd started chiseling models again. And he said that all software — every unit of work — would end up inside a single model, with just a thin harness on top. That's the kind of structure he envisioned. So right now, we're all building on top of frontier models, making API calls on top of them. But what Junggyu seemed to conclude was: nonetheless, even down to every small detail, the age of models is returning — that's how I understood what he was saying. And when that happens, those small models will become the new web services.
+
+For that to work, will it be enough to just take a B2B SaaS off the shelf, throw in one book you know, and call it done with fine-tuning? Or will those who can apply the cutting edge more deeply within that space have the advantage? If everyone is competing between 99 and 99.9, 99.99, customers will all flock to the 99.99, not the 99. So this means something — the sense of speed we've had until now, the sense of value — all of that is shifting. And once you re-enter that space, the relative variance within it will become the new norm and widen again.
+
+The fact that this is happening in our generation is our misfortune, but flip it around — for startups, or for individuals who desperately need change, this is all opportunity. Someone else's crisis is our opportunity. That's the reframe we have to make.
+
+<span class="paragraph-timestamp" data-ts="49:19">49:19</span> **Seungjoon Choi** You know, listening to you, I've become almost completely convinced of something: Chester, it's clear you're genuinely enjoying this. And because business is like that for you, I too have my own version of enjoyment that I'm trying to pursue. drawing motivation from that, thinking about business-related ideas, that's what you find enjoyable.
+
+<span class="paragraph-timestamp" data-ts="49:42">49:42</span> **Chester Roh** That's why I'm still doing this at my age.
+
+<span class="paragraph-timestamp" data-ts="49:44">49:44</span> **Seungjoon Choi** Anyway, being able to pursue that in a healthy way — that's what we tried to talk about today, I think.
+
+<span class="paragraph-timestamp" data-ts="49:50">49:50</span> **Chester Roh** We always end up going off on tangents, but we're doing this purely for the sake of learning. If our purpose were to figure out how to boost view counts, grow subscribers fast, and land ads, we'd never do this at all.
+
+## 20,000 Subscribers, Thank You    *50:08*
+
+<span class="paragraph-timestamp" data-ts="50:08">50:08</span> **Seungjoon Choi** Still, it does feel encouraging when subscribers go up. How many subscribers do we have now?
+
+<span class="paragraph-timestamp" data-ts="50:13">50:13</span> **Chester Roh** 20,000. Woke up and we hit 20,000. Incredible.
+
+<span class="paragraph-timestamp" data-ts="50:17">50:17</span> **Seungjoon Choi** That's certainly worth celebrating, but still, there are quite a few people who watch all the way to the end — around 30%, you mentioned at some point before.
+
+<span class="paragraph-timestamp" data-ts="50:25">50:25</span> **Chester Roh** Our episodes are an hour and a half long, and the completion rate is something like 37%. That's remarkable. We're just grateful, and the comments people leave — I tend not to reply to comments I agree with, but I do find myself responding to ones I disagree with.
+
+<span class="paragraph-timestamp" data-ts="50:44">50:44</span> **Seungjoon Choi** This episode might get some disagreeing comments then.
+
+<span class="paragraph-timestamp" data-ts="50:47">50:47</span> **Chester Roh** Right. Let's turn that into a healthy debate.
+
+<span class="paragraph-timestamp" data-ts="50:51">50:51</span> **Seungjoon Choi** Anyway, today was a lot of fun as well.
+
+<span class="paragraph-timestamp" data-ts="50:54">50:54</span> **Chester Roh** Talking like this with Seungjoon every Saturday morning always gives me plenty to think about over the weekend. I love it.
+
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **Seungjoon Choi** Well then, let's meet again next time in good health.
+
+<span class="paragraph-timestamp" data-ts="51:03">51:03</span> **Chester Roh** See you next week.
+
+<span class="paragraph-timestamp" data-ts="51:05">51:05</span> **Seungjoon Choi** Thank you all.
