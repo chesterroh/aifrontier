@@ -18,6 +18,7 @@ const episodes = defineCollection({
     })).default([]),
     lang: z.enum(['ko', 'en']),
     alternateSlug: z.string().nullable().default(null),
+    notionUrl: z.string().optional(),
   }),
 });
 
