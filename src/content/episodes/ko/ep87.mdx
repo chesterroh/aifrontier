@@ -69,7 +69,7 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 ## METR 벤치마크 포화: Claude Opus 4.6의 14시간    *01:47*
 
 
-<ResourceLink url="https://x.com/metr_evals/status/2024923422867030027" title="METR: Claude Opus 4.6 Time Horizon" domain="x.com" />
+<ResourceLink url="https://x.com/metr_evals/status/2024923422867030027" title="METR: Claude Opus 4.6 Time Horizon" domain="x.com" description="50%-time-horizon 약 14.5시간 — 현재 태스크 스위트가 거의 포화 상태" />
 
 <span class="paragraph-timestamp" data-ts="01:50">01:50</span> **최승준** 그 전에, 오늘 새벽에 나온 뉴스인데요. METR에서 Claude Opus 4.6을 측정한 결과를 발표했어요. 그런데 14시간이 나와버렸어요. 저희가 계속 녹화하면서 내년 한 5월, 7월쯤이면 인간 풀 데이 8시간이 될 거 아니냐, 그런 얘기를 했었잖아요. GPT-5.2가 거의 5시간을 끊더니, 4.6이 — 지금 로그 그래프라서 큰 차이 없어 보이고 예상 범위 안이구나 느껴지는데, 리니어로 보면 저만큼 있는 거예요.
 
@@ -84,14 +84,14 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 ## Gemini 3.1 Pro와 끝없이 나오는 새 모델들    *03:40*
 
 
-<ResourceLink url="https://x.com/JeffDean/status/2024525132266688757" title="Jeff Dean: Gemini 3.1 Pro 발표" domain="x.com" />
+<ResourceLink url="https://x.com/JeffDean/status/2024525132266688757" title="Jeff Dean: Gemini 3.1 Pro 발표" domain="x.com" description="ARC-AGI-2에서 77.1% — 전작 대비 추론 성능 2배 이상 향상" />
 
 <span class="paragraph-timestamp" data-ts="03:46">03:46</span> **최승준** 그다음에 Gemini 3.1 Pro가 발표됐죠. 벤치마크는 그래도 천장이 꽤 높은 것 같아요. 이것보다 더 좋아질 수 있나 싶은데 계속 더 좋아지고 있으니까 앞으로도 더 좋아질 것 같긴 합니다. 지금 이 정도가 Gemini 3.1 Pro라고 Jeff Dean이 올렸네요. Google AI Studio에서 들어가서 써볼 수 있는데, 제가 어젯밤에 돌린 게 10시간 돌아가고서 생성이 안 됐습니다. 뭐가 나올까 두근두근했는데, 녹화 직전에 뭔가 오류가 있다고 하더라고요. 아직 제대로 성능 테스트를 못 했고요. 모델은 계속 나오고 있다는 거죠. 어떻게 평을 해야 될까요? 이제는 약간 무덤덤한 것 같기도 하고.
 
 <span class="paragraph-timestamp" data-ts="04:32">04:32</span> **노정석** 모델이 사실 general함의 끝판왕이잖아요. 뭐든 다 할 수 있는 능력인데, 가장 general한 게 가장 specific한 거다라고 엊그제 Claude Code 만든 Boris Cherny가 Y Combinator 유튜브에 나와서 얘기하더라고요. 그 강력한 general한 지능으로 다른 도메인들도 다 끝장을 내고 있잖아요. 그 영향을 요새 많이 받고 있는 게 과학인 것 같고, 아마 그 얘기 해주실 것 같은데, 안 되는 게 없어요. 바라보고 있는 것만으로도 좀 힘들어요.
 
 
-<ResourceLink url="https://www.modular.com/blog/the-claude-c-compiler-what-it-reveals-about-the-future-of-software" title="The Claude C Compiler: What It Reveals About the Future of Software" domain="modular.com" />
+<ResourceLink url="https://www.modular.com/blog/the-claude-c-compiler-what-it-reveals-about-the-future-of-software" title="The Claude C Compiler: What It Reveals About the Future of Software" domain="modular.com" description="Chris Lattner의 심층 리뷰 — 교과서적 구현이지만 새로운 추상화 발명에는 한계" />
 
 <span class="paragraph-timestamp" data-ts="05:04">05:04</span> **최승준** 물론 일상생활에서 사용하다 보면 삐걱거리는 부분이 있긴 하지만, 방향성 자체는 계속 안 되던 게 되는 방향인 건 분명하죠. 2월 18일이니까 며칠 전인데요. Chris Lattner라고 LLVM 만들고 Swift도 만들고 Apple에 있다가 Tesla 갔다가 지금은 Modular 만드는 회사를 차렸죠. 그분이 원래 컴파일러 하시던 분이니까 컴파일러를 잘 알지 않겠습니까? Claude Code의 C 컴파일러가 나왔을 때, 그날 포스팅은 내가 여태까지 봤던 컴파일러 관련 문서화의 최고봉인 것 같다는 정도의 인상평을 남기고 좀 들여다보겠다고 했었는데, 들여다본 내용을 블로그에 자세히 써놓은 걸 번역해 봤습니다. 앞부분은 교과서적인 가치가 있을 정도의 구현이라는 얘기를 해요. 칭찬하는 부분이 좀 있었고, 물론 아쉬운 부분도 있고. 제대로 된 방향성을 가지고 있고, slop은 아니고, 살펴볼 만한 가치가 있다. commit 히스토리가 있기 때문에 그걸 살펴보는 내용이 꽤 의미 있다, 같은 얘기들을 합니다.
 
@@ -108,19 +108,19 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 <span class="paragraph-timestamp" data-ts="08:23">08:23</span> **노정석** 지난주에 신정규 대표님도 오셔서 똑같은 말씀하셨죠. 결국 소프트웨어 로직이 목적물이지, 코드는 그 로직을 구현하는 중간 도구에 불과한 거고, 그게 없어지고 있는 거잖아요. Andrej Karpathy가 예전에 어떤 강연에서 "9의 행진"이란 말을 했었잖아요. "March of Nines"라는 표현을 썼는데, 처음 90%에 들어가는 노력, 90%를 99%로 만드는 거, 99를 99.9, 99.99로 만드는 거, 각각 9를 하나 더 붙일 때마다 들어가는 노력의 크기가 똑같다. Claude C 컴파일러도 한 90%까지는 그냥 해주는 거고, 좀 과장하면 99%까지는 해주는 거고, 그러나 99.99%의 입장에 있는 거장의 눈에는 그 모자라는 0.99%가 어마어마하게 큰 갭으로 느껴질 것 같고, 그 갭이 느껴지는 부분이 아까 승준님이 마지막에 정리해 주셨던 굉장히 인간적인 가치, 취향이라든지 의지라든지 하는 부분에 더 있다. 우리는 앞으로 할 일이 많다, 이런 이야기로 끝맺음해 준 것 같습니다.
 
 
-<ResourceLink url="https://wiki.g15e.com/pages/Tasteful%20software" title="취향이 있는 소프트웨어 — 강규영" domain="wiki.g15e.com" />
+<ResourceLink url="https://wiki.g15e.com/pages/Tasteful%20software" title="취향이 있는 소프트웨어 — 강규영" domain="wiki.g15e.com" description="Corca CTO 강규영 님이 쓰고 계신 글" />
 
 <span class="paragraph-timestamp" data-ts="09:30">09:30</span> **최승준** 중요한 의미를 가지고 있지만 아직 혁신까지 이르지는 못했다는 게 Lattner가 한 이야기고, 그럼에도 살펴볼 가치는 이 방향성이 의미하는 바, 그리고 이게 뉴노멀이 됐을 때 우리는 무엇을 할 수 있는지를 생각하는 것이 중요하다는 부분을 다시 한번 강조해 보고요. 취향이라는 말을 했잖아요. 저희가 취향이라는 얘기를 반복해서 하고 있는데, 최근에 몇 번 말씀드렸던 강규영 님이 현재 Corca의 CTO로 계신데, "취향이 있는 소프트웨어"라는 글을 쓰고 계신 것 같더라고요. 이 글도 재미있으니까 한번 살펴보시면 좋을 것 같습니다.
 
 ## 모든 것을 검색 문제로: 과학과 신약 개발    *10:12*
 
 
-<ResourceLink url="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" title="Gemini Deep Think: Redefining Scientific Research" domain="deepmind.google" />
+<ResourceLink url="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" title="Gemini Deep Think: Redefining Scientific Research" domain="deepmind.google" description="수학·물리·컴퓨터과학 분야 발견을 가속하는 과학 연구 동반자" />
 
 <span class="paragraph-timestamp" data-ts="10:17">10:17</span> **최승준** 과학이나 수학에서는 알려진 문제를 반복하는 게 아니라 혁신이 필요하잖아요. 지금 거기서도 무슨 일이 일어나고 있거든요.
 
 
-<ResourceLink url="https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier" title="Isomorphic Labs Drug Design Engine" domain="isomorphiclabs.com" />
+<ResourceLink url="https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier" title="Isomorphic Labs Drug Design Engine" domain="isomorphiclabs.com" description="AlphaFold를 넘어 — AI 기반 신약 설계의 새로운 지평" />
 
 <span class="paragraph-timestamp" data-ts="10:27">10:27</span> **노정석** 심심치 않게 계속 나오는데 저희가 다 들여다보지 못하고 있죠. 심하게 요약하면, 신약 개발이라는 것도 문제를 일으키는 단백질을 찾고, 그 단백질이 무언가를 발현하는 데 들어가는 기작이 있잖아요. 그걸 방해하거나 촉진하는 형태의 물질, 소위 antibody라고 하는 물질을 만들어서 그 과정을 화학적으로 방해하는 게 대부분 약의 기작인 경우가 많거든요. 결국 단백질의 구조를 파악하고, 거기에 들어맞는 다른 구조를 찾는 게임이거든요. 이런 부분도 다 computation으로 치환해서 검색 문제로 풀 수 있다는 걸 지금 보여주고 있죠.
 
@@ -163,7 +163,7 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 ## 하네스 엔지니어링: 모델과 하네스 조합의 시대    *21:41*
 
 
-<ResourceLink url="https://openai.com/index/harness-engineering/" title="Harness Engineering — OpenAI" domain="openai.com" />
+<ResourceLink url="https://openai.com/index/harness-engineering/" title="Harness Engineering — OpenAI" domain="openai.com" description="에이전트 우선 시대에서 Codex를 활용한 하네스 엔지니어링" />
 
 <span class="paragraph-timestamp" data-ts="21:54">21:54</span> **노정석** 제너럴하게 이제 쓰이는 말 같습니다. 하네스라는 말.
 
@@ -176,7 +176,7 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 <span class="paragraph-timestamp" data-ts="22:49">22:49</span> **노정석** 신정규 대표님도 지난주에 나오셔서 Claude Code의 진짜 물건은 Claude Opus 4.6이 아니라 Claude Code 하네스인 것 같다는 말씀도 하셨었죠.
 
 
-<ResourceLink url="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" title="Harness Engineering — Martin Fowler" domain="martinfowler.com" />
+<ResourceLink url="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" title="Harness Engineering — Martin Fowler" domain="martinfowler.com" description="Thoughtworks 팀의 AI 지원 소프트웨어 개발 노트" />
 
 <span class="paragraph-timestamp" data-ts="22:59">22:59</span> **최승준** Fowler가 익스트림 프로그래밍이나 리팩토링으로 유명한 분이신데, 그분이 팀 조직을 가지고 있나 봐요. 그 안에서 올라온 글인데 실제로 쓴 분은 마틴 파울러가 쓴 건 아니에요. OpenAI 하네스 엔지니어링을 언급하면서 거기에 대해 공감하는 글을 써놓은 게 있고, 상당히 요즘 것들을 다루는 편이더라고요. 마틴 파울러라면 좀 보수적일 거라고 생각했는데, 요즘 이야기되는 것들을 다루고 있습니다. 이런 오래된 분들, 저희보다 연배가 높으신 분들 중 켄트 벡도 있고, 켄트 벡도 최근에 LLM을 적극적으로 활용하고 있죠. 애자일이나 XP 쪽에서 활동하셨던 분들도 지금의 발전 방향을 잘 배워내시고 나름의 생각을 풀어내시고 있는 요즘인 것 같아서, 저도 공부를 좀 더 해보려고 가져온 하네스 엔지니어링이라는 표현이었습니다.
 
@@ -231,7 +231,7 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 <span class="paragraph-timestamp" data-ts="29:52">29:52</span> **노정석** microgpt.
 
 
-<ResourceLink url="https://karpathy.github.io/2026/02/12/microgpt" title="microgpt — Andrej Karpathy" domain="karpathy.github.io" />
+<ResourceLink url="https://karpathy.github.io/2026/02/12/microgpt" title="microgpt — Andrej Karpathy" domain="karpathy.github.io" description="micrograd의 Value 클래스 기반, 200줄 스칼라 GPT 구현" />
 
 <span class="paragraph-timestamp" data-ts="29:53">29:53</span> **최승준** microgpt를 재미있게 탐색하는 시간을 가졌습니다. 빠르게 가보면, 블로그로도 Andrej Karpathy가 올렸고, 앞에 micro가 붙은 게 2020년에 micrograd라는 걸 발표했었어요. 거기에 Value라는 클래스가 있었는데, 자동 미분을 스칼라 기반으로 하는 아주 간단한 구현이었거든요. 한 몇십 줄 되는 구현이었는데, 그걸 활용해서 200줄에 딱 끊었어요. 세 컬럼으로 되는 GPT 코드를 공개했습니다. 근데 상당히 재미있어요.
 
@@ -242,7 +242,7 @@ notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54
 <span class="paragraph-timestamp" data-ts="30:49">30:49</span> **노정석** 아까 스칼라라는 표현을 쓰신 거구나. 진짜 완전히 저희가 익숙한 for 루프로 무식하게 하는 구현으로 썼네요. 딱 필요한 것들만 정확하게 다 들어 있네요. 한 줄 더, 덜도 없이
 
 
-<ResourceLink url="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" title="microgpt.py — 소스 코드" domain="gist.github.com" />
+<ResourceLink url="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" title="microgpt.py — 소스 코드" domain="gist.github.com" description="for 루프 기반 순수 Python GPT — 세 컬럼에 들어가는 전체 코드" />
 
 <span class="paragraph-timestamp" data-ts="31:00">31:00</span> **최승준** 전체 코드를 보면 matmul이나 이런 것들도 다 파이썬으로 구현해 놨어요. 200줄 안에 그게 되는 코드입니다. 저는 이걸 한번 쭉 따라서 타이핑해 봤어요. 재미 삼아 한번 쭉 따라서 해보고 Colab에서 실행해 보고 그랬는데 재미있었고요.
 
