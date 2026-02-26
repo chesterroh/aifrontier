@@ -54,6 +54,8 @@ lang: "en"
 alternateSlug: null
 notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54d"
 ---
+import ResourceLink from "../../components/ResourceLink.astro";
+
 
 ## Intro: Anxiety in the Age of AI Clicks    *00:00*
 
@@ -108,6 +110,9 @@ On the limitations side — implementing known abstractions is a different thing
 <span class="paragraph-timestamp" data-ts="08:35">08:35</span> **Chester Roh** And Andrej Karpathy mentioned in a talk once the idea of the "March of Nines." He used that exact phrase — "March of Nines" — right. The effort to get to the first 90%, then getting from 90% to 99%, then 99 to 99.9, to 99.99 — each additional nine you add requires the same amount of effort.
 
 So with the Claude C compiler, it just handles maybe up to 90% on its own, or if you stretch it a bit, maybe up to 99% — but in the eyes of a master working at the 99.99% level, that remaining 0.99% probably feels like an enormous gap, and where that gap is felt ties back to what Seungjoon summarized at the end — those deeply human qualities: taste, will, things like that. So there's still plenty for us to do ahead, or something to that effect — that seemed to be the takeaway.
+
+
+<ResourceLink url="https://wiki.g15e.com/pages/Tasteful%20software" title="Tasteful Software — Gyuyoung Kang" domain="wiki.g15e.com" />
 
 <span class="paragraph-timestamp" data-ts="09:30">09:30</span> **Seungjoon Choi** So regardless, it carries significant meaning, but hasn't yet reached the level of true innovation — that's what Lattner said. And yet, it's still worth examining what this direction implies, and thinking about what we can do when this becomes the new normal — those are the points I want to re-emphasize once more.
 
@@ -172,6 +177,9 @@ So tiki-taka is important, but scaffolding seems equally important, or harness. 
 So OpenAI has also been doing something interesting — it's a matter of who claims the trending terminology first, and this term "harness engineering" — it's possible OpenAI didn't come up with it first. They may have picked it up from someone else, and then made a post about it on February 11th.
 
 ## Harness Engineering    *21:41*
+
+
+<ResourceLink url="https://openai.com/index/harness-engineering/" title="Harness Engineering — OpenAI" domain="openai.com" />
 
 <span class="paragraph-timestamp" data-ts="21:54">21:54</span> **Chester Roh** It seems like "harness" is becoming a broadly used term now.
 
@@ -239,6 +247,9 @@ And these veterans — people of an older generation than us — Kent Beck, for 
 
 <span class="paragraph-timestamp" data-ts="29:52">29:52</span> **Chester Roh** microgpt.
 
+
+<ResourceLink url="https://karpathy.github.io/2026/02/12/microgpt" title="microgpt — Andrej Karpathy" domain="karpathy.github.io" />
+
 <span class="paragraph-timestamp" data-ts="29:53">29:53</span> **Seungjoon Choi** I had a really fun time exploring microgpt. So let me quickly walk through it — Andrej Karpathy posted it as a blog post, and the "micro" prefix — back in 2020, he had released something called micrograd. He released micrograd, and in it there was a class called Value, which was a very simple implementation of automatic differentiation on a scalar basis. It was just a few dozen lines of code, and using that, he capped it at exactly 200 lines. Then he published a GPT implementation in three columns. It's actually quite fascinating.
 
 <span class="paragraph-timestamp" data-ts="30:36">30:36</span> **Chester Roh** It's essentially just a Transformer implementation.
@@ -246,6 +257,9 @@ And these veterans — people of an older generation than us — Kent Beck, for 
 <span class="paragraph-timestamp" data-ts="30:39">30:39</span> **Seungjoon Choi** Exactly, a very minimal one. And what it does is generate names. So the GPT portion is just this much — compact enough to fit on a single page.
 
 <span class="paragraph-timestamp" data-ts="30:47">30:47</span> **Chester Roh** Ah, so that's why you used the word "scalar" earlier — it's written with the kind of for loops we're all familiar with, doing it the brute-force way. Everything that needs to be there is in there — exactly and precisely. Not a line more, not a line less.
+
+
+<ResourceLink url="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" title="microgpt.py — Source Code" domain="gist.github.com" />
 
 <span class="paragraph-timestamp" data-ts="31:00">31:00</span> **Seungjoon Choi** If you look at the entire code, things like matmul and so on are all implemented in Python. It's code that does all of that in under 200 lines. I actually typed through the whole thing myself once. Just for fun, I went through it line by line and ran it in Colab. It was a lot of fun.
 
