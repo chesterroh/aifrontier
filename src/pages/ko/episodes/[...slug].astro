@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import EpisodeLayout from '../../../layouts/EpisodeLayout.astro';
+import ResourceLink from '../../../components/ResourceLink.astro';
 
 export async function getStaticPaths() {
   const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
@@ -29,5 +30,5 @@ const { data } = episode;
   alternateSlug={data.alternateSlug}
   notionUrl={data.notionUrl}
 >
-  <Content />
+  <Content components={{ ResourceLink }} />
 </EpisodeLayout>
