@@ -65,8 +65,6 @@ notionUrl: "https://erucipe.notion.site/Pi-OpenClaw-Moltbook-Opus-4-6-GPT-5-3-30
 <span class="paragraph-timestamp" data-ts="00:20">00:20</span> **Chester Roh** Shall we take a quick look? Take a look, and then also we should probably discuss what these things mean. With the things that have happened recently, even saying “this happened when” feels a bit ambiguous to pin down to dates.
 
 ## From Ralph Loop to an iterative PRD culture    *00:31*
-
-
 <span class="paragraph-timestamp" data-ts="00:31">00:31</span> **Seungjoon Choi** We said something would definitely happen once February came around, and it really did. It seems like it was planned. I can feel a shift in the paradigm.
 
 And if we rewind time, last summer, Ralph Loop was popular. And Oh-My-Opencode, those were all about picking a single PRD and repeating until it worked, that kind of flow. So you’d burn a lot of tokens and, one way or another, get something to come out, and the better the PRD was written, the more it got achieved—those patterns showed up.
@@ -74,7 +72,6 @@ And if we rewind time, last summer, Ralph Loop was popular. And Oh-My-Opencode, 
 So using Ralph Wiggum, a Simpsons character, with that vibe of trial and error but eventually pulling it off, the person who made this, Geoffrey Huntley, first wrote a piece on deliberate practice, and then announced and introduced Ralph Loop.
 
 ## OpenClaw philosophy: Human In The Loop vs full autonomy    *01:23*
-
 <span class="paragraph-timestamp" data-ts="01:23">01:23</span> **Seungjoon Choi** But OpenClaw became quite a big issue. And looking at an interview with OpenClaw’s creator, Peter Steinberger, he had a slightly different perspective.
 
 Rather than having the model keep repeating on its own until it works like Ralph Loop, Peter preferred Human In The Loop. So Peter has a philosophy of his own, and the idea is this: letting models use a huge number of tools in a state where they aren’t security-sandboxed, to get anything done by giving them full access, and to get it done through a messenger, and then releasing those things into the market, which caused a huge stir.
@@ -92,7 +89,6 @@ Rather than having the model keep repeating on its own until it works like Ralph
 <span class="paragraph-timestamp" data-ts="02:40">02:40</span> **Seungjoon Choi** In the end, things like story and fun elements keep being important factors, so it felt like a phenomenon worth thinking about. I don’t know about the latter half of this week, but after Moltbook came out, Mario said they got an insane amount of messages. “Let’s do business together”—it seems like it showed more than just a PoC of how these things work.
 
 ## Pi and VibeTunnel: using agents in messengers    *03:02*
-
 <span class="paragraph-timestamp" data-ts="03:02">03:02</span> **Seungjoon Choi** And OpenClaw, in terms of its agent core, actually uses something called Pi. So I looked into Pi with some interest, and the person who made it, Mario Zechner—this person is Mario. Peter, who made OpenClaw, apparently had known Mario for a long time. Then after Claude Code came out last year, there was a hackathon in Vienna, over in Europe, and Mario joined as part of a team that built something called VibeTunnel together. That’s what Mario participated in.
 
 And what is it? Something that lets you use Claude Code in a messenger. So you can have powerful agents handle things on your local machine from anywhere—but if it’s not code, and you can just handle code as if you’re working with it in natural language, the key point seems to be lowering the barrier a lot, since many people can’t use it otherwise. That approach seems to be the main point. So that philosophy is also somewhat inside OpenClaw, and it connects everything—especially in places like Discord it enables you to unfold and do things.
@@ -161,6 +157,9 @@ So you make orthogonal building blocks, and if you linearly combine them or comp
 
 <span class="paragraph-timestamp" data-ts="09:09">09:09</span> **Chester Roh** Like, you deliberately form a team where one person is good at math, one person is good at writing, one person is good at music, and calling those “orthogonal,” as Seungjoon put it— is that the right way to think about it?
 
+
+<ResourceLink url="https://codepointerko.substack.com/p/openclaw-ai-8" title="codepointerko.substack.com" domain="codepointerko.substack.com" />
+
 <span class="paragraph-timestamp" data-ts="09:19">09:19</span> **Seungjoon Choi** Exactly. So it’s that feeling of having minimal-unit capabilities and combining them to make anything. And then being able to do anything with agents from anywhere, via messengers—especially Discord— seems like an important point right now. When you look at something like OpenClaw, you can always give it tasks and get feedback and do that kind of thing, and depending on the situation, if the spec is precisely defined, if a PRD or spec is set, and if it’s detailed, repeating until it works is something we’ve seen work.
 
 But depending on the situation, there are also modes where it works better to do back-and-forth and coordinate via Human In The Loop, and it seems like there are these two schools of thought.
@@ -188,8 +187,6 @@ This is Anthropic, dissing (OpenAI) for running ads.
 <span class="paragraph-timestamp" data-ts="12:01">12:01</span> **Seungjoon Choi** So “we’ll focus on quality.” So Claude will be ad-free—expensive, but— and they said that on February 4, and that got under Sam Altman’s skin, so Sam posted a long tweet. Saying Sam found it funny and so on. After that happened, immediately, about an hour apart, a war broke out where top-tier models were announced.
 
 ## Agent Teams: shared task lists and observability    *12:30*
-
-
 <span class="paragraph-timestamp" data-ts="12:30">12:30</span> **Seungjoon Choi** The post about building a C compiler with a parallel Claude team was really impressive. So they do it in parallel with an agent swarm, and the phrase “running the Ralph Loop” appears in this piece. Until it works—until a C compiler gets made— they experimented with autonomous driving. That video—Claude team, Claude Code team— it’s a video that someone named Lydia Hallie uploaded. There’s no sound; you just see the process.
 
 Anyway, what was important in Claude’s announcement was the files that leave traces of work, managing deadlocks in MD files, and the important implications around when to release and acquire locking. They ran 16 agents for quite a long time, and in the end, they present a write-up about building a Rust-based C compiler. That was also very impressive, and what the Opus—meaning the Claude team— what Anthropic had talked about last year was the main agent orchestrating sub-agents.
