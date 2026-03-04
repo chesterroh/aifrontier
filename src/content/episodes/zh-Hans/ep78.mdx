@@ -1,8 +1,7 @@
 ---
 episodeNumber: 78
-lang: "zh-Hans"
-title: "Ilya Sutskever 亲自解读"
-description: "为什么 Ilya Sutskever 的一句话会让 AI 社区瞬间沸腾？本期我们拆解了 Ilya Sutskever 在 Dwarkesh Patel 播客中的核心观点，并梳理了 Noam Brown 所说的“研究者共识”。我们与 AI 研究员金成贤深入讨论了 scaling 的边界、把情绪视为 value function 的含义，以及为什么持续学习才是通往 AGI 的关键。后半段也快速覆盖了实用话题，从 Opus 4.5 的 vibe check，到一位黑洞科学家被 AI“pilled”的瞬间。"
+title: "Ilya Sutskever 的说明"
+description: "Ilya Sutskever 抛出的一句话，为什么会让 AI 社区沸腾？本期我们将拆解 Ilya Sutskever 出演 Dwarkesh Patel 播客的核心内容..."
 publishedAt: 2026-01-28
 duration: "56:09"
 youtubeId: "Tm-rxPN2XWo"
@@ -15,31 +14,31 @@ chapters:
   - time: "00:00"
     title: "开场：Ilya Sutskever 与“研究时代”宣言"
   - time: "01:17"
-    title: "Scaling 争论：AI 议题外溢到经济与安全"
+    title: "Scaling 争议：扩展为经济·安全问题的 AI"
   - time: "03:59"
     title: "人物介绍：Ilya Sutskever"
   - time: "05:15"
-    title: "Ilya 的澄清与 Noam Brown 总结：Scaling 与研究之间的间隙"
+    title: "Ilya 的澄清与 Noam Brown 的整理：Scaling 与研究的差距"
   - time: "07:34"
-    title: "研究者共识与“持续学习（Continual Learning）”的必要性"
+    title: "研究者的共识与“持续学习(Continual Learning)”的必要性"
   - time: "13:40"
-    title: "惊人能力与荒谬错误并存（RL scaling 的局限）"
+    title: "惊人能力与离谱失误并存（RL scaling 的局限）"
   - time: "19:44"
-    title: "情绪就是 Value Function：有限理性与启发式"
+    title: "情感就是价值函数：有限理性与启发式"
   - time: "24:30"
-    title: "《哥德尔、艾舍尔、巴赫（GEB）》与 AGI 的诞生条件（Strange Loop）"
+    title: "“哥德尔、艾舍尔、巴赫(GEB)”与 AGI 的诞生条件（奇异环）"
   - time: "30:35"
-    title: "真正的智能是系统，不是模型"
+    title: "真正的智能不是模型，而是系统"
   - time: "32:16"
-    title: "人类的样本效率与内在动机（社会需求）"
+    title: "人类的样本效率与内在动机（社会性欲求）"
   - time: "34:29"
-    title: "泛化与归纳偏置"
+    title: "泛化(Generalization)与归纳偏置(Inductive Bias)"
   - time: "39:17"
-    title: "直达超级智能（ASI）：能学会一切的种子"
+    title: "直奔超智能(ASI)：能学会一切的种子"
   - time: "43:42"
-    title: "好研究所需的“品味”与辨识力"
+    title: "做好研究所需的“品味(Taste)”与眼光"
   - time: "45:59"
-    title: "从质到量的转变与高能 Token"
+    title: "量变到质变与高能量 token"
   - time: "48:10"
     title: "OpenAI 科学团队轶事：黑洞研究者与 GPT Pro 的协作"
   - time: "51:04"
@@ -47,7 +46,9 @@ chapters:
   - time: "53:00"
     title: "长时运行 Agent 与记忆外化（Harness）"
   - time: "55:23"
-    title: "结尾：Runners' Alliance 与收尾"
+    title: "结尾：逃亡者联盟与收尾"
+lang: "zh-Hans"
+alternateSlug: null
 notionUrl: "https://erucipe.notion.site/2b9d5c9e7e59800cbd9cfdb5b4d4ecbc"
 ---
 
@@ -56,411 +57,316 @@ notionUrl: "https://erucipe.notion.site/2b9d5c9e7e59800cbd9cfdb5b4d4ecbc"
 
 <ResourceLink url="https://youtu.be/aR20FWCCjAs?t=2568" title="youtu.be" domain="youtu.be" />
 
-<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 我们录制的今天是 2025 年 11 月 29 日，周六上午。
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天是我们录制节目的日子，2025 年 11 月 29 日，周六早晨。这周如果要选最大的新闻，应该就是 Ilya Sutskever 和 Dwarkesh Patel 的播客了。
 
-如果要选本周最大的新闻，那一定是 Ilya Sutskever 和 Dwarkesh Patel 的播客。
+Ilya Sutskever 说当前的 pre-training 已经撞到墙了。需要一些新的想法。现在 scaling 的时代过去了，研究的时代再次到来。围绕这些说法，社区确实震动了一次。可能因为影响太大，后来还发了修正推文。升准你来总结一下吧。
 
-Ilya Sutskever 说，现在的 pre-training 撞墙了。需要新的东西。scaling 时代结束了，研究时代回归了。
 
-他讲这些内容的时候，整个社区都被搅动起来了。影响肯定很大，后来还发了一条略微修正过的推文。
+<ResourceLink url="https://www.anthropic.com/news/claude-opus-4-5" title="anthropic.com" domain="anthropic.com" />
 
-升准，你能帮我们总结一下吗？
+<span class="paragraph-timestamp" data-ts="00:37">00:37</span> **崔升准** 听你这么说，感觉 Claude Opus 4.5 被埋了。都在聊 Ilya Sutskever。
 
-<span class="paragraph-timestamp" data-ts="00:35">00:35</span> **崔升准** 现在听你这么说，感觉 Claude Opus 4.5 的消息被 Ilya Sutskever 的新闻盖过去了。
+<span class="paragraph-timestamp" data-ts="00:40">00:40</span> **卢正锡** 也确实有那么一点，不过在工程师圈子里，大家都觉得 Claude Opus 4.5 非常聪明。所以 Antigravity 和 Claude Opus 4.5 来回切换，哪个先到 token limit 就切到另一个，现在好像基本稳定了。
 
-<span class="paragraph-timestamp" data-ts="00:40">00:40</span> **卢正锡** 这话有道理，不过在工程师圈里，Claude Opus 4.5 被认为非常聪明。所以大家在 Antigravity 和 Claude Opus 4.5 之间来回切，哪个先到 token 上限就换另一个。现在好像已经成了固定流程。
+<span class="paragraph-timestamp" data-ts="00:55">00:55</span> **崔升准** 所以这周我们也是在大家期待的信息基本都摊开之后，先从 Ilya Sutskever 这个话题开讲，标题先定成了“伊利亚 token”。凌晨时间线太沸腾了，Noam Brown 还发了整理帖。成贤你怎么看这波时间线爆炸？为什么会发生这种事？
 
-<span class="paragraph-timestamp" data-ts="00:55">00:55</span> **崔升准** 所以这周我们预期的事情几乎都揭晓了。我们先从 Ilya Sutskever 开始，我给这段起了个标题叫“Ilya Token”。
+## Scaling 争议：扩展为经济·安全问题的 AI    *01:17*
 
-今天一早时间线非常炸，Noam Brown 还发了个总结。成贤，你怎么看这次时间线爆炸？
+<span class="paragraph-timestamp" data-ts="01:20">01:20</span> **金成贤** 如果 AI 这个领域本身只是学术领域，我觉得不会发生这种问题。学术圈里这类争论一直都有。LLM 行不行，围绕 Yann LeCun 也有很多类似争论，这本来就很常见。但我觉得 scaling 这个主题开始和太大的经济议题绑定了。对我来说也有点措手不及，也会让人非常谨慎。一旦把 scaling 变成核心议题，就意味着要建更多数据中心，要做巨量投资。
 
-## Scaling 争论：AI 议题外溢到经济与安全    *01:17*
+建很多数据中心不只是多买 GPU，还要有电力基础设施，要把这些基础设施准备好，最后投资规模变得越来越大，甚至推进到“需要政府担保”的层级。所以大家会问，scaling 真的有效吗？这种投资真的有概率成功吗？这么投就一定会来 AGI 吗？这个主题已经不是纯学术问题，而成了社会经济问题。甚至像是国家层面的问题，有些情况下还会以中美冲突的形式变成安全议题。它开始影响所有经济领域和国家安全领域。所以才会更沸腾。
 
-<span class="paragraph-timestamp" data-ts="01:17">01:17</span> **崔升准** 为什么会发生这些事？
+类似模式也出现在 GPU 和 TPU 的争论里。Google 在用 TPU，这件事在 AI 工程师里不可能没人知道。Google 从早期开始，Gemini 1.0 起就一直在用 TPU。Gemini 3 用 TPU 也是理所当然，因为之前就用了。但“用了 TPU”这个消息传到另一类人群、传到原本不知道 Google 在用 TPU 的人那里后，就引发了巨大连锁反应。可能连股市都受到了实际影响。于是 NVIDIA 出来澄清：GPU 和 TPU 不一样，GPU 依然有竞争力。大概是这样的说法。
 
-<span class="paragraph-timestamp" data-ts="01:20">01:20</span> **金成贤** 如果 AI 领域本身只是纯学术，我觉得不会出现这种问题。学术界里这种争论一直都有。比如以 Yann LeCun 为代表，LLM 到底行不行，这类讨论本来就常见。但我觉得 scaling 这个话题本身已经和非常大的经济问题纠缠在一起了。事情是从这里开始的。对我来说有点迷惑，也让我非常谨慎。
+<span class="paragraph-timestamp" data-ts="03:21">03:21</span> **崔升准** 俗话说就是，赌注太大了。
 
-当 scaling 成为热点，就意味着要建很多数据中心。要投入巨额资金。建很多数据中心不只是买大量 GPU。你还需要电力基础设施，也得把这些设施准备好。最后投资规模大到需要政府担保的程度。现在不是正在朝这个层级发展吗？所以就会出现问题：scaling 到底有没有效？这么投到底是不是一条可行路径？这么投 AGI 会不会来？
+<span class="paragraph-timestamp" data-ts="03:26">03:26</span> **金成贤** 规模实在太大了。变得太大了，围绕这个事实牵动的问题也都太大了，最近就是这样。
 
-这已经不再只是学术问题，而是社会经济问题。也在变成国家层面问题，有些情况下还表现为美中冲突，进一步变成安全问题。它开始影响所有经济与国家安全领域。现在就是这个状态。所以我觉得它才会引发这么大骚动。
+<span class="paragraph-timestamp" data-ts="03:33">03:33</span> **卢正锡** 其实过去一周股市的走势就和成贤说的一模一样。因为“Google 做 Gemini 3 没用 NVIDIA GPU”这一个事实，Google 股价大涨，NVIDIA 股价就剧烈波动。说是晃得厉害更准确。
 
-类似模式也出现在 GPU vs TPU 的争论上。AI 工程师里大概没人不知道 Google 在用 TPU。Google 从 Gemini 1.0 就开始用了。Gemini 3 用 TPU 本来就是理所当然，因为之前也一直在用。但“Google 用了 TPU”这个消息传播到另一群人那里，也就是不知道 Google 一直用 TPU 的人那里之后，就扩散开了。然后产生了巨大涟漪。我怀疑这可能也真实影响了股市。所以 NVIDIA 还得出来澄清。说 GPU 和 TPU 不一样，GPU 依然有竞争力。
-
-<span class="paragraph-timestamp" data-ts="03:21">03:21</span> **崔升准** 用大白话说，就是赌注太大了。
-
-<span class="paragraph-timestamp" data-ts="03:24">03:24</span> **金成贤** 规模已经太大了。太大了，而且围绕这个单一事实牵动的各种问题，如今都太重大了。
-
-<span class="paragraph-timestamp" data-ts="03:33">03:33</span> **卢正锡** 其实过去一周股市走势就和成贤说的一模一样。完全按那个逻辑在动。
-
-所以仅仅因为“Google 做 Gemini 3 没用 NVIDIA GPU”这一点，Google 股价大涨，NVIDIA 股价波动。用“踉跄”来形容最贴切。
-
-<span class="paragraph-timestamp" data-ts="03:53">03:53</span> **崔升准** 原来是这样。那我们先看看 Noam 说了什么，再回到这里。
+<span class="paragraph-timestamp" data-ts="03:54">03:54</span> **崔升准** 原来还有这事。那我们先看看 Noam 具体说了什么，再回来聊。
 
 ## 人物介绍：Ilya Sutskever    *03:59*
 
-<span class="paragraph-timestamp" data-ts="03:59">03:59</span> **卢正锡** 在讲这个故事前，Ilya Sutskever、Noam Brown、Andrej Karpathy……我觉得可能有不少人不认识。Ilya Sutskever 是传奇 Geoffrey Hinton 的学生，也是最早做出 AlexNet 的传奇 AI 研究者。他后来去 Google，做了 sequence-to-sequence RNN 模型，并用它做了语言翻译。之后他去了 OpenAI，上次因为和 Sam Altman 的管理分歧离开了 OpenAI。
+<span class="paragraph-timestamp" data-ts="04:03">04:03</span> **卢正锡** 在讨论之前，可能有不少人不认识 Ilya Sutskever、Noam Brown、Andrej Karpathy 这些人。Ilya Sutskever 是 Geoffrey Hinton 的传奇弟子，也是最早做出 AlexNet 的传奇 AI 研究者；后来去 Google 做了 sequence-to-sequence RNN 模型，也做了 language translation；再之后去了 OpenAI，上次因为和 Sam Altman 的某种控制权纷争离开了 OpenAI。他是 AI 时代的标志性人物。所以他说什么，市场都会震动，某种程度上像先知摩西那样的角色。正因为是这么有分量的人说的话，我们才有必要认真听。
 
-他是 AI 时代的标志性人物。所以他一开口市场就会波动，几乎像先知、像摩西。我感觉他在扮演类似角色。既然是这么有分量的人说的话，我们就要认真听。
+<span class="paragraph-timestamp" data-ts="04:50">04:50</span> **崔升准** 这次是 Dwarkesh Patel 对 Ilya Sutskever 的第二次采访。第一次是在 GPT-4 刚发布的 2023 年 3 月。所以这是第二次。这个采访和 Sutton 那期有点像，Andrej Karpathy 那期也有点像，Dwarkesh 现在在做这种策展。是在做一种想展示不同地平线的策展，所以会引发争论，但我觉得某种程度上也可能是健康方向。
 
-<span class="paragraph-timestamp" data-ts="04:49">04:49</span> **崔升准** 所以这次是 Dwarkesh Patel 第二次采访 Ilya Sutskever。第一次是 2023 年 3 月 GPT-4 发布时。这次是第二次采访，
+## Ilya 的澄清与 Noam Brown 的整理：Scaling 与研究的差距    *05:15*
+<span class="paragraph-timestamp" data-ts="05:16">05:16</span> **崔升准** 不过凌晨 Noam 做了点整理。Ilya Sutskever 说自己在 Dwarkesh 采访里有些点没有被正确传达。他转推了别人引用他做的整理，并在那个引用里补充。意思是：按现在的方法继续做大、继续 scaling，性能还是会提升，不是说不会提升，只是他说的是存在一个 gap。还特别补了一句：这不会在中途停住。但即便如此，仍然会持续缺少某些关键东西。他说自己的重点在这里，并发了推文。
 
-而且这次采访和之前 Sutton 的那期、以及 Andrej Karpathy 那期类似，Dwarkesh 现在在做这种内容策展。他在策展不同视野，所以自然会引发争论。从某种角度看，我觉得这也可能是健康方向。
+不过 Noam 把这个又放大解释了一层。Noam 强调的是：现在有怀疑派和狂热派，但听研究者实际在说什么，会发现收敛点很多。即便只靠当前范式、没有额外研究性突破，也很可能足以带来巨大的经济和社会影响。但如果真要走到 AGI、ASI，大概率还需要持续学习、样本效率等额外突破。而我们会找到这些突破，并在 20 年内到达。
 
-## Ilya 的澄清与 Noam Brown 总结：Scaling 与研究之间的间隙    *05:16*
-<span class="paragraph-timestamp" data-ts="05:16">05:16</span> **崔升准** 但今天清晨 Noam 给了一个总结。Ilya Sutskever 说，在他和 Dwarkesh 的访谈里，有个观点没有被正确传达。有人引用了他，他转发了那个人的总结，并在转发时说了这段话：如果继续放大现有方法，也就是继续 scaling，性能仍会继续提升。他不是说不会提升，而是中间有一点落差。所以他补充澄清，明确说不会突然半路停住。
+但这个预测在各位先驱之间不同。Hassabis 说 5 到 10 年，Chollet 说 5 年，Sam Altman 说几千天，Yann LeCun 说 10 年，Ilya Sutskever 说 5 到 20 年，Amodei 最激进，说 2 年内也可能。也就是说，没有人说要 100 年。总体看，彼此一致的部分远多于分歧部分。
 
-不过即便如此，仍然会缺少一些重要东西。所以他发推说他真正想表达的是这部分。这是他推文的意思。Noam 又把这个展开讲了一点。他进一步解释：现在虽然有怀疑者和狂热者，但如果听研究者在说什么，会发现共识点很多。仅靠当前范式，即便没有额外研究突破，也很可能足以造成巨大的经济和社会影响。但要真正走到 AGI、ASI，很可能还需要持续学习、样本效率这类额外突破。不过这些突破会被找到，我们会在 20 年内到达那里。
+另外他还一路引用介绍了 Andrej Karpathy 上次发的内容。Karpathy 也是在上 Dwarkesh 后又发了一篇整理。我已经把内容翻译好了，大家可以通过链接去看。那到这个点，我们还有什么可以补充的吗？
 
-不过这个预测在先驱者之间有差异。Hassabis 说 5 到 10 年，Chollet 说 5 年，Sam Altman 说几千天，Yann LeCun 说 10 年，Ilya Sutskever 说 5 到 20 年，Amodei 最激进，说 2 年内也可能。所以没人说要 100 年。没有人这么说。总体上，共识远大于分歧。这是他的总结。
+## 研究者的共识与“持续学习(Continual Learning)”的必要性    *07:34*
 
-他还引用并介绍了 Andrej Karpathy 上次发的内容。Karpathy 在上 Dwarkesh 节目后也发了总结。我把那段内容翻译了，你们可以通过这里的链接看。所以到这一步，我们还有什么可补充讨论的吗？
+<span class="paragraph-timestamp" data-ts="07:36">07:36</span> **金成贤** 这里也可以聊一点。我觉得 Noam Brown 说研究者想法相近，这个判断是对的。因为像我自己在第一场里也提过 continual learning。那并不是我原创的想法，我当时也是听研究者在讲，介绍说最近在发生这些研究、大家有这样的议题意识。所以对我来说这非常自然。Ilya Sutskever 的说法也是一样。反而我更好奇，为什么会有人觉得这很奇怪。
 
-## 研究者共识与“持续学习（Continual Learning）”的必要性    *07:34*
+其实类似的事以前也不是没发生过。pre-training 的 scaling 是第一个最大范式。但现在模型性能的提升并不只是靠 pre-training scaling 发生的。如果只靠 pre-training scaling 想达到今天这个水平，规模本来会非常夸张。真正找到突破口的是很研究导向的 o1 和 RL。通过 o1 和 RL，拉出了远超 pre-training scaling 的性能增幅。
 
-<span class="paragraph-timestamp" data-ts="07:34">07:34</span> **金成贤** 我觉得这里还有得聊。我同意 Noam Brown 说“研究者想法很像”这点。我觉得他是对的。因为我在第一期就提过 continual learning。那不是我自己凭空想出来的。我也是听到当时研究者在讲什么，才介绍了现在有这类研究、他们有这种问题意识。对我来说这是非常自然的讨论。Ilya Sutskever 的发言也是一样。反而我很好奇为什么别人会觉得奇怪。我更疑惑的是这个。
+如果是这样，那么未来继续发现这种范式当然也依然重要、也依然必要。这和 scaling 并不冲突。它不和 pre-training scaling 对立，但这类研究发现和开发会让模型更强。这和这里总结的内容很接近。也就是像 Ilya Sutskever 总结的那样，scaling 会持续带来性能提升，但会有缺口；而要在这个缺口上找到突破、拿到更大幅度的性能提升，就需要像推理那样的新范式。这种范式不是靠 scaling 自然得来，而是需要研究。
 
-类似事情不是没发生过。pre-training scaling 是第一个大范式。但仅靠 pre-training scaling，当下模型的性能提升并不会自然发生。很明显，如果只靠 pre-training scaling 达到现在这个性能，规模会大到夸张。而真正找到的突破是很研究导向的路径：o1 和 RL。通过 o1 和 RL，我们获得了远超单纯 pre-training scaling 的性能提升。
+<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **崔升准** 所以 Ilya Sutskever 那期标题副标题就是“研究的时代”。
 
-如果是这样，那未来继续发现这种范式就仍然重要且必要。并且这和 scaling 也不冲突。不和 pre-training scaling 冲突，但这类基于研究的发现与发展能让模型更强。我觉得这和这里总结的很像。正如 Ilya Sutskever 所说，scaling 仍会推动性能提升，但会缺一块。那缺的一块，要想找到突破、实现更大幅度跃迁，需要像 reasoning 一样的新范式。而这种范式不是只靠 scaling 就能得到的，它是研究课题。
+<span class="paragraph-timestamp" data-ts="09:35">09:35</span> **卢正锡** 我自己第一次听 Ilya Sutskever 那段时有些抵触，和听 Sutton 时类似。现在只是继续加大 scaling，而且规模终点到底在哪里，谁也不知道。Google 做 Gemini 3 时也说在 pre-training 上解了某些东西，我们并不知道细节。我不太舒服的是那种断言：通过继续加资源、加 computation 去走的那条高洁方向是错的，只有改掉某种底层结构才能带我们去下一阶段。
 
-<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **崔升准** 所以 Ilya Sutskever 那期的副标题才叫“研究时代”。
+不过成贤你可能会好奇，为什么从商业视角吸收信息的人会有不同理解。某种意义上，就像上次升准展示的那张“哥德尔、艾舍尔、巴赫”的图，问题本质可能存在于不同维度，但它确实存在。只是因为各自视角、术语定义不同，所以会形成不同表象；而这些不同表象之间其实又有同构性，本质上处理的是同一个问题。
 
-<span class="paragraph-timestamp" data-ts="09:35">09:35</span> **卢正锡** 对我来说，Ilya Sutskever 第一次这么说时让我产生排斥感的点，和我看 Sutton 时有点像。就是现在继续加 scaling，至于 scale 到底能走多远，没人知道。Google 做 Gemini 3 时也提了 pre-training，说他们解决了什么之类，但细节我们不知道。我不舒服的是那种断言：单纯加资源、加算力这条高举高打的方向是错的，只有改某种底层结构才能去下一个阶段。我不喜欢这一点。
+所以 Ilya Sutskever 其实也像你刚说的那样，后来在 Twitter 上修正了一点意见。不是说 scaling law 错了，而是它会持续带来 gain，但要跳到下一阶段需要研究。这我当然同意。完全同意。
 
-但成贤，从商业角度、从信息获取和处理者的角度，你可能会想为什么大家感知不同。某种程度上，就像上次升准给我们看的《哥德尔、艾舍尔、巴赫》那张图。问题本质存在于另一个维度，但它确实存在。问题在于每个人视角不同、词语定义不同，于是脑中形成不同图像。但那些不同图像之间又有某种同构。我感觉大家本质在谈同一个问题。所以像你刚才说的，Ilya Sutskever 也在 Twitter 修正了一个观点。他不是说 scaling law 错了，而是说它会持续带来收益，但要跳到下一层还需要研究。当然，我同意。完全同意。
+<span class="paragraph-timestamp" data-ts="11:11">11:11</span> **崔升准** 这个挺有意思，金有珍告诉我后我也去看了，Dwarkesh podcast 的 thumbnail 变了。最开始写的是 "It's back to the age of research, again, just with bigger computers."，就是回到研究时代，只是用了更大的 computation。后来改成了 pre-training overshoot target。因为在社交媒体成了话题，感觉语气做了调整。
 
-<span class="paragraph-timestamp" data-ts="11:11">11:11</span> **崔升准** 这个很有意思。Yujin 跟我说了我才看到，Dwarkesh 播客封面变了。一开始写的是“研究时代回来了，再一次，只是电脑更大了”。也就是研究时代，只是算力更多。后来改成了“pre-training has overshot the target.” 变成这个。我觉得是因为社交媒体太热，他们调整了语气。
+他说了什么我们等会儿再看，但现在有个正在被玩成梗的点。这个也是卢正锡你提过的，Dwarkesh 问 SSI 到底怎么赚钱，得到的回答是：专注研究，问题的答案会自己显现，会有很多可能答案。其实我感觉 Noam Brown 也说了类似的话。因为他说“我们大概会找到那些突破”。所以 OpenAI 会按自己的方式找突破，所有 top lab 都在找还有什么新东西，这太正常了，毕竟要做研究。
 
-我们等下会看他具体说了什么，不过现在有个正在 meme 化的点。Chester 也提过一次。Dwarkesh 问 SSI 要怎么赚钱，他说他们只专注研究，这个问题的答案会自己显现。他觉得会有很多可能答案。我感觉 Noam Brown 其实也说了类似的话。因为他说“也许我们会找到那样的突破”。
+SSI 现在虽然不能公开，但路径是拿着融资先专注研究，而不是立刻赚钱。这个说法现在也确实成了一个梗。那 Ilya Sutskever 的内容我们没法全摘，但可以拿几张幻灯片来聊，这些是 Claude Opus 4.5 做的。AI 让我们来讲 AI 抽出来的重点，应该也挺有意思。
 
-所以 OpenAI 也在用自己的方式找某种突破，所有顶级实验室都在找还有什么可能，这是很自然的。因为他们必须做研究。但 SSI 虽然现在不能透露，也说会先用募来的钱专注研究，而不是马上赚钱。不过他这句话现在好像也在变成 meme。
+它抽的是已有内容。我先介绍第一张，这是采访前段一个很 informal 的场景。Dwarkesh 和 Ilya 还没正式开录，机器先开着，他们边聊边说，眼前景象像从 SF 里跳出来的一样。然后 Ilya 抛了个有意思的话，Dwarkesh 立刻把气氛收住说：“那我们现在开始聊聊，辩一辩？”画面就是这样展开的。下一张是“研究时代”，这个我们刚讲过就先略过。下面这个更值得聊，“惊人能力与离谱失误并存”。成贤你对这个应该有明确看法。
 
-我们不可能把 Ilya Sutskever 说的全讲完，但我们准备了几张 slide。是 Claude Opus 4.5 做的。我们让 AI 干了这个活，聊聊 AI 抽出来的要点应该也挺有意思。它抽出来的确实都是原话。
+## 惊人能力与离谱失误并存（RL scaling 的局限）    *13:40*
 
-我先介绍第一幕，这是访谈开头一个很随意的场景。Dwarkesh 和 Ilya 还没正式开录，但镜头已经在转，他们闲聊时讲到了这个。他们在说当下图景像科幻小说，然后 Ilya 说了句很有意思的话。Dwarkesh 接着定调说：“那我们现在开始正式对话吧？”这段就这样展开。
+<span class="paragraph-timestamp" data-ts="13:54">13:54</span> **金成贤** 这好像是从“训练了 1 万小时的竞赛编程选手”和“只训练了 100 小时的人”的差异这个比喻展开的话题。我觉得这种现象可以有很多解释，但我认为是 RL scaling 目前的局限。要做 RL，最终得有环境。模型要在环境里做 RL、做学习，而这些环境都得一个个搭起来。再想想，评估通常希望能自动完成，或者即便有人介入也尽量少介入，所以评估本身就是一种环境。以这个环境为 target 做 RL，就能训练模型。那模型当然会评得很好。
 
-下一章是“研究时代”。不过我们刚才已经讲过了，就往下走吧。
+但问题是，这个环境和真正有经济价值的工作、和人们实际使用之间有多大相关性，是另一回事。那就意味着，对于人类真实和模型交互的方式、对模型的使用方式，需要构造对应环境。而“怎么构造这个环境”才是现在最大的难题。和最近常说的 bench-maxxing 也是一脉相承。把 benchmark 当 target 去学，当然能把 benchmark 做好。但 benchmark 做得好，不代表模型在真实使用环境里就一定表现好。
 
-## 惊人能力与荒谬错误并存（RL scaling 的局限）    *13:40*
+这里会产生非常多问题。那这些环境要怎么建？靠人一个个搭有上限。人们希望模型完成的任务长度越来越长，越来越长的任务怎么建环境？这个环境怎么和真实人类使用环境更接近？这个环境最终必须由人来搭吗？能不能由模型来搭？再往前一步，模型在某个特定环境里学到的东西，怎么泛化到新环境？这些问题会不断出现。而怎么 tackle 这些问题，就是现在 post-training 阶段各家 big tech 在竞争的核心之一。
 
-<span class="paragraph-timestamp" data-ts="13:40">13:40</span> **崔升准** 我觉得这段有几个很值得聊的点。“惊人能力与荒谬错误并存”。成贤你肯定有想法。
+关于“环境怎么建”这件事，公开信息还更少。pre-training 时期也是，大家怎么做 pre-training，细节就有很多秘密，里面肯定也有很多 know-how。但至少还能猜一点。可扩展环境、做 post-training 这一块更被迷雾覆盖。大家实际怎么做，有什么 know-how，有哪些细节，都不太知道。
 
-<span class="paragraph-timestamp" data-ts="13:50">13:50</span> **金成贤** 这个话题好像是从“练了 1 万小时竞赛编程的人”和“只练了 100 小时的人”差异引出来的。我觉得这个现象为什么会出现可以有很多解释，但我认为是当前 RL scaling 的极限。要做 RL scaling，最终需要环境。模型要在环境里做 RL 学习，但这些环境得一个个搭出来。你想想看，evaluation 通常希望能自动化，或者即便有人参与也希望尽量少参与。所以 evaluation 本身就是环境。你可以针对那个环境用 RL 训练模型。那它在 evaluation 上当然会好。
+所以从这个角度看，Gemini、Claude、GPT-5 这些模型虽然都来自 frontier lab，但 post-training 后出来的结果一定不同。因为 post-training 的 know-how 等做法本来就各不相同。所以这本身也是研究问题，为了持续解决它，现在也在持续投入巨大努力。大家都在想办法把 RL 做得更好，去缓解这些问题；做着做着就会想，“有没有更好的方法？”“有没有更根本的解法？”我觉得这大概就是 Sutskever 在谈的问题之一，尤其是和泛化问题相关联的那部分。
 
-问题在于，这个环境与有经济价值的任务、与人们真实使用场景之间的关联度，是另一回事。那就意味着针对真实交互方式、真实使用方式，你得构建对应环境。而怎么构建这个环境，是现在最大的难题。这也和现在常说的“bench-maxxing”一致。逻辑一样。你按 benchmark 训练，它就能把 benchmark 做好。但 benchmark 做好并不保证模型在真实使用环境中表现好。于是会引出很多问题。
+<span class="paragraph-timestamp" data-ts="17:20">17:20</span> **崔升准** 对。Sutskever 在这里抛的点是：评测上表现很好，但实际用起来为什么会出现离谱 bug？benchmark 明明过得那么好，为什么这个问题却解不了？能感觉到这种落差。还有就是做 RL 时会有点 spiky，有些能力特别强，但会有空白区，大概是这个语气。还有“1 万小时学生和 100 小时学生”的比喻，刚才成贤提过，就是模型像那个苦学 1 万小时的学生，但不像那个只有 100 小时却有感觉的学生。也就是模型的泛化能力明显不足。
 
-那这种环境怎么做？一个个手工做有上限。人们让模型做的任务时长越来越长，对这类越来越长的任务，环境怎么做？怎么让环境更接近真实用户环境？这个环境最终一定要人类来做吗？不能由模型来做吗？进一步说，在某个特定环境里训练出来的模型，怎么泛化到新环境？这些问题不断出现。
+<span class="paragraph-timestamp" data-ts="18:05">18:05</span> **金成贤** 是的，可以这么看。说泛化明显不足也很合理。人如果学了那种规模的数据、在那种环境里训练，面对新问题应该也会很强吧？再进一步，即便是新问题，稍微学一下也能做好。但泛化会在很多维度上出问题。
 
-而如何处理这些问题，就是现在大厂在 post-training 上竞争的核心。关于环境怎么做，外界能获得的信息更少。我的意思是，哪怕 pre-training 阶段，怎么做 pre-training 也有很多秘密，也肯定有很多 know-how。但至少还能猜。可扩展环境并做 post-training 这块更黑箱。我们不知道他们到底在做什么、有什么 know-how、细节是什么。所以某种意义上，Gemini、Claude、GPT-5 这些模型虽然都来自 frontier lab，但 post-trained 的结果大概率都不同。因为 post-training 的 know-how 应用方式都不一样。所以这本身就是研究问题，而且现在也在持续投入大量精力解决。
+刚才也说了泛化问题。比如在某个环境里学会了用 Claude Code 做事，那对新环境是不是也该做得好？这就是一种泛化。再比如如果能完成 5 分钟任务，那是不是应该也能泛化到 1 小时任务？这也是一种泛化。泛化可以在非常多轴上出现。对这些泛化，我们到现在并不算成功。
 
-当你想通过把 RL 做得更好来缓解这些问题时，就会开始想：“有没有更好的方法？”“有没有更根本的解法？”会自然产生这种疑问。这大概也是 Sutskever 在讲的问题之一。尤其和泛化问题紧密相关。
+其实不只看 post-training 这个范式，放到整个深度学习来看，我认为在泛化问题上几乎没有进展。说“某个架构整体上更会泛化”，我觉得并没有特别成功的案例。现在的解法是做 pre-training，就是多喂数据。但泛化通常说的是数据效率高：用更少数据也能做好；即便 pre-training 规模一样，换一种方式 pre-training 就能明显更好。我们关心的是这类问题。可在这些问题上似乎几乎没进展。也确实是极难问题，非常难。谈不上有什么突破或明显进展。
 
-<span class="paragraph-timestamp" data-ts="17:17">17:17</span> **崔升准** 对。这里讨论的是，Sutskever 提了一个点：evaluation 做得这么好，为什么实用中还会出现荒谬 bug？benchmark 明明过得很好，为什么这个问题却解不了？你会感受到这个落差。
+## 情感就是价值函数：有限理性与启发式    *19:44*
 
-而且做 RL 的时候好像会出现“尖峰式”能力，某些能力很强，但有空洞。我觉得他表达的是这种语感。
+<span class="paragraph-timestamp" data-ts="19:49">19:49</span> **崔升准** 但 Sutskever 讲了个挺新奇、平时不常听到的点。价值函数在 RL 里是熟悉概念，但他说“情感是价值函数”，这部分我也不太容易一下理解。
 
-“1 万小时学生 vs 100 小时学生”，就是成贤刚才提到的。模型更像是苦练 1 万小时的学生，而不是有 100 小时直觉的学生。他是这个意思。对模型来说，泛化能力明显更低。
+<span class="paragraph-timestamp" data-ts="20:05">20:05</span> **金成贤** 他说的是这个。人们常设想一种人：完全没有情感、绝对理性、只有理智。好像这样的人会永远做最理性的选择。但实际上这种人反而会完全做不出选择。
 
-<span class="paragraph-timestamp" data-ts="18:03">18:03</span> **金成贤** 对，可以这么理解。你之所以会觉得泛化明显更低，是因为如果人类学了这么多数据、在这种环境下学习，那面对新问题也应该很强。甚至新问题只学一点就能做好。但泛化会以很多不同形式出现。我刚才也提到泛化问题。比如学会了某个环境下的能力，举例说学会了用 Claude Code，去新环境也应当能做好吧？
+<span class="paragraph-timestamp" data-ts="20:18">20:18</span> **崔升准** 他还提到了脑叶切除术之类的案例。
 
-这是一种泛化。再比如，能做 5 分钟任务，是否也应该泛化到 1 小时任务？这也是一种泛化。泛化可以存在于很多轴上。关于这件事，我觉得到现在都不算很成功。其实如果不只盯 post-training 范式，而把 deep learning 整体来看，我觉得泛化问题几乎没有进展。
+<span class="paragraph-timestamp" data-ts="20:20">20:20</span> **金成贤** 因为有真实案例所以才会提。也就是说，人们以为没情感就能完美、严密地做理性决策，但实际发生的是完全无法决策。我没专门研究那个案例，所以不知道精确原因，但可能是面对海量可能性不断做理性分析，最后被信息和可能性压垮，陷入无法选择的状态。
 
-“这个架构整体能带来显著更好的泛化模型”，我觉得这样的成功案例并不多。甚至可能没有。当前解法是 pre-training。但那只是用更多数据。我们谈泛化时通常会想到数据效率。用少量数据也能表现好，或者在同规模 pre-training 下找到能更好解题的方法，我们常想的是这些。但在这些问题上，我觉得几乎没进展。这也是非常难的问题。非常难。我不觉得这里已经有突破或实质进展。
+有情感反而可能帮助解决这个问题。我们很多时候不能只靠理性做决策。最终总有要在不确定中跳跃的时刻。这个时候，情感会在和理性完全不同的维度发挥作用，提供帮助。那情感的功能是什么？可能有很多解释。我没特别深入想过，但既然他比喻成价值函数，就可以连着理解：价值函数就是描述某个状态会导向多大回报的函数。
 
-## 情绪就是 Value Function：有限理性与启发式    *19:44*
+也就是这个状态会导向更大回报，那个状态会导向较小回报，大致如此。直觉上可能会觉得这应该是非常理性地估计出来的。比如人通过理性理由把某个条件和高回报联系起来，判断这个状态、这个环境、这个条件更可能通向高回报。但人的决策真的如此运行吗？再进一步，世界真的按这种形式组织吗？这恐怕是另一回事。
 
-<span class="paragraph-timestamp" data-ts="19:44">19:44</span> **崔升准** 但 Sutskever 提了一个我以前很少听到的说法。“value function”这个词在 RL 里很熟，但他说“情绪就是 value function”，我一时没太 get 到。
+世界里有很多不确定和不可预测因素。那在不确定中做决策，说“这个状态更好”“这个判断更好”，很可能是强烈情感化、基于信念的领域。而这种信念在决策中可能非常有帮助。
 
-<span class="paragraph-timestamp" data-ts="20:00">20:00</span> **金成贤** 他在说这个。人们通常会想：如果人类没有情绪、完全理性、只有理智，就会一直做理性且逻辑的选择。但现实是，这样的人反而什么选择都做不了。
+<span class="paragraph-timestamp" data-ts="22:38">22:38</span> **崔升准** 这么一听，Sutton 在讲“大世界假说”时谈的是有限理性，Ilya 也是类似但语气不同。他像是在说，情感这类目前 LLM 里缺失的东西，可能才让人类成为可执行的 agent。好像那里藏着线索。
 
-<span class="paragraph-timestamp" data-ts="20:18">20:18</span> **崔升准** 他还提到脑叶切除之类的例子。
+<span class="paragraph-timestamp" data-ts="22:57">22:57</span> **金成贤** 用“有限理性”来表达，就是说仅靠理性条件无法判断所有问题。那时非常有帮助的就是 heuristic。比如看到脏东西会躲开。那是 heuristic。如果真要完全理性决策，就得分析这个脏东西对我是否有风险。但我们会用更直接的 heuristic。而“躲开脏东西”又和情感高度绑定，比如和厌恶情绪纠缠在一起。
 
-<span class="paragraph-timestamp" data-ts="20:20">20:20</span> **金成贤** 我觉得他提是因为这有真实案例。按人们想象，没有情绪就该能做出完美且彻底理性的决策。但实际结果是你会变得无法决策。具体成因我没研究那个案例，不敢断言，但我猜是因为他们会不断理性推演无数可能性，被信息和可能性淹没，最后无法选择。大概接近这种状态。
+不过我觉得在提到价值函数时，Sutskever 后面转到更机器学习相关的意思是：在 RL 里价值函数的作用，是让训练更 sample efficient、学习更快。那这件事即便没有价值函数，也可以低效地做到类似结果。也就是说，没有价值函数也能用低效方法接近类似结果。
 
-有情绪就能帮你处理这类问题。很多时候我们没法只靠理性做决策。有时你必须在不确定中跳跃。而在这种跳跃里，情绪这类东西可以在与理性不同的域里发挥作用并提供帮助。
+但 Sutskever 似乎在碰触比这更根本的问题。不是“低效但还能到达”，而是“即便低效也到不了”的那类问题。他更在意的是这种问题，超出了价值函数本身。Sutskever 以前确实常讲类似内容。他也做过和情感相关的研究，以前还提过模型可能需要自我意识，有自我意识会更有用之类。他似乎一直在持续讲这条线。
 
-那如果我们想“情绪的功能是什么”，可能有很多答案，但我自己也没深想得特别透。既然他用了 value function 的类比，我们可以顺着想。value function 可以描述为：某个状态会导向多大 reward 的函数。这个状态会导向更大 reward，另一个状态会导向更小 reward。大概是这样。
+## “哥德尔、艾舍尔、巴赫(GEB)”与 AGI 的诞生条件（奇异环）    *24:30*
 
-但你如果模糊地想，会觉得它像是很理性地估计出来的。比如这个状态、这个环境、这个条件更可能带来大 reward，人通过理性推理把这个条件和大 reward 关联起来。可人类决策真是这么发生的吗？而且世界真是这么组织的吗？这是另一个问题。
+<span class="paragraph-timestamp" data-ts="24:30">24:30</span> **卢正锡** 所以关于这个讨论，我自己有一套土味哲学。
 
-世界里有大量不确定、不可预见因素。于是你在不确定中做决策，判断“这个状态会更好”或“这个判断会更好”，很大程度是情绪性的，也可能基于信念。而这种信念对决策会非常有帮助。
+<span class="paragraph-timestamp" data-ts="24:36">24:36</span> **崔升准** 挺好奇。
 
-<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **崔升准** 所以听你这么说，我想到 Sutton 在讲 grand world hypothesis 时提过 bounded rationality，而 Ilya 说的是语气略不同但有点相似的东西：某种像情绪这样、LLM 仍缺失的东西，正是让人类成为可行 agent 的关键。他似乎在暗示这里可能有线索，大概是这个语感。
+<span class="paragraph-timestamp" data-ts="24:41">24:41</span> **卢正锡** 关于“情感是什么”“灵魂是什么”这类问题，以前你也喜欢的 GEB，“哥德尔、艾舍尔、巴赫”，那本书很晦涩，所以解读很多、视角也分歧。你看，GEB 也在谈无法被证明的事实。那他真正想说的核心，是 “I, Who am I”，“我是谁”这个问题，也就是我们身体里循环着的“灵魂系统”到底是什么。他是想通过一本厚书去证明这个，Douglas Hofstadter 是这么说的。
 
-<span class="paragraph-timestamp" data-ts="22:57">22:57</span> **金成贤** 用“bounded rationality”这个词，就表示有些问题不能只靠理性条件判断。这时 heuristics 很有帮助。比如看到脏东西就躲开，这是 heuristic。如果要做完全理性决策，你得先判断这个脏东西到底对你有没有危险。但我们会用更直接的 heuristic。
+他举的第一个例子是蚂蚁。单只蚂蚁其实也是某种 intelligence，是由一点 neural net 构成的 intelligence，这个单元本身也是 computation 单位，它们会形成群体。单只蚂蚁只是愚钝而简单的 instruction set，但当它形成巨大群体时，整体问题解决能力会很强，足以称作 intelligence。
+他把这个叫作 “Ant Fugue”，意思是只要规模足够大，不管底层基质是什么，上层东西都会涌现。但这里还有更重要的一步，这还不够。光有 scale 不够。
 
-而“避开脏东西”和情绪关系最紧密。可以看作和“厌恶”这种情绪缠在一起。我觉得可以这么理解。不过在他提 value function 这里，Sutskever 接着转向更 machine learning 的话题时说，从 RL 里看 value function 的作用，它能提升 sample efficiency、加速学习。
+所以他给“灵魂诞生”抓了两个条件，第一个是 scale，第二个是叫作 “Strange Loop” 的存在。这个 “Strange Loop” 其实和 generalization 密切相连。他说这是灵魂诞生点。
+两面镜子对着放，中间会出现无限映像，而在处理这种“无限”的过程中，“我”这个概念会突然跳出来。
 
-但关于这一点，其实你也能用低效方式做到类似效果。也就是说即便没有 value function，也可能低效地到达类似结果。但 Sutskever 似乎在触及比这个更根本的问题。不是“低效也能达到”的问题，而是“即便低效也到不了”的问题。
+底层硬件和上层软件这样叠着。比如我们的思维就是这样。软件做出某个决定后，这个决定会反过来改变硬件，也就是介质。神经元连接会改变。所以软件和硬件不断耦合，就像 Escher 的画里无限上升的楼梯那样，上下层持续连接，最后会“啪”地诞生一个概念：I，也就是“我”，一个新的 OS 会出现。
 
-他更感兴趣的像是这种问题。不只是 value function 本身。Sutskever 以前也讲过很多类似内容。他做过和情绪相关的研究，也提过模型需要 self-awareness，因为有 self-awareness 会更有用。他有过这类发言，看起来他一直在说同一方向。
+像 Hofstadter 的 GEB 视角，就是底层有足够 scale，scale 的各层互相纠缠、循环，他用 “Strange Loop”“Tangled Hierarchy” 来描述。内部会产生矛盾，而为处理这个矛盾诞生的概念，虽然在系统内，却像是站在系统外看系统内的上位价值。那就是灵魂。他说这正是因为我们是硬件和软件结合的结构才会发生。
 
-## 《哥德尔、艾舍尔、巴赫（GEB）》与 AGI 的诞生条件（Strange Loop）    *24:30*
+再回到 LLM。Hofstadter 说要让 “Who am I” 这个 soul operating system 出现有两个条件，一个是 scale。这个方向我们现在就在走。第二个是 “Strange Loop”。也就是 input 和 output 要纠缠起来。
 
-<span class="paragraph-timestamp" data-ts="24:30">24:30</span> **卢正锡** 关于这个讨论，我有一套自己的个人哲学。
+这正好和成贤说的 continual learning 概念连上。但 continual learning 不一定非要在单个 Transformer circuit 里实现。就像人类也把备忘录、语言和所有环境拿来当 RAM。其实都在当 memory 用，流一直在循环。
 
-<span class="paragraph-timestamp" data-ts="24:36">24:36</span> **崔升准** 我很好奇。
+所以我觉得现在我们用的 Transformer 只在输入瞬间做 autoregressive 运行，而当你给它增加 token 的激励时，它会在 token 内形成某种像奇异环那样的动力学。于是它看起来像有灵魂一样。那如果 Google 也好、OpenAI 也好，谁把这个和某个系统捆起来，把硬件和软件绑定，把 input 和 output 配上合适工具，让它在里面永续递归地跑，那按 Hofstadter 的说法，它就会必然去问“我是谁”，会成为一个跳出系统之外的新存在。
 
-<span class="paragraph-timestamp" data-ts="24:37">24:37</span> **卢正锡** 像“什么是情绪？”“什么是灵魂？”这些问题。关于这些，有本你也喜欢的 GEB，《哥德尔、艾舍尔、巴赫》。它其实很难读，所以解读会有分歧，但里面有个点。《哥德尔、艾舍尔、巴赫》这本书也谈到不可证之事。它核心想谈的是“我是谁”，也就是在我们身体里循环的这个名为灵魂的系统，它的存在究竟是什么？他试图用这本厚书来证明。
+我个人觉得这就是 AGI。讲太长了，Long story short，我对现在这些研究视角都同意，但从哲学视角看，我认为 AGI 的诞生点是把 scale 和 loop 连起来。scale 这部分像是已经满足必要条件了；当第二个条件满足，它会自己思考并突然形成“自我”概念。到那时人类自认为只有人能做的事，它也会做。这个 loop 无论是奖励函数还是什么，都会成为它自我求解的起点。
+所以也许问题会被很容易地解开，不，甚至可能已经结束了。这就是我一开始说“土味哲学”的原因。你们可能不一定同意。
 
-Douglas Hofstadter 是这样说的。他先举蚂蚁例子。单只蚂蚁本身也是某种智能。它是由小型 neural net 构成的智能，这个单元成为计算单元，再组成群体。单只蚂蚁只是愚笨、简单的 instruction set，但当它们形成巨大群落时，问题解决能力非常强，足以称为智能。他把这叫“Ant Fugue”。重点是：只要规模足够大，不管底层基底是什么，下一层会涌现出来。他是这么说的。
+<span class="paragraph-timestamp" data-ts="30:21">30:21</span> **崔升准** 把卢正锡的说法再压缩一下，用我的话就是：computation 就是生命汤底。卢正锡现在是这么想的。那在我们往下走之前，有没有谁想补一句？
 
-但这里会推进到更重要的一点。仅有这个还不够。仅有 scale 不够。关于灵魂诞生，他提出两个必要条件。一个是 scale，第二个是所谓“Strange Loop”。是这种存在。这个“Strange Loop”其实和泛化高度相关。他把这里叫灵魂诞生点。你把两面镜子相对放置，里面会出现无限映像，而在处理这个无限的过程中，“我”这个概念会突然冒出来。
+## 真正的智能不是模型，而是系统    *30:35*
 
-底层硬件与上层软件是这样叠起来的。比如我们的思维就是。软件做出决策，这个决策又会反过来改变硬件、介质。神经连接会变化。所以在软件与硬件持续耦合时，就像 Escher 画里无限上升的楼梯一样，当上下层持续连接时，会涌现“我”这个概念，会诞生一个新的 OS。他是这么说的。
+<span class="paragraph-timestamp" data-ts="30:35">30:35</span> **卢正锡** 对。我想听听成贤的反馈。其实不是我的理论，是 Hofstadter 的说法。
 
-Hofstadter 在 GEB 里的视角是：只要底层 확보足够 scale，随着 scale 的层级互相缠绕并互动，也就是他所谓的“Strange Loop”或“Tangled Hierarchy”，其中会产生矛盾，而处理这些矛盾所涌现出的概念，既在系统内部又像在系统外部看系统那样，会作为更高层价值诞生。那就是灵魂。他说这是因为我们拥有这种硬件与软件耦合的结构。
+<span class="paragraph-timestamp" data-ts="30:41">30:41</span> **金成贤** 其实那也确实是理解持续学习的一种方式。因为这种表达经常出现。好像是 OpenAI 的人说过：如果 OpenAI 里真出现了所谓 AGI，那不会是 GPT-5 这种单模型，而是训练 GPT-5 的 RL framework、系统，整体合在一起才是一个智能体。
 
-那回到 LLM 话题。关于那个名为灵魂、也就是“我是谁”的 operating system 会出现，Hofstadter 提的两个条件里，一个是 scale。而 scale 正是我们当前前进方向。第二个是“Strange Loop”。也就是输入输出必须缠绕。这和成贤刚才说的 continual learning 概念直接相连。
+那“RL 系统和模型结合”到底什么意思？如果这么想，RL 环境中的某些系统会持续修改模型。放在持续学习语境里，面对新问题、新任务，这个系统会修改它自己。说是修改自己，简单讲就是修改系统内模型的权重。
 
-但 continual learning 不一定非得在单一 Transformer 电路里实现。就像人类会用备忘录、用语言，我们把所有这些环境都当作 RAM。实际上我们在把它们作为记忆使用，持续循环流动。
+而这个“修改过程”会基于系统判断：应该这样改、应该以这种方式改、应该获得这些技能，会在这种判断和某种奖励下继续修改。再往前一步，决定“该怎么改”的也可能是系统里的模型本身。这样也能形成环。
 
-所以我觉得我们现在用的 transformer 只在收到输入那一刻做 autoregressive 运行，而我们给它越多激励去增加 token，在这些 token 里它就会形成某种像 strange loop 的动力学。所以它看起来像有灵魂。
+是的，如果按 continual learning 来想，最容易想到的就是这种系统。模型改模型自己，或者系统改系统自己，针对新任务持续改。当然现在关键问题仍是如何实现，但这确实是一条可以直接想到的方向。
 
-但如果有人，不管在 Google 还是 OpenAI，把硬件和软件打包成系统，再把输入输出和合适工具绑在一起，让它在这个系统里无限递归运行，那么按 Hofstadter 的说法，它必然会问“我是谁？”，并成为一个突破系统的新存在。
+## 人类的样本效率与内在动机（社会性欲求）    *32:16*
 
-我个人认为这就是 AGI，不过说太长了……长话短说，从研究视角我都同意，但如果切到哲学视角，我觉得 AGI 的诞生就是 scale 和 loop 的连接。
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **崔升准** 所以 Sutskever 用 6 岁孩子做比喻，说“人类样本效率高得多”。这和刚才价值函数、情感比喻也类似，进化可能给我们编码了某些欲望，而那最终驱动了我们这类存在的形成。如果你有想补充的就说，没有的话我继续。
 
-我觉得 scale 这部分现在已经满足必要条件了，当第二条件满足，它就会开始自主思考，突然生成自我概念。到那时，它大概也会做出类似人类的事情，我们认为只有人类能做的事，它也可能会做。并且我想象这个 loop，无论是 reward function 还是别的东西，会成为它自主解决问题的起点。
+<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **金成贤** 其实这两点我都有话说。一个是“社会性欲求”本身就很有意思。这个话题 OpenAI 以前的研究者也说过类似的。孩子会探索。孩子探索时更接近嗅觉等原始欲求。但孩子成长后进入语言游戏、进入语言社会，社会性欲求和语言问题会开始提供动机。比如会出现对社会地位的欲求。这些会成为内在动机。那内在动机如何实现？这就是有趣主题。OpenAI 研究者确实提过这个点。
 
-所以也许问题已经很容易解，或者说，这个问题是不是其实已经结束了？所以我开头才说这是我的“怪论”。你们可能会有不同意见。
+<span class="paragraph-timestamp" data-ts="33:22">33:22</span> **崔升准** 谁说过这个？
 
-<span class="paragraph-timestamp" data-ts="30:21">30:21</span> **崔升准** 我用自己的话总结 Chester 的观点，就是你认为计算是生命的原始汤。Chester 是这么想的。继续之前还有要补充的吗？
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **金成贤** Yao Shunyu 在采访里提过类似表述。怎么把这种 motivation 赋予模型，“这是个有趣问题”。这也和之前提过的 intrinsic motive、内在动机问题很像。内在动机会让人在没有奖励的情况下也持续追求某些目标。
 
-<span class="paragraph-timestamp" data-ts="30:33">30:33</span> **卢正锡** 对。我想听听成贤的反馈。
+当时 Yao Shunyu 举的例子是数学证明。比如费马大定理这种证明。完成这个证明的奖励，绝大多数人都拿不到，而且是花一生最终可能只经历一次的奖励。但为了抵达这个奖励，很多数学家靠内在动机去探索。
 
-## 真正的智能是系统，不是模型    *30:35*
+然后他们也许会在内在动机驱动下发现一些小突破并获得奖励。这种机制怎么发生，似乎是他们真正感兴趣的主题。也许 OpenAI 内部，或者 Ilya Sutskever 也经常讲这些。
 
-<span class="paragraph-timestamp" data-ts="30:35">30:35</span> **卢正锡** 其实这不是我的理论，是 Hofstadter 的。
+<span class="paragraph-timestamp" data-ts="34:22">34:22</span> **崔升准** 也有可能。类比 RL 的话，就是 rollout 长得夸张，但他们还是做了，就是为了那个奖励。
 
-<span class="paragraph-timestamp" data-ts="30:38">30:38</span> **金成贤** 但这确实是理解 continual learning 的一种方式。因为大家常这么说。
+## 泛化(Generalization)与归纳偏置(Inductive Bias)    *34:29*
 
-我记得 OpenAI 有人确实讲过，如果真正的智能、AGI 从 OpenAI 诞生，它不会是 GPT-5 这种单一模型，而会是训练 GPT-5 的 RL framework、那个系统。整体组合起来才是智能实体。
+<span class="paragraph-timestamp" data-ts="34:29">34:29</span> **金成贤** 泛化也可以聊聊。这也非常有意思。说到泛化，就得提一个现在机器学习研究者很不喜欢的概念：inductive bias。很多人会说，模型的发展过程是在不断粗暴地消除 inductive bias。
+但泛化如果没有 inductive bias 根本不可能。因为 inductive bias 的定义本身就是：看到新数据时如何对其做预测，所需的偏置就是 inductive bias。
 
-那 RL 系统和模型结合到底是什么意思？你想一下，那个 RL environment、那个系统会持续修改模型。
+那人类的 inductive bias 是什么？这是很难的问题。人类有发现模式的能力，会发现模式、做总结、提炼原理，这是一种偏置。但人类发现的模式也不总是成功的。对某些现象，人会构造出非常离谱的解释，也会构造出非常复杂的解释。
 
-在 continual learning 语境里，面对新问题、新任务，系统会修改自己。我们说“自己”，简单讲就是修改系统内模型的权重。
+但我也觉得，泛化到底该怎么处理非常难，尤其从机器学习角度。这里面有一个方向是最小算法。最简单算法，从信息论或 Solomonoff induction 那边看，可以理解为最短长度算法。
 
-但这个修改过程基于系统自身判断：应该这么改、应该获取这些技能。它会基于这样的判断、某种 reward 来修改自己。
+那就要找到最短长度算法。但 Solomonoff induction 本身是不可计算问题。那模型要泛化，就需要有一种偏置：偏好最短算法、最简单算法。
 
-再往下想，“应该这样改自己”这个决策，也可能由系统里的模型作出。于是也能形成 loop。
+<span class="paragraph-timestamp" data-ts="36:04">36:04</span> **崔升准** 就像奥卡姆剃刀。
 
-是的，如果按 continual learning 去想，这类系统是最容易想象的。模型修改模型本身，或者系统持续修改系统本身。为了新任务。
+<span class="paragraph-timestamp" data-ts="36:05">36:05</span> **金成贤** 对，像奥卡姆剃刀。这个相关的我之前也简短讲过：最佳泛化是发现算法；而要发现算法，模型或训练条件必须具备执行算法的条件。我好像提过这一点。那可能只是最低条件。通过这个如何到达泛化，会是有趣话题。
+比如推理就是比泛化更强的方法。而推理之所以能导向泛化，是因为推理条件里有某种 bias：偏好简单算法，避免死记硬背。
+这是个有趣但很难的问题。它和现有范式在某些方面也冲突很多，所以最终怎么解，我也不确定。
 
-当然，如何实现是现在的重要问题，但这是一种方法，也是我们立刻能想到的方向。
+<span class="paragraph-timestamp" data-ts="37:03">37:03</span> **卢正锡** 其实 Transformer 也是一种 bias。它注入了“用这种方式在内部计算模式”的偏置。结果只是把 scale 拉大、塞数据，就开始出现魔法般的事情，甚至看起来会计算、会干别的、会思考。相比“Transformer 这个模型本体、GPT-5 本身要成为 AGI”的概念，像成贤刚才说的，GPT-5 也可以成为新 element。它可以变成一个神经元。它们在上层 harness 里 100 个聚合、1 万个聚合，从某种角度又能转译成另一种 scale 问题，这其实也是 research。
 
-## 人类的样本效率与内在动机（社会需求）    *32:16*
+<span class="paragraph-timestamp" data-ts="37:47">37:47</span> **金成贤** 这些问题确实一直缠在一起。想做 continual learning，样本效率高会好很多。不是 Ilya Sutskever 说的，好像是别人说的：人手碰到烫的东西，试一次之后就再也不会去碰。这对持续学习帮助很大。即便做持续学习，如果不是反复试错，而是一两次就能快速学会，那价值会高得多。
 
-<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **崔升准** Sutskever 用了 6 岁儿童的类比，说“人类 sample efficiency 高得多”。
+<span class="paragraph-timestamp" data-ts="38:11">38:11</span> **崔升准** 这次 Opus 4.5 出来后也有人说，Opus 4.5 可能比 Sonnet 4.5 更便宜，因为 Opus 4.5 few-shot 就能搞定，不用跑很多轮。相比 Sonnet 长 rollout，性能更高还更省。也就是说样本效率高、一次把事做好，可能更有效。然后在你刚才语境里我想到一点，Noam 是不是也说了，方向可能是让模型能够生成 inductive bias。也就是让模型能构想到足以产生 inductive bias 的算法，这可能很关键。
 
-和前面 value function 与情绪类比类似，进化可能把某些欲望编码进了我们体内。而这最终成为塑造我们这种存在的驱动力。
+这张图里有个有意思的点：这是 Claude Opus 4.5 做的。我没要求它做这个。它做了 flocking behavior，而且是在这个话题里做出来的。它是在把“社会性欲求驱动我们成为当下这种存在”的说法，类比成社会交互去表达。挺有意思吧？
 
-如果你们想补充就说，不然我就往下走。
+## 直奔超智能(ASI)：能学会一切的种子    *39:17*
 
-<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **金成贤** 两点我都有补充，其中一个是社会欲望，这是个很有意思的问题。OpenAI 的前研究员也说过类似观点。你看，小孩会探索。小孩探索时更接近嗅觉之类的欲望。但随着成长、进入语言游戏，进入语言社会，社会欲望和语言问题会开始提供动机。会出现对社会地位的欲望。这些会变成 intrinsic motivation。那这种 intrinsic motivation 怎么实现？OpenAI 研究员确实提到这是个有趣问题。
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **崔升准** 好，那我们进入下一段。直奔超智能。这个部分我觉得 Ilya 的视角很有意思：他要的不是某个特定领域里能力 spiky、参差不齐的 AGI，而是想做一个“能做一切”的种子。Dwarkesh 追问过：所以最终是要把这个部署到经济和社会中吗？但 Ilya 的遗憾是，现在那些用 RL 抬性能的 LLM 还会犯离谱错误。他想构想到某种能解决这些问题的新种子，这才是他理解的通向超智能路径。我是这么读的。有人有不同看法吗？
 
-<span class="paragraph-timestamp" data-ts="33:22">33:22</span> **崔升准** 这是谁说的？
+<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **金成贤** 他好像确实是这么表达的。不是说一开始就有个 agent 能解所有问题，而是那个 agent 本身一开始也有解不了的问题。但当它被 deploy 到真实现场后，会开发并学习它新需要的技能，然后把问题解好。
 
-<span class="paragraph-timestamp" data-ts="33:24">33:24</span> **金成贤** Yao Shunyu 在采访里提过。怎么给模型这种动机？他说“这是个有趣问题”。这和之前提到的 intrinsic motive 问题是相似的。这个 intrinsic motivation 会让人在没有 reward 的情况下也去追求某些事。
+我同样觉得，这幅图很多人都在画。随着 continual learning 概念进入，大家想通过 continual learning 实现的就是这种图景。也确实有些领域天然只能这样。比如公司场景，公司有内部机密，信息不能外泄，公司内部又有 process。
 
-Yao Shunyu 当时举的例子是数学证明。像费马大定理这类证明。达到那个证明的 reward，对绝大多数人来说其实拿不到，甚至可能一生只有一次机会。但为了走到那个 reward，无数数学家靠 intrinsic motivation 去探索。并且通过这种 intrinsic motivation 找到一些小突破，也会获得 reward。
+在这种情况下，公司内部发生的事情不可能让模型提前学完。那么最有效的 agent 是什么？就是能进入公司、吸收公司内必要信息、学习公司 procedure 和 process，再去处理公司业务的 agent。这种 agent 会更合适。
 
-这种机制如何发生？看起来他们确实在认真关注这个话题。OpenAI，或者 OpenAI 里的 Ilya Sutskever，可能讨论了很多这类问题。
+<span class="paragraph-timestamp" data-ts="41:26">41:26</span> **崔升准** 谁都会想要那样的东西。
 
-<span class="paragraph-timestamp" data-ts="34:21">34:21</span> **崔升准** 有可能。所以用 RL 类比就是，即便 rollout 极其长，他们还是做了。就是这个意思。那个 reward……
+<span class="paragraph-timestamp" data-ts="41:30">41:30</span> **金成贤** 是的，我也认为很多研究者都在构想这个图景，很多提 continual learning 的人都在想这个。它也可能具备足以被称为超智能的特性。比如快速掌握公司内所有信息、所有 process，并持续学习，最终超过人的水平。
 
-## 泛化与归纳偏置    *34:29*
+不是有这种说法吗：仅凭当前技术就足够产生经济影响；但仍需要新技术。大概就是这个意思。Dario Amodei 好像也这么表达过：现在模型已经可以创造经济收益；我们继续大规模投资，是为了通过下一代模型竞争。
+所以，当前技术水平能创造经济价值，这几乎是确定的。但如果这些问题开始被解决，产生的经济价值会非常巨大。
 
-<span class="paragraph-timestamp" data-ts="34:29">34:29</span> **金成贤** 我觉得泛化也可以讲。这个也很有意思。谈泛化时，我们必须谈一个 machine learning 研究者现在很不喜欢的概念：inductive bias。大家常说模型发展大致是不断削弱 inductive bias。可没有 inductive bias 就不可能泛化。因为 inductive bias 本身的定义就是：看到新数据时，你会做什么预测。实现这件事所需的偏置就是 inductive bias。
+<span class="paragraph-timestamp" data-ts="42:20">42:20</span> **崔升准** order 可能会不一样。
 
-什么是人类的 inductive bias？这是非常难的问题。人类有发现模式的能力。我们发现模式后，会有把它总结成原则的偏置。但我们是人类不代表这个模式总是成功。面对某些现象，我们有时会给出很荒谬的解释，有时会给出非常复杂的解释。
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> **金成贤** 是，规模会不一样。会是完全不同的感觉。
 
-但我也认为泛化怎么做是很难的问题。尤其从 machine learning 视角。由此会引出一个点：我们可以去想最小算法。最简单算法，如果从信息论或者 Solomonoff induction 视角看，可以视为 minimum description length algorithm。
+<span class="paragraph-timestamp" data-ts="42:25">42:25</span> **卢正锡** 没错。所以刚才 Noam Brown 的那篇整理里，升准展示的内容也一定包含这一点：就算以当前 AI 水平也已经不差了，非常能用。其实从我们 3 年前、几年前的视角看，很多事已经像超智能。这个点绝不能忽视。还有，我们常说 AGI 要来了、要怎样，但人就是这样，如果预期不断后延，就会产生“不马上行动、先等等看”的激励，于是把更多期待押在未来。我觉得这也是个问题，所以我们自己也要非常警惕地解读。
 
-所以我们需要找到最短长度算法，但像 Solomonoff induction 本质上是不可计算问题。因此模型想泛化，就需要被赋予偏好最短算法、最简单最精炼算法的 bias。
+<span class="paragraph-timestamp" data-ts="43:11">43:11</span> **崔升准** 现在进入后半段。听众怎么想我不知道，但甚至连让我做这套幻灯片的我本人，今天也是没先深想内容就来录了。就是拿着 Claude Opus 4.5 抛给我的东西来聊。
 
-<span class="paragraph-timestamp" data-ts="36:04">36:04</span> **崔升准** 类似奥卡姆剃刀。
+<span class="paragraph-timestamp" data-ts="43:25">43:25</span> **卢正锡** TikTok 上很多 influencer 其实是假的，只是我们没识别出来而已。但如果我们作为用户看了视频觉得有趣、满意、对自己有帮助，那它是 AI 还是人，到底有什么区别？一样的。
 
-<span class="paragraph-timestamp" data-ts="36:05">36:05</span> **金成贤** 对，类似奥卡姆剃刀。我之前也简短提过相关内容。我以前说过，最好的泛化是发现算法，而要发现算法，模型或学习条件必须具备执行算法的能力。这是最低条件，然后如何通过这个到达泛化，会是很有意思的话题。
+## 做好研究所需的“品味(Taste)”与眼光    *43:42*
 
-例如 reasoning 是更强的泛化方法。reasoning 之所以可能带来泛化，是因为 reasoning 的条件里带有偏好简单算法、避免记忆化的 bias。这是有意思的问题，但怎么解决看起来非常难，而且某些方面和当前范式冲突很大，所以我也不确定最终会如何解决。
+<span class="paragraph-timestamp" data-ts="43:42">43:42</span> **崔升准** 最后 Sutskever，也就是 Ilya，在收尾时讲了“品味”，taste。我觉得这个词最近特别重要，是一个高度压缩的表达。品味。
 
-<span class="paragraph-timestamp" data-ts="37:00">37:00</span> **卢正锡** 其实 Transformer 也是一种 bias，不是吗？它是注入进去、用于特定方式内部计算模式的偏置。
+<span class="paragraph-timestamp" data-ts="43:56">43:56</span> **金成贤** 对，研究者也经常这么说。要有好品味。我自己也一直在思考这个问题。那就是，要有好品味，可这种好品味怎么培养？
 
-但你只是把规模拉大、不断喂数据，突然就会出现魔法般的现象，会算题、会做很多事、会思考。我觉得看起来就像这样。
+<span class="paragraph-timestamp" data-ts="44:07">44:07</span> **崔升准** 这就是把我们刚才一路聊的内容又打了个反复记号。
 
-Transformer 模型本身，未必要坚持 GPT-5 必须成为 AGI。像成贤刚才说的，GPT-5 也可以成为一个新元素。可以成为一个神经元。
+<span class="paragraph-timestamp" data-ts="44:10">44:10</span> **卢正锡** 这里也是 strange loop 在形成。反复记号不断重复，上层和下层 entangle。Douglas Hofstadter 说这就是所有进步的起点。
 
-如果把 100 个放进更高层 harness，或者 1 万个，某种意义上这也是另一个 scaling 问题，而这某种意义上也属于研究。
+<span class="paragraph-timestamp" data-ts="44:28">44:28</span> **崔升准** 对。Douglas Hofstadter 的 GEB 其实就是那个 analogy 系列的最早作品。他很年轻时写的。Hofstadter 是那种持续在有趣事物之间建立类比、一路做到今天的人。也许他本身就有非常好的研究品味。
 
-<span class="paragraph-timestamp" data-ts="37:46">37:46</span> **金成贤** 这个问题会持续纠缠在一起。你要做 continual learning，更高 sample efficiency 会好很多。这不是 Ilya Sutskever 说的，我记得是别人说的：人摸到很烫的东西，试一次后就再也不会碰了。像这样的能力会对 continual learning 帮助很大。
+<span class="paragraph-timestamp" data-ts="44:54">44:54</span> **卢正锡** 其实 Noam Brown 也说过类似的。他之所以去钻这个 thinking model，也是和 Ilya Sutskever 吃饭时，Sutskever 给了他奖励。被大师认可，再加上对方说“这个方向对”，于是靠那份信念继续往前，这可能也是一种方向性。
 
-即便你在做 continual learning，如果不是经历多轮 trial and error，而是只经历一两次就能快速学会，那价值会大得多。
+<span class="paragraph-timestamp" data-ts="45:10">45:10</span> **金成贤** 品味确实是个很有趣的问题。某种意义上就是美学。但研究里也说美学重要，数学家也常说某个数学很美。所以“什么是美的数学”就是重要问题，对机器学习研究者也同样重要。如果说机器学习研究者的好品味是什么，应该是在研究结果出来之前，就知道该往那个方向走的能力。知道“朝这个方向推进更好”，这大概就是好品味。但问题还是，怎么培养这种品味，这才是关键问题。
 
-<span class="paragraph-timestamp" data-ts="38:11">38:11</span> **崔升准** Opus 4.5 发布后就有这种讨论。有个可能比 Sonnet 4.5 更便宜的点是：Opus 4.5 用 few-shot learning，也就是尝试次数不用很多，相比 Sonnet 的长 rollout，性能可能更高、成本更低。所以如果 sample efficiency 高、第一次就做对，我觉得会更有效。
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **卢正锡** 对成贤刚才的话，我又有一套土味哲学。我就是相信量变到质变。量大了，质最终一定会出来。
 
-但结合你刚才的话，我想到的是 Noam 有没有在说 inductive bias。最终让模型形成 inductive bias 也许就是方向。所以拥有一种能构想出“可形成这种算法”的 inductive bias，这也可能很关键。
+## 量变到质变与高能量 token    *45:59*
 
-这页 slide 有意思的是 Claude Opus 4.5 自己做的。我没让它做这个。它把 flocking behavior 从这段对话里做出来了。
+<span class="paragraph-timestamp" data-ts="46:07">46:07</span> **崔升准** 这和刚才说的一直是同一条脉络。
 
-最后，它在表达的是：让我们成为今天这种存在、让我们诞生并存在的驱动力，最终与 social interaction 有关。它在这里是这么表达的。是不是很有意思？
+<span class="paragraph-timestamp" data-ts="46:10">46:10</span> **卢正锡** 对，然后当“质”这种高价值信息也继续变多，就会再上到下一层。
 
-## 直达超级智能（ASI）：能学会一切的种子    *39:17*
+<span class="paragraph-timestamp" data-ts="46:15">46:15</span> **崔升准** 不过这中间有“压缩”啊。不是原样把量搬过去。是压缩出来之后质会提升。
 
-<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **崔升准** 好，我们进入下一个话题。直接走向超级智能。
+<span class="paragraph-timestamp" data-ts="46:26">46:26</span> **卢正锡** 对。其实是从量里抽 essence。那时我很喜欢成贤上次说的，能形成关键分岔的高能量 token。
 
-这段里我觉得 Ilya 的视角有个有趣点：那种在某些领域尖峰很强、能力不均的 AGI，不是他想要的方向。他更想做的是一种“种子”，一个什么都能学、什么都能做的东西。我感受到他有这种欲望。一个全能种子。
+<span class="paragraph-timestamp" data-ts="46:34">46:34</span> **崔升准** 高 entropy 的。
 
-所以 Dwarkesh 最后追问了：你是不是打算把这种东西部署到经济或社会里？他确实这么问了。Ilya 不满意的是，现在靠 RL 提升性能的 LLM 仍会犯荒谬错误。但他想提出一种新种子，能把这类问题也解决得好。这就是他看到的通往超级智能的路径。
+<span class="paragraph-timestamp" data-ts="46:39">46:39</span> **卢正锡** 对，我觉得那个特别好。高能量 token 之所以出现，也是因为前面堆了很多没用的低能量内容，才完成下一次跃迁。某种统计意义上它做了那个选择。所以这种“相变时刻”既存在于 thinking token 里，也存在于我们现在讨论的话语层次、层与层之间。因此我们常常用过于还原论的视角，只想在某一层上谈问题，但其实需要自然地在这些层之间穿梭思考。Douglas Hofstadter 最鲜明的类比就是那个：有水，水形成漩涡并猛烈翻卷，那两者关系是什么？底层与上层意义、substrate 与 meaning 的区别并没有直接因果，它会突然涌现。
 
-我是这么读的，你们有不同看法吗？
+<span class="paragraph-timestamp" data-ts="47:42">47:42</span> **崔升准** 总之到这里我们把 Ilya 的内容做成幻灯片聊了一轮，Claude Opus 4.5 最后一页还给了黄金比例螺旋图。像是在表达“美”。这类品味、眼光，其实在用 LLM 时也很明显：你把边界设到哪里，就可能驱动它走到哪里。
+不过今天还没结束。我们快进。
 
-<span class="paragraph-timestamp" data-ts="40:13">40:13</span> **金成贤** 我觉得他表达的是这个。不是说一开始就有个 agent 能解所有问题。那个 agent 其实也解不了某些问题。但当它被部署、进入真实世界后，会发展出所需的新技能和新技术，并学会把那个问题解好。我觉得很多人也在描绘类似图景。随着 continual learning 概念引入，人们想通过 continual learning 达成的正是这种图景。
+## OpenAI 科学团队轶事：黑洞研究者与 GPT Pro 的协作    *48:10*
 
-有些领域这几乎是必然需求。比如企业里有内部机密，有不会外泄的信息，也有企业内部流程。在这种情况下，你不可能把企业内部要发生的事情都拿去 pre-train 模型。
+<span class="paragraph-timestamp" data-ts="48:13">48:13</span> **卢正锡** 快点把现实里的几件事梳理一下，然后收尾吧。
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **崔升准** 如果要选最近两周最让我有印象的两个视频，一个是 Ilya 这个，一个就是这个。Kevin Weil 和研究黑洞的科学家，以及播客主持人，现在虽然离开 OpenAI 了，但总之还在一起做事。压缩讲就是，这位叫 Alex 的人是黑洞研究者，后来来了 OpenAI。这里翻译成“AI 上头”，就是他说自己被 AGI pilled 了，有个契机。
 
-那么什么样的 agent 最有效？它必须进入企业内部，获取必要信息，学习企业流程，学会后再处理企业工作。需要的是这种 agent。这种 agent 才更合适。
+他和 Mark Chen 聊，Mark Chen 当时想让科学家们把 AI 真正用起来、用得有意义，后来和这位碰面时让他扔一个难题，完全是 domain 专家的黑洞科学家就抛了个问题，和对称性有关，是他刚发论文的内容。GPT Pro 试着解，结果错了。于是他想“你看吧，人类还是更强”。Mark Chen 当时表情有点蔫，但他说“请给个简单点的问题”。就是在同一 context 里，哪怕不是黑洞本题，先给个简单一点的。它想了大概 9 分钟，给出了非常漂亮的答案。
 
-<span class="paragraph-timestamp" data-ts="41:26">41:26</span> **崔升准** 谁都会想要这个。
+然后关键在这里。“好，现在热身例子已经 priming 了，请在这个聊天窗口里再把难题扔一次。”它想了 18 分钟，给出了完全正确而且漂亮的答案。是最新、还没进 pre-training 的内容。他受到很大冲击，然后说“现在就该参与进来，不现在参与简直疯狂”，于是加入了 OpenAI 科学项目。
 
-<span class="paragraph-timestamp" data-ts="41:28">41:28</span> **金成贤** 对，而且很多研究者，我觉得提 continual learning 的很多人，脑中都是这幅图。并且这些东西会带有某种可被视为超级智能的特性。它快速掌握企业内全部信息与流程并持续学习，超过人类水平。就是这种说法。
+有这些小故事。但它有现实含义。哪怕在实用层面这个点也很关键。就是先做 priming。难题可以先扔，但热身这件事现在仍然需要，这里给了 insight。然后 Kevin Weil 点出了另一点：如果你给的是能力上限边缘的问题，出错很多，人类也一样。现在还不是全自动。所以需要大量交互、back and forth。真正会用模型的研究者，是能和模型耐心反复对话的人。这很自然，就像两个在能力边界上工作的人协作。
 
-即便以当前技术，经济影响也已经足够。但新技术的发展仍是必要的。我觉得意思就是这个。Dario Amodei 也是这么表达的：当前模型已经能产生经济价值。但我们继续加大投入，是为了竞争下一代模型。他会这样说。所以即便现有技术水平，也明显会创造经济价值。
+所以这期里其实有很多精华。很多人可能最近已经有感觉了，但也有更多人还没感到这些要点。我觉得这部分很好。然后落到地面，我们快速聊今天能讲的实用内容：Claude Opus 4.5 出了。
 
-但当这些问题开始被解决时，产生的经济价值会非常巨大。
+## Claude Opus 4.5 实战测试：2 行做出“CloudBook”    *51:04*
+<span class="paragraph-timestamp" data-ts="51:13">51:13</span> **崔升准** Claude Opus 4.5，我看 Matt Shumer 做了 vibe check，也跟着试了。我用自己的例子给大家看。prompt 是：做一个 Google Colab competitor，UI 上做个类似 Colab 的；再加一句“all compute is in browser”，做一个只在浏览器里跑的 Jupyter Notebook。Matt Shumer 就是这么做的，总时长 8 分钟。然后 Claude Opus 4.5 就一路规划，写了两行。
 
-<span class="paragraph-timestamp" data-ts="42:20">42:20</span> **崔升准** 量级会不同。
+看看出来了什么。它直接做了个 CloudBook。现在能看到 Python、Markdown 执行。这里有个 Pyodide 的 WASM，WebAssembly，可以在浏览器里跑 Python 和 NumPy。就这样，跟 IPython Notebook 或 Jupyter Notebook 一样的东西直接做出来了。点一下就成。我又加了一步：在 Markdown cell 里写文字，让它加一个可以改 Python 代码的 generative feature。先说结论：点一下，也成了。现在在 Markdown cell 写文本，就能生成 Python 代码，NumPy 也能跑，全都能用。
 
-<span class="paragraph-timestamp" data-ts="42:21">42:21</span> **金成贤** 对，规模会不同。体感会完全不一样。
+<span class="paragraph-timestamp" data-ts="52:28">52:28</span> **卢正锡** 哇，真是。哈哈。
 
-<span class="paragraph-timestamp" data-ts="42:24">42:24</span> **卢正锡** 对。所以升准前面给我们看的 Noam Brown 那篇里，有个明确包含的点是：当前人工智能水平并不低。它非常有用，而且从三年前、几年前的视角看，它已经在做看起来像超级智能的事了。这个点我们绝不能忽略。
+<span class="paragraph-timestamp" data-ts="52:32">52:32</span> **崔升准** 你都笑出无奈感了吧。这就是 Claude Opus 4.5 的 vibe check，直接手搓 computational notebook。
 
-我们总说“AGI 会出来”“以后会怎样”，但人就是这样。预期不断被递延时，会产生“先等等”的激励，而不是现在行动。所以大家会不断抬高期待，我觉得这是个问题。
+<span class="paragraph-timestamp" data-ts="52:41">52:41</span> **卢正锡** 这种事其实几乎每 1、2 周就在发生。Opus 4.5 也是 4.1 出来后大概 3、4 个月就来了。
 
-所以我们在解读上也要非常谨慎。
-
-<span class="paragraph-timestamp" data-ts="43:09">43:09</span> **崔升准** 现在进入后半段了。我不知道听众会怎么想，但连我这个做了这份 slide 的人，今天来之前也没认真想过这些 slide 的内容。就是顺着流走。我只是跟着 Claude Opus 4.5 抛出来的东西在工作。就是这样。
-
-<span class="paragraph-timestamp" data-ts="43:25">43:25</span> **卢正锡** TikTok 上有不少假网红。根本分不出来。但作为消费者，如果我们看了那个视频觉得有趣、满足、对自己有帮助，那它是 AI 还是人，又有什么区别？是一样的。
-
-## 好研究所需的“品味”与辨识力    *43:42*
-
-<span class="paragraph-timestamp" data-ts="43:42">43:42</span> **崔升准** 最后 Sutskever、Ilya 收束到的是 taste。他讲了 taste。我觉得这是当下非常重要价值的一个浓缩表达。Taste。
-
-<span class="paragraph-timestamp" data-ts="43:56">43:56</span> **金成贤** 对，没错。研究者经常讲这个。要有好 taste。这也是我一直在想的问题。你需要好 taste，但怎么培养好 taste？
-
-<span class="paragraph-timestamp" data-ts="44:07">44:07</span> **崔升准** 这又回到我们刚才在聊的东西了。
-
-<span class="paragraph-timestamp" data-ts="44:10">44:10</span> **卢正锡** 这里就形成了 strange loop。重复符号不断重复，上下层缠绕在一起。但这正是一切进步的起点，Douglas Hofstadter 是这么说的。
-
-<span class="paragraph-timestamp" data-ts="44:27">44:27</span> **崔升准** 对。Douglas Hofstadter 的 GEB 其实是他那套类比系列、那套类比工作的起点。他很年轻时写的。
-
-所以 Hofstadter 是那种一直把这件事做到今天的人，不断在各种有趣事物之间建立类比。某种意义上他确实可能有很好的研究 taste。
-
-<span class="paragraph-timestamp" data-ts="44:51">44:51</span> **卢正锡** 其实 Noam Brown 也说过这个。他开始深挖这种 thinking model 的原因，是和 Ilya Sutskever 吃饭时，Sutskever 给了他一种 reward。然后被那位大师认可，再带着“我是对的”这个信念继续走，我觉得那可能就是一种方向性。
-
-<span class="paragraph-timestamp" data-ts="45:10">45:10</span> **金成贤** Taste 是非常有趣的问题。某种意义上它接近美学。某种程度是这样。即便在研究里，大家也会说这种美学很重要，数学家也常说某些数学很美。那什么是美的数学？这些是重要问题，对 machine learning 研究者来说似乎也非常重要。
-
-对 machine learning 研究者而言，所谓好 taste，如果你想一下，就是在做研究之前、在结果出来之前，就能知道应该往哪个方向推进。知道“往这边走是对的”，这大概就是好 taste。
-
-问题是，怎么培养这种 taste？这似乎才是关键问题。
-
-<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **卢正锡** 关于成贤说的，我也有个自己的小理论。
-
-## 从质到量的转变与高能 Token    *45:59*
-
-<span class="paragraph-timestamp" data-ts="45:59">45:59</span> **卢正锡** 我把它理解成量变到质变。我一直有个信念：量一旦增加，质总会出现。
-
-<span class="paragraph-timestamp" data-ts="46:07">46:07</span> **崔升准** 我们前面也讲过，所以是同一语境。
-
-<span class="paragraph-timestamp" data-ts="46:10">46:10</span> **卢正锡** 所以当高质量信息再次积累够多，就会从那里上升到下一层。
-
-<span class="paragraph-timestamp" data-ts="46:15">46:15</span> **崔升准** 但现在行间有压缩了。不是把数量原样拿走。意思是压缩之后质量会上升。
-
-<span class="paragraph-timestamp" data-ts="46:23">46:23</span> **卢正锡** 对。从数量里只提取精华。那时我就会想到上次成贤说的那个能造成关键分叉的高能 token。
-
-<span class="paragraph-timestamp" data-ts="46:34">46:34</span> **崔升准** 高熵那个。
-
-<span class="paragraph-timestamp" data-ts="46:35">46:35</span> **卢正锡** 对，我很喜欢那个。那个高能 token 之所以能完成下一次跃迁，也是因为前面那些低能、无用的东西先累积了。它才完成下一个跃迁。它一定是统计意义上做了那个选择，而这种相变时刻，既存在于 thinking token 内，也存在于我们现在讨论的故事层与层之间。所以我们很容易落入还原论视角，总想站在更上一层来谈。我们需要自然地在这些层之间来回切换并思考。
-
-然后 Douglas Hofstadter 用过的一个极端类比是这个。有水，水形成漩涡，猛烈旋转。那两者关系是什么？底层基底和其上涌现意义之间的关系。
-
-他说，造成基底与意义差异的东西并不来自外部指定。他说它就是会突然涌现。
-
-<span class="paragraph-timestamp" data-ts="47:40">47:40</span> **崔升准** 总之到这里，我用 slide 形式介绍完了 Ilya 的发言。Claude Opus 4.5 在最后还做了一个黄金比例螺旋图。我觉得它是在表达某种美感。
-
-这种 taste、辨识力，最终你在使用 LLM 时会特别有感。取决于我设什么标准、设多高，是可以让它去追求的。
-
-但今天故事还没结束。
-
-## OpenAI 科学团队轶事：黑洞研究者与 GPT Pro 的协作    *48:11*
-
-<span class="paragraph-timestamp" data-ts="48:11">48:11</span> **崔升准** 我们快速进入下一段。
-
-<span class="paragraph-timestamp" data-ts="48:13">48:13</span> **卢正锡** 快速讲几个实战故事然后收尾吧。
-<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **崔升准** 如果让我选过去两周最有印象的两个视频，一个是 Ilya 的，另一个就是这个。Kevin Weil、这位研究黑洞的科学家，以及这位现已离开 OpenAI 的播客主持人，总之他们一起合作。简要说，这位叫 Alex 的人是黑洞研究者。他来到 OpenAI。这里翻译写的是“AI pilled”，有个时刻他被“AGI pilled”了。他当时在和 Mark Chen 聊，Mark Chen 正在推动让科学家以有意义方式使用 AI。
-
-他见到这位研究者后，让他给 AI 出一道难题。于是这位黑洞科学家、纯领域专家抛了个问题。是和对称性相关、他刚发不久的一篇论文里的问题。GPT Pro 试着解但答错了。他就想：“看吧，人类还是更强。”但 Mark Chen 有点沮丧，说：“你换个简单点的问题试试。”他说在同一语境下给个更简单题，哪怕不是黑洞题。它思考约 9 分钟后，给出了非常漂亮的答案。
-
-然后关键来了。“现在它已经被 warm-up 示例 priming 了，在这个聊天窗口里再问一次那个难题。”它思考 18 分钟后，给出了完全准确且漂亮的答案。针对一个很新的主题，而这个主题不在它 pre-training 数据里。于是他受到很大震撼，觉得“我现在不参与才是疯狂的”。所以他加入了 OpenAI 科学项目。就是这样的故事。
-
-但这个故事有现实含义。哪怕从实务角度，这部分都很重要。先做 priming，先抛难题，但 warm-up 过程仍是必要的。这里有很强洞察。Kevin Weil 也指出了这一点。如果给它能力边界上的问题，它经常会错，但人类也一样。现在还不是自动完成的状态。仍然需要大量交互、大量来回。所以真正善用模型的研究者，是会耐心和模型对话的人。这很自然。
-
-在能力极限处，它很像两个人协作的方式。这里也有很……某种程度上，很多人现在可能已经有感觉了，但这一段里仍有许多人还没真正抓住的本质。
-
-## Claude Opus 4.5 实战测试：2 行做出“CloudBook”    *50:59*
-
-<span class="paragraph-timestamp" data-ts="50:59">50:59</span> **崔升准** 我很喜欢这段，稍微回到地面一点，今天快速过几个实战故事。Claude Opus 4.5 发布了。Claude Opus 4.5 我看 Matt Shumer 做了一个 vibe check，我也做了个。我用我的例子给你们看。prompt 是“Google Colab competitor”“UI，做个类似 Colab 的东西”。然后“all compute is in browser”，也就是只在浏览器里运行，“做个像 Jupyter Notebook 的东西”。他就用了这个 prompt。Matt Shumer 那个整段 8 分钟。
-
-但 Claude Opus 4.5 直接自己做了计划，他只写了两行。看输出。它立刻做了个叫 CloudBook 的东西。现在你看，它能跑 Python、Markdown，有这个叫 Pyodide 的 WASM。WebAssembly 让你在浏览器跑 Python 和 NumPy。它……这基本就是一个 IPython Notebook 或 Jupyter Notebook，一模一样的东西做出来了。点一下就成。
-
-然后我又试了一个。在这里的 Markdown cell 里加一个生成特性：你写内容时自动改写 Python 代码。先说结论：点一下就成。现在你在 Markdown cell 写文本，它会生成 Python 代码，跑 NumPy，全都能用。
-
-<span class="paragraph-timestamp" data-ts="52:28">52:28</span> **卢正锡** 哇，这真厉害。哈哈。
-
-<span class="paragraph-timestamp" data-ts="52:30">52:30</span> **崔升准** 你会笑出“这也行？”的那种感觉吧。这就是 Claude Opus 4.5 的 vibe check，随手就能搓出一个计算笔记本。
-
-<span class="paragraph-timestamp" data-ts="52:37">52:37</span> **卢正锡** 这种事几乎每 1-2 周就在发生。其实 Opus 4.5 是在 4.1 之后出来的，已经过了 3、4 个月了吧？
-
-<span class="paragraph-timestamp" data-ts="52:46">52:46</span> **崔升准** 但现在它那个 3D 识别，我是说 multimodal 虽然不能生成，但读图 benchmark 很高。和 Gemini 同级，所以连 voxel 这类也能做。Claude Opus 4.5 很惊人。
+<span class="paragraph-timestamp" data-ts="52:49">52:49</span> **崔升准** 而且它现在 3D 识别，就是 multimodal 虽然不能生成但读取能力 benchmark 很高，接近 Gemini，所以 voxel 之类也能做。Claude Opus 4.5 很神奇。然后我觉得这就是当下“绕开 continual learning”的一种形态。这篇文章很好，“面向长时运行 agent 的有效 harness”。它会结合 Git 版本管理做 rollback，节省 memory，压缩 context。人类其实也一样，会用 scratchpad、记事本做外化来管理 context，这是人类很大的优势。它展示的就是往那个方向走，而且很到位。
 
 ## 长时运行 Agent 与记忆外化（Harness）    *53:00*
 
 
-<span class="paragraph-timestamp" data-ts="53:00">53:00</span> **崔升准** 下一条，这看起来是当下绕开 continual learning 的方式。这篇文章非常好：“Effective Harnesses for Long-Running Agents.” 它用 Git 的版本控制做 rollback 等操作，保存记忆并压缩上下文。人类最终也是用草稿纸、记事本把上下文外化并管理，这是人类巨大优势。而这篇文章展示了朝这个方向“正确推进”的路径。
+<ResourceLink url="http://youtube.com/@googleantigravity" title="youtube.com" domain="youtube.com" />
 
-还有上周新闻是 Claude Code 也上了桌面端。桌面端现在更新后有对话模式和代码模式，他们做了一个界面，让初学者也很容易拉起多个实例并行管理。非常漂亮。
+<span class="paragraph-timestamp" data-ts="53:31">53:31</span> **崔升准** 还有上周新闻，Claude Code 也进桌面端了。桌面端更新后有对话模式、代码模式，做了一个让新手也能很容易 spawn 多个实例并行管理的界面，而且很好看。这个我后面会说，有点像 Group Chat 的既视感，而且是同一个方向。也强烈建议去看 Google Antigravity 的 YouTube 频道。很短，但内容非常精。Artifacts、knowledge 的意义，以及外化，这些在 Antigravity 里都有。对抓当前趋势很有帮助。
 
-所以后面我会再讲，它让我有一种 Group Chat 的既视感，同一脉络下，我也强烈推荐你看 Google Antigravity 的 YouTube 频道。很短，但内容全是黄金。像 Artifacts、知识、外化这些东西的意义，在 Antigravity 里都有。
+我在这里写的是“通过外化，出现了用当前模型绕开 continual learning 能力不足的现象。”这和人类做 context 管理很像，也让我开始想象它在未来几个月可能会做得超人级。毕竟已经开始可用了。Group Chat 我最近在高强度练，还不太熟，但潜力很强。这个我再沉淀一周，练更多再详细介绍。有些点很有意思。先只说一个：多人同时交流时，它要同时回应多人，所以它会异步 queuing 回答。比如聊天中让它一次画 1、2、3、4、5，它会 spawn 开并一路全部回应出来。
 
-所以它对把握当下趋势很有帮助。我这里写的是：“通过外化，我们看到一种绕过当前模型缺乏 continual learning 能力的现象。”它很像人类管理上下文的方式，也让我想象未来几个月它可能在这方面超越人类。
+<span class="paragraph-timestamp" data-ts="55:09">55:09</span> **卢正锡** 就是说都在独立 instance 里跑。
 
-它已经开始可用了，Group Chat，我最近在高强度练习，虽然还不太熟，但我感到潜力很大。这个我再练一周，然后再详细给大家介绍。
-
-里面有些点非常有趣，只说一个：因为有多人参与，它就得同时回应多人。它会异步排队处理并给出答案。
-
-所以你一边聊天，它一边画图。你让它同时画 1、2、3、4、5，它会全都拉起并全部返回给你。
-
-<span class="paragraph-timestamp" data-ts="55:09">55:09</span> **卢正锡** 你的意思是它们都作为独立实例在跑。
-
-<span class="paragraph-timestamp" data-ts="55:11">55:11</span> **崔升准** 对。这里有很多很有意思的可能性，对话模式里也嵌着很多本质性的东西。下次有机会我再讲。
+<span class="paragraph-timestamp" data-ts="55:11">55:11</span> **崔升准** 对。这里面有非常有趣的可能性，对话模式里也有精华，下次我再介绍。
 
 <span class="paragraph-timestamp" data-ts="55:17">55:17</span> **卢正锡** 对，我觉得这就是公司的未来。
 
-<span class="paragraph-timestamp" data-ts="55:19">55:19</span> **崔升准** 现在这个情况没法三言两语讲清。
+<span class="paragraph-timestamp" data-ts="55:19">55:19</span> **崔升准** 现在这个局面已经没法短短几句讲完了。
 
-<span class="paragraph-timestamp" data-ts="55:21">55:21</span> **卢正锡** 对，我们之后再讲。
+<span class="paragraph-timestamp" data-ts="55:21">55:21</span> **卢正锡** 对，之后再专门讲一次吧。
 
-## 结尾：Runners' Alliance 与收尾    *55:23*
+## 结尾：逃亡者联盟与收尾    *55:23*
 
-<span class="paragraph-timestamp" data-ts="55:23">55:23</span> **崔升准** 今天终于到结论了。最后当然成贤是研究者，但我们这些 AI 爱好者，能不能也把 AI 当杠杆，在世界上留下更好的 token，并让它们进入 pre-training？我们能不能为更好的世界贡献一点？
+<span class="paragraph-timestamp" data-ts="55:28">55:28</span> **崔升准** 今天的收尾。终于，当然成贤你是研究者，但像我们这种也只是 AI 爱好者的人，是否也能把 AI 当杠杆，在世界上留下更好的 token，并为进入 pre-training 做出贡献？能不能为更好的世界贡献一点？
+不过申请加入逃亡者联盟的人，大家异口同声都在说同一件事，也让我产生既视感：想和看到类似风景的人聊聊，想聊点好东西，想分享，就是这个。
 
-但持续申请 Runners' Alliance 的人总会说一句让我有既视感的话：“我想和看见相似图景的人聊天。”“我想进行高质量对话。”“我想分享。”大概就是这些。
-
-<span class="paragraph-timestamp" data-ts="55:51">55:51</span> **卢正锡** 今天就先带着一点余韵停在这里，收尾吧。
+<span class="paragraph-timestamp" data-ts="55:51">55:51</span> **卢正锡** 今天就先留一点余韵，先到这里收尾。
 
 <span class="paragraph-timestamp" data-ts="55:56">55:56</span> **崔升准** 祝大家周末愉快。
 
-<span class="paragraph-timestamp" data-ts="55:57">55:57</span> **卢正锡** 有成贤在真的太好了。如果成贤之后还能继续加入我们的讨论、从不同视角给反馈就太棒了。谢谢。
+<span class="paragraph-timestamp" data-ts="56:02">56:02</span> **卢正锡** 成贤今天来真的太好了。希望成贤能继续加入我们的对话，给我们各种不同视角的反馈。谢谢。
 
-<span class="paragraph-timestamp" data-ts="56:07">56:07</span> **金成贤** 谢谢。
+<span class="paragraph-timestamp" data-ts="56:06">56:06</span> **金成贤** 谢谢。

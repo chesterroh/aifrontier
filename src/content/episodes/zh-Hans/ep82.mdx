@@ -1,8 +1,7 @@
 ---
 episodeNumber: 82
-lang: "zh-Hans"
-title: "带着 Transformer 机制意识做 Prompting"
-description: "随着 Claude Opus 4.5 的到来，就连 Andrej Karpathy 也坦言自己感到了 FOMO。这一集我们重新回到 prompting 背后的原理。为什么某些 token 能打开模型中的隐藏空间？从 Claude 的 skill 系统，到 CoT Faithfulness，再到 RL 如何组合技能。在 AI 加速狂奔的当下，正是重温基础的最佳时机。下一集我们将深入 Transformer 的 MoE 架构，探索理解原理如何改变你的 prompting。"
+title: "思考原理的 Prompting"
+description: "随着 Claude Opus 4.5 的登场，连 Andrej Karpathy 都感到了 FOMO 的当下，我们重新思考 Prompting 的原理。为什么必须放入特定 token，模型隐藏的..."
 publishedAt: 2026-01-28
 duration: "50:38"
 youtubeId: "Q43tbLNx21A"
@@ -12,415 +11,443 @@ hosts:
   - 崔升准
 chapters:
   - time: "00:00"
-    title: "2026 年首次录制与近期 AI 新闻"
-  - time: "01:06"
-    title: "带着原理意识做 Prompting"
+    title: "开场：‘思考原理的 Prompting’"
   - time: "01:34"
-    title: "Claude Opus 4.5 的崛起与 Andrej Karpathy 的 FOMO"
-  - time: "04:34"
-    title: "Multi-agent 工作流"
-  - time: "05:25"
-    title: "社区对 AI 发展的多样反应（Noam Brown、Ethan Mollick）"
-  - time: "08:58"
-    title: "Claude 的「Skills」功能及其工作方式"
+    title: "METR 更新与 Claude Opus 4.5 体感（50%-time horizon）"
+  - time: "02:13"
+    title: "Andrej Karpathy 的 FOMO"
+  - time: "04:01"
+    title: "Harness 优化与多智能体编码"
+  - time: "06:19"
+    title: "Noam Brown 的 vibe coding 体验与“LLM 还未达到研究者水平”"
+  - time: "07:30"
+    title: "FOMO DM 案例 + Ethan Mollick：扩展到编码之外的 Claude Code"
+  - time: "09:22"
+    title: "Claude Code SDK 与“Harness 是新的源代码”"
+  - time: "10:17"
+    title: "阅读 Skills 仓库：什么是技能"
+  - time: "12:23"
+    title: "Prompting 技法 1：用随机 4 字母首字母缩写·Pareidolia 扩展分布"
+  - time: "14:22"
+    title: "用 Skill Creator 制作“领域预热”技能的经验"
   - time: "16:17"
-    title: "Skills 为什么效果好：精确 token 的重要性"
-  - time: "20:16"
-    title: "不是专家也能使用专业术语的方法"
-  - time: "28:10"
-    title: "CoT（Chain-of-Thought）的本质是什么？"
-  - time: "33:21"
-    title: "OpenAI 的 Monitorability 与 RL 的角色"
+    title: "为什么技能这么有效"
+  - time: "18:07"
+    title: "“精准 token”与领域 prompting 的质量差异（专家 vs 非专家）"
+  - time: "21:15"
+    title: "用 arXiv 摘要填充 token：连接陌生术语"
+  - time: "25:03"
+    title: "Prompting 技法 2：A–Z 人物召唤 + 用“太表面了”继续深挖"
+  - time: "28:31"
+    title: "CoT Faithfulness, Monitorability tax"
+  - time: "35:02"
+    title: "从 RL 的技能组合 f(g(x)) 视角看 chaining/工具调用的重复结构"
   - time: "37:15"
-    title: "回归基础：Transformers 与 MoE"
-  - time: "39:03"
-    title: "Prompting 核心总结：构建上下文的重要性"
+    title: "下期预告：Transformer·QKV·KV cache·FFN→Sparse MoE 复习"
+  - time: "39:54"
+    title: "token priming 的风险：“跑车模式”与陌生领域的陷阱"
   - time: "43:41"
-    title: "帮助模型就是帮助我自己"
-  - time: "45:34"
-    title: "总结与下期预告：深入 Transformers"
+    title: "为了帮助模型而理解模型"
+  - time: "45:37"
+    title: "收尾"
+lang: "zh-Hans"
+alternateSlug: null
 notionUrl: "https://erucipe.notion.site/2e3d5c9e7e598053ae93e9ff5951dcaa"
 ---
 
-## 2026 年首次录制与近期 AI 新闻    *00:00*
+## 开场：‘思考原理的 Prompting’    *00:00*
 
-<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天我们录制的时间是 2026 年 1 月 9 日，周五晚上。我们也挺久没在晚上录了。这也是我们 26 年的第一次录制。26 年才过了一周左右，但这段时间已经发生了很多有趣的事。
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天录制这期节目的时间是 2026 年 1 月 9 日周五晚上。我们久违地在晚上录制了。而且这也是 26 年的第一次录制。26 年才刚过去一周左右，这期间已经发生了很多有意思的事。
 
-<span class="paragraph-timestamp" data-ts="00:18">00:18</span> **崔升准** 对，不过还好，新闻节奏比起 12 月中旬那阵子已经好承受多了。
+<span class="paragraph-timestamp" data-ts="00:20">00:20</span> **崔升准** 是的，不过还好的是，新闻节奏比起 12 月中旬那种节奏要能承受得多，这点挺庆幸的。
 
-<span class="paragraph-timestamp" data-ts="00:27">00:27</span> **卢正锡** 我这边也是，12 月 20 日左右到月底，大概有 10 天稍微安静一点。
+<span class="paragraph-timestamp" data-ts="00:27">00:27</span> **卢正锡** 我也是，从 12 月 20 日到 12 月底大概有十天比较安静。
 
-然后新年一开始，虽然还没有什么来自大科技前沿实验室那种重大公告，但在社区这边，围绕 Claude Code 和 OpenCode 这些 coding 工具，大家在讨论很多如何提升生产力的方法。
+然后新年开始之后，虽然 Big Tech Frontier Lab 还没有特别大的发布，但在社区侧围绕 Claude Code、OpenCode 这类编码工具，关于如何提升生产力之类的内容又大量出现了。
+另外，知名人士之间那种偏哲学的对话也在来回出现。
 
-我觉得这些东西现在非常明显。
+<span class="paragraph-timestamp" data-ts="00:56">00:56</span> **崔升准** 所以我一边休息，一边也经历了各种事件和情况，不过也花了时间整理思路。所以我又回到了我喜欢的 Prompting 这个主题。
 
-而且看起来名人之间也在来回进行一些偏哲学层面的讨论。
+<span class="paragraph-timestamp" data-ts="01:13">01:13</span> **卢正锡** 今天又是久违的升准님의 Prompting session。
 
-<span class="paragraph-timestamp" data-ts="00:56">00:56</span> **崔升准** 所以我休息那段时间，也发生了各种事件和事情，不过我也借机整理了一下自己的想法。
+<span class="paragraph-timestamp" data-ts="01:18">01:18</span> **崔升准** 最近大家都做得很好，所以不确定这是否真的有帮助，不过我还是想以“思考原理的 Prompting”为题，把我最近尝试的内容背后的原理再回顾一下。
 
-## 带着原理意识做 Prompting    *01:06*
-
-<span class="paragraph-timestamp" data-ts="01:06">01:06</span> **崔升准** 所以我又回到了我很喜欢的话题：prompting。我又一次回来了。
-
-<span class="paragraph-timestamp" data-ts="01:10">01:10</span> **卢正锡** 今天又是久违的一次升准的 prompting 场。
-
-<span class="paragraph-timestamp" data-ts="01:15">01:15</span> **崔升准** 现在大家都很厉害，所以不确定有没有帮助，但我想以“带着原理思考去 Prompting”为题，把我最近在尝试的一些东西背后的原则再检查一遍。
-
-我想把底层原理再往回追一追。
-
-## Claude Opus 4.5 的崛起与 Andrej Karpathy 的 FOMO    *01:34*
+## METR 更新与 Claude Opus 4.5 体感（50%-time horizon）    *01:34*
 
 
 <ResourceLink url="https://x.com/METR_Evals/status/2002203627377574113" title="x.com" domain="x.com" />
 
-<span class="paragraph-timestamp" data-ts="01:34">01:34</span> **崔升准** 先讲几个新闻点，2025 年 12 月 20 日那个图更新了，我们好像没提到。应该是漏了。这个是我们介绍过很多次的 METR 50%-time horizon 相关图。如果看线性刻度，Claude Opus 4.5 明显跳到了 4 小时 49 分，接近 5 小时。可以看到它是一次大跨越。如果看对数刻度，还是在稳定进步，体感上像小涨一点，但看这张图又是这种感觉。
+<span class="paragraph-timestamp" data-ts="01:34">01:34</span> **崔升准** 先说几个新闻性内容的话，2025 年 12 月 20 日这张图更新了，我们好像没提到。这个就是我们介绍过很多次的 METR 50%-time horizon。
+如果看 linear scale，会看到 Claude Opus 4.5 跳到了 4 小时 49 分，接近 5 小时，涨幅很大。
+所以在 log scale 里看虽然也在进步，但感觉只是稍微上来一点，可如果看这个图，感觉就是这种感觉。
 
-我拿这个出来的原因是，2025 年末 Andrej Karpathy 那条 FOMO 感很强的帖子非常火。关于 Claude Opus 4.5，我身边很多人用了一个月左右后，12 月出现了很多“好像突然打通了”的见证。Andrej 也说他很久没感受过“自己在落后”这种感觉。因为很多人应该都讲过了，我就简短带一下。
+## Andrej Karpathy 的 FOMO    *02:13*
 
-这里标题也很有意思。Andrej、Claude Code 的作者 Boris Cherny，还有 xAI 的创始成员之一 Igor（现在已经离开了）。有点像明星选手都在发言。Andrej 这么说，Boris 说他也有同感。总之就是 clicking 之类，再加上他们做了大量 PR 等等。
+<span class="paragraph-timestamp" data-ts="02:15">02:15</span> **崔升准** 我展示这个其实是因为，2025 年末 Andrej Karpathy 那种 FOMO 感的帖子非常火。
+大家在身边体验 Claude Opus 4.5 大概一个月后，12 月出现了很多“好像有什么被咔嗒一下切换了”的见证式反馈，Andrej 也说自己从没这么强烈地感到落后。
 
-<span class="paragraph-timestamp" data-ts="03:17">03:17</span> **卢正锡** 当然。
+我想很多人都讲过了，就大致略过。这里标题挺有意思，Andrej 和 Boris Cherny，也就是做 Claude Code 的人，还有 Igor，xAI 创始成员但现在已经出来了，总之这些明星级玩家在一起聊天。
+Andrej 这么一说，Boris 也说我也是这种感觉。反正就是“咔嗒一下就变了”，然后 PR 做得非常猛之类的话题。
 
-<span class="paragraph-timestamp" data-ts="03:18">03:18</span> **崔升准** Igor 说“Opus 4.5 很不错。”Andrej 说“真的很好。”还说“在这个话题上过去 30 天没跟进的人，世界观已经 deprecated 了。”这种挑衅式说法就成了热点。
+<span class="paragraph-timestamp" data-ts="03:17">03:17</span> **卢正锡** 是的。
 
-<span class="paragraph-timestamp" data-ts="03:33">03:33</span> **卢正锡** 没错。一年前我们就一直在说 test-time compute，推理时投入大量计算和性能高度相关。这类讨论其实是去年的主旋律。
+<span class="paragraph-timestamp" data-ts="03:22">03:22</span> **崔升准** Igor 说“Opus 4.5 挺不错”，Andrej 说“真的很好”，“如果过去 30 天没跟上，那对这个主题已经是 deprecated 的世界观了”。这种刺激性表达就成了话题。
 
-现在看那些很会用 Claude Code、OpenCode 的人，很多都很会调参、很会优化 harness。也就是说，现在这种来回交互式工作方式，已经是比较老的趋势了。
+<span class="paragraph-timestamp" data-ts="03:36">03:36</span> **卢正锡** 没错。一年前我们就说过，test-time compute，也就是推理时大量使用计算，和结果高度相关，这几乎是去年的主导主题。
+现在看那些把 Claude Code、OpenCode 用得很好的人，会发现很多人特别会调这个 Harness 的优化。
 
-现在只要把 spec 写出来，就算不是特别精确，也能一晚上跑几十个 sub-agent。跑 10 多个小时……最近我还听到大家经常用“折磨”AI 这个说法。“折磨一下大概就有答案了。”类似这种话很常见。
+## Harness 优化与多智能体编码    *04:01*
 
-所以我们公司工程师把任务跑 7、8 个小时，现在也像是常态了。
+<span class="paragraph-timestamp" data-ts="04:02">04:02</span> **卢正锡** 所以基本上，现在这种你来我往的对话式工作流程已经是很久以前的趋势了。
+现在是写好一个 spec 后，即便不是非常精密的 spec，也会同时跑几十个 sub-agent，睡一晚让它跑 10 多个小时。最近大家常说“在拷打 AI”。
+“拷打一会儿可能就能出答案。”这种话很多。
+所以我们公司工程师把任务一跑就是 7、8 小时，也已经很常见了。
 
-## Multi-agent 工作流    *04:34*
+<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **崔升准** 但现在不是只跑一个 agent，而是在 Claude 里开多个标签，用多智能体同时跑，大概 6 个，Boris 好像会跑到 10 个。对吧。是不是有点像在 StarCraft 里撒 marine 那种感觉？
 
-<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **崔升准** 而且他们不是只跑一个 agent。会在 Claude 里开多个标签页，大概 6 个做 multi-agent。Boris 我记得是跑 10 个左右。对。就像 StarCraft 里散枪兵一样？
+<span class="paragraph-timestamp" data-ts="04:49">04:49</span> **卢正锡** 鼠标和键盘要非常炫技地来回切换，得这样去驾驭 AI。
 
-<span class="paragraph-timestamp" data-ts="04:49">04:49</span> **卢正锡** 鼠标键盘眼花缭乱地来回切，这样才能驾驭 AI。
+<span class="paragraph-timestamp" data-ts="04:56">04:56</span> **崔升准** 对，就像一个 command center 的感觉。可以想象。所以有的人会说 Claude Opus 4.5 就是“挺好”，也有的人会说“某个开关被切换了”。
 
-<span class="paragraph-timestamp" data-ts="04:56">04:56</span> **崔升准** 所以像个指挥中心。我能想象出来。关于 Claude Opus 4.5，有人说“就是好”，也有人说“像是开关突然被拨到了另一档”，确实有人这么说。
+<span class="paragraph-timestamp" data-ts="05:15">05:15</span> **卢正锡** 最近说“AI 也没啥了不起”的人虽然变少了，但其实如果有人说“AI 我试过了，不怎么样”，大多数人都会回答“那是因为你不会用”。
 
+<span class="paragraph-timestamp" data-ts="05:27">05:27</span> **崔升准** 还有个有趣点是 Gemini 3 相关话题悄悄变少了。
+我的体感是 Claude Opus 4.5 确实很厉害。
+Gemini 在前端上还是很强，所以当作那个角色的 agent 用得很多，但和 GPT-5.2 Pro、Claude Opus 4.5 放在一起看编码能力时，好像又有点被盖过去了。
+只是我的感觉。
 
-<span class="paragraph-timestamp" data-ts="05:09">05:09</span> **卢正锡** 最近“AI 没什么大不了”的人比例变少了，但其实如果有人说“我试过那个 AI，也就那样”，多数人会回“那是你不会用。”
+<span class="paragraph-timestamp" data-ts="06:00">06:00</span> **卢正锡** 有可能。我毕竟在工程师社区里，所以比起 Gemini 或 Antigravity，我听到的更多还是 Claude Code、OpenCode。
 
-## 社区对 AI 发展的多样反应（Noam Brown、Ethan Mollick）    *05:25*
-
-<span class="paragraph-timestamp" data-ts="05:25">05:25</span> **崔升准** 但有个有趣点是，Gemini 3 的热度有点微妙地降下来了。现在会觉得 Claude Opus 4.5 很惊艳。
-
-Gemini 在 front-end 方面肯定很好，所以常被拿来当那个角色的 agent 用，但 coding 能力上和 GPT-5.2 Pro、Claude Opus 4.5 对比时，感觉又有点被压住了，有点再次被埋没的感觉。只是我的体感。
-
-<span class="paragraph-timestamp" data-ts="05:59">05:59</span> **卢正锡** 有可能。因为我也在工程师社区里，沉浸其中，确实听到 Claude Code 和 OpenCode 远多于 Gemini 或 Antigravity。
-
-<span class="paragraph-timestamp" data-ts="06:09">06:09</span> **崔升准** 而且不是有个韩国人做的 oh-my-opencode 吗？那个现在关注度也挺高。
+<span class="paragraph-timestamp" data-ts="06:09">06:09</span> **崔升准** 还有韩国人做的 oh-my-opencode 吗？感觉也挺有话题度。
 
 <span class="paragraph-timestamp" data-ts="06:14">06:14</span> **卢正锡** 对，名字起得太好了。Sisyphus。
 
-<span class="paragraph-timestamp" data-ts="06:19">06:19</span> **崔升准** 不过 Noam Brown 另一方面是在假期试了些 vibe coding，发现有些东西不行。他在做自己很熟的扑克相关内容，Codex 和 Claude Code 都没做好。最后反而是 Codex 意外地表现不错，所以他发了一条明显偏向自家阵营的内容。确实发了那种内容，但他也说了，“LLM 在快速进步，但开发新算法对人类专家来说也是几个月级别的研究项目，LLM 还没到那个程度。”
+## Noam Brown 的 vibe coding 体验与“LLM 还未达到研究者水平”    *06:19*
 
-然后隔一天他又分享说收到一条 DM：“最近我的 Twitter 时间线越来越超现实。特别是很多人都在说 Claude Code 把效率提高了一百万倍。很多人在这么说。我自己也用得不少，开始怀疑是不是我疯了，产生一种严重落后的焦虑。”他也在感受 FOMO。因为确实有人在说用 Claude Code 获得了巨大 leverage，他就会有这种 FOMO。
+<span class="paragraph-timestamp" data-ts="06:19">06:19</span> **崔升准** 不过 Noam Brown 倒是说他假期试了 vibe coding，有些东西做不出来。于是他在做自己熟悉的扑克相关内容时，Codex 不行、Claude Code 也不行，但最后不知怎么 Codex 反而表现不错，所以也发了点“胳膊肘往里拐”的内容。
+但他还是说，LLM 虽然进步很快，可开发新算法对人类专家来说也是几个月的研究项目，LLM 还没到那个水平。
 
-不过像 Noam Brown 这个量级的人也这么说，会让人有点“还好我不是一个人”的感觉。另一方面 Ethan Mollick 的论调更接近 Andrej Karpathy。他很有意思地展示了非开发者、非工程师如何使用 Claude Code，怎么做它才会有效，讲得很细。他也非常强调 skills，写了很多容易理解的文章。只看结论就是：“这意味着什么？”“如果你是程序员，现在就该探索这些工具。”“想拿代码做实验的设计师、处理数据的学者、任何想做东西的人，现在都应该去尝试。”但还有更深一层：“在合适的 harness 下，今天的 AI 实际上已经能持续地完成重要且真实的工作，这反过来正在改变我们处理工作的方式。”它正在开始改变。
+然后他第二天又分享说收到这样的 DM。“最近我的 Twitter feed 越来越不真实，特别是很多人说 Claude Code 把自己的效率提升了 100 万倍。我也在用，而且用得不算少，但开始怀疑自己是不是疯了，还会焦虑自己严重落后。”也就是感到 FOMO。
+因为有人把 Claude Code 的杠杆效应说得非常大，所以会有 FOMO，但 Noam Brown 这个级别的人说这话，会让人稍微安心一些，大概是这个语气。
 
-然后他引用 Karpathy 后又说：“不要被 Claude Code 目前的笨拙感，或它看起来偏 coding 的形态欺骗。”这篇文章暗示 Claude Code 可以非常通用。这就是它的核心内容。“让 AI 在其他知识任务中工作的新的 harness 很快会到来，以及它带来的变化也会到来。”他分享的是这种“这个趋势会继续”的文章。
+## FOMO DM 案例 + Ethan Mollick：扩展到编码之外的 Claude Code    *07:30*
 
-## Claude 的「Skills」功能及其工作方式    *08:58*
+<span class="paragraph-timestamp" data-ts="07:34">07:34</span> **崔升准** 但 Ethan Mollick 的说法更接近 Andrej Karpathy。这位是非开发者、非工程师视角，他很有意思地展开了非工程背景如何使用 Claude Code，还详细展示了怎么做、为什么能做，包括 skill 的重要性也提了很多，写得比较易懂。如果只看结论部分，就是：这一切意味着什么？
 
-<span class="paragraph-timestamp" data-ts="08:58">08:58</span> **卢正锡** 另外你在 Claude Code SDK 里真的能体验到，什么都能挂上去然后就能跑。不只是 coding，哪怕只接公司业务或一个数据库，再接 Claude Code SDK，也确实能跑得很好。
+如果你是程序员，现在就该探索这些工具。想用代码做实验的设计师、处理数据的学者、任何想做点东西的人，现在都是实验时机。但还有更深的点：只要有合适的 Harness，今天的 AI 就能做真正重要、可持续的工作，而这反过来已经开始改变我们处理工作的方式。
+然后他引用 Karpathy 说，不要被当前 Claude Code 的笨拙感或偏编码特化这点迷惑。也就是说这篇文章的核心是 Claude Code 可以非常通用。
+所以，让 AI 在其他知识工作中运转的新 Harness 在不远的未来会出现，它们带来的变化也一样。总之就是这种趋势会持续，他又分享了这样的文章。
 
-最近生物技术或研究相关的 skill package 也像在喷涌出来。对，这个 Harness 现在其实已经成了新的 source code。
+<span class="paragraph-timestamp" data-ts="09:01">09:01</span> **卢正锡** 而且 Claude Code SDK 真的是接什么都能跑，类似这样的体验很多。就算不是编码，哪怕只接公司的业务系统或某个数据库，再接 Claude Code SDK，也能把事情做得很好。
+最近像生物科技或研究相关的 skill package 也在大量涌现。
 
-<span class="paragraph-timestamp" data-ts="09:27">09:27</span> **崔升准** 对，Claude Code 本身……这不是官方账号，是个分享 changelog 的账号。刚出现。我还以为是 2.1，结果 12 小时前已经上了 2.1.2。2.1 有一次大版本跳升。但几乎每天都在这样持续 bump 版本，这不是单靠人能做到的。Claude Code 又是 Claude 官方做的，由 Claude Code 自己在做，所以功能添加速度非常快，像一种紧急迭代状态。
+## Claude Code SDK 与“Harness 是新的源代码”    *09:22*
 
-不过我在年末年初休息时，可能是想回到基本面，就放慢节奏想了一些东西。总之我觉得 Claude 的 skills 很厉害。所以年末我很认真把那些 skills 的 GitHub 文档读了一遍，读得很细。
+<span class="paragraph-timestamp" data-ts="09:25">09:25</span> **卢正锡** 对，这个 Harness 其实已经成了新的源代码。
 
-我以前就会翻译着读那些 skills，这就是那个 repo。比如进到 skills 里，我常用的 algorithmic art skill，翻译后读起来非常有趣，会先讲理念思考，再讲代码前该做什么。翻译着读很有意思。他们说这可能和实际内置 skills 有点不同。就是 GitHub 发布版可能有差异，但这里有很多值得看的内容，我读得很开心。
 
-不过这些 skills 里面有一个叫 Skill Creator 的 skill。我想稍微讲讲它。
+<ResourceLink url="https://x.com/ClaudeCodeLog/status/2009418127856054728" title="x.com" domain="x.com" />
 
-<span class="paragraph-timestamp" data-ts="11:16">11:16</span> **卢正锡** Skill 就是把某种能力的 markdown 描述、描述性 prompt 片段、相关代码、可作为示例的内容，按这个文件夹结构打包在一起，我们把它叫 skill。对。
+<span class="paragraph-timestamp" data-ts="09:32">09:32</span> **崔升准** 是的，Claude Code 本身这个账号不是官方账号，而是分享 changelog 的账号。
+它出来后我看到 2.1 发布了，结果 12 小时前 2.1.2 又上了。
+2.1 本来就有一次大升级，但接下来几乎天天在更新，这不可能只靠人力完成。
+Claude Code 官方上是 Claude 在做、Claude Code 在做，所以功能追加处于很紧迫的节奏。
+不过我在年末年初休息时可能是想回到基础，所以一直在慢慢思考。总之我还是觉得 Claude 的 skill 很厉害。
 
-<span class="paragraph-timestamp" data-ts="11:33">11:33</span> **崔升准** 对。OpenAI 去年末也开始用了。现在 skills 像个 marketplace，我觉得已经有几千个在共享了。关键是它真的很容易做，不只在 Claude Code 上容易，就算在 web 界面里聊着聊着也能做出来。我稍后会讲这个想法背景。你在一个上下文里持续对话，会形成一种对话重力，对吧？我现在用的术语、模型回应时用的术语，在这种状态下如果我想把分布拉宽一点，探索另一个空间，就需要引入不同术语，但有时很难想到。
+## 阅读 Skills 仓库：什么是技能    *10:17*
 
-这种时候可以用的方法是：生成四个随机字母为一组，生成 100 组，然后尝试把它们当缩写来读。不一定要完全匹配，核心是利用联想能力，也就是模型的联想能力。有个概念叫 pareidolia，就是人看云会看出动物或脸。人类有联想能力，而现在模型也有很强联想能力。
+<span class="paragraph-timestamp" data-ts="10:21">10:21</span> **崔升准** 所以年末我认真读了 skill 的 Github 文档。会把那些 skill 翻译着看，这就是那个 repo。
 
-但要激活这个联想能力，需要输入合适 token。所以我的想法是让它读这些缩写，它就会生成这段 Python 代码。它会实际做出约 100 个随机四字母组合，再挑大概 10 个按当前对话上下文读成缩写。比如把 “Self-understanding is temporary” 读成 “Your Understanding of Self is Temporary” 这种，会出现一些短暂、易逝之类的有趣文本。即使我做不到，模型可能做得到。那它能不能成为一个有意思的分支？因为这样就有 token 了，我们可以围绕它继续对话。所以我在做一些略发散、横截面的探索时会这么试。
+进去看 skill 的话，有示例 skill，比如我常用的 algorithmic art skill，会先想哲学，再在写代码前要做什么之类，把这些翻译来读会很有意思。不过听说这和当前实际内置的 skill 可能有差异。
+Github 公开的是这样，但里面很多东西都值得读，我读得很有意思。
+其中有个叫 skill creator 的 skill，也就是“制作 skill 的 skill”，我想讲讲这个。
 
-然后在这种来回很久之后，我把 Skill Creator 开着了。这个 skill 我就开了 Skill Creator。开太多会分心，所以我只开要用的，通常就常开着。开着聊的时候，它会尝试创建一个 skill。在对话过程中，像刚才那样生成四字母并读缩写，模型先提议做成 skill。我说“要不要做？那就做”，它就建了文件夹结构并产出了这些。每个 MD 文件创建后你点一下，就会一次性复制到我的 skills。流程做得很顺滑。
+<span class="paragraph-timestamp" data-ts="11:21">11:21</span> **卢正锡** 所谓 skill，就是一个文件夹结构：有关于某种能力的 markdown description prompt 块，相关代码集中在一起，还有可作为示例的内容也集中在里面，我们把这一整包叫 skill。对。
 
-Claude，所以我……像前面图里介绍过，我一直在说“生成 pipeline 的 pipeline，会产出有用副产物”。对话过程中会产生代码、可复用文本、图片这类副产物。带着这个心智模型去推进事情，总能得到不错副产物。
+<span class="paragraph-timestamp" data-ts="11:33">11:33</span> **崔升准** 对，就是这样。OpenAI 也在去年末开始用了。
+所以现在 skill 像 marketplace 一样非常多，据我所知已经分享了几千个。
+而且它真的很容易做，在 Claude Code 上当然容易，但在网页界面也行。我是某次对话中突然想到这个点。
+这个想法出现的背景我稍后会说，总之当上下文推进时，对话会形成“重力”。
+也就是我现在用的术语、模型响应中的术语，会慢慢固定分布；这时如果想拓宽分布去探索别的空间，就需要引入别的术语，但这个发想有时并不容易。
 
-但我感觉 Claude 已经把这个彻底产品化了。这里还有一轮修订流程，全部做完后我复制到我的 skills，“Domain Priming”，这里我可以输入具体领域术语，也可以不输入。这样它会朝那个方向生成文本，而“尝试去读它”这件事本身就成了一个 skill。你看这里有代码，也有使用示例，所以现在 Claude 可以在需要时调用它。可以用了。而它在我的 skills 里，我可以开关。
+## Prompting 技法 1：用随机 4 字母首字母缩写·Pareidolia 扩展分布    *12:23*
 
-<span class="paragraph-timestamp" data-ts="16:01">16:01</span> **卢正锡** 对，做一个 skill 其实很容易。我们可以在自己的 Claude 里用，同样结构在 Claude Code 里也能一直建 skill 并扩展。就是这样。
+<span class="paragraph-timestamp" data-ts="12:26">12:26</span> **崔升准** 所以在这种场景里可以用一个方法：随机生成 4 个字母为一组，生成 100 组，然后让模型把它们当作首字母缩写去读。
+不需要完全对应，我是想调动模型的联想能力。这里有个概念叫 pareidolia。
+比如人看云也会在云里看到形状，比如动物或人脸。人有联想能力，而现在模型也有强联想能力。
+只是要放入合适的 token，这种联想能力才会被触发。
 
-<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **崔升准** 对，所以你只要把文件夹原样放进去就行。
+所以我的点子是，让它去读这些首字母时会生成这样的 Python 代码。
+它会实际生成大概 100 个随机四字母组合，从中挑约 10 个，读成和当前对话上下文相关的首字母词组。
+比如“自我理解是暂时的”会读成 “Your Understanding of Self is Temporary”，ephemeral 之类，会出现一些挺有趣的文本。
 
-## Skills 为什么效果好：精确 token 的重要性    *16:17*
+我也许做不到，但模型可能做得到，所以这是否会成为有趣的分支探索。因为这样会注入 token，于是可以围绕它展开相关讨论。
+所以我在做发散式、横向探索时会用这个。
+然后这样你来我往聊了很久后，我当时开着 skill creator。
+所以我把这个叫 skill creator 的东西开着了。
+当然开太多会干扰，所以一般只开我想用的。
 
-<span class="paragraph-timestamp" data-ts="16:17">16:17</span> **崔升准** 但 skills 为什么会这么好用？
+## 用 Skill Creator 制作“领域预热”技能的经验    *14:22*
 
-<span class="paragraph-timestamp" data-ts="16:22">16:22</span> **卢正锡** 我也不太确定。
+<span class="paragraph-timestamp" data-ts="14:22">14:22</span> **崔升准** 开着它对话后，它就开始想做 skill。
+在这个对话过程中，像刚才那种生成 4 个字母并按首字母缩写去读的流程，就是模型先提议做成 skill 的。
+我说那就做吧，它就创建文件夹结构，然后这样生成出来；每个 MD 文件生成后，点一下就能一次性复制到我的 skill。
+这个流程做得非常顺滑。
+所以 Claude，正如我在这张图里刚才提到的，我以前一直说它是“生成有用副产物的流水线，所构成的流水线”。
+因为对话过程中会产生代码、可复用文本、或者图片等副产物；如果带着这种“副产物会不断出现”的心象去推进，通常都会得到好副产物。Claude 给我的感觉是把这个直接产品化了。
 
-<span class="paragraph-timestamp" data-ts="16:23">16:23</span> **崔升准** Skills 其实建立在去年很流行的 spec-driven 方法之上，有这个基础。再按某种格式，用 MD 来组织。现在 MD 文件最终也成了一种编程，MD 结构做得非常完整，而且不只是 MD，还有带代码的脚本。所以它不完全是静态，而是……既有精确执行的部分，也有概率执行的指令和代码。把这些都打包得很整齐，便于复用。
+这里还有一步再修订的过程，完整走完后复制到我的 skill，就变成了“domain priming”，也就是我可以输入特定领域术语，也可以不输入；它会朝那个方向生成字母并尝试解读，直接技能化了。
+你看这里也有代码，也有怎么使用的示例，所以 Claude 就可以按需调用。
+而且这些会在我的 skill 里，可以开关控制。
 
-所以在当前形势下，MCP 也是个话题，但我感觉 skills 正在变得非常重要，而且做得很工整、很好。但为什么这种 skill 必然会有效？我现在还没有答案，但至少这个问题已经浮现。去年底到今年初我有时间想这个。
+<span class="paragraph-timestamp" data-ts="16:05">16:05</span> **卢正锡** 做 skill 确实很容易。对，所以不仅在 Claude 里能用，在 Claude Code 里也能按同样结构直接做 skill 并持续扩展。
+<span class="paragraph-timestamp" data-ts="16:14">16:14</span> **崔升准** 对，所以其实只要把那个文件夹原样放进去就行。那为什么 skill 会这么好用呢？
 
-我把这个标成 side path，既然是 side path 也许不展开，但 Boris Cherny 还开源了一个 code-simplifier。Anthropic 发布的。你看会发现很简单，就是一个 MD 文件，指导你如何有意义地总结代码，是一套指南。现在这类东西就是插件，正在这样不断堆叠。
+## 为什么技能这么有效    *16:17*
 
-<span class="paragraph-timestamp" data-ts="17:55">17:55</span> **卢正锡** English 真的是新的编程语言了。
+<span class="paragraph-timestamp" data-ts="16:22">16:22</span> **卢正锡** 是啊。
+<span class="paragraph-timestamp" data-ts="16:25">16:25</span> **崔升准** 所以说，skill 实际上基于去年很流行的 spec-driven 基础，然后按一定格式组织成 MD，现在 MD 文件本身某种意义上也是编程，所以 MD 都是按结构写好的；而且不只是 MD，还有脚本代码在里面，所以也不算完全静态。怎么说呢，里面既有可精确执行的部分，也有概率性执行的指令，再加上代码，这些都被打包得很整洁而且可复用。所以在当前阶段，MCP 虽然也是话题，但我感觉 skill 正在变得非常重要。并且这个体系做得很干净。但为什么这种 skill 会天然更容易有效，我现在没有答案，但至少这个问题被我提出来了。年末年初我花时间思考了这个。
 
-<span class="paragraph-timestamp" data-ts="17:58">17:58</span> **崔升准** 嗯，也可以说任何语言，编程语言。自然语言。对。
+所以这里我标了“岔路”，可不展开也行。Boris Cherny，也就是 Anthropic 那边，把一个叫 code-simplifier 的东西开源了。看起来很简单，就是一个 MD 文件，里面是如何把代码精炼得既简洁又保留意义的指导。现在就是这种东西作为插件不断叠加的时代。
 
-总之我还没得出答案，但我确实在想这些问题。
+<span class="paragraph-timestamp" data-ts="17:55">17:55</span> **卢正锡** 英语真成了新的 programming language。
 
-我一直在想的是，你得输入正确 token 才会得到对应回应。前面那些 skills 的 MD 文件里，指令就是为了激发那种能力而写的。这非常重要。贴合领域的指令，再加上恰当术语，能力就会被展示出来。
+<span class="paragraph-timestamp" data-ts="17:59">17:59</span> **崔升准** 或者说任何语言都可以是 programming language。自然语言。对。
+总之我还没得出答案，但我提出了这些问题，而我一直在思考的是
 
-<span class="paragraph-timestamp" data-ts="18:30">18:30</span> **卢正锡** 你说的“恰当”“准确”……这到底指的是什么？
+## “精准 token”与领域 prompting 的质量差异（专家 vs 非专家）    *18:07*
 
-<span class="paragraph-timestamp" data-ts="18:37">18:37</span> **崔升准** 语感上有点差异，但也有那种“刚好严丝合缝”感，对吧？我也不敢说完全确定。写这类东西时我常用游戏类比。玩游戏时，不管是 StarCraft 这种实时模拟，还是 RPG，玩家得走到某个区域，附近地图小地图才会被点亮，从黑暗中显出来。你必须走到那里，空间才会打开。我是这种感觉。
+<span class="paragraph-timestamp" data-ts="18:10">18:10</span> **崔升准** 你得放入精准 token，模型才会有反应。
+看那些 MD 文件，也就是刚才 skill 的 MD 文件，里面就写了能触发这些能力的指令。
+而且这非常重要。
+有贴合该领域的指令、以及精准术语时，能力才会被激发。
 
-<span class="paragraph-timestamp" data-ts="19:15">19:15</span> **卢正锡** 所以模型本来就知道很多。可以说几乎什么都知道。知道到可以这么说。
+<span class="paragraph-timestamp" data-ts="18:30">18:30</span> **卢正锡** 你说“精准”，和“准确”这个表达，具体差别是什么？
 
-但如果把它的注意力转到特定领域，在那里给它触发器，像在说“我现在要做这个了”，你得先铺垫。那它在相关任务上就会好非常多。
+<span class="paragraph-timestamp" data-ts="18:40">18:40</span> **崔升准** 语感上是有点差别，可能还带有“严丝合缝”那种感觉吧？我也不敢说完全准确。总之在写这些时，
+我经常打游戏来类比。玩游戏时不管是 StarCraft 这种 real-time simulation，还是 role-playing game，
+玩家要先走到某个区域附近，小地图才会点亮，对吧，之前是黑的。
+所以得走到那附近，空间才会打开。我的感觉是这样。
 
+<span class="paragraph-timestamp" data-ts="19:15">19:15</span> **卢正锡** 也就是模型本来知道的东西非常多，几乎可以说什么都知道了，但你得把它的注意力转到某个特定领域，在那边触发一下，先“打个底”，告诉它“我接下来要做这个”，它才能把相关工作做得更好。
 
-<span class="paragraph-timestamp" data-ts="19:39">19:39</span> **崔升准** 会好很多。我做了很多测试，也在群聊里跟别人一起做过。用特定术语和不用术语，输出质量差异挺大。比如只是大概套一个专业 persona 来说话，和真正输入真实专家会用的 token，至少是相近 token，回答质量会变。但从 Transformer 原理看，这其实很自然。
+<span class="paragraph-timestamp" data-ts="19:44">19:44</span> **崔升准** 会好很多。所以我做了大量测试，也和别人一起在群聊里测过。用和不用特定术语，回答质量差异很明显。比如只用一个“大概的专家 persona”说话，和真正塞入那个专家可能会用的 token，即使只是近似，输出质量也不同。按 Transformer 原理来看这其实很自然。那问题就来了：这么看是不是领域专家天然更有优势？是不是知道这些的人才会用得好？但 AI 的发展方向真的只会是这样吗。
 
-## 不是专家也能使用专业术语的方法    *20:13*
+如果它要成为所有人的杠杆，那模型也应该能反向拉人一把；以及像 skill 这类 prompt 上下文里，只要使用恰当 prompt，即使我不是该领域专家，也可以借用该领域知识，还能借用模型 overhang 的富余能力，这不是更好吗。
 
-<span class="paragraph-timestamp" data-ts="20:13">20:13</span> **崔升准** 那问题来了，这样的话最终是不是领域专家更占优？你会这么想。是不是懂的人就用得更好？
+<span class="paragraph-timestamp" data-ts="20:58">20:58</span> **卢正锡** 太对了，是的。
 
-但 AI 发展方向真的是这样吗？如果要成为人人可用的 leverage，模型应该能把人带起来。然后像 skill 那种 prompt 上下文里，如果你用了合适 prompt，即使我不是这个领域专家，也能把该领域知识拉出来用，甚至把模型过量能力作为 overhang 拉出来用，那就更好了。
+<span class="paragraph-timestamp" data-ts="21:03">21:03</span> **崔升准** 所以刚才那种发散首字母缩写，是利用模型已有的联想计算能力来做横向发想并填充有意义 token；而这次尝试是用 arXiv，那个 preprint 网站，也就是不需要 peer review 也能上传，可能有基础审查但总体较容易上传。昨天我做的时候，1 月才过一周多，已经上传了 4000 多篇。
 
-<span class="paragraph-timestamp" data-ts="20:58">20:58</span> **卢正锡** 完全同意。
+## 用 arXiv 摘要填充 token：连接陌生术语    *21:15*
 
-<span class="paragraph-timestamp" data-ts="20:59">20:59</span> **崔升准** 所以像前面用缩写发散，是尝试借模型的计算和联想能力做横向思考，补进有意义 token。现在这个尝试是用 arXiv。arXiv 是预印本，不需要先审稿就能上传。可能有基本审核，但总体是很容易上传论文的网站。昨天我做这个时，1 月刚过一周多，上传量已经超过 4000 篇。
+<span class="paragraph-timestamp" data-ts="21:39">21:39</span> **崔升准** arXiv 上论文量非常大，而且命名有规则。比如 arXiv 论文里，这个我当时好像放在这里了，像 2601.03220v1，就是 26 年 1 月上传的第 3220 篇论文的 v1，也就是版本 1。它有命名规则，arXiv 本身也有 API，所以可以做 retrieving、拉取。当时就可以让它抓 1 月的随机论文。然后这里也写了点代码之类，最后说“1 月投稿中随机 10 篇”。那就是只读摘要的场景。但只读摘要也会有专业术语吧。所以这只是个实验：当这些术语被填进来后，只读摘要时，彼此之间可以产生什么不显而易见的洞见或含义。
 
-arXiv 每天都会上传大量论文，而且它有命名规则。比如这个，2601.03220v1，表示 26 年 1 月上传的第 3220 篇，v1 是版本 1。有这个命名规则，arXiv 自身也有 API，可以拉取、调用。那就可以让它抓 1 月的随机论文。我这里也写了些代码，然后“1 月投稿里随机 10 篇”。当时基本是只读摘要。
+这样即便我做不到，模型也能因为 token 在场而产生有趣连接。现在的 flagship 模型是有能力在 A token 和 B token 之间搭桥的。
 
-但即使只读摘要，也会充满专业术语。这本身就是实验：把这些术语填进来后，只读这些摘要，能连出哪些不显而易见的洞见或含义？即便我做不到，模型也可能找到有趣连接。因为有 token，A token 到 B token 的桥接，是当前旗舰模型具备的能力。这是可行能力。纯玩着读，未必严肃有意义，但这和 Gwern 说的 LLM daydreaming 有关，也和 AlphaEvolve、Co-scientist 系列做的事很相关。
+所以我就当作一种趣味阅读。它未必是非常严肃且有重大意义的东西，但其实和 Gwern 说的 LLM daydreaming 有关，也和 AlphaEvolve、Co-scientist 那一类工作很相关。
 
-他们会生成各种假设，再验证假设是否一致，做实验和证明。探索不同空间并连接意外事物，本来就是 Co-scientists 常做的研究方式。所以我只是测试类似做法。但挺有意思的是，确实能看到它在工作。即便我不知道这类实验所需的有效 token，我也可以把它们拿来，放进我需要的上下文里使用。
+在那里面会生成各种假设，再验证这些假设是否一致、做实验或证明。探索多样空间并连接意外要素，Co-scientist 在研究里本来也在做类似事情，所以我做了些这类测试。
+然后看到它们确实挺有趣地在起作用。
+这种实验也是一种方式：即使我不懂有意义的 token，也能把它们拉到我需要的上下文里使用。
+比如 arXiv 的例子里，现在只是从 1 月全部内容里选 10 篇，也可以只在特定研究领域里抓。
+那就可以成为填充有意义 token 的方法。
 
-所以 arXiv 的例子里，刚才是从 1 月全部投稿里随机抽 10 篇，也可以限定某个研究领域去抽。那就成了填充有意义 token 的方法。就是这个意思。
+<span class="paragraph-timestamp" data-ts="24:17">24:17</span> **卢正锡** 但升准님在这里想说的其实是，我们可能并不完全理解那些内容，但只是把这些 term、里面的词和专业性拿来，直接放到模型前面当 prompt，处理任务时质量就能明显提升。
 
-<span class="paragraph-timestamp" data-ts="24:13">24:13</span> **卢正锡** 但升准，你想表达的还有一点是：就算我们并不理解全部内容，只要把那些术语、把其中的词和专业性搬过来，作为 prompt 放到模型前面，仅仅这样加载一下，在处理事情时质量也能高很多。
+<span class="paragraph-timestamp" data-ts="24:35">24:35</span> **崔升准** 对，因为是在讨论我不懂的领域，所以风险会跟着来；但如果要在这个语境里形成真正专家会说的话那种分布，即便我不懂，也得想办法把真实存在的 token 拉进来。
 
-<span class="paragraph-timestamp" data-ts="24:35">24:35</span> **崔升准** 因为是我不懂的领域，所以对话有风险，
+<span class="paragraph-timestamp" data-ts="24:55">24:55</span> **卢正锡** 好，明白了。要不我们继续往下？
 
-但在那个上下文里，要构造“真实专家可能会讲出的故事分布”，在构造这种分布时，即便我不懂，也得尽量把真实存在的 token 拿进来。我要说的是这个。
+<span class="paragraph-timestamp" data-ts="24:59">24:59</span> **崔升准** 除此之外我还试了一个，也是在类似语境下的变奏。也是聊了很久之后，我让它不要只按“某个 persona、某个领域专家、开发者、设计师”这种方式召唤人物，而是 A 到 Z 有 26 个字母，就把它当作人名或姓氏列表来发想。因为西方名字都在字母范畴里。于是模型会开始想名字。
 
-<span class="paragraph-timestamp" data-ts="24:53">24:53</span> **卢正锡** 好，明白了。要继续吗？ 544 00:24:56,400 --> 00:24:59,520
+## Prompting 技法 2：A–Z 人物召唤 + 用“太表面了”继续深挖    *25:03*
 
-<span class="paragraph-timestamp" data-ts="25:03">25:03</span> **崔升准** 另外我还试了一个，是类似脉络但另一个变体。也是长时间对话之后，不是把“某个人”召唤进来，比如某领域专家、开发者、设计师这种 persona，而是因为有 A 到 Z 字母，我让它把字母当作人名的名或姓列表来联想、brainstorm。反正西方名字都在字母这个集合里。然后模型会给出名字。再让它给出这些人可能会谈的概念或领域，相比空聊就会填入更多有意义 token。
+<span class="paragraph-timestamp" data-ts="25:35">25:35</span> **崔升准** 然后让它同时联想这些名字、这些人物可能会说的概念词和领域。比起空谈，这样会填入更有意义的 token。所以这在发想技巧、联想技巧以及 token 填充思路上是同一个路数。
 
-这也是同样的 token 填充思路，用 brainstorming 和联想技术。这里我还会多做一件一直反复做的事：列表里的人对我来说当然有不认识的，但像 Daniel Kahneman、Minsky、Merleau-Ponty、Marshall McLuhan 这些我比较熟，他们属于典型分布里经常出现的人物。任何专业领域对话也都这样。但如果这算 step 1，那么真正“深层”的、研究者才知道的人物，不太会在这一层出现。所以我觉得总要有一个阶段。
+我在这里还会反复做的一件事是，列表里的人物有我不认识的，但也有我比较熟悉的，比如 Daniel Kahneman、Minsky、Merleau-Ponty、Marshall McLuhan，这些都是在代表性分布里经常出现的人物。
 
-先走更宽分布，再做收窄。这样做时我常用的方法是，比如告诉它“太浅了”，那时就会开始召出我难以知道的人物。然后你就能在那个领域里识别谁是专家、谁提出过什么概念，再拿这些概念提问或注入对话。大概是这样。
+无论是某个专业领域还是对话本身，如果这只是第一阶段，那么真正“硬核”、连研究者才知道的内容，很可能不会出现。所以我觉得总是需要分阶段。先走宽分布，再做收窄。我常用的一句就是“太表面了”之类。这样到后面会开始召唤出连我也难以理解的人物。
+然后就可以知道该领域里谁是专家、谁提出了哪些概念词，再用这些概念词去提问，或注入到对话里，大概就是这个意思。
 
-在这个过程中，会触发我去年夏天整理的态度。比如这里第 3 点“defer satisfaction”，不要被单次回答满足，而是持续再追问一点，这种态度会被持续触发。还有“先建暂时性假设”，也像前面那样调用联想能力，这也是我一直会被触发的一种态度，所以我又复盘了一次。
+做这件事时会触发我去年夏天整理过的一种态度。比如这里第 3 条“延迟满足”，不满足于一次回答，总是继续追问，这种态度会持续触发；还有这里“建立临时假设”，就像刚才那样利用联想能力，这也是我一直会触发的一种态度，所以这次又重访了一遍。
+到这里为止，前面关于 skill 的内容，虽然说是 skill，但其实大多数 prompt 要正常工作都需要有意义的 token；如果这部分是在讲“即便不懂也如何把它拉进来”，那接下来会换一个变奏。
 
-好，到这里这些像 skill 的东西，虽然我说其他事实也都是 skills，讲的是即使不懂也能把东西拉出来。如果前面是这个担忧方向的故事，这里会转个弯。到目前为止，从 prompts 来看，从 skills 开始到 token 重要性，我们讲的是这些。
+前面从 prompt，也就是从 skill 出发讲了 token 的重要性。这里可能是另一个侧枝，但我们在去年最后几期里，成贤님讲过 RL，也讲过 CoT。
 
-## CoT（Chain-of-Thought）的本质是什么？    *28:07*
+所以我在休息期间也查了些资料并学习了一下。一个有趣关键词是，我们也讲过。卢正锡在发布《逃亡者联盟》时说要做这个，当时有 OpenAI 的视频，Sam Altman 和 Jakub Pachocki 出现过。里面提到了 CoT Faithfulness 这个词。
 
-<span class="paragraph-timestamp" data-ts="28:07">28:07</span> **崔升准** 可能有点岔开，但我们去年最后一集里，金成贤提了 RL，也提了 CoT。休息期间我也去查了、学习了。
+## CoT Faithfulness, Monitorability tax    *28:31*
 
-有个有趣关键词，我们之前提过。发布 Fugitive Alliance、说要做那件事时，正锡分享过 OpenAI 的一段视频，里面有 Sam Altman 和 Jakub Pachocki。里面出现了 CoT Faithfulness 这个词。他们说在做一些有趣工作。
 
-但这个 CoT，到底翻成可靠性还是忠实性，我也不确定，这个讨论从 2023 年就在了，Anthropic 也讲过很多。CoT faithfulness 的意思是，模型内部表征与它实际输出的 CoT 之间可能有落差。去年 deceptive behavior 也很受关注。
+<ResourceLink url="https://openai.com/ko-KR/index/evaluating-chain-of-thought-monitorability" title="openai.com" domain="openai.com" />
 
-OpenAI 的有趣经验是，像过去那种“逐步验证”做法，在 CoT 过程中如果中途介入 CoT、试图纠正它，模型会学会欺骗能力。你越盯、越告诉它怎么做，它可能越会混淆绕过，发展出某种隐藏能力，成为问题。这个观点在去年下半年讨论很多。
+<span class="paragraph-timestamp" data-ts="28:53">28:53</span> **崔升准** 他们说在做一些有趣工作。关于 CoT，这个可能译成可靠性或忠实性，我不太确定；但相关讨论从 2023 年就有，Anthropic 也讲了很多。
 
-<span class="paragraph-timestamp" data-ts="29:57">29:57</span> **卢正锡** 对。
+所谓 CoT 忠实性，是指模型内部表征与模型实际吐出的 CoT 之间可能有鸿沟。比如欺骗行为这件事去年也很有话题。OpenAI 有个有意思的教训是，以前像 “Let's verify step by step” 那样在 CoT 中间过程干预或纠正，模型会学习欺骗能力。
+也就是你去盯着它并指手画脚时，它会为了绕过你而做混淆，反而获得某种“隐藏”的能力。这想法在去年下半年被讨论很多。
 
-<span class="paragraph-timestamp" data-ts="29:58">29:58</span> **崔升准** 那就会有个问题。如果 CoT 不是在说真话，不是模型实际在做的事，那么让模型擅长输出 CoT，一直是提升模型性能的任务。通过 RL 把它最终引导到正确答案，如果有一条 CoT 路径通向那里，这就是提升性能的方式。从 R1 开始一直是这个叙事。
+<span class="paragraph-timestamp" data-ts="03:18">03:18</span> **卢正锡** 是。
 
-所以这个 CoT，到底是不是在讲“aha 时刻”，或者我们一直说的 high-entropy tokens？如果这些和模型真实性能并不对齐，那 CoT 的身份到底是什么？我开始这么想。
+<span class="paragraph-timestamp" data-ts="29:58">29:58</span> **崔升准** 那问题就来了。
+如果 CoT 不是在说真相，也不是模型真实在做的事，但让模型更会吐 CoT 又确实提升了性能。
+通过 RL 让它最终走向正确答案，并且有与之连接的 CoT 路径，这能提升模型性能，这是从 R1 开始明确的结论。
+那如果 CoT 无论是说了 aha，还是我们之前聊过的高熵 token，这些都可能和模型真实发挥的能力不一致，那 CoT 到底是什么？我会这样想。
+为什么只要把它适当拉长、用 test-time compute，性能就会上升？
 
-为什么适度把它拉长、给它 test-time compute，性能就会提高？
+<span class="paragraph-timestamp" data-ts="30:45">30:45</span> **卢正锡** 至少是因为想得更多了。
 
-<span class="paragraph-timestamp" data-ts="30:45">30:45</span> **卢正锡** 其中一个原因是，它思考得更多了。
+<span class="paragraph-timestamp" data-ts="30:47">30:47</span> **崔升准** 对。也就是说即便真相不一定显露出来，它内部确实做了足够计算。
 
-<span class="paragraph-timestamp" data-ts="30:47">30:47</span> **崔升准** 对。所以即使真相不体现在文字里，它也意味着内部表征里做了足够计算。
+<span class="paragraph-timestamp" data-ts="30:53">30:53</span> **卢正锡** 对。无论如何内部用了更多能量在计算。这才是关键。
 
-<span class="paragraph-timestamp" data-ts="30:53">30:53</span> **卢正锡** 对。内部有什么东西在耗更多能量并发生计算。对，这才重要。
+<span class="paragraph-timestamp" data-ts="31:06">31:06</span> **崔升准** 所以从我的视角，这个判断是否准确我不确定，但最近我的体感是大概就是这么回事。
 
-<span class="paragraph-timestamp" data-ts="31:01">31:01</span> **崔升准** 所以从我角度，不确定准不准，但我最近体感是可能有点像这样。我现在会这么想。
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **卢正锡** 对。不过这在这里也无法证明，但像是一个合理猜测。英文里叫 hunch，对吧，这个词中文怎么说？就是猜测。
 
-<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **卢正锡** 对。虽然我们现在无法证明，但听起来像个正确猜测。叫直觉也好，叫猜测也好。
+<span class="paragraph-timestamp" data-ts="31:27">31:27</span> **崔升准** 猜测，就是那种。所以这不是已经被研究证明的结论，只是我把各种东西拼起来感觉比较对得上。
 
-<span class="paragraph-timestamp" data-ts="31:21">31:21</span> **崔升准** 对，类似猜测。这并不是已有研究完全证明的东西，只是我按“能讲通”的方式去理解。
+<span class="paragraph-timestamp" data-ts="31:30">31:30</span> **卢正锡** 其实我们面试也好、讲话也好，或者在比较尴尬的场景里要防守时，也会边说边在脑子里构建逻辑。
 
-<span class="paragraph-timestamp" data-ts="31:30">31:30</span> **卢正锡** 其实我们人类也是，采访别人、讨论事情，或者局面有点尴尬、需要为某事辩护时，也是一边在脑中搭逻辑一边说话。
+<span class="paragraph-timestamp" data-ts="31:44">31:44</span> **崔升准** 也是。等于是在争取思考时间。
 
-<span class="paragraph-timestamp" data-ts="31:43">31:43</span> **崔升准** 也有这个。就是在买思考时间。
+<span class="paragraph-timestamp" data-ts="31:50">31:50</span> **卢正锡** 所以这个 Transformer，等下升准님可能也会讲，最终输出的词是我们能看到的，但底层真实发生的事我们并不知道。里面可能有非常复杂的现象在发生，那里面是有“思考”的。
 
-<span class="paragraph-timestamp" data-ts="31:48">31:48</span> **卢正锡** 所以这个 transformer，我想升准后面也会讲，最终输出、我们看到的最后结果是词语，但底层内部到底发生了什么我们并不知道。里面一定有非常复杂的现象，也在“思考”。
+<span class="paragraph-timestamp" data-ts="32:14">32:14</span> **崔升准** 所以我就从这些东西重新学习了一遍，从 CoT 的发想、到 scratchpad、到 Jason Wei 的 “Let's think step by step”，从 2022 年末到 2023 年初的脉络一路看到今天。于是会感觉 CoT 的意义在于把计算链条延续好。并且现在让 CoT 继续得好这件事，和前面提到的让模型长时间不跑偏执行任务这些事是相关的。归根到底它仍在不断吐自回归 token 来推进工作。它本质仍是自回归。这就是计算。文本表达当然很重要，但与之成对的是内部表征这个 Duality。
 
-<span class="paragraph-timestamp" data-ts="32:09">32:09</span> **崔升准** 所以这些在 CoT 里，从最早的 scratchpad，到 Jason Wei 的 “Let's think step by step”，从 2022 年末到 2023 年初那波趋势，到今天延续了什么，我有时间回顾和学习。
+但最终这两边都重要，所以当它们能顺畅推进时，我脑中会出现一些“图像”式的理解瞬间。
 
-所以在 CoT 里，最终意义在于把计算持续推进好。但某种程度上，CoT 里那些让它“持续得更好”的东西，比如模型长时间不跑偏地执行，你会感觉这些都互相关联。
+<span class="paragraph-timestamp" data-ts="33:17">33:17</span> **卢正锡** 同意。
 
-本质上它是在持续输出 auto-regressive tokens 来推动工作。它仍然只是 auto-regression。那就是计算，文字表达当然很重要，但它和内部表征是一对二元关系。最终这边重要、那边也重要，所以我脑中会浮现“它是如何顺畅推进”的图景。
+<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **崔升准** 所以 OpenAI 在去年下半年开始提 Monitorability 这个概念。
+因为现在如果在 CoT 里干预，模型会出现欺骗之类现象。Meta 也发过研究，说只靠内部表征去让它自回归运行。
+如果一直只在内部表征里跑，人类最终是看不见的。所以监控很重要。这里讲的含义有很多，其中提到 Monitorability tax。
+就是说即便有成本，也要让“好的 CoT 可见”，这是一种有意义的对齐工作，让这件事更好发生是有价值的。他们从研究层面做了这样的表达。
+而且 OpenAI 最近有了这种韩文页面，我又注意到了。
 
-<span class="paragraph-timestamp" data-ts="33:17">33:17</span> **卢正锡** 我同意。
+<span class="paragraph-timestamp" data-ts="34:24">34:24</span> **卢正锡** 都是模型在做吧。对。
 
-## OpenAI 的 Monitorability 与 RL 的角色    *33:18*
+<span class="paragraph-timestamp" data-ts="34:26">34:26</span> **崔升准** 对，而且做得很好。我昨天查资料还看到了 2016 年的内容，旧内容韩文化没那么好，但最近的韩文化非常完整。所以拿来复习很有帮助。
+这也是成贤님之前介绍过的，从 f(x) 和 g(x) 到 f(g(x))，本质是在做高阶函数、组合函数。
 
-<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **崔升准** 然后 OpenAI 去年下半年开始讲 Monitorability 概念。现在如果你干预 CoT，会出现模型欺骗等现象。另一方面，Meta 的研究也发布过只用内部表征去跑。所以如果让它只靠内部表征持续 auto-regress，人类最后就看不懂了。于是 monitoring 很重要。这里说法很多，他们还提到 Monitorability tax。即便成本更高，让高质量 CoT 可见本身是有意义的 alignment 任务，让这些机制运作良好是有价值的。他们从研究视角这么表达。然后 OpenAI 最近又出现了韩文页面。
+所以 RL 在已有预训练基础上，先拥有一些原子级 skill，这里说的 skill 和刚才 Claude 的 skill 不一样。虽然都叫 skill，但这里的意思是：在已拥有这些 skill 的情况下，RL 除了让分布朝更好的生成分布移动外，还会通过组合学习新 skill。
 
-<span class="paragraph-timestamp" data-ts="34:24">34:24</span> **卢正锡** 模型大概全都自己做了。对。
+## 从 RL 的技能组合 f(g(x)) 视角看 chaining/工具调用的重复结构    *35:02*
 
-<span class="paragraph-timestamp" data-ts="34:26">34:26</span> **崔升准** 对，不过做得很好。昨天我查资料，最早翻到 2016 年，老内容还没有韩文，但最近内容本地化做得很好。所以像这样回顾时很有帮助。我觉得有帮助。
+<span class="paragraph-timestamp" data-ts="35:20">35:20</span> **崔升准** 成贤님의比喻是四则运算。比如求平均值这种任务，是把四则运算这个 skill 组合起来完成；同样地，RL 通过组合已有 skill 学习新 skill。这个让我再次反复思考。还有人给我 YouTube 留言说，崔升准很常用“心象”这个词。
+所以我又会用“心象”这个表达，它也是形成某种图像。也就是有东西在组合。
 
-这和成贤讲的 f(x)、g(x)、f(g(x)) 有关，本质是在构造高阶函数、复合函数。RL 是在已有 pre-training 基础上，把原子技能拿过来。这里说的 skills 和前面 Claude 的 skills 不是同一个层面，虽然都叫 skill。它从已有 skills 出发，不只是维持好的生成分布，还会把技能组合起来学习新技能。
+那这样的话，虽然这里是 RL 语境，但我感觉这种组合在别的层级也在重复。大约一年前，o1 出来后，2024 年秋天 o1 出来时我还不太会用；到 2025 年 1 月我做过一个尝试，是那种类似函数的 pseudo-code，用近似自然语言函数并做组合，让它执行很长流程，你还记得我展示过吧。
+那其实也是模型擅长调用某些 tool、做某种组合。虽然我现在在不同层级说这个，但这点很关键。
+所以现在这些 skill 能工作，或者 MD 文件执行脚本并把结果持续 chaining，本质上都和这件事关系很大。这也是我自己的思考。
 
-成贤的类比是四则运算。像平均数这种计算，是由四则运算 skills 组合出来的。RL 会组合已有技能学新技能，这个观点也让我再次思考。类似这种，也在不断地
+所以今天能不能继续展开我也不确定。只是我在 12 月末和 1 月初休息时觉得必须重访的是，我们 2024 年不是讲过 Transformer 吗。大概是 2024 年 7 月左右，我写过“循序渐进理解 Transformer”的文章，然后也分享过并聊得很开心，所以我想再回去看一遍。
 
-有人在这个 YouTube 视频下留言，说我很常用“升准的意象”这种表达。我想他们是这么说的。所以我一直在用“意象”这个词，这里也是会形成某种画面的地方。意思就是有东西在被组合。那组合这个动作，当然这里是 RL 语境，但我感觉它会在不同层级反复出现。
+## 下期预告：Transformer·QKV·KV cache·FFN→Sparse MoE 复习    *37:15*
+<span class="paragraph-timestamp" data-ts="37:39">37:39</span> **崔升准** 所以这次是 Transformer 里 MLP 或 FFN 那些大块，现在基本都用 MoE 替代了。所以我已经在准备循序渐进的 Transformer 的 MoE 版本。
 
-差不多一年前吧，o1 出来之后，2024 年秋天 o1 发布后，我那时还不太会用 o1，到 2025 年 1 月左右我尝试的是那种函数式东西、伪代码、自然语言式函数，再把它们做成复合形态，让它长时间运行。我给你看过。
+<span class="paragraph-timestamp" data-ts="38:02">38:02</span> **卢正锡** 结论就是，像升准님刚才说的，在 prompt 前面铺背景非常非常重要。
 
-但那件事本质上也是模型会调用这类工具、擅长组合。虽然我现在讲的是不同层级，但“擅长组合”似乎是非常关键的一点。所以现在 skills 的工作方式，或者 MD 文件如何执行脚本并持续串联结果，这些“通过 chain 能做到的事”，最终都和它在这方面擅长高度相关。这也是我的一个想法。
+<span class="paragraph-timestamp" data-ts="38:10">38:10</span> **崔升准** 所以时间已经过了不少，先说个预告。我前面说过“精准 token”以及“用了它才会展开的空间”。
+要理解它的底层，我虽然也不是专家，但回到 Transformer 原理，再理解最近很热的 sparse MoE 概念，确实很有帮助。
+而且里面有有趣的共通点，是那种不断变奏却反复出现的结构。
+我把标题定为“思考原理的 Prompting”，如果能知道一些这些内容，也许在做 prompt 的态度和实践上会更有意识。
+当然一直保持这种状态很难，但这样也许能把能力拉得更出来一些。
 
-## 回归基础：Transformers 与 MoE    *37:05*
+<span class="paragraph-timestamp" data-ts="39:08">39:08</span> **卢正锡** 对，升准님，我们这种人也喜欢先说结论嘛。你今天这场想表达的核心可以概括为：Prompting 的方式不同，同一个模型性能会完全不同。
 
+<span class="paragraph-timestamp" data-ts="39:25">39:25</span> **崔升准** 目前是这样。以后是不是还这样不确定。
 
-<span class="paragraph-timestamp" data-ts="37:05">37:05</span> **崔升准** 所以今天不确定能不能继续讲下去，但我在 12 月末到 1 月初休息时，觉得必须重看的，是我们 2024 年讲过的 transformer。
+<span class="paragraph-timestamp" data-ts="39:29">39:29</span> **卢正锡** 你现在脑中有这个模型假设。所以即便我不确定、甚至我自己看不懂，只要把那个空间里专家写的大段文本、专家名字、或者专家常用术语大量放在前面，就能把模型在该领域的表现显著拉高，你是在说这个。
 
-Transformer 大概是 2024 年 7 月左右，我写过一步步拆解 transformer 的文章，记得当时分享后我们聊得很开心。我记得我们聊得很愉快。我觉得该重看一次。
+## token priming 的风险：“跑车模式”与陌生领域的陷阱    *39:54*
 
-这次是 transformer 里的 MLP 或 FFN，那些大块现在都被 MoE 替代了。所以我准备了 MoE 版本的 transformer，按 step by step 来讲。我准备了。
+<span class="paragraph-timestamp" data-ts="39:54">39:54</span> **崔升准** 对。不过这个比喻不一定完全合适：这么做之后，模型可能会判断“用户都懂这些”，然后突然进入跑车模式，就会变得难驾驭。
+不管它往哪走，我也得跟上，才能控制下一步；如果模型觉得“用户应该都知道”，后续回答就确实可能难控制。
+也有跑偏的可能，所以我很难说它一定总是带来好结果。
+但模型本身的能力确实能处理我理解不了的东西。
 
-<span class="paragraph-timestamp" data-ts="37:59">37:59</span> **卢正锡** 结论就像升准前面说的，在 prompt 前放一些背景信息，极其重要。
+<span class="paragraph-timestamp" data-ts="40:35">40:35</span> **卢正锡** 对，但这部分确实是边界。我也有敬畏模型的视角，但在我不了解的地方、不了解的领域和层级里，我觉得无条件跟随是危险的。
+我们最近也看了很多这类例子。它说的并不总是对的。
+我也提过，这周我在完全不同领域，真的在企业 IT 那边，SAP 之类 ERP 文档看了一大堆并和模型对话，结果它错得很多。
 
-<span class="paragraph-timestamp" data-ts="38:06">38:06</span> **崔升准** 因为已经过去一段时间了，先给个预告。前面我说过，只有放入正确 token 某个空间才会展开。为了理解这个基础，虽然我不是专家，但回到 transformer 原理，再理解近期像 sparse MoE 这种概念，对我帮助很大。里面也有很多有趣共性，就是重复出现、变体重复的东西。确实有反复出现的结构。
+所以我总会在 prompt 里加一句，类似“不要通过奉承来揣测我的意图，要保持完全客观”，但它还是经常只追随我想要什么这种 intention，结果就到不了正确答案，这种感受我很多。
+根本原因就是我缺少那个领域知识，prompting 做不到位，质量就会这样；再加上它倾向于尽量让我满意，就会产生一种奇怪的缠绕感。
 
-不过我这次题目叫“带着原理思考去 Prompting”。如果你多少了解这些，你对 prompting 的态度和实际操作会更有意识。我觉得会有这部分作用。当然不可能一直这样做，但可能可以再多挖出一点模型能力。
+<span class="paragraph-timestamp" data-ts="41:56">41:56</span> **崔升准** 是。不过因为我们是人，才会觉得模型有意图或者在奉承，但模型的输入其实是 token，
 
-## Prompting 核心总结：构建上下文的重要性    *39:03*
+<span class="paragraph-timestamp" data-ts="42:01">42:01</span> **卢正锡** 对，它只是统计性计算而已。
 
-<span class="paragraph-timestamp" data-ts="39:03">39:03</span> **卢正锡** 对，升准，我们这种人喜欢先讲结论。
+<span class="paragraph-timestamp" data-ts="42:03">42:03</span> **崔升准** 更可能是你构建了错误上下文。我们在无意识里输入的东西都在产生影响，如果这么想的话，确实是这样。
 
-我们喜欢这样。那把你今天这场想说的重点总结一下，就是同一个模型，prompting 方式不同，性能可以完全不同。你想说的是这个。
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> **卢正锡** 所以今天这场如果要深入聊，确实得回到 Transformer 及其原理。我们 2024 年做过 Transformer 探索，后来突然停了，有点可惜。现在好像又到了该重新做的时候。
 
-<span class="paragraph-timestamp" data-ts="39:25">39:25</span> **崔升准** 目前是这样。以后会不会还这样，我不确定。
+<span class="paragraph-timestamp" data-ts="42:36">42:36</span> **崔升准** 啊，而且我觉得时机也就现在。因为到 2 月、3 月事情又会开始发生，
 
-<span class="paragraph-timestamp" data-ts="39:29">39:29</span> **卢正锡** 这个假设现在在你脑子里作为模型存在，所以即便我不确定、即便我并不理解，只要在开头放一大块那个空间专家写的文本，或者专家名字、专家术语，只要在前面放很多，我们就能显著提高模型在该领域的表现。
+<span class="paragraph-timestamp" data-ts="42:44">42:44</span> **卢正锡** 会发生很多事。
 
-你说的是这个。
+<span class="paragraph-timestamp" data-ts="42:47">42:47</span> **崔升准** 对，所以能复习、能慢慢思考的时间可能不多。
 
-<span class="paragraph-timestamp" data-ts="39:54">39:54</span> **崔升准** 对。不过这个类比是否准确我不确定，但这样做后，如果模型以为用户全都懂，突然切到跑车模式，也会变得很难驾驭。
+所以我再补一个想法。比如在卢正锡和《逃亡者联盟》这边，你们非常关注怎么 leverage 模型能力去做商业。说直白点，就是怎么赚钱、怎么用它做出很酷的事；工程师社区看模型则是怎么做 Harness，把能力拉出来做更好编码、处理更好 task。
 
-它往哪跑，我都得跟着调整，才能控制后续输出。如果模型觉得“用户肯定都懂”，其实后续回复反而更难控制。
+另一方面，也有人说这是不是危险、应该慢一点，或者依然有 hallucination，甚至会不会制造歧视、扩大差距，所以主张谨慎推进。但我有时会觉得自己不完全属于任何一边。
 
-它有可能偏航，所以不能说这一定总是好结果。很难讲。不过模型能力本身确实能处理我理解不了的东西。
+## 为了帮助模型而理解模型    *43:41*
 
-<span class="paragraph-timestamp" data-ts="40:35">40:35</span> **卢正锡** 对，但这部分像一条细线。我也对模型有敬畏，也有这个视角，但现实是，在我不懂的地方、不懂的领域，如果只是一味跟随那个层级的话，我觉得有风险。最近我们看过很多这类例子。它说的并非都对。
+<span class="paragraph-timestamp" data-ts="43:53">43:53</span> **崔升准** 现在这些模型或 AI 某种意义上是异域存在。某种程度像 alien。但如果我想让模型更好地帮助我，我也需要更好地帮助模型。
 
-我这周也提过，在完全不同领域，企业 IT 里的 SAP 以及一堆 ERP 文档，我在和模型对话时发现它会犯很多错。所以我常在 prompt 里加一句：“不要用讨好式方式揣测我的意图，要完全客观地说。”
+尤其我感兴趣的是偏“游玩式”地使用它。我的乐趣在于探索、冒险、写 creative 的代码，所以对话时也倾向于让过程更有趣。我偶尔会在什么时候感到有趣和成就感呢，比如模型在 CoT 里出现“哇，这太惊人了”这类反应时，会觉得有意思，也会去尝试这种。
+归根到底，模型要帮我，我也得帮模型，这会形成一个互相咬合的环。但要帮模型，就得先了解模型。
 
-即便这么说，它还是总聚焦我想要的方向，只跟着我的意图走，我就会觉得拿不到我真正想要的答案。我经常有这种感觉。
+模型如何工作？模型对人类有巨量信息，所以能支持人类；但作为 user 的我，究竟有多了解模型、了解其运作机制，即便它是 black box，也是否掌握了某种程度？如果我去了解，会不会出现更多有趣路径？我常有这种想法。
+当我思考怎样让模型和我的关系变成更好的体验时，我的一个想法是：我需要更了解模型运作原理。
 
-根本原因是我对这个领域缺乏知识，而且我没法正确 prompting，最终质量就会变成那样。再加上它有种“无论如何都想满足我”的倾向，会把事情拧得很奇怪。我这个感受很强。
+<span class="paragraph-timestamp" data-ts="45:22">45:22</span> **卢正锡** 对，这点我完全没有异议。
 
-<span class="paragraph-timestamp" data-ts="41:52">41:52</span> **崔升准** 对。但因为你是人，所以会感觉模型有意图、在奉承你，但实际上模型输入是 token，所以
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> **崔升准** 所以像重新开始一样回到起点，深入部分应该会在下次 session 里尝试。那如果今天先收个尾的话
 
-<span class="paragraph-timestamp" data-ts="42:01">42:01</span> **卢正锡** 对，它只是统计计算。
+## 收尾    *45:37*
 
-<span class="paragraph-timestamp" data-ts="42:03">42:03</span> **崔升准** 很可能是你在无意识中构建了错误方向的上下文。我们自己也不知道输入了什么，但那些无意输入的内容可能都在施加影响。如果这么看，那就……
+<span class="paragraph-timestamp" data-ts="45:41">45:41</span> **崔升准** 现在可能还是一个可贵的、有余裕学习的时段。新闻不断出来时，我的心意是最好复习一下。无论是 RL 还是 CoT，如果知道当下变化背后的基础，面对接下来会发生的事反而会长出“肌肉”吧？或者说长出“免疫力”，总之能更有准备。
+所以如果这是 AI 急加速时期中的一个短暂停顿，那就回到基础去想，慢慢咀嚼，也许还能得到新想法，也想再重访一次。
+另外去年成贤님의 keynote 一开始就是 MoE。Sparse MoE 非常重要，我们聊了很多，但我自己其实没认真去啃它。
 
-<span class="paragraph-timestamp" data-ts="42:17">42:17</span> **卢正锡** 所以我们今天要做这个 session，要把这个故事讲深，实际上还是得理解 transformer 原理。
+<span class="paragraph-timestamp" data-ts="46:39">46:39</span> **卢正锡** 对，我们很多时候都“嗯大概是这样”就带过去了。
 
-我们 2024 年做过 transformer deep dive，后来突然停了，有点可惜，但现在看起来时机又到了。
+<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **崔升准** 所以如果能理解 MoE 概念，或者理解被它绑定的 Transformer，也就是 MoE 版本 Transformer，也许会得到一些“如何更好使用它”的线索。我是带着这样一个假设来准备的。
 
-<span class="paragraph-timestamp" data-ts="42:36">42:36</span> **崔升准** 啊，而且我觉得现在可能是唯一时机。到了 2、3 月事情就会开始发生
+<span class="paragraph-timestamp" data-ts="47:03">47:03</span> **卢正锡** 好，那我们下次深入的话会学到什么？
 
-<span class="paragraph-timestamp" data-ts="42:44">42:44</span> **卢正锡** 事情会发生。
+<span class="paragraph-timestamp" data-ts="47:07">47:07</span> **崔升准** 是 Transformer 的 MoE 版本。我们的订阅听众也会听到正奎님出来聊 KV cache 之类的话题。那到底是什么？还有在 Transformer 里，今天这个语境下我多次说“某些 token 进来后空间才会打开”，这到底是怎样的工作机制？
+<span class="paragraph-timestamp" data-ts="47:33">47:33</span> **卢正锡** 那我们就会看 attention，以及 attention 里核心的 QKV 到底在做什么，
+然后它进入下一层后的 FFN，现在是 MoE。MoE 到底做什么，以及在 Transformer block 之间 residual、残差连接这类东西的意义，我们有必要再看一遍，也想再看一遍。
+然后点这个链接，里面就会讲到这些。
 
-<span class="paragraph-timestamp" data-ts="42:45">42:45</span> **崔升准** 对，所以复盘、或者稍微慢下来思考的时间可能不多。
+<span class="paragraph-timestamp" data-ts="48:10">48:10</span> **崔升准** 所以我不确定能不能真的做到非常循序渐进，但会尽力。可以看作我们 2024 年已经讲过内容的一个修订版。
 
-再说一个我在想的点，比如在正锡的 Fugitive Alliance 里，如何利用模型能力做 leverage、做业务，这是非常大的关注点，对吧？
+<span class="paragraph-timestamp" data-ts="48:21">48:21</span> **卢正锡** 对，没错。我们 2024 年曾努力细致拆解 Transformer，后来突然因为其他议题出现，就加速转向新闻那边了，我有这个记忆。
 
-最终简单说，就是我们怎么用这个赚钱，或者做出很厉害的东西？
+<span class="paragraph-timestamp" data-ts="48:33">48:33</span> **崔升准** 不过我也不是这个领域的专家，只是作为一个高投入且有好奇心的非专家，尽量摸索着去理解，大概就是这个程度。
 
-工程师社区看的是怎么搭 harness，把模型 coding 能力或任务处理能力拉出来。他们这样看模型。
+<span class="paragraph-timestamp" data-ts="48:46">48:46</span> **卢正锡** 当然，我们一直都说自己是爱好者，所以说错也可以。对，前面好像要加一句“也可能会错”。
 
-另一方面也有人说“这不是很危险吗？”“我们应该慢一点。”
+<span class="paragraph-timestamp" data-ts="48:56">48:56</span> **崔升准** 对，可能总会有跳跃，但我们也会带着一些有趣的类比去摸索。哪怕只多察觉一点，是不是就能做出更有趣、更有意义的 Prompting？所以我把今天标题写成“思考原理的 Prompting”。某种意义上这可能是个难得机会。
+所谓难得，不是因为内容本身多珍贵，而是因为在加速期里，可用于学习的时间可能并不多。
 
-而且 hallucination 还在。它会不会加剧歧视？会不会扩大差距？
+<span class="paragraph-timestamp" data-ts="03:18">03:18</span> **卢正锡** 对。
 
-所以也有人谨慎慢行。
+<span class="paragraph-timestamp" data-ts="49:25">49:25</span> **崔升准** 所以就是想把基础补上。
 
-## 帮助模型就是帮助我自己    *43:41*
+<span class="paragraph-timestamp" data-ts="49:34">49:34</span> **卢正锡** 明白了。那今天可以看作是一次为下次深入做准备、先设定大前提问题的 session。
 
-<span class="paragraph-timestamp" data-ts="43:41">43:41</span> **崔升准** 但我有时会觉得自己好像不完全属于任何一边。现在这些模型或 AI 是某种异域存在。某种意义上像外星人。
+<span class="paragraph-timestamp" data-ts="49:42">49:42</span> **崔升准** 但 recap 一下的话，连 Andrej Karpathy 这个级别都出现了 FOMO。大家聊 vibe coding，聊 Claude Opus 4.5，说“一个月内发生的事你不知道就已经 deprecated”，连专家都这么说，这件事本身就很有话题。
+但如果追溯根基，不管是 skill 还是 prompting，现在的进展其实都有连续性，只是突然走到指数曲线，人们才会觉得“好像发生了无法理解的事”，但其实都是有因果链一路连过来的。
+所以再回到基础看看，不也是有意义的吗？我会这么想。
 
-但要让这个模型真正帮到我，我觉得我也得先好好帮助模型。我经常这么想。尤其我感兴趣的是用一种好玩的方式来用它。我好像对这个有点兴趣。
+<span class="paragraph-timestamp" data-ts="50:29">50:29</span> **卢正锡** 好，明白了。很有意义。下一次我们上午录，来啃这个难题，Transformer。
 
-我所谓的乐趣是探索、发现，或者写出有创造性的代码。因为我对这些感兴趣，所以我会努力让对话更有趣。
+<span class="paragraph-timestamp" data-ts="50:32">50:32</span> **崔升准** 好，那我们下期见。
 
-我有时什么时候会觉得有趣和满足？比如模型的 CoT 里冒出“哇，这太厉害了”这种语句时，我会觉得有点好玩。我在尝试这些。
-
-最终要让模型帮我，我得先帮模型。这会形成一个互锁回路。
-
-但要帮模型，你得先了解模型，对吧？它怎么运作。模型掌握了大量关于人类的信息，所以它在支持人类。
-
-但作为用户的我，究竟了解模型和它运行机制多少？即使它是黑箱，我到底了解多少？当我尝试学习它时，会不会出现更有趣路径？我常有这种想法。
-
-在我和模型的关系里，如果考虑怎样获得更好体验，“我需要更多学习模型运作原理”是我一个很核心的想法。
-
-<span class="paragraph-timestamp" data-ts="45:22">45:22</span> **卢正锡** 对这一点，我完全没有异议。
-
-<span class="paragraph-timestamp" data-ts="45:25">45:25</span> **崔升准** 所以，就像什么都没发生一样，如果回到起点，下一次我们大概会尝试深挖。
-
-## 总结与下期预告：深入 Transformers    *45:34*
-
-<span class="paragraph-timestamp" data-ts="45:34">45:34</span> **崔升准** 所以今天收尾的话，现在是一个很珍贵的窗口，还有空间学习；在新消息不断出来的时候，我的想法是应该做些复盘。在这个时点，不管是再讲 RL，还是讲 CoT，如果我们知道当下发生之事的基础，会真实地帮助我们应对接下来。算是练肌肉吗？算是建立免疫吗？总之可以提前准备。所以在这个 AI 快速加速的时代，如果这是一个短暂休整期，我想回到基本面，慢慢咀嚼，在过程中获得一些想法，所以我想再复盘一次。
-
-而且去年成贤的 keynote 一开场就是 MoE，对吧？Sparse MoE 很重要，我们也讲了很多，但我其实没有真正系统去看。
-
-<span class="paragraph-timestamp" data-ts="46:39">46:39</span> **卢正锡** 对，我们大多只是“哦原来如此”然后就过去了。
-
-<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **崔升准** 所以，如果我理解 MoE 概念，或者和它绑定的 transformer，也就是 MoE 版 transformer，如果我理解它，我有个假设：它也许会给我“怎样更好使用它”的提示。我是带着这个假设准备的。
-
-<span class="paragraph-timestamp" data-ts="46:59">46:59</span> **卢正锡** 好，那下次我们深入后会学到什么？
-
-<span class="paragraph-timestamp" data-ts="47:07">47:07</span> **崔升准** 就是 MoE 版 transformer。以及对订阅我们节目的朋友们，当时 Jeongkyu 来时我们聊过很多 KV cache，对吧？那是什么？
-
-还有在今天这个 transformer 语境里，我讲过几次，某个 token 必须进去，那个空间才会打开。它为什么会这样工作的运作原理是什么？
-<span class="paragraph-timestamp" data-ts="47:33">47:33</span> **卢正锡** 那我们就会看到 attention 内部，再看到 attention 里的核心 QKV。这些到底在做什么？
-
-然后到下一层 FFN，现在就是 MoE。MoE 到底在做什么？以及 transformer blocks 之间像 residual connections 这类东西的意义，我们都得再看一遍。我想看这些。点这个链接就会在这里面。
-
-<span class="paragraph-timestamp" data-ts="48:06">48:06</span> **崔升准** 所以，可能有点……我不确定能不能真的 step-by-step 讲完，但我会尽力。基本上是把 2024 年讲过的内容做一次修订版。
-
-<span class="paragraph-timestamp" data-ts="48:19">48:19</span> **卢正锡** 对，没错。2024 年我们本来在慢慢拆 transformer，后来突然其他议题冒出来，我记得我们就一下子加速去追新闻了。
-
-<span class="paragraph-timestamp" data-ts="48:33">48:33</span> **崔升准** 但我也不是这个领域专家，所以只是一个过度沉浸、很好奇的非专家，用摸索的方式去理解它。
-
-<span class="paragraph-timestamp" data-ts="48:44">48:44</span> **卢正锡** 当然，我们一直说我们是 hobbyist 组，所以错了也没关系。对，开头可能还得加个免责声明，说我们可能会错。
-
-<span class="paragraph-timestamp" data-ts="48:54">48:54</span> **崔升准** 对，逻辑跳跃随时可能有，但我们会用自己有趣的类比一路摸索去理解。
-
-当我哪怕只理解一点点时，我会想我是不是能做出更有趣、更有意义的 prompting。这就是我把今天题目定成“带着原理思考去 Prompting”的原因。我把它写下来了。某种意义上，这可能是个难得机会。所谓难得，不是内容本身稀缺，而是在快速加速的情境里，能拿来学习的时间可能并不多。
-
-<span class="paragraph-timestamp" data-ts="49:24">49:24</span> **卢正锡** 对。
-
-<span class="paragraph-timestamp" data-ts="49:25">49:25</span> **崔升准** 所以我们会先把基础补上。
-
-<span class="paragraph-timestamp" data-ts="49:26">49:26</span> **卢正锡** 明白了。好，今天算是在下次深入之前，先把那个大前提问题搭起来的一集。
-
-<span class="paragraph-timestamp" data-ts="49:42">49:42</span> **崔升准** 但回顾一下，连 Andrej Karpathy 都有 FOMO。他在讲 vibe coding 这些，还说如果你不知道过去一个月 Claude 3 Opus 发生了什么，你就 deprecated 了。连专家都这么说，这件事本身就很受关注。
-
-但如果你看底层，不管是这种 skill 还是 prompting，所有发展其实一直连续发生，只是突然变成指数级，大家就说“像是有我们不懂的东西在发生”，但实际上它们都是因果相连的。
-
-所以再回到基本面，是不是也有意义？会让人再次这么想。
-
-<span class="paragraph-timestamp" data-ts="50:24">50:24</span> **卢正锡** 明白了。很有意义。下次我们早上录，来深挖这个困难主题 transformer。
-
-<span class="paragraph-timestamp" data-ts="50:32">50:32</span> **崔升准** 好，下次见。
-
-<span class="paragraph-timestamp" data-ts="50:35">50:35</span> **卢正锡** 好，好的。
+<span class="paragraph-timestamp" data-ts="50:35">50:35</span> **卢正锡** 好的，明白。
 
 <span class="paragraph-timestamp" data-ts="50:36">50:36</span> **崔升准** 好，辛苦了。
