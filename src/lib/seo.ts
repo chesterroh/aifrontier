@@ -93,9 +93,16 @@ export function buildSitemapXml(entries: SitemapEntry[]): string {
 
 export function buildSitemapEntries({ site, episodes }: SitemapEntriesInput): SitemapEntry[] {
   const normalize = (path: string) => new URL(path, site).toString();
+  // Use latest episode date as home lastmod
+  const latestKo = episodes
+    .filter((e) => e.lang === 'ko')
+    .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
+  const latestEn = episodes
+    .filter((e) => e.lang === 'en')
+    .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
   return [
-    { loc: normalize('/ko') },
-    { loc: normalize('/en') },
+    { loc: normalize('/ko'), ...(latestKo && { lastmod: latestKo.publishedAt.toISOString().slice(0, 10) }) },
+    { loc: normalize('/en'), ...(latestEn && { lastmod: latestEn.publishedAt.toISOString().slice(0, 10) }) },
     ...episodes.map((episode) => ({
       loc: normalize(`/${episode.lang}/episodes/ep${episode.episodeNumber}`),
       lastmod: episode.publishedAt.toISOString().slice(0, 10),

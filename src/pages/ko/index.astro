@@ -1,20 +1,43 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildPodcastSeriesJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
+import { buildPodcastSeriesJsonLd, buildPodcastEpisodeJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
 
 const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
 const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
 
 const [featured, ...rest] = sortedEpisodes;
 const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
-const description = 'AI Frontier - 노정석, 최승준, 김성현이 인공지능의 최신 기술·산업·철학을 깊이 있게 이야기하는 AI 심층 대화 팟캐스트';
-const jsonLd = buildPodcastSeriesJsonLd({
+
+// #1: 동적 meta description — 최신 에피소드 제목+description 포함 (160자 제한)
+const baseBrand = 'AI Frontier - AI 심층 대화 팟캐스트';
+const description = featured
+  ? `최신: EP ${featured.data.episodeNumber}. ${featured.data.title} — ${featured.data.description}`.slice(0, 155) + '… | AI Frontier'
+  : baseBrand;
+
+// #3: PodcastSeries + PodcastEpisode JSON-LD
+const seriesJsonLd = buildPodcastSeriesJsonLd({
   site,
   lang: 'ko',
   name: 'AI Frontier',
-  description,
+  description: baseBrand,
 });
+const jsonLd = featured
+  ? [
+      seriesJsonLd,
+      buildPodcastEpisodeJsonLd({
+        site,
+        lang: 'ko',
+        episodeNumber: featured.data.episodeNumber,
+        title: featured.data.title,
+        description: featured.data.description,
+        publishedAt: featured.data.publishedAt.toISOString().slice(0, 10),
+        duration: featured.data.duration,
+        youtubeId: featured.data.youtubeId,
+        thumbnail: featured.data.thumbnail,
+      }),
+    ]
+  : seriesJsonLd;
 ---
 
 <BaseLayout
@@ -50,9 +73,19 @@ const jsonLd = buildPodcastSeriesJsonLd({
               <h2 class="text-2xl font-bold mb-2 group-hover:text-primary-600 transition-colors">
                 {featured.data.title}
               </h2>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">
-                {featured.data.publishedAt.toLocaleDateString('ko-KR')} · {featured.data.duration}
+              {/* #2: description + 게스트/호스트 텍스트 */}
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-3">
+                {featured.data.description}
               </p>
+              <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
+                <span>{featured.data.publishedAt.toLocaleDateString('ko-KR')} · {featured.data.duration}</span>
+                {featured.data.hosts.length > 0 && (
+                  <span>호스트: {featured.data.hosts.join(', ')}</span>
+                )}
+                {featured.data.guests.length > 0 && (
+                  <span>게스트: {featured.data.guests.join(', ')}</span>
+                )}
+              </div>
             </div>
           </article>
         </a>
@@ -82,6 +115,10 @@ const jsonLd = buildPodcastSeriesJsonLd({
                   <h3 class="font-semibold text-sm line-clamp-2 group-hover:text-primary-600 transition-colors">
                     {episode.data.title}
                   </h3>
+                  {/* #5: 그리드에도 description 1줄 추가 */}
+                  <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 line-clamp-2">
+                    {episode.data.description}
+                  </p>
                   <p class="text-gray-500 dark:text-gray-400 text-xs mt-2">
                     {episode.data.publishedAt.toLocaleDateString('ko-KR')}
                   </p>

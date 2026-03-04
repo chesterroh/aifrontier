@@ -1,20 +1,43 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildPodcastSeriesJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
+import { buildPodcastSeriesJsonLd, buildPodcastEpisodeJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
 
 const episodes = await getCollection('episodes', ({ data }) => data.lang === 'en');
 const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
 
 const [featured, ...rest] = sortedEpisodes;
 const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
-const description = 'AI Frontier - A deep-dive AI podcast by Chester Roh (노정석), Seungjoon Choi (최승준), and Seonghyun Kim (김성현), exploring the latest in AI technology, industry, and philosophy';
-const jsonLd = buildPodcastSeriesJsonLd({
+
+// #1: Dynamic meta description with latest episode
+const baseBrand = 'AI Frontier - A deep-dive AI podcast exploring the latest in AI technology, industry, and philosophy';
+const description = featured
+  ? `Latest: EP ${featured.data.episodeNumber}. ${featured.data.title} — ${featured.data.description}`.slice(0, 155) + '… | AI Frontier'
+  : baseBrand;
+
+// #3: PodcastSeries + PodcastEpisode JSON-LD
+const seriesJsonLd = buildPodcastSeriesJsonLd({
   site,
   lang: 'en',
   name: 'AI Frontier',
-  description,
+  description: baseBrand,
 });
+const jsonLd = featured
+  ? [
+      seriesJsonLd,
+      buildPodcastEpisodeJsonLd({
+        site,
+        lang: 'en',
+        episodeNumber: featured.data.episodeNumber,
+        title: featured.data.title,
+        description: featured.data.description,
+        publishedAt: featured.data.publishedAt.toISOString().slice(0, 10),
+        duration: featured.data.duration,
+        youtubeId: featured.data.youtubeId,
+        thumbnail: featured.data.thumbnail,
+      }),
+    ]
+  : seriesJsonLd;
 ---
 
 <BaseLayout
@@ -50,9 +73,19 @@ const jsonLd = buildPodcastSeriesJsonLd({
               <h2 class="text-2xl font-bold mb-2 group-hover:text-primary-600 transition-colors">
                 {featured.data.title}
               </h2>
-              <p class="text-gray-600 dark:text-gray-400 text-sm">
-                {featured.data.publishedAt.toLocaleDateString('en-US')} · {featured.data.duration}
+              {/* #2: description + guest/host text */}
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-3">
+                {featured.data.description}
               </p>
+              <div class="flex flex-wrap gap-x-4 text-sm text-gray-500 dark:text-gray-400">
+                <span>{featured.data.publishedAt.toLocaleDateString('en-US')} · {featured.data.duration}</span>
+                {featured.data.hosts.length > 0 && (
+                  <span>Hosts: {featured.data.hosts.join(', ')}</span>
+                )}
+                {featured.data.guests.length > 0 && (
+                  <span>Guest: {featured.data.guests.join(', ')}</span>
+                )}
+              </div>
             </div>
           </article>
         </a>
@@ -82,6 +115,10 @@ const jsonLd = buildPodcastSeriesJsonLd({
                   <h3 class="font-semibold text-sm line-clamp-2 group-hover:text-primary-600 transition-colors">
                     {episode.data.title}
                   </h3>
+                  {/* #5: description in grid cards */}
+                  <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 line-clamp-2">
+                    {episode.data.description}
+                  </p>
                   <p class="text-gray-500 dark:text-gray-400 text-xs mt-2">
                     {episode.data.publishedAt.toLocaleDateString('en-US')}
                   </p>
