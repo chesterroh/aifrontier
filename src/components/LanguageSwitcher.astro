@@ -1,6 +1,6 @@
 ---
 interface Props {
-  currentLang: 'ko' | 'en';
+  currentLang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug?: string | null;
   currentSlug?: string;
 }
@@ -10,6 +10,8 @@ const { currentLang, alternateSlug, currentSlug } = Astro.props;
 const languages = [
   { code: 'ko', label: '한국어' },
   { code: 'en', label: 'English' },
+  { code: 'ja', label: '日本語' },
+  { code: 'zh-Hans', label: '中文' },
 ] as const;
 
 function getAlternateUrl(langCode: string): string {
@@ -17,8 +19,8 @@ function getAlternateUrl(langCode: string): string {
     return '#';
   }
 
-  // If alternate version exists, link to it
-  if (alternateSlug) {
+  // If alternate version exists and target is ko/en pair, link to it
+  if (alternateSlug && ((currentLang === 'ko' && langCode === 'en') || (currentLang === 'en' && langCode === 'ko'))) {
     return `/${langCode}/episodes/${alternateSlug}`;
   }
 
@@ -62,11 +64,14 @@ function getAlternateUrl(langCode: string): string {
       const path = window.location.pathname;
 
       // Check if we're on an episode page
-      const episodeMatch = path.match(/\/(?:ko|en)\/episodes\/([^\/]+)/);
+      const episodeMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/episodes\/([^\/]+)/);
 
-      if (episodeMatch && alternateSlug) {
-        // Navigate to alternate episode
+      if (episodeMatch && alternateSlug && ((currentLang === 'ko' && newLang === 'en') || (currentLang === 'en' && newLang === 'ko'))) {
+        // Navigate to alternate episode (ko<->en only)
         window.location.href = `/${newLang}/episodes/${alternateSlug}`;
+      } else if (episodeMatch) {
+        // Same episode slug for ja/zh-Hans
+        window.location.href = `/${newLang}/episodes/${episodeMatch[1]}`;
       } else {
         // Navigate to language home
         window.location.href = `/${newLang}`;

@@ -1,0 +1,712 @@
+---
+episodeNumber: 81
+lang: "zh-Hans"
+title: "DeepSeek 改变的一切：MoE 与 RLVR，2025 AI 年终回顾"
+description: "2025 年 12 月 27 日周六早晨，卢正锡、金成贤与崔升准回顾 2025 年 AI，并展望 2026 年。他们讨论了 DeepSeek 之后 MoE 与 RLVR（agent post-training）如何成为主流，也梳理了由中国主导的开放前沿模型如何推动整个生态。从受限算力下的“配方”，到 RL 基础设施的演进与数据的重要性，他们给出了扎实的观察。三人还共同想象了 scale-up、continual learning、self-play 以及更高自主性的 agent 在明年可能带来的变化。"
+publishedAt: 2026-01-28
+duration: "1:11:40"
+youtubeId: "iDd-7trU3VE"
+thumbnail: "https://i.ytimg.com/vi/iDd-7trU3VE/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - 崔升准
+  - 金成贤
+chapters:
+  - time: "00:00"
+    title: "2025 AI 回顾与 2026 展望"
+  - time: "01:14"
+    title: "前沿模型的爆发式增长与中国崛起"
+  - time: "04:34"
+    title: "MoE：更少计算，更高性能"
+  - time: "09:01"
+    title: "MoE 如何工作，以及 DeepSeek 的贡献"
+  - time: "12:01"
+    title: "RLVR：开启 Agent 学习新视野"
+  - time: "18:22"
+    title: "深入 RL：能力涌现还是能力组合？"
+  - time: "28:01"
+    title: "论文之外的默会知识：前沿模型的隐藏配方"
+  - time: "33:40"
+    title: "数据定义模型"
+  - time: "40:06"
+    title: "2026 展望 1：无法阻挡的 Scale-Up 竞争"
+  - time: "48:07"
+    title: "2026 展望 2：新范式的黎明"
+  - time: "49:37"
+    title: "走向更高自主性的 Agent"
+  - time: "53:10"
+    title: "Self-play 与内在动机：与人类对齐的 AI 条件"
+  - time: "01:00:13"
+    title: "我们该如何生活在 AI 时代？"
+  - time: "01:08:24"
+    title: "结束语与新年问候"
+notionUrl: "https://drive.google.com/file/d/1pb2TlrYmMla3vNtt6s7Vk3lqoRj8km3t/view"
+---
+
+## 2025 AI 回顾与 2026 展望    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天录制的时间是 2025 年 12 月 27 日，周六早晨。2025 年终于要结束了。真的发生了太多事情。
+
+尤其是 2025 年变化节奏非常陡峭，所以我觉得应该做一次回顾，再预测一下 2026 年会发生什么。想做一些预测，所以邀请了成贤一起来进行这段宝贵的讨论。成贤，欢迎。
+
+<span class="paragraph-timestamp" data-ts="00:29">00:29</span> **金成贤** 我没想到会以这种形式做 2025 回顾。不过我觉得会是一次很有意思的机会。2025 年确实发生了很多事。
+
+但我在准备回顾、翻看过去记录时，也发现变化并没有最初想象得那么多。2025 年初 R1 和 DeepSeek 事件带来了很大的范式转变，之后更像是在渐进推进。RLVR 和 agent post-training 这个新范式在 2025 年初出现后，整个 2025 年都在围绕这个范式做开发、理解和探索。2025 年大概就是这样过去的。
+
+## 前沿模型的爆发式增长与中国崛起    *01:14*
+
+<span class="paragraph-timestamp" data-ts="01:14">01:14</span> **金成贤** 与学术侧分开看，或者说有重叠的一点是，最有意思的是大量开放前沿模型的出现。我觉得这是最大的点。DeepSeek、MiniMax、Z.ai、小米、腾讯、Moonshot、蚂蚁、阿里巴巴、美团等等，很多公司都发布了模型。以前这些模型大概是 Llama 2 的规模，70B 左右或最多 70B，做个模型再发布是常见形态，但 2025 年发布的模型几乎都是 frontier 或 near-frontier 级别，而且这些公司大多都在瞄准 frontier。我觉得这是 2025 年最大的变化之一。
+
+比如在 2024 年，更像是“在现有资源内能做什么就做什么”。与其说是做 frontier 模型，不如说对所谓小模型、效率模型的关注更多。也可以说那就是当时的上限。看起来确实是那样，但到了 2025 年，这类模型明显变少了。
+
+几乎所有发布模型的大公司都在瞄准 frontier 级别，追求更大、更强的模型。我认为这代表了非常显著的思维与趋势变化。
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **崔升准** 这些全都是中国公司。
+
+<span class="paragraph-timestamp" data-ts="02:44">02:44</span> **卢正锡** 你刚列的这些模型是不是 100% 都是中国的？
+
+<span class="paragraph-timestamp" data-ts="02:46">02:46</span> **金成贤** 对，100% 都是中国的。中国以外几乎没有可以称为 frontier 且给出惊艳结果的模型。像 Llama 4 这种有，但 Llama 4 没留下太深印象。到年底 Mistral 说要发布模型，但看起来他们的 frontier 级模型也不是 open model。所以目前是中国在领跑。
+
+而且中国在相对受限的算力条件下，依然在瞄准 frontier，想往下一层级走。我觉得这本身就是很大的范式变化。大家对中等偏小模型的兴趣已经没那么高了。几乎都在追求高性能、大模型。我认为这是 2025 年最大的变化之一。很多不同公司都在造模型。
+
+<span class="paragraph-timestamp" data-ts="03:39">03:39</span> **卢正锡** 真的就只有中国。
+
+<span class="paragraph-timestamp" data-ts="03:41">03:41</span> **金成贤** 就是只有中国。特别是在发布模型这件事上，就是中国。这个变化之所以可能……其实中国在算力上仍然很受限。所以如果按原来的逻辑，趋势应该是“就这点算力，做我们能做的”“做小而强的模型”。
+
+但现在变了，是因为已经被证明：即使算力不大，也能冲击 frontier 级别。我觉得这是变化发生的原因。这里面最大的玩家还是 DeepSeek。DeepSeek 证明了在有限算力下，大约 800 到 2,000 单位算力，也能瞄准 frontier。
+
+一旦这点被证明，大家就开始转向“冲 frontier”。转折点就是那时出现的。所有人都开始往更大、更强的模型走。就是这样开始的。
+
+## MoE：更少计算，更高性能    *04:34*
+
+<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **崔升准** 这张图该怎么读？
+
+<span class="paragraph-timestamp" data-ts="04:36">04:36</span> **金成贤** 其实我很犹豫要不要放这张图。直觉上理解的话，最浅蓝那部分可以看成所谓 dense model，上面这些线是 MoE 模型。可以这样看。图例这里有点错，这些是 MoE 模型。
+
+这张图很重要、冲击力也很大，因为横轴是训练计算量。训练计算量在 10^24 左右时，已经接近 frontier 模型但略低。在这个计算规模下，MoE 模型的性能比 dense 模型好 7 倍以上。也就是说，同样是 10^24 compute，MoE 的表现接近于一个投入了约 7 倍 compute 的 dense 模型。性能可以做到类似水平。
+
+所以如果你给 dense 模型 10^24 compute，再用同样的 compute 做 MoE，那么 MoE 会给出接近 7×10^24 dense 的效果。这很有冲击力，因为训练 compute 越大，这个倍数还在变大。这是很少见的现象。模型里通常能保持线性翻倍就很了不起了，但目前我们看到的是，MoE 下随着训练 compute 增加，这个乘数还在继续扩大，也就是越往后越好。相对 dense 来说，已经到了“不用 MoE 反而奇怪”的程度。
+
+<span class="paragraph-timestamp" data-ts="06:14">06:14</span> **崔升准** 但这里为什么有三条不同的 MoE 模型？为什么分开？
+
+<span class="paragraph-timestamp" data-ts="06:20">06:20</span> **金成贤** 这是所谓 sparsity。即总参数量与单次推理 token 实际激活参数量的比例。
+
+<span class="paragraph-timestamp" data-ts="06:32">06:32</span> **崔升准** 就是说像切成更小块那种感觉？
+
+<span class="paragraph-timestamp" data-ts="06:35">06:35</span> **金成贤** 对，比如这一条每次只用总参数的四分之一。
+
+上面那条则是每次只用总参数的五十分之一。参数用得越少，也就是越 sparse，这个 multiplier，我该怎么说，叫 compute multiplier，会更大，斜率会更陡。
+
+当然这是按 FLOPs 算的，所以考虑真实推理条件、内存带宽等，不一定完全如此。但只看训练 compute 维度，这种模式出现本身就很令人惊讶。
+
+<span class="paragraph-timestamp" data-ts="07:20">07:20</span> **崔升准** 它不完全是 scaling law，但感觉很像。
+
+<span class="paragraph-timestamp" data-ts="07:24">07:24</span> **金成贤** 它是 scaling law 的一种。这个 scaling law 也有两个组成：一个是指数项 exponent，一个是前面的系数 coefficient。当模式体现为 exponent 在变化时，就会出现这种现象。那这种情况下，不用它反而不合理，它会变成“必须采用”的技术进步。MoE 就扮演了这个角色。
+
+到 2024 年前，MoE 模型还比较少，但现在 2025 年出来的模型几乎全是 MoE。除了 edge device 这类场景，基本都是 MoE，像 GPT-OSS 也是非常 sparse 的 MoE。
+
+而真正把 MoE 的 recipe 建起来的，DeepSeek 贡献巨大。某种意义上，DeepSeek 设计的架构变成了上一代 Llama 架构那样的基础架构。比如 Kimi，Moonshot 的 Kimi，就说没必要再去改 DeepSeek 架构了。因为这套已经足够好，直接拿基础结构跑就行。他们做了很多几乎原样采用的工作，我觉得 Mistral 可能也做了类似的事。DeepSeek 开创的 MoE 架构就是这么成熟。通过这个，大家都意识到：即使算力非常有限，只要采用这套架构，也能去冲 GPT-4 以上的目标。这是非常关键的组成部分。
+
+## MoE 如何工作，以及 DeepSeek 的贡献    *09:01*
+
+<span class="paragraph-timestamp" data-ts="09:01">09:01</span> **卢正锡** 直觉上讲，MoE 会让人觉得“嗯，这很好”，但同时又有点理解不了，是这种领域。
+
+我们说 expert，很容易想成这个 expert 负责数学、那个负责科学，但其实并不是这样。
+
+每个 token 都会走不同的 expert routing，其中还有共享的东西、同时激活 7 个之类，全部都是超参数配置。
+
+成贤，MoE 现在有被揭示出来的理论背景吗？比如它为什么有效。
+
+<span class="paragraph-timestamp" data-ts="09:37">09:37</span> **金成贤** 对最近的 MoE 模型，最好把它看成 sparsity。这样理解最合适。用 sparsity 这个概念想非常好：虽然可能有上百个模块，但每次真正用的只是其中一部分。这就是稀疏状态。
+
+通过这种稀疏性，每次真正消耗的计算量被限制住了。因为每次实际激活参数只是总参数的一部分，这部分是固定的。
+
+总参数又非常大，而且每次根据情况、根据 token 会调用不同模块，所以从全局看总参数会产生一种放大效应。这个解释可能有点难。
+
+<span class="paragraph-timestamp" data-ts="10:26">10:26</span> **卢正锡** 对，很难。确实很难解释。
+
+<span class="paragraph-timestamp" data-ts="10:30">10:30</span> **崔升准** 有点模糊，但是否可以理解为模块化、正交化之后可组合？
+
+<span class="paragraph-timestamp" data-ts="10:37">10:37</span> **金成贤** 对，就是这样。把“可组合性”打开的也是 DeepSeek。它被模块化了，每次只用其中一部分。虽然取决于场景，但因为准备了大量模块，从系统整体看，就产生了一个超大模型的效果。可以这么理解。
+
+在 23、24 年很多人都觉得 MoE 是好方向，但我不认为有人预期它会这么好。
+
+即使 GPT-4 是 MoE 这件事已经公开之后，随着经验积累，感受也从“不错”变成了“这是不是好得过头了”。
+
+<span class="paragraph-timestamp" data-ts="11:13">11:13</span> **崔升准** 所以这是 2025 年第一名。
+
+<span class="paragraph-timestamp" data-ts="11:15">11:15</span> **金成贤** MoE 是第一名。现在这些模型都换成 MoE 了，非 MoE 反而很少见。
+
+<span class="paragraph-timestamp" data-ts="11:23">11:23</span> **崔升准** Chester 评测的 Kimi k2 里，MoE 分出来的单元很多，是几千个吗？
+
+<span class="paragraph-timestamp" data-ts="11:30">11:30</span> **卢正锡** 不是，大概几百级别。比 DeepSeek 增加了数量，但整体架构一样。正如成贤刚说的，他们应该也做了“与 sparsity 相关的效率在什么水平最优”的实验，做过一些这种尝试。
+
+<span class="paragraph-timestamp" data-ts="11:46">11:46</span> **崔升准** 所以另一个重要关键词就是 sparsity，和 MoE 连在一起。
+
+<span class="paragraph-timestamp" data-ts="11:49">11:49</span> **卢正锡** 2025 第一名就是 MoE。MoE 是 Mixture of Experts，意思是专家混合。
+
+<span class="paragraph-timestamp" data-ts="11:58">11:58</span> **崔升准** 这个名字确实有点怪。继续吧。
+
+## RLVR：开启 Agent 学习新视野    *12:01*
+
+<span class="paragraph-timestamp" data-ts="12:01">12:01</span> **金成贤** 下一个就是 RLVR。它几乎把 o1 的方法完全揭示出来，带来了巨大变化，而这最终也是 DeepSeek 做出来的。
+
+<span class="paragraph-timestamp" data-ts="12:14">12:14</span> **卢正锡** 完全同意。
+
+<span class="paragraph-timestamp" data-ts="12:15">12:15</span> **崔升准** 现在回想起来真的很惊人。
+
+<span class="paragraph-timestamp" data-ts="12:18">12:18</span> **卢正锡** 他们做得太好了。24 年底 DeepSeek-V3 论文出来，定义了 MoE 等内容；到了 2025 年 1 月发布 DeepSeek-R1 模型，RLVR 作为方法论随论文一起出来。
+
+<span class="paragraph-timestamp" data-ts="12:35">12:35</span> **金成贤** 其实 DeepSeek 的影响反而被低估了。它把范式和市场格局都改了很多。RLVR 通过可验证正确答案来给奖励，让 reasoning 学习成为可能。2024 年大家探索的很多东西里，它用几乎最简洁的方法给这个核心路线画上了句号。也因为它给了 o1 方法很强线索，基于这个，o1 类 reasoning 模型才变得可开发。
+
+reasoning 本身大幅提升了模型性能，也打开了所谓 agent post-training 的一条路径。reasoning 不只是“苦想数学题”，而是模型用工具、与外部环境交互，并在交互中作为 agent 完成任务。
+
+这个过程整体都可以放进 RLVR 的奖励框架里训练，模型就会开始以 agent 方式学习。这影响非常大，已经影响了当前市场。现在出来的 frontier 模型，与过去“先做 base pre-training，再做一点 post-training、做点 instruction-following 就能发布”的时代不同了。
+
+现在 agent post-training 和 reasoning 能力几乎成了标配。这带来了巨大变化，不只是可用性，也极大拓展了潜力。agent 模型对现实市场的影响已经无需赘述。今天的 coding agent 和各种 agent，都是这种 agent post-training 才能实现的结果。
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **崔升准** 那我这样说会不会太夸张？如果 RLHF 是为了做聊天机器人的 post-training，RLVR 就是为了做 agent 的 post-training。
+
+<span class="paragraph-timestamp" data-ts="14:35">14:35</span> **金成贤** 对，通过 RLVR，模型被训练成 agent 成为了可能。可以这么看。
+
+<span class="paragraph-timestamp" data-ts="14:43">14:43</span> **卢正锡** 这个话题上次我们和成贤深聊过，真的很有意思。更好奇的朋友可以去听成贤上一期。
+
+<span class="paragraph-timestamp" data-ts="14:56">14:56</span> **崔升准** 但那时候你还没用“agent post-training”这个说法吧。
+
+<span class="paragraph-timestamp" data-ts="15:01">15:01</span> **金成贤** 对，当时没讲 RLVR 如何连到 agent。比如说，模型要成为 agent，必须给它各种工具。比如调用工具使用编辑器，或者在代码场景里读仓库文件、写入修改，这些都通过工具完成。模型借助工具和外部世界交互。那在这个过程中，如何让模型把这件事做好、如何训练？针对“如何用工具完成目标任务”这个问题，RLVR 给了很简洁的答案：先让模型能用工具，至于中间怎么用先放一边，按最终结果评估。范式转到这里。
+
+比如一个 coding task，就评估最终产物是否令人满意。unit tests 就是典型例子。通过 unit tests 可以验证代码是否正确，验证最终结果。至于达到结果的中间过程，人类可以暂时不去管。
+
+模型自己去用工具，最终设法达到结果。达成目标就给奖励。这样就发生了 agent post-training。当然这只是很简化的说法，还有 cold start 等问题，但核心就是这样。通过只评估最终结果，模型被训练成 agent 成为了可能。过去这些过程都要人工设计。
+
+<span class="paragraph-timestamp" data-ts="16:58">16:58</span> **崔升准** 这张图是什么？
+
+<span class="paragraph-timestamp" data-ts="17:00">17:00</span> **金成贤** 这张图其实我也在想，什么图最能说明 RLVR，但没有特别合适的。
+
+这是从 DeepSeek-V3.2 论文里拿的一张，展示模型 RL 训练过程中性能在提升。更具体地说，这是通过构造 synthetic environment 做 RL 训练得到的结果，不过这个细节不太关键。
+
+<span class="paragraph-timestamp" data-ts="17:30">17:30</span> **卢正锡** x 轴是训练步数，左边是对应的性能指标，
+
+<span class="paragraph-timestamp" data-ts="17:35">17:35</span> **金成贤** 对，是性能变化指标。
+
+<span class="paragraph-timestamp" data-ts="17:36">17:36</span> **卢正锡** 是 benchmark 指标。
+
+在你上次那期里你讲到 RL，尤其 RLVR 到底产生什么影响，你当时的一个反思让我印象很深。很多能力其实 baseline 本来就有，但通过 RL 能更容易把这些能力调出来。这是我最大的收获。
+
+<span class="paragraph-timestamp" data-ts="18:00">18:00</span> **金成贤** 我想我现在可以多讲一点这个相关内容。
+
+我最开始也说过，RLVR 是一个新范式转变。2025 年基本都在拓展对它的理解、改进与发展，我觉得大量时间都花在这上面了。
+
+## 深入 RL：能力涌现还是能力组合？    *18:22*
+
+<span class="paragraph-timestamp" data-ts="18:22">18:22</span> **金成贤** 这个和模型性能稍微不同，但关于 RL 很有意思的一点是 RL 基础设施的发展。LLM RL 的要求非常复杂。因为你要训练模型，需要训练基础设施；你还要用模型生成并与环境交互，所以需要采样与生成引擎；再把采样结果送到环境中获取反馈，这种基础设施也要有。
+
+而且这些设施彼此联动。训练结果要给采样引擎，采样结果进环境，环境结果再回到训练。单看基础设施层面，这三件事任何一件都很难。仅仅训练这一项，要高效做好就已经极难，这几乎就是 pre-training 基础设施的全部难点。
+
+但现在还要让这些异构系统联动。模型训练要快，采样生成也要快，训练与生成切换要快，评估和奖励要快，而且全流程还必须准确。这个过程稍有误差，就有很多研究表明会妨碍学习。
+
+在 2025 年，“又快又准”始终很难，但这带来了很多新问题。再加上 MoE 成为主流后，如何稳定做 MoE RL、如何稳定训练 MoE+RL，也变成重要议题。这很难，但也许因为中国团队集中攻关，推进非常快。我觉得这是 2025 年非常重要的一根支柱。对 RL 的理解也推进了很多。
+
+理解 RL 的一个轴是方法改进。RL 到底如何发生？RL 发生时 LLM 内部到底变化了什么？为什么 RL 在 LLM 上效果这么好？这类研究很多。
+
+但在“理解 RL”这件事上，我个人很感兴趣的一项研究是：LLM 和 RL 刚火起来时，就有个问题一直存在，RL 到底是在赋予新能力，还是只是把已有能力调出来。也就是能力本来在那，只是被埋住了，RL 把它提上来。早期常见观点是“可能基本就是这样”。
+
+但随着理解加深，出现了“RL 会带来新能力”的观点。这里有 atomic skill（原子能力）和把原子能力组合的能力。原子能力可以理解成四则运算这种；而把这些能力组合起来解更复杂问题，是 composition 能力。原子能力重要，组合能力也同样关键。现在很多人的看法是：原子能力在 pre-training 学到，比如算术；而 RL 学到的是把 pre-training 学到的能力进行组合的能力。
+
+<span class="paragraph-timestamp" data-ts="21:55">21:55</span> **崔升准** 这和你前面讲 MoE 的感觉不是很像吗？
+
+<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **金成贤** 和 MoE 还是不太一样。这里是说算术这种更基础能力。大家认为 RL 不太擅长直接学这种基础能力本身。
+
+但“把基础能力按正确顺序组合，去解决新问题”这种 compositional 能力，是可以通过 RL 学到的。就现在来看，这是 2025 年里理解 RL 最有意思的话题之一。
+
+<span class="paragraph-timestamp" data-ts="22:28">22:28</span> **崔升准** 听起来像 skill 1、2、3 这样逐步推进，这一块似乎有点不同。这个很重要吗？
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **金成贤** skill 1、2、3 都可以看作独立技能。不仅在这个问题里，在其他问题中也会出现。一般认为这些技能在 pre-training 阶段学到。单项技能在 pre-training 学到，但要真正解题，必须把这些技能组合好。
+
+<span class="paragraph-timestamp" data-ts="22:58">22:58</span> **崔升准** 这个 composition、combination，是不是有点像 chaining，一个接一个串起来？
+
+<span class="paragraph-timestamp" data-ts="23:05">23:05</span> **金成贤** 对，chaining 是 composition 的一种形式。拿这个技能的结果接下一个，再接下一个，就是这种组合方式。
+
+比如简单算术题，只靠组合四则运算也能做很多任务。所以虽然算术单项技能存在，但“如何组合这些技能”也可以视为另一种能力。
+
+而且常有人说，这种 compositional 能力似乎是 RL 赋予的。通过这个理解，我们对 pre-training、mid-training、post-training 的关系理解提升很大。
+
+当然 atomic skill 到底是什么、该怎么定义，仍然微妙。说 atomic skills 在 pre-training 学到，但“原子能力”到底是什么？可能不只四则运算这种，也可能是更大粒度，这方面仍有很多待理解。
+
+尽管如此，我们已经获得了很多关于“模型如何提升、RL 具体做了什么”的理解。如果 RL 带来的是组合能力，那么 pre-training 阶段就应当尽可能培养更多 atomic abilities，把基础能力打磨好。这样模型会更强，也能做更多事。这种理解就出现了。
+
+<span class="paragraph-timestamp" data-ts="24:36">24:36</span> **崔升准** 这是经验观察吗？为什么 RL 会获得新的、我是说 compositional 能力，这一点还不知道吧？
+
+<span class="paragraph-timestamp" data-ts="24:43">24:43</span> **金成贤** 对，还没有理论分析到那个深度。主要是经验上，在一些简化设定里得到了结果。比如模型基础能力不足时，RL 本身效果不好；如果基础能力存在，那么通过 RL 能获得更长链条、更复杂组合的能力。这些都被经验验证了。
+
+这些分析通常在较简单设定下完成，所以它对真实复杂场景的影响还需要更多思考。但已经有人开始转向：在 pre-training 或 mid-training 阶段，重点注入 agent 所需的 atomic abilities。这个思路转变正在发生。因为如果这些能力先注入好，后续组合能力可以由 RL 去完成。
+
+<span class="paragraph-timestamp" data-ts="25:51">25:51</span> **卢正锡** 完全同意。
+
+<span class="paragraph-timestamp" data-ts="25:51">25:51</span> **崔升准** mid-training 是不是那个做领域专项训练的部分？
+
+<span class="paragraph-timestamp" data-ts="25:56">25:56</span> **金成贤** mid-training 其实不是定义很清晰的概念。但在进入 post-training 前，它可以被视为“帮助 post-training 的学习过程”。所以如果 post-training 学的是组合能力，那么 mid-training 就可以更聚焦地教这些 atomic abilities。这个流程现在变得可行了。随着我们对 RL 理解加深，也能回答更多问题。比如“RL 能不能做到以前无法建模的事情？”“能不能解决更复杂问题？”这些问题现在都能给出一些回答。
+
+看起来 RL 是能做到这些的。RL 算力越高，我们就越能通过技能组合解决复杂问题。我们对这件事的预期也更乐观了。
+
+不再只是“把已有能力提取出来”。如果只这么看，就会觉得“pre-training 没学过就不可能”。但现在看，模型似乎可以在 pre-training 之外继续拓展，这一点正在被证明。
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **卢正锡** 对。这个有个很有趣的类比，我们高中数学考试就是这样。基础技能都通过例题学会，但要通过后面的各种练习题，能力才会真正增强，对吧？
+
+<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **崔升准** 现在高中还用“例题”这个词吗？
+
+<span class="paragraph-timestamp" data-ts="27:24">27:24</span> **卢正锡** 其实理论上你把例题彻底吃透，宇宙里的题都能解，但最后还是得再做 30 道练习题才能上考场。
+
+<span class="paragraph-timestamp" data-ts="27:33">27:33</span> **金成贤** 有些东西不亲自做是学不会的。通过这个过程，才能学会把技能用在合适的问题上。我觉得这大概就是现在大家认为 RL 的最大作用。
+
+<span class="paragraph-timestamp" data-ts="27:46">27:46</span> **卢正锡** 所以 2025 是 RL 之年。MoE 和 RL 是不同层面的故事，一个是架构层，一个是其上的学习层、类似课程设计层，所以是不同事。RL 真的是大议题。2025 年确实如此。
+
+## 论文之外的默会知识：前沿模型的隐藏配方    *28:01*
+
+<span class="paragraph-timestamp" data-ts="28:01">28:01</span> **崔升准** 关于“这到底算不算真正 RL”的争论，现在结束了吗？
+
+<span class="paragraph-timestamp" data-ts="28:04">28:04</span> **金成贤** 还在。冲突还在。更“原教旨”的 RL 研究者仍会说这不是真正的 RL。
+
+但我不太确定。追求所谓真正 RL 到底有多大意义，我也在想。而且上一阶段的 RL，真的是能很好解决所有好问题的方法吗？
+
+其实随着 pre-training 发展，LLM RL 形态能做的事已经广很多了。
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **崔升准** 对，首先就是利用强 prior。
+
+<span class="paragraph-timestamp" data-ts="28:42">28:42</span> **金成贤** 对，要利用 prior。事实上如果没有它，我们现在这种解题方式显然不可能。像 atomic skills、skills、skills 组合，这些过去都不是 RL 核心话题。但通过 LLM 这个视角变得可能了。如果从“我们在学组合能力”来理解，那也反过来说明 LLM pre-training 阶段学到的 atomic skills 非常重要，必须好好培养。
+
+像 Chester 说的，2025 真的是 RL 之年。所有人都对 RL 感兴趣，都意识到必须做 RL，都接受了这件事。研究也集中在：如何高效做 RL 的基础设施、如何改进 RL 方法、如何设计更好的 objective、如何提升“到底发生了什么”的理解，以及如何改进 RL 前的准备工作（比如 mid-training）。
+
+这些改进归根到底都与 RL 有关。正如我前面说的，拓宽理解、打基础、再把能力磨细磨深，这些似乎就是 2025 的关键工作。
+
+所以有点讽刺的是，2025 要是多来几次范式级地震会更刺激，但那种时刻似乎集中在年初，集中在 DeepSeek moment。后面的阶段，与其说“哇，范式完全变了”，不如说更像一个打磨期。
+
+<span class="paragraph-timestamp" data-ts="30:23">30:23</span> **卢正锡** 对。我觉得应该理解为那套方法在被 scale-up。2025 下半年是这个阶段。
+
+<span class="paragraph-timestamp" data-ts="30:30">30:30</span> **崔升准** 但如果 recipe 已经这么公开，为什么只有美国和中国做出来了？
+
+<span class="paragraph-timestamp" data-ts="30:35">30:35</span> **金成贤** 这个我也不确定。有人在 Twitter 上说过类似话：DeepSeek 把配方几乎全公开了，中国都在按这个配方做，为什么结果还是主要出在中国？
+
+可能是意志问题，也可能是环境和资源问题。但再过一点时间，别的地方也会有成果吧？韩国现在也在做 RLVR 了。
+
+<span class="paragraph-timestamp" data-ts="31:06">31:06</span> **卢正锡** 对，我们身边就能看到很多能力提升。升准提了个很关键的问题。
+
+其实我和成贤现在说的论文方法、直觉解释这些，在某种意义上都只是冰山一角。现实中表面看是“哦，原来是这样”，但底下还有数据集精修、计算基础设施，以及成贤前面展示过的、因 RL 变得极其复杂的训练流水线。
+
+这些合起来我们叫“recipe”，但这里面有很多论文里写不出来的 tacit knowledge。比如“超参数这么设会在这里炸、在那里炸”。这些经验往往都保存在亲身做过的人脑子里。
+
+所以掌握完整 recipe 的人会被高度重视。
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **金成贤** 特别是没公开的部分，很多都和数据相关。pre-training 数据是这样，post-training 数据怎么做更是隐藏知识，很多公司都在这上面竞争。这部分更像黑箱。大家在发展自己的技术、积累数据构建 know-how，而这个 know-how 最终会体现在产品质量上。
+
+所以某种意义上 frontier 公司就是在这里竞争。比如现在目标是做更好的 coding agent，那就必须造出匹配这个目标的优质数据。数据怎么造、长什么形态，这些都是隐性 know-how。
+
+这些很可能只能靠亲自做、靠迭代经验学到。这种知识也属于隐藏知识。
+
+<span class="paragraph-timestamp" data-ts="33:02">33:02</span> **崔升准** 因为它存在于人的经验里，而且可能是很脏的 engineering，最终就意味着它会聚集在那批人所在的圈层，不管是中国还是美国。
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **金成贤** 对。但我个人看法是，现在有这么多公司都做到这个层级，说明在某些底层条件满足时，这并不是“你不知道某个绝对秘密就永远不可能做到”的事。环境和条件到位，可能我这么说有点冒进，但我认为这是很多人都能达到的。说“不知道秘密就做不了”并不成立，因为做出来的公司已经太多了。
+
+## 数据定义模型    *33:40*
+
+<span class="paragraph-timestamp" data-ts="33:40">33:40</span> **金成贤** 从这个角度看，模型正在越来越不像研究对象，而越来越像产品。研究视角下，做到 90% 可能就可以了；但要做成产品，必须打磨到 99%、99.9%。
+
+在这个意义上，把 AI 模型当产品来做的视角和文化，我认为很关键。我们需要像做产品那样做 AI 模型，也需要像做产品那样做 R&D。
+
+<span class="paragraph-timestamp" data-ts="34:17">34:17</span> **卢正锡** 成贤，刚才你讲中国 frontier 模型时提到，中国模型好在很多都公开了规模和架构。
+
+说到 frontier，比如 Opus 或 Gemini Pro，外界估计在 1T 到 2T，也就是 1,000B 到 2,000B 参数级。DeepSeek 或 Kimi 公布的模型在 600B 到 700B。再往下像 Sonnet、Gemini Flash 又被估计在 100B 以下。中间还有很多模型在发布。
+
+但现实里过了 30B，人类就很难区分了，看起来都很聪明。在你看来，frontier 与模型规模的相关性是什么？你怎么看？比如至少多大算 frontier，哪个规模可能是转折点，我很好奇你的感觉。
+
+<span class="paragraph-timestamp" data-ts="35:21">35:21</span> **金成贤** 比起模型规模本身，我觉得“这个模型如何训练、如何构建”对 frontier 更重要。但此前 DeepSeek 是 600B+，很多人会觉得需要 600B 到 1T。不过像 MiniMax 或 Z.ai，总参数大约 100B，实际激活参数大约 10B，非常小，但也产出了很有意思的结果。
+
+你刚提到的 Flash 或 Sonnet 如果在 100B 左右，那说明 100B 级总参数模型里，已经能看到 frontier 的痕迹。只要训练得好，在实践中已经能完成很有价值的任务。
+
+<span class="paragraph-timestamp" data-ts="36:11">36:11</span> **卢正锡** 没错。
+
+<span class="paragraph-timestamp" data-ts="36:11">36:11</span> **金成贤** 低于这个规模的模型，大家一般不太当作讨论对象。
+
+<span class="paragraph-timestamp" data-ts="36:14">36:14</span> **卢正锡** 所以现在大致上，100B 左右也开始显现 frontier 的迹象了。
+
+<span class="paragraph-timestamp" data-ts="36:22">36:22</span> **金成贤** 前提是做得好。
+
+<span class="paragraph-timestamp" data-ts="36:23">36:23</span> **卢正锡** 对，而资金和资源更多的人已经在探索更大空间。
+
+<span class="paragraph-timestamp" data-ts="36:29">36:29</span> **金成贤** 对。即便总参数是 100B，实际使用参数可能只有 10B 左右。从这个角度看，仍然是很小的模型。
+
+<span class="paragraph-timestamp" data-ts="36:36">36:36</span> **卢正锡** 这就是 MoE 让它成为可能。
+
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> **金成贤** 对，MoE 让它可能。除了 MoE，训练方法和更深理解也让它成为可能。
+
+100B 这个量级，最终和过去 70B 差距并没有想象中那么大。但在这个规模上，现在也能出现非常有趣的能力。
+
+这是一种……
+
+<span class="paragraph-timestamp" data-ts="37:01">37:01</span> **崔升准** 这块我不太熟，但 frontier 以前说 GPT-4 大约 2T，本质上也和 serving 限制相关吧？那现在如果是 MoE，4T 左右也能服务吗？
+
+<span class="paragraph-timestamp" data-ts="37:20">37:20</span> **卢正锡** 按湾区、硅谷流传的说法，现在 Opus 级 frontier 模型大概在 1T。1T。
+
+<span class="paragraph-timestamp" data-ts="37:29">37:29</span> **崔升准** 但那最终还是和 serving 限制缠在一起吧？
+
+<span class="paragraph-timestamp" data-ts="37:33">37:33</span> **卢正锡** 可以这么看，但真假我们也无法确认。对。
+
+<span class="paragraph-timestamp" data-ts="37:38">37:38</span> **金成贤** serving 可能确实有难点，但这块我也不太确定。对。
+
+<span class="paragraph-timestamp" data-ts="37:43">37:43</span> **卢正锡** 长话短说，深度学习或者说我们看到的模型进展，有人会极端简化成“本质就是数据问题”。最近 NeurIPS 上，崔艺珍教授 keynote 里也非常强调：数据就是一切。
+
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **金成贤** 我最近听到一句话：“模型是产品，数据是模型。”
+
+有人这么说，我觉得很对。数据重要，没有 AI 研究者或工程师会否认这点。但你必须不断强调“数据最重要”，否则大家总会忘。
+
+<span class="paragraph-timestamp" data-ts="38:21">38:21</span> **卢正锡** 而且在数据质量上，他们投入真的非常夸张。
+
+frontier labs 包括最近发布的 Nemotron 论文，技术文档里一半以上都在讲数据，超参数和架构几乎一带而过。大量篇幅都在说“这个数据集是怎么做出来的、做了什么努力”。
+
+<span class="paragraph-timestamp" data-ts="38:43">38:43</span> **金成贤** 在深度学习里，数据一直都是最重要问题。我们不该忘记。但我们之所以反复说“数据重要”，本身就说明人们总在忘记：数据才是最重要的。
+
+<span class="paragraph-timestamp" data-ts="38:55">38:55</span> **卢正锡** 对。我们作为观察者，天然会更关注图、架构、某个技巧怎么带来结果。难免会这样，因为那部分更有趣。
+
+<span class="paragraph-timestamp" data-ts="39:05">39:05</span> **金成贤** 但数据精修一直都至关重要。从产品角度看，把用于产品的数据打磨到“数据本身就是产品”的程度，会是非常关键的问题，而且现在已经是了。
+
+<span class="paragraph-timestamp" data-ts="39:21">39:21</span> **卢正锡** 再补一句，Nemotron 那篇里他们处理数据主要用的是 Qwen 30B。对。
+
+<span class="paragraph-timestamp" data-ts="39:33">39:33</span> **金成贤** 这有点悖论，但那些 open model 在数据处理中起了很大作用。
+
+<span class="paragraph-timestamp" data-ts="39:37">39:37</span> **卢正锡** 这个基本正确。对。
+
+<span class="paragraph-timestamp" data-ts="39:39">39:39</span> **金成贤** 要造模型需要数据，要造数据又需要模型。所以第一阶段模型的角色，现在由 open model 在承担。
+
+<span class="paragraph-timestamp" data-ts="39:49">39:49</span> **崔升准** 那是数据处理？还是数据生成？
+
+<span class="paragraph-timestamp" data-ts="39:52">39:52</span> **金成贤** 都是。处理和生成都越来越 model-based，所以都需要模型。总之，这就是我对 2025 的看法。
+
+<span class="paragraph-timestamp" data-ts="40:02">40:02</span> **卢正锡** 这是 MoE 与 RL 的一年。
+
+<span class="paragraph-timestamp" data-ts="40:04">40:04</span> **金成贤** 我大概讲到这里。
+
+## 2026 展望 1：无法阻挡的 Scale-Up 竞争    *40:06*
+
+<span class="paragraph-timestamp" data-ts="40:06">40:06</span> **金成贤** 我在想下一步。下一步里，所有公司，尤其我认为中国公司最想要的，是 scale up。大家对 scale up 都有一种遗憾感。“要是模型能再大一点就好了”“pre-training 要是能做更大规模就好了”“RL 我们感觉已经做得差不多了，基于这些经验，如果 pre-training 也能 scale up 就好了”“要是能试试就好了”。这种动机在技术报告里都能感受到。
+
+中国公司都想要，而且越难做到越想要。现在中国本来就有算力约束，正因为有约束，所以这种渴望更强。
+
+从这个意义上，我觉得明年 scale up 一定会发生。这是非常自然的推进。比现在更大、训练更久的模型很可能会出现。
+
+<span class="paragraph-timestamp" data-ts="40:57">40:57</span> **卢正锡** 成贤，你能详细解释一下“scale-up”吗？你这里说的 scale-up，指的是硬件算力扩张、由此带来的模型规模增长、数据集规模增长、RL 环境规模增长，这些都包括吗？
+
+<span class="paragraph-timestamp" data-ts="41:14">41:14</span> **金成贤** 对，都包括。但更重要的是模型基础体量，也就是基础权重等级，和 pre-training 的 weight class 更相关。我们现在说模型是 1T、2T，但大多数模型实际激活参数，如我刚才说的，大概 10B、30B、40B、50B 这个量级，基本在 100B 以下。也就是“实际使用规模”。总参数 1T、2T 时，真正每步用到的可能只有约 100B 或以下。
+
+但做了 RL 后就会想：“这个规模都这么有效，那更大呢？”“如果不是 100B active，而是 200B、300B active，会怎样？”他们一定会这么想。
+
+还有 pre-training 长度。中国模型现在大概训练 15T tokens。那如果是 50T、100T 会怎样？他们自然会想这个问题。到那时会发生什么？当然没试过我们不知道，无法确定。但大家会期待可能再来一次跃迁。
+
+所以他们在 scale up，我相信所有人都想要。如果给到更多算力，能训练更大模型，就能在其上做更强的 RLVR 和 agent training。这是他们的想法。
+
+<span class="paragraph-timestamp" data-ts="42:35">42:35</span> **崔升准** 这个说法是来自这个链接吗？看起来像中国播客。
+
+<span class="paragraph-timestamp" data-ts="42:39">42:39</span> **金成贤** 这个稍微不同。这个是 DeepSeek 最近技术报告里的内容。他们在提“如果 pre-training 能再强化就好了”。他们想做更长上下文、想让模型更大。其实 DeepSeek-V3 里有个有趣点是：模型更大后，RLVR 效果更好，他们实际感受到了。
+
+还有在 R1 论文相关里，小模型效果不佳，换大模型后 RLVR 突然就很有效。他们也观察到了。那就会自然想：这种跃迁只在这里发生吗？以前不行的东西，放到更大模型会不会行？这些想法都会出现。
+
+<span class="paragraph-timestamp" data-ts="43:20">43:20</span> **崔升准** 11 月时也有说法，Gemini 3 的关键还是 pre-training 突破。方向是一样的。
+
+<span class="paragraph-timestamp" data-ts="43:28">43:28</span> **金成贤** 对，是同方向。pre-training 方法会改进，pre-training 规模也会扩张。大家都在关注这两点。这是大家都想要的。
+
+<span class="paragraph-timestamp" data-ts="43:37">43:37</span> **崔升准** 所以 pre-training scale up 了，RL 的 scale up 或性能提升会自然跟上。
+
+<span class="paragraph-timestamp" data-ts="43:43">43:43</span> **金成贤** 对，会自然跟上。而这种性能提升不只是分数涨一点，而是让以前做不到的事变得可行。很可能会以这种形式出现。
+
+<span class="paragraph-timestamp" data-ts="43:50">43:50</span> **崔升准** 甚至可能出现新能力，新的 capability。
+
+<span class="paragraph-timestamp" data-ts="43:54">43:54</span> **金成贤** 这就是中国公司 2026 年的目标之一。他们会想办法聚更多算力，凑算力、讨论要不要买 H200，大家大概都在做这件事。
+
+这也和我们一直说的那件事重复出现：沿着当前方法继续推进，大家常说会产生经济价值。也就是继续在现有方法延长线上提升性能、扩展场景，把以前做不成的事做成。比如拓展到所谓白领工作；在科学场景里还需要真实实验；再把这些需要实验的环节接到 agent training 里。做这种领域扩张会是很自然的目标。
+
+当然这事没有理由不做，也确实值得做。但最大的瓶颈会是数据问题。这个播客也是前两天出的，他们说的也一样：frontier 公司现在投入巨大资源造高质量数据，但“这种方式还要持续多久？”这个问题很难不出现。
+
+如果模型、agent 要做更复杂、更高质量工作，数据本身也要更复杂、更高质量。那为了造更高质量、更多样的数据，资源就会继续堆进去，这会成为瓶颈。
+
+他们用的类比是自动驾驶，我觉得很精彩。做到 90% 自动驾驶很容易，但要做到 99%、99.9%，你得收集大量 edge cases、corner cases 和 long tail 数据。
+
+你必须持续收集并一点点改进，这本身就是巨大瓶颈。“我们还能这样做多久？”就会开始思考，也会思考有没有突破方法。我认为这可能是当前拖慢发展速度的最大问题。
+
+<span class="paragraph-timestamp" data-ts="45:58">45:58</span> **崔升准** 有点跑题，但中国播客里的讨论质量挺高。我也看了黄东成翻译的那期，讨论层次真的到 frontier 了，感觉很深，挺有意思。
+
+<span class="paragraph-timestamp" data-ts="46:17">46:17</span> **金成贤** 也不是每期都很有趣，但确实有很多很有价值的讨论。比如 robotics 或 AI，会有研究者直接来聊。
+
+像这种播客里，意外的是不只 CEO 级别，很多 Chief Scientist 级别研究者也会来讲自己正在解决什么问题、什么最重要。这类信息其实在英语世界也没那么常见。
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **卢正锡** 不过崔艺珍教授在 keynote 里也开玩笑说，当前 frontier 是由“在美国的中国人”和“在中国的中国人”共同构建的。
+
+<span class="paragraph-timestamp" data-ts="47:00">47:00</span> **金成贤** 而且中国出来讲的 Chief Scientist 等研究者，本身就来自 frontier 公司，所以这也是了解这些公司内部情况的机会。我觉得非常好……
+
+<span class="paragraph-timestamp" data-ts="47:11">47:11</span> **崔升准** 所以意思是我们也得看中国那边的信息。
+
+<span class="paragraph-timestamp" data-ts="47:14">47:14</span> **金成贤** 对，如果你感兴趣，去看中国这边会有很多可学的东西。
+
+<span class="paragraph-timestamp" data-ts="47:20">47:20</span> **卢正锡** 对，播客名字本身也很特别。小宇宙，我不知道拼音怎么写，但大概就是 “Small Universe”（小宇宙）。
+
+<span class="paragraph-timestamp" data-ts="47:28">47:28</span> **金成贤** 我记得那期标题好像叫“语言即世界”之类。非常有意思。这期也很有意思，不过像 transcript 这种内容分享起来有点麻烦，所以不太好直接转述。
+
+<span class="paragraph-timestamp" data-ts="47:41">47:41</span> **卢正锡** 是中文对话吧？
+
+<span class="paragraph-timestamp" data-ts="47:43">47:43</span> **金成贤** 对，是中文。
+
+<span class="paragraph-timestamp" data-ts="47:44">47:44</span> **崔升准** 但现在可以翻译着看了，所以……
+
+<span class="paragraph-timestamp" data-ts="47:46">47:46</span> **卢正锡** 对，可以把中文 transcript 抽出来转成英文或韩文阅读。
+
+<span class="paragraph-timestamp" data-ts="47:51">47:51</span> **金成贤** 我就是翻成英文来看。
+
+<span class="paragraph-timestamp" data-ts="47:52">47:52</span> **卢正锡** 对，其实中译英几乎完美，所以看起来问题不大。是的。
+
+<span class="paragraph-timestamp" data-ts="47:58">47:58</span> **金成贤** Gemini 3 这方面做得不错。到目前为止，这些都还是当前范式的延长线。
+
+## 2026 展望 2：新范式的黎明    *48:05*
+
+<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **金成贤** 在这个范式延长线之外，去思考完全不同的范式，我仍然觉得很重要。我期待的是明年能看到一些新范式的轮廓。
+
+而在新范式里，一个很关键的点是：更自主的 agent 会是创造经济价值的核心问题。现在 coding agent 已经很自主，但仍是人不断下指令。你给指令，结果不满意再要求修改。
+
+这种 feedback loop 已经能自动化很多事，但如果要创造更强经济价值，我认为它们还需要更高自主性。也就是 agent 自己改进代码。
+
+你把任务放在那里，它能自己持续优化。即便没有新的人工指令，也能一整晚自发改进代码、加功能、持续优化。
+
+再往前一步，你可以想象能独立完成整个项目的 autonomous agent。如果那样，相比当前 coding agent，它创造的价值会非常巨大，是质的变化。我觉得那时才会出现真正的经济价值。
+
+只有当模型能自己工作……人类有自主性，会自己改代码、自己做功能。agent 也具备这种能力时，才会带来更大的经济价值。
+
+## 走向更高自主性的 Agent    *49:37*
+
+<span class="paragraph-timestamp" data-ts="49:37">49:37</span> **卢正锡** 我个人觉得这是可解问题。现在很多人已经通过 Harness 在模拟这件事。是在模仿这个过程，对吧？但要让单模型持续以这种自主性执行动作，这个问题是不是也快被解了？
+
+<span class="paragraph-timestamp" data-ts="49:57">49:57</span> **金成贤** 这也是我希望被解决的问题。至于会不会解决，从这里开始要考虑的是迈向下一阶段的技术问题。更像是我希望它被解决。
+
+当这种 agent 出现后，现在这种接近 chat interface 的形态会改变。现在是人下命令，模型执行，等下个命令。那种界面会变成：agent 持续工作，人查看中间结果并给反馈，agent继续推进。我希望出现这样的范式变化。
+
+而这会变成 continual learning。前面提到的中国播客也说了：现在在硅谷、在旧金山湾区，大家都在谈 continual learning，这是最大话题，所有人都感兴趣。
+
+我觉得 continual learning 会是很重要的范式转变，而且也与数据问题相关。就像我前面说的，靠人把所有数据都造出来太难了。理想状态是模型自己发现数据并学习。这也与 continual learning 相关。
+
+这里说的 continual learning，不只是不断追加数据，而更接近“模型自己学”。如果做到这一点，人就不需要为每个场景、每种复杂情况都手工造数据，模型会自己构建并学习这些场景。
+
+不过 continual learning 有很多技术限制。很多人在想“要不要扩展 in-context learning”。但我认为更关键的是：模型要学什么、为什么学、如何发现这些目标，这才是 continual learning 最核心的组成。
+
+学习能力本身不是最重要的。你有学习能力后，还要能在真实场景里学到重要东西。重点不是“会学”，而是“被扔进现实时能学会该学的”。这才是关键，也可能是下一次范式转变最重要的组成。
+
+<span class="paragraph-timestamp" data-ts="52:25">52:25</span> **卢正锡** 这已经有点科幻了。模型控制自己的学习。
+
+<span class="paragraph-timestamp" data-ts="52:31">52:31</span> **崔升准** 既然我们在谈 2026，成贤你觉得概率多大？
+
+<span class="paragraph-timestamp" data-ts="52:39">52:39</span> **金成贤** 大概 50%。
+
+<span class="paragraph-timestamp" data-ts="52:40">52:40</span> **崔升准** 50%？也就是 2026 出现 continual learning 的概率有一半左右。
+
+<span class="paragraph-timestamp" data-ts="52:45">52:45</span> **金成贤** 对，我觉得至少 continual learning 的某个关键组成会出现。
+
+因为大家都说在研究这件事。OpenAI 也说这方面进展不少。
+
+从这些信息看，我希望 2026 左右能看到一些雏形。
+
+这可能是带有希望色彩的预期。是的。
+
+## Self-play 与内在动机：与人类对齐的 AI 条件    *53:10*
+
+<span class="paragraph-timestamp" data-ts="53:10">53:10</span> **金成贤** 与 RL 相关总会出现一个词：self-play。AlphaGo 通过 self-play 提升性能这件事给大家印象很深。
+
+所以大家对 self-play 也很期待。这也与数据问题有关。希望模型不用外部喂数据也能自己学。
+
+但我们现在做的数学题或 agent coding，不是围棋那种游戏。它不是零和博弈，所以 self-play 很难实现。
+
+比如可以想象：一个 agent 出题，一个 agent 解题。出题 agent 不断出更难题，解题 agent 不断去解，通过交互让模型变强。
+
+那出题 agent 会持续把题变难，越难奖励越高。
+
+但这里有陷阱。围棋我不确定，但数学题里，制造“成功率 0%”的题太容易了，胡乱出题就行。
+
+于是会说，那别出 0% 的题，出“刚好合适”的题，比如 50% 成功率。
+
+但这也很容易做。比如四则运算，你只要不断拉长算式长度就能调难度。
+
+这说明：如果我们关注“人类真正觉得有趣的问题”，让 self-play 起作用其实很难。关键不是把成功率压低，不是单纯出更难题，而是要出人类视角下有趣、有价值的问题。
+
+这是个非常难的问题，也有很多研究者在做。最近论文里的倾向是：如果不与人类对齐，这件事很难成立。模型不与人类对齐就走不通。很多人都在往这个方向思考。
+
+<span class="paragraph-timestamp" data-ts="55:21">55:21</span> **崔升准** 你刚说的第 2 点和这个有点共鸣，像是再往上一层。
+
+第 2 点和第 3 点都在讲比当前层级更高的东西。
+
+learning to learn，还有现在最不 trivial 的部分是 curiosity 或者说“如何构造问题”本身成了关键点。
+
+<span class="paragraph-timestamp" data-ts="55:42">55:42</span> **金成贤** 所以我觉得这三个问题会汇聚到一个点：intrinsic motivation，与人类对齐。都会汇到这里。做 self-play 时也必须产出对人类有趣的问题，模型本身也最好具备这种动机。
+
+比如人类会自己造数学题再去解，因为会觉得“这题有意思”。continual learning 也一样，人会觉得“这个有意思”“学了能用来解题”，会有这种动机。
+
+autonomous agent 也是。比如做代码优化时，人会有“这里还能优化”“可以加这个功能”的动机。
+
+<span class="paragraph-timestamp" data-ts="56:27">56:27</span> **崔升准** 对。
+
+<span class="paragraph-timestamp" data-ts="56:28">56:28</span> **金成贤** 如果要把这种动机给模型，这个动机必须与人类目标和价值对齐。必须是“从人类视角有价值、追求有价值事物”的动机。
+
+<span class="paragraph-timestamp" data-ts="56:42">56:42</span> **崔升准** 这和我们在 Ilya Sutskever 那期聊的“情绪是价值函数”有点关系吗？
+
+<span class="paragraph-timestamp" data-ts="56:48">56:48</span> **金成贤** 可能有一点。情绪和动机不完全相同，但很多时候强相关。情绪与动机这个问题……在心理学里，情绪通常被看作短时，动机被看作更长期。我记得大概是这样。但二者关系很深。因为我们有动机的事情，情绪也会强耦合。对，这些都相关。可能 Ilya Sutskever 的 SSI、Mira 的 thinking machine 等公司，据说都对这些很感兴趣。
+
+我希望这个问题在 2026 开始显现。如果在 2026 显现，我觉得最重要的范式转变会围绕它发生。那时我们会经历的 agent 变化会非常巨大。
+
+比如在 RLVR 之前，甚至当前 coding agent 之前，其实也有 agent。RLHF 模型时代也做过 agent。但相比之下，今天的 coding agent 强太多，创造的经济价值也大得多。
+
+也就是说经历一次范式转变后，agent 发生了质变。下一次范式转变叠加后，我觉得它创造的价值会和今天的 coding agent 相比再次质变，而且会更有用。
+
+<span class="paragraph-timestamp" data-ts="58:17">58:17</span> **崔升准** 真是头大。
+
+<span class="paragraph-timestamp" data-ts="58:19">58:19</span> **金成贤** 对，头大。没错。我觉得对现在如此巨额的投资来说，要创造足够大价值去证明这些投入合理，这可能是必需元素。现在大家都在怀疑的是：“投了这么多钱，能产出足够价值吗？”
+
+领域扩展和当前性能提升当然也有帮助，也会扩张价值，但我觉得要证明如此规模的投资合理，必须有范式级创新，必须有对应的质变提升才行。
+
+<span class="paragraph-timestamp" data-ts="58:57">58:57</span> **卢正锡** 嗯，像 Elon Musk 或 Sam Altman 的说法，本质上和成贤刚说的是同一条线。他们说 AI 创造的价值会接近无限，所谓无限丰裕时代会来。这个是从总体财富视角讲的，但在那个系统内部，对靠现有工作谋生的人来说，短期冲击会很大。
+
+<span class="paragraph-timestamp" data-ts="59:24">59:24</span> **崔升准** 我脑子里会冒出“hyperstition”这个词，自我实现预言。为了证明现在投资的钱是对的，我们必须走到那个阶段。所以 2026 必须出现某种里程碑式事件，这套逻辑是这样吧？
+
+<span class="paragraph-timestamp" data-ts="59:42">59:42</span> **金成贤** 我也是这么想。为了证明当前投资的合理性，而且现在还有 AI 泡沫的说法，如果 2026 没有这种创新，只靠渐进改善，我觉得会引发很多质疑。当然也会有人继续主张渐进改进就够了。
+
+<span class="paragraph-timestamp" data-ts="59:59">59:59</span> **卢正锡** 升准刚刚问成贤的那个问题，成贤回答“概率 50%”，其实也直接对应这里。大概率在 2026 还会出现某种进展。
+
+## 我们该如何生活在 AI 时代？    *1:00:13*
+
+<span class="paragraph-timestamp" data-ts="1:00:13">1:00:13</span> **崔升准** 那这又会带来 FOMO。
+
+<span class="paragraph-timestamp" data-ts="1:00:15">1:00:15</span> **卢正锡** 对，但我们要把它当既定条件来规划。
+
+现在因为我们前面说的 scale 欲望，很多人在问“半导体是不是泡沫？”“这是不是循环投资？”逻辑上很多人会这么理解，但现实是即便如此，维持这个循环的激励仍在强力运转。
+
+<span class="paragraph-timestamp" data-ts="1:00:38">1:00:38</span> **金成贤** 泡沫……
+
+<span class="paragraph-timestamp" data-ts="1:00:39">1:00:39</span> **卢正锡** 你觉得是泡沫吗？成贤、升准，我们自己聊聊。是泡沫吗？
+
+<span class="paragraph-timestamp" data-ts="1:00:44">1:00:44</span> **崔升准** 与其说我自己的看法，上次聊 Demis Hassabis 那期时，Demis 说过里面确实掺了些泡沫。
+
+<span class="paragraph-timestamp" data-ts="1:00:55">1:00:55</span> **卢正锡** 对，但在过渡期……成贤你说。
+
+<span class="paragraph-timestamp" data-ts="1:00:58">1:00:58</span> **金成贤** 其实看着这些，我会想在人类技术发展史上有没有过这种局面。必须持续开发一项新技术，而这项技术的发展还必须反过来证明投资合理。我在想历史上有没有过这种情形。FOMO 这个词确实贴切。因为现在它显然还不是现成技术，也不是完成态。但如果这个技术被做出来的概率不是 0，而且有人做出来、有人没做出来，外溢影响会极其巨大。
+
+在这个意义上，它变成某种 AI 战争。技术能不能做成很难说。我给 50% 其实也只是无先验下的说法。但如果有人先做成，带来的经济价值大到不可想象，输掉这场竞赛会成为大家不愿想象的局面。
+
+为了避免那种局面，就会把能拉来的钱都拉来竞争。如果再说一次，我会想这种局面在人类历史上是否有先例。但对当下参与者来说，他们感受到的情绪大概就是这样。
+
+<span class="paragraph-timestamp" data-ts="1:02:20">1:02:20</span> **卢正锡** 以前也有几次类似吧？
+
+<span class="paragraph-timestamp" data-ts="1:02:24">1:02:24</span> **金成贤** 对，肯定是有的。
+
+<span class="paragraph-timestamp" data-ts="1:02:26">1:02:26</span> **卢正锡** 曼哈顿计划、阿波罗计划。当时都投入了离谱的天文数字资金。但那时主要行动者是国家，而现在民间公司已经成长到某种超越国家的体量。对，所以这个游戏里先到的人也有机会把后面的梯子踢掉。就像核技术发展案例，拥有核保护伞的国家才作为超级强国活了一个世纪。我觉得逻辑相通。
+
+对我们个人来说，这是过于宏大的叙事，但这里又会出现“逃逸”这个概念。所以我们怎么办？我们现实要怎么活，问题仍然很大。2025 年初我们聊的是前辈、后辈、coding agent 会变多强，但到了 2025 年末，正如 Andrej Karpathy 发的，现在相比“有 prior 的资深者”，从一开始就接触 AI 工具的 AI-native 初级人才反而更能干。
+
+但如果成贤刚说的那种模型获得自主性，这些讨论也会结束。
+
+<span class="paragraph-timestamp" data-ts="1:03:52">1:03:52</span> **崔升准** 对。你提的三件事哪怕只出现征兆，影响都非常大。而且它们不是一个个独立发生，而是互锁关系，一个发生，其他也容易跟上。确实头大。
+
+<span class="paragraph-timestamp" data-ts="1:04:07">1:04:07</span> **卢正锡** 成贤，那你打算怎么活？突然问这么深的问题抱歉，但你这样冷静观察世界，应该也会想“我该怎么活”吧？
+
+<span class="paragraph-timestamp" data-ts="1:04:21">1:04:21</span> **金成贤** 我决定享受它。
+
+<span class="paragraph-timestamp" data-ts="1:04:24">1:04:24</span> **崔升准** 这句话我好像听过。无法避免就享受它。Chester 也说过类似的话吧？
+
+<span class="paragraph-timestamp" data-ts="1:04:28">1:04:28</span> **金成贤** 对。而且这一切也都基于预测。仍有不确定性，“会不会发生”也还没定。我就是决定先享受它。未来看起来越来越不可预测。
+
+尤其当很多事情都依赖概率事件时，预测变得更难。所以我决定享受它。
+
+<span class="paragraph-timestamp" data-ts="1:04:56">1:04:56</span> **崔升准** 虽然难预测，但因为一切都在竞争中推进，即使最终结果不确定，也肯定会出现副产物。因为有追逐过程，副产物很可能相当显著。我现在是这么看。
+
+不过有一件事我可以预测：2025 年让你觉得“这个方法可行”的东西，很大概率你得把它忘掉重学。
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **金成贤** 对，可能是这样。就现在的 agent AI 产品来说，我觉得很多都如此。
+
+大家都在说“这个还不行”，会更关注“哪里不行”。
+
+正因为还不行，才有机会。但也可能最后要把这些都推倒重来，重新思考一切。
+
+<span class="paragraph-timestamp" data-ts="1:05:36">1:05:36</span> **卢正锡** 现在是那种你必须瞄准两三步之后说“我要做这个”才有意义的局面。
+
+<span class="paragraph-timestamp" data-ts="1:05:43">1:05:43</span> **崔升准** 对。明年一定会有个时刻让你觉得“这个跑得不错，我也习惯了，不能就这么继续吗？”肯定会出现这种点。我不想学，但又不得不再跟一轮。
+
+<span class="paragraph-timestamp" data-ts="1:05:56">1:05:56</span> **卢正锡** 这个对话我们等 2026 再继续。
+
+<span class="paragraph-timestamp" data-ts="1:05:59">1:05:59</span> **崔升准** 我们年末是不是收得有点压抑或暧昧？本来该欢乐收尾的。
+
+<span class="paragraph-timestamp" data-ts="1:06:06">1:06:06</span> **卢正锡** 我们两年半前第一期播客，升准和我开始时，标题是《Geoffrey Hinton 的忧郁》。
+
+但他是比我们看得更远的人。他一定看到了我们当时看不到的东西，而他两年半前说的很多话，现在都成现实了。
+
+<span class="paragraph-timestamp" data-ts="1:06:28">1:06:28</span> **金成贤** 如果只聚焦技术发展本身，我觉得这会是最有趣的部分。技术进展会让你不断惊叹“这也能做到？”“真能到这个水平？”我觉得可以这样去关注。
+
+至于它可能带来的社会影响……想到这里还是会有点沉重。
+
+<span class="paragraph-timestamp" data-ts="1:06:44">1:06:44</span> **卢正锡** 对，当兴趣爱好者真的很快乐，但现在……
+
+<span class="paragraph-timestamp" data-ts="1:06:48">1:06:48</span> **崔升准** 我的生活是重叠态。我一边以爱好者身份活着，也得过现实生活。总之，2025 大概就是这样。
+
+<span class="paragraph-timestamp" data-ts="1:06:57">1:06:57</span> **卢正锡** 我们总结了 2025。2026 预计会有更快的变化节奏。成贤也指出了几个大方向。第一是 scale，这方面投资……看不到停止迹象。这是第一点。
+
+第二是……不会只是我们至今看到的范式延长，而是一个不同的、非连续的、下一层范式……你说它很可能会出现。为此你提到 continual learning，还有另一个是什么？你指出了这些方向。
+
+<span class="paragraph-timestamp" data-ts="1:07:32">1:07:32</span> **金成贤** 它们都是相关问题，比如 continual learning、self-play，或者通过它们实现的更自主 agent。
+
+<span class="paragraph-timestamp" data-ts="1:07:42">1:07:42</span> **崔升准** 而且你说的不只是 coding agent，对吧？可能是 co-scientist，甚至“co”都可以拿掉。
+
+<span class="paragraph-timestamp" data-ts="1:07:48">1:07:48</span> **金成贤** 对。要创造更大价值，当然至少要延伸到我们说的白领工作，还得更进一步。具体会是什么形态我也不确定，但如果能实现，我觉得会在那里提供巨大帮助。
+
+因为现在这类任务你都得一项项造数据。怎么用 Photoshop，怎么操作……这些都得教。
+
+但如果模型能自己学，它可以看视频自学 Photoshop，然后直接使用。就可能出现这种事。
+
+## 结束语与新年问候    *1:08:24*
+
+<span class="paragraph-timestamp" data-ts="1:08:24">1:08:24</span> **卢正锡** 好，那我们就把这一年……做个收尾吧？今天又从成贤这里学到了很多，我脑子现在很热闹，各种想法……像经纬线一样交织在一起。
+
+能在每周六从你们两位这里学到这些……对我人生来说是非常大的福气。谢谢。
+
+<span class="paragraph-timestamp" data-ts="1:08:44">1:08:44</span> **崔升准** 我当然也是一样。首先今天的对话本身就非常有趣。
+
+今天成贤也……搭出了很有意思的叙事线，让我能非常专注地听。感觉像一年在眼前闪过。
+
+不过 2026……这不是很让人肾上腺素上来吗？太让人兴奋了，我很期待接下来会发生什么。1 月会发生什么、AlphaGo 周会发生什么、Google I/O 附近会发生什么……我都很期待。
+
+<span class="paragraph-timestamp" data-ts="1:09:14">1:09:14</span> **卢正锡** 下周一到 1 月中旬，东西就又会涌出来了。对。
+
+<span class="paragraph-timestamp" data-ts="1:09:20">1:09:20</span> **崔升准** 对，所以我们到时候再约。现在先休息。成贤你最后有什么补充……或者想说的吗？
+
+<span class="paragraph-timestamp" data-ts="1:09:29">1:09:29</span> **金成贤** 也没什么特别的。我每年这时候都会写回顾，应该是一直在坚持。能用这种形式做回顾……对我来说很有趣。
+
+我以前写回顾时也总会写来年预测。我想这个习惯延续到这里了，所以今天这次回顾里，也自然写到了 2026 可能会发生什么。因为不确定性很多，我们带着“可能会发生什么”的期待进入 2026，我觉得会很有意思。
+
+<span class="paragraph-timestamp" data-ts="1:10:01">1:10:01</span> **卢正锡** 不过我们终究受限于人类框架，所以……大家保重身体。对，2026 我也在想会更多投资……和健康相关的业务。
+
+<span class="paragraph-timestamp" data-ts="1:10:12">1:10:12</span> **崔升准** 那我们新年再见。
+
+<span class="paragraph-timestamp" data-ts="1:10:14">1:10:14</span> **卢正锡** 对，大家 2025 都辛苦了。谢谢成贤和升准。
+
+我们度过了非常非常有意思的 2025。虽然有辛苦的时候，但真的、真的、真的非常好玩。
+
+看起来 2026 会比现在变化更快，所以我们要做好准备，也让我觉得必须更勤奋地生活。
+
+也要对我们的订阅者，Fugitive Alliance 的订阅者们，表示非常感谢。
+
+好，升准、成贤请各说最后一句，我们就收尾吧。
+
+<span class="paragraph-timestamp" data-ts="1:10:46">1:10:46</span> **崔升准** 对，过去这一年我也非常开心。周六有时会累，尤其我们见得这么频繁，但它一直都是我期待的时间。
+
+能一起对话、一起看同样的风景，也讨论彼此看到的不同风景……这是非常愉快的时间。
+
+而且总是意识到有订阅者……一直在看着我们……这件事也非常有帮助。所以我一直都想说谢谢。祝大家在 2026 新年快乐。
+
+<span class="paragraph-timestamp" data-ts="1:11:15">1:11:15</span> **金成贤** 对，我虽然没有在这个播客满一年，但能持续参与还是很感激。
+
+关于 2025，我们聊了很多，但从技术上看它仍是非常有意思的一年。祝大家 2026 新年快乐，也希望大家都健康。
+
+<span class="paragraph-timestamp" data-ts="1:11:33">1:11:33</span> **卢正锡** 大家保重身体，新年再见。
+
+<span class="paragraph-timestamp" data-ts="1:11:36">1:11:36</span> **崔升准** 新年见。
+
+<span class="paragraph-timestamp" data-ts="1:11:38">1:11:38</span> **卢正锡** 好，大家辛苦了。

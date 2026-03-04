@@ -1,0 +1,797 @@
+---
+episodeNumber: 77
+lang: "zh-Hans"
+title: "Gemini 3 与 Antigravity：创新陡峭到疯狂的曲线"
+description: "本周，期待已久的 Gemini 3 正式发布，在 AI 行业掀起巨大波澜。随着 Gemini 3 的到来，我们深入讨论了 pre-training 与 post-training 的进展、AI scaling law 的有效性，以及 AI 加速发展对商业与个人能力的影响。通过 Gemini 3 在 UI 生成、音乐、交互式可视化等实际应用案例，我们重新审视了在快速变化的 AI 时代中，“unlearn-learn”这类灵活方法的重要性。"
+publishedAt: 2026-01-28
+duration: "1:15:44"
+youtubeId: "iphkBknRyjo"
+thumbnail: "https://i.ytimg.com/vi/iphkBknRyjo/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - 崔升准
+chapters:
+  - time: "00:00"
+    title: "开场：Gemini 3 发布与本周 AI 时间线"
+  - time: "02:54"
+    title: "竞品模型应对：GPT-5.1-Codex-Max 与 Nano Banana Pro"
+  - time: "04:02"
+    title: "AI 与科学的结合：OpenAI 与 Google DeepMind 的策略"
+  - time: "07:35"
+    title: "Scaling Law 结束了吗？Gemini 3 在 Pre-training 的跃迁"
+  - time: "12:00"
+    title: "模型 Vintage 理论：数据采收与知识更新"
+  - time: "16:30"
+    title: "新的计算指标：为什么 Watts 比 GPU 数量更重要"
+  - time: "19:14"
+    title: "OpenAI 内部备忘录与 “Shallotpeat” 项目"
+  - time: "22:20"
+    title: "Unlearn-Learn：抛弃复杂 Harness，信任模型"
+  - time: "25:15"
+    title: "Benchmark 的局限与 Andrej Karpathy 的 “Vibe Check”"
+  - time: "29:45"
+    title: "Gemini 3 的压倒性功能：Generative UI 与 Voxel/SVG 生成"
+  - time: "33:30"
+    title: "速度超级智能：快 100 倍、便宜 100 倍的智能未来"
+  - time: "34:40"
+    title: "历史视角：农业与工业革命，以及认知劳动替代"
+  - time: "40:40"
+    title: "HWP 文件识别功能与数据流动的含义"
+  - time: "43:20"
+    title: "意图即现实：编码与创作门槛的崩塌"
+  - time: "47:30"
+    title: "物理可视化案例：Nano Banana Pro 的应用"
+  - time: "50:50"
+    title: "现场 AI Transformation（AX）：幼儿园教育资料制作案例"
+  - time: "58:50"
+    title: "Antigravity 评测：降低 CLI 门槛的 Agentic 工具"
+  - time: "01:06:30"
+    title: "给工程师的建议：比起造工具，更应聚焦解决问题（Business）"
+  - time: "01:11:55"
+    title: "“Fugitive Alliance” 聚会公告"
+  - time: "01:12:45"
+    title: "结尾：快速变化时代中多元视角的重要性（Syncretism）"
+notionUrl: "https://erucipe.notion.site/Gemini-3-0-AX-2b2d5c9e7e5980efb79af5e94136f55f"
+---
+
+## 开场：Gemini 3 发布与本周 AI 时间线    *00:00*
+
+
+<ResourceLink url="https://antigravity.google/changelog" title="antigravity.google" domain="antigravity.google" />
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天我们录制的时间是 2025 年 11 月 22 日，周六早上。本周，期待已久的 Gemini 3 终于发布了。大概这两三天里，我感觉一直在疯狂玩这两个东西：Gemini 3 和 Antigravity。升准。
+
+
+<ResourceLink url="https://blog.google/technology/ai/nano-banana-pro/" title="blog.google" domain="blog.google" />
+
+<span class="paragraph-timestamp" data-ts="00:23">00:23</span> **崔升准** 还有 Nano Banana Pro 也出了。
+
+<span class="paragraph-timestamp" data-ts="00:25">00:25</span> **卢正锡** 好，那关于 Gemini 3，我们来看看发生了什么，以及其中的意义。
+
+
+<ResourceLink url="https://openai.com/index/group-chats-in-chatgpt/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="00:34">00:34</span> **崔升准** 感觉是充满多巴胺的一周。我现在已经有点空虚了。大版本发布后那种热度迅速降下来的感觉有点可惜，但确实也是很有趣的一周。
+
+如果看最近的时间线，虽然感觉已经过去很久了，但 9 月 30 日初秋的时候，Claude Sonnet 4.5 发布。然后 10 月 1 日，像 Periodic Labs 这些地方出现了一些关于科学方向的信号。接着 10 月 21 日 Atlas，10 月 30 日，也就是正锡上次讲过的 OpenAI 内部目标公告。
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> **卢正锡** 对，就是他们宣布要做 full-stack 公司的那天。
+
+<span class="paragraph-timestamp" data-ts="01:23">01:23</span> **崔升准** 没错。大概像 26 年 9 月 AI research intern，28 年 3 月 autonomous AI researcher，这类内容他们都公布了。然后 11 月 12 日 GPT-5.1 出来了。
+
+所以 GPT-4o 风格的一些东西似乎在 GPT-5.1 上又恢复了。还有一个相对不太被关注的，我自己也只试过一次，但我觉得挺有意义。
+
+就是 ChatGPT 里的 Group chat。我也拉了几个人进去聊了下，挺有意思。
+
+<span class="paragraph-timestamp" data-ts="02:02">02:02</span> **卢正锡** 啊，这个我还没开到。
+
+
+<ResourceLink url="https://x.ai/news/grok-4-1" title="x.ai" domain="x.ai" />
+
+<span class="paragraph-timestamp" data-ts="02:04">02:04</span> **崔升准** 现在 app 里能用了，所以你试试可能会有新想法。另一方面你会感觉“哦，OpenAI 也在拓展这个方向”。做应用、做社交相关，你能看到它在持续往某个方向走。
+
+然后 11 月 17 日，那天也是韩国这边办 OpenAI DevDay 的时候。我们也受邀去了，我参加了。然后 17 号 Grok 4.1，我记得 benchmark 还挺不错。
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **卢正锡** 所以大家都知道 Gemini 3 要出，ChatGPT 和 Grok 中间也都在放消息说“我们也进步到这个程度了”。
+
+
+<ResourceLink url="https://openai.com/index/gpt-5-1-codex-max/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **崔升准** 对。
+
+## 竞品模型应对：GPT-5.1-Codex-Max 与 Nano Banana Pro    *02:52*
+
+
+<ResourceLink url="https://openai.com/index/gpt-5-1-codex-max/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **崔升准** 但每次都是最后发布的最关键，这一轮是美国时间 11 月 18 日 Gemini 3 发布，接着 19 日名字有点长的 GPT-5.1-Codex-Max 就出来了，展示他们也有对抗方案。
+
+OpenAI 是这么说的，但看整体 vibe，感觉还是有点偏向 Gemini 3。
+
+<span class="paragraph-timestamp" data-ts="03:25">03:25</span> **卢正锡** 对，要挡住 Gemini 3 和 Antigravity，GPT-5.1 还不够。
+
+
+<ResourceLink url="https://arxiv.org/abs/2511.16072" title="arxiv.org" domain="arxiv.org" />
+
+<span class="paragraph-timestamp" data-ts="03:31">03:31</span> **崔升准** 对，反正他们传达了 Codex 做得很好、还会继续好的信息。
+
+20 号公布了 Nano Banana Pro，有趣的是它被整合进 Google 全家桶生态。
+
+凡是处理图像的地方几乎都整合了 Nano Banana Pro，现在在产生协同效应。NotebookLM 之类也有。
+
+甚至 Antigravity 里也能用。
+
+所以我感觉它们缠得非常紧密。
+
+## AI 与科学的结合：OpenAI 与 Google DeepMind 的策略    *04:01*
+
+<span class="paragraph-timestamp" data-ts="04:01">04:01</span> **崔升准** 但 OpenAI 跟之前的 Periodic Labs 不一样，Periodic Labs 不是 OpenAI 本体，而是某种衍生组织；像 Google DeepMind 也是从 OpenAI 脉络分化出来的，如果说我们能读到科学方向“有事正在发生”的信号，那么 OpenAI 这个秋天一直在强调科学这条线。
+
+夏天、秋天，在科学领域都有“某些发现快出来了”的迹象，他们在推这个。就是我前面提到的 AI scientist，我是说研究 AI 的 scientist，不过总之是覆盖科学整体。Google DeepMind 本来就强调这个，Demis Hassabis 一直这么讲，但现在 OpenAI 也在持续讲。
+
+几天前也发布了这个。标题是 “Early experiments in accelerating science with GPT-5”，博客、论文、还有 podcast 都出了，但我因为 Gemini 3 太忙没怎么细看。不过信号已经出来了。这大概也是 2026 的预告。
+
+<span class="paragraph-timestamp" data-ts="05:03">05:03</span> **卢正锡** 对，2026 年大概率会像这次模型一样，在 AI 结合生物领域涌出很多进展。怎么说呢，这么讲可能有点怪，但最容易和股市叙事结合的可能就是生物领域，所以注意力会集中在那里。
+
+而且不管你是研究者还是做这个领域商业的人，最终激励一定会流向商业模式扎实、回报巨大的地方。现实就是这样。
+
+比如比起“解决社会问题”“全球变暖”这种美好叙事，更容易流向商业目标明确的地方。看起来会主要落在生物、金融这些方向。
+
+<span class="paragraph-timestamp" data-ts="05:58">05:58</span> **崔升准** 生物领域我看得不算多，但如果实验和可验证性一起推进……科学里有很多子领域，所以我在想这些会不会产生整体性的影响。我是这么想的。
+
+<span class="paragraph-timestamp" data-ts="06:14">06:14</span> **卢正锡** 对，就像上次聊 Periodic Labs 时说的，我们可能因为不了解全貌而不便评论。如果我们哪怕只懂一点……
+
+我自己也很关注生物，所以相关消息接触得比较多。也许因此我会觉得那边信号很强。材料、电子、能源这些方向我觉得都会出现很多变化。
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> **崔升准** 我同意。所以如果能聊聊各个领域专家各自用什么视角去解释这些现象和这个时代，会非常有意思。
+
+<span class="paragraph-timestamp" data-ts="06:55">06:55</span> **卢正锡** 没错。几个月前我们还在说领域专家和 AI 专家结合很重要。
+
+但其实那些 AI 专家，也就是传统上扮演软件工程师角色的人，是因为他们擅长做一种 harness。
+
+而随着我们聊 Gemini 3 和 Antigravity，后半段也会讲，我越来越强烈地感觉他们的角色在持续缩小。这个感觉非常强。
+
+<span class="paragraph-timestamp" data-ts="07:21">07:21</span> **崔升准** 总之有很多可想的，我们先往下走。
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> **卢正锡** 下一节就按你刚才铺的话题走吧，内容很多，开始。
+
+
+<ResourceLink url="https://x.com/OriolVinyalsML/status/1990854455802343680" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="07:32">07:32</span> **崔升准** 我挑了几个点。
+
+## Scaling Law 结束了吗？Gemini 3 在 Pre-training 的跃迁    *07:35*
+
+<span class="paragraph-timestamp" data-ts="07:35">07:35</span> **崔升准** 我关注的是 Google DeepMind 的 Oriol Vinyals，他以前和 Ilya Sutskever 是同事。在 Google 的时候。不是 25 年，是去年 Ilya Sutskever 把它比作石油，话里有 pre-training 已经到平台期的意思。可 Gemini 3 不是这样，它在 pre-training 和 post-training 都有提升。
+
+所以和“AI scaling law 已经结束”这个普遍看法相反，那个看法去年演讲里还被讨论和确认过。但这次不是，出现了跃迁。2.5 到 3.0 的 delta 是目前见过最大的。极限还看不到。post-training，也就是……
+
+在 pre-training 语境下他说极限看不到，post-training 则是完全的 greenfield，没有障碍。算法进步和提升空间还非常巨大。他说 3.0 也是这个过程的产物。
+
+<span class="paragraph-timestamp" data-ts="08:42">08:42</span> **卢正锡** 对，这段如果更简单解释一下，升准你会怎么讲？关于 pre-training，以前的共识是互联网高质量数据都吃得差不多了，没数据了，有“数据枯竭论”。
+
+第二，剩下大部分是垃圾数据，所以一直在做数据清洗、提升 dataset 质量。第三，接收这些数据的神经网络结构、当前训练算法、以及投入算力上限这些问题都在。但他们虽然没明说突破点在哪，却在表达“并非如此”。他们在说这些都在被克服，
+
+<span class="paragraph-timestamp" data-ts="09:37">09:37</span> **崔升准** 所以到底是 OOM 解决了，还是数据问题解决了，现在还不清楚。反正这个可能得等中国那边告诉我们，你不觉得吗？
+
+<span class="paragraph-timestamp" data-ts="09:48">09:48</span> **卢正锡** 希望多泄露点消息，最好 Kimi 或 DeepSeek 发篇论文把这些整齐总结一下。
+
+
+<ResourceLink url="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" title="metr.org" domain="metr.org" />
+
+<span class="paragraph-timestamp" data-ts="09:57">09:57</span> **崔升准** 总之我们不知道他们怎么解的，但确实解了。所以我问 GPT-5.1，它确认这事发生在 24 年，还说当时没有墙，现在也还没有。
+
+METR time horizon 很多人知道后又忘，我有时也这样。它不是模型实际执行所花时间，而是对应人类执行所需时间，对吧？Gemini 3 还没反映进去，GPT-5.1-Codex-Max 在 log scale 上只是略高于那条直线。time horizon 还是在延长。
+
+但模型现在纯执行时间已经不是按小时了，不是正在慢慢进入按天算吗？它们就是持续跑。
+
+<span class="paragraph-timestamp" data-ts="10:56">10:56</span> **卢正锡** 现在大家都说看你给它套什么 harness，时间可以无限延长。
+
+<span class="paragraph-timestamp" data-ts="11:04">11:04</span> **崔升准** 对。有些评论会问是不是只是靠 for loop 这种重复任务把时间拉长。确实有这种说法，但不管怎样，模型执行能力现在可以持续更久了。然后这一整轮里，Opus 4.5 发布后，等它整理完，虽然现在还没出，下一轮会在 3 月或 5 月左右吧？
+
+到那时如果这条图继续成立，现在稍微超过 2 小时，到明年 5 月就会到约 3.5 小时。3、4、5 月这段。这个要持续记住，就像前面 Oriol Vinyals 说的，还没撞墙，还在继续。必须记住。
+
+## 模型 Vintage 理论：数据采收与知识更新    *11:59*
+
+<span class="paragraph-timestamp" data-ts="11:59">11:59</span> **卢正锡** 所以这里 Google 和 OpenAI 应该都不只跑一条 pipeline。会有多条 pipeline，我觉得这些 pipeline……我自己瞎猜它属于哪个 vintage 的方法是看 knowledge cutoff。
+
+你看 Gemini 2.5 出来时 knowledge cutoff 是 2025 年 1 月。用了非常新的训练数据集，而刚出的 3.0 看起来 cutoff 还是一样。
+
+这意味着同一个 vintage 里，2.5 被“牺牲”掉后持续开发出了别的东西。我觉得 3.0 是这个过程的产物。
+
+现在到了 3.0，下一次全新 vintage 的 knowledge cutoff 会大幅往后。
+
+<span class="paragraph-timestamp" data-ts="12:57">12:57</span> **崔升准** 这个 “vintage” 是借葡萄酒的比喻吗？
+
+<span class="paragraph-timestamp" data-ts="12:59">12:59</span> **卢正锡** 对，就是哪一年产的。我把采收的数据集看成葡萄采收。
+
+<span class="paragraph-timestamp" data-ts="13:07">13:07</span> **崔升准** 对对，哪一年的哪批葡萄。
+
+<span class="paragraph-timestamp" data-ts="13:10">13:10</span> **卢正锡** 没错。就是 2025 年 1 月这个 vintage。2.5 和 3.0 都是。
+
+<span class="paragraph-timestamp" data-ts="13:15">13:15</span> **崔升准** 什么土壤？
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **卢正锡** 对。
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **崔升准** 也可以看成哪个酒庄。
+
+<span class="paragraph-timestamp" data-ts="13:18">13:18</span> **卢正锡** 然后从这里获得的创新和中间产物，会形成海量 dataset。还有我们在 AI Studio 这类地方输入的问题数据，这些都是高能量数据，对吧？他们也会从这里学到很多，而且
+
+<span class="paragraph-timestamp" data-ts="13:42">13:42</span> **崔升准** 所以我们一边在用数据，一边也在大量提供数据，对吧？
+
+<span class="paragraph-timestamp" data-ts="13:49">13:49</span> **卢正锡** 当然。
+
+<span class="paragraph-timestamp" data-ts="13:50">13:50</span> **崔升准** 我们在给很多“馅料”数据，也就是路径。不只是数据本身，而是数据如何被生成的路径。我们也在提供这些，所以……
+
+<span class="paragraph-timestamp" data-ts="13:58">13:58</span> **卢正锡** 这其实才重要。大家可能很容易以为 pre-training 结束了，会在平台期待一阵子，但你看人类过去的进步，从无数诺奖得主到爱因斯坦，20 世纪初有过科学文艺复兴。
+
+当时也是这些人的 thought token 相互影响，dataset 持续被增强。从这个意义看，现在的 pre-training 和 post-training，准确说是 post-training 产生的大量数据，以及我们往 AI Studio 或 Antigravity 灌入的巨大方向性意图，反过来会扩张 pre-training dataset。pre-training dataset 变大，就会进入下一个地平线。我是这么看的。
+
+<span class="paragraph-timestamp" data-ts="14:50">14:50</span> **崔升准** 可能还有完全不同的想法被藏着，但因为当前这套 regime 太有效了，所以那些会相对被遮蔽。
+
+<span class="paragraph-timestamp" data-ts="14:58">14:58</span> **卢正锡** 对。目前这套 regime 的正循环看起来还在持续。
+
+<span class="paragraph-timestamp" data-ts="15:03">15:03</span> **崔升准** 所以 Opus 4.5 的传闻很多。有人猜昨天或今天出，但还没出。
+
+不过最近大部分传闻都成真了。有趣的是 GDE 这类人在 NDA 下不能说。
+
+但关于时间点的传闻会从这些地方漏出来。所以一个传闻如果在某个分布里反复出现，基本都对。
+
+<span class="paragraph-timestamp" data-ts="15:31">15:31</span> **卢正锡** Antigravity 的 Claude Code 版本，也就是 Claude Code Desktop，很快就会出。
+
+<span class="paragraph-timestamp" data-ts="15:37">15:37</span> **崔升准** 对，是有这种 vibe。因为 Antigravity 现在成了关注对象。
+
+<span class="paragraph-timestamp" data-ts="15:48">15:48</span> **卢正锡** 这个我们后面讲 Antigravity 时再深入聊。
+
+
+<ResourceLink url="https://www.dwarkesh.com/p/bits-per-sample" title="dwarkesh.com" domain="dwarkesh.com" />
+
+<span class="paragraph-timestamp" data-ts="15:51">15:51</span> **崔升准** 这个 case 也是，前一天 model card 短暂放出后马上归档。大家都在问“这啥？Antigravity 是什么？”之类。
+
+所以 Gemini 3 发布前一天是这种状态。还有那种押注传闻的网站 Polymarket，我看时到了 91%。前一天大家都知道了。
+
+这块今天不展开，但 Dwarkesh Patel 也在这时写了篇和 RL 相关的有趣博客。
+
+## 新的计算指标：为什么 Watts 比 GPU 数量更重要    *16:33*
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **崔升准** 这里提到 “bits per sample”，有点双关，把 bit 玩成了 “watt”。正圭最近不是去了 supercomputer conference 吗？
+
+<span class="paragraph-timestamp" data-ts="16:46">16:46</span> **卢正锡** 他在那边，应该快回来了。对，Supercomputer 25。
+
+<span class="paragraph-timestamp" data-ts="16:50">16:50</span> **崔升准** 他给我一个提示：最近没人讲 GPU 数量，都讲 watts。
+
+<span class="paragraph-timestamp" data-ts="16:57">16:57</span> **卢正锡** 现在比起讲算力或 GPU 数量，因为瓶颈渐渐逼近 watts，就像按重量谈东西更容易，所以开始按“重量”谈了。
+
+<span class="paragraph-timestamp" data-ts="17:12">17:12</span> **崔升准** 在高信息效率下，能源正在被转换成智能。
+
+<span class="paragraph-timestamp" data-ts="17:17">17:17</span> **卢正锡** 最终计算输入总量代表智能，而在这个计算输入总量之前、信息量最高的领先指标，就是用电量。
+
+Watts，是的。
+
+所以现在消耗了多少 watts，就能说明这里包含了多少智能，我是这么理解的。
+
+
+<ResourceLink url="https://x.com/GavinSBaker/status/1991248768654803337" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="17:42">17:42</span> **崔升准** 没错。这条帖子挺好，是 19 号 Twitter 上一个叫 Gavin Baker 的人发的。我翻译过。也不只是我，很多人都发了这条时间线。
+
+<span class="paragraph-timestamp" data-ts="17:57">17:57</span> **卢正锡** 你总结一下。
+
+
+<span class="paragraph-timestamp" data-ts="17:58">17:58</span> **崔升准** pre-training 的 AI scaling law 仍然有效。我觉得 Gemini 3 也传达的是同样认知。pre-training 里重要的是稳定 FLOPs，Blackwell 还是 TPU 不重要。所以他提到 token economics。Grok 4.1 也能掀起波澜是因为有 infra。再连起来，他指出电力短缺问题。于是当 watts 成为瓶颈时，什么变重要？
+
+tokens per watt 会主导决策。因为 tokens 本质上就是收入，他大致是这么解释的。当然 infra 上，光缆、散热，散热这里没写，但正圭也很看重。结论是这些都说明我们仍处在 AI 的非常早期。最后他还说到了 OpenAI 的焦虑。就是这样收尾的。我只摘了整场里几段。
+
+<span class="paragraph-timestamp" data-ts="19:06">19:06</span> **卢正锡** 对，OpenAI 焦虑这段，你后面会结合 Sam Altman 的推文讲，这就来了。
+
+## OpenAI 内部备忘录与 “Shallotpeat” 项目    *19:14*
+
+
+<ResourceLink url="https://www.theinformation.com/articles/openai-ceo-braces-possible-economic-headwinds-catching-resurgent-google" title="theinformation.com" domain="theinformation.com" />
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **崔升准** 是 The Information 的文章。我没直接看 The Information 本文，是看 Twitter 上大家讨论的脉络，感觉 Gemini 3 给了很大压力。他们肯定提前知道，所以应该给员工发了备忘录。
+
+大意就是这个。里面 Sam Altman 提到一个叫 Shallotpeat 的新模型、pre-training 的改进、AI research 的激进自动化，这个激进自动化就是 10 月说过的。然后这里还提到了 pre-training 改进。于是我去查了下，shallot 是一种洋葱，peat 是泥炭土，里面好像长不好。
+
+所以它是“土壤不好导致植物长不好”的隐喻。也就是 pre-training 的土壤，也就是数据、方法、infra 有问题，而它隐喻一种即使在这种土壤里也能长得很好的新东西。有人猜这可能是 codename，我查到的是这些。
+
+<span class="paragraph-timestamp" data-ts="20:27">20:27</span> **卢正锡** 简单说就是，Google 在 Gemini 3 的 pre-training 阶段确实有进展，确实做成了一些东西，OpenAI 也有对抗动作。
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> **崔升准** 意思是它已经存在了。只是还没准备好发布，或者模型有了但还不能服务。会不会是这种？
+
+<span class="paragraph-timestamp" data-ts="20:53">20:53</span> **卢正锡** 有可能。这是我没证据的阴谋论，但你看这些进展，很多往往只是想法。
+
+我们正在进入 idea = output 的世界。在这个世界里，做 pre-training 的地方，哪怕是 Google，做 pre-training 也一定会有某种直觉引导，而这种直觉会通过口口相传迅速扩散。
+
+我相信 OpenAI 很快也会做，我觉得 xAI 也会做。只是有时间差，但向上拉平的速度越来越快。
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **崔升准** 对。按现在趋势，明年 6 月左右就该出现一个“中国版今天的 Gemini 3”了。
+
+<span class="paragraph-timestamp" data-ts="21:42">21:42</span> **卢正锡** 半年左右。以前 o1 在 9 月出，揭开它秘密的 DeepSeek R1 在次年 1 月出，大概 5 个月。所以到明年春末，也差不多该有 DeepSeek 的论文讲他们怎么把 pre-training 平台抬高了。
+
+<span class="paragraph-timestamp" data-ts="22:02">22:02</span> **崔升准** 所以我一边说也觉得很荒诞，但我们必须能想象。
+
+讨论半年后的 business、环境会怎么变，如果不信这个，连想象都做不到，所以必须始终能想象。
+
+## Unlearn-Learn：抛弃复杂 Harness，信任模型    *22:20*
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **卢正锡** 这就回到我们常讲的 unlearn-learn 框架。两个月前聊 Claude Code 时，我们还在讨论怎么搭一个好 harness 来延长工作时间，而延长工作时间就意味着提高输出质量。怎么让它做到这些？所以有了 Claude 的 skills，最近也涌现了很多继续扩展 Claude Code 的框架，大家在到处给 harness 打补丁。
+
+但换句话说，就像后面 Antigravity 段会讲的，这个时代 3-4 个月也会结束。
+
+<span class="paragraph-timestamp" data-ts="23:05">23:05</span> **崔升准** 没错。现在这种感觉某种意义上非常重要。
+
+<span class="paragraph-timestamp" data-ts="23:14">23:14</span> **卢正锡** 是的。
+
+过去工程师通过强化 harness 来打磨模型，但这些 harness 又一次以 capability overhang 的形式被模型吸收了。与其官僚式地约束它，不如只设最小 guardrails 后交给模型，反而更快带我们到“输出更好”的世界。
+
+<span class="paragraph-timestamp" data-ts="23:43">23:43</span> **崔升准** 这是 Noam Brown 今年春天说过的。
+
+<span class="paragraph-timestamp" data-ts="23:45">23:45</span> **卢正锡** 对。你刚说的直接对应这个：又到了该 unlearn 的时候。
+
+我公司里的 harness 已经很厚了，但最近我得到的洞见是，削掉很多 harness、给模型更多自由，输出质量反而会上升。
+
+<span class="paragraph-timestamp" data-ts="24:08">24:08</span> **崔升准** 所以今天 Gemini 3 让我们惊讶，六个月后也可能变得很便宜、很常见。很难想象，但是……
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **卢正锡** 对。All-In Podcast 那位 Chamath Palihapitiya 说 AI 是冰箱。是“冰箱产业里的冰箱”，好吃的食物会在里面做出来，他说真正的东西还没出来。
+
+就像你说的，这种智能会越来越便宜，智能变便宜后软件成本也趋近于零，做出想要的产品价格也趋近于零。至少在软件领域会趋近于零。
+
+那时会发生什么？需要想象力。
+
+<span class="paragraph-timestamp" data-ts="24:59">24:59</span> **崔升准** 需要想象力，但不容易。想象时还要同时想“会发生什么”和“不会发生什么”两边。其实很难。
+
+<span class="paragraph-timestamp" data-ts="25:13">25:13</span> **卢正锡** 这个我们后面再聊一点。
+
+## Benchmark 的局限与 Andrej Karpathy 的 “Vibe Check”    *25:15*
+
+
+<ResourceLink url="https://every.to/vibe-check/vibe-check-gemini-3-pro-a-reliable-workhorse-with-surprising-flair" title="every.to" domain="every.to" />
+
+<span class="paragraph-timestamp" data-ts="25:15">25:15</span> **崔升准** 我做了一点 vibe check，首先 Andrej Karpathy 说的挺有意思。不是一个特别重大的点，而是他和模型来回对话时，模型说了句很好笑的话：“Oh my god”。Andrej Karpathy 说某件事，它说不可能，因为 cutoff 了。
+
+但 Andrej Karpathy 是把 web search 关掉聊的。打开后，它又说“哦天哪，你说的全对”。就像冷冻人突然补完现实认知。通过这个模型令人意外的反应，他反而凸显了模型能力。模型能察觉、纠错、并得出“所以是这样”的结论，体现了它的能力。
+
+不过 Andrej Karpathy 的核心是要警惕 benchmark，因为可被 hack 的方式太多。所以他强调要实际对话、做 vibe check、和别的模型对比，打磨自己的感觉。这里有句挺有意义的话：“When you're clearly off the hiking trail and somewhere in the jungle of generalization,” “it is in these unintended moments” “that you can best grasp the essence of the model.” 这句话有点绕。
+
+总之，理解模型本质最好的方式不是信 benchmark，而是亲自用、亲自感受。Every 他们通常会比较早试，但这次好像没提前太多，也做了 vibe check。我翻译了，重点是：他们在培养 benchmark set，也就是说他们是有准备的团队。任何模型一出，他们就能立刻 onboard 并在几天内分享。能快速掌握模型 vibe、哪些可行哪些不可行。我再次感受到他们是准备好的人。
+
+但 Gemini 3 出来后我去问了问，现场有很多不同场景。有人不知道新闻出了，有人看了新闻但只看新闻。模型都发布了，可以马上试，但有人不去输入任何东西。也有人喜欢聊模型强项，也有人喜欢聊模型弱点。
+
+所以我感觉这里也有明显分化。还有一种人是什么都不说，但已经有想法并进入 stealth 状态，我猜是这样。
+
+<span class="paragraph-timestamp" data-ts="28:06">28:06</span> **卢正锡** 这种人很多。
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **崔升准** 所以每次有新东西出来，温差真的很大。
+
+<span class="paragraph-timestamp" data-ts="28:16">28:16</span> **卢正锡** 对。我觉得人就分两种。一种会说“反正会一直变好”，过去很多仓促创业的公司都被模型的超人能力清掉了。
+
+所以他们觉得反正要做应用，就等最后，等模型完全成熟再做。
+
+第二种是一路跟着变化走的人，边跟边经历大量成功和失败的人。
+
+我觉得这两种人里，赢家非常明确。第二种，后者，明确。
+
+第一种不知道什么时候结束，而且这件事可能永远指数加速下去，开始时机可能永远等不到。也许根本不会来。
+
+
+<ResourceLink url="https://aistudio.google.com/apps/bundled/vibecheck" title="aistudio.google.com" domain="aistudio.google.com" />
+
+<span class="paragraph-timestamp" data-ts="29:11">29:11</span> **崔升准** business 我懂得不多，但个人层面我也偶尔会那样。
+
+写第一条 prompt 时其实随便写就行，但有时会停一下，想“新模型我该怎么用才好？”然后真的停住了。
+
+但我现在相信先试再说。新模型一出，一边看新闻，一边就该试，哪怕只是把官方示例复制粘贴跑一遍。
+
+所以我想提这一点。
+
+## Gemini 3 的压倒性功能：Generative UI 与 Voxel/SVG 生成    *29:45*
+
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **崔升准** 这周我时间线里最震撼我的应该是这个。这是一个叫 Vibe Check 的网站，完全在 AI Studio 里做的。左边这部分其实可以直接改。能改代码，现在看到标着 “silly” 的这个并不 silly，反而很有趣。voxel 在动，对吧？这是 Gemini 3 做的。它不只是造形状，还让它跑起来。不是只做 3D 模型，而是直接做到这个程度。比如我们来做什么？骷髅奔跑场景。我先不立刻看，如果把 sample 降到两个会变成 SVG。刚才应该用 voxel，我再做一次。然后它会进队列。等会可以看，就会这样生成。
+
+<span class="paragraph-timestamp" data-ts="30:54">30:54</span> **卢正锡** 这和第二部分的 Generative UI 连起来了。
+
+
+<ResourceLink url="https://research.google/blog/generative-ui-a-rich-custom-visual-interactive-user-experience-for-any-prompt/" title="research.google" domain="research.google" />
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **崔升准** 他们是怎么做到的？不只是传闻。提前试过的人都发了，说它 SVG 很强，3D voxel 这些也很强。我知道它强，但自己试了感受不同。
+
+这意味着，虽然速度问题还在，但它已经成为一个在 front-end、user interface 相关能力上非常强的模型。真的很会做。几乎什么都能做。
+
+为了做到这一点，这里有博客我翻译过，也有论文。他们为此做了课程化训练，所以现在很擅长做网站 onboarding landing 这类东西。
+
+可能还不是全量开放，但这个已经出现了。你看这里有 Visual Layout Labs。除此之外 agent 好像还是 ultra 用户限定，但已经出来了。骷髅奔跑场景。
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **卢正锡** 是啊，这太夸张了吧？
+
+<span class="paragraph-timestamp" data-ts="32:14">32:14</span> **崔升准** 你会被震到，但关键是他们怎么做的。通过反馈还能继续提升。
+
+在通常没那么可验证的领域里，他们现在把它变得可验证了。视觉、设计这类方面，质量还没到人类投入极限时的水平，但它解释了怎么把它拉得非常接近。
+
+这些写在博客和论文里。博客和论文里。
+
+
+<span class="paragraph-timestamp" data-ts="32:43">32:43</span> **卢正锡** 至于方法论大概是什么，我们大体是能理解的。即便看起来不可验证的部分，
+
+在模型训练阶段也会做“这是好/这是坏”的 reward signal。可能是某种 simulator 或 decision maker，也可能是模型自己，或另一个 policy model。
+
+<span class="paragraph-timestamp" data-ts="33:07">33:07</span> **崔升准** 他们算法里就是这么做的。
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **卢正锡** 你是在说只要砸足够多计算机就能成。
+
+<span class="paragraph-timestamp" data-ts="33:15">33:15</span> **崔升准** 所以最后他们引用了今年中期发布的 “The Magic Loop of this research”。这是 bootstrapping。会越来越好。
+
+## 速度超级智能：快 100 倍、便宜 100 倍的智能未来    *33:26*
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **崔升准** 看这个并尝试解读其意义时，因为是 Gemini 3，可夸的很多，但我第一名是这个。
+
+事情已经这样了，再发挥一点想象，现在它还是要时间的。刚才生成这个大概用了 1 分钟，对吧？做个像样页面，虽然说出来有点好笑，也就 5 分钟。只要 5 分钟，5 分钟。
+
+虽然已经短得离谱了。哈哈哈。
+
+<span class="paragraph-timestamp" data-ts="33:56">33:56</span> **卢正锡** 是一个让人只能笑出来的世界。
+
+<span class="paragraph-timestamp" data-ts="33:59">33:59</span> **崔升准** 如果这就是 Nick Bostrom 在《Superintelligence》里说的 “speed superintelligence”，那如果 Gemini 3 现在这个智能水平或性能只是在速度上再快 10 倍、100 倍，会怎样？这也是一个想象点。
+
+再加上价格下降，如果是 1/100 价格、100 倍速度，如果真是这样，难道不可能吗？
+
+你就会开始想这些。哪怕近期真能做到，哪怕智能水平只停在现在，也会有巨大影响。
+
+## 历史视角：农业与工业革命，以及认知劳动替代    *34:35*
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **卢正锡** 没错，但其实 Gemini 3 或这些 AI 模型正在替我们做的工作，是我们原本认为属于自己认知能力的工作。因为它在替代这些，我们才会惊叹、焦虑，并从人的视角评判它。
+
+但现在，如果把这个评判镜头从我这样看着升准的阶段抬到天上，用历史视角看，会发现这种事历史上发生过很多次。先是农业，然后是工业革命的纺织业。
+
+拿农业举例，你也知道，曾经几乎所有产业都在农业。现在可能只有总人口 2-3% 从事农业。全人类都在农业的时代，人们每天聊的内容，就像我和升准现在聊的，可能是“这样撒种更好”“那样更好”“那村有人做了肥料产量更高”“糖度更高”这类，都是日常。
+
+但实际上，农业革命、工业革命、机械革命之后，机器开始耕田，化学进步、肥料升级。如果想想那个产业里发生了什么，就是行业里的劳动者几乎都失业了。然后一切公司化。农产品价格大幅下降，社会整体变得极其富足。
+
+所以对行业从业者来说，他们失去了生产资料；但对整个人类来说，进入了巨大的丰裕时代。没人会饿死。
+
+人类历史上第一次，不再担心饥荒饿死，而是担心怎么用 GLP-1 减肥。我们进入了这种时代。从今天看它很理所当然，但从 200 年前、150 年前的人看，是不可理解的。
+
+所以我们也要以这种量级、一个数量级变化的视角看当下世界。这样就结束了。
+
+<span class="paragraph-timestamp" data-ts="37:11">37:11</span> **崔升准** 它是 non-linear。不是线性，是 non-linear。所以原来 200 年的事现在……
+
+<span class="paragraph-timestamp" data-ts="37:15">37:15</span> **卢正锡** 会在 2 年里发生。
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **崔升准** 现在就是在发生这个。
+
+<span class="paragraph-timestamp" data-ts="37:19">37:19</span> **卢正锡** 对，所以把 200 年发生的事说成接下来 2 年发生，也许是对的。
+
+<span class="paragraph-timestamp" data-ts="37:25">37:25</span> **崔升准** 某些领域可能不是全部领域，但仍然……
+
+
+<span class="paragraph-timestamp" data-ts="37:30">37:30</span> **卢正锡** 每个 vertical 到来的方式会不同，但看模型发展和它吞噬的领域，纯信息领域的事情结束得最快。可验证领域正在变成模型自己投入算力、自己搜索、自己收尾的世界。所以我现在在公司里也说，未来两年要当二十年来看。
+
+把一个月当一年，接下来二十个月按二十年的强度去活，疯狂去做，才会在下一个世界找到答案。不然就会被彻底淘汰。
+
+还有个有趣点，农业是淘汰了一代人，工业革命大概一到一代半，农业大概两代被淘汰，但人类转向了下一域。后来我们构建了服务经济等等。但 AI 正在直接消灭人类最独特、最强的能力：认知能力、认知智能。那我们该往哪跑？
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **崔升准** 而且我最近强烈感觉新瓶颈正在出现。今天没放进内容，但我现在用模型时经常并行用。同一 prompt 会多开几次，多 session、多模型，很累。人类做 context switching 不容易。但模型只要开新 session 就行，所以管理它本身是很大的 bottleneck。
+
+然后如果速度再比现在更快，生成更多内容，不一定是量大，而是高压缩知识内容瞬间涌来，如果有些环节最终还得人来 orchestration，不做就不行。人很快就会累。所以我感觉现在出现的是另一类 bottleneck。
+
+<span class="paragraph-timestamp" data-ts="39:40">39:40</span> **卢正锡** 我们实际处理、接收或产出的信息，以及管理监督时要决策的信息量，确实已经爆炸了。
+
+我自己也是，昨天和前天发生的事都会从上下文里诡异消失。
+
+前天发生了什么我完全想不起来。
+
+<span class="paragraph-timestamp" data-ts="40:02">40:02</span> **崔升准** 最近真的得疯狂用脑。一直要读、一直要执行、要管理，真的累。
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **卢正锡** 所以我们为了抢这个时间差，想着也许有机会，活得很拼，但同时也有一种预设失败感。这样做真的有意义吗？我今天辛苦搭好的 harness，三个月后模型就替我做了。
+
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **崔升准** 好，这个先到这里。
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **卢正锡** 因为答不出来，先往下。刚才有点太深了。
+
+## HWP 文件识别功能与数据流动的含义    *40:37*
+
+<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **崔升准** 还有一个有意思的，我在时间线看到后就试了，给它一个 HWP 文件，不是二进制 HWPX，是 HWP，它读出来并帮我重新排版了。这意味着什么？
+
+<span class="paragraph-timestamp" data-ts="40:54">40:54</span> **卢正锡** 这是不是意味着韩国政府和教育相关数据以后都要进 AI 了？
+
+<span class="paragraph-timestamp" data-ts="41:00">41:00</span> **崔升准** 对。它现在还不能写 HWP，这更难一点。
+
+但读 HWP 其实已有不错的库，不过它怎么做到的我不知道。大概率不是专门为韩国市场做的，但总之能进能出。中间我没看到什么 code execution 的痕迹，模型就做了。它为什么会做这个？
+
+<span class="paragraph-timestamp" data-ts="41:29">41:29</span> **卢正锡** 我也不确定。除了最近诉讼里用过 HWP，我对 HWP 生态不太熟。
+
+<span class="paragraph-timestamp" data-ts="41:38">41:38</span> **崔升准** 我也非常想不熟……
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **卢正锡** 但你必须用，没办法。
+
+<span class="paragraph-timestamp" data-ts="41:43">41:43</span> **崔升准** 对。在我们国家很多东西都是 HWP，从某种角度它形成了围墙花园，也曾是保护网。但现在看来这些信息都会流过去。
+
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **卢正锡** 我看这种机制，像 OpenAI 的 app SDK，总之站在平台提供方视角，外部信息进入自己系统永远是收益。
+
+而且流入的信息能量层级都不一样。
+
+有垃圾数据，但用户直接在 chat 窗口表达意图时，哪怕只打一行，信息量可能等于 10 页网页。
+
+<span class="paragraph-timestamp" data-ts="42:36">42:36</span> **崔升准** 密度高很多。
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> **卢正锡** 是更高密度的信息。所以我们公司处理这类信息时，就像上期说的 “Right Questions Are All You Need”，最关键是人真正想要什么、他的 intention 是什么。
+
+说话的人直接输入的 prompt 的能量等级和质量，结果证明是最重要的。所以我们最后做了一个只聚焦管理这件事的框架。更宏观看，我们正在把这些珍贵高能 token 全部输送给 Google 和 OpenAI。
+
+<span class="paragraph-timestamp" data-ts="43:14">43:14</span> **崔升准** 总之这也是一个很难忘的场景。然后我……
+
+## 意图即现实：编码与创作门槛的崩塌    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:19">43:19</span> **崔升准** 嗯，我还没挖得特别深，但有几个瞬间让我震惊。最开始我做的是这个。给 Gemini 的第一条 prompt，是在 Gemini web app 还是 AI Studio 做的我记忆已经模糊了，但我选 AI Studio 的原因是它已经能做很多。把 prompt 变成 spec 的功能，比 Gemini web app 集成得更强，所以我在那里试。
+
+现在有个 live coding 库叫 Strudel，音乐人和媒体艺术家会用。我就提议做一个类似它的东西。所以现在这段音乐正在播，是由这里写的代码生成的。实时改数字就会立刻变成 live coding。
+
+然后我再喂一个 prompt，让它做 lo-fi hip hop 这种风格，几轮就做出来了。这个代码是一种 DSL。但它不是 Strudel 用的那套，是它自己做了个相似版本。
+
+然后音乐……现在速度有点慢，如果我调到 0.5 左右……我给身边艺术家和媒体艺术家看时，他们都挺惊讶。现在是 chat、live coding、visualization，一起出来了。
+
+<span class="paragraph-timestamp" data-ts="45:18">45:18</span> **卢正锡** 对，重点就在这。以前我们有意图时，会用“把意图变成现实的技能”来评价人的能力。但我们几十年积累的技能，被这个东西抹掉了。
+
+<span class="paragraph-timestamp" data-ts="45:38">45:38</span> **崔升准** 所以现在我一想到某件事，就会有“这能成”的感觉。最近有点这种状态。
+
+当然看模型，但到 Gemini 3.0 这个级别，想到就能成。
+
+这种感觉开始形成了。甚至运行前就知道的那种感觉。
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **卢正锡** 对。所以我一想到要做某个东西，就会先在脑中运行“写出最核心三行描述”的过程。洗澡时、淋浴时、走路时都在做，等这三行成形后，我把这三行最高能量的信息交给顶级 thinking model 说：“我要丢进 Claude Code，你帮我膨胀成 spec。”一喂进去它就做了。那一刻我输入那三行信息的能量等级非常关键。所以我才说“提炼想法本质”的能力正在变成最重要。原因就在这。然后会出来高质量 spec sheet，再把它扔给 Claude Code，或者带 harness 的 Claude Code，或 Antigravity、Codex，就结束了。
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **崔升准** 然后它就出来了。
+
+<span class="paragraph-timestamp" data-ts="46:49">46:49</span> **卢正锡** 就出来了。
+
+<span class="paragraph-timestamp" data-ts="46:50">46:50</span> **崔升准** 你先想初始 prompt，然后跑“把 prompt 膨胀”的流程，中间会有几条需要确认的问题，来回一两轮拿到 checklist 后直接跑，就出来。
+
+当然也有不行的时候，但很多时候能行。
+
+<span class="paragraph-timestamp" data-ts="47:07">47:07</span> **卢正锡** 对。当然做到 production 是另一回事，但这个问题也很快会过去。因为 production 的 DevOps 只是挂一个专精模型的问题。是“怎么挂好”的游戏。
+
+
+<ResourceLink url="https://x.com/YiTayML/status/1990817918784000420" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="47:24">47:24</span> **崔升准** 总之我试了这些。Yi Tay 回 Google 了对吧？
+
+## 物理可视化案例：Nano Banana Pro 的应用    *47:29*
+
+
+<span class="paragraph-timestamp" data-ts="47:29">47:29</span> **崔升准** 他也发了一些 prompt，我就试了。要不要在这看一下？它会做出像 Minecraft 的东西，Yi Tay 只写了一段话。他说生成一个无限扩展、秋叶飘落的空间，但我一次没成功。
+
+我加了点声音，比如走路时捡到橡子之类会发声。就这么出来了。总之这类内容最密集的地方就是我刚才给你看的 AI Studio 里的那个 “Vibe Check” bundle。
+
+然后还有这个，我在时间线看到物理学家韩正勋教授发的一张图，量子力学相关，我看不太懂。但看完他发的内容后，这是昨天，我想如果把这个喂给 Nano Banana Pro 会怎样？结果它做成了这样。以离散方式显示计算路径之类的东西。
+
+<span class="paragraph-timestamp" data-ts="48:40">48:40</span> **卢正锡** 我看不懂这些符号，但这个是完全正确的吗？
+
+<span class="paragraph-timestamp" data-ts="48:45">48:45</span> **崔升准** 对，韩正勋博士评论说是对的，而且画得很漂亮，对他写书也有帮助。他给了这个反馈。
+
+不过评论区也有别的学者说路径不该是这种干净的离散弧线，不该这么圆弧，应该更像锯齿、来回摆动一点。所以我把这个反馈给了它。
+
+然后 Nano Banana Pro 就画成这样了。我把它输入到哪里？输入 AI Studio。结果就出来了。当然不只是喂图片，我还给了对话上下文。所以现在如果我 auto-run，auto-run 或 one step，vector 就会像这样离散移动。
+
+<span class="paragraph-timestamp" data-ts="49:34">49:34</span> **卢正锡** 动得挺好。
+
+<span class="paragraph-timestamp" data-ts="49:35">49:35</span> **崔升准** 这个其实和 quantum error correction 有关，大概是这个方向。
+
+但现在可视化已经变成交互式了。这是昨天才开始能跑通的。
+
+现在 Nano Banana Pro 可用案例非常多，而且都挺好。不过先举一个例子，我还有 infographic 之类的，但……
+
+<span class="paragraph-timestamp" data-ts="50:01">50:01</span> **卢正锡** 你说“昨天才开始能跑通”，是指 Nano Banana Pro 昨天发布吗？是这个意思？
+
+<span class="paragraph-timestamp" data-ts="50:10">50:10</span> **崔升准** 这是我用 Nano Banana Pro 写的第二条 prompt。做之前我就有预感能成。这个会变成这个，然后这个会变成这个。
+
+<span class="paragraph-timestamp" data-ts="50:27">50:27</span> **卢正锡** 与其说预感，你是 99% 确定吧？
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> **崔升准** 不是 99%，但我挺确定会成，或者至少觉得会……
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **卢正锡** 那就 97% 吧。对。
+
+<span class="paragraph-timestamp" data-ts="50:40">50:40</span> **崔升准** 但识别本身还是有点不稳定。所以最后一部分讲 AX。
+
+## 现场 AI Transformation（AX）：幼儿园教育资料制作案例    *50:52*
+
+<span class="paragraph-timestamp" data-ts="50:52">50:52</span> **卢正锡** AI Transformation，对。AX 这个词只有韩国在用，全球没有 AX 这个表达。
+
+<span class="paragraph-timestamp" data-ts="50:58">50:58</span> **崔升准** 哦真的吗？那我得改一下。
+
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **卢正锡** AI Transformation。在连 Digital Transformation 都还没完成的世界里，我们已经被迫进入 AI Transformation。
+
+
+<span class="paragraph-timestamp" data-ts="51:09">51:09</span> **崔升准** 通过上一期，很多人应该知道我在运营幼儿园。Gemini 3 出来后我想做个实操 workshop，就试了一些东西。虽然我在 YouTube 说得比较自由，但其实信息量这件事很难讲，我觉得要非常谨慎。所以我小心整理了一些案例。这个例子不错：老师们把平时发给家长的两三段教育文本输入 AI Studio。我再给两三行 prompt，让它转成交互内容。
+
+这里是关于声音物理性质的实验。有个支持孩子探索各种声音的小故事。看完那张图后，它画出来、做成可交互，还支持问答。全部一次出来。于是我把这做成每个班级的案例。
+
+如果在别人的语境下做，这事不一定有共鸣。于是我就展示“他们原本做的事如何被增强”“关注点在哪里”，引用老师文本中的句子做交互内容并指出意义。大家会惊讶，但还没完全打中。那我该怎么做更多？
+
+所以我做 AI Transformation 的策略是先 1-on-1。也可以做团体培训、短讲，但幼儿园太忙了，得谨慎占用时间。先用我自己的时间做 1-on-1，形成手感后再考虑下一步怎么做更好。
+
+过几天，不，两天后 Nano Banana Pro 出来了。我就觉得这个也会成。我用 Nano Banana Pro 做的……啊在上面。你看这个，也是一些活动记录。做 infographic，当然针对某个故事一键做 infographic 能成，但更打动老师的是：如果他们像平时一样把记录有体系地整理，那么系统能自动生成这种强调意义的 slides，就算不直接照搬，也很有帮助。我拿到了这个反馈。
+
+<span class="paragraph-timestamp" data-ts="54:17">54:17</span> **卢正锡** 这是一个 PowerPoint 一键生成的世界。
+
+<span class="paragraph-timestamp" data-ts="54:22">54:22</span> **崔升准** 对。但有趣的是你还能看到我用的 prompt。比如：“Create a slide deck introducing the teacher's intention, process, and its meaning. It would be good to show how the teacher listened to the children's stories and reconstructed them.” 大概一段话。拿到反馈后，当然图片是生成的，最好替换成我们教室里的真实图片，但我收到了“内容很有意义”的反馈。所以我就能在全体会议里做这件事。
+
+整个分两阶段。第一阶段是初始 1-on-1。第二阶段是基于用例和 1-on-1 反馈，把更容易共鸣的用例介绍给全员。之后我又做了 1-on-1。时间不长，但围绕这个东西，他们印象如何、难不难，我问了后听到更多真实故事。所以我这周做了这些。
+
+东西出来了，但有哪些顾虑、组织成员怎么想、学习路径怎么走，我觉得我快速推进了这些工作。而且老师不是开发者，需要认知切换。我把自己记的一些相关笔记也贴上去了。
+
+这件事不容易，这种方法也不太容易规模化，但意外地很有趣也很有成就感。这是我的方式，而且几乎从 day zero 就能做。只要找到有意义的 use case。
+
+<span class="paragraph-timestamp" data-ts="56:22">56:22</span> **卢正锡** 对，就是这样。一个上下文积累足够的人，在某个意图方向上按下按钮，眼前就会展开魔法。你这个案例就在展示这点。
+
+<span class="paragraph-timestamp" data-ts="56:38">56:38</span> **崔升准** 对。但要做到这个，怎么说呢，目标受众？总之你要按“你想带来改变的那群人”的语境去接近。这是学习点，这样影响更大。
+
+<span class="paragraph-timestamp" data-ts="56:49">56:49</span> **卢正锡** 没错。升准你现在讲的里，你和 AI 之间已经没 bottleneck 了。你最近几乎一直在讲的不是你和 AI 之间的 bottleneck，而是你和其他人之间的 bottleneck。多数公司和组织应该都一样。所以公司里需要有一个像升准这样的 champion。然后不能有人压着这个 champion。如果 champion 在无能经理手下，大概率会被那种无能程度拖住。
+
+所以决策层要清楚理解这些动力，并能据此配置组织。要做到这一点，他们自己得有判断框架。回到你前面说的，如果不亲自下场、亲自尝试形成手感，这不是看新闻就能决定“我们这么做、那么做”的事。我要说的是这个。
+
+<span class="paragraph-timestamp" data-ts="58:04">58:04</span> **崔升准** 对。但不是所有组织都是开发组织。所以如果更一般化地看，我觉得健康的摩擦是有帮助的。
+
+之前老师们最初反应不积极时，我当然也可能暗自失落。但随后我就能思考怎么更好地触达他们、什么用例更好。
+
+而且不是站在我视角，而是站在别的视角，比如更偏模拟的方式，或教育里不能忘的关键点。
+
+有一些人会稍微踩刹车，因为我们不是开发组织，这样我们反而能找到更有意义的方向，教育上更有意义的方向。所以我觉得健康摩擦很重要。
+
+<span class="paragraph-timestamp" data-ts="58:48">58:48</span> **卢正锡** 很好。这个话题可以直接接到 Antigravity。
+
+## Antigravity 评测：降低 CLI 门槛的 Agentic 工具    *58:53*
+
+<span class="paragraph-timestamp" data-ts="58:53">58:53</span> **崔升准** Antigravity，正锡。我听说你非常震惊。
+
+<span class="paragraph-timestamp" data-ts="58:58">58:58</span> **卢正锡** 与其说震惊，不如说它是我自然预期会跑通的东西。
+
+首先 UX 设计得不错。然后 Claude Code 困在 terminal 里，本来就有一些短板。
+
+试完 Antigravity 后我再次感受到：仅仅“打开命令行、CLI、terminal”这一步，对普通人、非工程师是多大的门槛。
+
+光是用 Homebrew 装 npx、配 Node.js，对没做过的人就是巨大门槛。
+
+但下载、安装、打开 Antigravity，里面 agent 处理剩下事情，只是把这个小门槛改掉，我觉得就会很有意义。
+
+<span class="paragraph-timestamp" data-ts="59:50">59:50</span> **崔升准** 对，所以对我来说，现在有个感觉……虽然我还没做出特别像样的东西，但我确实有个“这能成”的瞬间。
+
+不只是 terminal，对普通用户来说，在 terminal 里编辑非常不方便，因为不好用。不能来回点，只能靠快捷键。
+
+<span class="paragraph-timestamp" data-ts="1:00:12">1:00:12</span> **卢正锡** 还有文件夹概念、项目在文件夹与子文件夹怎么组织。工程背景的人习惯了，但对非工程背景的人，这本身很陌生。
+
+<span class="paragraph-timestamp" data-ts="1:00:24">1:00:24</span> **崔升准** 但在 web app 里做不了的 batch job，生活里太多了。比如批量转文件，或者把图片和视频串起来做内容。
+
+这些以前可能不好做，但现在我感觉会变得能做。
+
+<span class="paragraph-timestamp" data-ts="1:00:46">1:00:46</span> **卢正锡** 在 Antigravity 和 Claude Code 这块，我觉得有 Claude Code 这个方向，也有 Antigravity 或 Codex 这个方向，而且两者方向有些不同。Claude Code 在我感觉里像坐在驾驶舱，控制器很多；Codex 或 Antigravity 更像坐在 Tesla 飞船里。
+
+<span class="paragraph-timestamp" data-ts="1:01:15">1:01:15</span> **崔升准** 更 agentic。
+
+<span class="paragraph-timestamp" data-ts="1:01:16">1:01:16</span> **卢正锡** 更 agentic。所以对有工程背景、想提升可控性的人来说，Claude Code 会更舒服、更顺手。于是工程社区会给它加 skills、加一些 agentic guardrails，比如 MD 文件，本质是把 prompt chunk 串起来。很多时候这本身还被打包。大家对这种方式更有安全感。
+
+但 Antigravity 或 Codex 其实觉得这些太官僚。因为连你定义流程的能力，在知识层面模型可能都懂得更多。为什么要用团队流程去限制它？我们强太多了。感觉这两条方向正在分叉。我一开始也很习惯 Claude Code，但随着它越来越 agentic 地自己做事，我开始感觉不便。
+
+我以前在 Claude Code 里有很多 harness，比如先写 TDD spec、先写测试、只实现通过测试的部分。这些强约束我大概两天内几乎全拆了。只给 Antigravity 一个高能量、供给充足的“我真正要造什么”的本质，反而是更划算的交易。大概两天里我的思维完全转向这边。
+
+<span class="paragraph-timestamp" data-ts="1:02:50">1:02:50</span> **崔升准** 这种话题，在 5 月 Codex 出来时 OpenAI 就说过，用的是 “abundance mind” 这个词。
+
+<span class="paragraph-timestamp" data-ts="1:02:59">1:02:59</span> **卢正锡** abundance mindset。
+
+<span class="paragraph-timestamp" data-ts="1:03:01">1:03:01</span> **崔升准** 对，abundance mindset，当时他们就这么说了。但那时 vibe 还没到……
+
+<span class="paragraph-timestamp" data-ts="1:03:07">1:03:07</span> **卢正锡** 没真正打到心里。
+
+<span class="paragraph-timestamp" data-ts="1:03:08">1:03:08</span> **崔升准** 但现在我有一部分会觉得“啊，原来是这个意思”。
+
+<span class="paragraph-timestamp" data-ts="1:03:12">1:03:12</span> **卢正锡** 对。Claude Code 里有些地方会别扭。跟 IDE 的整合有种笨拙感。像是在旁边挂了个窗格，不像 Cursor 那种编辑器级的干净整合。
+
+所以我干脆用 terminal 和 Emacs。老实说我不是 Cursor 重度用户，所以我现在被 Antigravity 震到……这可能在 Cursor 里早就实现了。我几乎不用 Cursor，甚至没付费过。
+
+所以也可能只是我个人受到的冲击，但 Claude Code 里那些别扭的不便，在这里整合得很好，我用起来很舒服。
+
+<span class="paragraph-timestamp" data-ts="1:04:03">1:04:03</span> **崔升准** 对。而且测试流程是不是很精彩？
+
+它不是用 Playwright 那一套，而是引导你装一次 Chrome extension，然后直接操控浏览器，我猜是用 CDP。用 Chrome DevTools Protocol 直接点按钮，做前端 user test，再根据 console 日志持续修复。
+
+不工作的东西还是很多，但能工作的数量大幅增加了。而且它会记录过程。
+
+<span class="paragraph-timestamp" data-ts="1:04:35">1:04:35</span> **卢正锡** 对，它会记录，还把这些都留成 artifacts。通过和失败的测试 case 都会展示，那种决策分支也以 agentic 方式处理得很好。
+
+既然模型在这种判断上远强于人，就像我前面说的，在 Claude Code 基础上持续强化某种 harness、往里塞 skill set，这个方向没意义。
+
+这个方向最好尽快掉头，我开始这样想了。
+
+<span class="paragraph-timestamp" data-ts="1:05:09">1:05:09</span> **崔升准** 对，模型是 Gemini，但最终 harness 是 Windsurf 关键人物做的，名字里也短暂提到 Cascade。
+
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **卢正锡** 不管出什么模型、什么 agent，harness 永远存在。“harness”不是某个固定层，而是无论出现哪一层，人类在其上再做抽象的行为，我们都会继续叫 harness。所以 harness 是永恒的。
+
+但这个 harness 的角色和层级会不断上移，朝更高抽象移动。这次 Antigravity 的 founder、Windsurf 出来做了十几分钟 demo，他们用的 prompt 都是对目标对象最清晰、最简洁的描述。这才重要。中间发生什么不重要。因为我会全处理。
+
+<span class="paragraph-timestamp" data-ts="1:06:14">1:06:14</span> **崔升准** 感觉就是跨过了一个台阶。
+
+所以不是啰嗦地让它做事，而是去掉冗余，只讲核心点，模型就会自己干净且有 sense 地做。这点似乎也是 Gemini 3.0 在强调的。
+
+## 给工程师的建议：比起造工具，更应聚焦解决问题（Business）    *1:06:27*
+
+<span class="paragraph-timestamp" data-ts="1:06:27">1:06:27</span> **卢正锡** 但确定的方向是模型能力会持续上升，然后我们在 Antigravity 或 Claude Code 里留下的工作轨迹，成功 job 会进 dataset，不成功会被丢弃。因此它指数提升的趋势会继续加速。
+
+所以我们应该这样判断。因为我们更早理解这些工程相关部分，可以先做更好 harness 拿到 2-3 个月优势，但这个世界很快结束，所以钻 harness 本身、钻工程细节，这些投入要逐步降低。
+
+最终是发现现实问题的能力，以及定义问题的能力。过去是咨询顾问、McKinsey 那些人在做的事。
+
+<span class="paragraph-timestamp" data-ts="1:07:29">1:07:29</span> **崔升准** 但如果现在再外推一点，比起“有解决问题能力”，是不是“拥有问题/找到问题”更不对称？那边优势是不是更大？
+
+<span class="paragraph-timestamp" data-ts="1:07:41">1:07:41</span> **卢正锡** 对，你刚说的是关键点。有问题的人非常多，但“因为 AI 世界变成这样，我的问题可以这样轻松解”这类视角迁移，对多数问题持有者还没发生。还没想到。
+
+但接下来 1-2 年我们会看到很多这样的 case。用 business 方式解释是这样。比如一个问题持有者，假设是中型公司。传统方式解决可能在付昂贵的 B2B SaaS，假设一年 714 万美元。做 AI 的这边，以前 714 万美元对应的是一个 30 到 50 人公司再加维护、上百人规模在做的工作，现在这里大概 5 个人就能做。
+
+5 个人做的话，会对原本 714 万美元的事情报价 214 万美元，但实际成本因为模型能力，可能不到 3.6 万美元。于是这 5 人能产生约 210 万美元利润，而对面那团低效的 714 万美元产业会直接消失。什么时候发生？当那个一直付 714 万美元的问题持有者发现有家公司像 Palantir 一样能这么解，或看到竞争对手已经用这种方式大幅降本并构建更动态的软件环境的瞬间，剧烈变化就开始了。
+
+所以我们现在正确方向是聚焦“不了解解法的问题持有者”与 AI 世界之间的时间差、领域差，以及那些 AI 还不擅长的极度人类部分。我觉得几乎所有价值都聚在那里。
+
+<span class="paragraph-timestamp" data-ts="1:09:54">1:09:54</span> **崔升准** 我听下来、感受到的是，这个时间差的信号，最终是“能被 fast follower 采用的 best practice 出现”的时点。之后人们因为知道“可行”就会开始做，对吧？
+
+<span class="paragraph-timestamp" data-ts="1:10:11">1:10:11</span> **卢正锡** 对。那时供给和需求又会增加，市场会到另一个均衡点。大家只看结果再去预测这预测那，但……
+
+真正抓住财富的总是那些进入转折期、整理混沌的人，并且某种形式的市场领导权一定会被某些人拿走。所以那个时期很重要，而那个时期就在未来两年，所以现在就要准备。
+
+长话短说，如果我要给软件工程师一句高度压缩的话：现在擅长用 Claude Code 或 Antigravity，或擅长给它做 harness，并没那么重要。
+
+只要你有一定这方面能力，重点是尽快找到有问题的人、解决问题，并让你构建的 workflow 锁定这个人，然后持续产出 retention 或 scale 信号。
+
+进入这个以人为中心的阶段更重要。更直白地说，尽快放下“软件工程师”身份，尽快切换到创业者心态。
+
+把自己当成“恰好比别人更早用上 Antigravity 和 Claude Code 的创业者”去行动，这是我定义的当前最正确路径。就现在而言。
+
+## “Fugitive Alliance” 聚会公告    *1:11:54*
+
+<span class="paragraph-timestamp" data-ts="1:11:54">1:11:54</span> **崔升准** 感觉差不多该把话题引到 Fugitive Alliance 了。
+
+<span class="paragraph-timestamp" data-ts="1:11:58">1:11:58</span> **卢正锡** 对。
+
+关于 Fugitive Alliance 的事，我们是周六录的，可能今天下午我就会给 Fugitive Alliance 发邮件。发完后，因为申请的人都非常厉害，在那群人里既有解决问题的人，也有持有问题的人，都混在一起。
+
+所以我意识到需要一个让 holder 和 solver 见面交流的场域，不管是线下还是线上。我觉得这可能会成为 Fugitive Alliance 的方向。
+
+<span class="paragraph-timestamp" data-ts="1:12:36">1:12:36</span> **崔升准** 那这期视频发布时，公告应该已经发出去了。
+
+<span class="paragraph-timestamp" data-ts="1:12:41">1:12:41</span> **卢正锡** 会发出去的，应该已经发了。
+
+## 结尾：快速变化时代中多元视角的重要性（Syncretism）    *1:12:44*
+
+<span class="paragraph-timestamp" data-ts="1:12:44">1:12:44</span> **崔升准** 那今天最后一个话题，我们这个 podcast 的一个优点是，虽然聊相似主题，但成员里金成贤、正锡、有镇和我，大家视角都不同，对吧？因为这个，我觉得听众会有被吸引的部分。
+
+我今天聊着也感到，当前现象是更高维的，即便只看它的投影、manifold，本身也是高维，所以我们需要从多个角度看它。
+
+<span class="paragraph-timestamp" data-ts="1:13:21">1:13:21</span> **卢正锡** 对。视角不同，形成的图像完全不同。
+
+<span class="paragraph-timestamp" data-ts="1:13:25">1:13:25</span> **崔升准** 所以这个 landscape 不是固定的，而在变化。不管我从工程师视角看，还是从 business 视角看，随着移动路径不同，景象就会不同。所以多个人一起看、一起讨论这些，能得到更高密度信息。这是我的推测。这就是“同时代性”的意思。
+
+如果要给一个建议，与其因价值观不同而互相排斥，有个词叫 Syncretism。意思是即便意见和信念不同，只要面对更大的敌人或更有意义的情境，就可以尽可能合作。就是“能放进同一个篮子里”的视角。
+
+所以我觉得对技术加速乐观的人和谨慎的人，都能这样看、那样看，如果能围绕这点沟通，会是更好的状态。
+
+这想法可能有点天真。
+
+因为信念真的不同时，确实很难相处。
+
+<span class="paragraph-timestamp" data-ts="1:14:40">1:14:40</span> **卢正锡** 对，是这样。但就像我们说 learn 和 unlearn 很重要，快速丢弃也同样重要。
+
+不久前还有个流行词“kkondae”。那种视角僵硬地固定在一个方向、无法和其他观点妥协的人会被叫“kkondae”。
+
+现在这个世界里，这类人风险最大。我们必须快速、可塑，像孩子一样……
+
+<span class="paragraph-timestamp" data-ts="1:15:09">1:15:09</span> **崔升准** 某种意义上就是 neuroplasticity。
+
+<span class="paragraph-timestamp" data-ts="1:15:11">1:15:11</span> **卢正锡** 对，我们必须学习。所以在上期里，升准你讲儿童教育该做什么时，我反过来也学到了很多可用于我公司的洞见。感觉大家都变成了幼儿园小朋友。
+
+<span class="paragraph-timestamp" data-ts="1:15:27">1:15:27</span> **崔升准** 是啊，这里还有很多可想的，但今天已经聊很久了，
+
+<span class="paragraph-timestamp" data-ts="1:15:31">1:15:31</span> **卢正锡** 聊太久了，差不多该收了。
+
+<span class="paragraph-timestamp" data-ts="1:15:35">1:15:35</span> **崔升准** 今天也很有意思。
+
+<span class="paragraph-timestamp" data-ts="1:15:36">1:15:36</span> **卢正锡** 对，升准，今天也谢谢你带来的很多启发。
+
+<span class="paragraph-timestamp" data-ts="1:15:41">1:15:41</span> **崔升准** 好，谢谢。

@@ -1,8 +1,11 @@
+export type Lang = 'ko' | 'en' | 'ja' | 'zh-Hans';
+export const ALL_LANGS: Lang[] = ['ko', 'en', 'ja', 'zh-Hans'];
+
 export type HreflangLink = { hreflang: string; href: string };
 
 export type EpisodeJsonLdInput = {
   site: string;
-  lang: 'ko' | 'en';
+  lang: Lang;
   episodeNumber: number;
   title: string;
   description: string;
@@ -14,7 +17,7 @@ export type EpisodeJsonLdInput = {
 
 export type PodcastSeriesJsonLdInput = {
   site: string;
-  lang: 'ko' | 'en';
+  lang: Lang;
   name: string;
   description: string;
   image?: string;
@@ -22,13 +25,13 @@ export type PodcastSeriesJsonLdInput = {
 
 export type HreflangInput = {
   site: string;
-  lang: 'ko' | 'en';
+  lang: Lang;
   alternatePath?: string | null;
   canonicalPath?: string | null;
 };
 
 export type SitemapEntry = { loc: string; lastmod?: string };
-export type SitemapEpisode = { lang: 'ko' | 'en'; episodeNumber: number; publishedAt: Date };
+export type SitemapEpisode = { lang: Lang; episodeNumber: number; publishedAt: Date };
 export type SitemapEntriesInput = { site: string; episodes: SitemapEpisode[] };
 
 const DEFAULT_THUMBNAIL_CACHE_BUSTER = new Date().toISOString();
@@ -93,16 +96,18 @@ export function buildSitemapXml(entries: SitemapEntry[]): string {
 
 export function buildSitemapEntries({ site, episodes }: SitemapEntriesInput): SitemapEntry[] {
   const normalize = (path: string) => new URL(path, site).toString();
-  // Use latest episode date as home lastmod
-  const latestKo = episodes
-    .filter((e) => e.lang === 'ko')
-    .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
-  const latestEn = episodes
-    .filter((e) => e.lang === 'en')
-    .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
+  // Build home entries with lastmod from latest episode per language
+  const homeEntries = ALL_LANGS.map((lang) => {
+    const latest = episodes
+      .filter((e) => e.lang === lang)
+      .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
+    return {
+      loc: normalize(`/${lang}`),
+      ...(latest && { lastmod: latest.publishedAt.toISOString().slice(0, 10) }),
+    };
+  });
   return [
-    { loc: normalize('/ko'), ...(latestKo && { lastmod: latestKo.publishedAt.toISOString().slice(0, 10) }) },
-    { loc: normalize('/en'), ...(latestEn && { lastmod: latestEn.publishedAt.toISOString().slice(0, 10) }) },
+    ...homeEntries,
     ...episodes.map((episode) => ({
       loc: normalize(`/${episode.lang}/episodes/ep${episode.episodeNumber}`),
       lastmod: episode.publishedAt.toISOString().slice(0, 10),

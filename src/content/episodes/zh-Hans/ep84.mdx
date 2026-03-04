@@ -1,0 +1,623 @@
+---
+episodeNumber: 84
+lang: "zh-Hans"
+title: "一起探索 Physical AI：与 Jong Hyun Park（sudoremove）"
+description: "与 sudoremove 的 Jong Hyun Park 一起探索为什么 Physical AI 和 Vision-Language-Action（VLA）模型正站在当今机器人领域的最前沿，并解析从 Boston Dynamics 的 Atlas 到 Figure 的 Helix 以及具备触觉能力的系统等最新演示。了解是什么推动了从“不可做到可做”的转变，并深入探讨机器人动作数据扩展这一根本挑战，以及为解决它而采用的 teleoperation、simulation 和数据增强等策略。我们还会讨论机器人基础模型可能走到多远，以及这个新兴市场中的机会所在。"
+publishedAt: 2026-02-11
+duration: "1:24:02"
+youtubeId: "MZdhBBvUmvU"
+thumbnail: "https://i.ytimg.com/vi/MZdhBBvUmvU/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - Jong Hyun Park
+chapters:
+  - time: "00:00"
+    title: "开场与嘉宾介绍：Jong Hyun Park（sudoremove）"
+  - time: "02:26"
+    title: "最新机器人 Demo：Boston Dynamics Atlas 与智能的意义"
+  - time: "05:14"
+    title: "带触觉的 VTLA：Sharpa CraftNet"
+  - time: "06:12"
+    title: "Figure Helix：端到端控制的出现"
+  - time: "08:17"
+    title: "Physical AI 的定义与范围"
+  - time: "10:49"
+    title: "把不可能变可能的时代：叠衣服与可形变物体"
+  - time: "14:45"
+    title: "从专才到通才：Robot Foundation Model"
+  - time: "17:53"
+    title: "Physical Intelligence π0.5：泛化 Demo"
+  - time: "19:55"
+    title: "VLA 术语整理：RFM、VLA、LBM"
+  - time: "24:01"
+    title: "核心瓶颈：互联网上没有 Action Data"
+  - time: "25:55"
+    title: "数据采集的现实：Teleoperation 与多种方法"
+  - time: "29:20"
+    title: "基于 Simulation 的方法：NVIDIA Cosmos 与 Sim-to-Real Gap"
+  - time: "38:46"
+    title: "Scaling Law 与时间线展望"
+  - time: "44:04"
+    title: "VLA 模型的趋同进化与剩余争议"
+  - time: "48:04"
+    title: "VLA 系谱：System 1/2 架构"
+  - time: "55:59"
+    title: "连续动作与基于 Diffusion 的方法"
+  - time: "01:03:48"
+    title: "什么是 Physical Intelligence：Moravec's Paradox"
+  - time: "01:14:27"
+    title: "商业方向：社区策略与游戏 Simulation"
+  - time: "01:17:10"
+    title: "入门指南：LeRobot、Physical Intelligence 论文"
+  - time: "01:19:45"
+    title: "机器人进入我们生活的未来与收尾"
+notionUrl: "https://sudoremove.com/knowledge/essays/archive/physical-ai-is-coming/"
+---
+
+## 开场与嘉宾介绍：Jong Hyun Park（sudoremove）    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天我们录制这期内容的时间是 2026 年 1 月 31 日，周六早上。
+
+今天我邀请了一位我最近非常喜欢、也一直在大量观看的频道作者。我们请到了 sudoremove 频道的 Jong Hyun。
+
+我和 Jong Hyun 之前见过好几次面，而我们现在最大的共同兴趣就是 Physical AI。
+
+每次见面，他都会不断跟我们讲他在 Physical AI 里看到的机会，他也一直在持续跟踪这个领域。
+
+所以今天我们会通过 Jong Hyun 来学习 VLA 的基础、这个领域正在发生什么、底层到底是什么样子，以及我们需要思考哪些问题。
+
+这些话题我们都想听。今天我们把他请来当讲师。欢迎你。
+
+<span class="paragraph-timestamp" data-ts="00:48">00:48</span> **Jong Hyun Park** 你好。首先我不是讲师，我才是学到很多的人。我总是跟大家说我们都是同路人，因为我自己也有很多不足。先说我这边的话，我大概是一年前开始的。
+
+大约一年前，我还在很认真地追 LLM，DeepSeek R1 出来时，我还在自己做 reasoning model，做那类工作。那时我第一次跑了一个 VLA，心想“这个好像真的有潜力”。
+
+回看去年，“Physical AI”这个关键词在媒体上确实热了很多。老实说我觉得 NVIDIA 推动很大，但如果你想为什么这个词会爆红，就是 LLM 已经进入我们的世界，我们在想 AGI 时代好像要来了。但如果把智能再拆开看，LLM 现在在做的主要还是 coding、math、reasoning 这些方面。可我们在跟踪这个领域时发现，这类智能和执行物理动作的智能是有差异的。
+
+所以关于这种 physical intelligence，我把现有 LLM 在解决的那类智力活动先任意归为“Cognitive Intelligence”，然后和 Physical Intelligence 并列来看：它有什么特征，我们又是怎么在攻克它。我们就聊这些。
+
+<span class="paragraph-timestamp" data-ts="02:24">02:24</span> **卢正锡** 我觉得今天会非常有意思。
+
+## 最新机器人 Demo：Boston Dynamics Atlas 与智能的意义    *02:26*
+
+<span class="paragraph-timestamp" data-ts="02:26">02:26</span> **Jong Hyun Park** 先从 demo 开始，但很多人在用播客收听，机器人里视频很多，所以如果可以的话我建议大家看画面。
+
+先看这次 CES 最火的 demo。它不只是韩国火，全球最火的 demo 就是这个 Boston Dynamics 的 Atlas，人形机器人做出了这样的动作。
+
+<span class="paragraph-timestamp" data-ts="02:56">02:56</span> **卢正锡** 很震撼。
+
+<span class="paragraph-timestamp" data-ts="02:57">02:57</span> **Jong Hyun Park** 这个我觉得尤其是最热门的动作。很像人的、波浪式的动作，再加上新的机体设计，展示了这些之后，它母公司现代汽车的股价都涨了。关注度很高，但如果看这些动作再想“背后到底是什么智能”，我想来想去，虽然没公开我们也不能确定，但我反而觉得其中智能成分并不多。看 demo 就是站起来、走路、重复做同样的动作。
+
+所以这和那种会适应变化的不一样，比如发生这个就这么做、发生那个就那么做，快摔倒时突然平衡住，或者扔什么都能用手接住。那种我们过去理解的智能驱动部分，我觉得这次不太是。但机体本身太厉害，所以大家都关注了。
+
+不过 Boston Dynamics 的 Atlas，虽然这次 CES 没展示需要那类智能的 demo，但他们去年有研究发布。用这台 Atlas 展示了只有靠智能才能完成的任务。它真的在做体力劳动。所谓需要智能的是，东西是随便乱放在那里的。你不知道会遇到什么物体、需要什么交互，但它能对各种情况做适配动作。而且 Boston Dynamics 还会拿曲棍球杆去捅它。不管怎么干扰，它都能自己应对。
+
+这对人类来说很容易，但覆盖这种动态场景原本是做不到的。现在看起来开始变得可行了。所以不管是什么物体，它都能抓、折、完成劳动。
+
+这套配置里 Atlas 跑的是一个叫 LBM 的模型，和 VLA 类似。虽然母公司是现代，但这是和 Toyota Research Institute 合作做的 LBM，demo 里就是这个模型在跑。总之这些东西最终都需要智能，而它们正在一个个出现。
+
+## 带触觉的 VTLA：Sharpa CraftNet    *05:15*
+
+<span class="paragraph-timestamp" data-ts="05:15">05:15</span> **Jong Hyun Park** 这次 CES 出来的机器人和模型里，我们觉得最惊艳的是一家叫 Sharpa 的公司，我之前也没听过。他们发布了一个叫 CraftNet 的 VLA，展示的是像这样发扑克牌。
+
+据我所知，这可能是第一次看到这样的 demo，用手发牌。这个我称作 VLA 的 CraftNet，他们又起了个名字，叫 VTLA，把 tactile 也放进去了，也就是带触觉感知的 demo。
+
+如果看前面的 demo，还有一个像折纸一样折风车。没有触觉的话，这类 demo 很难做。现在不仅接收视觉和语言，还接收触觉反馈来生成动作，这类模型开始第一次出现。我觉得我们大概在这个阶段。
+
+## Figure Helix：端到端控制的出现    *06:12*
+
+<span class="paragraph-timestamp" data-ts="06:12">06:12</span> **Jong Hyun Park** 再看一个新鲜的机体 demo。融资很多的 Figure 公司上周刚发布了一个叫 Helix 的模型，让它在厨房里工作。它会走动、拿东西、整理物品，就是做这些。这里我想指出一点，我放一次这个画面。看到它用胯部把东西顶进去，我当时想“哇，这真是按人类方式训练了”。这个 demo 标的是 autonomous。但我稍微一想，老实说和 teleoperation 比，这个 demo 大概 4 分钟。
+
+不到 4 分钟的 demo，连用脚抬东西这些都有。我们会说，4 分钟 demo 和高级 teleoperation 没什么本质区别。只要 teleoperation 做几百次，收集一模一样的动作数据再训练，真的差别不大，我们会这么讲。但依然很厉害。把全身 teleoperation 做到像人一样的模型，这本身就很了不起。好，差不多就是这样。他们要秀的是 4 分钟已经是很长的连续动作序列了，大家惊讶的是它会用胯顶、会用脚抬，展现了这种人类化行为。还有一个重点是，大约 10 万行 C++ 写的低层控制几乎都被模型端到端替代了。这和 Tesla 在自动驾驶里 FSD 想强调的是同一件事，对吧？端到端会让代码消失。所有 rule-based 逻辑被移除。方向看起来就是这样。
+
+<span class="paragraph-timestamp" data-ts="08:03">08:03</span> **卢正锡** 这就是 Tesla 展示过的路线。完全同一路径。
+
+<span class="paragraph-timestamp" data-ts="08:08">08:08</span> **Jong Hyun Park** 机器人看起来也在走同一条路。总之到这里我们快速看了最新 demo。
+
+## Physical AI 的定义与范围    *08:17*
+
+<span class="paragraph-timestamp" data-ts="08:17">08:17</span> **Jong Hyun Park** “Physical AI”这个词在外面用得很广，但今天我们先把定义收窄一点，明确我们讨论的对象。我认为的 Physical AI 是，过去写的各种 rule-based 逻辑会消失。就像 Helix 声称的那样，通过端到端学习，能覆盖各种非结构化场景的智能，真正的 physical intelligence 进来后带来的变化，我把它定义为 Physical AI。我们再稍微细看一下。
+
+首先 Physical AI 这个词本身 NVIDIA 大概两年前就在用了，在机器人圈也一直说 ChatGPT moment 快来了，我也确实觉得会来，我同意。但 NVIDIA 对 Physical AI 的用法似乎比较宽。只要能做物理动作又有 AI，不仅是这种 humanoid，模拟器里动的机械臂，或者餐厅里常见送餐到桌边的机器人，他们似乎都算 Physical AI。
+
+这当然没错，但我们频道更关心的不是这些，而是 VLA，或者也不一定非得是 VLA。无论形式如何，能端到端学习并执行通用任务的机器人，具备这种智能的机器人，我们暂时把它定义为 Physical AI。今天就在这个范围里聊。
+
+<span class="paragraph-timestamp" data-ts="10:16">10:16</span> **卢正锡** 好的。
+
+<span class="paragraph-timestamp" data-ts="10:17">10:17</span> **Jong Hyun Park** 我为什么这样定义？我觉得有个很明确的拐点。即使在 LLM 之前，也有很多东西可称作某种智能，但 LLM 出来后完全变了。
+
+同样地，基于 LLM 的 physical intelligence 实现也完全不同。我觉得是这样。那到底哪里不同？简单说，就是 Physical AI 这个词变热的同一个原因，过去做不到的事现在能做了。
+
+## 把不可能变可能的时代：叠衣服与可形变物体    *10:49*
+
+<span class="paragraph-timestamp" data-ts="10:49">10:49</span> **Jong Hyun Park** 过去不行的事情。那以前什么不行？像这个就不行。叠衣服。这个是我自己拍的。所以你看这个 demo，衣服随便放着，它自己把衣物展开、叠好、整理整齐，全都做了。说到机器人，走路其实以前也能做。虽然没现在这么好，但在我看来走路是个很小的任务。因为本质上要动的关节数量没那么多，如果把它看成只是保持平衡行走的话。
+
+当然实际上，地面不平、楼梯、障碍这些情况下走路也很难，应对各种地形非常难。像森林泥地。衣物其实一样。如果这里面有智能，走路地面是非结构化的，你不知道地上有什么。衣物、搬运物体，看起来不起眼，但它和搬刚体是完全不同的问题。我们把这类叫 deformable objects。
+
+首先它们很难模拟。是随便一件衣服都要折，但衣服很软、可变形，动作不同形状变化方式就很多。要覆盖这些极其多样的形态、覆盖这些大量 case，这其实是需要智能的任务，而现在这种可形变物体处理开始变得可能。
+
+还有什么变可能了？刚才那个 Helix，这次出来的是 Helix 第二版，第一版发布时他们炫的是这种。它在做物流体力活，这些是塑料软箱。这些软箱是可形变的。这些软箱是可形变的。所以模拟也不好做，算力需求也太大。而且你不知道里面装了什么，抓取时形状会不可预测地变化。人类即使不知道里面具体是什么，也能处理得很好。所以这些 demo 开始出现时，你能感到这里也在一点点加上智能，我觉得很了不起。
+
+这个 demo 甚至做了一小时。短 demo 可以挑片段，但他拿出一小时 demo 说“这个真的能跑”，我觉得算是一种证明。我几乎把整整一小时都认真看了，也不是每次都成功。中间也会掉东西、会漏到地上，这些也会发生。即使这里你看也只有上半身。所以那时逻辑是：先做到上半身全自主。
+
+再补充一点，这个我后面还会讲，最终这些几乎都建立在 LLM 之上。现在模型里有一种 LLM 的常识。叫 World Knowledge，这个常识在起作用。过去模型没有常识。走路不需要常识。但比如说“拿起红色杯子”，哪怕是完全新奇的杯子形状，只要看起来像杯子，我们就知道是杯子。以前它们不知道。所以因为它有“什么是杯子”“拿起东西是什么意思”这种常识，无论来什么形状的杯子都能拿。这样的常识是 LLM 在互联网规模数据里学到的，这让它变得可行。各家公司也在出现不同方法，我们待会再看。
+
+## 从专才到通才：Robot Foundation Model    *14:40*
+
+<span class="paragraph-timestamp" data-ts="14:40">14:40</span> **Jong Hyun Park** 所以过去不行的现在行了，再进一步解释就是，过去是专门模型，现在变成通用模型，能覆盖各种场景。我拿视觉举个例子，视觉和 LLM 的趋势一样。回到以前，给一张图问“这是什么”，有专门分类模型。deep learning 刚来时很多问题都用 CNN 解决，但如果不只问“这是什么”，还问“它在哪”，就需要做检测并给坐标的模型，最有名就是 YOLO 这类。
+
+现在我们开视频会议，Zoom 可以虚化背景，不用绿幕也能沿人脸轮廓分割，做背景虚化。这个 segmentation 以前也有单独模型。语言也是一样。翻译有翻译模型。情感分析判断文本正负面也有单独模型。
+
+但现在视觉和语言都一样，我们已经不再这么分模型。打开 ChatGPT，丢张图问“这是什么”，它大致都能判断并解释清楚。任务边界消失了。一个模型做全部。无论 GPT 还是我们常用的 LLM、VLM，都是通用模型。
+
+机器人也是这样。某个特定机体，如果你想让它打台球，就得专门写代码或做 rule-based 模型。即使想让它当咖啡师做咖啡，也要单独构建。就算同样是咖啡师任务，只要机体变了，又得重做一遍。
+
+这是过去逻辑，而现在他们想做的是一个模型管任意机体和任意任务，什么都做。这个我觉得可以叫 Robot Foundation Model。因为 LLM 能做各种通用任务，所以叫 Foundation Model，我们把这个概念也用到机器人上。
+
+那为什么通才能力会变可能？因为 pre-training 扩展起来了。现在这个 Robot Foundation Model 大多被叫作 VLA。
+
+VLA 典型做法是从 VLM 出发。先有 LLM，再把 action 接上去。所以它有常识。然后跨 embodiment 尽可能收集数据，也就是从各种机器人收集数据，尽量多收、尽量多训，就像 LLM 的 scaling law 一样。核心假设是：把所有任务数据都收集并训练，就会 work，就会 general。基本都建在这个假设上。
+
+## Physical Intelligence π0.5：泛化 Demo    *17:53*
+
+<span class="paragraph-timestamp" data-ts="17:53">17:53</span> **Jong Hyun Park** 那“做到什么程度了”？我觉得 Physical Intelligence 这家公司演示得很好。叫 π0.5，是去年 4 月发布的模型，他们展示了这个。
+
+视频里他们把机器人装车带去新房子。完全新房子直接放进去让它干活。让它洗碗。就像我们去别人家被叫去洗碗，也不知道海绵在哪，但会四处看、找一个像海绵的东西。长得不一样也没关系，只要大概像海绵就能找到并自己洗。这些在新环境里也要做好。他们展示的就是这个案例。
+
+只要类似房子足够相似，它就能过去把事做完。“我们实现了这种级别的泛化”，我觉得这就是这个 demo 在表达的。
+
+<span class="paragraph-timestamp" data-ts="18:43">18:43</span> **卢正锡** 做 π0 的这个 Physical Intelligence，就是斯坦福 Chelsea Finn 教授创办的公司，对吧？
+
+<span class="paragraph-timestamp" data-ts="18:46">18:46</span> **Jong Hyun Park** 对。这里旁边让它执行任务的这位就是 Chelsea Finn 教授。
+
+<span class="paragraph-timestamp" data-ts="18:55">18:55</span> **卢正锡** 对。我记得那个实验室做过 OpenVLA 等等，所以我有这个印象。
+
+<span class="paragraph-timestamp" data-ts="19:01">19:01</span> **Jong Hyun Park** 他们做了非常多。
+
+模型和方法论都有，embodiment 也有。创始人里有两位学术界背景，最有名的是斯坦福和我记得是伯克利。Chelsea Finn 和 Sergey Levine 这两位研究者对 VLA 领域贡献了很多研究。
+
+<span class="paragraph-timestamp" data-ts="19:27">19:27</span> **卢正锡** 继续吧。这些变化基本都发生在近两年。DeepMind 的 RT-1、RT-2、OpenVLA 那会儿还偏 toy level，但就像你说的，光是去年一年，发展幅度就非常大。我是这个感觉。
+
+<span class="paragraph-timestamp" data-ts="19:47">19:47</span> **Jong Hyun Park** 没错。去年 VLA 确实大量涌现。
+
+## VLA 术语整理：RFM、VLA、LBM    *19:49*
+
+<span class="paragraph-timestamp" data-ts="19:49">19:49</span> **Jong Hyun Park** 我先把一些容易混淆的术语快速整理一下。我前面混着用了 RFM（Robot Foundation Model）、VLA（Vision-Language-Action Model）、LBM（Large Behavior Model）这些相近词，先统一一次。首先目前被认为构建这种 physical intelligence，也就是 Physical Intelligence 的关键要素，是 VLA。VLA 这个名字本身很直观，我们有 LLM。
+
+我故意拿 SmolLM 这个具体 LLM 举例，这是 HuggingFace 主导的项目。给 LLM 接一个 vision encoder 就成 VLM。我们现在用的 ChatGPT 等服务已经能看图，就是在 LLM 上接了视觉，给了它眼睛。所以 SmolLM 也是接 vision encoder 得到 SmolVLM，这些都公开了。
+
+再往上加一个东西：action。加了 action 就变 SmolVLA。所以它本质是 LLM，一边接眼睛，一边接动作输出，这就是 VLA，而且大多数 VLA 都是这么做的。
+
+现在 SmolVLA 只是 HuggingFace 做的一个 VLA 示例，这个案例里从 SmolLM 到 SmolVLM 到 SmolVLA 的整套 recipe 都完全开放公开。所以它是可复现 VLA。不过它不是特别强，谈不上 frontier model。因为是 HuggingFace 的，你可以把它看成能跟着上手实践的东西。
+
+<span class="paragraph-timestamp" data-ts="21:36">21:36</span> **卢正锡** 为了让订阅者更好理解，我补充一下“action”具体是什么。机器人有一个我们常说的 body，或者 embodiment。不同形态电机分布不同，有些还有手指等等，但给这些电机坐标后，就会发生真实动作。
+
+如果说它是在输出那些电机坐标，会不会更容易理解？
+
+<span class="paragraph-timestamp" data-ts="22:08">22:08</span> **Jong Hyun Park** 可以表达为机器人每个关节的角度。也可以表达为手部坐标，我觉得说“角度”最直观。人类靠肌肉运动，但机器人最终是内部电机旋转，所以肘部伸展多少度，这些都作为 action 值表达。
+
+再举个更简单例子，当成游戏就很好理解。不是机器人，而是游戏角色，你按方向键。方向键就是 action。前进、横移、伸手，这些都是 action。
+
+<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **卢正锡** 很好。
+
+<span class="paragraph-timestamp" data-ts="22:51">22:51</span> **Jong Hyun Park** 既然提到游戏再补一句，他们也在积极尝试把 VLA 用在游戏里。游戏公司对此也很有兴趣。再细分一下 VLA，最终目标是 Robot Foundation Model，也就是通用机器人控制模型，而实现手段大家各自叫 VLA、LBM，命名很多，但现在似乎在收敛到 VLA 这个名字。
+
+另外，Robot Foundation Model 也可以不靠 VLA 实现，虽然我这里没展开。不一定非要从 LLM 构建。因为还有其他实现路线，也有人在做。
+
+目前这个阶段，VLA 和 Robot Foundation Model 可以看作大致对齐的词。至于你问会不会好用，我觉得会，我乐观的原因也很简单：LLM 已经证明可行。那同样思路照搬过来，不也应该可行吗？我基本这么想。
+
+## 核心瓶颈：互联网上没有 Action Data    *23:59*
+
+<span class="paragraph-timestamp" data-ts="23:59">23:59</span> **Jong Hyun Park** 看 LLM 为什么聪明，在我看来最大原因当然是 scaling。第一步就是 pre-train scaling。它看过互联网所有文本，拥有巨大知识，并基于这些知识做反应。所以 action 也照这个方法 scale 不就行了？我觉得大家现在都这么想。
+
+但你如果想它是否真的能这样 work，也有可能不太行，这条路有明显问题。因为 LLM 的文本数据，或者加上图像的话视觉数据，都散落在互联网上，抓来学就行。至少你可以说它们因此能达到 GPT-3、3.5 那一档。但问题是 action data 不在互联网上。
+
+action data 实际长这样。我给你看，这是机器人运作时记录下来的真实 action data。每个 camera 像人眼一样看各自视角，手腕上也有 camera，通过这些画面看，而底部那块就是 action data。这里流动的数值就是 action 值，也就是各个关节角度。手臂伸展、折叠，就是这个。这样的动作数据、action data，互联网上没有、互联网上没有，所以没东西可学。scaling 就很难。
+
+## 数据采集的现实：Teleoperation 与多种方法    *25:49*
+
+<span class="paragraph-timestamp" data-ts="25:49">25:49</span> **Jong Hyun Park** 这是第一个问题。那怎么解？最简单当然是 teleoperation。teleoperation 是什么呢，我找了个挺惊人的例子，我之前都不知道有这个。这是 1957 年的。距今大概 60 年？还是 70 年？大概 70 年前，teleoperation 就已经这么能用了。teleoperation 就是这样远程操控。
+
+幕后的人用某种方式控制机器人执行动作，然后把这些原样记录下来。当然那时候还不能很好记录。毕竟太早了，电脑这些还不成熟。所以思路是把那个时代机器人的动作尽量原样记录，这也是最有名的机器人之一，是双臂 teleoperation 系统，由人来操控执行任务。这个过程完整记录，action data 被存下来，再拿去训练。类似任务就都能做。
+
+谁在怎么做？Tesla。Tesla 说他们通过人工 teleoperation 收集训练数据。就是像这样戴 VR 采集。他们放过操作机器人时的画面，也是在展示“我们有这样的 data factory”。据说现在他们不这么做了，换了别的方法，但无论如何，Tesla 两年前左右招过这类 teleoperation 数据采集岗位，时薪大概 50 美元。
+
+但你看岗位要求，身高要和机器人接近，一天要负重 10 公斤走超过 7 小时。真的是在做体力劳动。不过我觉得我做不了。背 10 公斤走 7 小时以上并不容易。我们上次直播也自己试了这种 teleoperation。我像这样戴 Vision Pro，不过不是真机体，是在模拟器里控制。
+
+真做的话会有点晕。因为我只是把自己在 VR 世界里的操作录下来，这就变成数据。有个移动把手任务。你做这个大概 2 小时脸就疼，4 小时会晕动症。长时间工作非常难。而且即便长时间做，数据也不 scalable。一个人对应一台机器人、一份数据。要做到 internet-scale 数据，也就是现在文本数据那种规模，等于互联网诞生以来全人类写作汇总到那种量级，这条路本质上不可扩展。
+
+总之 teleoperation 太重了，所以研究也在试图让它稍微更 scalable。比如这个工作。之前效果不好，就有个叫 UMI 的项目，做了这种 UI 来记录数据。让人更舒服地记录数据，很多模型都在用这种方式收集的 action data 训练。现在也有其他路线，但这是一类 teleoperation 方法。
+
+## 基于 Simulation 的方法：NVIDIA Cosmos 与 Sim-to-Real Gap    *29:21*
+
+<span class="paragraph-timestamp" data-ts="29:21">29:21</span> **Jong Hyun Park** 这是 NVIDIA 在推的一种方法。先像刚才那样用 teleoperation 在模拟器里采集数据。然后做数据膨胀。在 simulation 里对机器人做随机化让它跑。因为在模拟器里，大量失败也没关系。他们从尝试里只拿成功数据，做筛选，再用来训练。
+
+这些叫 trajectories，他们会让轨迹更多样。还不止如此，同一动作会改变材质、背景、光照等，生成更丰富数据。就是让情境多样化。这里会用一个叫 Cosmos 的模型，NVIDIA 称之为 world model，用它来扩增数据。批量生成并 scale 这类数据，是 NVIDIA 的路线之一。
+
+<span class="paragraph-timestamp" data-ts="30:24">30:24</span> **卢正锡** 对，前半段就是典型 reinforcement learning，后半段就是我们训练 ImageNet 或 CNN 常见的 dataset augmentation。完全一样。
+
+既然聊到 dataset，我补一下。刚才我们定义了 LLM、VLM、VLA 后就跳到这里，可能有些人会混乱。那个“action”的 dataset 到底是什么，Jong Hyun 刚才屏幕里有图，挂了 3 个 camera，用这 3 个 camera 做某个目标任务，而目标通常以文本输入。
+
+为了完成目标，我们看到的电机要转多少度，这些值组合后对应机械臂末端的位置。这就是 dataset，模型就是学这种数据。
+
+就像 transformer 底部输入词、顶部预测下一个词一样，这里输入图像、文本和这些信息，也可以连续输出 action，有对应架构。Jong Hyun 定义这类为 VLA。为了训练它，先展示了这个 dataset，然后解释为什么它不像语言数据那样容易获得，以及为获取它要用模拟器和这种亲手 teleoperation。我的理解是这样。我们进入下一阶段吗？
+
+<span class="paragraph-timestamp" data-ts="32:06">32:06</span> **Jong Hyun Park** 我补充一下这张图。它分得很清楚，vision 和 language 是输入，action 是输出。生成这个输出的就是 VLA。
+
+<span class="paragraph-timestamp" data-ts="32:18">32:18</span> **卢正锡** 它看起来可能写的是 task 248，但里面实际是文本。对。
+
+<span class="paragraph-timestamp" data-ts="32:22">32:22</span> **Jong Hyun Park** 没错。
+
+<span class="paragraph-timestamp" data-ts="32:24">32:24</span> **卢正锡** 像“把衣服折成这种形状”这样的 action 会存在。目标。
+
+你其实点出了最重要的问题。Jong Hyun 说的这种 dataset 生成不可扩展，这正是当下市场最大的难题和机会，所以不只是 NVIDIA 这种量级的大公司，小型 startup 在这块也有很多机会。
+
+<span class="paragraph-timestamp" data-ts="32:55">32:55</span> **Jong Hyun Park** 我没把所有方法都列出来。比如 Meta 有类似眼镜的方案。在眼镜上挂很多 camera，让人佩戴、记录数据并执行动作，发布这类产品。眼镜本身就成了数据采集设备。先去捕捉人类如何执行动作。眼镜方案里会抓手部位置、坐标，哪怕不能跟踪每根手指，也尽量自动捕捉。
+
+所以可以是眼镜形态，也可以是 Vision Pro 这类形态，他们在尝试各种方式采数据。我最期待的一种其实就是直接卖机器人。机器人卖出去后数据流转起来，这本身就是数据。
+
+<span class="paragraph-timestamp" data-ts="33:45">33:45</span> **卢正锡** 有一个很便宜的统一 form factor。
+
+其实 Jong Hyun 做过的 HuggingFace LeRobot 这些也和这个方向连着，对吧？标准化 form factor 被卖出去，进入市场，在 open domain 增长 dataset，我觉得社区也会有很多尝试。
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **Jong Hyun Park** 对。HuggingFace 与其说传统公司，更像社区公司。也有点模糊，但他们是社区导向组织，所以机器人也 open source，软硬件都 open source，再做教程、办活动、尽可能广泛分发机器人，让数据都上传到 HuggingFace。基于这些社区数据、大家自学上传的数据训练出来的模型就是 SmolVLA。所以你看 SmolVLA 论文，会像企业 repo 一样列出 HuggingFace 的数据仓库。“我们用这些数据做的，用你们的数据做的。”
+
+顺便我再补一个。是不是有这页？我最期待的是 flywheel。我在别处也讲过。1X 这家公司有个机器人叫 NEO。就是这种 humanoid，你看这里也在做 teleoperation，对吧？虽然他们还做不到这种事。这家公司营销非常猛。还找了 iShowSpeed，应该是几千万甚至过亿订阅的 YouTuber、主播，这台 NEO 还上了 MrBeast 频道。上去做什么人机棒球挑战之类，总之宣传很猛。他们现在在卖这台机器人。
+
+去年已经开预售了。所以我也下单了。但显然这机器人因为 VLA 还不完美，很难把家务全做了。所以他们说会像 Tesla 一样，“先给你 teleop 做家务，之后会越来越好”。现在广告里会说叠衣服很完美，但做不了的部分“我们用 teleop 代做”。他们是这么说的。
+
+<span class="paragraph-timestamp" data-ts="35:54">35:54</span> **卢正锡** 这是很好的商业模式。
+
+先把硬件推向市场，软件还没准备好就“先由人远程做软件那部分”。
+
+作为交换，用户当下就能感受到问题被解决，公司还能获得 dataset，所以双方 win-win，既采到了数据，也有即时商业价值地解决了现实问题。
+
+这个方法非常好。
+
+<span class="paragraph-timestamp" data-ts="36:22">36:22</span> **Jong Hyun Park** 这台机器人今年就计划部署，一旦进家里开始工作，数据会以可扩展方式累积，可能成为相当 scalable 的数据渠道，我很期待。所以我也马上下单了。
+
+<span class="paragraph-timestamp" data-ts="36:37">36:37</span> **卢正锡** 很好。Tesla 其实也用过完全同一策略。先卖尚未完成的 FSD，从最基础 Autopilot 开始，“先只在高速可用”，再“快速路也可用”，再到城市道路、乡村道路，逐步扩展。
+
+最终这和你最初提到的 dataset 覆盖率问题完全一致。
+
+<span class="paragraph-timestamp" data-ts="37:08">37:08</span> **Jong Hyun Park** 在尽可能多样的环境中。我觉得这还是个好商业模式，因为人工成本国家差异很大，teleop 可以在人工便宜的国家做，机器人部署在人工贵的国家，做家务这类工作。只要有机器人本体替代，来自低成本国家的劳动力就能跨境发挥作用。从全球看，体力劳动价格可能会趋于一致，我会有这个想法。
+
+<span class="paragraph-timestamp" data-ts="37:38">37:38</span> **卢正锡** 这也是商业相对研究带来的乐趣，很有意思。
+
+<span class="paragraph-timestamp" data-ts="37:43">37:43</span> **Jong Hyun Park** 总结就是，数据 scaling 太难，所以很多公司在用各种方式采集。没人知道正确答案是什么。现在我最期待的是 simulation，也就是 NVIDIA 提的那套 simulation。更大范围上，NVIDIA 有 Isaac Sim 物理模拟器，再结合 world model，不再只是物理模拟器，而变成基于视频生成模型的模拟器。
+
+如果 simulation 变得完美，就能纯虚拟造出所有数据，action scaling 问题就解了。但目前 simulation 和真实之间还有 gap，这叫 sim-to-real gap。
+
+这个 gap 依然很难弥合，所以连 NVIDIA 也会混合不同数据。teleoperation 数据、真实世界数据、synthetic simulation 数据、augmentation 数据，全部收集混训。但如果 simulation 更成熟，这可能会突然被解决，这是我的看法。
+
+## Scaling Law 与时间线展望    *38:47*
+
+<span class="paragraph-timestamp" data-ts="38:47">38:47</span> **崔升准** 这个领域也有类似 scaling law 的东西吗？这是一个问题。第二个是，当 scaling 生效时往往会出现涌现现象，我好奇其他领域里是否也观察到了类似现象。
+
+<span class="paragraph-timestamp" data-ts="39:01">39:01</span> **Jong Hyun Park** 关于是否有 scaling law，我这里只写了观点，内部研究是 Claude 做的，这是内容和研究。比如有个公司叫 Generalist，由这个领域一些知名人物创立。他们用 UMI 方式大规模做 data scaling，能收多少收多少，结果发现 full data，也就是 teleoperation 数据，越多性能越好。他们用数值证明了类似规律。当然这里 scaling 规模远不如 LLM，因为数据量根本没那么大，但观察到的是收得越多越好，趋势一致。
+
+NVIDIA 的 GR00T 也展示了喂入越多 synthetic data，性能就提升这么多，Physical Intelligence 也有类似研究。现在还很早期，但几乎所有做 VLA 的组织都在讲类似结论。更多数据会带来更好结果这点是确定的。但没人知道上限在哪里。
+
+<span class="paragraph-timestamp" data-ts="40:13">40:13</span> **卢正锡** 是同一个故事。
+
+<span class="paragraph-timestamp" data-ts="40:15">40:15</span> **Jong Hyun Park** 只能试了才知道。至于有没有观察到那种涌现，据我所知目前还没有特别明显的。
+
+现在对 in-distribution，也就是训练分布内场景，基本都能 work。对 out-of-distribution，新环境是否也能做得好，这是大问题，目前看是部分可行。
+
+规模继续变大后，会不会像你说的出现涌现，我是乐观的。因为 LLM 能 work，这里也应该能。人类能做，所以应该可行。我的想法大概到这。
+
+<span class="paragraph-timestamp" data-ts="41:01">41:01</span> **卢正锡** 我非常认同。我们的 LLM 一开始也是这样吧？“这个问题不会、那个问题不会”，然后不断突破边界，现在变成“给 benchmark 就行，一个 policy 全解决”。已经到这阶段了。
+
+这些 robot foundation model 如果要我形容，我会说大概在 GPT-2 阶段，我感觉差不多。
+
+<span class="paragraph-timestamp" data-ts="41:31">41:31</span> **Jong Hyun Park** 对。就是通用性刚开始显现的阶段，可以这么看。
+
+<span class="paragraph-timestamp" data-ts="41:36">41:36</span> **崔升准** 那这就真的是时间问题了，什么时候发生。核心就是动量累积到什么程度。大概是这种感觉。
+
+<span class="paragraph-timestamp" data-ts="41:45">41:45</span> **卢正锡** 但市场激励层面，LLM 那边现在有一种“基本结束了、大公司已经打完了”的感受在主导，而且投入成本也很高。
+
+所以你看 Physical AI 方向，Jong Hyun 就是例子，很多非常聪明的人正在大规模涌入。资本和人才也在这里汇合，就是时间问题，感觉在加速。
+
+<span class="paragraph-timestamp" data-ts="42:14">42:14</span> **崔升准** 那我们现在大概是 GPT-3 即将出现的时间点。
+
+<span class="paragraph-timestamp" data-ts="42:17">42:17</span> **卢正锡** GPT-3 可能今年就出来，实际上 ChatGPT moment，以及你前面说的“这里可以称 foundation model”的那个点，我觉得也可能在今年出现。
+
+Jong Hyun 你的时间线预测呢？我感觉今年夏天大家就会鼓掌，氛围会到那一步。这是我的体感。
+
+<span class="paragraph-timestamp" data-ts="42:39">42:39</span> **Jong Hyun Park** 这取决于你怎么定义 GPT-3 moment。如果定义为真实用户可用的水平，我觉得就是今年。
+
+<span class="paragraph-timestamp" data-ts="42:53">42:53</span> **卢正锡** 今年。
+
+<span class="paragraph-timestamp" data-ts="42:53">42:53</span> **Jong Hyun Park** 最晚我觉得是明年。机器人真正部署到市场，开始承担具体任务，而且是相对通用任务的那个时点，我也觉得是今年或明年。
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> **卢正锡** 我没有掌握企业内部确切数据。大多数公司其实和 LLM 类似。比如架构本身收敛到少数几类，像 Transformer 只在出各种小变种。这里也是，VLA 从早期 RT-1、RT-2、VLA 到 Chelsea Finn 教授的 π0 带来的变化，再到 SmolVLA 的变化，然后 NVIDIA 的 GR00T 也开源了。用小硬件可能偏 open source，用大硬件就上更大模型。
+
+模型和硬件确定后，是不是就变成主要靠生成 dataset，基本就能 work 的问题？
+
+在算法和 dataset 获取之间，投入占比大概怎样，我们该怎么预期？
+
+<span class="paragraph-timestamp" data-ts="44:01">44:01</span> **Jong Hyun Park** 我觉得我没法用数字表达。
+
+## VLA 模型的趋同进化与剩余争议    *44:05*
+
+<span class="paragraph-timestamp" data-ts="44:05">44:05</span> **卢正锡** 那就给个直觉。
+
+<span class="paragraph-timestamp" data-ts="44:07">44:07</span> **Jong Hyun Park** 比起算法，模型本身似乎已经有一定收敛。模型架构上 VLA 大致就是这么构建。但还有其他讨论、尚未解决的讨论。比如触觉到底需不需要？手指需不需要？只用 gripper 行不行？一定要五指吗？还可能需要什么？
+
+还有通过 LLM 演化出的当前 VLM/VLA 结构，这套架构本身真的没有限制吗？这些是更高维度的问题。所以就眼前任务来说，我觉得可以这么分：能用 teleoperation 做的任务，只要数据够，基本一定能 work。
+
+但也有 teleoperation 做不了的任务。我自己实际做动作时，比如我在 teleop 时，我给你快速看一个。这个也是 Physical Intelligence 的观点。关于 teleoperation 是否需要五指，五指其实挺难。
+
+<span class="paragraph-timestamp" data-ts="45:24">45:24</span> **卢正锡** 所以各家公司都在复杂硬件 form factor 上，把复杂问题定位成自己的业务重点，我们看到很多这种案例。
+
+有公司会说“我们用五指 form factor 机器人结合某个垂直场景解题”，但最终可能用两指或传统 gripper 就能解，不一定要五指，而这种差异会让一切都变。
+
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **Jong Hyun Park** 这个是我自己真的试过的，我个人挑战。齿轮装配。我自己实现 teleoperation 去装配这种齿轮，一直在试，但真的不行。我后来想为什么不行，是孔太小。属于精密配合装配。机械装配不行是因为我没有触觉反馈。
+
+<span class="paragraph-timestamp" data-ts="46:20">46:20</span> **卢正锡** 真实环境吗？
+
+<span class="paragraph-timestamp" data-ts="46:21">46:21</span> **Jong Hyun Park** 不，是模拟器里。
+
+<span class="paragraph-timestamp" data-ts="46:22">46:22</span> **卢正锡** 是模拟器，对。
+
+<span class="paragraph-timestamp" data-ts="46:24">46:24</span> **Jong Hyun Park** 因为没有触觉反馈，真的做不好。我们这个世界里需要触觉的任务其实非常多。
+
+至少我自己体验的人类任务里就是这样。所以触觉需不需要，一旦进入这个问题空间，就有公司专门在做。每家公司方向都完全不同。
+
+先说，不需要触觉也能做的任务很多。比如洗碗就不需要触觉。但那些说“我们要解必须触觉的任务”的团队，就在做触觉该怎么做、传感器该是什么样。
+
+所以回到你的问题，刚才说长了。各家公司到底在做什么研究，大家都在定义各自不同的 niche 问题。
+
+想做所有人类劳动的地方，尤其学界会这样，他们做很多触觉研究。比如会议里大概一半都在讲触觉。
+
+产业界里专注这个的公司没那么多。他们更专注数据 scaling，集中做能立刻赚钱的部分。
+
+多数 startup 看起来都在盯数据，硬件公司在做更精细的手等，学界在做触觉或者 RL，比如 reinforcement learning 怎么用在这里。我觉得大概是这个格局。
+
+我本来要回到你刚才的问题。
+
+## VLA 系谱：System 1/2 架构    *48:05*
+
+<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **Jong Hyun Park** 我想看一下这些模型。VLA 到底做了多少研究，看去年发布的模型会很好整理。我按时间倒序排了，最新在前。你刚才说的是 RT 系列吧，RT。Google 在这块做了很多，Robotics Transformer，就是让 Transformer 输出 action。因为源头来自语言，他们把 action 当语言。token 一样出来，每个 token 映射到单个 action，然后能做这些事。
+
+RT 系列持续发布，到了 2024，也就是两年前，OpenVLA 出来了。我觉得这是开源社区第一次让大家看到“可以做到这些”。VLA 的起点，真正让大众关注的节点，严格说研究更早就有，但让公众意识到的是 π0。Physical Intelligence 公司出 π0 后，大家第一次感觉“这东西真的能用”，后来去年又有 π0.5、π0.6。
+
+看去年发布模型，出了这些。Figure 发布了刚才看的 Helix，NVIDIA 发布 GR00T，Google 发布 Gemini Robotics，HuggingFace 也发布了类似东西，Boston Dynamics 和 Toyota Research 一起发了 LBM，这些模型不断出来，实际上还有更多。
+
+但看收敛点，2025 年我总结是这样。这个其实是我们联合主持 J 的观点，我也认同，发生了趋同进化。你把几乎所有模型打开看，长得都很像。第一点是都用了 System 1 和 System 2 架构。崔升准你之前也讲过这个，Kahneman 的 Thinking, Fast and Slow。人类智能结构这个想法被借来并放进模型架构。
+
+我们看一下。GR00T N1.6，这是秋天左右发布的版本。你看有 System 1、2 结构。有 VLM，也有 Diffusion Transformer，两者结合。
+
+这个 VLM 本质就是大家熟悉的 VLM。具体细节版本有差异，但这里它吃 vision input 和 language input，再输出。就是我们熟悉的 VLM，和 GPT 很像。但它输出可以 tokenized，也可以不 token 化，以生成前向量形式输出。它把输出这样送出去，后面接一个 Diffusion Transformer，然后这里对结果理解，也就是我现在要做什么、眼前环境是什么，这些理解结果再加 robot state，也就是我身体当前状态，作为输入，再产出 action tokens。
+
+<span class="paragraph-timestamp" data-ts="51:29">51:29</span> **卢正锡** 你刚才提到 hertz 的地方，在这两者之间，System 1 和 System 2，System 2 出一个 token 时，System 1 会出几十倍更多 token，应该这么理解吧？频率不一样。
+
+<span class="paragraph-timestamp" data-ts="51:45">51:45</span> **Jong Hyun Park** 场景理解可以慢做。10 秒做一次都行。但 action，比如平衡控制，必须非常快。反应要快，才不会摔、不会漏抓，很多事都靠这个。
+
+因为 action 需要更快，所以才这么拆。
+
+<span class="paragraph-timestamp" data-ts="52:01">52:01</span> **崔升准** 有意思。System 2 在前。
+
+<span class="paragraph-timestamp" data-ts="52:03">52:03</span> **Jong Hyun Park** 这里是这么标的。总之数字标成 1、2，但重点是大的认知部分和需要快速反应的部分要分开，action 必须拆出来。
+
+<span class="paragraph-timestamp" data-ts="52:14">52:14</span> **卢正锡** 这和我们在 LLM 里说的 System 1/2 好像是稍微不同概念。
+
+<span class="paragraph-timestamp" data-ts="52:20">52:20</span> **崔升准** 因为直觉本来在 System 1 侧，快的是 System 1，所以才这样设。用了 Diffusion Transformer 意味着最终是在生成 action，对吧？
+
+<span class="paragraph-timestamp" data-ts="52:29">52:29</span> **Jong Hyun Park** Diffusion Transformer 负责生成 action 值。
+
+<span class="paragraph-timestamp" data-ts="52:32">52:32</span> **崔升准** 以多样方式生成，带着那种多样性。
+
+<span class="paragraph-timestamp" data-ts="52:35">52:35</span> **Jong Hyun Park** 再看 Figure Helix 也是这样。
+
+<span class="paragraph-timestamp" data-ts="52:37">52:37</span> **卢正锡** 那个标“denoising”的部分就是和 VLA 不同的地方。OpenVLA 是单 Transformer 直接吐 token，这里把 action 完全拆出来，而且 action 这部分变成了由 Diffusion model 生成动作的形态。对吧？这张图画得很好。
+
+<span class="paragraph-timestamp" data-ts="53:02">53:02</span> **Jong Hyun Park** Helix 也是同一套。Figure Helix 也有 System 1、2 结构，几乎完全一样。差别是它这里在 System 2 也接了 robot state，属于这种细节差异，但说实话感觉不那么关键。
+
+总之它也是一个大模型慢速做场景理解并接收指令思考，再把识别出的向量传给需要生成 action 的组件，后者以 200Hz 快速生成动作。
+
+Gemini Robotics 也是一样。Gemini Robotics 在这里上下也分成了 System 1、2。场景理解模型跑在云端，Gemini 在云端做场景理解，通过视觉看场景、还能对话、收命令、推理、写代码，他们说这些都能做。能做的都做完，再把解释结果发给需要输出 action 的小模型，这个小模型本地运行。
+
+所以我觉得 Google 在商业上是想把大模型放云端售卖。拆开后把慢部分放云上，可以用更大的 GPU，因为可用 server 级 GPU，就能更聪明，我觉得是好方法。
+
+<span class="paragraph-timestamp" data-ts="54:21">54:21</span> **卢正锡** 你现在展示这些模型里，前面你提过的，真正完整开源代码在 open domain 的只有 NVIDIA GR00T，对吧？
+
+π 模型和 SmolVLA 应该也算 open model，但感觉怎么说呢，复杂度稍低，而 NVIDIA 说是给 humanoid 支持，所以感觉覆盖更全，是这样理解吗？还是太简化了？
+
+<span class="paragraph-timestamp" data-ts="54:50">54:50</span> **Jong Hyun Park** 我觉得目标有点不同。我这里介绍这三个是因为它们都有 System 1/2 结构，所以选了三个。NVIDIA GR00T 是完全开源，但模型也不是特别大，大概 3B、7B 这类规模，而且完全开源所以我们用起来很方便，这是优势。
+
+π 的情况是 closed model，但也有 open 版本。它放出了一些 open source 版本，但不是全开。总之开放程度足够我们使用。
+
+接下来为什么需要 System 1/2，这其实是今天开头也是结尾。智能本身似乎就意味着两者某种分离。判断情境、深思熟虑这种 cognitive intelligence，和需要本能快速反应的 physical intelligence，人脑里不也分开吗？如果我们后来发现作为 Robot Foundation Model 这样实现最有效，反过来也许会帮助我们理解真实大脑也是这么工作。我觉得这是个可能的发现机会。
+
+<span class="paragraph-timestamp" data-ts="55:57">55:57</span> **卢正锡** 我完全同意。
+
+## 连续动作与基于 Diffusion 的方法    *55:58*
+
+<span class="paragraph-timestamp" data-ts="55:58">55:58</span> **Jong Hyun Park** 下一个收敛点是输出连续动作。这也呼应你前面的问题。RT、OpenVLA 这些模型最初是离散 action 值。因为 LLM 本来是 Transformer，输出 token 是 autoregressive 且离散的。词本来就不连续。但图像也是连续的，所以我们才常用 Diffusion 生成图像。同理 action 也是连续的。
+
+比如“annyeong”和“hello”两个 token 中间没有任何中间值，不存在 0.1 annyeong、0.9 hello。因为 token 是离散的。但 action 是连续的，中间值必须存在。所以你看 RT-1 这些模型，动作会比较卡顿、抖动。需要连续反应的任务做不好。正因为 action 必须连续，很多模型开始参考 Diffusion 去解决。
+
+这里的例子是 Diffusion Policy。它不是 Transformer，就是纯 Diffusion 来生成 action。这是早期非常轰动的一项研究，证明这条路可行。后来他们开始组合，把 Diffusion 接到 Transformer 上。就像 System 1/2 一样，既连续又能快生成。但 denoising 这块要懂一点 Diffusion，因为 denoising 要快速连续执行，计算方式会有些不同。方法不同。
+
+<span class="paragraph-timestamp" data-ts="57:38">57:38</span> **崔升准** 它不是自己把 denoising 全做了吧？
+
+<span class="paragraph-timestamp" data-ts="57:41">57:41</span> **Jong Hyun Park** 这个 Diffusion Policy 是自己全做。
+
+<span class="paragraph-timestamp" data-ts="57:44">57:44</span> **崔升准** 全流程都做？
+
+<span class="paragraph-timestamp" data-ts="57:45">57:45</span> **Jong Hyun Park** 这项研究是。现代 VLA 是混合方式。
+
+<span class="paragraph-timestamp" data-ts="57:49">57:49</span> **卢正锡** Diffusion 每跑一次会给出多个 action step，而且走到中间状态时状态还在持续变化。这个视频看起来就是在展示多个状态、action 状态不断重叠涌出的过程。
+
+<span class="paragraph-timestamp" data-ts="58:08">58:08</span> **Jong Hyun Park** 它会快速连续输出未来动作，但在这些动作全部执行完之前，Diffusion 又会再跑一次。你说的是这个。它会尽可能高频地做。
+
+因为它预测未来后去执行动作，但一旦真正执行，交互就可能变化。那就要基于新观察重新生成动作。人类也是这样。像保持平衡就是这种机制。所以尽可能快、尽可能多地做，天然更好。
+
+所以 π0 也是这种结构。一个 pre-trained VLM，我记得这里用了 PaliGemma。每版模型略不同，你就把它理解成常见 VLM，然后后面接一个他们称作“action expert”的模块，用的是 Flow Matching，和 Diffusion 类似。两者拼起来，输入命令、语言、camera 画面后，就这样输出动作。构建方式一样。
+
+这是 NVIDIA GR00T。前面那个是 N1.6，这个是 N1。都很像。这是还没显式分出 System 1/2 的时期，在 N1 时代是 VLM 直接接后面的 Diffusion Transformer，也可以看成一种 System 1/2，只是那时没这么叫。
+
+SmolVLA 也类似。有 VLM，用 SmolVLM 后面接带 Flow Matching 的 action expert，输出连续值 action。你快速看内容会发现都很像。
+
+所以这也回应你前面的问题。它们差异没那么大。这个领域并不是在做非常混乱、完全不同的研究。细节有差异，但整体上是这样。
+
+<span class="paragraph-timestamp" data-ts="1:00:01">1:00:01</span> **卢正锡** 起点各有不同，但都收敛到这个方向。视觉、System 1/2，认知和动作模块分离。
+
+<span class="paragraph-timestamp" data-ts="1:00:14">1:00:14</span> **崔升准** 有意思的是 Diffusion 和 Transformer 本来就是这一代的工作原理。很多东西都在用，所以这里也是。“应该可行”的轨迹很明显，虽然数据等还不足，但给我这种“应该可行”的印象。
+
+如果看其他例子。
+
+<span class="paragraph-timestamp" data-ts="1:00:34">1:00:34</span> **卢正锡** 不只是“应该可行”，而是“现在就跑得很好”。
+
+<span class="paragraph-timestamp" data-ts="1:00:38">1:00:38</span> **崔升准** “已经在跑了。”
+
+<span class="paragraph-timestamp" data-ts="1:00:40">1:00:40</span> **Jong Hyun Park** 我也这么看。这里也可以说“已经 work 了”。
+
+<span class="paragraph-timestamp" data-ts="1:00:45">1:00:45</span> **卢正锡** 对，这个也是，“能 work”。
+
+<span class="paragraph-timestamp" data-ts="1:00:48">1:00:48</span> **Jong Hyun Park** 我也觉得不止 action，其他模态也可能都能 work，会想到这一点。
+
+<span class="paragraph-timestamp" data-ts="1:00:54">1:00:54</span> **崔升准** 这些概念是可迁移的。
+
+<span class="paragraph-timestamp" data-ts="1:00:56">1:00:56</span> **卢正锡** 只是 modality 的扩展。
+
+<span class="paragraph-timestamp" data-ts="1:01:00">1:01:00</span> **Jong Hyun Park** 再看今年出来的两个，我在开头讲过的 Sharpa 和这个，这里也类似。因为这两个加了触觉，他们叫 Vision-Tactile，VTLA，然后系统变成 0、1、2。
+
+<span class="paragraph-timestamp" data-ts="1:01:19">1:01:19</span> **卢正锡** 这里多了个 0。
+
+<span class="paragraph-timestamp" data-ts="1:01:20">1:01:20</span> **Jong Hyun Park** 对，又加了一个 0。而触觉只进 System 0。他们分三层，触觉只用于非常快的反应，看起来是这个思路。
+
+<span class="paragraph-timestamp" data-ts="1:01:29">1:01:29</span> **崔升准** 明白了，这是更偏反射、更原始层的东西。它会往那边走。
+
+<span class="paragraph-timestamp" data-ts="1:01:36">1:01:36</span> **卢正锡** 但基础框架是相似的。
+
+<span class="paragraph-timestamp" data-ts="1:01:39">1:01:39</span> **Jong Hyun Park** 总之慢速思考做场景理解和推理，再逐级下沉到需要更快反应的层。再看 Figure Helix 内部，这个也是 System 0、1、2。
+
+<span class="paragraph-timestamp" data-ts="1:01:52">1:01:52</span> **卢正锡** 他们也有对应 0 的层，明白。写着“0, Human-like Soft Motor Tracking”。这个微妙的，怎么说呢。
+
+<span class="paragraph-timestamp" data-ts="1:02:05">1:02:05</span> **Jong Hyun Park** 是 Stable Motion Tracking。我再展开一点。比如 LBM 里，System 0 位置以前是 rule-based。action token 出来后直接控制机器人会摔倒。或者动作不完美，指尖会撞，执行动作时会有错误动作。
+
+而 locomotion 这块我们以前已经做得不错了。无论是早先 RL-based 方式，还是所谓 MPC，我自己懂得不多，但传统机器人学里有基于物理的方法，会算为了保持平衡该落脚哪里，这些逻辑都存在。所以它会得到这种辅助。以前确实是这样做：action token 出来后，再叠一层规则约束和修正。
+
+但现在这些都在被去掉。现在的方向是那里也都可以交给模型。看起来他们在往这边走。你看参数规模，System 2 是 7B，System 1 是 80M，这是 Figure 01 时的两层。又额外加了一个更小层，10M 参数。
+
+而这个更小层，从图上看 real to sim、sim to real，说明混了这种数据，也就是 simulation data 混训。这最终看起来就是把 RL 也并进来了。Helix 不是开源，所以具体不清楚，但到目前为止 VLA 基本就是这样趋同进化，往这个方向走。我感觉大家方向都差不多。
+
+## 什么是 Physical Intelligence：Moravec's Paradox    *1:03:49*
+
+<span class="paragraph-timestamp" data-ts="1:03:49">1:03:49</span> **Jong Hyun Park** 接下来最后我想收束一下，想一想 Physical Intelligence 到底是什么。最终构建这些 VLA 的过程，就是我们在解决 Physical Intelligence，我是这么看的。就像用 LLM 构建 AGI 本质也是在解智能问题，我们一直这么想。这里只是再做了一层划分。有个非常著名案例。大约 10 年前 DARPA Challenge，出现过连门都打不开的情况。大家全失败了。就会变成梗，“开门有那么难吗怎么全做不到”，到现在也类似。
+
+这叫 Moravec's Paradox，他们称之为悖论。我们以为下棋需要很多脑力和智能，但当口袋里有糖、钥匙、硬币时，我们却能非常轻松地摸出钥匙。甚至不用思考。我们通常不把这叫智能。说某人聪明，也不会说他聪明是因为他很会掏口袋。但一旦要实现它，反而非常难。为什么这么难？到底哪里不同？
+
+所以我昨天自己拍了个视频。MIT 的 Sangbae Kim 教授长期做机器人，我现场看过他的一次演讲后印象太深，所以自己试了。不看手，直接从这里拿一枚图钉。我做了慢放，看起来非常自然。对人类来说，成功率是 99.9% 的事，几乎不会失败。只有慢放才看起来这样，实际不到 1 秒。录制时间小于 1 秒，就是这么快。现在我拿的是某一枚图钉，你能猜我拿的是哪一枚吗？
+
+<span class="paragraph-timestamp" data-ts="1:05:48">1:05:48</span> **卢正锡** 猜不到。
+
+<span class="paragraph-timestamp" data-ts="1:05:49">1:05:49</span> **Jong Hyun Park** 猜不到吧？如果按 rule-based 去做，用 vision 检测再让 gripper 去抓，按这种方式造机器人，通常会觉得抓最上面的最优。但人不是这么做的。过去 VLA 出现前，多数机器人是从检测里提坐标，再控制机器人搬运物体，和这种方式差异非常大。
+
+总之看人类的 Physical Intelligence，我刚才抓的时候其实先失败了一次。我先去抓“摸起来像能抓到的”，失败了，然后手在接收触觉输入，这些触觉是超高维数据。因为手上接触点太多。然后基于触觉反馈，我会无意识判断该抓什么，再抓到能抓住的东西。只有 1 秒，但其中发生了大量数据处理和快速决策。这其实就是 Physical Intelligence。
+
+所以我看慢放后整理，里面其实做了 5 次决策，夸张一点说 5 次。类似例子还有舌头。吃饭时舌头会做大量任务。虽然我写的是“午饭”，但我们现在是早上，比如你能回忆昨晚吃了什么，但问你当时舌头在做什么，你其实完全记不起来。它自己就做完了。所以这和 Cognitive Intelligence 不同。和那种会产出 reasoning token、一步步推理的智能完全不同，这是我现在的看法。
+
+这些内容都来自那位教授的演讲，我听后非常认同。建议大家自己去看，TED 和其他平台都有，他做过很多讲座，非常好地帮助你思考智能。我并非全部同意，所以只拿了我认同的部分。
+
+再想为什么会这样，也有人从进化角度解释。这种运动能力、Physical Intelligence，是十亿年进化形成的能力，不止人类，很多动物都有。但象棋、围棋、抽象数学，从进化角度并没有经历那么久。也许我们以为更显然的东西反而更难，这是我的想法。
+
+所以松鼠在空中滑行时不会算牛顿力学。但 VLA 之前的 MPC 算法会去算这些力学，算施力点和施力大小，让物体按计划运动，它们能很完美执行动作，但这和我们脑中的 Physical Intelligence 不是同一种东西。
+
+再从维度和速度看，人类有触觉，而 vision、touch 这类物理信息维度极高。可文本语言世界是 token，我们现在 tokenizer 大概 200K token，语言被当成“20 万选 1”的序列，非常抽象。和 vision、touch 比，维度极低。
+
+所以待处理数据规模本来就巨大，而文本世界已经是极高效的世界了。对复杂思考和学习其实很高效，几乎没有冗余信息。所以我们做 RLVR 时会觉得这对塑造智能有用，是高效方法。我们会觉得语言很重要。但实际上语言是几乎只有人类才能完整使用的东西，所以和物理世界差别很大。
+
+另外这是我在 Google Developers 频道 Nano Banana 团队分享里看到的，他们做了 nano banana，提到语言里有 Reporting Bias。比如我昨天去拜访别人，回来写记录。怎么写？我昨天去另一家公司开会，那栋楼很气派、能看到海。我会写这些让我有印象的点。于是这些数据被保留。可墙是白色还是米色、椅子长什么样，我不会写，也不会报告。因为太理所当然。除非椅子特别奇怪、墙面装饰很独特我才会写。文本世界只会保留很特殊、很有意义的信息。
+
+LLM 里也有类似问题。它学了所有文本，学了 internet-scale 数据，学了大量知识，但问“怎么把大象放进冰箱”，它本该说放不进去，却会回答“打开门放进去”。因为“象很大，不可能进冰箱”对人类太常识了，这种话根本不会被写进文本。文本世界里其实缺了很多信息。是基础性的缺失。
+
+而 Physical Intelligence 要处理的正是这类信息。也许这是一个维度不太一样的问题，这是我的看法。
+
+所以收个尾，Physical Intelligence 相当不同。而且在实践里 AI 也和 LLM 一样，学习方式和人类不同。人类靠经验学习，尤其 physical 相关，大多不是从文本学，而是从经验学。现在这部分实现还不顺，所以可能会难，这就是重点。
+
+那最后问题是不是“那就做不成”？我觉得能成。因为虽然有这些挑战，我们有很多种解法。LLM 是这样，这里也一样。我们不必完全按人类学习方式来学。会有一些人类擅长而机器人不擅长的事。但我相信我们仍能把 Physical Intelligence 做到足以改变世界的程度。
+
+这是我的想法。一个典型例子是触觉难实现，所以现在多数 humanoid 会在手掌或手背装 camera。仅靠视觉信息也能做动作。人类眼睛只长在脸上，手掌不能长眼，但机器人可以。自动驾驶也类似，装 LiDAR 就能获取人类不擅长的距离感知数据，问题也能解。我觉得总能以某种方式实现。只要可以 scale，我就乐观。到这里我先收。
+
+<span class="paragraph-timestamp" data-ts="1:13:23">1:13:23</span> **卢正锡** 今天你先给了总体全景，然后讲了发生了哪些变化，再在每个模块里讲了做得好的公司和研究机构、模型架构、相关问题和哲学议题，全都覆盖了。最后你还提到这最终是个会很快被解开的游戏。为这个领域里的 startup 喝彩，也给现在想进来的人一个信号。这个领域和 LLM 不同，这些到底该叫 domain，还是该叫 last mile 问题，我最近也有点困惑。因为即使叫 domain，最后留下的基本都是 last mile 问题。
+
+前面的部分都在被通用智能接管，而那些大量 last mile 仍然是机会，所以今年和明年会很热。错过 LLM 列车的人应该考虑跳进来，我现在就是这种想法。
+
+## 商业方向：社区策略与游戏 Simulation    *1:14:28*
+
+<span class="paragraph-timestamp" data-ts="1:14:28">1:14:28</span> **Jong Hyun Park** 我想法完全一样，我也觉得我得进去做。
+
+<span class="paragraph-timestamp" data-ts="1:14:32">1:14:32</span> **卢正锡** 你有什么想法，Jong Hyun？你其实一直在跟整个 VLA 领域，也在不断磨练“这里可能有机会”的直觉。
+
+在这个过程中，现在公司都往哪走了，用我们的说法大家都跑去哪了？都各自去做自己的东西了，那你准备站什么位置，Jong Hyun？
+
+我很好奇。个人观点、个人方向、偏 business idea 的也行，如果有的话能分享吗？
+
+<span class="paragraph-timestamp" data-ts="1:15:05">1:15:05</span> **Jong Hyun Park** 我想做的现在大概有两个。第一，有句话叫“打不过就加入”，LLM 也是，巨头 scale 上来后真的很难跟。我觉得这里也一样。想跟上巨头的 scaling，不加入他们基本不可能。
+
+那就一定有他们没做的部分。第一，我个人认同并喜欢 HuggingFace 的策略。我觉得社区可能会赢，这是我的信念。然后机器人和 LLM 略有不同的是硬件本体很贵。把本体做便宜、分发出去、实现民主化，是值得尝试的，这是我第一个想法。
+
+而且这不只是把本体做便宜。还得把人们日常会用的任务做成 VLA 一起提供。然后社区共同采集这些数据，让大家一起提升智能。大家都参与，我觉得可能会走向这条路。
+
+另一个方向是我从小喜欢游戏。游戏和物理 simulation 其实有很多共通，游戏世界里的 action，现在也常被表达为 world model。可以是 world model，也可以是 physics simulation，游戏可能是突破口。
+
+连接虚拟世界和真实世界的工作，既能解数据问题，最重要还能解评估问题。真实世界评估机器人非常昂贵，所以我觉得这方向机会也很多。
+
+<span class="paragraph-timestamp" data-ts="1:17:00">1:17:00</span> **卢正锡** 这里确实有连接点，而且两条都在解那种“不是光靠砸钱就能解”的规模问题。我是这么理解你分享的。
+
+## 入门指南：LeRobot、Physical Intelligence 论文    *1:17:11*
+
+<span class="paragraph-timestamp" data-ts="1:17:11">1:17:11</span> **卢正锡** 那 Jong Hyun，关于你说的第一条和社区一起走的路线，像你前面说的 SmolVLA 这些都是 open model。
+
+对于想进这个领域的人，你能给一个现在入门的学习路径吗？比如先读哪篇论文，再读哪篇，买什么硬件 form factor，从哪个社区开始，或者“感兴趣就来找我”。你肯定有不少指南，给大家分享一下。我们该从哪里开始学？
+
+<span class="paragraph-timestamp" data-ts="1:17:53">1:17:53</span> **Jong Hyun Park** 如果你想做研究者，需要好硬件，所以说实话加入一个地方可能是正解。大公司、实验室、研究组织。但即使没有这些，也完全能跟上。因为有开源硬件。我自己也是从 HuggingFace 的 LeRobot 入门的，我觉得它是最好的起点。
+
+机器人方面，韩国有个公司叫 ROBOTIS，有开源机器人。你可以直接 3D 打印并组装。买下来大概 350 美元，teleoperation 系统都配好了。自己 fine-tune 一个 VLA 是可以做到的。我当时刚做时韩文版还没有，只有 HuggingFace 版，花了大概两天。买机器人、组装、通过 teleoperation 采数据、实际训练 VLA，当时还不是 VLA，只是没有语言的 vision-action model，fine-tune 后跑出真实任务，大概两天。任何人都能做。
+
+所以喜欢动手的人，350 美元左右就能入门。然后我们有这个页面，我会分享，我计划把这类引导内容加进去。我们之前都做过，所以会放类似教程的资料。如果你想尝试做研究，模拟器里也能做很多，参考 NVIDIA 的 Isaac Sim 文档。论文的话，去 Physical Intelligence 网站按他们的论文看一遍，很快就能把脉络抓住。他们本来就是前沿团队，公开很多内容，所以我建议直接去 Physical Intelligence 页面。论文都在那。
+
+<span class="paragraph-timestamp" data-ts="1:19:44">1:19:44</span> **卢正锡** 明白了。
+
+## 机器人进入我们生活的未来与收尾    *1:19:46*
+
+<span class="paragraph-timestamp" data-ts="1:19:46">1:19:46</span> **崔升准** 听完今天讨论，我想法又变复杂了。所以最终，随着这种技术进步和真实落地，机器人还要几年才会进入日常生活？会是什么 form factor、什么产品、要解决哪些任务，感觉我们已经到了开始想象这些的阶段。
+
+但再加一点背景，我们现在想的本质上还是把劳动委托出去，对吧？可真的只是这样吗？我会这样想。你怎么看，Jong Hyun？
+
+<span class="paragraph-timestamp" data-ts="1:20:19">1:20:19</span> **Jong Hyun Park** 首先我认为机器人以某种形式进入生活这件事是确定的。几年内。问题在于价格和量产。这块我懂得不多，不清楚哪些难哪些容易，但谁都看得出市场价值巨大，所以大概率先从劳动力市场开始。然后家用也会跟上。至于机器人一定要 humanoid 吗，我觉得不一定。比如每张桌子上都可以有一个机器人。也可能是类似机器人玩偶。我觉得会出现很多形态，甚至每个厨房水槽边都可能有一个。就装一条机械臂。总之会以各种形式出现，我是这么相信的。
+
+再往后想，会出现我们现在完全想不到的新环境形态。因为现在所有家具、住宅形状、办公室布局，都是按人类 form factor 设计的。比如门的宽度。
+
+但如果机器人开始承担大量过去只有人做的事，就像今天的大型工厂一样，我觉得未来会出现按机器人 form factor 定制的物体、工具、空间。比如咖啡店，当前机器人是在给人走的通道里穿行，但未来可能会有专门给机器人用的小轨道。
+
+<span class="paragraph-timestamp" data-ts="1:21:55">1:21:55</span> **崔升准** 比如医院那样。
+
+<span class="paragraph-timestamp" data-ts="1:21:56">1:21:56</span> **Jong Hyun Park** 对，比如医院。那它们就可以在轨道上移动，完成上菜、收台、洗碗这些工作。
+
+总之我判断会出现很多现在难以想象的形态，尤其是环境变化。它们会以满足人类很多根本欲望的方式出现。
+
+可能是从劳动中解放，也可能是给你做更好的饭，或者是更私密的需求，我觉得会逐步深入到更底层层面。
+
+<span class="paragraph-timestamp" data-ts="1:22:31">1:22:31</span> **卢正锡** 你描述的很像 LLM 之后出现的那种分化和无限演化模式，这里也会自然发生。
+
+<span class="paragraph-timestamp" data-ts="1:22:41">1:22:41</span> **崔升准** 这个“sudoremove RF”一直很吸引我注意。
+
+<span class="paragraph-timestamp" data-ts="1:22:45">1:22:45</span> **Jong Hyun Park** 很像，现在看我觉得意义类似。我们频道名“sudoremove”，开发者都懂，就是全部删掉，对吧？
+
+新东西来了，所以比如环境也一样，房子、家具全清空，按新世界重建。包括我们脑中的知识和思维方式，这就是那个意思。
+
+<span class="paragraph-timestamp" data-ts="1:23:08">1:23:08</span> **崔升准** 总之你今天给了我们非常完整的全景，这个语境我们也真正吸收了。下次再见时，我觉得可以把这些讨论再深入一点。
+
+<span class="paragraph-timestamp" data-ts="1:23:17">1:23:17</span> **卢正锡** 我们也会更紧密地跟进你今天介绍的 SmolVLA，以及 Physical Intelligence 论文和相关工作，然后再回来向你请教。
+
+<span class="paragraph-timestamp" data-ts="1:23:30">1:23:30</span> **崔升准** 我从很多不同角度都学到了。尤其是从 System 2 往上走这个点，我之前完全没想到。谢谢你。
+
+<span class="paragraph-timestamp" data-ts="1:23:36">1:23:36</span> **Jong Hyun Park** 这些研究都是前辈们做的，我只是代他们复述。
+
+<span class="paragraph-timestamp" data-ts="1:23:41">1:23:41</span> **卢正锡** 我们真的活在很有趣的时代。今天这期 AI Frontier 和 sudoremove 的联动节目，由 sudoremove 的 Jong Hyun 来到现场。非常感谢你今天的分享，我们很感谢，也学得很开心。谢谢。
+
+<span class="paragraph-timestamp" data-ts="1:23:59">1:23:59</span> **Jong Hyun Park** 大家辛苦了，谢谢。

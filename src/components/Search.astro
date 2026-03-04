@@ -1,10 +1,11 @@
 ---
 interface Props {
-  lang?: 'ko' | 'en';
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
 }
 
 const { lang = 'ko' } = Astro.props;
-const placeholder = lang === 'ko' ? '검색...' : 'Search...';
+const placeholders: Record<string, string> = { ko: '검색...', en: 'Search...', ja: '検索...', 'zh-Hans': '搜索...' };
+const placeholder = placeholders[lang] ?? 'Search...';
 ---
 
 <div class="search-container relative">

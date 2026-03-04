@@ -1,0 +1,797 @@
+---
+episodeNumber: 77
+lang: "ja"
+title: "Gemini 3 と Antigravity: イノベーションの異常に急峻なカーブ"
+description: "今週、待望の Gemini 3 が公開され、AI業界に大きな衝撃を与えました。Gemini 3 の登場を受けて、pre-training と post-training の進展、AI スケーリング則の有効性、そして加速する AI 開発がビジネスや個人の能力に与える影響を深く議論します。Gemini 3 を活用した UI 生成、音楽、インタラクティブ可視化といった実践事例を通じて、急速に変化する AI 時代における「unlearn-learn」のような柔軟なアプローチの重要性を再確認します。"
+publishedAt: 2026-01-28
+duration: "1:15:44"
+youtubeId: "iphkBknRyjo"
+thumbnail: "https://i.ytimg.com/vi/iphkBknRyjo/maxresdefault.jpg"
+hosts:
+  - ノ・ジョンソク
+  - チェ・スンジュン
+chapters:
+  - time: "00:00"
+    title: "オープニング: Gemini 3 公開と今週の AI タイムライン"
+  - time: "02:54"
+    title: "競合モデルの応答: GPT-5.1-Codex-Max と Nano Banana Pro"
+  - time: "04:02"
+    title: "AI と科学の結合: OpenAI と Google DeepMind の戦略"
+  - time: "07:35"
+    title: "スケーリング則は終わったのか? Gemini 3 の pre-training ジャンプ"
+  - time: "12:00"
+    title: "モデル・ヴィンテージ理論: データ収穫と知識更新"
+  - time: "16:30"
+    title: "新しい計算指標: GPU 台数より Watts が重要な理由"
+  - time: "19:14"
+    title: "OpenAI 内部メモと 'Shallotpeat' プロジェクト"
+  - time: "22:20"
+    title: "Unlearn-Learn: 複雑なハーネスを捨ててモデルを信頼する"
+  - time: "25:15"
+    title: "ベンチマークの限界と Andrej Karpathy の 'Vibe Check'"
+  - time: "29:45"
+    title: "Gemini 3 の圧倒的機能: Generative UI と Voxel/SVG 生成"
+  - time: "33:30"
+    title: "スピード超知能: 100倍速く安い知能の未来"
+  - time: "34:40"
+    title: "歴史的視点: 農業革命・産業革命と認知労働の代替"
+  - time: "40:40"
+    title: "HWP ファイル認識機能とデータ移動の含意"
+  - time: "43:20"
+    title: "意図が現実になる: コーディングと創作の障壁崩壊"
+  - time: "47:30"
+    title: "物理可視化ケース: Nano Banana Pro 活用"
+  - time: "50:50"
+    title: "現場の AI Transformation (AX): 幼稚園教材制作ケース"
+  - time: "58:50"
+    title: "Antigravity レビュー: CLI 障壁を下げる Agentic ツール"
+  - time: "01:06:30"
+    title: "エンジニアへの助言: ツール開発より問題解決（ビジネス）に集中"
+  - time: "01:11:55"
+    title: "'Fugitive Alliance' ミーティング告知"
+  - time: "01:12:45"
+    title: "クロージング: 急変する時代における多様な視点の重要性（Syncretism）"
+notionUrl: "https://erucipe.notion.site/Gemini-3-0-AX-2b2d5c9e7e5980efb79af5e94136f55f"
+---
+
+## オープニング: Gemini 3 公開と今週の AI タイムライン    *00:00*
+
+
+<ResourceLink url="https://antigravity.google/changelog" title="antigravity.google" domain="antigravity.google" />
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **ノ・ジョンソク** 今日は収録日ベースで 2025年11月22日、土曜の朝です。今週ついに、ずっと待っていた Gemini 3 が出ました。ここ 2〜3日くらいは、この 2つ、Gemini 3 と Antigravity で本当に楽しく遊んでいました。スンジュン。
+
+
+<ResourceLink url="https://blog.google/technology/ai/nano-banana-pro/" title="blog.google" domain="blog.google" />
+
+<span class="paragraph-timestamp" data-ts="00:23">00:23</span> **チェ・スンジュン** Nano Banana Pro もありましたね。
+
+<span class="paragraph-timestamp" data-ts="00:25">00:25</span> **ノ・ジョンソク** では Gemini 3 について、何が起きたのか、そこにある意味を見ていきましょう。
+
+
+<ResourceLink url="https://openai.com/index/group-chats-in-chatgpt/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="00:34">00:34</span> **チェ・スンジュン** 今週はドーパミンが満ちた週だった感じです。もうすでにちょっと虚脱感があります。大きなリリースの後に空気が静まる感じは少し寂しいですが、同じくらい楽しい週でもありました。
+
+最近のタイムラインを見ると、もうずいぶん前のことのようですが、9月30日、秋の始まりに Claude Sonnet 4.5 が出ました。そして 10月1日、Periodic Labs などから科学方面のシグナルが少し出てきました。10月21日に Atlas、そして 10月30日には前回チェスターが扱った OpenAI の内部目標発表がありました。
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> **ノ・ジョンソク** そうですね、フルスタック企業になると宣言した日です。
+
+<span class="paragraph-timestamp" data-ts="01:23">01:23</span> **チェ・スンジュン** その通りです。26年9月ごろに AI research intern のようなもの、28年3月ごろに autonomous AI researcher というような内容を発表していました。そして 11月12日に GPT-5.1 が出ました。
+
+GPT-4o っぽいスタイルのものが GPT-5.1 で復元された感じでした。比較的あまり知られていないんですが、僕も一度しか試していないけど、これはかなり意味があると思います。
+
+ChatGPT 内の group chat です。僕も数人招待して会話してみましたが、面白かったです。
+
+<span class="paragraph-timestamp" data-ts="02:02">02:02</span> **ノ・ジョンソク** あ、それはまだ開けてないですね。
+
+
+<ResourceLink url="https://x.ai/news/grok-4-1" title="x.ai" domain="x.ai" />
+
+<span class="paragraph-timestamp" data-ts="02:04">02:04</span> **チェ・スンジュン** いまアプリで使えるので、やってみると新しいアイデアが出るかもしれません。一方で「OpenAI もこの領域を拡張してるな」という感じもあります。アプリを作って、ソーシャル系までやっていて、一定の方向に一貫して動いているのが見えます。
+
+そして 11月17日、韓国で OpenAI DevDay が開かれた時期でもありました。招待されて参加しました。その 17日に Grok 4.1 も出て、ベンチマークがかなり良かった記憶があります。
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **ノ・ジョンソク** Gemini 3 が出るのをみんな知っていたから、その間に ChatGPT も Grok も「自分たちもここまで進んだ」と発表した感じでしたね。
+
+
+<ResourceLink url="https://openai.com/index/gpt-5-1-codex-max/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **チェ・スンジュン** そうですね。
+
+## 競合モデルの応答: GPT-5.1-Codex-Max と Nano Banana Pro    *02:52*
+
+
+<ResourceLink url="https://openai.com/index/gpt-5-1-codex-max/" title="openai.com" domain="openai.com" />
+
+<span class="paragraph-timestamp" data-ts="02:52">02:52</span> **チェ・スンジュン** でもいつも通り、最後に発表する側が鍵なので、今回のラウンドでは米国時間 11月18日に Gemini 3 が出て、その直後 19日に名前は長いですが GPT-5.1-Codex-Max が出て、対抗策があることを示しました。
+
+OpenAI はそう言っていますが、全体の雰囲気を見ると少し Gemini 3 側に傾いているようです。
+
+<span class="paragraph-timestamp" data-ts="03:25">03:25</span> **ノ・ジョンソク** はい。Gemini 3 と Antigravity を止めるには、GPT-5.1 だけでは足りなかったですね。
+
+
+<ResourceLink url="https://arxiv.org/abs/2511.16072" title="arxiv.org" domain="arxiv.org" />
+
+<span class="paragraph-timestamp" data-ts="03:31">03:31</span> **チェ・スンジュン** はい、とにかく Codex はうまくいっていて、これからも伸びるというメッセージは出しました。
+
+20日には Nano Banana Pro が発表されました。面白いのは、これが Google のエコシステム全体に統合されていることです。
+
+Nano Banana Pro は画像を扱うあらゆる場所に統合されていて、いまシナジーを生んでいます。NotebookLM などでも。
+
+Antigravity でも動きます。
+
+それで非常にうまく編み込まれているという印象を受けました。
+
+## AI と科学の結合: OpenAI と Google DeepMind の戦略    *04:01*
+
+<span class="paragraph-timestamp" data-ts="04:01">04:01</span> **チェ・スンジュン** ただ OpenAI は、先ほどの Periodic Labs と違って、OpenAI 自体ではないけれどそこから派生した組織で、Google DeepMind も OpenAI 由来と言える流れの中で、科学で何かが起きているシグナルが読めるなら、OpenAI はこの秋ずっと科学の部分を強調してきました。
+
+夏から秋にかけて、科学分野で何か発見が起きそうな兆候があり、それを押し出している感じです。先ほど話した AI scientist の話もそうで、AI を研究する scientist の話でしたが、とにかく科学全般にまたがっています。Google DeepMind はもともと Demis Hassabis がいつも話していた通りそこに注力していましたが、OpenAI も今は継続して語っています。
+
+数日前にこれも発表されました。"Early experiments in accelerating science with GPT-5" というタイトルで、ブログ、論文、そして podcast も出たのですが、Gemini 3 で忙しすぎてあまり見られませんでした。ただ、そういうシグナルがありました。これはたぶん 2026年の予告編でしょう。
+
+<span class="paragraph-timestamp" data-ts="05:03">05:03</span> **ノ・ジョンソク** そうですね。たぶん 2026年には AI と組み合わさった bio セクターで、今回見たモデルのように、かなり多くの進展が一気に出てくると思います。少し言い方は変ですが、株式市場の期待とつながっているのはおそらく bio セクターなので、注目が集まっています。
+
+いずれにせよ、この分野で研究する人もビジネスをする人も、最終的には収益モデルが堅い場所、あるいはリターンが巨大な場所にインセンティブが向かうのは避けられません。そういうものです。
+
+例えば社会課題の解決や地球温暖化のような美しい物語より、商業目的が明確な場所に行くように見えます。主に bio や finance などですね。
+
+<span class="paragraph-timestamp" data-ts="05:58">05:58</span> **チェ・スンジュン** 僕は bio セクターをあまり見ていませんが、実験と同時に検証可能なことを進めること、科学のさまざまな分野には多くのセクターがあるので、それらが全体に影響するかもしれないと思いました。
+
+<span class="paragraph-timestamp" data-ts="06:14">06:14</span> **ノ・ジョンソク** はい。前回 Periodic Labs の話をしたときにも言いましたが、その分野を全部知らないとコメントできない部分はあります。少しでも知識があれば……
+
+僕自身 bio セクターにとても関心があるので、その領域のニュースを比較的よく目にします。だからシグナルが強く見えるのかもしれません。materials science、electronics、energy を含め、全体的に実際かなり変化があると思います。
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> **チェ・スンジュン** 同感です。だからこそ、それぞれのドメイン専門家が自分のレンズでこの現象や時代をどう解釈しているかを話せると、とても面白いと思います。
+
+<span class="paragraph-timestamp" data-ts="06:55">06:55</span> **ノ・ジョンソク** その通りです。数か月前までは、ドメイン専門家と AI 専門家の組み合わせが重要だと言っていました。
+
+でも実はその AI 専門家、従来 software engineer の役割を担っていた人たちは、ある種の harness を作る才能ゆえでした。
+
+Gemini 3 と Antigravity の話をしていて、後半でも触れますが、その役割は継続的に縮小している感覚がかなり強いです。強く感じています。
+
+<span class="paragraph-timestamp" data-ts="07:21">07:21</span> **チェ・スンジュン** いろいろ考えることは多いですが、次に行きましょう。
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> **ノ・ジョンソク** 次のセクションは、すでにスンジュンが話題を設定してくれていて、内容も多いので行きましょう。
+
+
+<ResourceLink url="https://x.com/OriolVinyalsML/status/1990854455802343680" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="07:32">07:32</span> **チェ・スンジュン** いくつか指摘してみました。
+
+## スケーリング則は終わったのか? Gemini 3 の pre-training ジャンプ    *07:35*
+
+<span class="paragraph-timestamp" data-ts="07:35">07:35</span> **チェ・スンジュン** 僕が注目したのは Google DeepMind の Oriol Vinyals です。Ilya Sutskever の同僚だった人ですね。Google にいたとき。これは 25年ではなく昨年の話ですが、Ilya Sutskever が oil に例えたとき、pre-training はプラトーに達したというニュアンスで話していました。そう言っていました。でも Gemini 3 は違う。pre-training も post-training も両方改善されています。
+
+つまり AI スケーリング則は終わったという一般的な見方に反していて、その見方は昨年のあのプレゼンで議論され確認されたわけですが、そうではなくジャンプがあった。2.5 と 3.0 の差分、その差は今までで最大です。限界はまだ見えていない。post-training は、これは……
+
+pre-training の文脈でも限界は見えていないと言っていて、post-training は完全な greenfield、障壁がない。だからアルゴリズム進歩と改善の余地が膨大に残っている。3.0 もその副産物だと言っていました。
+
+<span class="paragraph-timestamp" data-ts="08:42">08:42</span> **ノ・ジョンソク** ここをもう少し平易に説明するとどうなりますか、スンジュン。pre-training に関する従来の考えは、インターネット上の高品質データはもう使い尽くされ、これ以上データがない、というデータ枯渇説がありました。
+
+次に、ほとんどが garbage data だと考えられていたので、それを精製して dataset の品質を上げる試みがありました。3つ目に、それを受け取る neural network の構造、現在の学習アルゴリズム、投入できる computing power 量の制約がありました。そういう課題があったわけですが、どこで進展したかを正確には言っていないものの、そうではないと言っている。そうした壁を乗り越えていると言っています。
+
+<span class="paragraph-timestamp" data-ts="09:37">09:37</span> **チェ・スンジュン** なので OOM 問題を解いたのか、データ問題を解いたのか、いまはどれか正確には分かりません。とにかく、それはたぶん中国側が教えてくれるんじゃないですか。
+
+<span class="paragraph-timestamp" data-ts="09:48">09:48</span> **ノ・ジョンソク** もっと情報がリークされて、Kimi や DeepSeek がそれをきれいに整理した論文を出してくれることを期待したいです。
+
+
+<ResourceLink url="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" title="metr.org" domain="metr.org" />
+
+<span class="paragraph-timestamp" data-ts="09:57">09:57</span> **チェ・スンジュン** とにかくどう解いたかは不明ですが、解いたことは解いた。なので GPT-5.1 に聞いたら、24年に起きたことを確認してくれて、壁はまだない、今もないと言いました。
+
+METR time horizon は、多くの人が知って忘れ、僕も時々そうですが、これはモデルの実行にかかる時間ではありません。人間が実行に要する時間に対応しますよね。Gemini 3 はまだ反映されていなくて、GPT-5.1-Codex-Max はログスケール上で直線を少し上回る程度。time horizon はそうやって伸び続けています。
+
+でもモデルが実行する実時間は、もう時間単位ではなく、だんだん日単位に入っている感じですよね。ずっと走り続けるように見えます。
+
+<span class="paragraph-timestamp" data-ts="10:56">10:56</span> **ノ・ジョンソク** どんな harness を付けるかによって、時間は無限に伸ばせる。最近はそう言われています。
+
+<span class="paragraph-timestamp" data-ts="11:04">11:04</span> **チェ・スンジュン** そうですね。コメントでは、for loop のような反復タスクを回して時間を延ばしただけではないかという話もあります。そういう話はありますが、とにかくモデルの実行能力はかなり長時間走れるようになりました。ただ今回全体で、Opus 4.5 が出て、いったん整理されてから、まだ出てないですけど、次のラウンドは 3月か 5月ですよね。
+
+そのときこのグラフが維持されるなら、今は 2時間ちょっとですが、来年 5月には 3.5時間くらいになる。3〜5月あたり。なので先ほどの Oriol Vinyals の話のように、まだ壁にぶつかっていないし進行中だという点は、継続して意識する必要があります。
+
+## モデル・ヴィンテージ理論: データ収穫と知識更新    *11:59*
+
+<span class="paragraph-timestamp" data-ts="11:59">11:59</span> **ノ・ジョンソク** ここで Google も OpenAI も、単一パイプラインだけを回しているわけではないはずです。複数パイプラインを回していて、このパイプラインがどの vintage 由来かを当てる僕なりの推測方法は knowledge cutoff を見ることです。
+
+見ると、Gemini 2.5 が出たとき knowledge cutoff は 2025年1月でした。かなり最新の dataset で学習していて、今回出た 3.0 も knowledge cutoff は同じです。
+
+つまり同じ vintage から 2.5 を犠牲にしながら継続開発した成果が 3.0 だと思っています。
+
+今が 3.0 で、次の完全に新しい vintage は knowledge cutoff がもっと後ろになるでしょう。
+
+<span class="paragraph-timestamp" data-ts="12:57">12:57</span> **チェ・スンジュン** 「vintage」はワインの比喩ですか？
+
+<span class="paragraph-timestamp" data-ts="12:59">12:59</span> **ノ・ジョンソク** そうです。何年物かという話です。収穫、dataset を葡萄の収穫のように見ています。
+
+<span class="paragraph-timestamp" data-ts="13:07">13:07</span> **チェ・スンジュン** なるほど。何年のどの葡萄の収穫か、ということですね。
+
+<span class="paragraph-timestamp" data-ts="13:10">13:10</span> **ノ・ジョンソク** その通り。だから 2025年1月 vintage。2.5 も 3.0 も。
+
+<span class="paragraph-timestamp" data-ts="13:15">13:15</span> **チェ・スンジュン** どんな土壌か、みたいな。
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **ノ・ジョンソク** そうです。
+
+<span class="paragraph-timestamp" data-ts="13:17">13:17</span> **チェ・スンジュン** ベンダーとして見ることもできますね。
+
+<span class="paragraph-timestamp" data-ts="13:18">13:18</span> **ノ・ジョンソク** そしてここで得たイノベーション、中間生成物、dataset は膨大に生まれます。AI Studio などで人々が特定の質問を投げることで出てくる多くの dataset は非常に高エネルギーなデータですよね。そこからも大量に学ぶはずです。
+
+<span class="paragraph-timestamp" data-ts="13:42">13:42</span> **チェ・スンジュン** つまりデータを使っているだけでなく、私たちもかなり渡している、ということですね。
+
+<span class="paragraph-timestamp" data-ts="13:49">13:49</span> **ノ・ジョンソク** もちろんです。
+
+<span class="paragraph-timestamp" data-ts="13:50">13:50</span> **チェ・スンジュン** かなり多くの「餡子」データ、つまりパスを渡しています。データそのものだけでなく、データ生成の経路まで提供しているので……
+
+<span class="paragraph-timestamp" data-ts="13:58">13:58</span> **ノ・ジョンソク** そこが実は重要です。pre-training は終わったからしばらくプラトーだ、と考えがちですが、人類の進歩を振り返ると、Einstein を含む 1900年代初頭の科学ルネサンスのように、思考トークンが相互作用して dataset は継続的に拡張されてきました。
+
+その意味で今の pre-training と post-training、正確には post-training から生成される膨大なデータ、そして AI Studio や Antigravity に私たちが注ぐ巨大な方向性の意図が、逆に pre-training dataset を拡張します。そして pre-training dataset が成長すると次の horizon へ進む。そう考えています。
+
+<span class="paragraph-timestamp" data-ts="14:50">14:50</span> **チェ・スンジュン** まったく違うアイデアも隠れているはずですが、現行レジームがあまりにうまく回っているので相対的にかすんでいるのかもしれません。
+
+<span class="paragraph-timestamp" data-ts="14:58">14:58</span> **ノ・ジョンソク** その通り。いまはこのレジームの好循環が続いているように見えます。
+
+<span class="paragraph-timestamp" data-ts="15:03">15:03</span> **チェ・スンジュン** Opus 4.5 の噂もあります。昨日か今日出るのではと言われていましたが、まだ出ていません。
+
+ただ最近は噂の多くが当たります。面白いのは GDE などは NDA 下で何も言えませんが、
+
+タイムラインの噂はそういうところからリークされる。特定分布で繰り返し出る噂は、ほぼ当たります。
+
+<span class="paragraph-timestamp" data-ts="15:31">15:31</span> **ノ・ジョンソク** Antigravity の Claude Code 版、Claude Code Desktop がもうすぐ出ますね。
+
+<span class="paragraph-timestamp" data-ts="15:37">15:37</span> **チェ・スンジュン** そう、そういう空気があります。Antigravity 自体がいま注目対象になっているので。
+
+<span class="paragraph-timestamp" data-ts="15:48">15:48</span> **ノ・ジョンソク** それは後で Antigravity パートで深く話しましょう。
+
+
+<ResourceLink url="https://www.dwarkesh.com/p/bits-per-sample" title="dwarkesh.com" domain="dwarkesh.com" />
+
+<span class="paragraph-timestamp" data-ts="15:51">15:51</span> **チェ・スンジュン** ここでも、前日に model card が短時間共有され、すぐアーカイブされました。「これ何？ Antigravity って何？」という反応がありました。
+
+Gemini 3 発表前日の状況がそうで、噂に賭けるサイト、Polymarket があります。そこを見たら 91% まで上がっていました。前日なので、みんな知っていたわけです。
+
+今日は深掘りしづらいですが、Dwarkesh Patel もこの時期に RL 関連で面白いブログを書いていました。
+
+## 新しい計算指標: GPU 台数より Watts が重要な理由    *16:33*
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **チェ・スンジュン** ここで "bits per sample"、これは "bit" にかけた言葉遊びですが、"watt" が出ます。ジョンギュが最近 supercomputer カンファレンスに行ってましたよね？
+
+<span class="paragraph-timestamp" data-ts="16:46">16:46</span> **ノ・ジョンソク** 行っていて、もうすぐ戻るみたいです。はい、Supercomputer 25。
+
+<span class="paragraph-timestamp" data-ts="16:50">16:50</span> **チェ・スンジュン** 彼が教えてくれたのは、最近は誰も GPU 台数を語らず watts を語るということです。
+
+<span class="paragraph-timestamp" data-ts="16:57">16:57</span> **ノ・ジョンソク** いまは computing power や GPU 台数より、watts で漸近線に近づいているので、重さで語るのが分かりやすいのと同じように、重さで語っている感じです。
+
+<span class="paragraph-timestamp" data-ts="17:12">17:12</span> **チェ・スンジュン** 情報効率が高い形で、エネルギーが知能に変換されていますね。
+
+<span class="paragraph-timestamp" data-ts="17:17">17:17</span> **ノ・ジョンソク** computing input の総量が最終的に知能を表す。そしてその総量の先行指標として最も情報量が高いのは電力量です。
+
+Watts ですね。
+
+だから、ここで何 watts 消費したかが、その中にどれだけ知能が含まれているかを語るようになると思います。
+
+
+<ResourceLink url="https://x.com/GavinSBaker/status/1991248768654803337" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="17:42">17:42</span> **チェ・スンジュン** その通りです。この投稿はかなり良かったです。19日に Gavin Baker という人が Twitter に投稿しました。僕が翻訳しました。僕だけでなく何人かがこのタイムラインを投稿していたようです。
+
+<span class="paragraph-timestamp" data-ts="17:57">17:57</span> **ノ・ジョンソク** 要約お願いします。
+
+
+<span class="paragraph-timestamp" data-ts="17:58">17:58</span> **チェ・スンジュン** pre-training の AI スケーリング則は依然有効。Gemini 3 も同じ認識だと思います。pre-training で重要なのは一貫した FLOPs で、Blackwell か TPU かは本質ではない。token economics に触れています。Grok 4.1 もインフラがあるからこそ大きく出られる。そこをつなげて、電力不足の部分を指摘しています。watts がボトルネックなら何が重要か。
+
+tokens per watt が意思決定を駆動する。token は文字通り収益だから、という説明でした。もちろんインフラ面では光ケーブル、冷却、この投稿では冷却には触れていませんがジョンギュは冷却も重要視しているようです。結論として、これらすべてが AI はまだ初期段階だと示している。そして最後に OpenAI の不安の話で締めています。全体会議のうち数段落だけ持ってきました。
+
+<span class="paragraph-timestamp" data-ts="19:06">19:06</span> **ノ・ジョンソク** そうですね。OpenAI の不安の話は、後で Sam Altman の tweet と絡めて話すところですね。ここです。
+
+## OpenAI 内部メモと 'Shallotpeat' プロジェクト    *19:14*
+
+
+<ResourceLink url="https://www.theinformation.com/articles/openai-ceo-braces-possible-economic-headwinds-catching-resurgent-google" title="theinformation.com" domain="theinformation.com" />
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **チェ・スンジュン** The Information の記事です。直接読んだわけではなく、Twitter で流れている話を見たのですが、Gemini 3 がかなりプレッシャーをかけたようです。事前に知っていたはずなので、社員向けメモが出たのだろうと。
+
+その話ですが、ここで Sam Altman が Shallotpeat という新モデル、pre-training 改善、AI research の野心的自動化に言及しています。この野心的自動化は 10月にも話されていました。そしてここでも pre-training 改善を言っている点が見えます。なので調べてみたら、shallot は玉ねぎ系で、peat という土壌ではうまく育たないそうです。
+
+土壌が悪く育ちにくい植物の比喩ですね。つまり pre-training の土壌、言い換えるとデータ・方法論・インフラに問題がある中でも、よく育つ新しい何かを比喩的に表したもの。これが codename ではないかという推測まで確認できました。
+
+<span class="paragraph-timestamp" data-ts="20:27">20:27</span> **ノ・ジョンソク** 要するに、Google が Gemini 3 で pre-training 段階の進展を実際に達成したのは事実で、OpenAI もそれに対抗する何らかのアクションを持っている、ということですね。
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> **チェ・スンジュン** つまり既に存在している。存在はしているけどまだ公開準備ができていないのか、モデルはあるが serving できないのか。そういうことかもしれません。
+
+<span class="paragraph-timestamp" data-ts="20:53">20:53</span> **ノ・ジョンソク** 根拠のない僕の陰謀論ですが、こういう進歩の多くは、実はアイデアだったりします。
+
+いまは idea = output の世界に入りつつあり、その世界では pre-training をやる側、Google でも pre-training する際に生む直感があり、それが口コミで急速に広がるはずです。
+
+OpenAI もすぐやると信じていますし、xAI もやる前提で見るべきだと思います。時間差はあるだけで、上方平準化の速度がどんどん上がっています。
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **チェ・スンジュン** そうですね。今の流れだと、来年6月が中国版の Gemini 3 が出るタイミングとしては妥当です。
+
+<span class="paragraph-timestamp" data-ts="21:42">21:42</span> **ノ・ジョンソク** 半年ですね。o1 が 9月に出て、その秘密を明かした DeepSeek R1 が翌年1月に出ました。約 5か月なので、来春末には pre-training のプラトーをどう引き上げたかを DeepSeek が論文で出してもおかしくないです。
+
+<span class="paragraph-timestamp" data-ts="22:02">22:02</span> **チェ・スンジュン** 自分で言っていてもかなり突飛に感じますが、それを想像できないといけないですね。
+
+6か月後のビジネスを話すとき、環境変化を想定するには、これを信じないと想像自体できないので、常に想像可能である必要があります。
+
+## Unlearn-Learn: 複雑なハーネスを捨ててモデルを信頼する    *22:20*
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **ノ・ジョンソク** ここでいつも話す unlearn-learn フレームがまた出てきます。2か月前に Claude Code の話をしたとき議論していたのは、作業時間を伸ばす良い harness の作り方でした。作業時間を伸ばすことは output 品質を上げることでもある。どうやってそれをやらせるか。そのために Claude の skills が出て、最近は Claude Code をさらに拡張する framework が大量に出て、harness をいたるところに貼っていました。
+
+でも言い換えると、Antigravity セクションで話す通り、その時代も 3〜4か月で終わります。
+
+<span class="paragraph-timestamp" data-ts="23:05">23:05</span> **チェ・スンジュン** まさにそうです。この感覚はいま本当に重要だと感じます。
+
+<span class="paragraph-timestamp" data-ts="23:14">23:14</span> **ノ・ジョンソク** その通りです。
+
+昔は engineer が harness を強化してモデルを整えていましたが、その harness は capability overhang として再びモデルに吸収されました。官僚的に縛るより、最小限の guardrail だけ置いてモデルに任せる方が、より良い output の世界に早く到達しています。
+
+<span class="paragraph-timestamp" data-ts="23:43">23:43</span> **チェ・スンジュン** それはこの春 Noam Brown が言っていたことですね。
+
+<span class="paragraph-timestamp" data-ts="23:45">23:45</span> **ノ・ジョンソク** そうです。いまスンジュンが言ったことは直結しています。再び unlearn する時期です。
+
+うちの会社でも harness がかなり厚くなりましたが、それを多く削ってモデルに自由度を与える方が output 品質が上がるという洞察を最近得ています。
+
+<span class="paragraph-timestamp" data-ts="24:08">24:08</span> **チェ・スンジュン** だから今日 Gemini 3 に驚いていても、6か月後にはこれがとても安く一般化している可能性があります。想像しづらいですが……
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **ノ・ジョンソク** その通りです。All-In Podcast の Chamath Palihapitiya が出てきて、AI は冷蔵庫だと言いました。冷蔵庫産業の冷蔵庫で、その中でおいしい料理が作られていて、本番はまだ出ていないと言っています。
+
+スンジュンが言ったように、いま体験しているこの知能は安くなっていて、知能が安くなるので software コストもゼロになり、望むプロダクトを作る価格もゼロになる。少なくとも software 領域ではゼロになります。
+
+その時に何が起きるか。想像力が必要です。
+
+<span class="paragraph-timestamp" data-ts="24:59">24:59</span> **チェ・スンジュン** 想像力が必要ですが簡単ではなく、想像するときは起きることと起きないことを両方考えないといけません。実際かなり難しい作業です。
+
+<span class="paragraph-timestamp" data-ts="25:13">25:13</span> **ノ・ジョンソク** それは少し後で話しましょう。
+
+## ベンチマークの限界と Andrej Karpathy の 'Vibe Check'    *25:15*
+
+
+<ResourceLink url="https://every.to/vibe-check/vibe-check-gemini-3-pro-a-reliable-workhorse-with-surprising-flair" title="every.to" domain="every.to" />
+
+<span class="paragraph-timestamp" data-ts="25:15">25:15</span> **チェ・スンジュン** vibe check を少しやってみました。まず Andrej Karpathy の話が面白かったです。ただ極めて重要な論点というより、モデルとのやり取りの中でモデルがとても面白いことを言ったんです。"Oh my god" と。Andrej Karpathy があることを言ったら、モデルは cutoff のせいでそれは起こり得ないと言った。
+
+でも Andrej Karpathy がやったのは web search 機能をオフにして会話することでした。オンにしたら「Oh my god, あなたの言ったことは全部正しかった」となった。冷凍睡眠から覚めて現実を学ぶ人のような反応でした。そういう驚く部分を通じて、むしろモデル能力を強調したわけです。モデルがこれを気づき、誤りを修正し、「つまりこうだ」と結論づける能力を示した。
+
+ただ Andrej Karpathy の主眼は、ベンチマークにはいくらでもハックが入るので注意すべき、という点でした。だから実際に会話し、vibe check し、他モデルとも話し、自分の感覚を磨くべきだと。意味深な引用もあります。"When you're clearly off the hiking trail and somewhere in the jungle of generalization," "it is in these unintended moments" "that you can best grasp the essence of the model." 少し解釈は難しいです。
+
+とにかくモデルの本質を掴む最良の方法は、ベンチマークを盲信せず自分で使って体感すること。Every は普段から早めに試すチームですが、今回はそこまで先行して試せなかったようです。それでも vibe check をやった。翻訳しましたが要点はこれです。彼らが育てている benchmark set、つまり準備されたチームであること。どのモデルが出てもすぐ onboarding して数日で共有できる。モデルの vibe、できること・できないことを高速に学べる。改めて準備されたチームだと感じました。
+
+Gemini 3 が出たとき周囲に聞くと、いろいろな層がいました。ニュースが出たことを知らない人、知っていてもニュースだけ見る人。モデルは公開済みで、すぐ試せるのに入力してみない人。モデルの長所を語るのが好きな人、短所を語るのが好きな人。
+
+傾向が少し分かれていると感じます。そして何も言わずに、すでに勘所を掴んで stealth 状態の人たちもいるはずです。
+
+<span class="paragraph-timestamp" data-ts="28:06">28:06</span> **ノ・ジョンソク** たくさんいますね。
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **チェ・スンジュン** 何かが出たとき、温度差がかなり激しいと感じました。
+
+<span class="paragraph-timestamp" data-ts="28:16">28:16</span> **ノ・ジョンソク** そうですね。人は本当に2種類だと思います。1つは「どうせどんどん良くなる」と言って、過去に急いで立ち上げた会社がこのモデルの超人的能力で全部消えたという見方をするタイプ。
+
+だからどうせアプリを作るなら最後まで待ち、モデルが完成したと感じたらやる。
+
+2つ目は、こうした変化を追い続ける人たち。追いながら無数の成功と失敗を体験する人たちです。
+
+この2タイプでは勝者がかなり明確に決まると思います。後者です。明確に。
+
+前者は終わりがいつか分からず、これが永遠に指数加速する可能性があるなら、何かを始めるタイミングが来ないかもしれない。永遠に来ないかもしれません。
+
+
+<ResourceLink url="https://aistudio.google.com/apps/bundled/vibecheck" title="aistudio.google.com" domain="aistudio.google.com" />
+
+<span class="paragraph-timestamp" data-ts="29:11">29:11</span> **チェ・スンジュン** ビジネスは詳しくないですが、個人レベルでも時々そう感じます。
+
+最初の prompt を書くとき、何でも打てるのに、少し止まるときがある。「新モデル、どう使えばうまくいくか」と考えて実際に止まることがあります。
+
+でもまず試すしかないと思っています。新モデルが出たら片側でニュースを見ながら、もう片側で、提供されたサンプルをコピペするだけでも試すべきです。
+
+その点に触れたかったです。
+
+## Gemini 3 の圧倒的機能: Generative UI と Voxel/SVG 生成    *29:45*
+
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **チェ・スンジュン** 今週のタイムラインで一番印象に残ったのはこれです。AI Studio だけで全部作られた Vibe Check というサイトです。左側でこの部分自体を変更できます。コードを変えられて、今見えている "silly" と書かれたもの、全然 silly じゃなくかなり楽しい。voxel が動いていますよね。これは Gemini 3 が作ったものです。でも形だけ作るのではなく動かします。3D モデルを作るだけではなく、いまこれをやっている。例えば何を作るか。骸骨が走るシーン。すぐ見ないとしても sample を2つに減らすと SVG になります。voxel を使うべきなのでやり直します。すると queue に入ります。あとで確認できますが、そうやって生成されます。
+
+<span class="paragraph-timestamp" data-ts="30:54">30:54</span> **ノ・ジョンソク** これは2つ目のセクションの Generative UI につながりますね。
+
+
+<ResourceLink url="https://research.google/blog/generative-ui-a-rich-custom-visual-interactive-user-experience-for-any-prompt/" title="research.google" domain="research.google" />
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **チェ・スンジュン** どうやってこれをやったのか。噂だけではなく、事前に試した人たちが SVG や 3D voxel が本当に強いと投稿していました。知ってはいたけど、自分で試すと体感が違いました。
+
+これが意味するのは、速度の課題はまだあるにせよ、front-end や user interface 関連に非常に強いモデルになったということです。何でも作れます。
+
+そのためにここに翻訳したブログ投稿があり、論文もあります。そこでカリキュラムを作っているので、いま website onboarding landing site のようなものを作る能力が非常に高いです。
+
+まだ全ユーザーに出ていないかもしれませんが、これが出ています。ここを見ると Visual Layout Labs が含まれています。これ以外にも agent は ultra ユーザー限定のようですが、もう出ています。骸骨が走るシーン。
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **ノ・ジョンソク** 出ましたね。これ、やばいですよね。
+
+<span class="paragraph-timestamp" data-ts="32:14">32:14</span> **チェ・スンジュン** これに驚くと思いますが、問題はどう作ったかです。feedback を与えて改善できます。
+
+通常 coding ほど検証可能でない領域を、いま検証可能にした。visual、design などはまだ人間が最大努力で作る品質には及ばないけど、かなり近づけた方法を説明しています。
+
+それがブログと論文に書かれています。ブログと論文に。
+
+
+<span class="paragraph-timestamp" data-ts="32:43">32:43</span> **ノ・ジョンソク** 方法論としては大筋理解できます。非検証的に見える部分であっても、
+
+モデル学習段階で「これは良い」「これは悪い」という reward signal を作る。simulator か decision maker のようなもの、モデル自身か別の policy model かもしれません。
+
+<span class="paragraph-timestamp" data-ts="33:07">33:07</span> **チェ・スンジュン** それをアルゴリズムでやったわけです。
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **ノ・ジョンソク** 要はコンピュータを十分ぶつければ動く、という話ですね。
+
+<span class="paragraph-timestamp" data-ts="33:15">33:15</span> **チェ・スンジュン** 最後に今年中盤に出た "The Magic Loop of this research" を引用しています。これは bootstrapping です。今後も良くなり続けます。
+
+## スピード超知能: 100倍速く安い知能の未来    *33:26*
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **チェ・スンジュン** これを見て意味を読むと、Gemini 3 なので評価点は多いですが、僕の一番はこれです。
+
+これが起きていて、ここで想像力を使うと、いまはまだ時間がかかります。これを生成するのに約1分かかりましたよね。まともなページを作るのも、言い方は変ですが約5分。5分で済む、5分です。
+
+めちゃくちゃ短いです。ははは。
+
+<span class="paragraph-timestamp" data-ts="33:56">33:56</span> **ノ・ジョンソク** 笑うしかない世界ですね。
+
+<span class="paragraph-timestamp" data-ts="33:59">33:59</span> **チェ・スンジュン** Nick Bostrom が Superintelligence で言った "speed superintelligence" が、いまの Gemini 3 の知能レベルや性能のまま 10倍、100倍速くなったら何が起きるのか。これも想像ポイントです。
+
+しかも価格が下がったら。1/100 の価格で 100倍速くなったら、100倍速くて 1/100 の価格、あり得ないですか？
+
+そういう想像が始まり、もし近い将来それが可能になれば、知能がこのレベルで止まっても影響は巨大です。
+
+## 歴史的視点: 農業革命・産業革命と認知労働の代替    *34:35*
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **ノ・ジョンソク** そうですね。ただ実際に Gemini 3 や AI モデルが私たちのためにしている仕事、置き換えている仕事は、私たちが自分の認知能力だと思っていた部分です。そこが置き換わるから、私たちは驚き、不安になり、自分基準で判断してしまう。
+
+でもその判断レンズを、いま僕がスンジュンの目を見ているこの段から空へ上げ、歴史的視点で見ると、こういうことは歴史上何度も起きています。まず農業で、次に産業革命の織物、繊維産業で。
+
+農業を例にすると、かつて産業のほぼ全てが農業だった時代がありました。でも今は総人口の 2〜3% くらいしか農業に従事していないはずです。全人類が農業をしていた時代には、スンジュンと僕がいま話しているように、「こう種をまくと良かった」「あれをすると良い」「あの村で誰かが肥料を作って収穫が増えた」「糖度が高い」といった話が日常そのものだったはずです。
+
+でも農業革命と産業革命、機械革命で、機械が畑を耕し、化学が進んで肥料が改善した。そこで何が起きたかを考えると、その産業で働いていた人は皆仕事を失った。そして全部企業化された。農産物価格は大幅に下がり、社会はとても豊かになった。
+
+その産業の労働者視点では生産手段をすべて失ったけれど、人類全体としては大きな豊かさの時代に入った。餓死する人はいない。
+
+今は人類史上初めて、飢饉で餓死する心配ではなく、GLP-1 でどう痩せるかを心配する時代です。今の私たちには当たり前でも、200年、150年前の人には理解不能でしょう。
+
+この規模感、桁の変化でこの世界を見る必要があります。そうすると、ただ終わるだけです。
+
+<span class="paragraph-timestamp" data-ts="37:11">37:11</span> **チェ・スンジュン** 非線形なんですよね。線形ではなく非線形。200年かかったことが今は……
+
+<span class="paragraph-timestamp" data-ts="37:15">37:15</span> **ノ・ジョンソク** 2年で起きる。
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **チェ・スンジュン** それが起きています。
+
+<span class="paragraph-timestamp" data-ts="37:19">37:19</span> **ノ・ジョンソク** はい。200年で起きたことが今後2年で起きる、と言う方が正しいかもしれません。
+
+<span class="paragraph-timestamp" data-ts="37:25">37:25</span> **チェ・スンジュン** すべての領域ではないかもしれないですが、それでも……
+
+
+<span class="paragraph-timestamp" data-ts="37:30">37:30</span> **ノ・ジョンソク** vertical ごとに異なる形で来ますが、モデルの発展と消費されるドメインを見ると、純情報ドメインのものが最速で終わっています。検証可能な領域は、モデルが computing power を投入して探索し自力で終える世界になっている。だから今、うちの会社でも次の2年を20年として見るべきだと言っています。
+
+1か月を1年として考え、次の20か月を20年分の密度で狂ったように生きれば、次の世界で答えを見つけられる。そうしないと丸ごと淘汰される。
+
+もう1つ面白いのは、農業では1世代が捨てられ、産業革命は1〜1.5世代、農業は2世代が捨てられたけど人類は次ドメインへ進んだことです。いま service economy などを作ってきたけど、AI は人類の最も固有で最大の能力、認知能力・認知知能そのものを消している。では私たちはどこに走るのか。
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **チェ・スンジュン** そして最近すごく感じるのは、新しいボトルネックが出てきていることです。今日は入れませんでしたが、最近モデルを使うときは並列実行をよくします。同じ prompt でも複数回、複数セッション、複数モデルで回すので非常に疲れます。人間は context switching が簡単ではない。でもモデルは新セッションを開けば済むので、管理面でかなり大きなボトルネックがあります。
+
+さらに速度が今より速くなって、より圧縮された知識を含む内容を高速生成するようになると、一部で最終的に人間が orchestration しないといけないなら、やらないと問題になる。すぐ疲れる。だから別種類のボトルネックが起きていると感じます。
+
+<span class="paragraph-timestamp" data-ts="39:40">39:40</span> **ノ・ジョンソク** 実際に処理・受信・生成し、管理監督しながら意思決定するために必要な情報量が爆発しています。
+
+僕も昨日・一昨日のことが context から消えるという奇妙な体験をしています。
+
+一昨日何があったか全く思い出せない。
+
+<span class="paragraph-timestamp" data-ts="40:02">40:02</span> **チェ・スンジュン** 最近は脳を本当にたくさん使わないといけない。読み続け、実行し、管理するので、疲れます。
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **ノ・ジョンソク** このタイムギャップを先回りすれば機会があるかもしれないと思って一生懸命生きるけど、同時に予定された敗北感もある。これをやる意味はあるのか。今日苦労して作った harness も、3か月後にはモデルが代わりにやる。
+
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **チェ・スンジュン** ひとまずここまでにしましょう。
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **ノ・ジョンソク** 答えは出ないので次に行きましょう。深く行きすぎました。
+
+## HWP ファイル認識機能とデータ移動の含意    *40:37*
+
+<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **チェ・スンジュン** そして面白いのは、タイムラインで見て実験したんですが、HWPX の binary ではなく HWP ファイルを渡したら読んで再整形してくれました。これは何を意味するのか。
+
+<span class="paragraph-timestamp" data-ts="40:54">40:54</span> **ノ・ジョンソク** これは韓国の行政・教育関連データがこれから全部 AI に入るという意味ですか？
+
+<span class="paragraph-timestamp" data-ts="41:00">41:00</span> **チェ・スンジュン** そうですね。まだ HWP 書き込みはできません。そこは少し難しい。
+
+でも HWP 読み取りは、すでに良い library があるけど、どうやったのかは分かりません。韓国市場向けに特別対応した可能性は低いですが、とにかく入れて出てきます。途中で code を実行した痕跡も見えず、モデルだけでやっている。なぜこれをやるのか。
+
+<span class="paragraph-timestamp" data-ts="41:29">41:29</span> **ノ・ジョンソク** 分かりません。最近の訴訟で HWP を使った以外は、HWP エコシステムに詳しくないです。
+
+<span class="paragraph-timestamp" data-ts="41:38">41:38</span> **チェ・スンジュン** 僕も本当は詳しくなりたくない……
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **ノ・ジョンソク** 使うしかないですよね。
+
+<span class="paragraph-timestamp" data-ts="41:43">41:43</span> **チェ・スンジュン** はい。でも韓国は HWP が多くて、ある意味ではそれが walled garden を作りつつ安全網でもありました。でも今はその情報が全部そこへ流れていく感じです。
+
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **ノ・ジョンソク** 僕の考えでは、この種の機構、OpenAI の app SDK のようなものは、プラットフォーム提供者の視点では、外部情報が自分のシステムに入ってくること自体が常に利益です。
+
+入ってくる情報にもエネルギーレベルがあります。
+
+garbage data もありますが、ユーザーが chat window に直接意図を書き込む情報は、たった1行でも 10ページの web page と同等の情報量を持ち得ます。
+
+<span class="paragraph-timestamp" data-ts="42:36">42:36</span> **チェ・スンジュン** 密度がはるかに高いですね。
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> **ノ・ジョンソク** はるかに高密度な情報です。だからうちの会社でもこの種の情報処理では、前回エピソードの "Right Questions Are All You Need" で話したように、最重要なのは人が本当に望む意図は何か。
+
+話し手本人が直接打つ prompt のエネルギーレベルと品質が最重要だと分かりました。だからそこだけを管理する framework を作ることになった。広く見ると、私たちは Google と OpenAI にこの貴重で高エネルギーな tokens を全部流し込んでいます。
+
+<span class="paragraph-timestamp" data-ts="43:14">43:14</span> **チェ・スンジュン** とにかくこれも印象的な場面でした。そして僕は……
+
+## 意図が現実になる: コーディングと創作の障壁崩壊    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:19">43:19</span> **チェ・スンジュン** まだ深く掘れてはいませんが、驚いた瞬間がいくつかありました。最初に作ったのがこれです。Gemini の最初の prompt を Gemini の web app でやったか AI Studio でやったか記憶が曖昧ですが、AI Studio を選んだ理由は、すでに多くのことができるからです。prompt を spec に変える機能は Gemini web app より AI Studio の方が強く組み込まれているので、そこで試しました。
+
+いま Strudel という musician や media artist が使う live coding library があるんですが、それに似たものを作ろうと提案しました。すると今このように音楽が流れ、ここに書かれた code で生成されています。数値をリアルタイムで変えるとそのまま live coding になります。
+
+ここで lo-fi hip hop 的なものを作る prompt を入れたら、数ショットでこれができました。これに関して、この code は DSL です。でも Strudel そのものではなく、似たものを作った。
+
+音楽は……今は速度が遅いですが、0.5 くらいにすると……。周りの artist や media artist に見せたらかなり驚いていました。chat、live coding、visualization がいきなり出てきたんです。
+
+<span class="paragraph-timestamp" data-ts="45:18">45:18</span> **ノ・ジョンソク** まさにそこが重要です。以前は意図があっても、それを現実化する能力で人の実力を評価していました。でも私たちが何十年も積み上げた skill を、これが消してしまった。
+
+<span class="paragraph-timestamp" data-ts="45:38">45:38</span> **チェ・スンジュン** だから、何か思いついた瞬間に「これ動くな」という感覚が最近少しあります。
+
+モデル次第ではあるけど、Gemini 3.0 クラスだと思いついたことが実現する。
+
+実行前に分かる感覚ができ始めている、という感じです。
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **ノ・ジョンソク** そうですね。僕は何か作る必要があるとき、本質の3行を書くプロセスを頭の中で回します。風呂、シャワー、歩きながらやって、3行ができたら、その高エネルギーな3行を top-tier thinking model に「これを Claude Code に入れるから spec まで膨らませて」と渡します。すると作ってくれる。そこで重要なのは、入力した3行に含まれる情報のエネルギーレベルです。だからアイデアのエッセンスを作る能力が最重要になっていると言ったんです。その理由です。すると高品質な spec sheet が出て、それを Claude Code、harness 付き Claude Code、あるいは Antigravity や Codex に投げれば、終わりです。
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **チェ・スンジュン** そのまま出てきますね。
+
+<span class="paragraph-timestamp" data-ts="46:49">46:49</span> **ノ・ジョンソク** 出てきます。
+
+<span class="paragraph-timestamp" data-ts="46:50">46:50</span> **チェ・スンジュン** 最初の prompt を考え、膨らませる prompt を回し、そこから追加確認が必要な質問が少し出て、1〜2往復後の checklist を回せば出てきます。
+
+もちろん動かないケースもありますが、多くは動きます。
+
+<span class="paragraph-timestamp" data-ts="47:07">47:07</span> **ノ・ジョンソク** そう。もちろん production に乗せるのは別問題ですが、それもすぐ終わる問題です。production の DevOps は、その専用モデルをつなげばいいゲームだからです。うまくつなぐだけのゲームです。
+
+
+<ResourceLink url="https://x.com/YiTayML/status/1990817918784000420" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="47:24">47:24</span> **チェ・スンジュン** とにかくこういうことを試しました。Yi Tay は Google に戻りましたよね。
+
+## 物理可視化ケース: Nano Banana Pro 活用    *47:29*
+
+
+<span class="paragraph-timestamp" data-ts="47:29">47:29</span> **チェ・スンジュン** 彼も prompt をいくつか投稿していたので試しました。ここで見てみましょうか。Minecraft のようなものを作るんですが、Yi Tay は1段落だけ書いたんです。秋の落ち葉が舞う無限拡張空間を作れ、と。ただ僕は一発ではうまくいきませんでした。
+
+音を少し追加して、歩くたびにどんぐりのようなものを拾うと音が出るようにしたら、そのまま出ました。こういうものが多く集まっているのが、先ほど見せた AI Studio の bundle "Vibe Check" です。
+
+それと、タイムラインで物理学者のハン・ジョンフン教授が投稿した画像がありました。量子力学関連で僕は分からないんですが、昨日それを見て、これを Nano Banana Pro に入れたらどうなるかと思って入れたら、こう作られました。離散的に進んで計算パスを示す、そういうものです。
+
+<span class="paragraph-timestamp" data-ts="48:40">48:40</span> **ノ・ジョンソク** 記法を全部は読めませんが、これは正確なんですか？
+
+<span class="paragraph-timestamp" data-ts="48:45">48:45</span> **チェ・スンジュン** はい。ハン・ジョンフン博士が正しいとコメントしていて、しかもすごく綺麗に描くので本の執筆に役立ちそうだという feedback をくれました。
+
+ただコメント欄では別の研究者が、パスはそんなに綺麗な離散アークではなく、こういうアークではなくもっとジグザグで前後するべきだと言っていたので、その feedback を入れました。
+
+すると Nano Banana Pro がこう描きました。これを入力しました。どこに入れたかというと AI Studio に。で、こう出てきました。もちろん画像だけでなく会話 context も渡しました。auto-run か one step を押すと、いまこのように vector が離散的に動きます。
+
+<span class="paragraph-timestamp" data-ts="49:34">49:34</span> **ノ・ジョンソク** ちゃんと動いてますね。
+
+<span class="paragraph-timestamp" data-ts="49:35">49:35</span> **チェ・スンジュン** これは quantum error correction に関係するものだったと思います。
+
+でも今は visualization が interactive になりました。これは昨日から動き始めたものです。
+
+Nano Banana Pro のユースケースは今すごく多いです。良いものが。ただ一例として、infographic などもありますが……
+
+<span class="paragraph-timestamp" data-ts="50:01">50:01</span> **ノ・ジョンソク** 「昨日から動き始めた」と言うのは、Nano Banana Pro が昨日リリースされたという意味ですか？
+
+<span class="paragraph-timestamp" data-ts="50:10">50:10</span> **チェ・スンジュン** これは Nano Banana Pro で書いた2つ目の prompt でした。実行前から動くだろうという予感がありました。これがこうなって、あれがこうなると。
+
+<span class="paragraph-timestamp" data-ts="50:27">50:27</span> **ノ・ジョンソク** 予感というより 99% 確信してたんじゃないですか？
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> **チェ・スンジュン** 99% ではないですが、かなり動くと思っていました。少なくとも……
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **ノ・ジョンソク** 97% にしましょう。はい。
+
+<span class="paragraph-timestamp" data-ts="50:40">50:40</span> **チェ・スンジュン** ただ認識自体はまだ少し不安定です。なので最後は AX の話です。
+
+## 現場の AI Transformation (AX): 幼稚園教材制作ケース    *50:52*
+
+<span class="paragraph-timestamp" data-ts="50:52">50:52</span> **ノ・ジョンソク** AI Transformation ですね。AX という言葉は韓国だけが使います。グローバルでは AX という表現はありません。
+
+<span class="paragraph-timestamp" data-ts="50:58">50:58</span> **チェ・スンジュン** そうなんですか。じゃあ少し直した方がよさそうですね。
+
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **ノ・ジョンソク** AI Transformation。Digital Transformation すら達成していない世界で、いま AI Transformation を強いられています。
+
+
+<span class="paragraph-timestamp" data-ts="51:09">51:09</span> **チェ・スンジュン** 前回エピソードで、僕が幼稚園を運営していることは多くの方が知っていると思います。Gemini 3 が出た後、これでハンズオン workshop をやろうと思って試しました。ただ YouTube では比較的自由に話す一方で、情報量については実際かなり慎重であるべきだと思います。なので注意してケースを作りました。これが良い例です。先生たちが家庭に送る教育関連テキスト 2〜3段落を AI Studio に入力し、2〜3行の prompt で interactive content に変換するよう指示しました。
+
+ここでは音の物性実験に関する内容で、子どもがさまざまな音を探究する短いストーリーがありました。その画像を見せるとこれを描き、interactive 化し、Q&A まで可能にしました。すべてワンショットで出ました。これを各クラスのケースにしました。
+
+他人の context でやると響かないことがあります。自分たちの作業がどう変わるか、どう拡張されるか、どこに懸念点があるか。先生が書いた文からそれを引用し、interactive content を作る過程で意味をピンポイントで示しました。驚きはしたけれど刺さりきらなかった。じゃあ次に何をするか。
+
+そこで僕の AI Transformation 戦略は最初に 1-on-1 をやることでした。全体研修で短い講義もできたけど、幼稚園は忙しいので時間をもらうのは慎重であるべきです。まず自分の時間を使って 1-on-1 をし、感覚が掴めてから次に何をすべきか考えました。
+
+数日後、いや2日で Nano Banana Pro が出ました。これも動く感じがありました。Nano Banana Pro でやったことは……あ、上にあります。ここを見ると、ここでも遊び記録の話です。あるストーリーを infographic 化するのはワンショットでできましたが、先生により響いたのは、普段通り記録を体系的に残しておけば、こうして意味を抽出した slide が自動生成されることでした。これをそのまま使う意図がなくても非常に役立つという feedback を引き出せました。
+
+<span class="paragraph-timestamp" data-ts="54:17">54:17</span> **ノ・ジョンソク** PowerPoint slide がワンショットで出る世界ですね。
+
+<span class="paragraph-timestamp" data-ts="54:22">54:22</span> **チェ・スンジュン** そうです。面白いのは使った prompt も見えることです。"Create a slide deck introducing the teacher's intention, process, and its meaning. It would be good to show how the teacher listened to the children's stories and reconstructed them." という1段落くらいで、feedback を受けると、画像は生成物なので教室の実写に差し替えた方が良いけれど、内容はかなり意味があるという反応でした。なので全体会議で実施できました。
+
+2段階でした。最初の 1-on-1。次に、ユースケースと 1-on-1 から得た feedback を基に、より刺さる可能性が高いユースケースを全体に提示。そして再び 1-on-1。短期間でしたが、その印象、難しかったかどうかを聞くと、より率直な話が聞けました。今週それをやりました。
+
+これが出たとして、懸念は何か、組織メンバーはどう考えるか、どう学習経路を探索するか。そこを早く進めたと思います。先生方は developer ではないので、認識転換が必要な点など、取っていたメモをそのまま貼りました。
+
+これは難しく、この方法は簡単にはスケールしませんが、意外と楽しくやりがいもありました。これは僕のアプローチですが、day zero からほぼ実行できました。意味あるユースケースを見つけることで。
+
+<span class="paragraph-timestamp" data-ts="56:22">56:22</span> **ノ・ジョンソク** その通りです。十分な context を積んだ人が、ある方向性の意志でボタンを押すと、目の前に魔法のようなことが展開される。そのことをこのケースが示しています。
+
+<span class="paragraph-timestamp" data-ts="56:38">56:38</span> **チェ・スンジュン** そうです。ただそのためには、対象者というか、変化を起こしたい相手の context に合わせたアプローチが必要です。そうした方がインパクトが強いというのが学びでした。
+
+<span class="paragraph-timestamp" data-ts="56:49">56:49</span> **ノ・ジョンソク** その通りです。いまスンジュンの話を聞くと、スンジュンと AI の間にはボトルネックがありません。あなたが今ほぼ常に話しているのは、あなたと AI のボトルネックではなく、あなたと他の人のボトルネックです。多くの会社や組織も同じでしょう。だから会社内にスンジュンのような役割を担う champion が必要です。そしてその champion を妨げる人がいてはいけない。無能な manager の下に champion がいると、その無能さの分だけ止められます。
+
+意思決定者はこの力学を明確に理解し、それに合わせた組織設計ができないといけない。そのためには自分なりの思考とフレームが必要です。初期にスンジュンが言っていたように、自分で触って感覚を得ないと、ニュースだけ見て「こうしよう」「ああしよう」で済む話ではありません。そう言いたいです。
+
+<span class="paragraph-timestamp" data-ts="58:04">58:04</span> **チェ・スンジュン** そうですね。ただ全ての組織が開発組織ではありません。より一般化して考えると、健全な摩擦は有益だと思います。
+
+先ほど先生方の反応が最初は良くなかったとき、内心少しがっかりしたかもしれません。でもその分、どうすればより伝わるか、より良いユースケースは何かを考えられます。
+
+僕の視点だけでなく、例えばアナログなアプローチや、教育で絶対に忘れてはいけない重要点など、
+
+少しブレーキを踏む人がいることで、開発組織ではない私たちは、教育としてより意味ある方向を見つけられる。だから健全な摩擦は重要だと思います。
+
+<span class="paragraph-timestamp" data-ts="58:48">58:48</span> **ノ・ジョンソク** いいですね。その話はこのまま Antigravity につながります。
+
+## Antigravity レビュー: CLI 障壁を下げる Agentic ツール    *58:53*
+
+<span class="paragraph-timestamp" data-ts="58:53">58:53</span> **チェ・スンジュン** Antigravity、チェスター。かなり驚いたと聞きました。
+
+<span class="paragraph-timestamp" data-ts="58:58">58:58</span> **ノ・ジョンソク** 驚いたというより、自然にこうなると思っていたものが来た感じです。
+
+UX はよく設計されているし、Claude Code は terminal に閉じていたので欠点がありました。
+
+Antigravity を触ってみて、command line、CLI、terminal を立ち上げること自体が普通の人、non-engineer にとってどれほど大きい障壁だったかを改めて感じます。
+
+Homebrew で npx を入れて Node.js をセットアップするだけでも、やったことがない人には巨大な障壁です。
+
+でも Antigravity はダウンロードしてインストールして起動すると、内蔵 agent が残りを処理してくれる。そこまでの小さなハードルを変えるだけで、かなり意味があると思います。
+
+<span class="paragraph-timestamp" data-ts="59:50">59:50</span> **チェ・スンジュン** そうですね。僕も今、まだすごくそれっぽいものを作れたわけではないけど、「これは動く」と思ったポイントがありました。
+
+terminal だけでなく、一般ユーザーにとって terminal での編集は簡単ではないので非常に不便です。前後移動が難しく、shortcut だけでやる必要がある。
+
+<span class="paragraph-timestamp" data-ts="1:00:12">1:00:12</span> **ノ・ジョンソク** それに folder の概念、folder 内で project が subfolder にどう配置されるかは engineering 背景の人には当たり前でも、そうでない人には非常に馴染みがない概念です。
+
+<span class="paragraph-timestamp" data-ts="1:00:24">1:00:24</span> **チェ・スンジュン** でも web app ではできない batch job は日常に本当に多いです。大量ファイル変換や、保有する画像と動画を織り込んでコンテンツを作ることなど。
+
+こういうのは簡単ではなかったけど、これからはできそうだと感じます。
+
+<span class="paragraph-timestamp" data-ts="1:00:46">1:00:46</span> **ノ・ジョンソク** そして Antigravity や Claude Code には、Claude Code の方向と Antigravity/Codex の方向があり、少し違います。僕の感覚では Claude Code は操作系の多い宇宙船コックピットに座る感じで、Codex や Antigravity は Tesla の宇宙船に乗る感じです。
+
+<span class="paragraph-timestamp" data-ts="1:01:15">1:01:15</span> **チェ・スンジュン** もっと agentic ですね。
+
+<span class="paragraph-timestamp" data-ts="1:01:16">1:01:16</span> **ノ・ジョンソク** かなり agentic。だから engineering 背景があり、自分の controllability を高めたい人には Claude Code の方がはるかに快適で良い。実際 engineer コミュニティはそこに skills や agentic guardrail、MD file などを、prompt チャンクをつなぐ形で載せます。しばしばそれ自体が package 化される。彼らはそこに快適さを感じる。
+
+でも Antigravity や Codex は、それをむしろ官僚的すぎると見る。なぜ team process で縛るのか。知識量で言えばモデルの方がはるかに上だから。2つの方向が分岐しているように見えます。僕も最初は Claude Code が快適でしたが、agentic に自走する部分では少し不便を感じました。
+
+Claude Code では TDD spec を先に書かせる、tests を書かせる、テストに通ったものだけ実装させる、といった強い harness を多く入れていましたが、2日ほどでほぼ全部外しました。Antigravity に、高エネルギーで十分供給された「本当に作りたいものの本質」だけを渡す方が、はるかに収益性が高い取引です。2日で思考が完全にそちらへ変わりました。
+
+<span class="paragraph-timestamp" data-ts="1:02:50">1:02:50</span> **チェ・スンジュン** こういう話は、5月に Codex が出たとき OpenAI が "abundance mind" という表現で話していましたね。
+
+<span class="paragraph-timestamp" data-ts="1:02:59">1:02:59</span> **ノ・ジョンソク** Abundance mindset。
+
+<span class="paragraph-timestamp" data-ts="1:03:01">1:03:01</span> **チェ・スンジュン** はい、abundance mindset。とにかくそう言っていました。でも当時はあまり……
+
+<span class="paragraph-timestamp" data-ts="1:03:07">1:03:07</span> **ノ・ジョンソク** ピンと来なかったですね。
+
+<span class="paragraph-timestamp" data-ts="1:03:08">1:03:08</span> **チェ・スンジュン** でも今は「なるほど、これだったのか」という部分があります。
+
+<span class="paragraph-timestamp" data-ts="1:03:12">1:03:12</span> **ノ・ジョンソク** そうですね。Claude Code にはちょっと不格好な部分がありました。IDE との統合がぎこちない不便さがあった。Cursor のような綺麗な editor 統合ではなく、window pane が1枚付いた感じでした。
+
+だから僕は terminal と Emacs を使う選択をしました。正直 Cursor のヘビーユーザーではないので、今 Antigravity で受けている衝撃は……Cursor ではもう実装済みかもしれません。Cursor をほとんど使わないし、有料版も使ったことがない。
+
+だから単に僕固有の衝撃かもしれませんが、Claude Code のぎこちなかった不便がここではかなり統合されていて快適でした。
+
+<span class="paragraph-timestamp" data-ts="1:04:03">1:04:03</span> **チェ・スンジュン** そうですね。testing プロセスもかなり見応えがありましたよね。
+
+Playwright のようなものではなく、Chrome extension を一度入れるように誘導して、直接 browser を使っていました。たぶん CDP、Chrome DevTools Protocol を使って、front end で直接ボタンを押し user test を回し、その結果として console の log を見て修正し続ける。
+
+動かないものも多いけど、動くものの割合が劇的に増えています。そしてその過程を記録する。
+
+<span class="paragraph-timestamp" data-ts="1:04:35">1:04:35</span> **ノ・ジョンソク** はい、記録して artifact として全部残します。テストの pass/fail ケースや意思決定プロセスの分岐処理を agentic に非常にうまく扱っています。
+
+こうした判断はモデルの方がはるかに得意なので、先ほど言ったように、Claude Code ベースで harness を継続強化し、skill set を中に入れる方向は無意味だと思っています。
+
+その方向は素早く Uターンする方がいい、そう考えるようになりました。
+
+<span class="paragraph-timestamp" data-ts="1:05:09">1:05:09</span> **チェ・スンジュン** そうですね。モデルは Gemini ですが、結局 harness は Windsurf のキーパーソンが作っていて、Cascade という名前も少し出ました。
+
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **ノ・ジョンソク** どんなモデルや agent が出ても harness は必ずあります。harness という語は特定レイヤーではなく、どのレイヤーが現れてもその上で抽象化する行為を私たちは harness と呼び続ける。だから harness は永遠です。
+
+ただし harness の役割とレイヤー水準は上方へ、抽象化の方向へ動き続けます。今回 Antigravity の founder、Windsurf 側が 10数分の demo をしたとき、使っていた prompt は「目的対象を最も明確かつ簡潔に説明する」ことだけでした。そこが重要です。途中で何が起きるかは重要ではない。全部こちらで面倒を見るからです。
+
+<span class="paragraph-timestamp" data-ts="1:06:14">1:06:14</span> **チェ・スンジュン** 一段カチッと乗り越えましたね。
+
+冗長に細かく指示するより、核心だけ言えばモデルがきれいに気を利かせてやる。そこを Gemini 3.0 が強調しているように見えます。
+
+## エンジニアへの助言: ツール開発より問題解決（ビジネス）に集中    *1:06:27*
+
+<span class="paragraph-timestamp" data-ts="1:06:27">1:06:27</span> **ノ・ジョンソク** ただ明確な方向は、モデル能力は今後も上がり続け、Antigravity や Claude Code に残る私たちの作業痕跡、成功 job は dataset に入り、失敗は捨てられる。だから指数的改善はさらに加速し続ける。
+
+なので私たちの判断はこうあるべきです。engineering 関連を少し早く理解している分、より良い harness を作って 2〜3か月の優位は取れる。しかしその世界はすぐ終わるので、harness 掘りや engineering 深掘りには徐々に比重を下げるべきです。
+
+最終的には、現実世界の問題発見能力と定義能力です。昔なら consultant、business consultant、McKinsey の人たちがやっていたことです。
+
+<span class="paragraph-timestamp" data-ts="1:07:29">1:07:29</span> **チェ・スンジュン** でも少し外挿すると、問題解決能力より、問題を持つこと・見つけることの方が非対称じゃないですか。そちらがずっと有利では？
+
+<span class="paragraph-timestamp" data-ts="1:07:41">1:07:41</span> **ノ・ジョンソク** そう。いまスンジュンが言ったのが核心です。問題を持つ人は非常に多い。でも「AI 世界がこう変わったから自分の問題はこう簡単に解ける」という視点転換は、問題保有者の大半に起きていません。思いついていない。
+
+でもこれから 1〜2年でそうしたケースを大量に見るでしょう。ビジネス的に解釈するとこうです。例えばその問題保有者が中堅企業だとする。従来方式で解くなら高額な B2B SaaS などに年間 714万ドル払っていたとします。AI 側がそれをやるとき、714万ドル払っていた仕事を、1社、30〜50人、保守込みで数百人規模がやっていたものを、ここでは 5人くらいでやるはずです。
+
+5人でやるなら、714万ドルの仕事を214万ドルで請求できるが、実コストはモデル能力のおかげで 3.6万ドル未満。すると5人側に約210万ドルの margin が生まれ、向こうの非効率の塊だった714万ドル産業はそのまま消える。いつ起きるか。714万ドル払っていた問題保有者が、Palantir のようにそれを解ける会社を見つける瞬間、または競合がその方式でコストを劇的に削減し、はるかに動的な software 環境を作ったのを見た瞬間、急激な変化が始まります。
+
+だから今私たちが進むべき方向は、解決策を知らない problem holder と AI 世界の間にあるタイムギャップとドメインギャップ、AI の領域ではない極めて人間的な部分に集中すること。価値のほぼ全部はそこに集まっていると思います。
+
+<span class="paragraph-timestamp" data-ts="1:09:54">1:09:54</span> **チェ・スンジュン** 今聞いて感じるのは、そのタイムギャップのシグナルは結局、fast follower が採用できる best practice が出る時点ですよね。そこからは「動く」と分かるので人は実行できる。
+
+<span class="paragraph-timestamp" data-ts="1:10:11">1:10:11</span> **ノ・ジョンソク** その通り。そうなると供給者と需要者が増え、市場は別の均衡点に到達します。人はその結果だけ見て予測しますが……
+
+常に富を掴むのは、その過渡期に入り混乱を整理し、何らかの形で市場リーダーシップを取る人です。だからその期間が重要で、その期間が今後2年で起きるから今準備が必要です。
+
+要約すると、software engineer に言うなら、今 Claude Code や Antigravity を上手く使い、良い harness を作る能力を伸ばすこと自体はそれほど重要ではない。
+
+その能力を一定持っている前提で、問題を持つ人を素早く見つけ、その問題を解き、構築した workflow で lock-in し、そこから retention や scale の兆しを継続的に生むことが重要です。
+
+この人間中心フェーズへ移ることの方がずっと重要。もっと直接言えば、software engineer であることを早く手放す。早く起業家マインドに切り替える。
+
+Antigravity や Claude Code を少し早く使い始めただけの起業家という視点で 접근することが、現時点で最も正しいと定義します。今の時点では。
+
+## 'Fugitive Alliance' ミーティング告知    *1:11:54*
+
+<span class="paragraph-timestamp" data-ts="1:11:54">1:11:54</span> **チェ・スンジュン** そろそろ話が Fugitive Alliance の話題に流れていくタイミングですね。
+
+<span class="paragraph-timestamp" data-ts="1:11:58">1:11:58</span> **ノ・ジョンソク** そうですね。
+
+Fugitive Alliance の話ですが、今日は土曜収録で、おそらく午後に Fugitive Alliance 向けにメールを送ります。応募してくれた方が本当に素晴らしくて、その中には problem solver も problem holder も混在しています。
+
+なので holder と solver が出会って話せる場、offline か online かは別として、そういう場が必要だと分かりました。それが Fugitive Alliance の方向性かもしれません。
+
+<span class="paragraph-timestamp" data-ts="1:12:36">1:12:36</span> **チェ・スンジュン** ではこの動画が公開される頃には告知はすでに出ていますね。
+
+<span class="paragraph-timestamp" data-ts="1:12:41">1:12:41</span> **ノ・ジョンソク** 出ているはずです。たぶん出ています。
+
+## クロージング: 急変する時代における多様な視点の重要性（Syncretism）    *1:12:44*
+
+<span class="paragraph-timestamp" data-ts="1:12:44">1:12:44</span> **チェ・スンジュン** では今日最後の話題です。僕らの podcast の強みの1つは、似たことを話していても、メンバーのキム・ソンヒョン、チェスター、ユジン、僕がそれぞれ違う視点を持っていることですよね。だからリスナーに響く部分があると思います。
+
+今日話していても感じましたが、いまの現象はもっと高次元で、その影、manifold を見てもそれ自体が高次元なので、さまざまな角度から見る必要があると感じます。
+
+<span class="paragraph-timestamp" data-ts="1:13:21">1:13:21</span> **ノ・ジョンソク** そうですね。視点によって形成される像が完全に違います。
+
+<span class="paragraph-timestamp" data-ts="1:13:25">1:13:25</span> **チェ・スンジュン** だからこの landscape は固定ではなく変化していて、engineer 視点で見るか businessperson 視点で見るか、移動経路によって見える景色が変わります。だから複数人で見て一緒に話すと、より密度の高い情報が得られる。僕はそう推測しています。これが同時代性ということです。
+
+そのとき1つ提案すると、価値観の違いで排除し合うより Syncretism という言葉があります。意見や信念が違っても、より大きな敵やより大きな意味を持つ状況があるなら、いくらでも協力できるという意味です。同じバスケットに入れられるという視点です。
+
+だから tech 加速に楽観的な人と慎重な人が、こう見える・ああ見えるを対話できると、より良い状況になると思います。
+
+少しナイーブな考えかもしれません。
+
+信念が本当に違うと、実際は仲良くするのが難しいので。
+
+<span class="paragraph-timestamp" data-ts="1:14:40">1:14:40</span> **ノ・ジョンソク** はい、その通りです。でも learn と unlearn が重要だと言うように、素早く捨てることも重要です。
+
+少し前まで流行語のように使われた 'kkondae' がありました。視点が一方向に固着し、他の視点と妥協しない人たちをそう呼びました。
+
+今はそういう人たちが最も危険な世界です。私たちは素早く、可塑的に、子どものように……
+
+<span class="paragraph-timestamp" data-ts="1:15:09">1:15:09</span> **チェ・スンジュン** ある意味 neuroplasticity ですね。
+
+<span class="paragraph-timestamp" data-ts="1:15:11">1:15:11</span> **ノ・ジョンソク** はい、学ばないといけません。だから前回エピソードでスンジュンが子どもの教育に必要だと言った話から、逆に僕は会社運営に大きな洞察を得ました。みんな kindergartener になった感じです。
+
+<span class="paragraph-timestamp" data-ts="1:15:27">1:15:27</span> **チェ・スンジュン** ですよね。そこについて考えることはまだ多いですが、今日はかなり長くなったので、
+
+<span class="paragraph-timestamp" data-ts="1:15:31">1:15:31</span> **ノ・ジョンソク** 長くなったのでこのへんで終わりましょう。
+
+<span class="paragraph-timestamp" data-ts="1:15:35">1:15:35</span> **チェ・スンジュン** 今日も楽しかったです。
+
+<span class="paragraph-timestamp" data-ts="1:15:36">1:15:36</span> **ノ・ジョンソク** はい、スンジュン、今日も多くの学びをありがとうございます。
+
+<span class="paragraph-timestamp" data-ts="1:15:41">1:15:41</span> **チェ・スンジュン** はい、ありがとうございます。

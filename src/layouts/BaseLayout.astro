@@ -7,7 +7,7 @@ import { buildCanonicalUrl, buildHreflangLinks } from '../lib/seo';
 interface Props {
   title: string;
   description?: string;
-  lang?: 'ko' | 'en';
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug?: string | null;
   canonicalPath?: string;
   alternatePath?: string | null;
@@ -74,9 +74,11 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary';
     <!-- RSS auto-discovery -->
     <link rel="alternate" type="application/rss+xml" title="AI Frontier (한국어)" href="/ko/rss.xml" />
     <link rel="alternate" type="application/rss+xml" title="AI Frontier (English)" href="/en/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="AI Frontier (日本語)" href="/ja/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="AI Frontier (中文)" href="/zh-Hans/rss.xml" />
 
     <!-- og:locale -->
-    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
+    <meta property="og:locale" content={{ ko: 'ko_KR', en: 'en_US', ja: 'ja_JP', 'zh-Hans': 'zh_CN' }[lang]} />
 
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

@@ -17,7 +17,7 @@ const episodes = defineCollection({
       time: z.string(),
       title: z.string(),
     })).default([]),
-    lang: z.enum(['ko', 'en']),
+    lang: z.enum(['ko', 'en', 'ja', 'zh-Hans']),
     alternateSlug: z.string().nullable().default(null),
     notionUrl: z.string().optional(),
   }),

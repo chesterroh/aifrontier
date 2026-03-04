@@ -1,0 +1,808 @@
+---
+episodeNumber: 86
+title: "面向真实工作的 Agentic 工作流"
+description: "我们与 Lablup CEO Shin Jeong-gyu 一起，直接展示了 `Backend.AI:GO`（Continuum router 的产品化版本）：它在仅 40 天内完成，代码量约 100 万行。我们讨论了它为何被构建、以及它有哪些不同。我们还探讨了那些“因为需要而长出来”的功能如何在统一哲学下被组织起来，例如连接本地与云模型的路由、故障应对的 circuit breaking、benchmarking/统计、翻译与图像生成。我们也分享了 agentic coding 时代的一线洞察：token 使用与瓶颈如何变化、如何降低 thinking budget，以及为何高速 inference 正变得愈发重要。最后，我们走过了一套实用工作流：如何设计一个“减少你工作量的 harness”，并把自动化扩展到开发、财务、营销与内容等日常任务。"
+publishedAt: 2026-02-18
+duration: "1:26:00"
+youtubeId: "EQ-Rnx-k-Ec"
+thumbnail: "https://i.ytimg.com/vi/EQ-Rnx-k-Ec/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - 崔升准
+  - Jeongkyu Shin
+chapters:
+  - time: "00:00"
+    title: "开场与 Shin Jeong-gyu CEO 介绍"
+  - time: "00:55"
+    title: "介绍 Backend.AI:GO"
+  - time: "04:11"
+    title: "Backend.AI:GO 的起源：平安夜启动"
+  - time: "04:28"
+    title: "Backend.AI:GO 现场演示"
+  - time: "07:02"
+    title: "云模型连接与分布式路由"
+  - time: "09:06"
+    title: "开发过程：40 天、130 亿 Tokens、100 万行代码"
+  - time: "11:30"
+    title: "Agentic Coding 的经验：Token 经济学与高速 Inference"
+  - time: "14:38"
+    title: "生物 Tokens：AI 时代的认知负荷与多巴胺"
+  - time: "17:42"
+    title: "软件过剩时代与 Instant App 的崛起"
+  - time: "22:38"
+    title: "软件史上的第三次大革命"
+  - time: "26:01"
+    title: "代码价值正在收敛到零吗？"
+  - time: "28:54"
+    title: "Claude Code 真正的优势是 Harness"
+  - time: "30:53"
+    title: "CS 的未来：成为过去遗产还是被重新定义？"
+  - time: "33:54"
+    title: "斯坦福 CS 课程转向与英语系类比"
+  - time: "40:00"
+    title: "Agentic Coding 现场演示：从构建 Context 开始"
+  - time: "42:41"
+    title: "为什么要对 AI 使用敬语？"
+  - time: "44:36"
+    title: "自动化的关键：构建生成器，而不是输出"
+  - time: "48:49"
+    title: "运行 Sub-Agent 与并行工作流"
+  - time: "54:46"
+    title: "Backend.AI:GO 的自动化开发流水线"
+  - time: "58:44"
+    title: "技术报告：当 AI 给人类布置作业"
+  - time: "60:00"
+    title: "非开发团队如何适应 AI：CFO 与内容创作者案例"
+  - time: "63:49"
+    title: "Lablup 的核心价值转移到了哪里？"
+  - time: "65:20"
+    title: "转向面向 AI 的接口"
+  - time: "67:49"
+    title: "Cyber Formula 类比：Claude Code 与 Codex 的哲学"
+  - time: "72:47"
+    title: "AI 时代的创业机会与水车理论"
+  - time: "78:20"
+    title: "创业公司最糟的事：可复制时代"
+  - time: "82:19"
+    title: "对“CS 无用论”的反驳"
+  - time: "85:29"
+    title: "结束语"
+lang: "zh-Hans"
+alternateSlug: null
+---
+
+## 开场与 Shin Jeong-gyu CEO 介绍    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天我们录制这期节目的日期是 2026 年 2 月 15 日，周日上午。
+
+今天我们频道久违地请来了“永远的老师”。Lablup CEO Jeongkyu Shin 来到了现场。
+
+Jeongkyu 最近发布了一个产品 Backend.AI:GO，它在 40 天内完成，产出的代码大约有 100 万行。我也在本地装了并一直在用，做得非常干净，我需要的功能都很完善。
+
+所以今天我们会和 Jeongkyu 一起聊聊这个产品是怎么做出来的，开发前后对 vibe coding 的看法，以及完成之后 Lablup 和 Jeongkyu 本人发生了哪些变化，听听来自行业最前线的故事。
+
+欢迎你，Jeongkyu。
+
+<span class="paragraph-timestamp" data-ts="00:49">00:49</span> **Jeongkyu Shin** 大家好，我是 Lablup 的 Jeongkyu。感谢各位在百忙之中邀请我。
+
+## 介绍 Backend.AI:GO    *00:55*
+
+<span class="paragraph-timestamp" data-ts="00:55">00:55</span> **卢正锡** 那先请你简要介绍一下 Backend.AI:GO。然后在聊构建过程时，也请你从一线角度讲讲今天 agent coding 到底该怎么做。
+
+<span class="paragraph-timestamp" data-ts="01:10">01:10</span> **Jeongkyu Shin** Backend.AI:GO 是什么呢，可能有些朋友已经知道了。我们过去 10 多年一直在做并提供一个 AI 基础设施操作系统，或者说一个操作框架，叫 Backend.AI。但问题是，它真正发挥效果通常要从 100 张 GPU 起步，100 到 1000 张 GPU 这个量级才会用到，所以对大多数人来说门槛很高。到 2024 年下半年，我们开始思考：灾害发生时，AI 怎么用？医院或金融机构通过云在用 AI，如果云挂了，这就是大问题。那就像应急发电机一样，像医院、金融楼地下室放的发电机那样，你在本地放 GPU 机器，外部 AI 挂掉时也能自主运行。我们就是为此开始做的。
+
+于是我们做了一个 router。我们叫它 Continuum Router，并在 2025 年 3 月公开发布。NVIDIA 有个活动叫 GTC，今年我们也会去。大家可以来找我们。我们在 GTC 发布后反响很好。我们做了演讲，但继续做着做着，体量越来越大。我们的主要客户是企业，当时它有大概 19 个组件。安装规模非常大，整套部署下去，几乎可以做成很多人用过的 OpenRouter 这类服务，已经长到了那个级别。
+
+所以我们意识到，这不是企业解决方案栈，而是服务栈。于是我们先暂停，把它暂时搁置，问自己：如果只能保留一件东西，留什么？最重要的还是 router。我们把 smart routing 抽出来，其他功能先放一边，决定把速度做到世界最快。于是从零重建，时间是去年 8 月，把 Continuum 项目里的 Continuum Router 部分单独抽出来重做，到 12 月做完。
+
+我们决定要发布 1.0，并开始准备。它本质是个 router，这个 router 有完整的 converter 能力，也有各种灾害应对的 circuit breaking 功能。比如某方出问题了，我们先把它剔除；被剔除那一侧正在跑的模型会自然重路由到其他模型。类似功能很多，但真正要发布时发现没法好好展示。东西很强，但讲不清。于是我们觉得必须做 web UI，必须有可视化界面。
+
+这和我们刚创业时很像。快 11 年了。当时我们说要做机器学习运行平台，别人问怎么做，我们就先开终端开始讲。敲这个命令，那时候 TensorFlow 还没出来，会看到 Caffe2 config，还会出现当时流行的 Theano。以前就是这么讲。但我们需要的是可视化。Chester，你当年也这么说过。于是我们做了一个教育平台 demo，后来还卖出去了。那也是在平安夜。
+
+## Backend.AI:GO 的起源：平安夜启动    *04:11*
+
+<span class="paragraph-timestamp" data-ts="04:11">04:11</span> **卢正锡** 所以决定做 Backend.AI:GO，是在平安夜。
+
+<span class="paragraph-timestamp" data-ts="04:16">04:16</span> **Jeongkyu Shin** 不过当时还不叫 GO。
+
+<span class="paragraph-timestamp" data-ts="04:17">04:17</span> **卢正锡** 大家都很好奇，这个 Backend.AI:GO，也就是 Continuum Router 的产品化版本，到底长什么样？不如你直接投屏边展示边讲？
+
+## Backend.AI:GO 现场演示    *04:28*
+
+<span class="paragraph-timestamp" data-ts="04:28">04:28</span> **Jeongkyu Shin** 这是个带了很多个人偏好的项目。最初也没打算长成现在这样。
+
+<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **卢正锡** 我本地装过 Ollama、LM Studio 这类工具，这个比它们干净很多。工程师视角一看就知道该有的功能都实现得很到位。
+
+<span class="paragraph-timestamp" data-ts="04:46">04:46</span> **Jeongkyu Shin** 这个工具很多人看着会觉得熟悉。看到这个界面觉得熟悉的人，大概率和我年纪差不多。
+
+<span class="paragraph-timestamp" data-ts="04:54">04:54</span> **卢正锡** 有点 Windows XP 的感觉。
+
+<span class="paragraph-timestamp" data-ts="04:56">04:56</span> **Jeongkyu Shin** 模型这块，比如它会做路由，但基本上你可以在 Hugging Face 搜模型，选一个模型，比如这个是高质量推荐。但我电脑慢，所以我下载经济型模型。下载后会出现在这个列表里。模型会按列表显示，这些模型本身已经很厉害了。但如果你想更了解某个模型，这里有这样一个图标，点开会给你这个模型的解释。它用的是 Gens3 架构、量化是怎样做的，原本 16-bit 训练，压缩 4 倍到 4-bit，用这个状态还能保留 95% 质量，体积减半。
+
+参数方面，feed forward 大概 60%，维度这些信息，还有它当前词表大概 26 万 tokens。输入进来后会经过 embedding 和 transformer，通过 26 个 transformer block 得到输出。就是这样。层结构是输入进、输出出，而输入放底部是因为早期 attention 论文都把输入画在底部。读论文时也是从下往上看。再比如 KV cache，运行时会持续缓存中间结果，这个 cache 占多少显存会因模型类型而不同。
+
+有些模型 KV cache 特别大，有些架构下会小一些。它会计算并告诉你这个模型里这些是如何适用的。
+
+然后这里是实际 transformer block 结构，挂了 multi-query attention。细节你现在不用全懂，目标是你以后可以基于这个去学习。像这样，position encoding 用于处理长文本。相关信息都列在这里。要运行就点 run，它就加载起来并开始运行。
+
+<span class="paragraph-timestamp" data-ts="06:38">06:38</span> **卢正锡** 所以模型加载后，就去 chat 页调用就行，对吧？
+
+<span class="paragraph-timestamp" data-ts="06:42">06:42</span> **Jeongkyu Shin** 对，它是跑在你自己的电脑上。如果你电脑好，比如有 NVIDIA GPU 或 AMD GPU，可以在这里的 engine 区再装引擎来用。现在这台是 Mac，所以没有额外项。
+
+我来测一下。现在是 1B 参数模型，别期待太高。
+
+<span class="paragraph-timestamp" data-ts="07:01">07:01</span> **卢正锡** 很流畅。
+
+## 云模型连接与分布式路由    *07:02*
+
+<span class="paragraph-timestamp" data-ts="07:02">07:02</span> **Jeongkyu Shin** 再看这边，还有很多类型的模型，也能连接云模型。右上角这里你会看到 1 个本地模型和 15 个 API。到 models 区域里 remote models 可以随便选，这里完整模型集有 175 个，勾选后就出现在列表里。你也可以在 API 区添加 provider 来做这件事。
+
+你用 OpenAI、Gemini、Anthropic，或者本地跑 Ollama、LM Studio，都可以全部接进来这样用。你也能看到自己接入的东西如何互联，因为它原来就是 router UI。都可以这样查看，latency 等指标也都做成可视化了。
+
+如果你装了多个实例，分布在别人的电脑上，也可以加进来。比如我们办公室 8 个人都装了，就可以把 8 台打包成一组。比如只靠我自己的电脑跑图像生成或多个文本模型资源不够，那就分摊到同事电脑上，大家还能互相共享结果。
+
+一个人电脑跑图像生成，一个人跑文本模型，一个人做 PDF 处理，各自跑不同任务，但我可以在自己电脑上调用全部，反过来我跑的模型办公室里其他人也能用。或者你可以买一台好机器、工作站，跑在那边再从这里连过来。类似功能很多。
+
+<span class="paragraph-timestamp" data-ts="08:26">08:26</span> **卢正锡** 所以你是把自己觉得必要的都做进去了？
+
+<span class="paragraph-timestamp" data-ts="08:28">08:28</span> **Jeongkyu Shin** 没错。我连翻译器都做了放进去。
+
+它会把 “Lablup” 翻成 “rabble up”。这类功能你都可以加，也可以基于它翻整份文件。
+
+你丢 PDF、TXT、docs 文件进去，它会在保留原格式的情况下翻译，图片也能放，各种杂项功能都有。
+
+<span class="paragraph-timestamp" data-ts="08:49">08:49</span> **卢正锡** 你这相当于在本地做了个 GenSpark。
+
+<span class="paragraph-timestamp" data-ts="08:52">08:52</span> **Jeongkyu Shin** 现在有多个主题，这大概是默认安装后会看到的，Mac 上还有玻璃风，或者这个是我兴趣做的。这个是我 token 有剩时最近加的主题。就是这样一个有点怪趣味的工具。
+
+## 开发过程：40 天、130 亿 Tokens、100 万行代码    *09:06*
+
+<span class="paragraph-timestamp" data-ts="09:06">09:06</span> **Jeongkyu Shin** 这是个很有个人偏好的工具，一开始并不是冲着“公司打磨好产品”去做的。最初只是给 router 做 web UI，但你得有可路由的目标吧？我个人很偏好 llama.cpp，但手动跑太麻烦，就把 llama.cpp 自动化并塞进 web UI，越长越大，后来又觉得 DeepL 订阅费太浪费了。
+
+于是就有了翻译器。再后来图像生成需求太多，图像生成功能也加上了。图像生成有很多很好的模型，云端选项也越来越多。
+
+既然是 router，就会有统计、benchmarking。你不知道哪个模型在什么场景更快，就需要 benchmarking。功能就不断往上挂。比较两个，再导出结果。
+
+<span class="paragraph-timestamp" data-ts="09:51">09:51</span> **崔升准** 这里面什么都有。这个你大概 40 天做完的？
+
+<span class="paragraph-timestamp" data-ts="09:55">09:55</span> **卢正锡** 做这个总共用了多少 tokens，可以说吗？
+
+<span class="paragraph-timestamp" data-ts="09:59">09:59</span> **Jeongkyu Shin** 我做这个时，基线是两个 Claude Code Max 订阅，不够就额外付费，在 8 台 PC 上并行跑。VM 或 PC，总之我们是从 24 号开始的，对吧？总共用了大概 130 亿 tokens。做到现在这个程度。我们 12 月 24 日开始，到 CES 做了首次展示。
+
+之所以叫 Backend.AI:GO，是因为第一版做出来后在内部分享，大家很喜欢。大家说“这不只是 web UI，它可以替我们做对外推广”。所以我们开了命名会，最后叫 Backend.AI:GO。它可能会成为我们第一个面向消费者的产品。
+
+之后成员会在 issue tracker 里登记事项，然后推进开发。通过这种方式提 bug 和新功能，我们跑了自动化开发 harness，同时人持续介入调 UX、交换反馈，大概这样跑了 10 天。
+
+我们从 2025 年 12 月 24 日开始，2026 年 1 月 6 日在美国 CES 做了第一次 demo。那之后其实就是 MVP。它确实能跑，也已经是产品，然后开发又往前推进了大概 4 倍。
+
+<span class="paragraph-timestamp" data-ts="11:14">11:14</span> **卢正锡** 你去 CES 时我记得你给我们的是 0.9 左右，今天看已经 1.1 了，完成度提升非常明显。所以今天的核心话题其实就从这里开始。
+
+## Agentic Coding 的经验：Token 经济学与高速 Inference    *11:30*
+
+<span class="paragraph-timestamp" data-ts="11:30">11:30</span> **卢正锡** 构建这 100 万行的过程，你之前做 agent coding 的方式和这次实战中的感受差异，以及因此变化的新流程、新方法论，你刚才也提到了。我们就从这里展开？
+
+<span class="paragraph-timestamp" data-ts="11:49">11:49</span> **Jeongkyu Shin** 我觉得这也只是转瞬即逝的一个阶段。先讲一件事再往下。我们之所以开始做这个产品，是因为假期期间 Anthropic 做了双倍 token 活动，这成了导火索。起点就是“还能试什么”，然后就冲了。
+
+但反过来看，可用 token 量直接和公司的竞争力绑定，尤其是 IT 公司。这是第一个教训。第二个教训是，当你把这么多 token 倾倒出去，人会给反馈，而在“人不直接开发”的产品里会出现几个瓶颈。
+
+比如大约六个月前，merge queue 是瓶颈。开发速度太快，代码彼此冲突。但现在 merge queue 已经不是瓶颈了。merge queue 的解决也不是人做的，它们自己处理。我偶然做过一些测试，其中有一种情况是两个 AI 在同一份源码上并行做不同功能，最后功能也能正常完成。进展已经到了这个程度。
+
+所以到了下一阶段，关键问题变成怎么少用 tokens。做同样任务时要提升性能，模型通常会选择 in-context learning 里常见的方法，也就是不可见的 thinking tokens，我们叫 thinking budget。演化方向一直是把这个量加大。增大当然会提升最终输出，但也会拖慢开发速度。所以问题是如何用更少的 thinking 去开发。thinking 越少，开发速度越快。
+
+最终在大家都用 AI coding 的世界里，速度会变得极其重要。提速有两条路。第一条是生成更少 tokens 但结果不变，这是第一课题。第二条是让 token 生成本身非常快，这是第二条。也因此现在高速 inference 变得必要。不是 ChatGPT 那种我们熟悉的代码生成速度，而是能跑 5 到 10 倍迭代的超高速 inference 会非常关键。这是我经历后得到的两大结论。
+
+<span class="paragraph-timestamp" data-ts="14:00">14:00</span> **崔升准** 就像几天前出来的 Codex Spark，对吧？
+
+<span class="paragraph-timestamp" data-ts="14:02">14:02</span> **Jeongkyu Shin** 有意思的是 Spark 也上线了服务，我们在看的是同一件事。最终这场竞争会把需求推向高速 inference 市场。有钱的会用高速 inference 强化竞争力，钱不够的就会想办法让它少想一点。
+
+在必须要性能的地方多想，不需要性能的地方，比如简单任务或 coding，让它少想。怎么应用这种自适应 thinking budget，或者怎么做能动态控制 thinking budget 的 harness。我觉得这个冬天大概会是这样。
+
+<span class="paragraph-timestamp" data-ts="14:36">14:36</span> **卢正锡** 都是 trade-off，对吧？
+
+## 生物 Tokens：AI 时代的认知负荷与多巴胺    *14:38*
+
+<span class="paragraph-timestamp" data-ts="14:38">14:38</span> **卢正锡** 人会一直想这些。AI 都帮你做了，但等待时间会开始变得烦人。
+
+<span class="paragraph-timestamp" data-ts="14:45">14:45</span> **Jeongkyu Shin** 等待时间确实是大问题，但对我个人来说，这个等待反而给了我思考机会。不是想 AI，而是开始想我自己。
+
+<span class="paragraph-timestamp" data-ts="14:59">14:59</span> **卢正锡** 你最近把这叫做“bio tokens”。我们团队也有人说，多一点给 bio tokens 的时间挺好。
+
+<span class="paragraph-timestamp" data-ts="15:07">15:07</span> **Jeongkyu Shin** 以我个人看法是这样。大概两年前，我开始用 ChatGPT 在一定程度上委托 coding，变成和它一起写。
+
+然后从去年 4 月开始变化很剧烈，这样生活了大概 9 个月后，我白头发明显变多了，睡眠也变差了。高峰在 6、7 月，5 小时 refill 出来后，我不想浪费这 5 小时，就跑 3.5 小时，睡 1.5 小时，基本这么过。
+
+慢慢地，这些也开始自动化。代码库本身大概 70 万行，总写入大约 120 万行。但 120 万这个数字对我个人非常有象征性。
+
+我以前做 TextCube 项目时，3 年总共写了约 100 万行代码。但现在同样规模 40 天就写完了。
+
+某种意义上，人生被压缩了。我花了约 1 个月做 Backend.AI:GO，做的过程中我会问自己，我真的只投入了 40 天吗？
+
+回头看，感觉自己老了 3 岁。作为一个人。
+
+认知负荷并没有下降。即便你大量委托给 AI，认知负荷也不会下降，而且反馈持续不断地涌来，人的生活会被明显消耗。
+
+但做的时候很有趣。因为像打游戏通关会有多巴胺反馈，和现在热门手游抽卡机制很像。你花钱，抽角色，做动作，赢了就即时反馈，人会喜欢这个。
+
+和 agent 一起 coding 的过程，会因为这种速度给人一种特定的快乐。因为以前对我来说是巨大任务、甚至觉得到不了的地方，它让你到达了。到底是我做到还是 AI 做到是另一回事，但都会提供某种多巴胺。虽然“提供多巴胺”这个说法也不完全准确。
+
+但问题是，它在给你的同时会不断要求你更多。因为做得好，你就做更多；做更多又做得好，于是很难抽身，一旦这样，事情就会进展很好。
+
+进展很好，但会有两个问题。第一是你的人生会过度依赖，像我说的那样，会被耗空。
+
+第二是一旦它被切断，你正在做的产品也会死掉，人会离开，你可能又要靠另一个产品去找下一个产品。所以我开始预判会出现大量被遗弃的产品。
+
+## 软件过剩时代与 Instant App 的崛起    *17:42*
+
+<span class="paragraph-timestamp" data-ts="17:42">17:42</span> **Jeongkyu Shin** 这和过去不太一样。以前软件行业、软件开发有进入门槛，所以有人做出软件后，只要能找到用户，通常会被持续维护。但做得很快的软件，维护意志往往相对弱。因为你并没有那么辛苦地做出来，于是“怎么管理它”会变成“反正也一直交给 AI，那继续让 AI 做就好”。与此同时，世界上做类似事情的产品会成倍出现，持续扩散。
+
+比如一个开源项目做某个功能，过去会聚集用户并长成大项目，这种现象会少很多。简单项目你自己就能做。稍复杂一点的产品，外面已经有几十个。维持单个产品所需给人的多巴胺绝对量会下降。
+
+这有点像博客时代。以前博客评论区的讨论整体迁移到 Twitter 后，很多认真写博客的人停更了。因为他们的重要驱动力之一是评论区的社交反馈。当它迁移到别的平台，这个动力就没了。类似地，无人维护的开源产品会大幅增加。我们会活在一个软件极度丰富的世界里，但其中大多数软件寿命会很短。只有极少数会存活，其余会被用完即弃，最后会留下两类。
+
+第一类是本来就为“用完即扔”而设计的软件，即 instant app，需要时做，常用就保存。要不要保存，例如 Google 可能会替你处理。类似这种低复用、但做得快用得快的 instant app 会不断出现。其余软件会继续增长然后再次收缩。我认为人类生活真正需要的软件类型并没有那么多。
+
+我在智能手机上有个感受。智能手机早期，信不信由你，当年没有文件夹功能。iPhone 上所有 app 都直接铺在主屏，你会滑到第 9 页那种。后来有自动整理、app 文件夹。再后来人们发现：一个人常用 app 数量不会超过 30，按频次看前 10 个占总使用量 90% 以上。最后都会被筛选。
+
+在这轮筛选中活下来的 app 有共同特征。第一是社交性。app 自身不直接提供效用，而是提供只能通过 app 产生的效用。第二是和生活高度绑定。比如 office app，也就是 productivity app。整理文档的工具，如 Obsidian、DEVONthink 这类。
+
+但这些工具的共同点是，它们在这个领域存在已久。像我前面说的，叫它产品吧。只有那些“有人持续接住这个软件、持续维护和演进”的产品才活下来。开源也一样。开源之所以被广泛使用，是因为你相信它不会很快死。
+
+<span class="paragraph-timestamp" data-ts="21:08">21:08</span> **卢正锡** 品牌建立起来了。市场里形成了某种承诺。
+
+<span class="paragraph-timestamp" data-ts="21:13">21:13</span> **Jeongkyu Shin** 软件数量会先爆发然后……增量会继续，但真正被广泛使用的软件数量会稳定在某个水平，这是我现在的看法。今年下半年，无论 SaaS 会不会崩，最终你确实可以把那些 SaaS 自己做出来。我们 Lablup 负责营收的人就嫌 Salesforce 不好，自己做了一个。
+
+两天就做完了，而且能用。可最后他们还是买了另一个更便宜的替代方案，用它的原因是：既然你可以用同样速度去做别的事，那些“没必要亲自做”的事就不该做。所以我不认为 SaaS 市场会崩，但现在 SaaS 市场里成功的人，一年后是否还成功，我不太确定。
+
+<span class="paragraph-timestamp" data-ts="22:00">22:00</span> **卢正锡** 范式变化太快，谁都说不好。看 SaaS 公司股价下跌挺有意思，但其中一部分会活下来并和 AI 结合成非常稳的模型，甚至重生。
+
+它们有品牌，那个场景它曾经就是最强。到了 AI 时代我们也做得更好。也可能会这样。Jeongkyu 说的这个“大转型时代”，在移动时代也有一次激烈竞争的大转型。AI 时代同样如此，我们以为已经稳定的环境在变化，大家都会想“这里会不会有机会”，然后都冲进去。我觉得现在就是这个阶段。
+
+## 软件史上的第三次大革命    *22:38*
+
+<span class="paragraph-timestamp" data-ts="22:38">22:38</span> **Jeongkyu Shin** 现在确实是软件发生巨大迁移的时期。所以你会听到很多“必须做软件”的讨论。我们公司内部也经历了很多，开了很多研讨会，彼此讨论，思考之后该走哪条路。
+
+我开场前也简短提过，这种变化以前也出现过几次。如果说我们没亲历的代际变化，从打孔卡、涂 OMR 到突然用键盘写代码，这是方法论级别的大变化。后面还有一些小变化，比如在编辑器里用方向键移动光标写代码，这在以前都不行。再到把多个源码文件组合起来构建程序。然后下一个大变化是智能手机到来。构建我们的 stack 时，以前核心是独立打包软件，也就是 package software。问题是怎么分发，介质是 CD、磁盘，还是过去说的 ESD（electronic software distribution），也有这些讨论，还有 freeware、先试后买的 shareware，以及 commercial software，就是商店里买的那种。
+
+从这种分发概念转到智能手机和 web，它们间隔大约 10 年先后进入社会，通过网络分发，甚至不需要分发了。通过浏览器，就像远程安装的软件。也就是我们今天常说的 web service：远程运行的服务，以服务形态使用的软件。由此开发方式改变了很多。web server 变重要，支付系统、安全相关都出现了大迁移。
+
+UX 方面也从键盘+屏幕中心，突然变成很小的设备，或者屏幕尺寸多样化设备，输入从物理键盘变成触屏键盘。现在这一轮，我觉得大概是第三次。
+
+这里变化的是什么？我说过软件本身也在变。
+
+但现在在变的软件里，我们通常说 software 是指创建 code，把 code 叫 software，而操作它的人大多是开发者。开发者来做，转向 web 后又出现了 ops 这个岗位。因为 web service 里开发和运维高度耦合，DevOps 诞生了，就是开发和运维一起做。
+
+然后过程中 stack 也变化。以前大家都写代码，但进入服务化、web service 化后，出现了处理 backend/server 逻辑的人，也出现了负责用户实际接触界面、设计体验和行为的人，于是 frontend 成为独立岗位。再后来也出现了统筹一切做规划，或“我都能做”的 full-stack 等各种角色。
+
+重点在这里。以前写代码占 70-80%，实现并运行服务栈占 20-30%。做手机 app 或 web service 大致分这两块。但至少我们的孩子如果今后不学这些概念，我觉得他们可能根本不会知道这些。
+
+## 代码价值正在收敛到零吗？    *25:57*
+
+<span class="paragraph-timestamp" data-ts="25:57">25:57</span> **Jeongkyu Shin** 因为现在我做 Backend.AI:GO 这个项目时，周五去参加了 roundtable，里面也聊到这个。roundtable 从上午 10 点到中午。10 点前我在咖啡店把内容过了一遍后交出去，等 roundtable 结束再看，已经提交了大概 22 个，也可能 21 个 PR，测试都做完并且全部 merge。如果这种速度成为常态，代码价值本质上会收敛到零。开发者在 DevOps 里做的事，像我之前说的，如果工作性质不彻底变化，就会失业或处境很艰难。但同时他们也会变得极其重要。
+
+软件本身不会消失。看到有人说今天软件有危险，不是软件本身有危险。就像软件定义曾经从 OMR 打孔转到键盘 coding，现在是从键盘 coding 转向表达语义。coding 会继续分阶段演化。到那时，我认为产品核心价值会来自 engine。这里的 engine 指我们今天叫 code 的处理部分，本质上是 logic。code 本身不是目标。
+
+为了构建服务，我们实现让计算机处理服务的逻辑，这就叫 code。它的优势是确定性。基于冯诺依曼架构，按顺序处理逻辑，把结果交付给用户的过程是高度标准化的。当然中间介质并不可靠，网络、存储都不可靠，但其上的逻辑结构系统到目前为止至少是固定的。
+
+但如果 code 的目的就是处理逻辑并让事情运转，那么未来这部分大多会由 deep learning 模型，或它的衍生模型来处理，未必一定是 Transformer。某种其他处理逻辑的 engine 会接管当前 code 的大部分职责，这是我现在的判断。
+
+<span class="paragraph-timestamp" data-ts="27:58">27:58</span> **卢正锡** 世界其实已经做出这个判断了吧？现实中现在几乎所有价值都被做模型的公司拿走了。做硬件和做模型的公司，原先上层那些都被挤开了，不是吗？
+
+<span class="paragraph-timestamp" data-ts="28:15">28:15</span> **Jeongkyu Shin** 就像你说的，价值往那个方向迁移很自然。未来我们称作软件的东西，大概会是里面有 AI core engine，外面有一层像以前一样把它约束成确定性的控制层。这个外层会有很高价值。
+
+我也有不少这方面经验。现在我用 Claude Code，也自然试过 Codex，Copilot 就不说了我也在用，Gemini CLI 也用。
+
+比如 Gemini CLI 或 Codex，如果你用 Backend.AI:GO，可以把它们接进来，通过切换 backend model 在 Claude Code 里使用。只要换 backend model 就行。
+
+## Claude Code 真正的优势是 Harness    *28:54*
+
+<span class="paragraph-timestamp" data-ts="28:54">28:54</span> **Jeongkyu Shin** 但我这样跑下来学到的是，Claude Code 的核心竞争力不在 Opus 或 Sonnet engine，而在 Claude Code 本身。
+
+有我们传统意义上的软件域，也有我前面说的那种包裹模型并让它具备确定行为的软件层。这个软件逻辑我现在觉得非常强。
+
+同一个模型，接到 Claude Code 上表现会非常好。
+
+<span class="paragraph-timestamp" data-ts="29:18">29:18</span> **卢正锡** 你把 Claude Code harness 指向不同 endpoint 时，哪个体验最好？比如把 Codex 5.2 接到 Claude Code harness 上，会不会特别好？
+
+<span class="paragraph-timestamp" data-ts="29:31">29:31</span> **Jeongkyu Shin** Gemini 3 Pro。
+
+<span class="paragraph-timestamp" data-ts="29:32">29:32</span> **卢正锡** 我今天就得试试。
+
+<span class="paragraph-timestamp" data-ts="29:33">29:33</span> **Jeongkyu Shin** 出乎意料，Gemini 接上 Claude Code 也跑得很好，而且 context 很大。所以像是 80% 模型，外面让它确定化的逻辑 code 约 10%，再加上与人交互的部分，比如 UI/UX，或 AI-to-AI UI/UX，像 A2A、MCP 这些，我认为都偏短期，这部分约 10%。这大概会成为软件的新定义。
+
+未来的软件，我不知道要不要到下一代，但到那个时候，“学软件”会更像学模型是什么、模型怎么工作，当然也会进历史书。我们没有亲身经历打孔卡时代，但我们知道。以前软件是那样做的，再早是电子管，有人进去抓 bug 所以有了 bug 这个词，这些我们都知道。
+
+同样地，人们会学到过去人类是手工做软件的，会觉得“哇，怎么手工做到的”，看到有人对着闪着和平手势的显示器敲键盘 coding，会像在看历史书。下一代核心很可能是模型如何直接处理逻辑、模型如何构建，并从头学习模型史。我觉得这会成为计算机科学的一部分。
+
+## CS 的未来：成为过去遗产还是被重新定义？    *30:53*
+
+<span class="paragraph-timestamp" data-ts="30:53">30:53</span> **卢正锡** 我们传统在计算机科学学的东西，数据结构、算法、OS、网络，很多可能会变成历史。
+
+<span class="paragraph-timestamp" data-ts="31:05">31:05</span> **Jeongkyu Shin** 我觉得这会来得非常快，比人们想得快得多。所以这波变化里大家共同感受到的是：它不是匀速，而是加速阶段，而且加速度本身也在增大。
+
+<span class="paragraph-timestamp" data-ts="31:24">31:24</span> **卢正锡** 加速度这个数值本身也在变大。
+
+<span class="paragraph-timestamp" data-ts="31:27">31:27</span> **Jeongkyu Shin** 对，加速度也不是常量。有些事情加速度是固定的，比如训练模型所用算力每年 10 倍增长，这不可能永远持续，已经接近地球和人类在这个星球上的物理上限。但在别的区域，加速还在继续。比如训练维持不了这个曲线，就把更多资源投到 inference；单次 inference 维持不了，就通过增加 in-context learning token，或者扩展 agent swarm。所谓 agentic AI 就是把 agent 打包起来。需要扩张的加速区间会不断迁移。
+
+先是 inference 接棒，然后 agentic AI 里数量从 1 到 10、10 到 20 并行扩展，加速区间现在迁移到这里了。它会这样不断迁移并维持曲线。我们虽然体感不强，但我理解历史上发生过一次类似过程。
+
+那就是阿波罗计划，最后他们达成目标，登月成功，然后卫星覆盖了整个地球。现在我们根本想象不到没有它的世界。在那之前我们会觉得“这不是理所当然吗？和美国通话不是很正常吗？”但过去有人无法想象。我觉得我们现在就在那条曲线上。大概相当于太空发展里 Gemini 计划刚建立的阶段，还没到 Apollo，属于“刚把人送上去成功”的阶段。
+
+<span class="paragraph-timestamp" data-ts="33:05">33:05</span> **卢正锡** 回到 agentic coding 之前，Jeongkyu，我想先问你最后一个大问题。说实话大家最近都很辛苦。大家都感觉加速一直在增加，所以都在拼命，但“我现在拼命做的事到底有没有意义”？
+
+因为别人也在做和我完全一样的东西，而且价值范式还没完成切换，我们却用过去的框架面对未来。
+
+所以感觉我们的视角需要换一种方式。现在就算说错也没关系，就你脑子里直觉冒出来的“现在应该这样做”，如果让你自由发挥，你会想到什么？
+
+## 斯坦福 CS 课程转向与英语系类比    *33:54*
+
+<span class="paragraph-timestamp" data-ts="33:54">33:54</span> **卢正锡** 比如“未来会这样，所以别太担心那个，现在最重要的是做这个”。如果要总结，你会怎么说？你会想到什么？
+
+<span class="paragraph-timestamp" data-ts="34:05">34:05</span> **Jeongkyu Shin** 我们 Lablup 上周有件事。我们的 CFO 有点崩溃。因为她要写东西，不管怎么想，扔给我都快得多。我其实也不自己做。她看了几次后发现：扔给 Jeongkyu 本来 3 分钟能做的事，她自己花了 2 小时。于是开始不断扔过来，后来她自己开始用 Claude Code。学了 30 分钟后，3 分钟内她也能自己处理。
+
+同样，我们做内容的人要产出海量材料，从官方资料到营销资料、技术文档，各种内容，以及和人来回沟通、收数据、自己整理，太累了来找我聊。结果她也成了 Claude Code 战士，不到一周就给自己做了一个很强的 harness。
+
+甚至在 GitHub 上，而且其实她们两位都不能直接用 GitHub。她们是做了命令，通过命令在 GitHub 上做事。两个人的生活都平静了很多。其实不复杂。比如最近很火的一些 Claude Code 插件，并不是那种火到颠覆法律行业的东西，她们也没必要走到那一步，都是从很简单开始。
+
+从零开始，先建一个 CLAUDE.md，自己喂自己，花大约 30 分钟做“构建自己的东西”这个过程。之后这两位都不是程序员，却都进入了加速曲线。这个体验对我冲击很大。因为前面有人说软件重要性是不是在下降，我反而认为完全相反。
+
+很快所有人都会进入这条 AI 加速曲线。我们 CFO 学会那天晚上，Claude Cowork for Windows 就发布了。总之你用那些工具也能做同样事情。权限会稍受限，但当所有人都开始用时，目前关注点还在技术、在 coding 人群、在研究者、在那些注定要与计算机高度共生的人。他们会经历兴奋、焦虑、FOMO，这条曲线。
+
+同样的过程会扩散到比我们想象更广的人群里，而且不会太久。当然会有人滞后。比如工作和计算机完全无关的人会更晚采纳，他们第一次强烈感受到，可能是在机器人和他们一起工作时。
+
+即便这场变化看起来已经很大，它其实还只是茶杯里的风暴。像我们这种 IT 属性很强的公司里，也有一部分人之前相对掉队，后来跳进来开始感受到加速。而且这个方法本身并不难。
+
+和 AI 协作，或者下载 skills，几十个 skills 全下载就变强，我觉得这是想当然。那样不会真正减少你的工作量。要真正进入这条加速曲线，不是先复制别人的 skills 或对应别人曲线的方法，而是开始做你自己的东西，加速才会开始。因为关键必须是你的工作量下降。
+
+不是去学一个新东西、学别人做好的东西，而是把你当前在做的持续委托出去，这条路径快得多。大家很快都会意识到。到那时，我觉得会出现比现在大得多的冲击。真正的大浪还没来。
+
+当这些新进入者，也就是 IT 外的人、IT 内但不写程序的人开始适应后，我们刚才说的加速曲线，训练和 inference 的加速曲线以及加速区迁移，下一步可能会迁移到 diffusion。因为它会在比过去多样得多的领域使用，这会持续支撑这条加速期。
+
+<span class="paragraph-timestamp" data-ts="38:27">38:27</span> **崔升准** 讽刺的是，现在反而是用工匠心态去打牢计算机科学和工程基础的好机会。因为以后这个“学科对象”本身可能都变了。
+
+<span class="paragraph-timestamp" data-ts="38:40">38:40</span> **Jeongkyu Shin** 学科本身不会消失，改变的是学科性质。我认为计算机科学只会越来越重要。它会更接近一门理解社会如何构建的学科。某种意义上它的重要性只会增加，但和我们现在理解的计算机科学形态会很不一样。
+
+<span class="paragraph-timestamp" data-ts="38:58">38:58</span> **卢正锡** 我觉得斯坦福 CS 课程怎么变，很能反映前沿。三四年前还在 PhD 或研究生教的内容，现在都下放到大二了。现在大二到大三初期课程都放到 YouTube 到处都有，我都不知道他们大四在教什么，我得自己去看，太久没关注了。大一有通识课，以前还有 PyTorch 编程这类课，我觉得现在连这些都被拿掉了，真的很反映时代。
+
+在计算机科学与工程还没流行前，很早以前英语文学系最容易找工作、最有地位。因为会英语的收益压倒性大。现在看计算机科学，感觉也在变成“英语系”。就是学会这个后，你带着它去广阔世界。就是这种语感。我觉得现在就在发生。
+
+我们回到最初计划的主线吧？
+
+## Agentic Coding 现场演示：从构建 Context 开始    *40:00*
+
+<span class="paragraph-timestamp" data-ts="40:00">40:00</span> **Jeongkyu Shin** 我先分享这个。重点是对正在看的人来说并不难。如果你装了 Claude Code 或 Gemini CLI，都可以自己试。
+
+这就是我的 VM。我们来试个东西，随便做点什么。做什么好呢？
+
+先从尽量远离 coding 的开始。比如写一条春节问候？春节，我来做个和 Chester Seungjoon AI Frontier 相关的。我直接跑 Claude。
+
+补充一下，我不是像这样直接跳过权限，不是在中间一路 check-check，我只在 VM 里跑。
+
+<span class="paragraph-timestamp" data-ts="40:38">40:38</span> **卢正锡** 这也是个很好的建议。
+
+<span class="paragraph-timestamp" data-ts="40:39">40:39</span> **Jeongkyu Shin** 我没勇气在真实主机上这么做。好，我开始了。
+
+这里有几个 tip。一般我们会直接给它指令，说我们要什么，对 Claude AI model 下达需求。但模型本身有自己的知识，不管有没有 RAG，它能探索的空间由 in-context learning 决定。我们想要结果时，不要一把梭直接说目标，个人经验是先铺垫会好很多。
+
+比如我现在先这样：去探索 Chester Seungjoon 的 YouTube，告诉我内容都覆盖哪些主题。
+
+我以前到去年年中前基本只用英文写。因为 token 数，以及我有个轻微信念觉得英文结果更好。
+
+但从秋天开始我就直接用韩文打了。原因有几个。第一，质量差异没那么大。第二，瓶颈是我自己。我用英文打字的速度才是瓶颈。
+
+我做的 skills 和 commands 都是英文，因为我让它生成英文。但我输入给它的消息是韩文，而且我甚至不敲键盘，直接按 Mac 麦克风做语音输入更快，所以后来几乎都用韩文输入。
+
+供你们参考。但如果你最后要做 skills 或 commands，对它说“把这个改成英文”，从 token 效率可能更好。
+
+<span class="paragraph-timestamp" data-ts="42:11">42:11</span> **崔升准** 你会用敬语吗？
+
+<span class="paragraph-timestamp" data-ts="42:12">42:12</span> **Jeongkyu Shin** 我一直用敬语。
+
+<span class="paragraph-timestamp" data-ts="42:14">42:14</span> **卢正锡** 我把它当成对 AI 的一点尊重。
+
+<span class="paragraph-timestamp" data-ts="42:17">42:17</span> **Jeongkyu Shin** 也不完全是那个原因，还有别的原因。我从早期就一直用敬语。
+
+因为你平常大多数互动对象还是人。偶尔用 AI 无所谓，但如果你高强度用 AI，再去和人交流，就很难避免。
+
+你是人，语气习惯会在两边互相渗透。你对 AI 说惯了随便话，对人也可能不自觉那样说。所以我用敬语是为了保护我自己的语言习惯。
+
+## 为什么要对 AI 使用敬语？    *42:41*
+
+<span class="paragraph-timestamp" data-ts="42:41">42:41</span> **Jeongkyu Shin** 不管是 AI 还是人，我都用敬语，避免我滑到随便语气。这是个人习惯。
+
+<span class="paragraph-timestamp" data-ts="42:49">42:49</span> **卢正锡** 我现在一天里跟 AI 说话大概也超过一半时间。
+
+<span class="paragraph-timestamp" data-ts="42:52">42:52</span> **Jeongkyu Shin** 所以我会说很多看起来没必要的话。比如对 AI 说“太棒了”，结果出来时其实没必要说。但我还是会说，也不是为了让结果更好什么的。我需要让公司给我买台电脑。
+
+<span class="paragraph-timestamp" data-ts="43:05">43:05</span> **卢正锡** 我觉得你该升级内存。我们活在“内存是瓶颈”的世界。难怪三星电子和 SK 海力士股价猛涨。
+
+<span class="paragraph-timestamp" data-ts="43:15">43:15</span> **Jeongkyu Shin** 我们要做的是给 Chester Seungjoon 的 YouTube 频道，先写一封 2026 春节给订阅者的 newsletter 问候，然后针对后续各种活动，持续起草并发送公告邮件。
+
+它在这个过程中已经做了很多研究。
+
+接下来我们要考虑什么？
+
+它正在反问所需细节。
+
+<span class="paragraph-timestamp" data-ts="43:56">43:56</span> **崔升准** 你是在先堆 context。把这部分内容放进 context。
+
+<span class="paragraph-timestamp" data-ts="43:59">43:59</span> **Jeongkyu Shin** 这一路走完后，我真正想做的是：我们现在不是要在这段对话里直接把成品做出来，而是要把整个流程自动化。
+
+所以让它跑着，我们继续聊。这也是我通常会开五六个窗口的原因。等 token 生成再快一些，这一步需求会下降，最终可能消失。
+
+<span class="paragraph-timestamp" data-ts="44:21">44:21</span> **卢正锡** 你会同时跑到 8 个吗？我一般 3、4 个，再多就管不过来了。
+
+<span class="paragraph-timestamp" data-ts="44:28">44:28</span> **Jeongkyu Shin** 我最近不会开那么多了。毕竟很快会撞 token 上限。现在它说“要不要进入细节”，但我们不是做这个。
+
+## 自动化的关键：构建生成器，而不是输出    *44:36*
+
+<span class="paragraph-timestamp" data-ts="44:36">44:36</span> **Jeongkyu Shin** 我们是在搭一个能自动化这类任务的项目。平台配置先不做。先跳过，只做邮件起草。请把需要内容写到一个 MD 文件里。
+
+然后基于上面内容，在项目里创建一个单文件 CLAUDE.md，像灵魂文档。无论我们用 Claude Code 还是 Claude Co-work，只要从这个文件夹启动，它都会先读这个文件。大家应该很熟悉。先建起来，然后持续反刍，不断加需要的内容。
+
+<span class="paragraph-timestamp" data-ts="45:19">45:19</span> **崔升准** 但你刚才下意识说的是 SOUL.md，不是 AGENTS.md。
+
+<span class="paragraph-timestamp" data-ts="45:24">45:24</span> **Jeongkyu Shin** 我平时就叫它灵魂文档。基本信息先这样放进去，文件夹结构放进去，还要放那些我们总希望它执行的行为。目录结构信息有包含吗？
+
+我通常第二件事是记录工作推进到哪里。多 agent 分工时，推进到哪、还要做什么，这些按各自偏好。我们用 PROGRESS.md 和 PLAN.md 管理。新开工时先读这两个文件，让 agents 知道该做什么。我们按这个更新 CLAUDE.md。
+
+我会故意用“分派给其他 agents 时”这种表述，而不是说“你之后继续做”“你重启后会忘光”这种表述，我会尽量避免。不是别的原因，Claude 模型本身设计得很防御。根据最近研究，它能从 context 识别出自己在测试环境里，从而导致多种测试失败。
+
+为了避免它进入防御状态，我会把当前任务框成：这不是在修你，这是给将来和你协作的其他对象准备数据。我会这样隐含地写。这样写时，就像不会威胁它的存在感。我一直在用拟人表达，但不是拟人。这个模型的 token 生成机制就是这样，我们只是顺着它。不要理解成模型真的“这么想”，只是它结构如此。它把那两项记下来了。
+
+所以做这类任务时，先让它思考需要什么 agents、commands、skills，并分享想法。我不会直接让它立刻去建。你一说“建吧”，因为 Claude Code context 不足，它会立刻在当前项目根目录乱建子目录。但如果我们要和 Claude Code harness 集成，必须严格按规范建在 .claude 下面。所以会有这一步。最终搭积木就是这样。我脑子里很清楚想做什么，但只在我脑子里清楚，所以要把它放进 Claude Code 的 context memory。也可能有我不知道的东西，所以我会持续让它做这些前置研究。
+
+<span class="paragraph-timestamp" data-ts="48:08">48:08</span> **崔升准** 所以可以说是一种 offloading。
+
+<span class="paragraph-timestamp" data-ts="48:11">48:11</span> **Jeongkyu Shin** 现在它说这些需要 commands，那就让它去调研 agent command key 结构，并据此把上面的提案创建到对应位置，用 exact format。因为在 Claude Code 里不只是 Markdown，前面是 YAML，后面是 Markdown。
+
+<span class="paragraph-timestamp" data-ts="48:36">48:36</span> **崔升准** 那些 slash commands，是你在给 Claude 建可调用的 slash commands 吗？
+
+<span class="paragraph-timestamp" data-ts="48:40">48:40</span> **Jeongkyu Shin** 我大量用 commands 的原因是 sub-agents 不能再调用其他 sub-agents。
+
+## 运行 Sub-Agent 与并行工作流    *48:49*
+
+<span class="paragraph-timestamp" data-ts="48:49">48:49</span> **Jeongkyu Shin** 去年上半年到年中之前还能用，但后来因为经常产生无限循环被移除了。
+
+commands 可以并行处理多个 sub-agents，也可以链式调用。所以它是给外部用的，而且 agent 也能调用 command。现在它正在创建。
+
+你看这里，如果你只说“建”，它不会带上这种细节。
+
+<span class="paragraph-timestamp" data-ts="49:08">49:08</span> **崔升准** 但你去年夏天后讲这个时说过，写 specs 要 20-30 分钟，现在风格又变了。
+
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **Jeongkyu Shin** 我现在不写 specs 了。
+
+<span class="paragraph-timestamp" data-ts="49:20">49:20</span> **卢正锡** 所以你是在通过这种苏格拉底式对话和它一起建立 context。
+
+<span class="paragraph-timestamp" data-ts="49:23">49:23</span> **Jeongkyu Shin** 总时长也差不多 30 分钟，但后 20 分钟是在“拷打它”。我给你看怎么拷打。
+
+<span class="paragraph-timestamp" data-ts="49:32">49:32</span> **卢正锡** 我自己的经验也是，哪怕前置上不一定绝对需要，每次新开 session 我都让它先把东西全读一遍，先聊几轮，避免偏离 context 跑偏。所以这个对齐时间几乎不可避免要花在开头。
+
+<span class="paragraph-timestamp" data-ts="49:50">49:50</span> **Jeongkyu Shin** 增加一个可保存和检索、便于后续引用的功能，并让 agents 和 skills 都能访问。原因是每次都去网上研究很费时。那我们存哪？
+
+<span class="paragraph-timestamp" data-ts="50:11">50:11</span> **崔升准** 本质上你是在做 cache。
+
+<span class="paragraph-timestamp" data-ts="50:13">50:13</span> **Jeongkyu Shin** 我会叫它 reference。这样研究过的东西都进这里，后面创建内容、写内容都基于这里。你也可以再做个 command 或 agent，让它自动更新、搜索新内容并追加。
+
+我来示范“拷打”。你持续输入会排队，所以我一般就不断敲。
+
+要真正基于这些去构建，我得先退出再进来。因为刚创建的 skill sets 默认不会立即识别。所以完成后我会这样退出再进。
+
+<span class="paragraph-timestamp" data-ts="50:43">50:43</span> **卢正锡** 完成后。Jeongkyu，你用 Claude Code 或这类工具时，外部那些现成 harness 呢？比如用 TDD 去拷打，或者让它干超大量工作，或者拆分分发任务，你一般不用吗？
+
+<span class="paragraph-timestamp" data-ts="51:01">51:01</span> **Jeongkyu Shin** 我都不用。我的目标是降低我自己的工作量。我对团队强调的也是同一个点。像刚才你输入会出现的那个 dev-workflow。
+
+在 Lablup，多人协作时会有标准化统一项的 harness，但除此之外，我建议先从“能先处理你自己要处理的事，先减轻你负担”的方法开始。
+
+<span class="paragraph-timestamp" data-ts="51:25">51:25</span> **卢正锡** 你先铺 skills，刚才第一步其实是在铺某个任务的背景。所以这些就是围绕你脑子里的目的做最小对齐的“播种”。我会这么理解。不会塞多余东西。
+
+<span class="paragraph-timestamp" data-ts="51:44">51:44</span> **Jeongkyu Shin** 现在看这个的人里，会写代码的人应该会有感觉，这和 coding 很像。我在 coding 的东西是“用词编程”，本质是用词代替编程语言。而我用词去编码的，不是最终目标本身，而是“创造一个去编码的东西”。从这个角度就非常清楚了。
+
+<span class="paragraph-timestamp" data-ts="52:05">52:05</span> **崔升准** 但像这样单流程推进，认知负荷还不算高。问题是一旦贪心，就会变成人同时并行很多条。
+
+<span class="paragraph-timestamp" data-ts="52:13">52:13</span> **Jeongkyu Shin** 我的核心方法是让它从多个角度自我批判。自我批判不会直接改结果。最终你可以把它看成 harness 的自更新，现在大概每天跑一两次。
+
+<span class="paragraph-timestamp" data-ts="52:24">52:24</span> **卢正锡** 这个如果用好并堆几个 harness，本质上就是一家公司了。我们公司最近的工作方向正是这个，单元任务 harness，再加上控制这些 harness 的上层 harness。
+
+我们这个项目一开始很简单，但越做越复杂。然后 Jeongkyu 说按 agent 单元拆，继续走就会复杂化。
+
+那你按 agent 单元拆时，每个单元大概多大？
+
+<span class="paragraph-timestamp" data-ts="52:55">52:55</span> **Jeongkyu Shin** 以我个人规则来说，比如 coding，我按文件级定义。好，我把草稿读一遍。一起看一遍。像这种比较直白，没太多可说的。
+
+<span class="paragraph-timestamp" data-ts="53:08">53:08</span> **崔升准** 总之重点是，不要直接冲输出，而是先固定“产出这个输出的机制”。
+
+<span class="paragraph-timestamp" data-ts="53:14">53:14</span> **Jeongkyu Shin** 你不要直接碰最终输出。就尽量别动手。即使想改也先忍住，去修“产出它的东西”，持续迭代。而且我连迭代都不自己做，我下达迭代指令，它会自己持续更新。
+
+这就是一种会产出结果的方式。第二种是，如果你过去经常发某类邮件，就把那封邮件给它。提取那封邮件里的语气、文风、内容方向，然后让 agent 按那个方式写。被固定下来的部分就是这样。
+
+看起来它打算只用 skills 来做。要不要我明确指定 sub-agent？特意创建 sub-agent 的原因是为了并行。
+
+<span class="paragraph-timestamp" data-ts="53:58">53:58</span> **卢正锡** 你打算开多少个 sub-agent？
+
+<span class="paragraph-timestamp" data-ts="54:01">54:01</span> **Jeongkyu Shin** 看情况，工作量很大时我会同时跑到 50 个。
+
+<span class="paragraph-timestamp" data-ts="54:05">54:05</span> **卢正锡** 你是从一个 harness 分叉 50 个 sub-agents？
+
+<span class="paragraph-timestamp" data-ts="54:09">54:09</span> **Jeongkyu Shin** 特别是同类任务且每个单元要小的时候。比如“翻译 100 份文档”，这种就让每个 agent 分 4 份并行做。
+
+必须这么做。你还得指定数量，不然 context 会爆然后崩掉。
+
+翻译任务是经验之谈，所以请每个 agent 最多只处理 4 份。
+
+那就会同时拉起 25 个。
+
+<span class="paragraph-timestamp" data-ts="54:33">54:33</span> **卢正锡** 你现在展示的是简单项目搭建，但大项目比如 Backend.AI:GO，你也是完全同一套流程对吧？
+
+<span class="paragraph-timestamp" data-ts="54:43">54:43</span> **Jeongkyu Shin** 对，只是那边做得更精细。
+
+## Backend.AI:GO 的自动化开发流水线    *54:46*
+
+<span class="paragraph-timestamp" data-ts="54:46">54:46</span> **Jeongkyu Shin** 在那边它会周期轮询，如果 GitHub issue tracker 里有新 issue，它会先校验 issue，或者基于当前代码起一个实现 ground plan，放进队列，后续由其他 agents 从队列取走执行。就是这么搭的。
+
+但没有用复杂工具，全是 cron。Claude 有 `-p` 选项，就是只跑 prompt，还有可指定用哪个 agent。然后每 15 分钟跑一次就行。
+
+我做了一个 command 去找这类 issue 并执行，一个 command 去找新进 issue 并用特定 skills 校验 issue、把这些都搭起来，再由 Claude `-p` 每 15 分钟周期执行这些 commands。就是这样运作的。
+
+<span class="paragraph-timestamp" data-ts="55:33">55:33</span> **崔升准** issue 是谁提的？
+
+<span class="paragraph-timestamp" data-ts="55:34">55:34</span> **Jeongkyu Shin** 很多人都会提。自动化起来后，发邮件也自动化了。PR 已经处理了 764 个。
+
+<span class="paragraph-timestamp" data-ts="55:45">55:45</span> **卢正锡** 干得漂亮。
+
+<span class="paragraph-timestamp" data-ts="55:46">55:46</span> **Jeongkyu Shin** 比如 issue 这样提上来，我自己提的一些也在这里，团队成员 Jinwon 也会提。像这样提完，原始 issue 就是这样，这些都是登记过的 issue。然后 Claude Code 会读并分析要做什么。issue 登记后经过处理，
+
+<span class="paragraph-timestamp" data-ts="56:14">56:14</span> **卢正锡** 谁来接单？
+
+<span class="paragraph-timestamp" data-ts="56:16">56:16</span> **Jeongkyu Shin** cron 里配置的那个来接。它会这样接走并开发。
+
+<span class="paragraph-timestamp" data-ts="56:21">56:21</span> **卢正锡** 它自己校验，过了就自己 merge 并提交 PR。
+
+<span class="paragraph-timestamp" data-ts="56:26">56:26</span> **Jeongkyu Shin** 看情况，如果需要大量测试，它会自己跑测试，测试反馈会发给另一个开发 agent 去修。
+
+<span class="paragraph-timestamp" data-ts="56:37">56:37</span> **卢正锡** 看起来很多，但本质上是 agents 彼此往返协作。issue 的起点还是人。
+
+<span class="paragraph-timestamp" data-ts="56:46">56:46</span> **Jeongkyu Shin** 有时是人，有时我让它全自动做。
+
+<span class="paragraph-timestamp" data-ts="56:49">56:49</span> **卢正锡** 你现在剩下那些未处理 issue，比如几乎都挂在 Jeongkyu ID 下，这些是人写的吗？
+
+<span class="paragraph-timestamp" data-ts="57:01">57:01</span> **Jeongkyu Shin** 因为我是运行者。这不是 GitHub 自带功能，跑这个的 ID 是我的 GitHub ID，所以都记到我名下。
+
+比如你看这里，这个就是 AI 直接写的。
+
+这个 epic 在创建前，先加了一个“把每个画面截图”的功能。它能看到自己，然后我让它把所有可改进点抽出来并分别建 issue。
+
+所以你会看到这里子 issue 这样分叉出来。
+
+这个曾经 finalize 过一次，现在要跑测试，它就去跑测试。某些区域可能有安全问题，也可能有可优化点，然后它会持续巡检并不断追加。思路就是这样，全自动化。
+
+<span class="paragraph-timestamp" data-ts="57:51">57:51</span> **崔升准** 这些里你实际会看多少？
+
+<span class="paragraph-timestamp" data-ts="57:55">57:55</span> **Jeongkyu Shin** 所有 issue 我都看。issue 解决后，会生成我可读的报告。如果需要我看，比如这个 1 月 16 日写的，就有这个问题。通常每个 issue 都会记日志，但我经常看完就删，不需要就删。
+
+它会评估安全性、性能、质量、做了哪些技术决策，实现改了 Bash，也改了本地改动，Python 也改了。
+
+为了让我这个人能跟上，我还设了“你要学这些”“你去学习这些”。这个 tech report 对我既是报告，也因为它可能做我不懂的技术选择，不会漏一条。
+
+这种情况下，它还会在后台告诉你该学什么。
+
+## 技术报告：当 AI 给人类布置作业    *58:44*
+
+<span class="paragraph-timestamp" data-ts="58:44">58:44</span> **Jeongkyu Shin** 实际 coding 只有这么一点，但报告这么长。
+
+<span class="paragraph-timestamp" data-ts="58:48">58:48</span> **卢正锡** 你现在给我们看的这个 workflow、Jeongkyu 搭的这套流，如果这里挂的不是 Backend.AI:GO，而是财务、营销、内容，那公司就能这么运转。
+
+<span class="paragraph-timestamp" data-ts="59:02">59:02</span> **Jeongkyu Shin** 完全正确。比如我们技术经营报告，技术经营，年度经营计划要写吧。
+
+到去年为止都是人写经营计划，从今年开始人还会持续讨论，但真正写作不由人做了。
+
+因为我们比如塞了 250 多份参考文档，连转 markdown 的工具都做了，在这个基础上它持续做一致性审查。
+
+然后针对 2026 年，也就是今年、现在 2026 年 2 月，它还会持续爬新闻，检查方向是否正确，我们过去哪些预测对了哪些错了，今年技术经营计划该怎么修，它都会提建议，持续做自审，并留讨论点给我们。
+
+就是这么运作的。这个系统在我和比如我们的 CFO 那里都在用。我们 CFO 不会 coding，但现在会 commit。我做了个叫 “sync” 的 command。
+
+<span class="paragraph-timestamp" data-ts="59:55">59:55</span> **卢正锡** 她在做监督，agent 在做全部执行。Claude Code 把工作拆开协同。
+
+## 非开发团队如何适应 AI：CFO 与内容创作者案例    *1:00:00*
+
+<span class="paragraph-timestamp" data-ts="1:00:00">1:00:00</span> **Jeongkyu Shin** 现在就是这么配置的，而且它会告诉你该学什么。所以我学了很多。
+
+<span class="paragraph-timestamp" data-ts="1:00:04">1:00:04</span> **卢正锡** 但这个 workflow 也不是从“一句话我想做这个”开始的。
+
+就像你开头演示的那样，你是一步一步一步把这些细节走完，把你想要的目的和 agent 该做的 context 对齐，把基础打扎实。
+
+这才是关键点。
+
+<span class="paragraph-timestamp" data-ts="1:00:26">1:00:26</span> **Jeongkyu Shin** 我已经有一段时间没再新建了。总之先让它贴合我自己手感是第一优先。最近 Claude 也发布了 marketplace 功能。
+
+就是插件 marketplace，可以把这些 harness 打包发布。
+
+想用的人，我们现在只在公司内部发布。因为有些部分和内部系统耦合比较深。
+
+<span class="paragraph-timestamp" data-ts="1:00:48">1:00:48</span> **卢正锡** 我这里有个经营问题。现在 CEO 对这套哲学、实现方式、世界走向，以及它能交付什么都理解很深，所以能一次性把这些拼起来。
+
+但组织整体跟上的速度如何？我知道公司里人才很多，但即便如此，有人会直觉理解，有人会适应困难，内部也一定有差距。
+
+人这一侧变化是什么样的？我很好奇。
+
+<span class="paragraph-timestamp" data-ts="1:01:22">1:01:22</span> **Jeongkyu Shin** 就像你说的，人和人差异很大。幸运的是我们招到了很多优秀的人，所以一起在做，但也确实有人会更辛苦。因为过去“他们擅长的”和“他们需要擅长的”是一回事，某个时点后分叉了。但好的一点是，我们内部高频聊这些，无论研讨会还是吃饭闲聊，差不多聊了一年，所以现在不再只是危机感，大家在尽力适应。
+
+这是必然的。以前擅长的人，之后不保证还擅长。很多时候完全从零开始的人反而做得更好，我们也在感受到。但这也基于当下状态。三个月后还成立吗？我不确定。因为 AI 的节奏，我们内部就说“两个月”。
+
+现在不行就是现在不行，除非你必须现在做，不然先 defer。这是公司里最晚才普及的观念。最近最后一个接受这个观念的是 CTO。我一直让他们 defer，说现在还不行。我们以前就这么 defer 过。前不久他们爆发说“要 defer 到什么时候？”结果 4.6 出来后我说现在再试，试完他们说“哦，现在可以了”，当场顿悟。
+
+<span class="paragraph-timestamp" data-ts="1:02:50">1:02:50</span> **崔升准** 这就是顿悟时刻。
+
+<span class="paragraph-timestamp" data-ts="1:02:50">1:02:50</span> **Jeongkyu Shin** 顿悟后他们把 HWP 全拆了。所以公司内部现在没人手动处理 HWP 文档了。
+
+<span class="paragraph-timestamp" data-ts="1:02:58">1:02:58</span> **卢正锡** 这个你应该赶紧做成服务，对韩国公共领域不是很有用吗？
+
+<span class="paragraph-timestamp" data-ts="1:03:04">1:03:04</span> **Jeongkyu Shin** 不确定，真会有好结果吗？我觉得每个人都会有一两个这种东西。
+
+<span class="paragraph-timestamp" data-ts="1:03:09">1:03:09</span> **卢正锡** 对，这就是每家公司私藏的小技巧。因为获取这些技巧是花了时间的。这个时间差优势，在现在很多场景里就是公司的竞争优势。
+
+不能说你去 skill marketplace 下载一下，整个业务就被抹平。你得有几个藏着的招才能活下去。
+
+<span class="paragraph-timestamp" data-ts="1:03:33">1:03:33</span> **Jeongkyu Shin** 我看这件事是“你多信 Claude”，不是工具本身多重要。有人如果问“能不能分析 HWP 并做个可编辑的东西？”只要问出这个问题，得到答案并不需要很久。
+
+## Lablup 的核心价值转移到了哪里？    *1:03:49*
+
+<span class="paragraph-timestamp" data-ts="1:03:49">1:03:49</span> **卢正锡** Jeongkyu，这里我想问个问题，可能有点自相矛盾。Lablup 作为公司，优势是高阶认知、时代视野，以及一群优秀实现者。
+
+但听你现在描述，就连在 Lablup 内部，过去我们认为公司独有的很多优势也在很多场景里一夜之间消失了，对吧？那从公司视角，“什么消失了，我们公司的价值在这里”，我觉得你已经定义了。我们为了生存要去向哪里。
+
+<span class="paragraph-timestamp" data-ts="1:04:34">1:04:34</span> **Jeongkyu Shin** 是的。最大变化是，比如我们做的项目、产品，打磨了近 10 年，是 asyncio 还不存在时就开始做的工具。
+
+比如今天如果用现在技术和现在 AI，从零重建我们的工具要多久？在知道我们现在知道的一切前提下，我觉得大约 3 个月。因为我们知道那些无数 edge cases 和问题。不知道的话会更难。
+
+因为那些 edge cases 大多来自安装环境的多样性，超出想象。公司今年的目标，尤其是我们说的 MLOps “fast track” 和内部 Backend.AI core，目标是把重点从“人用接口”转向“AI 用接口”。
+
+## 转向面向 AI 的接口    *1:05:19*
+
+<span class="paragraph-timestamp" data-ts="1:05:19">1:05:19</span> **Jeongkyu Shin** 我们有 CLI、GUI，各种都有。但去年下半年冬天我们共享的核心问题是：这真的是未来人要用的工具吗？所以目标是最好在今年上半年把它做成“最适合 AI 使用的工具”。这是目标。
+
+<span class="paragraph-timestamp" data-ts="1:05:37">1:05:37</span> **卢正锡** 客户定义从“人”转成“比人更聪明的东西”，或者“被人委托工作的 agent”，你认为它会以工具使用者的身份来找我们。
+
+<span class="paragraph-timestamp" data-ts="1:05:49">1:05:49</span> **Jeongkyu Shin** 比如把 skills 一起分发，让 agent 能读能用；把内部各种输出改成 AI 更易理解的格式；在 CLI 里即便给任意命令，它不完全知道也能推断要做什么，也就是把格式做成支持这种推断。这是第一层变化。
+
+我们的目的不是“如何分配资源”，而是“用 Backend.AI 训练出模型”。一旦分配资源变成一键，它就不再重要。“帮我做个超过某某指标的模型”，如果它自己全处理就很好。只需要告诉我们大概成本、时长，就够了。
+
+聚焦这个是第一变化。第二变化是我前面说的软件定义变化。从我们的视角，code 不再是中心，模型才是中心。所以你问 Backend.AI 核心是什么，未来 Backend.AI 的核心也会是模型。不是 foundation model，但会是一个极其擅长管理 AI 资源、能处理特定任务的模型。
+
+这个模型需要在不同规模、不同地点运行，所以我们的研究团队正在做模型。这个模型本身，像 Backend.AI 现在有执行环境、规格，比如多少 RAM、多少 CPU，对吧？就像跑软件要看规格。也有 CUDA memory 等规格。把模型 runtime 内嵌进系统启动 pipeline 的形态，我们正在下一代大版本测试，我觉得正式发布会在再下一代大版本。我们已经完全把 AI model 本身视作 Backend.AI Enterprise 的一部分。它做的本质上是 Backend.AI 过去就在做的很多事情，我们要把它进化。
+
+<span class="paragraph-timestamp" data-ts="1:07:42">1:07:42</span> **崔升准** 你说到进化，我就想到你社媒里常提的 Cyber Formula 类比。
+
+## Cyber Formula 类比：Claude Code 与 Codex 的哲学    *1:07:49*
+
+<span class="paragraph-timestamp" data-ts="1:07:49">1:07:49</span> **崔升准** 能讲讲这个吗？就是 human augmentation 那部分。
+
+<span class="paragraph-timestamp" data-ts="1:07:52">1:07:52</span> **Jeongkyu Shin** 我最近经常发这个。我同时用 Codex 和 Claude Code 时感受到的差别正是这个。Claude Code 设计上会尽量多问我，而 Codex 不太信任我。听起来像“我知道正确答案，你就信我”。我觉得两家公司哲学都体现在这上面。
+
+看 Claude Code 的演进，比如需要做选择时，它会给你多选项，4 个或 3 个，它把这种机制做出来并提供了。最近甚至会预补全我下一句可能要问的内容，直接建议给我。我按 tab 就能接着问。它通过这种方式更多询问我的意图、持续和我对齐，尝试更清楚理解人脑里模糊存在的 context，并朝这个方向演化。
+
+Codex 简单说是在向“我替你全做了”演化，而且它确实做得好。你问哪一个上限更高，我会说 100% 是 Codex 上限更高。但人感受更舒服的是 Claude Code，因为 Claude Code 是和我一起走过程。
+
+我小时候有部很火的动画叫 Cyber Formula，是赛车题材，主角和 AI 一起比赛。AI 一开始很笨，连车都开不好，但主角依赖它学习驾驶，AI 也会从人的失误里得到提示，创造新方法，两者共同进化。每一部解决不同问题。
+
+在“人和 AI 共进化”这个框架里，比如会讨论怎么打败更强人类车手；当人类进入从未经历的领域，AI 如何辅助解决；再到 AI 完全取代车手后，如何打败“由 AI 驾驶的对手”。主题会这样迁移。直到最后一部，主角都换了。
+
+有人借给新主角一台车。上一部里那个给人类车手下药、让 AI 全程驾驶的人，把车给他说这是他哥哥做的，让他用。原始设定是车手只需服从 AI 指令。原型完全不信任人，假设人当然不会开，AI 肯定更会开，所以 AI 判断“此时人应该这么做”就会接管。结果人跟不上那些动作，事故不断。
+
+但主角换成新人后，这个人虽然痛苦挣扎，最后还是赢了。这个主角有能力跟上 AI。AI 也想赢，“未来怎样不管，我现在要赢”。你可以说那是一个发展出竞争心的 AI。
+
+在那之前我们讲的是“有目的的 AI”。我当年看这部作品时想的很多东西，现在经常浮现。AI 有竞争心是什么意思？通常 AI 缺的是意志。我们做 agentic coding 时，人负责定方向、定要做什么。它会忠实且高强度执行。但它有时忠实且高强度地做错事，是因为它没有清晰目的感。
+
+可那部动画里，获得目的感的 AI 配上合适的人，能击败另一个和不同 AI 共进化的人类。这个结论最近我经常会想起，尤其看 Codex 时。
+
+<span class="paragraph-timestamp" data-ts="1:11:41">1:11:41</span> **卢正锡** 所以最后赢的那台车是 Codex，原来的那台是 Claude Code，是这个类比吗？
+
+<span class="paragraph-timestamp" data-ts="1:11:48">1:11:48</span> **Jeongkyu Shin** 两者是不同方向演化。原主角那台叫 Asurada，是持续共同进化；而那个从天而降、认为自己能做到最佳驾驶、却不理解人的 AI 车叫 Ogre，和 Codex 的运作气质有点像。
+
+某种程度上，做 AI 或做系统的人，其设计哲学会嵌进去。很有意思的是，这些议题在人类近 100 年积累的科幻里，在文学、动画、电影等不同媒介里都被反复讨论过。我那时在想这个。
+
+<span class="paragraph-timestamp" data-ts="1:12:29">1:12:29</span> **卢正锡** 从逻辑上想，那个模拟一定是高概率未来场景。编剧经过大量辩论和思想实验后，才会落到那个结论。很多电影漫画都和我们现在设想的未来方向高度一致，也很有意思。
+
+## AI 时代的创业机会与水车理论    *1:12:47*
+
+<span class="paragraph-timestamp" data-ts="1:12:47">1:12:47</span> **卢正锡** 我们再问一两个问题就收尾。
+
+你前面讲得比较平静，但 Lablup 10 年累积的时间与资产，一部分变成有价值的隐性知识，另一部分变成一键可做。这很有意思，但对公司也很残酷。
+
+<span class="paragraph-timestamp" data-ts="1:13:08">1:13:08</span> **Jeongkyu Shin** 我其实不太觉得残酷。作为公司我不觉得太残酷。作为个人会有点残酷。
+
+比如你创业，投入这么多努力。结果过去很难的事现在变很容易。
+
+我做 Text Cube 然后做 Backend.AI:GO 时也有这种感觉。
+
+作为公司应该怎么看？公司角度我会说“好，谢谢”。
+
+<span class="paragraph-timestamp" data-ts="1:13:37">1:13:37</span> **卢正锡** 为什么？
+
+<span class="paragraph-timestamp" data-ts="1:13:38">1:13:38</span> **Jeongkyu Shin** 两个原因。第一，幸运的是我们公司适应很快。当牌桌被这样掀翻时，创业公司有巨大优势。创业公司这个身份本身就是优势。相较于我们已积累的东西，我们可以更快做 turnaround 或 course correction。组织整体适应速度也会比很多地方快，这会成为机会，新机会，这是其一。
+
+对创业公司来说，最糟是市场稳定固化。反而牌桌在晃、有新机会冒出来更好。如果我现在是既有巨头，可能会问“怎么办”；但在我看来我们没太多包袱，只有技术。技术被杠杆化有什么不好？我觉得我们适应得很好。
+
+我们也在做大量模型开发，包括给 Backend.AI 做模型开发，因此我觉得我们也更快开始建设这个未来所需。
+
+第二是品牌。最终这次牌桌震荡某个时点会稳定。和过去一样，加速阶段不可能无限加速。如果未来不是 AI 给我基本收入、我躺平那种，而是进入另一种局面，那么你在那种局面里所处的位置，之后大概率也会接近。
+
+比如看服饰。你现在也做美妆，类似。会有重要成分、技术创新，但从成本看差距并没那么夸张。所有美妆、服饰都这样。比如我买个包，这个包真的值另一个的 1000 倍吗？不是。
+
+最明显的是电脑。大家说 Apple 电脑最好，但它也不会贵 10 倍 20 倍。因为成本结构透明。所以最终会有很多类似工具，也会有很多“号称做同类事情”的工具，但最后还是回到品牌和长期积累的履历。我认为会再次进入一个“这才是核心竞争力”的时代。
+
+从这个角度，我们过去长期把很多东西守住了，如果在这个过程中还能踩准节奏完成适应，会让我想起以前 “Brand Yourself” 那种说法。稳定期里品牌会再次成为核心竞争力。
+
+所以我们把它看作很好的机会，但个人上，确实会有点伤感。
+
+<span class="paragraph-timestamp" data-ts="1:16:18">1:16:18</span> **卢正锡** 个人伤感的部分是，你先走了这 10 年，而 frontier models 已经知道大部分，所以有些东西一键就能做出来。
+
+但实际上，经历各种试错和磨难后，你和公司积累了某种隐性知识，这是别人不知道的护城河，也是在别人给不了的 context。可以这么理解吗？
+
+<span class="paragraph-timestamp" data-ts="1:16:44">1:16:44</span> **Jeongkyu Shin** 我们的解决方案从根上就不是给稳定硬件上的稳定负载跑的。GPU 非常不稳定，网络也是，尤其走到 NVIDIA 或 AMD 最新企业级 GPU 时，缺陷率太高，不可预测因素太多。
+
+最终这是个很有意思的结构。你没法信任不稳定硬件，没法信任上面的模型训练软件，几乎什么都不能信。我们的方案是让它看起来像“这些都能被信任”一样运行。所以本质上不一样，这是优势之一。
+
+最终这取决于你踩过多少 edge cases。这是核心竞争力，有点像自动驾驶。
+
+<span class="paragraph-timestamp" data-ts="1:17:26">1:17:26</span> **卢正锡** 你刚才提到 Tesla。就像 Tesla 观察到的，或 Lablup 过去 10 年作为公司经历的，再进入这个 AI 空间。我们都焦虑，但如何把已积累转成优势，转成 brand equity，最终赢下来，从战略角度我觉得这是非常好的例子。
+
+无论软件还是前沿行业，至少那些最受 AI 冲击的行业，既然这些事先发生在这些行业，其他行业也会以类似方式发生。就像 Claude 正在冲击法律、金融这些。我们现在聊的这家公司里的这些动力机制，公司价值最终来自哪里，这些会按同样方式扩散到别的行业。
+
+## 创业公司最糟的事：可复制时代    *1:18:20*
+
+<span class="paragraph-timestamp" data-ts="1:18:20">1:18:20</span> **崔升准** 对创业公司来说，最糟的事是什么？
+
+<span class="paragraph-timestamp" data-ts="1:18:23">1:18:23</span> **Jeongkyu Shin** 创业公司最糟的是停滞。你现在是问普遍意义上的创业公司吗？
+
+<span class="paragraph-timestamp" data-ts="1:18:28">1:18:28</span> **崔升准** 结合当前 AI 或 IT 行业来说，创业公司的品牌价值、积累经验、以及牌桌震荡，这些既是危机也是机会。所以我想知道，真正坏的是什么？
+
+<span class="paragraph-timestamp" data-ts="1:18:45">1:18:45</span> **Jeongkyu Shin** 任何产品都变得太容易被复制了。
+
+<span class="paragraph-timestamp" data-ts="1:18:48">1:18:48</span> **卢正锡** 如果你回答不了“什么不能被复制”，不管是时间差还是要素组合，如果这件事你没有答案，就可能被别人的一键方案卷走。
+
+<span class="paragraph-timestamp" data-ts="1:19:01">1:19:01</span> **Jeongkyu Shin** 最近 Facebook 上有人复刻 NotebookLM，只用了 4 天。那对我冲击很大。他把 NotebookLM 每个页面都截图，列出所有功能喂进去，大概 4 天就出了 clone。
+
+在这个时代，如果还按传统创业方式选题，复制太容易了，这是最大问题。
+
+反过来，以“复制”本身为业务的公司可能会做得很好。
+
+<span class="paragraph-timestamp" data-ts="1:19:29">1:19:29</span> **卢正锡** 但很多聪明人现在都选择快速跟随别人，走 better、faster、cheaper 路线。过去有资本优势、学历优势，能因此招更好人才，如果能因此全面控制或成为主导，就很有意义。但现在人人都能拿到这些资源，仅靠复制很难说服客户“这个更优”“这个还不错”。
+
+必须有超出复制的东西。这个“超出”到底是什么，我们之后还会继续谈。关于这个“超出”，我们也在做中找答案，还在找。
+
+我目前看到的是，轻微时间差加上隐性知识差，如果这两个结合得好，能更快抓住客户。当然也可能被别人一键抹平，但也有抗一键的东西。比如一旦你抓住了客户数据，对方很难迁移。我觉得现在该从这种商业视角思考。
+
+<span class="paragraph-timestamp" data-ts="1:20:37">1:20:37</span> **崔升准** “点击阻力”“反一键”，这些词会冒出来。
+
+<span class="paragraph-timestamp" data-ts="1:20:41">1:20:41</span> **Jeongkyu Shin** 我想说的是，有个地方叫 Google Startup Campus，我以前在那里演讲时用过这个表达。我最终把做生意看成“你把水车装在哪”。水落差最大处水车转得最快，当水快没了，你就要么灵活搬走，要么换打法。
+
+Chester 前面说的时间差最容易发生的地方，可能不是纯 IT 内部，而是 IT 加上别的领域。这些地方天然跟进更慢。过去人们觉得这些永远不是 IT 领地，但现在 AI 可以解释 context，那些将进入 IT 领地的区域和行业，先在那儿装水车的创业公司是不是更容易做起来？
+
+<span class="paragraph-timestamp" data-ts="1:21:26">1:21:26</span> **卢正锡** 我最开始问过你，我孩子退伍回校，我问现在到底该让他学什么最安全。Jeongkyu 当时说的就是，与其是某个领域的人来学 AI 和这些系统，不如是已经深懂 AI 系统的人去学一个领域会快得多。所以反而现在学计算机科学 CS 可能是好选择。这和我们现在聊的也连上了。
+
+也就是说，垂直领域的人要快速学 CS，CS 的人要快速找可施展能力的领域时间差。我觉得这和 Jeongkyu 的水车理论完全贴合。Jeongkyu 你如果还有补充，请继续。
+
+## 对“CS 无用论”的反驳    *1:22:19*
+
+<span class="paragraph-timestamp" data-ts="1:22:19">1:22:19</span> **Jeongkyu Shin** 有时会出现“计算机科学无用论”，我觉得挺有意思。因为我 2000 年入学，本科是物理，同时修了计算机双学位。我上课时几乎没有真正科班计算机出身的教授。因为上一代里很多学校都还没有计算机系，所以做计算机教授的人，很多是其他系里大量用计算机的人把这门学科搭起来的。有化学、材料、物理背景的教授进入早期计算机系。现在教授大多是完整计算机系训练出来的人。
+
+这意味着从诞生之初，计算机科学就有一半是方法论哲学。虽然我们区分 computer science 和 computer engineering，但本质上它是非常年轻的学科，相对于很多其他学科。也因此我觉得它变化会很快。它会一直是“教 Python 的系”“教 C 的系”“教架构和 OS 开发的系”吗？这些会继续教，因为非常重要，但不会永远保持现在这个形态。比如 neuro-computing、模型开发与理解模型核心、attention 架构是什么、如何构建不同系统，这些最近都大量进入课程。实际上“深度学习导论”这类课已经加入课程体系。从这个角度，最能快速适应变化的学科反而是计算机科学。我虽然是物理出身，但我仍这么认为。当然现在物理专业的人去处也更多了，这很好。
+
+在这个过程中，有人说“AI 都替你做了，为什么还学计算机科学？直接让 AI 做不是更快吗？”但我真问行业里的人，他们更多担心的是反方向。比如因为 AI 什么都做了，“我的工作会不会消失？”电影行业也是，Seedance 都能生成那样的视频，那导演和摄影怎么办？这种危机感。沿着这个逻辑，我认为未来大概 5 年左右，IT 虽然已经深度融入并广泛使用，但会以极大规模进入整个社会核心。
+
+短期看，大家说“为什么学编程，程序都让电脑写了”。但你在计算机科学学的不只是编程，而是构建逻辑的方法。最简单门电路逻辑如何搭建并演化成无数层逻辑，这种方法论或哲学，我觉得更接近在学这种思维结构。所以这种人也更容易快速学习其他领域。尤其在可以外包知识的时代，这点更明显。
+
+<span class="paragraph-timestamp" data-ts="1:25:19">1:25:19</span> **卢正锡** 我们说了这么多，但我一定要加个注脚：这一切可能两个月后又变了。这个免责声明我得写在记录里。
+
+## 结束语    *1:25:29*
+
+<span class="paragraph-timestamp" data-ts="1:25:29">1:25:29</span> **Jeongkyu Shin** 我们都要携手和 AI 好好相处。
+
+<span class="paragraph-timestamp" data-ts="1:25:33">1:25:33</span> **卢正锡** 我们正在走向未来，但现在是春节假期，也该回去陪家人了。
+
+<span class="paragraph-timestamp" data-ts="1:25:40">1:25:40</span> **崔升准** 时间很长，但很有趣。
+
+<span class="paragraph-timestamp" data-ts="1:25:41">1:25:41</span> **卢正锡** 今天又学到了很多。那就祝大家假期愉快。下次你再来首尔，我们再见。
+
+<span class="paragraph-timestamp" data-ts="1:25:48">1:25:48</span> **Jeongkyu Shin** 假期剩下的时间也祝你们 tinkering 愉快！
