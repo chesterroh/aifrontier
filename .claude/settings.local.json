@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(ssh:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python3:*)",
+      "Bash(yt-dlp:*)",
+      "Bash(make:*)",
+      "Bash(PATH=\"$HOME/bin:$PATH\" make clean:*)",
+      "Bash(PATH=\"$HOME/bin:$PATH\" make:*)",
+      "Bash(gemini:*)",
+      "Bash(npx tsx:*)"
+    ]
+  }
+}

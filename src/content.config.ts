@@ -12,6 +12,7 @@ const episodes = defineCollection({
     youtubeId: z.string(),
     thumbnail: z.string().optional(),
     hosts: z.array(z.string()).default(['노정석', '최승준']),
+    guests: z.array(z.string()).default([]),
     chapters: z.array(z.object({
       time: z.string(),
       title: z.string(),

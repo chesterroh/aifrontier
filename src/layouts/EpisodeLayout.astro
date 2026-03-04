@@ -19,6 +19,7 @@ interface Props {
   youtubeId: string;
   thumbnail?: string | null;
   hosts: string[];
+  guests?: string[];
   chapters: Chapter[];
   lang: 'ko' | 'en';
   alternateSlug?: string | null;
@@ -34,6 +35,7 @@ const {
   youtubeId,
   thumbnail,
   hosts,
+  guests = [],
   chapters,
   lang,
   alternateSlug,
@@ -130,7 +132,7 @@ const homeLabel = lang === 'ko' ? '홈' : 'Home';
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 dark:text-gray-400">
             <time datetime={publishedAt.toISOString()}>{formattedDate}</time>
             <span>·</span>
-            <span>{hosts.join(', ')}</span>
+            <span>{[...hosts, ...guests].join(', ')}</span>
             <span>·</span>
             <span>{duration}</span>
             <div class="header-actions-group ml-auto">
