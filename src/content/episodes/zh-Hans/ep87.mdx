@@ -55,309 +55,297 @@ alternateSlug: null
 notionUrl: "https://erucipe.notion.site/Microgpt-30dd5c9e7e5980ebbedff58a74b7e54d"
 ---
 
+## 开场：AI 咔嗒时代的不安感    *0:00*
 
-## 开场：AI 咔嗒时代的不安感    *00:00*
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **卢正石** 今天录制的日期是2026年2月21日星期六早上。我们上周做了申正圭代表的那期节目，发展速度真的是越来越快了。到处都是咔嗒咔嗒一天做出来的、一周做出来的，这些高质量的软件不断涌现出来，我们也忙得不可开交。随之而来的一种声音是，太烦了，很郁闷，这该怎么解决呢，关于这些方面确实有不少意见。虽然我本人不太会直接用烦躁或者郁闷这样的表达，
 
-<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天录制的日期是 2026 年 2 月 21 日，周六早晨。上周我们做了申正奎代表的那期，感觉发展速度真的还在变快。四面八方都在涌现“咔嗒咔嗒咔嗒”一天做完、一周做完的高质量软件，我们也有点应接不暇。与此同时也出现了不少声音，说太烦躁了、很抑郁，这个该怎么解决。
-
-<span class="paragraph-timestamp" data-ts="00:38">00:38</span> **崔升准** 我平时不太会直接用“烦躁”或“抑郁”这种表达，但内心确实有那种感受。大概是 OpenClaw 前后吧。随着 Agent swarm、Agent team 出来，我有种自己跟不上那种“跑很多任务”的趋势的感觉，所以 1、2 月我比起快跑，更偏向慢慢思考。但慢下来后背景又在飞速掠过，于是会形成一种 FOMO 的恶性循环。今天也想看看最近发生了什么，虽然我也还没有标准答案，但想聊聊我自己在怎么消化这件事。
-
-## MVK：即使未知也朝正确方向前进    *01:15*
-
-<span class="paragraph-timestamp" data-ts="01:15">01:15</span> **崔升准** 我 2 月初在 Uneven Future 演讲时，最后一页是“即使在未知中，也要朝正确方向前进，至少该知道什么？”也就是 MVK，Minimum Viable Knowledge，我们频道也提过几次。我当时就用这个做了收尾，这个问题到现在还一直在我脑子里。我一直在想该怎么逐步知道这些，今天这期应该也会是相关的脉络。
-
-## METR 基准饱和：Claude Opus 4.6 的14小时    *01:47*
+<span class="paragraph-timestamp" data-ts="0:38">0:38</span> **崔胜准** 但内心确实有这样的感受。大概是从OpenClaw前后开始的。Agent swarm、Agent团队出来之后，大量运行各种东西的趋势，我感觉自己没能很好地跟上。所以我在1、2月份不是快速前进，而是抱着慢慢思考的心态在走，但这样慢慢思考的话，背景却在快速变化，所以会陷入FOMO的恶性循环。所以我们来看看最近发生的事情，虽然我自己也还没有标准答案，但想聊聊我用自己的方式是怎么去消化的。
 
 
-<ResourceLink url="https://x.com/metr_evals/status/2024923422867030027" title="METR：Claude Opus 4.6 Time Horizon" domain="x.com" description="50%-time-horizon 约14.5小时——当前 task suite 几乎处于饱和状态" />
+## MVK：即使未知也朝正确方向前进    *1:15*
 
-<span class="paragraph-timestamp" data-ts="01:50">01:50</span> **崔升准** 先说这个，今天凌晨刚出的消息。METR 公布了 Claude Opus 4.6 的测量结果，结果直接到了 14 小时。我们不是一直在录节目时说，明年大概 5 月、7 月左右可能就会到人类全天 8 小时吗？GPT-5.2 已经接近 5 小时了，4.6 一出来，因为现在是对数图，看上去差异不算大、像是在预期内，但在线性尺度上其实差很多。
-
-<span class="paragraph-timestamp" data-ts="02:25">02:25</span> **卢正锡** 这是直接跳起来了啊。
-
-<span class="paragraph-timestamp" data-ts="02:30">02:30</span> **崔升准** METR 也说了，好像他们的 task 已经 saturate 了，正在准备别的东西。感觉这个图正在走向失去意义的时刻。
-
-<span class="paragraph-timestamp" data-ts="02:41">02:41</span> **卢正锡** 其实这个图的目的本来就是看 AI 在没有人类介入的情况下能独立工作多久。我们一天工作 8 小时，但那 8 小时也不是全程专注，真正在干活可能就 3 到 4 小时。可 14 小时的话它可是纯工作。
-
-<span class="paragraph-timestamp" data-ts="02:59">02:59</span> **崔升准** 对。它有 50% 版本也有 80% 版本，不是单纯比“干得久”，而是对照人类工作时长去测。总之可以理解为：人类 16 小时工作量里，AI 以 50% 成功率在执行。今天凌晨就是以“saturate 了”这个新闻开局的。而且现在看起来“每次加 0.1”成了趋势。原本说会出 Sonnet 5，结果先出了 4.6。上周我还没来得及好好用。因为一直有用 Claude Opus 4.6 的惯性，Opus 还在持续跑，4.6 应该也会表现不错，而且可能更便宜。
-
-## Gemini 3.1 Pro 与不断涌现的新模型    *03:40*
+<span class="paragraph-timestamp" data-ts="1:15">1:15</span> **崔胜准** 我2月初在Uneven Future做演讲的时候，最后一张幻灯片写的是"即使在未知中也要朝正确方向前进，至少需要知道什么"，也就是MVK，Minimum Viable Knowledge，我们频道也提过几次，围绕这个话题做了一些讨论后收了尾，这一直是我脑海中的命题。所以一直在思考怎么去了解这些东西，有着这样的困惑，今天的话题应该也会和这个方向相关。在此之前，这是今天凌晨出来的新闻。
 
 
-<ResourceLink url="https://x.com/JeffDean/status/2024525132266688757" title="Jeff Dean：Gemini 3.1 Pro 发布" domain="x.com" description="在 ARC-AGI-2 达到 77.1%——相较前作推理性能提升超过2倍" />
+## METR 基准饱和：Claude Opus 4.6 的14小时    *1:47*
 
-<span class="paragraph-timestamp" data-ts="03:46">03:46</span> **崔升准** 然后 Gemini 3.1 Pro 也发布了。基准测试的天花板看起来还是很高，感觉“还能更好吗”，但它又一直在变好，所以以后估计还会更好。Jeff Dean 发的就是现在这个 Gemini 3.1 Pro。可以在 Google AI Studio 进去试，我昨晚跑的一个任务转了 10 小时都没产出。我本来还很期待会出来什么，结果录制前说有错误。性能测试还没完整做起来。总之模型还在不断发布。该怎么评价呢？现在甚至有点麻木了。
+<span class="paragraph-timestamp" data-ts="1:50">1:50</span> **崔胜准** METR发布了对Claude Opus 4.6的测评结果。结果竟然达到了14小时。我们之前录制的时候一直在说，明年大概5月、7月左右就能达到人类全天工作8小时的水平了吧，说过这样的话。然后GPT-5.2差不多到了5小时的水平，4.6因为是对数图表所以看起来差别不大，会觉得还在预期范围内，但如果看线性图表的话，现在已经到了那么高。
 
-<span class="paragraph-timestamp" data-ts="04:32">04:32</span> **卢正锡** 模型其实就是 general 性的终极形态。它具备“什么都能做”的能力。前两天做 Claude Code 的 Boris Cherny 在 Y Combinator 的 YouTube 上说过一句，“最 general 的，反而是最 specific 的”。这股强大的 general intelligence 现在也在横扫其他领域。最近受影响最明显的好像就是科学，你可能也会说到这个。感觉几乎没有它做不了的事。光看着都挺累的。
+<span class="paragraph-timestamp" data-ts="2:25">2:25</span> **卢正石** 一下子飞起来了。所以METR自己也说，
 
+<span class="paragraph-timestamp" data-ts="2:30">2:30</span> **崔胜准** 他们的task好像已经饱和了。正在准备其他的测试项目，所以这个图表现在到了失去意义的时刻了。
 
-<ResourceLink url="https://www.modular.com/blog/the-claude-c-compiler-what-it-reveals-about-the-future-of-software" title="The Claude C Compiler: What It Reveals About the Future of Software" domain="modular.com" description="Chris Lattner 深度评测——实现很教科书，但在发明新抽象上有局限" />
+<span class="paragraph-timestamp" data-ts="2:41">2:41</span> **卢正石** 其实这个图表的目的就是衡量AI在没有人工干预的情况下能独立工作多长时间，我们一天工作8小时嘛。而且这8小时也不是一直集中工作，如果说实际大概工作3到4小时的话，这个14小时可是纯工作时间啊。
 
-<span class="paragraph-timestamp" data-ts="05:04">05:04</span> **崔升准** 当然，日常用起来还是会有卡顿和不顺的地方，但方向上确实是“以前不行的现在变行了”。2 月 18 日，也就是几天前。Chris Lattner 就是做 LLVM、做 Swift、在 Apple 待过、后来去 Tesla、现在创办 Modular 的那位。他本来就是做编译器的，对编译器当然很懂。Claude Code 的 C 编译器出来那天，他发帖说这是他迄今看过编译器相关文档化里最顶级的一批，想再深入看看。后来他把深入看的内容详细写成博客，我也翻译了一下。前半部分他说这个实现有教科书级价值，有不少称赞，当然也有遗憾。整体方向是对的，不是 slop，值得看。尤其因为有 commit 历史，去看它很有意义，类似这样的观点。
-
-## Chris Lattner 对 Claude C 编译器的深度评测    *05:11*
-
-<span class="paragraph-timestamp" data-ts="06:21">06:21</span> **崔升准** 他也指出了哪里做错了。Claude C 编译器最明显的问题是失误，最大的问题是把测试需要的东西硬编码了。这是一个信号：它很难超越测试套件做到泛化。这与其说令人惊讶，不如说是有价值的信息。当前 AI 系统在“组合已知方法并按可测成功指标优化”方面已经很强，但在生产级系统所需的开放式泛化上仍然吃力。
-
-这个观察又延伸到更深的问题，也就是它对 AI coding 本身说明了什么，这部分他讲得很有意思。我很重视这段。看限制的话，“实现已知抽象”和“发明新抽象”是两回事。它确实能消除重复杂活，让你从更接近最新 best practice 的起点出发，起到里程碑作用，但它还不能发明新抽象，这个实现里也看不到新的东西。不过它确实是教科书式实现。
-
-结尾他讲了这样的话：这不是在谈软件的终结，也不是在谈工程师的终结。那有点太 hype 了，反而更像是把门开得更大。实现越容易，真正创新进入的空间反而越大。实现门槛降低不意味着工程师的重要性下降，相反，vision、judgment、taste 的重要性更高了。越容易做出来，越难的是判断“什么值得做”。AI 在加速执行，但意义、方向、责任本质上仍然属于人类。这也很耐人寻味。写代码从来不是目的。目的始终是做有意义的软件。未来属于那些拥抱新工具、质疑既有假设、并设计出让人们可以协作创造系统的团队。
-
-## Andrej Karpathy 的 9 之行进：90% 与 99.99% 之间    *08:35*
-
-<span class="paragraph-timestamp" data-ts="08:23">08:23</span> **卢正锡** 上周申正奎代表来时也说了一样的话。最终软件逻辑才是目的物，代码只是实现逻辑的中间工具，而这个中间工具正在消失。Andrej Karpathy 以前在一次演讲里说过“9 的行进”，用的是“March of Nines”这个表达。把东西做到最初 90% 的努力，把 90% 提到 99% 的努力，再从 99% 到 99.9%、99.99% 的努力，每多一个 9，付出的量级都一样。Claude C 编译器也是，做到 90% 基本能直接给你，夸张一点说 99% 也能给你。但站在 99.99% 位置上的大师眼里，缺的那 0.99% 会是极其巨大的 gap，而这种 gap 更容易体现在你刚才最后总结的那些非常人性的价值上，比如品味、意志。也就是说，我们未来还有很多事要做，大概是这样收束的。
+<span class="paragraph-timestamp" data-ts="2:59">2:59</span> **崔胜准** 是的。这有50%版本和80%版本，不是单纯地说持续时间长，而是对标人类工作时间来测量的，总之目前的解读是，人类需要16小时完成的任务，AI以50%的成功率在执行了，不过我们就以这个已经饱和了的新闻开始吧。今天凌晨的消息。还有就是每次递增0.1好像成了一种趋势。之前说要出Sonnet 5的，结果出了4.6。上周还没来得及好好试用。因为用Claude Opus 4.6已经形成了惯性，一直在用Opus，不过4.6应该也会做得很好吧。而且应该更便宜。然后Gemini 3.1 Pro也发布了。
 
 
-<ResourceLink url="https://wiki.g15e.com/pages/Tasteful%20software" title="有品味的软件 — 姜奎荣" domain="wiki.g15e.com" description="Corca CTO 姜奎荣正在写的文章" />
+## Gemini 3.1 Pro 与不断涌现的新模型    *3:40*
 
-<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **崔升准** 它有重要意义，但还没到创新那一步，这是 Lattner 的意思。即便如此，这个方向到底意味着什么、当它成为 new normal 时我们能做什么，仍然值得认真思考，我想再次强调这一点。你刚提到“品味”。我们一直反复讲这个词。最近也提过几次，姜奎荣现在是 Corca 的 CTO，好像正在写一篇叫《有品味的软件》的文章。这篇也挺有意思，值得看看。
+<span class="paragraph-timestamp" data-ts="3:46">3:46</span> **崔胜准** 基准测试的天花板还是挺高的。虽然觉得还能比这更好，但确实一直在持续进步，看来以后还会继续变好。所以现在大概就是Gemini 3.1 Pro的水平，Jeff Dean发了这个消息。现在在Google AI Studio里已经可以体验了，我昨晚跑的一个任务运行了10个小时结果没生成出来。本来很期待会出什么结果的，在录制前它告诉我好像出了什么错误。所以还没能好好测试性能。不过模型确实在不断推出。而且还会继续出。该怎么评价呢？现在好像已经有点麻木了。模型本质上就是通用能力的终极体现嘛。
+
+<span class="paragraph-timestamp" data-ts="4:32">4:32</span> **卢正石** 什么都能做的那种能力，而最通用的反而就是最专精的——前天Claude Code的创造者Boris Cherny在Y Combinator的YouTube上说过这个观点。凭借这种强大的通用智能，其他领域也都在被攻克。最近受到很大影响的应该是科学领域了，你大概也会聊到这个，真的是没有做不到的事了。光是看着这些发展就已经有点吃不消了。当然在日常使用中
+
+<span class="paragraph-timestamp" data-ts="5:04">5:04</span> **崔胜准** 还是会有些磕磕绊绊的地方，但方向本身确实是朝着以前做不到的事变得可以做的方向发展。然后2月18日，也就是几天前，Chris Lattner，就是做了LLVM、然后又做了Swift，在Apple待过后去了Tesla，现在创办了Modular这家公司。他本身是做编译器的人，对编译器肯定非常了解吧？当Claude Code的C编译器出来的时候，他当天发帖说这是他见过的编译器相关文档化的最高水平，留下了文档做得很好这样的评价，说要深入研究一下，后来把研究内容详细写在了博客上，我把它翻译了一下。前面的部分说这个实现有教科书级的价值，是这样评价的。有一些称赞的部分，当然也有一些不足之处。不过整体有一个明确的方向，这不是slop，是有研究价值的东西。因为有commit历史记录，查看那些记录的内容中有不少很有意义的部分，他大概是这样说的。
+
+
+## Chris Lattner 对 Claude C 编译器的深度评测    *5:11*
+
+<span class="paragraph-timestamp" data-ts="6:21">6:21</span> **崔胜准** 不过有人指出了哪些地方做得不好，在Claude的C编译器中最突出的问题是失误，就是最后那部分，把测试需要的东西硬编码进去了，这是最大的问题，这表明很难超越测试套件进行泛化，与其说令人惊讶，不如说是有价值的信息。目前的AI系统在组合已知技术并针对可量化的成功标准进行优化方面确实出色，但在生产级系统所需的开放式泛化方面仍然面临困难。
+
+<span class="paragraph-timestamp" data-ts="6:57">6:57</span> 而如果这个观察引出更深层的问题，那就是它对AI编程本身意味着什么，这个部分也进行了很有趣的讨论。我觉得这部分很重要。关于局限性，实现已知的抽象和发明新的抽象是不同的。它确实能消除重复性的繁琐工作，让我们从最新的最佳实践更近的起点出发，可以说起到了里程碑的作用，但也暴露了局限——它还无法发明新的抽象，在这个实现中看不到任何新东西。不过确实是教科书级别的实现。在结语中说了这样的话。
+
+<span class="paragraph-timestamp" data-ts="7:34">7:34</span> 这不是在谈论软件的终结或工程师的终结。那些说法有些炒作的成分，反而更像是把门敞得更开，因为实现变得越容易，真正创新的空间就越大。所以实现的门槛降低了，并不意味着工程师的重要性降低了，反而是愿景、判断力和品味变得更加重要。制作变得越容易，决定什么值得制作就成为更难的问题。AI加速了执行，但意义、方向和责任从根本上仍然是人类的职责。所以这番话也很意味深长。写代码从来不是目标。目标是创造有意义的软件。未来属于那些拥抱新工具、质疑既有假设并设计帮助人们协同创造的系统的团队。
+
+<span class="paragraph-timestamp" data-ts="8:23">8:23</span> **卢正石** 上周申正圭代表来的时候也说了同样的话。归根结底，软件逻辑才是目的物，代码不过是实现逻辑的中间工具，而这个中间环节正在消失。还有Andrej Karpathy之前在某个演讲中说过"9的行进"这个词。他用了"March of Nines"这个说法，对，达到最初90%所需的努力，然后从90%提升到99%，再从99到99.9、99.99，每多加一个9所需的努力量都是一样的。所以Claude这个C编译器也是大概到90%是轻松搞定的，夸张一点说可能到99%也能做到，但站在99.99%水准的大师眼里来看那差的0.99%，会感觉是一个巨大的鸿沟，而能感受到这个差距的地方就是刚才胜准在最后总结的那些非常人性化的价值，比如品味或者意志等方面。所以我们未来还有很多事要做，大概就是以这样的话作为了总结。
+
+
+## Andrej Karpathy 的 9 之行进：90% 与 99.99% 之间    *8:35*
+
+<span class="paragraph-timestamp" data-ts="9:30">9:30</span> **崔胜准** 所以说这虽然具有重要意义，但还没有达到创新的程度，这是Lattner的观点。尽管如此，值得关注的是这个方向所蕴含的意义，以及当它成为新常态时我们能做什么，思考这些是很重要的，我想再次强调这一点。而且刚才也提到了品味这个词。我们一直在反复谈论品味这个话题，最近提过几次的姜奎英，他目前是Corca的CTO，好像正在写一篇叫"有品味的软件"的文章。这篇文章也很有意思，大家可以看看。不过说到需要创新这件事，其实在科学和数学领域
+
 
 ## 把一切都当作搜索问题：科学与新药研发    *10:12*
 
+<span class="paragraph-timestamp" data-ts="10:17">10:17</span> **崔胜准** 不是重复已知问题，而是需要创新的。所以现在那个领域也在发生一些事情。这类消息一直在不断出现，只是我们没能一一关注。
 
-<ResourceLink url="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" title="Gemini Deep Think: Redefining Scientific Research" domain="deepmind.google" description="加速数学·物理·计算机科学发现的科学研究伙伴" />
+<span class="paragraph-timestamp" data-ts="10:27">10:27</span> **卢正石** 但如果真的极度概括的话，新药研发这件事也是找到导致问题的蛋白质，然后那个蛋白质在表达某些东西时涉及的那些机制。找到能阻断或促进那些过程的某种物质，就是我们所说的antibody之类的物质，在化学层面干扰那个过程，这就是大多数药物的作用机制。也就是说，归根结底是要了解蛋白质的结构，然后找到与之匹配的另一个结构，这是一个搜索游戏。所以很明确的是，这些领域也都可以转化为computation，作为搜索问题来解决，现在已经在展示这一点了。不过除了这些内容之外，我在翻译的过程中
 
-<span class="paragraph-timestamp" data-ts="10:17">10:17</span> **崔升准** 在科学和数学里，不是重复已知问题，而是需要创新。现在那边也在发生很多事。
-
-
-<ResourceLink url="https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier" title="Isomorphic Labs Drug Design Engine" domain="isomorphiclabs.com" description="超越 AlphaFold——AI 驱动药物设计的新前沿" />
-
-<span class="paragraph-timestamp" data-ts="10:27">10:27</span> **卢正锡** 这类东西一直不断出现，但我们也看不过来。粗暴总结一下，新药研发本质也是先找出致病蛋白，再看这个蛋白表达某种东西所依赖的机制，然后做出会干预或促进它的物质，也就是常说的 antibody，很多药的机理就是通过化学方式干预这个过程。归根结底，这是识别蛋白结构，再去找与之匹配的另一种结构的游戏。现在它在证明，这些都可以转成 computation，作为搜索问题来解。
 
 ## OpenAI 理论物理案例与半人马时代    *11:07*
 
-<span class="paragraph-timestamp" data-ts="11:11">11:11</span> **崔升准** 除了这些，我翻译时认真细读的是 OpenAI 的理论物理论文案例。我去年底就比较强调 OpenAI 与科学这条线，也介绍过 Kevin Weil 和那位做黑洞研究科学家的例子。那位科学家把其他研究者，包括他的导师在内，一些站在理论物理前沿的人带到 OpenAI，一起讨论后，最后出了篇论文。那位加入 OpenAI 的黑洞研究者的导师，一年前还觉得 AI 能帮多少并不确定，哪怕在 2024 或 2025 年初也还是这样。但一年后，在和 GPT-5.2 Pro 多轮往返之后，他们把最终问题提交给 OpenAI 内部模型。那个模型不但解出了量子场论里此前没解开的难题，还给出了证明。只用了 12 小时。模型完成了该领域世界上最聪明的两个人都没完成的事。当我和他们在一起时，他们非常兴奋。大概是这样的叙述。
+<span class="paragraph-timestamp" data-ts="11:11">11:11</span> **崔胜准** 仔细阅读的是OpenAI在理论物理学领域的一篇论文的案例。关于那个OpenAI与科学的话题我去年年底就强调过，Kevin Weil和那位研究黑洞的科学家的例子我之前给大家介绍过。那位科学家把其他研究者，包括自己的导师那些完全处于理论物理学最前沿的人带到OpenAI，一起交流讨论之后发表了一篇论文。加入OpenAI的那位黑洞研究科学家的导师，一年前还觉得不确定AI能帮上多少忙，也就是说大约在2024年左右是这种想法，或者直到2025年初都是如此，一年后他与GPT-5.2 Pro进行了几轮对话之后向OpenAI内部模型发送了最终查询，那个模型不仅解决了量子场论中此前未解的问题，还完成了证明。而且是在12小时之内，有过这样的说法。所以模型在该领域完成了世界上最聪明的人中两个人都未能完成的事情。而当我和他们在一起时，他们非常兴奋。
 
-<span class="paragraph-timestamp" data-ts="12:29">12:29</span> **卢正锡** 是啊。
+<span class="paragraph-timestamp" data-ts="12:29">12:29</span> 大概是这样的话。
 
-<span class="paragraph-timestamp" data-ts="12:30">12:30</span> **崔升准** 编码已经开始进入“超越半人马”的阶段，而科学像是刚进入“半人马时代”。Gary Kasparov 输给 Deep Blue 之后，棋界出现了半人马概念。半人马是人马合体嘛。也就是 AI 和人组队会比 AI 单独或人单独更强，这种半人马式下棋曾经流行过。科学终于进入了半人马时代，进入了和 AI 一起做的时代；而编码则走向更大幅度委托给 AI，科学和数学像是在后面跟上。
+<span class="paragraph-timestamp" data-ts="12:30">12:30</span> **卢正石** 就是说啊。编程已经开始迈向半人马之后的时代了，而科学则刚刚进入半人马时代的感觉。Gary Kasparov输给Deep Blue之后在国际象棋领域就出现了半人马的概念。半人马就是半人半马嘛。所以AI和人组队合作的话比AI单独或人单独做得更好，这种半人马式的国际象棋曾经流行过一阵子。科学终于进入了半人马时代，与AI协作的时代，而编程则更多地朝着委托给AI的方向发展现在科学和数学正在追赶那个方向的感觉。这真的感觉所有问题都在
 
-<span class="paragraph-timestamp" data-ts="13:15">13:15</span> **卢正锡** 感觉所有问题真的都在变成 search problem。投入更多电力和 computation 后，那些没去过的地方现在都由 inference token 去跑遍了。以前要人一个一个思考着做的事，现在似乎都在被替换成 computation。
+<span class="paragraph-timestamp" data-ts="13:15">13:15</span> 变成search problem。就是投入电力和更多的computation去探索那些未曾到达的领域，现在我们的inference token正在把这些地方都走遍。以前人类一个一个思考着完成的事情现在都被computation替代了，正在发生这样的变化。
 
-<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **崔升准** 关于他们这段经历，推特上也有很多争论。不管怎样，这篇博客周边和当事人的说法是：他们认为 2026 年 AI 对物理学将要做的事，会类似于 2025 年 AI 对编码做的事。我把这段翻译发到社媒后，韩国几位科学家也留下了感想，这点很有冲击力。能看到他们在说“原来这种事正在发生，我也得准备，研究生院会怎样”等等顾虑。
+<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **崔胜准** 所以关于他们的这些经验的讨论在Twitter上众说纷纭。但不管怎样，这篇博客的周边以及当事人自己所说的是，2026年AI将在物理学方面做的事会类似于2025年在编程方面所做的事，他们是这样说的，我把翻译内容发到社交媒体上之后实际上韩国的几位科学家留下了一些感想，这也让我印象深刻。原来正在发生这样的事情啊，我也得做准备，研究生院会怎样呢，类似这样的担忧，
 
-## 内插还是外插：模型能力的本质    *14:14*
 
-<span class="paragraph-timestamp" data-ts="14:14">14:14</span> **卢正锡** 这是我们早期就聊过的话题。早期谈模型进展时，我们常说模型只是简单的内插引擎，只能做 interpolation，无法走向新东西，那是在模型还比较笨的阶段常讲的话。可看现在的结果，几乎都相反了。看起来全都是 extrapolation，像在外插。我的看法是，如果模型所投影的整体真理是 100，那这个“100”在模型里是以非常稀疏 sparse 的方式实现的。我还是认为本质是 interpolation。它是在这个广阔空间里，在稀疏区域之间做 interpolation，而在人类视角看起来像 extrapolation。
+## 模型能力的本质是内插还是外插？    *14:14*
 
-<span class="paragraph-timestamp" data-ts="15:17">15:17</span> **崔升准** 在极其广阔的区域里做插值，确实可能看起来像新东西，而实际上也会因此产出新东西。
+<span class="paragraph-timestamp" data-ts="14:14">14:14</span> **崔胜准** 能看到这样的讨论。就是说我们在早期就讨论过的话题，我们在谈论模型的发展时说模型只不过是简单的内插引擎这种话早期说了很多嘛。只是做interpolation的程度，无法走向新事物这样的说法在模型还比较笨的时期人类说了很多不是吗？但看看现在出来的结果其实都是相反的角色。都像是在做extrapolation、外插，我对此的想法是，我们的模型所映射的某种全部真理假设为100的话，这100的部分在我们的模型中是非常稀疏地、sparse地实现的。我认为那其实就是interpolation。所以在这个广阔的空间中，那些sparse的空间之间进行interpolation的话，从人类的角度来看看起来就像是extrapolation，我是这么认为的当在极其广阔的领域里进行插值时看起来像新事物的可能性
 
-<span class="paragraph-timestamp" data-ts="15:23">15:23</span> **卢正锡** 连我们称为人类独有创造的东西，本质上也可能只是有人找到了早就存在但未被发现的空间，如果把整体普适性当作 100 来看。只要模型的 computation 继续增加、generality 继续增加，那么那些夹在中间的东西也都会被覆盖，虽然可能是时间问题，但都能做到。我们可能得以这个假设为前提。也就是我们在说，模型有可能把这些都做完。
+<span class="paragraph-timestamp" data-ts="15:17">15:17</span> 实际上新事物确实就是这样产生的。我们所称的人类独有的创造
 
-<span class="paragraph-timestamp" data-ts="15:53">15:53</span> **崔升准** 刚才评价是“没什么创新”，但如果把那当作 new normal，我们该做什么？毕竟它做出的事还是非常惊人。我在这个物理学案例里一直像鹰眼一样盯着一句话：“经过数次往返之后”。文中说是内部模型，其他文章还提到 OpenAI 尚未公开的 scaffolding 或 harness。意思是 GPT-5.2 Pro 做不到的，在那个特殊 harness 里连续跑了 12 小时后做到了。我是这么理解的。这个很重要，但“数次往返”也同样重要。为什么他们能做到？当然因为他们是顶级专家、顶级物理学家，但最后终究会还原成某种 prompt。那在还原成 prompt 之前是什么？如果我输入同样 prompt，虽然我可能看不懂，但模型和 harness 应该会给出同样回应吧。这一直是我好奇的点。他们到底用了什么词汇、什么句子。
+<span class="paragraph-timestamp" data-ts="15:23">15:23</span> **卢正石** 实际上是已经存在但我们未曾发现的空间只不过是某个人把它找了出来而已，如果把全部的普遍真理看作100的话。所以当这个模型的computation进一步增加generality进一步增加的话，那些中间的东西也都能做到，虽然存在时间问题但都能做到这个假设应该作为一切的前提，我是这么想的。模型有可能完成一切这件事
 
-<span class="paragraph-timestamp" data-ts="17:15">17:15</span> **卢正锡** 这就和你 1 月初说的“好 prompt、会写 prompt”有关。其实每抬一步，模型内部的 space 都在变。也就是 representation 的空间在不断变化，所以才会那样一步步找到路。能够持续迁移那个 space 的能力，也许就是我们隐约感受到的人类价值，也就是品味和方向设定能力。
+<span class="paragraph-timestamp" data-ts="15:53">15:53</span> 我们正在这样说。但刚才关于发布的印象是没有什么革新性的东西但如果把它当作新常态的话，该做的事情是什么它确实做到了那些了不起的事情，大概是这样的话题我在这个与物理学相关的话题中一直在用自己的鹰眼关注的是经过几轮交互之后，然后说是内部模型，但在另一篇文章中说虽然是内部模型但OpenAI还未公开的scaffolding或者说harness这样的表述也有。仅靠GPT-5.2 Pro做不到的事情在有那个特殊harness的环境下运行了12小时就做到了，是这样的说法。我是这样理解的。但那固然重要，经过几轮交互这件事也让我觉得很重要——为什么他们能做到呢。当然是因为他们是顶级专家、最高水平的物理学家才能做到那些，但最终都会还原成某种prompt吧。而那些被还原成prompt之前的东西又是什么呢。如果我只是输入了同样的prompt虽然我可能理解不了，但那个模型和harness应该会给出同样的回答。那个模型和harness会的。所以这是我一直好奇的点。他们用了什么词汇和什么句子呢。胜准在一月初说的
 
-<span class="paragraph-timestamp" data-ts="17:52">17:52</span> **崔升准** 是的。上周和申正奎聊时，他也透露了一个片段：从去年年中那种写很长 spec 的风格，现在又回到来回对打的模式。我们上期举的是很简单的例子，但申正奎肯定用了融入他自己词汇和知识的 token。
+<span class="paragraph-timestamp" data-ts="17:15">17:15</span> 好的prompt、如何写好prompt，和那个相关的话题。实际上每推进一步，模型内部的某种space都在不断变化嘛。representation的space完全改变了就是这样不断探索着前进的吧。所以能够不断转移那个space的能力，那也许就是设定品味和方向的人类的某种价值之类的我们现在正在隐约地模糊地感受到这一点不是吗？是的。不过上周和正圭聊天的时候
+
+<span class="paragraph-timestamp" data-ts="17:52">17:52</span> **崔胜准** 正圭从去年年中那种写长规格说明的风格现在又回到了来回快速对话的模式，给我们展示了一些片段。不过我们上期节目中的那个例子用的是非常简单的例子来演示的，但正圭肯定用了自己的词汇和融入了自己知识的那样的token。啊，那当然了。
+
 
 ## Agentic 编码的现实：Ralph Loop 的局限    *18:19*
 
-<span class="paragraph-timestamp" data-ts="18:19">18:19</span> **卢正锡** 那当然。最近我也和很多在高强度做 agentic 编码的人交流。以前像 oh-my-opencode 那样，是无条件按目标一路冲到底，不断 hook 让它永远跑下去。但现在好像形成了一种认知：通过这种方式，还是出不来超出我们已知边界的东西，就像刚才 C 编译器案例说的那样。要转向“拓宽地平线”的工作，human-in-the-loop 是必需的。你得理解 context，不断给出 steering 的 prompt，这和 ralph loop 是完全相违背的。
+<span class="paragraph-timestamp" data-ts="18:19">18:19</span> **卢正石** 所以最近我也和那些深度使用agentic编程的人有很多交流以前像oh-my-opencode那样就是无条件按照目标去完成不断挂钩子让它永远运行下去的通过那种方式，就像刚才在C编译器的例子中说的超出我们已知范围的东西是出不来的，就是这个对此已经形成了一些认知。所以要想拓宽那个视野，进入到那种拓展性的工作，human-in-the-loop是必不可少的。需要理解那个context，不断往其他方向steering的prompt必须持续输入进去，但这跟那个ralph loop是完全相悖的。所以我最近在做工作的时候也感觉到，真正简单的任务，
 
-我自己最近做事也有这种感受：特别简单、特别明确、又必须快出答案的任务，就直接跑 ralph loop 粗暴处理。但凡要构建某种逻辑，或者要做特别贴合我们公司业务的东西，就会一小步一小步看。最多也就是开 3 到 4 个子 agent 取回答案，让它们互相比，再看它们比较的过程。这样做完后会发现，input token 量非常大，而 output 很小。可这么做会更容易产出“还不错”的结果，就像刚才说的会有“9 一个个加上去”的感觉。现在 agentic 编码趋势也在变，看那些先行者、先把坑都踩过的人就知道。直到最近之前还是 ralph loop，但现在已经有人说 ralph loop 不行了。感觉可以再请这些前沿的人来聊一次。其实申正奎上周也说了这个。
+<span class="paragraph-timestamp" data-ts="19:05">19:05</span> 或者那种非常非常明确、需要快速给出答案的，就用那个ralph loop直接粗暴地处理掉了，但如果不是那样，而是需要构建某种逻辑，或者要做出完全匹配我们公司业务的东西的话，我就会一步一步地去看。顶多就是跑个三四个sub agent，让它们拿回答案，然后进行比较，那个比较的过程我再看一遍，但这样做下来结束之后我感觉到input token的量非常庞大，而output很小，变成了这样的工作模式。然后做完之后，虽然这个还行，会产生一些"这个出来的不错"的成果，就像刚才说的那样，有一种9在一个个贴上来的感觉。会收到那样的东西。所以我们在agentic编程的趋势方面，现在这些先驱者们，走在前面、体验了一切的那些人，可以看到正在发生一些变化。就在不久之前还是ralph loop，但现在出现了一些"光靠ralph loop不行"的观点。所以我们可以再请一些在这个领域前沿的人来聊一聊，应该会很不错。其实正圭上周也说了这个话题。
 
-<span class="paragraph-timestamp" data-ts="20:16">20:16</span> **崔升准** 这也在形成一种 gradient。因为还在持续摸索，如果稍微外插一下，就能预判下一波趋势会是什么。毕竟趋势正在变化。我关注的是“来回对打模式”：一种是高密度词汇和 domain-specific 内容很强的对打模式；另一种是在对打中把东西逐步定下来，形成好问题和指令后，再交给长时 loop 去执行。我感觉这两种纹理会共存并互相增益。
+<span class="paragraph-timestamp" data-ts="20:16">20:16</span> **崔胜准** 这也是一种gradient正在形成的过程，因为我们还在不断了解的过程中，如果稍微做一下外推的话，就能预见到下一个趋势会是什么。因为趋势正在变化当中。所以我关注的部分是，一种是tikitaka模式——用非常高密度的词汇和domain-specific的内容进行的tikitaka模式，当tikitaka到一定程度之后确定了某些东西，就会产生好的问题或者指令，然后长时间运行的loop就可以去执行那些任务，这两种方式在某种程度上是共存的，让彼此产生协同效应的这样两种脉络似乎是存在的，我是这么想的。
 
-对打重要，但 scaffolding 或 harness 也很重要。刚才物理论文博客里说，GPT-5.2 Pro 很快提出了漂亮且一般性的公式，但没能证明；而内部加了 scaffolding 的模型连续思考 12 小时以上后把这个公式证明出来了。能到“证明并写成论文”这一步，像是 scaffolding 和内部模型的组合。OpenAI 还有个挺有意思的点，谁先占领术语的问题。也许不一定是 OpenAI 最先提 harness engineering，也可能是拿来的，但他们在 2 月 11 日发了这篇。
-
-## Harness Engineering：模型与 Harness 组合的时代    *21:41*
+<span class="paragraph-timestamp" data-ts="21:05">21:05</span> 所以tikitaka很重要，但scaffolding也很重要，或者说harness。所以刚才提到的那个关于物理的博客，GPT-5.2 Pro没过多久就提出了一个优美而通用的公式，但并没有证明它。然而，内部应用了scaffolding的模型经过超过12小时的连续思考之后，证明了那个公式。能够完成证明并形成论文的，看来是scaffolding与内部模型的组合。所以OpenAI又做了一件有趣的事，这其实是一个谁先占据流行用语的问题——harness engineering这个概念OpenAI可能并不是最先提出的。可能是别人先做的然后他们拿来用了，2月11日他们又发了这么一篇文章。
 
 
-<ResourceLink url="https://openai.com/index/harness-engineering/" title="Harness Engineering — OpenAI" domain="openai.com" description="Agent 优先时代中使用 Codex 的 harness engineering" />
+## Harness Engineering    *21:41*
 
-<span class="paragraph-timestamp" data-ts="21:54">21:54</span> **卢正锡** 感觉这个词现在已经很通用了。harness 这个词。
+<span class="paragraph-timestamp" data-ts="21:54">21:54</span> **卢正石** 我觉得harness这个词现在已经成为通用说法了。
 
-<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **崔升准** 对。有时也叫 scaffolding，它们有区别吗？基本是一个东西。
+<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **崔胜准** 是的。有时候叫scaffolding，有没有区别呢，有区别吗？基本上是一样的吧。我觉得说的是同一件事。
 
-<span class="paragraph-timestamp" data-ts="22:04">22:04</span> **卢正锡** 我觉得是一回事。最近看一些基准，比如 Discover AI 这些频道里的测试，像 Grok 就是：最强档、付最多钱才能用的模型，不再是某个单一模型，而是 Grok 4.2 Agent Swarm。现在也会做 Grok 4.2 Swarm 和 Gemini 3.1 Pro 的对比基准。把单模型编织起来用，已经是非常普遍的趋势了吧。
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> **卢正石** 最近的benchmark，像Discover AI这类频道上的benchmark来看，Grok的情况是它的最高级模型，就是花最多钱才能用的那个模型，根本不是什么特定的单一模型，而是Grok 4.2 Agent Swarm。一种，所以现在会拿Grok 4.2 Swarm和Gemini 3.1 Pro来比较，做这样的benchmark之类的。所以现在把单一模型组合起来使用这件事这不就是一个非常通用的趋势嘛。
 
-<span class="paragraph-timestamp" data-ts="22:35">22:35</span> **崔升准** 去年年中我们在 YouTube 讲 harness 时，评论里还会有人问“harness 是什么？”现在看已经成通用语言了。
+<span class="paragraph-timestamp" data-ts="22:35">22:35</span> **崔胜准** 所以我们去年年中的时候在YouTube上提到harness这些话题时，评论区还有人问harness是什么，有过那样的评论，但现在看来已经成为通用概念了。申正圭代表上周来的时候也说
 
-<span class="paragraph-timestamp" data-ts="22:49">22:49</span> **卢正锡** 申正奎代表上周也说过，Claude Code 真正厉害的东西可能不是 Claude Opus 4.6，而是 Claude Code 的 harness。
+<span class="paragraph-timestamp" data-ts="22:49">22:49</span> **卢正石** Claude Code真正厉害的不是Claude Opus 4.6，而是Claude Code的harness，他也说了这样的话。Fowler
 
+<span class="paragraph-timestamp" data-ts="22:59">22:59</span> **崔胜准** 就是以极限编程和重构闻名的那位，他好像有一个团队组织。所以这是从那个团队里发出来的文章，实际写的人不是Martin Fowler本人。但是文章提到了OpenAI的harness engineering，我对其中的一些讨论非常有共鸣，写了一些相关的内容，而且他们最近涉及的话题还挺前沿的。说到Martin Fowler，我本以为会偏保守一些，但并不是，他们在讨论当下正在发生的这些事情。不过这些资深的前辈，比我们年长的人，像Kent Beck，而且Kent Beck最近也在积极地使用LLM。那些在敏捷和XP领域活跃过的人也在学习这些——与其说是趋势，不如说是当前的发展方向，他们学得很好，也在输出自己的思考，最近确实是这样的状态，所以我也打算再多学习一些，这就是我带来的harness engineering这个话题。
 
-<ResourceLink url="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" title="Harness Engineering — Martin Fowler" domain="martinfowler.com" description="Thoughtworks 团队关于 AI 辅助软件开发的笔记" />
+<span class="paragraph-timestamp" data-ts="24:00">24:00</span> **卢正石** 说的是啊。现在真的是活跃从业者的年龄光谱变得越来越宽了。以前的话三四十岁是主力，五六七十岁的几乎没有存在感，但现在从30岁到70多岁的人全都是现役。
 
-<span class="paragraph-timestamp" data-ts="22:59">22:59</span> **崔升准** Fowler 是以极限编程和重构闻名的人，他似乎有个团队。那篇是团队里发出来的，实际作者并不是 Martin Fowler 本人。里面提到了 OpenAI 的 harness engineering，也写了很多认同观点，内容还挺跟得上当下。我原本以为 Martin Fowler 这类会比较保守，但他们确实在讨论现在这些东西。还有一些资深前辈，比如 Kent Beck。Kent Beck 最近也在积极用 LLM。以前做 Agile 或 XP 的人，现在也在学习这个时代的发展方向，并输出各自的理解。这个“harness engineering”表达也是我想多学一点才带来的。
+<span class="paragraph-timestamp" data-ts="24:16">24:16</span> **崔胜准** 是啊。Kent Beck也说最近写代码太有意思了。
 
-<span class="paragraph-timestamp" data-ts="24:00">24:00</span> **卢正锡** 是啊。现在现役年龄谱系真的变宽了。以前主力是 30、40 岁，50、60、70 基本没存在感。现在从 30 到 70 岁以上看起来都还在一线。
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **卢正石** 是的，连他都这么说的话。所以总之新的视野在打开，
 
-<span class="paragraph-timestamp" data-ts="24:16">24:16</span> **崔升准** 对。Kent Beck 也说最近写代码太有意思了。
+<span class="paragraph-timestamp" data-ts="24:24">24:24</span> **崔胜准** 有趣确实是有趣的，而让这些成为可能的harness engineering或者scaffolding这些东西在25年被高度重视，某种程度上是Claude Code触发的。可以说是它引爆的。之后出现了很多衍生产品，最近的OpenClaw也是，说到底不就是harness嘛。人类在几轮交互中能够发挥的能力，能够产生意义的那些东西的创造，加上scaffolding，或者harness，再加上不断以0.1递增的新模型，持续提升中的。以及把METR直接跑到saturation的模型的能力，这些东西作为三个可以组合的我觉得每一个都是一个维度。
 
-<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **卢正锡** 是，他都这么说了。
-
-<span class="paragraph-timestamp" data-ts="24:24">24:24</span> **崔升准** 总之，新的地平线确实打开了，也确实有趣。而在这个 25 年里，让这些成为可能的 harness engineering 或 scaffolding 正在被高度重视。某种程度上是 Claude Code 触发了这一波，后面出现了很多衍生。最近 OpenClaw 本质上也是 harness。人和系统来回几轮交互所形成的能力，也就是“意义得以出现”的机制，再加上 scaffolding/harness，再加上每次加 0.1 的新模型、把 METR 推到 saturation 的模型能力，这三者像是可组合的三条轴。
 
 ## FOMO 产业与 AI 抑郁症    *25:11*
 
-<span class="paragraph-timestamp" data-ts="25:11">25:11</span> **崔升准** 但现实是，Matt Shumer 发的那篇超级 viral，几百万人看了。我翻译后也被大量转发，应该转发了 300 多次。那篇一方面像是对“庞然大物正在逼近”的现实认知，另一方面又确实很容易引发 FOMO。
+<span class="paragraph-timestamp" data-ts="25:11">25:11</span> **崔胜准** 但现实是 Matt Shumer 发的帖子疯狂传播了几百万人都看到了。然后我翻译的版本也被大量转发了。好像被转发了超过300次，在Facebook上传达着某种巨大的东西正在到来的某种程度上是对现实的认知但也是一篇会引发FOMO的文章。大惊小怪与现状的叠加。是啊，应该看作大惊小怪吗？
 
-<span class="paragraph-timestamp" data-ts="25:39">25:39</span> **卢正锡** 夸张渲染和现实状况叠加。是啊，到底该当成夸张，还是当成现实？
+<span class="paragraph-timestamp" data-ts="25:39">25:39</span> **卢正石** 还是应该看作现状呢？不，我觉得是两者叠加在一起的。
 
-<span class="paragraph-timestamp" data-ts="25:44">25:44</span> **崔升准** 我觉得是叠加。我们做的内容某种程度上也可能被那样看待。现在 AI 相关表达给人的感觉是，这个行业似乎正在变成“必须制造 FOMO 才能生存”的行业，不得不暗示一种“现在出大事了，你必须跟上”的语气。
+<span class="paragraph-timestamp" data-ts="25:44">25:44</span> **崔胜准** 所以我们某种程度上也可能被这样看待但谈论AI相关的事情正在变成一个必须制造FOMO才能谋生的行业那种感觉，现在大事不好了你得跟上，这种语气不知不觉中就会流露出来。
 
-<span class="paragraph-timestamp" data-ts="26:01">26:01</span> **卢正锡** 但现在真正创造价值、真正抓住钱的公司，除了做模型和做计算机的，其他既有公司基本都在变得抑郁。在这之间，制造 FOMO 的 YouTuber 正在涨订阅、接更多广告赞助，就是这种局面。
+<span class="paragraph-timestamp" data-ts="26:01">26:01</span> **卢正石** 但事实上现在真正在创造价值在赚钱的公司是做模型的和做硬件的公司，除此之外原来那些公司现在都变得越来越低迷了而在这之间制造FOMO的YouTuber们在涨粉接了很多广告赞助，就是这样。
 
-<span class="paragraph-timestamp" data-ts="26:22">26:22</span> **崔升准** 不过这类叙事确实很有传染性。
+<span class="paragraph-timestamp" data-ts="26:22">26:22</span> **崔胜准** 总之，但这类故事好像很有传染性。因为都能引起共鸣嘛。这些都是我们所有人都在感受的
 
-<span class="paragraph-timestamp" data-ts="26:29">26:29</span> **卢正锡** 因为会引发共鸣。我们所有人都在感受的那种“所以我到底该怎么办”的烦躁和不安。还是“不安”这个词最准确，因为它在代言这种情绪。
+<span class="paragraph-timestamp" data-ts="26:29">26:29</span> **卢正石** 那种"所以我该怎么办"的那种烦躁、焦虑——用焦虑这个词最合适。因为它代言了人们的焦虑感。
 
-<span class="paragraph-timestamp" data-ts="26:37">26:37</span> **崔升准** 这个是我最近看到的，应该是几天前。Nutilde 的代表似乎开始写一个博客系列，叫“AI 咔嗒时代，我们为什么抑郁了”。我在时间线上看到，“AI 抑郁症”这个说法挺有意思就带来了。他在说咔嗒时代正在产生抑郁，而我们这个频道本来也算是从 Geoffrey Hinton 的抑郁感出发的。
+<span class="paragraph-timestamp" data-ts="26:37">26:37</span> **崔胜准** 所以这个也是我最近看到的，好像是几天前。Nutil.de的CEO开始写"AI一键时代，我们为什么变得忧郁"这个博客系列了。我也在时间线上看到了"AI抑郁症"这个说法很有意思，所以拿来分享一下。说一键时代正在产生忧郁，我们也是从Geoffrey Hinton的忧虑开始做这个频道的。
 
-<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **卢正锡** Geoffrey Hinton 说“停下来，这样下去大家都会死”的时候，已经是 3 年前了。
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **卢正石** Geoffrey Hinton说"够了，再这样下去都会死"已经是3年前的事了。
 
-<span class="paragraph-timestamp" data-ts="27:10">27:10</span> **崔升准** 但为什么“咔嗒”和“抑郁”会绑定出现呢？
+<span class="paragraph-timestamp" data-ts="27:10">27:10</span> **崔胜准** 但为什么一键和忧郁总是相伴而行呢？因为那个一键的人不是我啊。
 
-<span class="paragraph-timestamp" data-ts="27:15">27:15</span> **卢正锡** 因为那个咔嗒不是你在按。按咔嗒的是别人，那些人现在当然兴奋。
+<span class="paragraph-timestamp" data-ts="27:15">27:15</span> **卢正石** 那些自己在做一键的人现在可开心了。
 
-<span class="paragraph-timestamp" data-ts="27:18">27:18</span> **崔升准** 但按咔嗒的人也可能抑郁，不是吗？
+<span class="paragraph-timestamp" data-ts="27:18">27:18</span> **崔胜准** 但正在一键的人也可能忧郁啊，不是吗？
 
-<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **卢正锡** 对，这要看目标函数是什么。
+<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **卢正石** 是的，那取决于目标函数是什么。就是说顺利的时候确实很开心，上周跟正圭
 
-<span class="paragraph-timestamp" data-ts="27:29">27:29</span> **崔升准** 在顺的时候会很兴奋，但上周我们问申正奎创业风险是什么时，他也又提到“过于容易的复制式咔嗒”。像 Backend.AI GO 这类不能被简单归成咔嗒，里面确实融入了很多东西，但在更短时间内做成也是事实。
+<span class="paragraph-timestamp" data-ts="27:29">27:29</span> **崔胜准** 聊创业风险之类的话题时他也提到了太容易被复制的一键问题。因为一键，像Backend.AI GO这样的产品也不能简单地归为一键，里面确实融入了很多东西这是毫无疑问的，但在更短的时间内确实做到了，对吧。
 
-<span class="paragraph-timestamp" data-ts="27:52">27:52</span> **卢正锡** 所以才会复杂。归根结底和 Coupang 上商品变多没本质区别。世界会变成高质量软件大量涌现且价格很低。但我觉得别太过度渲染，说“现在人人都能做软件了，B2B SaaS 要消失了”。我最近采访里也被摘出了类似表述，但问题不在“软件消失”，而在“好软件会更多”。好软件多了，人们就会在“好”里继续找“great”，然后再次聚集过去。即使背景变化，人们识别好东西的眼光会持续且严苛地存在。我做过卖货生意，客户都很敏锐。他们分得清好坏、值不值这个钱。所以一切都是相对的。然后又会进入下一轮。面对变化，不该老说“这不对”。跟上才是最优解。
-
-## 警惕过度渲染：好软件会持续增长的世界    *28:05*
-
-<span class="paragraph-timestamp" data-ts="29:01">29:01</span> **崔升准** 但确实会累。
-
-<span class="paragraph-timestamp" data-ts="29:02">29:02</span> **卢正锡** 所以商业世界有句永远有效的格言：客户永远是对的，`Customer is always right`。把客户付钱的方向设成目标函数，跟着走就行。
-
-<span class="paragraph-timestamp" data-ts="29:17">29:17</span> **崔升准** 我前面也说了，1、2 月我虽然在看新闻，但并没有大量练最近的趋势。这样压力会小一点，同时还能维持适度挑战，最近我在尽量聚焦一些可以健康追求的东西。什么方向让我觉得好玩、像游戏一样？结果 Andrej Karpathy 又端出来一个东西。
-
-## 找乐子：Andrej Karpathy 的 microgpt    *29:48*
-
-<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **卢正锡** microgpt。
+<span class="paragraph-timestamp" data-ts="27:52">27:52</span> **卢正石** 所以事情变得复杂了，最终跟我们在拼多多上东西太多没什么区别。优质的软件产品以非常便宜的价格大量涌现的世界正在到来，但是对此我们也不应该太大惊小怪，哇，现在人人都能做软件了，所以B2B SaaS会消失之类的。我最近的采访中确实也出现了这样的措辞但其实问题不是软件会消失。而是好的软件会变得多得多，好的软件多了之后，人们会从好的里面寻找great的，然后涌向那里。所以即使背景发生变化能辨别好东西的那种眼光始终会无情地存在我做过卖东西的生意所以知道客户什么都看得出来。好的和差的，值不值这个价，他们都清楚，所以一切都是相对的。所以要继续前进，对于正在发生的变化不应该说它是错的。跟上变化才是最好的选择。
 
 
-<ResourceLink url="https://karpathy.github.io/2026/02/12/microgpt" title="microgpt — Andrej Karpathy" domain="karpathy.github.io" description="基于 micrograd 的 Value 类，200 行标量 GPT 实现" />
+## 在咔嗒世界里，好的软件会越来越多    *28:05*
 
-<span class="paragraph-timestamp" data-ts="29:53">29:53</span> **崔升准** 我花了点时间很有兴趣地探索 microgpt。快速说一下，Andrej Karpathy 发了博客，前面加 micro 这个前缀，是因为他 2020 年发布过 micrograd。里面有个 Value 类，是一个基于标量的自动微分极简实现，几十行左右。后来他用这个思路把代码压到整整 200 行，公开了三栏排版的 GPT 代码。还挺有意思的。
+<span class="paragraph-timestamp" data-ts="29:01">29:01</span> **崔胜准** 但确实很辛苦。
 
-<span class="paragraph-timestamp" data-ts="30:36">30:36</span> **卢正锡** 就是把 Transformer 实现了一遍。
+<span class="paragraph-timestamp" data-ts="29:02">29:02</span> **卢正石** 所以商业界有一句永远适用的格言。客户永远是对的。"Customer is always right"这句话只要把客户愿意付钱的方向设为目标函数跟着走就行了。
 
-<span class="paragraph-timestamp" data-ts="30:44">30:44</span> **崔升准** 对，非常简化版。它是做名字生成的。GPT 部分就这么一小块，基本一页能看完。
-
-<span class="paragraph-timestamp" data-ts="30:49">30:49</span> **卢正锡** 所以你刚才说的是标量。真的是我们熟悉的那种 for 循环硬算实现。该有的都精准放进去了，不多一行不少一行。
+<span class="paragraph-timestamp" data-ts="29:17">29:17</span> **崔胜准** 所以我一开始也说了1月、2月虽然一直在看新闻但并没有一直在练习最近的趋势相关的练习并没有做太多。所以压力相对小一些，但在寻找有适度挑战的、能健康追求的某些事情上比较专注最近是这样的状态。所以能让我觉得有趣的方向像游戏一样的东西是什么的时候，Andrej Karpathy又正好发布了什么？
 
 
-<ResourceLink url="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" title="microgpt.py — 源代码" domain="gist.github.com" description="基于 for 循环的纯 Python GPT——完整代码装进三栏" />
+## 在 Andrej Karpathy 的 microgpt 中寻找乐趣    *29:48*
 
-<span class="paragraph-timestamp" data-ts="31:00">31:00</span> **崔升准** 看完整代码，连 matmul 这些都全用 Python 手写了。200 行里就能做到。我还完整手打跟了一遍。纯当乐子，在 Colab 里跑了跑，挺有意思。
+<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **卢正石** microgpt。
 
-<span class="paragraph-timestamp" data-ts="31:23">31:23</span> **卢正锡** 它那个字母表是那个意思吧，token 直接用字母。Andrej Karpathy 当年突然爆红是 2015 左右的 character RNN。就是那个味道。
+<span class="paragraph-timestamp" data-ts="29:53">29:53</span> **崔胜准** microgpt，我又饶有兴趣地花了些时间去探索。快速过一下的话Andrej Karpathy也在博客上发了，名字前面加了micro是因为2020年他发布过一个叫micrograd的项目。发布了micrograd，里面有一个叫Value的类，那是基于标量的自动微分非常简洁的实现。大概几十行代码，用那个刚好控制在200行。然后公开了三栏排列的GPT代码。而且相当有意思。
 
-<span class="paragraph-timestamp" data-ts="31:31">31:31</span> **崔升准** 这不是我自己做，是让 Claude 做的。我想试验的点是，自动微分能做的不只是 Transformer。我以前就一直在探索这些。比如图像方向，2021 年 DALL-E 出来的同时 CLIP 也出来了。CLIP 出来后，OpenAI 用 CLIP 构造某种 loss，再用简单网络优化图像生成，做了很多这样的实验。那时我就很能感受到自动微分的力量。我还基于已有背景做了另一个尝试，就是应用 Andrej Karpathy 的实现。
+<span class="paragraph-timestamp" data-ts="30:36">30:36</span> **卢正石** 就是实现了一个Transformer。对，非常简洁的。用来生成名字的。GPT的部分
+
+<span class="paragraph-timestamp" data-ts="30:44">30:44</span> **崔胜准** 就这么多，刚好能在一页内显示的程度啊所以才用了标量这个表述
+
+<span class="paragraph-timestamp" data-ts="30:49">30:49</span> **卢正石** 真的完全用我们熟悉的for循环用最朴素的方式实现的。刚好需要的东西都精确地包含在内了。不多一行，也不少一行
+
+<span class="paragraph-timestamp" data-ts="31:00">31:00</span> **崔胜准** 看整体代码的话，matmul之类的东西全都是用Python实现的。200行以内就能实现的代码。我把它从头到尾跟着打了一遍。就是抱着玩玩的心态跟着做了一遍，在Colab上运行了一下，挺有意思的。字母表就是那个啊。token就是直接用字母表的。
+
+<span class="paragraph-timestamp" data-ts="31:23">31:23</span> **卢正石** 以前Andrej Karpathy突然大火的时候大概是2015年吧，character RNN。就是那个感觉。
+
+<span class="paragraph-timestamp" data-ts="31:31">31:31</span> **崔胜准** 所以不是我自己做的，是让Claude做的，我当时想做一些实验，其实自动微分能做的事情不只是Transformer之类的。所以我从以前开始就一直在探索这些东西，比如说在图像领域，DALL-E出来的时候2021年CLIP也出来了。CLIP出来之后，OpenAI发布CLIP之后用CLIP构造某种loss，通过简单的网络优化图像，生成图像的工作有很多。所以在做那些事情的过程中能感受到自动微分的力量，在我已有的背景知识中，还尝试过什么呢——就是拿Andrej Karpathy做的那个实现
+
 
 ## 自动微分的创造性应用与学习的乐趣    *31:34*
 
-<span class="paragraph-timestamp" data-ts="32:24">32:24</span> **崔升准** 有些东西要求在一定距离内，有些要垂直对齐，有些要重叠，有些不能重叠，这里就是重叠了。这些都是规则。如果把这些规则转成可微函数，自动微分就能处理。比如可以做布局优化。我把 Andrej Karpathy 的 Value 类移植过来，试了试这些是否能工作。
+<span class="paragraph-timestamp" data-ts="32:24">32:24</span> **崔胜准** 进行应用和扩展。比如某个和某个必须在一定距离内，某个必须保持垂直，某些要重叠，某些不能重叠——嗯这里是重叠的。就是表示这样一种约束规则，如果把这些约束规则转换成可微分的函数，自动微分就能做到这些。可以做布局优化之类的，为了验证这些东西是否能工作，我把Andrej Karpathy做的Value类移植过来做了一些实验。
 
-<span class="paragraph-timestamp" data-ts="32:58">32:58</span> **卢正锡** 其实从大框架看，这和深度学习没区别。
+<span class="paragraph-timestamp" data-ts="32:58">32:58</span> **卢正石** 其实从大的框架来看，跟深度学习没有任何区别。
 
-<span class="paragraph-timestamp" data-ts="33:01">33:01</span> **崔升准** 就是深度学习。
+<span class="paragraph-timestamp" data-ts="33:01">33:01</span> **崔胜准** 就是深度学习。模型非常简单，
 
-<span class="paragraph-timestamp" data-ts="33:05">33:05</span> **卢正锡** 模型很简单，目标函数不是 cross entropy 而是别的，但学习算法是同一套。给订阅者的洞见应该是：你前面说的超弦理论物理前沿找答案，和刚才你展示的这些，用的是同一种算法。差别只是投入的 computation 量。
+<span class="paragraph-timestamp" data-ts="33:05">33:05</span> **卢正石** 目标函数用的不是交叉熵而是别的，但是用来学习的算法是一样的。所以我们要给订阅者的insight是——总之，刚才说的超弦理论，物理学最前沿寻找答案的过程，和刚才胜准展示的那些内容所用的算法是一样的。只是投入的计算量不同而已。
 
-<span class="paragraph-timestamp" data-ts="33:31">33:31</span> **崔升准** 我在这个语境下想说的是，当我注入 domain knowledge 时，比如我知道 Penrose 或自动微分应用案例，那如果不注入这些，模型还会不会提出 inverse kinematics 之类的东西，这就是我好奇的点。这些也都能在那套基础上做。我们曾有一段对话，起点是“来想想创意编码的题材”。这段里我没用我已知的信息。我们聊到把它从 Python 移植到别的语言再应用，看看能不能做成实时交互。这个我既用 ChatGPT 也用 Claude 聊过。两边给的建议有相似也有差异。
+<span class="paragraph-timestamp" data-ts="33:31">33:31</span> **崔胜准** 我在这个话题下想说的是，当我注入领域知识的时候——比如之前说的Penrose，自动微分的应用案例之类的，因为我本身就了解这些，比如用inverse kinematics之类的。如果不注入这些信息的话，模型是否还会提出那样的建议，这是我好奇的点。这些东西也可以基于那个来做，就这样，以创意编程的素材发想为出发点开始了一段对话。这里我没有用我已知的信息。可以移植到Python以外的语言来应用。看看能不能在实时交互方面做些什么，这个我用ChatGPT也试过，然后用Claude也试过。两者推荐的东西既有相似也有不同。所以这里有实时绘画——
 
-实时绘画学习画布、可微粒子系统、可微 synthesis 也就是音频方向。然后还有 computation graph、L-system，这些我都让它试过。它很快给了一个能漂亮绘制 decision boundary 的例子，也做了把自动微分过程可视化成 computation graph 的漂亮版本，能看到链路如何传播。再挑战一点的是 L-system，也就是画树那类算法，有点像分形。我给它点位后，它会做优化，也试了这些。这个我本来就知道，它能做到。
+<span class="paragraph-timestamp" data-ts="34:29">34:29</span> 学习的画布、可微分的粒子系统、可微分的synthesis——也就是音频方面。然后computation graph等等，L-system之类的，我都试了试能不能做。这样的话，把decision boundary画得比较漂亮的某个区域，就是做decision boundary的，把它画得漂亮的东西很快就做出来了，然后这个是把自动微分的过程——computation graph可视化做得很漂亮，展示链式法则怎么运作之类的，然后比较有挑战性的是L-system，就是画树之类的算法，也很像分形。我在这里画几个点的话，它就会向那里优化。这些我都试了试，不过这些其实我之前就知道的。知道这些是可以做的。以前的话，那些东西每一个
 
-<span class="paragraph-timestamp" data-ts="35:25">35:25</span> **卢正锡** 以前这种东西每一个都得花不少时间做成作品，真的是。
+<span class="paragraph-timestamp" data-ts="35:25">35:25</span> **卢正石** 都要花不少时间才能做出来的，真的。现在就是分分钟的事。把已知可行的东西做出来是很容易的。
 
-<span class="paragraph-timestamp" data-ts="35:32">35:32</span> **崔升准** 现在就是分分钟出来。把“能做的东西做出来”其实不难，毕竟是把已知可行的东西做成，所以没什么新意，但验证了它确实好用。不过这次和 ChatGPT 的对话里，比起实现本身，和它来回打磨内容更有意思。做这类东西时，关键是怎样设计能量函数。因为必须可微，所以把你想做的目标变成可微形式很关键。现在这一步似乎可以直接让 AI 来帮。比如我想做某件事，就问它“可微函数该怎么设计比较好”，我昨天有这种感受。也让我意识到，以前艰难做过的任务现在都值得重访，能做的事很多。算是重新找回了一点乐趣。
+<span class="paragraph-timestamp" data-ts="35:32">35:32</span> **崔胜准** 把已知可行的东西实现出来，所以没有什么新东西，但确认了已知可行的东西确实能做出来。不过这次和ChatGPT的对话，比起实现本身，一起讨论内容本身更有意思。在做这些的时候，应该怎么设计那个能量函数，因为必须是可微分的才行，把用某种语言表达的，或者我想创造的东西转换成可微分的形式，这个工作很重要。现在可以拜托AI来做这件事了。我想做某件事，那个东西的可微分函数应该怎么设计比较好——昨天我意识到可以这样做。也就是说，以前我费了很大劲做过的那些工作全部可以重新回去看，发现有很多可以做的事情。所以这算是重新找回了一些乐趣。其实已经有很多这样有意思的东西了。
 
-其实这种有趣的东西已经很多了。虽然刚刚一带而过，但在和 ChatGPT 的对话里，除了我本来知道的，也有不少是我不知道的。刚才问题就是这个：加入 domain-specific 术语，比如 Penrose、Bloom，和不加入时的回答，是否都能给出 insight？我觉得两边都有。不加版本也学到东西，加了也学到东西，连看代码本身也学到东西。
+<span class="paragraph-timestamp" data-ts="36:34">36:34</span> 虽然我带过了，但之前和ChatGPT的对话中我也说了一些自己知道的东西，但也有一些我不知道的东西被提出来了。我刚才的问题就是这个——当输入领域特定的术语，比如Penrose、Bloom这些的时候得到的回答，和不输入那些时得到的回答是否也有能给我带来insight的东西。我觉得两方面都有。不给提示的版本中也学到了东西，给了提示的版本中也学到了东西，而且看代码的时候也学到了东西。所以当我最近感觉对趋势
+
 
 ## 过程重于结果：重新找回学习的乐趣与品味    *37:11*
 
-<span class="paragraph-timestamp" data-ts="37:16">37:16</span> **崔升准** 我最近在想自己是不是被趋势搞得有压力，发现可能是我把注意力放在产出物上，丢掉了过程里的乐趣，所以才压力大。其实我本来就是喜欢看代码、理解代码、从中学习的人。但现在是大量跑、跑完看结果，过去 1、2 年基本没怎么自己写代码，更多是让它写。这样可能就积累了压力。后来我又开始学习、手打代码，像刚才那个 microgpt，我完整跟打一遍，有些还尝试背下来，再做些改造，折腾来折腾去，乐趣就回来了。
+<span class="paragraph-timestamp" data-ts="37:16">37:16</span> **崔胜准** 有些压力的时候，与其看生成的结果，不如在过程中获得的乐趣——我好像有点丢失了，所以一直感到有压力。其实我本来是喜欢看代码、理解和学习的那种性格，现在绕了很多弯才走到这里，沿着这个方向走了大概一两年我基本上没怎么写代码，都是让AI来做。所以我觉得这可能给自己带来了不少压力这是我的推测。但是像这样重新学习、亲手敲代码，刚才那个microGPT完整跟着做一遍有些部分还试着去背，也尝试了一些应用这样那样试了之后，又觉得有意思了。这一点我也很认同。我也不只是跑个循环，哇，
 
-<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **卢正锡** 这点我也同意。越过“跑 ralph loop 然后说我用了多少 token”这个阶段后，重新明确目的，和模型来回对打去学习，那个不断增长的过程很有意思。
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **卢正石** 看看我用了多少token这种阶段已经过了重新明确设定自己的目标和模型来回互动的过程中不断学到新东西我觉得这个过程真的很有趣。
 
-<span class="paragraph-timestamp" data-ts="38:14">38:14</span> **崔升准** 这对结果生产力当然也很重要，但我们毕竟是人，从学习中获得的快乐不能忽视。当然如果只追求生产力，就要开发 harness，那开发过程本身也会有乐趣。
+<span class="paragraph-timestamp" data-ts="38:14">38:14</span> **崔胜准** 就是说，在结果和生产力方面这当然是很重要的部分但毕竟我们是人，学习中获得的乐趣也不能忽视。当然要提高生产力就需要开发harness开发的过程本身也是有乐趣的。
 
-<span class="paragraph-timestamp" data-ts="38:28">38:28</span> **卢正锡** 所以我们会回到频道早期的那些话题。我现在依然认为，不管是 harness 也好、别的也好，单模型也好、模型集合也好，无所谓，最终能拿出来的产出质量不会超过那个人的上限。
+<span class="paragraph-timestamp" data-ts="38:28">38:28</span> **卢正石** 所以这又回到了我们早期讨论过的那些话题。我始终认为不管是harness还是什么，无论是单一模型还是集合体，不管怎样，能产出的任何成果的质量都无法超越那个人本身的上限。但这其实也是一个困惑
 
-<span class="paragraph-timestamp" data-ts="38:48">38:48</span> **崔升准** 但这也是个烦恼点。这个很重要，但回到最初问题，我还是希望它能成立。即使在未知中也能朝正确方向前进，该怎么做，我还没找到答案。
+<span class="paragraph-timestamp" data-ts="38:48">38:48</span> **崔胜准** 我想总结的是，这固然重要但回到最初的问题，如果这能实现当然是好的。在不了解的情况下也能朝着正确方向前进，该怎么做呢，虽然我自己也还没找到答案。但关于这个问题
 
-<span class="paragraph-timestamp" data-ts="39:06">39:06</span> **卢正锡** 但这个问题我有个不成熟的结论：想在未知中朝正确方向前进，就要把“往前走”这件事和“在过程中获得学习、提高决策质量”结合起来。这样虽然起点未知，但你会在逐步了解中，甚至意识到自己真正想去哪里。老话说“好的开始是成功的一半”，是对的。未知状态下你当然不可能提前知道会到哪里，这本身就是悖论。说“在不知道的情况下还能直接得到答案”，我觉得这句话本身不成立。但你可以在不知道的情况下先出发，然后在逐步理解中，抵达“我原来想要这个”的结果。这个过程会被模型大幅加速。我们家孩子现在刚 20 岁，是大学生，我也会想他该怎么活，就会常讲这些。你得先去了解。
+<span class="paragraph-timestamp" data-ts="39:06">39:06</span> **卢正石** 我倒是能给出一个粗略的结论——即使在不了解的情况下想要朝正确方向前进的话，在前进的过程中只要和自身的学习、提升决策质量这个过程结合起来就行了。这样虽然是在不了解的情况下开始的但在逐渐了解的过程中，连自己想去哪里都能在这个过程中领悟到。万事开头难，老话说得没错。所以在不了解的情况下，我会到达哪里当然是不可能知道的，这本身就是矛盾的。所以说"不了解也能得到答案"这种说法我觉得这句话本身就不成立。但是，虽然是在不了解的情况下开始最终可以走向一个结果——一个了解之后的自己明白自己真正想要什么的结果。这个过程会被模型极大地加速，我家孩子现在才20岁，刚上大学我在思考这孩子该怎么生活的过程中有一个感悟现在经常会跟他说这些道理。你首先得去了解。所以我也还在探索中
 
-<span class="paragraph-timestamp" data-ts="40:10">40:10</span> **崔升准** 所以我也还在探索。我现在把“提出假设并做实验的态度”当作 MVK 候选之一。
+<span class="paragraph-timestamp" data-ts="40:10">40:10</span> **崔胜准** 我目前作为MVK的候选方向是：建立假设然后去验证的这种态度。
 
-<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **卢正锡** 但升准啊，你现在讲 MVK，是建立在你的高等教育背景、物理化学生物的广泛阅读、无数次编码失败这些全部叠加之上的。
+<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **卢正石** 但是胜准，这是因为你有高等教育的基础加上物理、化学、生物等领域的广泛阅读，再加上无数次编程的失败经历，所有这些积累融合在一起你才能在此基础上谈MVK。不是，但是我之前给你看过那个
 
-<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **崔升准** 但我之前不是多次给你看过一个 10 个月大婴儿的照片吗？他会听到声音后把耳朵贴向杂志去听，这种态度其实 10 个月婴儿都能有。所以我倾向认为“提出假设并实验”是人的本能。当然我这么讲时，很多反馈是：很难做到这么平化。但这正是我持续在想的点。懂得多的人更擅长，这一直如此，所以我才会想 AI 时代是不是应该有点变化。可每次讲这件事，我总会收到反馈说这没那么容易，做不到。
+<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **崔胜准** 出生才10个月大的婴儿的照片好几次了嘛。那个婴儿听到声音后把耳朵凑到杂志上去听这种态度其实10个月大的婴儿也能做到所以我认为建立假设并验证是人类的一种本能行为。当然我在发表这个观点时很多人给我的反馈就是要做到那样的平等化很难。但这一直是我在思考的重点。懂的人会做得更好这件事一直以来都是如此但在AI时代是不是应该有所不同呢正因为有这样的困惑所以才提出来讨论但每次我说这些的时候收到的反馈总是这没那么容易，而且大概率做不到——经常听到这样的话。
 
-<span class="paragraph-timestamp" data-ts="41:22">41:22</span> **卢正锡** 好笑的是，AI 也不会给不提问的人答案。
+<span class="paragraph-timestamp" data-ts="41:22">41:22</span> **卢正石** 说来有趣，AI也不会给不提问的人答案。
 
-<span class="paragraph-timestamp" data-ts="41:27">41:27</span> **崔升准** 要走到“能提问”这一步，本身也有门槛。
+<span class="paragraph-timestamp" data-ts="41:27">41:27</span> **崔胜准** 光是走到提出问题这一步其实就已经有门槛了。但是一旦跨过那个门槛，决定不断跨越的那一刻
 
-<span class="paragraph-timestamp" data-ts="41:37">41:37</span> **卢正锡** 但跨过那个门槛、并持续跨过，本身就是你刚说的那种态度。它会生出来。因为你会不断把学到的东西告诉模型。
+<span class="paragraph-timestamp" data-ts="41:37">41:37</span> **卢正石** 就像胜准你刚才说的那种态度，就自然形成了。不断学到的东西会持续反馈给模型。
 
-<span class="paragraph-timestamp" data-ts="41:44">41:44</span> **崔升准** 我们现在一直回归的词汇是态度、品味，有时是意志，词不一样，但我感觉它们背后是同一条线。
+<span class="paragraph-timestamp" data-ts="41:44">41:44</span> **崔胜准** 所以我们一直在回归的那些词汇态度啊，或者刚才说的品味、还有有时候说的意志，虽然用词不同但确实感觉有某种共通的东西在里面。而且能学的东西太多了。
 
-<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **卢正锡** 而且可学的东西很多。我最近在公司里坐下来和 Codex 一起写各种逻辑，学到很多，很多是我以前完全不知道的。原来可以这样、也可以那样。会计也更懂了，营销也更懂了，Meta 广告是这么运转的。以前粗略做的东西现在能看到细节，还能当场做数据回测，告诉你这个假设对不对。感觉这不就和钢铁侠的 JARVIS 一起工作一样吗。
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **卢正石** 天哪，我最近在公司坐下来认真用Codex一起写各种逻辑在这个过程中学到的东西——哇，原来这些我全都不懂啊这样可以，那样也可以。也学到了会计知识，也更懂营销了，原来Meta广告是这么运作的，以前只是一知半解的东西现在都能深入了解了，就在那个场景下直接做数据回测，这个假设对不对都直接告诉你，哇，这不就跟钢铁侠的JARVIS一起工作一模一样吗。但正因为这些都能做到了，
+
 
 ## 健康使用：AI 让人过劳的机制    *42:33*
 
-<span class="paragraph-timestamp" data-ts="42:33">42:33</span> **崔升准** 但正因为它能做到，我现在觉得我们处在一个时代，可能是过渡期，也可能不是。因为太能做了，人们反而还不知道怎么健康地用，同时也在逐步意识到风险。原来这是 AI 让人过劳、让人勉强自己的机制。因为“能做”，所以即使暂时还不行，也会不断给出“好像快行了”的提示，人就会过度投入，伤健康，也引发 FOMO。我觉得“认识到这个问题”会成为 2026 年的趋势之一。
+<span class="paragraph-timestamp" data-ts="42:33">42:33</span> **崔胜准** 我现在觉得我们正处在一个什么样的时代呢这可能是过渡期，也可能不是但正因为太好用了，如何健康地使用人们现在还不知道，而意识到这是有危险的我觉得我们正在逐渐认识到这一点。AI在让我过度劳累这是一种让人不知不觉过度投入的机制。因为太好用了，虽然做不到但总感觉能做到这种暗示不断出现就会让人过度劳累，既损害健康又引发FOMO，认识到这些问题我觉得会成为2026年的趋势。但还是很有趣。
 
-<span class="paragraph-timestamp" data-ts="43:12">43:12</span> **卢正锡** 但还是很好玩。早上起来会有“今天试点什么”的乐趣。既然是有趣的时期，就该有趣地过。
+<span class="paragraph-timestamp" data-ts="43:12">43:12</span> **卢正石** 每天早上起来想着今天试试什么呢，有这种乐趣这是个有趣的时代，就开心地走下去吧。
 
-<span class="paragraph-timestamp" data-ts="43:18">43:18</span> **崔升准** 我展示那页图时也解释过，这个 prompt 我改了 24 次。前面其实还有更长的 prompt。为了得到想要的回应，就反复改 24 次。换一个词、改一句话，最近不是常说“打磨”吗？就是在打磨 prompt。
+<span class="paragraph-timestamp" data-ts="43:18">43:18</span> **崔胜准** 我之前展示这个幻灯片的时候解释过这个prompt，当然前面还有很长一段写这个prompt的时候我修改了24次所以前面的prompt其实更长直到得到想要的回答为止就这样反复修改了24次，有时候只是换一个词，也试着改写句子，在这个过程中，最近经常说"打磨"这个词嘛。就是打磨prompt的过程。在这个过程中，烦躁逐渐转化为乐趣，也做了一些这方面的探索，
 
-这么做以后，我确实在探索把烦躁转成乐趣，但仍然有烦躁的部分。是另一个层面。比如今年初我说过要重看 Gilbert Strang 的线代书。开始读了，但到现在第一章读完后还没进第二章。因为还有不懂的地方，我在反复问同一个问题的不同变体几十次。prompt 这件事上，多做几次就能基于结果调到想要的方向。但有些东西即便做几十次还是不懂。我也会手写，也会用 AI 做交互教程，但还是会在某些细节上“更具体地不懂”。那种“我知道自己哪里不懂”的感觉在不断缩小。然后就会疑问：这个我到底最终必须搞懂吗？可又很难放弃，因为我觉得如果真把它 pre-training 到自己脑子里，消化到 grokking，那我可能还能再往下一层加东西。学习本身也有趣。虽然进度慢，但现在的态度是至少再坚持到“懂”为止。也许没有标准答案，是先盖住它“能用就行”，还是一定要搞懂，这就是我最近的状态。
+<span class="paragraph-timestamp" data-ts="43:51">43:51</span> 但仍然有让人烦躁的部分。是另一个层面的，我今年新年的时候不是说过要重新看Gilbert Strang的线性代数教材嘛。年初决定读Gilbert Strang的线性代数教材，读了下去，但读完第一章后，还没进入第二章。因为仍然有不理解的部分，同一个问题的不同变体，我已经问了几十遍了。但对于这个，多做几次的话，可以根据结果朝着我想要的结果去调整。但即使同样的事情做了几十遍，有些东西还是不理解。所以我也试着手写，也用AI制作互动教程之类的，但在持续不理解的过程中，会有越来越细致地发现不懂的地方。意识到自己到底不懂什么的那种感觉，感觉一直在不断缩小范围，但同时产生的疑问是，这个我到底需不需要搞懂，或者说，但又很难放弃，因为如果我真的把它完全pre-training了，真正消化了，达到了grokking的状态，总觉得之后能在此基础上走得更远。所以学习这个东西既有趣，而且虽然进度不快，但我目前的态度是想继续学下去，直到真正理解为止。虽然没有标准答案，但到底是把这个放下，觉得能用就行了，还是真的要学到完全理解，最近就是这样的状态。感觉现在所有人都成了旅行者。本来想在家里舒服地待着，
+
 
 ## Gilbert Strang 线性代数与钻研到底的学习    *43:54*
 
-<span class="paragraph-timestamp" data-ts="45:31">45:31</span> **卢正锡** 感觉大家都成了旅行者。本来想舒服待在家里，却被迫扔进未知空间。
+<span class="paragraph-timestamp" data-ts="45:31">45:31</span> **卢正石** 却不得不被抛到了未知的领域。
 
-<span class="paragraph-timestamp" data-ts="45:34">45:34</span> **崔升准** 被推着走了。
+<span class="paragraph-timestamp" data-ts="45:34">45:34</span> **崔胜准** 被推出去了。
 
-<span class="paragraph-timestamp" data-ts="45:35">45:35</span> **卢正锡** 一边找东找西，有人焦虑，有人兴奋，有人觉得这环境太好了，也有人特别讨厌。即便如此我们还是活在这里。而且能亲眼目睹这场大变革，本身也是件很有意思的事。
+<span class="paragraph-timestamp" data-ts="45:35">45:35</span> 被推出去了。一边摸索着，其中有人感到焦虑，有人觉得有趣，有人很享受这个环境，有人很讨厌。但不管怎样我们都还活着。能够亲眼见证这场大变革，也是件很令人愉快的事。那确实是不可忽视的乐趣和动力，
 
-<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **崔升准** 这确实是不能忽视的乐趣和动力。但要在这个世界活得稳一些，心里好像还是得有个锚。中心太容易晃了。要适度晃动，才会有新探索；可锚下得太死又会不变化。这个平衡感不容易。卢正锡你现在平衡得好吗？
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> 但要在这个世界好好生活的话，需要在某处放下心锚才行。因为重心太摇晃了。适度摇晃是好的，这样才能进行新的探索，但如果把锚放得太深，又会变得固步自封。所以要保持这种平衡感并不容易，正石你现在平衡保持得好吗？不好。我也不知道答案。
 
-<span class="paragraph-timestamp" data-ts="46:16">46:16</span> **卢正锡** 没有，我也不知道答案。一直和背景速度一起跑，你就能看到背景里在变化的东西；不一起跑就会直接掠过去。一起跑时你能看到变化，也能看到其中机会。我是做商业的，所以总会把它转成商业目的去看，经常做思维实验：商业机会怎么抓。做着做着也会遇到有趣的人，看到他们在做这个尝试那个尝试。然后有个很确定的感受：大多数人都只想要答案。但 AI 这个空间里，想靠拿一句答案就走，太复杂了。
+<span class="paragraph-timestamp" data-ts="46:16">46:16</span> **卢正石** 一直跟着时代的速度奔跑的话，在那个过程中就能看到正在变化的东西。否则就只会一闪而过，但一起奔跑的过程中能看到的东西，以及其中的机会。我是做商业的人，所以总是会把这些转化为商业视角来看，在其中思考商业机会该怎么把握，经常做这样的思想实验，在这个过程中也会遇到有趣的人，看到那个人在做这样的尝试，那个人在做那样的尝试，有一点我是确切感受到的。大部分人只想要答案嘛。但AI这个领域，不是光靠一句话的答案就能走下去的，里面有太多复杂交织的东西。
 
-## 商业视角：99 vs 99.99 的差异    *46:23*
 
-<span class="paragraph-timestamp" data-ts="47:04">47:04</span> **卢正锡** 连 layer 都变了。模型现在像一个库一样被封装下沉，我们只要 call 就能拿答案，像一个对象。但要在这上面做商业，不看模型内部就看不清这个产业会怎么走。这是另一点。以前说会 Python 就行，下面 C 或汇编不懂也可以。现在不一样，从硬件 computation layer 到模型，再到商业，你得在不同层级来回切换，才会有答案感。
+## 99 vs 99.99 的差异    *46:23*
 
-上周申正奎就说了，他重新开始做“打磨模型”的工作。也说未来可能是：所有软件的单元工作都收进一个模型，再在模型上叠一点 harness。现在我们是挂在 frontier 模型上做 API call，但我理解申正奎的共识是：即便如此，在所有微小细节上，模型世界还是会回来。
+<span class="paragraph-timestamp" data-ts="47:04">47:04</span> **卢正石** 而且层次也是，现在模型已经像一个库一样被封装起来，沉入了底层，对我们来说已经变成了调用就给答案的对象，但即便如此，要在上面建立商业的话，不去看模型内部，就无法判断这个行业会怎么发展。这一点也很不一样。这跟以前不同。以前说只要会Python，底层的C或汇编不需要了解，但这个东西，从硬件的计算层到模型，再到商业，需要在这些不同层次之间来回穿梭才能看到答案。
 
-到了那一步，这些小模型会成为新的 web 服务。那是把 B2B SaaS 拿来塞一本到手册就 fine-tuning 结束，还是会由那些能把最前沿再推进一层的人取得优势？如果全都在 99、99.9、99.99 之间竞争，客户一定会从 99 流向 99.99。这个变化不是速度感和价值感消失，而是当你回到那个空间后，里面的相对偏差会变成新的 norm 并重新展开竞争。这发生在我们这一代，某种意义上是不幸；反过来说，不管是创业公司，还是迫切想改变的个人，这全是机会。对别人是危机，对我们就是机会。要这样去转换思维。
+<span class="paragraph-timestamp" data-ts="47:42">47:42</span> 上周正圭说过这个话。他说打磨模型这件事又重新开始做了。而且所有软件的某个单元业务都会装进一个模型里，在模型上面加一层轻量的harness，他说未来会是这样的结构。那现在我们都是在前沿模型上面做API调用，但正圭在那个讨论中达成的共识是，尽管如此即使是所有细小的细节，模型的时代又要到来了，我觉得他表达的是这个意思。
 
-<span class="paragraph-timestamp" data-ts="49:22">49:22</span> **崔升准** 听你这么说我几乎有个确定判断：卢正锡你肯定觉得这件事有趣。因为商业对你来说就是这样，所以我也在追求我自己的乐趣，从那里拿动力。你是在想商业相关的东西，而且这些对你来说本身就有意思。
+<span class="paragraph-timestamp" data-ts="48:19">48:19</span> 那如果真的变成那样，那些小模型就会成为新的Web服务，那到时候是直接拿个B2B SaaS来，扔给它一本自己知道的书，做个fine-tuning就完事了，还是说能够在其中更多地应用前沿技术的人会占据优势。如果所有人都在99和99.9、99.99之间竞争的话，客户又会全部涌向99.99而不是99。所以这意味着我们以往对速度的感觉，对价值的感觉正在发生变化，但一旦重新进入那个空间，其中的相对差异又会形成新的norm，重新拉开。这在我们这一代人身上发生是我们的不幸，但反过来说，无论是创业公司，还是迫切需要变化的个人来说，这都是机会。别人的危机就是我们的机会。要这样转换思维来看。不过听你说着说着，
 
-<span class="paragraph-timestamp" data-ts="49:42">49:42</span> **卢正锡** 所以我这个年纪还在做这个啊。
+<span class="paragraph-timestamp" data-ts="49:22">49:22</span> **崔胜准** 有一点我现在几乎可以确信了，正石你肯定觉得这件事很有趣。因为商业就是如此，我也在追寻属于我自己的那份乐趣，就像从中获得灵感一样，思考与商业相关的事情，这些东西让您觉得有趣。
 
-<span class="paragraph-timestamp" data-ts="49:44">49:44</span> **崔升准** 总之今天我们算是聊了聊“什么是可以健康追求的东西”。
+<span class="paragraph-timestamp" data-ts="49:42">49:42</span> **卢正石** 所以我这个年纪了还在做这个嘛。
 
-<span class="paragraph-timestamp" data-ts="49:53">49:53</span> **卢正锡** 聊着聊着我们也经常跑偏，但本质上我们是在纯粹以学习为目的做这个。要是目标是拉播放、快涨订阅、接广告，我们反而不会做这些。
+<span class="paragraph-timestamp" data-ts="49:44">49:44</span> **崔胜准** 总之，关于如何健康地追求某些东西的话题，今天算是稍微聊了一些。聊着聊着我们总是会跑偏，
 
-## 结尾：2万订阅，下周再见    *50:08*
+<span class="paragraph-timestamp" data-ts="49:53">49:53</span> **卢正石** 但我们纯粹是以学习为目的在做这件事嘛。这个目的性，如果我们想着怎么提高播放量、赶紧增加订阅数然后接广告这样的目的的话，那我们根本不会做这个。
 
-<span class="paragraph-timestamp" data-ts="50:08">50:08</span> **崔升准** 不过订阅涨起来确实会给力量。我们现在订阅大概多少了？
 
-<span class="paragraph-timestamp" data-ts="50:13">50:13</span> **卢正锡** 2 万。睡一觉起来就 2 万了。挺惊讶。
+## 2万订阅，感谢大家    *50:08*
 
-<span class="paragraph-timestamp" data-ts="50:18">50:18</span> **崔升准** 这是值得庆祝的事。你上次好像提过，能看到最后的观众比例还挺高，大概有 30%？
+<span class="paragraph-timestamp" data-ts="50:08">50:08</span> **崔胜准** 但订阅数增长的话，确实会感到很有动力。我们现在订阅数大概多少了？
 
-<span class="paragraph-timestamp" data-ts="50:27">50:27</span> **卢正锡** 我们节目都一小时半，完整看完的比例好像有 37%。很厉害。只有感谢。还有评论区大家留意见，赞同的意见我反而不太回，不赞同的意见我会稍微多回一点。
+<span class="paragraph-timestamp" data-ts="50:13">50:13</span> **卢正石** 两万。一觉醒来就两万了，真厉害。
 
-<span class="paragraph-timestamp" data-ts="50:44">50:44</span> **崔升准** 那这期可能会有不赞同的评论了。
+<span class="paragraph-timestamp" data-ts="50:18">50:18</span> **崔胜准** 值得庆祝，而且一直看到最后的观众好像还挺多的，大概有30%，上次好像您提过。我们每期都有一个半小时，
 
-<span class="paragraph-timestamp" data-ts="50:47">50:47</span> **卢正锡** 对。那就继续做健康的讨论吧。
+<span class="paragraph-timestamp" data-ts="50:27">50:27</span> **卢正石** 完整看到最后的比例大概是37%。很了不起。只有感谢，还有大家在评论区留下的意见，对于赞同的意见我一般不太回复，但对于不赞同的意见，还是会稍微回复一下。
 
-<span class="paragraph-timestamp" data-ts="50:51">50:51</span> **崔升准** 总之今天也很有意思。
+<span class="paragraph-timestamp" data-ts="50:44">50:44</span> **崔胜准** 这期可能会有不赞同的评论吧。
 
-<span class="paragraph-timestamp" data-ts="50:56">50:56</span> **卢正锡** 每次周六上午和升准聊这些，我周六周日都会有新思考，所以我一直很喜欢。
+<span class="paragraph-timestamp" data-ts="50:47">50:47</span> **卢正石** 是啊，那就来一场健康的讨论吧。
 
-<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **崔升准** 那我们下次再以健康的状态见。
+<span class="paragraph-timestamp" data-ts="50:51">50:51</span> **崔胜准** 所以总之今天也很有趣。每周六上午和胜准聊这些，
 
-<span class="paragraph-timestamp" data-ts="51:03">51:03</span> **卢正锡** 下周见。
+<span class="paragraph-timestamp" data-ts="50:56">50:56</span> **卢正石** 周六周日就有了思考的话题，我一直都很开心。
 
-<span class="paragraph-timestamp" data-ts="51:05">51:05</span> **崔升准** 谢谢大家。
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **崔胜准** 那我们下次以健康的面貌再见吧。
+
+<span class="paragraph-timestamp" data-ts="51:03">51:03</span> **卢正石** 下周见。
+
+<span class="paragraph-timestamp" data-ts="51:05">51:05</span> **崔胜准** 感谢大家。
