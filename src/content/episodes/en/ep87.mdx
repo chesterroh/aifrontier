@@ -74,6 +74,9 @@ So I'd like to look back at recent events, and — I don't have all the answers 
 
 <span class="paragraph-timestamp" data-ts="01:47">01:47</span> **Seungjoon Choi** But before that — this news just came out this morning. METR published their evaluation of Claude Opus 4.6, and the number came out to 14 hours. We've been saying on the show that maybe by around May or July next year, it'd hit the 8-hour full human workday — we talked about that, right? But then GPT-5.2 nearly hit 5 hours, and then 4.6 — because the graph is logarithmic, it doesn't look like a big jump, and it kind of felt like it was still within the expected range, but when you look at the linear scale, it's way out there.
 
+
+<ResourceLink url="https://x.com/metr_evals/status/2024923422867030027" title="METR: Claude Opus 4.6 Time Horizon" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="02:25">02:25</span> **Chester Roh** It shot up.
 
 <span class="paragraph-timestamp" data-ts="02:27">02:27</span> **Seungjoon Choi** Right. And METR is saying that their tasks seem to be getting saturated now. They're preparing new ones. So it feels like this graph has reached the point where it's losing its meaning.
@@ -90,6 +93,9 @@ And now we started this morning with the news that the benchmark is saturated. T
 
 But the models just keep coming out. And more are on the way. How should we even assess all this? At this point, I feel like I'm just sort of... numb to it.
 
+
+<ResourceLink url="https://x.com/JeffDean/status/2024525132266688757" title="Jeff Dean: Gemini 3.1 Pro announcement" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="04:28">04:28</span> **Chester Roh** These models are really the pinnacle of generality. The ability to do just about anything — and the most general capability is the most specific — that's what Boris Cherny, who built Claude Code, said when he appeared on the Y Combinator YouTube channel the other day.
 
 And that powerful general intelligence is now dominating every other domain too. One field that's been feeling that impact a lot lately seems to be science — and I imagine you'll talk about that — there's nothing it can't do. Just watching it is kind of exhausting.
@@ -97,6 +103,9 @@ And that powerful general intelligence is now dominating every other domain too.
 <span class="paragraph-timestamp" data-ts="05:01">05:01</span> **Seungjoon Choi** Of course, when you're actually using it day-to-day, there are parts that still creak and stumble. But the direction itself — things that used to be impossible are clearly becoming possible. And this was February 18th, so just a few days ago. Chris Lattner — the person who created LLVM, then created Swift, was at Apple, then went to Tesla, and now has a company called Modular. Since he originally worked on compilers, he knows compilers pretty well, right? And when Claude Code's C compiler came out, his post that day said it was the best compiler-related documentation he had ever seen — leaving the impression that the documentation was exceptionally good — and he said he was going to take a closer look. That deep dive was then written up in detail on his blog, and I translated it.
 
 ## Chris Lattner's In-depth Review of the Claude C Compiler    *05:11*
+
+
+<ResourceLink url="https://www.modular.com/blog/the-claude-c-compiler-what-it-reveals-about-the-future-of-software" title="The Claude C Compiler: What It Reveals About the Future of Software" domain="modular.com" />
 
 <span class="paragraph-timestamp" data-ts="05:56">05:56</span> **Seungjoon Choi** The opening part says this is the kind of implementation that could have textbook-level value. There was quite a bit of praise, and of course there were also some shortcomings noted. But overall, it has a genuine sense of direction, it's not slop — it's something worth examining. And because there's a commit history, going through that is apparently quite meaningful, that kind of thing. But there was a point made about what went wrong, and the most glaring issue in the Claude C compiler is the mistake itself — the biggest problem was hardcoding what the tests needed in that final section, which is a signal that it struggles to generalize beyond the test suite, and that's not so much surprising as it is informative. Current AI systems are excellent at combining known techniques and optimizing toward measurable success criteria, but they struggle with the kind of open-ended generalization that production-level systems require. And if that observation leads to a deeper question — what does this tell us about AI coding itself — that part was also discussed in an interesting way. I thought this part was particularly important.
 
@@ -121,11 +130,17 @@ And the word "taste" came up. We've been talking about taste repeatedly — and 
 
 <span class="paragraph-timestamp" data-ts="10:12">10:12</span> **Seungjoon Choi** But when it comes to needing true innovation — in science or mathematics, you can't just repeat known problems; you need real breakthroughs. And that's exactly where things are happening right now.
 
+
+<ResourceLink url="https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/" title="Gemini Deep Think: Redefining Scientific Research" domain="deepmind.google" />
+
 <span class="paragraph-timestamp" data-ts="10:23">10:23</span> **Chester Roh** It keeps coming up regularly, and we can't possibly cover all of it. But to put it extremely simply — drug discovery is about identifying the protein causing the problem, and understanding the mechanisms by which that protein expresses something. Then you find a substance that inhibits or promotes that process — what we call an antibody — and chemically interfere with that process. That's the mechanism behind most drugs.
 
 Which means, at the end of the day, it comes down to understanding protein structure and playing a game of finding another structure that fits it. So clearly, this domain too can be fully reduced to computation and solved as a search problem — and that's what's being shown now.
 
 ## OpenAI Theoretical Physics Case Study and the Centaur Era    *11:07*
+
+
+<ResourceLink url="https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier" title="Isomorphic Labs Drug Design Engine" domain="isomorphiclabs.com" />
 
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **Seungjoon Choi** Setting that aside, from my own careful reading while translating, the one I read most closely was OpenAI's work in theoretical physics — a specific paper that came out. That piece on OpenAI and science was something I emphasized toward the end of last year — I introduced the example of Kevin Weil and the scientist researching black holes. I mentioned that case once before.
 
@@ -189,6 +204,9 @@ So OpenAI has also been doing something interesting — it's a matter of who cla
 <span class="paragraph-timestamp" data-ts="22:35">22:35</span> **Seungjoon Choi** Right, even as recently as mid-last-year, if you talked about harness on YouTube you'd get comments asking "what's a harness?" That kind of comment used to appear, but now it seems like it's become common knowledge.
 
 <span class="paragraph-timestamp" data-ts="22:47">22:47</span> **Chester Roh** CEO Shin Jungyu also came on last week and said that the real substance of Claude Code isn't Claude Opus 4.6 — it seems like it's the Claude Code harness itself.
+
+
+<ResourceLink url="https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html" title="Harness Engineering — Martin Fowler" domain="martinfowler.com" />
 
 <span class="paragraph-timestamp" data-ts="22:57">22:57</span> **Seungjoon Choi** Fowler — the person famous for extreme programming and refactoring — apparently has a team organization of his own. A piece came out of that team, though the actual author wasn't Martin Fowler himself. But it references OpenAI's harness engineering and contains writing that I found myself quite agreeing with — things written there that resonated with me, and it covers fairly current topics. I had assumed Martin Fowler would be somewhat conservative, but no — it seems like he's engaging with what's being talked about today.
 
