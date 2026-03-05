@@ -377,6 +377,13 @@ const homeLabel = ui.home;
     overflow-wrap: break-word;
   }
 
+  /* JA/ZH: allow character-level wrapping (CJK default) with strict kinsoku */
+  :lang(ja) .prose-transcript,
+  :lang(zh-Hans) .prose-transcript {
+    word-break: normal;
+    line-break: strict;
+  }
+
   /* Desktop: enable hanging indent */
   @media (min-width: 768px) {
     .prose-transcript {
