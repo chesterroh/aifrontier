@@ -505,18 +505,19 @@ const { videoId, title = 'YouTube video' } = Astro.props;
       e.stopPropagation();
       const timestamp = playBtn.dataset.playTimestamp;
       if (timestamp) {
-        const parts = timestamp.split(':').map(Number);
-        let seconds = 0;
-        if (parts.length === 3) {
-          seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
-        } else if (parts.length === 2) {
-          seconds = parts[0] * 60 + parts[1];
-        }
-        seekToTime(seconds);
+        seekToTime(parseTimestamp(timestamp));
       }
       return;
     }
   });
+
+  // Parse timestamp string ("0:00", "00:00", "1:23:45") to seconds
+  function parseTimestamp(ts: string): number {
+    const parts = ts.split(':').map(Number);
+    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    if (parts.length === 2) return parts[0] * 60 + parts[1];
+    return 0;
+  }
 
   // Handle chapter link clicks - scroll to corresponding heading
   document.addEventListener('click', (e) => {
@@ -526,20 +527,15 @@ const { videoId, title = 'YouTube video' } = Astro.props;
       e.preventDefault();
       const timestamp = link.dataset.timestamp;
       if (timestamp) {
-        const parts = timestamp.split(':').map(Number);
-        let seconds = 0;
-        if (parts.length === 3) {
-          seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
-        } else if (parts.length === 2) {
-          seconds = parts[0] * 60 + parts[1];
-        }
+        const seconds = parseTimestamp(timestamp);
 
         // Find and scroll to corresponding heading in prose
+        // Compare by seconds to handle format differences ("0:00" vs "00:00")
         const headings = document.querySelectorAll('.prose h2');
         let targetHeading: HTMLElement | null = null;
         for (const h2 of headings) {
           const em = h2.querySelector('em');
-          if (em && em.textContent?.trim() === timestamp) {
+          if (em && parseTimestamp(em.textContent?.trim() ?? '') === seconds) {
             targetHeading = h2 as HTMLElement;
             targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
             break;
