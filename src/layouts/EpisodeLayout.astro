@@ -584,6 +584,7 @@ const homeLabel = ui.home;
 
   const COPY_ICON_SVG = '<svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
   const LINK_ICON_SVG = '<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+  const PLAY_ICON_SVG = '<svg class="play-icon" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   const CHECK_ICON_SVG = '<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
   // Extract clean text from a range of sibling elements
@@ -731,7 +732,18 @@ const homeLabel = ui.home;
       copyWithFeedback(text, copyBtn);
     });
 
+    const playBtn = document.createElement('button');
+    playBtn.type = 'button';
+    playBtn.className = 'copy-btn play-chapter-btn';
+    playBtn.innerHTML = PLAY_ICON_SVG;
+    const em = h2.querySelector('em');
+    const ts = em?.textContent?.trim() ?? '';
+    playBtn.setAttribute('data-play-timestamp', ts);
+    const chapterPlayTitle: Record<string, string> = { ko: '이 챕터부터 재생', ja: 'このチャプターから再生', 'zh-Hans': '从此章节播放' };
+    playBtn.title = chapterPlayTitle[lang] ?? 'Play from this chapter';
+
     actionGroup.appendChild(permalinkBtn);
+    actionGroup.appendChild(playBtn);
     actionGroup.appendChild(copyBtn);
     h2.appendChild(actionGroup);
   });
