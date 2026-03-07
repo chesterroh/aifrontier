@@ -1,0 +1,449 @@
+---
+episodeNumber: 83
+title: "以故事读懂 Transformer：轮回的 Token 巡礼"
+description: "围绕 Token 在一次生成中经历的旅程，直观拆解 Transformer“为什么会这样工作”。KV cache·Attention·RoPE·MoE 等..."
+publishedAt: 2026-01-28
+duration: "53:56"
+youtubeId: "AuF7V7bqsrQ"
+thumbnail: "https://i.ytimg.com/vi/AuF7V7bqsrQ/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - 崔升准
+chapters:
+  - time: "0:00"
+    title: "开场：2026年1月24日，继续 Transformer 基础"
+  - time: "1:11"
+    title: "“轮回的 Token 巡礼”与 10x 新常态的问题意识"
+  - time: "5:43"
+    title: "生产成本为 0 的时代：软件供给爆发与 AI slop"
+  - time: "10:09"
+    title: "CLI 循环工具与“人类是瓶颈”的变奏"
+  - time: "13:45"
+    title: "大脑与 Transformer 的类比：用机器的思维看人类"
+  - time: "16:23"
+    title: "从 Token 第一人称看生成：prefill·KV cache“记忆宫殿”"
+  - time: "18:03"
+    title: "层内旅行(1)：embedding→norm→QKV 分化·RoPE"
+  - time: "21:18"
+    title: "层内旅行(2)：attention=soft lookup (Andrej Karpathy)"
+  - time: "22:31"
+    title: "MoE 路由意象：384 experts·top-k 选择与扩展"
+  - time: "35:17"
+    title: "该学到什么程度：线性代数+toy 实现，Andrej Karpathy 课程"
+  - time: "44:41"
+    title: "Minimum Viable Knowledge：质变转换与“猛灌 Token”扩展领域"
+  - time: "51:53"
+    title: "2/6~2/7 文来洞活动介绍与 Prompt 分享，收尾"
+lang: "zh-Hans"
+alternateSlug: null
+notionUrl: "https://erucipe.notion.site/2f1d5c9e7e59803a85affaaed5589826"
+---
+
+## 开场：2026年1月24日，继续 Transformer 基础    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正锡** 今天录制这期节目的时间是 2026 年 1 月 24 日，周六早晨。
+
+<span class="paragraph-timestamp" data-ts="00:06">00:06</span> **崔升准** 1 月已经到后半段了。
+
+<span class="paragraph-timestamp" data-ts="00:09">00:09</span> **卢正锡** 是的。对，感觉 1 月才刚开始，转眼就到了后半段。接着上次的话题，今天我们会尝试讲讲 Transformer 的基础，也就是它到底为什么会这样工作，尽量不深入算法或数学，而是尽可能讲得通俗一些。
+就像升准你说的，时间窗口可能也就现在了。其实我们从 12 月底到 1 月，虽然还没有新模型正式发布，但看各种 harness 不断涌现，就会有一种“又要进入下一阶段”的感觉，不是吗？
+感觉时间在被不断压缩，马上可能又会迎来一次“无限奔跑”的时点，所以我们想在那之前，做点不趁现在就做不了的事，做一场稍微有趣一点的 session。
+今天也继续和升准一起，聊聊 Transformer 里 Token 到底是怎么冒出来的这个问题。
+
+## “轮回的 Token 巡礼”与 10x 新常态的问题意识    *01:11*
+<span class="paragraph-timestamp" data-ts="01:11">01:11</span> **崔升准** 好，所以上次我们先在“思考原理的 Prompting”上做了点铺垫，今天想更进一步看原理。我自己编了一个故事。
+叫“轮回的 Token 巡礼”，把 auto-regressive 地逐个采样 Token、从 Token 的 hidden state 被采样出来的过程当作一次生命，然后下一轮再轮回，用这样的意象来讲。
+另外这个表达方式，可能也受了 2011 年那款游戏 Journey 的影响，那种偏艺术化的气质对我影响挺大，所以会有一点那种感觉。
+
+所以如果进入我今天准备的内容，先说这个探索的背景。最近正如卢正锡在开场说的，harness 这类东西真的太多了。Claude 不说，其他地方也在不断出现各种版本的 CLI、插件、skill，结果我反而有点好奇心下降了。
+然后我就在想一件事。这个探索背后的问题是：如果 10x 成为 new normal，最后变成 1x，会怎样？这不是我有答案，只是我提出了这个问题。
+
+所以你看最近，AI squad、跑 multi-agent 的小团队越来越多，小团队之间也在相互作用，搭建可以共同成长的联合盘面，把协作和竞争当作杠杆，这类尝试很多；还有各种变体契约的出现，这些卢正锡也介绍过，大家也在讨论。
+
+我观察时间线之后会觉得，大家都在快速做产品，而且现在一个人也能马上做出超越 PoC 的东西，所以肯定会去市场上试验和改进。那在找 PMF 的过程中，软件领域很可能会出现“寒武纪大爆发”。但市场能全部吸收吗？会不会有疲劳感？我模糊地想过这个问题。
+
+比如我今年年初玩了 Animal Well，这个 2024 年出的游戏，我玩得特别开心。但一年连打一款 GOTY 都很难，年纪上来后更是这样。所以即便在掏钱前做筛选，在口碑里也只会挑一两个。游戏已经多到爆炸了，如果软件也进入寒武纪大爆发，那些东西要全部获得关注，恐怕很难。虽然其实现在已经有点这样了。
+
+所以我觉得会出现一个问题：把代码和产品产能做到 10x 的团队工程师，必须要把它转化成 10x 的收益才行。但所有人都能做到吗？现在大家都说通过 AI harness 或 AI multi-agent 把生产力拉到 10x，但那会不会只是“假 10x 生产力”？以后会不会出现这种讨论？我有过这样的想象。
+
+所以如果 10x 成为 new normal，人人都能 10x，那么回到 1x 还要多久？100x 也是一样。若仍在既有体制内，也许只是把一天压得更密、同时处理更多上下文，在忙碌里指挥 AI 工作，形成新的常态；或者跟不上，就变成大家都活在 0.1x。虽然我没有答案，但我就是带着这些想法过了年初。你说说看。
+
+<span class="paragraph-timestamp" data-ts="04:47">04:47</span> **卢正锡** 对，这确实是个很及时的议题，大家都在意识到这个问题。
+如果说去年还是少数跑在前面的人能先吃到红利的阶段，
+现在则是至少那些会进入这个牌局的人都在陆续到齐，
+而且他们的生产力也都在提升，
+所以你说的“10x 成为新常态”，本质上就是生产力涨了 10 倍以后，新的标准 1x 也被抬高了。
+现在其实已经在变成这样了。
+
+<span class="paragraph-timestamp" data-ts="05:27">05:27</span> **崔升准** 所以我觉得这点的证据就是，大家在 dogfooding 式 bootstrap，工具不断冒出来。生产力提升后自然会做出这些工具，说不定我们已经在经历 CLI 类工具的寒武纪大爆发了。
+
+<span class="paragraph-timestamp" data-ts="05:40">05:40</span> **卢正锡** 如果是这样，因为我们最熟悉的还是软件行业，所以软件行业过去不管怎样，本质上都需要投入时间和努力这类基本生产成本
+
+## 生产成本为 0 的时代：软件供给爆发与 AI slop    *05:43*
+
+<span class="paragraph-timestamp" data-ts="05:55">05:55</span> **卢正锡** 市场原本会因为“谁做得更好、谁有更强工程师池”而分化，
+但现在生产价格变成了 0。
+于是人人都能做出那种质量，所谓供给就爆炸式增长。
+那按我们小时候学的经济学原理第一课，供需逻辑必然会推动市场价格和需求变化，所以价格当然会持续下行。
+
+<span class="paragraph-timestamp" data-ts="06:25">06:25</span> **崔升准** 对。所以我把它类比 GOTY 游戏也是这个意思。虽然大家都说“先投放市场再迭代”，但其中很多软件可能就是现在常说的 AI slop。再往后，大家最终会不会反而去关注真正像艺术品的东西，我也会这么想。
+
+<span class="paragraph-timestamp" data-ts="06:45">06:45</span> **卢正锡** 对，经济学本来就是研究稀缺性的，经济运行也始终遵循一个简单原则：“稀缺则贵，过度 abundant 则贱”。因为我们身在其中，可能反而会高估这个现象。
+其实像社区面包店、小吃店、美发店、炸鸡店，还有我们在 Coupang 或 11 街常见的那些所谓 commodity 类目。
+
+但这些东西回看 30~40 年前，在制造业爆发式增长之前，每一样都曾是稀缺品，当时做这些的人几乎都能致富；而现在全球都能生产这些，这就叫 commoditization，也就是商品化。
+
+而软件现在只是进入了那个阶段。我们之所以反应强烈，是因为自己被直接影响，才会出现一种近似卢德运动式的反弹；但如果换个层级、换个视角更广地看，这只是无数产业发生过的事情也发生到我们身上而已。
+简单总结就是，正如你说的，10x 成为新的 1x，然后 100x 再成为新的 1x，这个时点正在非常非常快地到来。
+
+现在软件也像我们看到的 Chrome Claude 插件那样，大家都在走向个人化软件。那 B2B SaaS 或大型软件是否还必要？是不是只要浏览器和 OS 就够了？这种讨论其实已经出现了吧？
+但因此“产品策划”反而更重要了。没有策划，只是一味猛灌 Token，就会像你说的产出 AI slop。
+真正好的软件，仍然需要另一个层级的策划努力、情感努力，所以竞争只是转移到了更 abstract 的上层，本质并没变。
+反正以前做软件的人也很多，slop 软件也一直很多。
+
+只是现在量更大了，而且以前能维持自己生态、不太受 slop 软件影响的那批人，所谓名校出身、有好工作的精英阶层，也被直接冲击，所以会被过度解读；其实这是自然过程。
+只是时间框架被极度压缩，令人窒息、吃力而已。退一步从第三者视角看，就是“该发生的事在发生，对消费者来说不是该鼓掌吗？”
+
+<span class="paragraph-timestamp" data-ts="09:52">09:52</span> **崔升准** 从消费者角度看，选择面确实变宽了。即便东西太多，真正进入我认知的可能也就一两个，所以大多数还是会被忽略，但每个人看到的始终只在自己可处理范围内。
+总之会想到这些。然后即便都到 10x，最后常见结论还是“人类是瓶颈”，这点好像也越来越有共识。
+
+## CLI 循环工具与“人类是瓶颈”的变奏    *10:09*
+
+<span class="paragraph-timestamp" data-ts="10:22">10:22</span> **卢正锡** 对，可能会这样。但你看也有很多超越这个结论的例子。比如用裸的 Claude Code 或 Codex 时，人类瓶颈会非常明显。
+因为每跨过一个阶段都要人来做决策、持续给方向。但把那套框架直接内建进去的工具，比如 Ralph loop 或 Oh-My-Opencode，我现在就真的很常用 Oh-My-Opencode。
+它把“恰到好处的压榨式框架”做得很好，我最近甚至迷上了睡前挑任务，让 Oh-My-Opencode 夜里跑一整晚。
+
+<span class="paragraph-timestamp" data-ts="11:05">11:05</span> **崔升准** 说到底就是一种 while loop，然后再做点 ensemble
+
+<span class="paragraph-timestamp" data-ts="11:12">11:12</span> **卢正锡** 对。但只要猛灌 Token，质量总会收敛上去，所以结果质量其实很好。虽然“人类是瓶颈”，但连这个人成为瓶颈的部分也在被不断 encapsulation 进底层 layer，所以我也会想，这是不是也在被跨过去。
+对，我最近每天大概 6 小时都在用 Codex、Oh-My-Opencode、Antigravity 串着做所有工作。
+过去是自己直接抓邮件和 PPT 来做，现在是把它们放成一层去做，感觉像是我身边一直有 7、8 个只为我待命的员工在一起干活。
+
+<span class="paragraph-timestamp" data-ts="12:00">12:00</span> **崔升准** 但不管怎样你还是得做 context 管理吧？要管理嘛。不是吗？这个也跨过去了？
+
+<span class="paragraph-timestamp" data-ts="12:07">12:07</span> **卢正锡** 这是个非常好的问题。我花在 context 上的注意力，比以前少很多了。现在更聚焦目标点，比如年目标、日目标，早上会写 todo list。然后我会更关注这个 todo 句子的“能量等级”：它是否 measurable、是否能在今天完成、是否能通过我周围资源组合出来。也就是把 context 在脑中压缩成目标，那种 context。也就是说，我设定的 todo list 里那一两行句子的能量等级是什么，会直接让 agent 干活质量发生巨大差异。所以你说得对，也不全对。对的部分是：投在 context 上的努力仍显著增加；但这件事也会通过工具不断 self-reinforcement，所以它本身也在变好。
+
+如果有做不好的地方，就是把模糊问题拿去做 eval prompting。这个方法也是你教我的。把它改写成能量等级更高的 prompt，作为 task 出发点，就又能跑起来。所以这件事会随视角不同而变化，没法用单一层次、单一观点概括，事情更像图结构一样在推进，我也不太容易一句话答清楚。说着说着就展开了。
+
+## 大脑与 Transformer 的类比：用机器的思维看人类    *13:45*
+
+<span class="paragraph-timestamp" data-ts="13:45">13:45</span> **崔升准** 对，不过这其实也能接回我们相关的话题。所以我还是会去想“人类”本身。虽然有点跳脱，但我在想，能不能换个发想，用“机器如何思考”的类比来反看人类。
+所以我的奇怪假设是：大脑和机器里的 Transformer 虽不是同构，但如果它们在做类似工作，也许能让我们推测一些东西。
+第一个前提是，两者都不是白板。
+Transformer 也不是空的，参数都在那儿。虽说一开始可能是随机，但后来会重布线，会形成电路、会调权重，本质上也是在重布线已有神经元。所以它不是一开始就“空”的存在。
+
+人类也许最初是空的，但出生后到一定阶段其实已经不是空状态了。过了幼年期以后，据说神经元本体不会大量新增，我也不完全确定；但因为脑可塑性，重布线仍会发生，比如髓鞘加强、某些通路更顺畅。我的意象大概在这里。
+那么当我自己也逐渐上年纪时，“学习某件事是否等于重新布线自己的大脑”这个问题就来了。因为学习一定对应某种物理变化，必须有东西改变，学习才成立。
+我也一直在想，怎样让这种事更好地发生。
+
+**卢正锡**
+我一直认为人脑和 Transformer 是同一原理的机器。对，有个简单有趣的小实验。
+
+升准你知道 speech jammer 吗？就是有人话太多时让他没法说话的有趣工具。它做的事是：你戴着耳机听自己说话时，给你回放一个微妙延迟几百毫秒的版本。
+人就会卡壳。它证明了什么？证明人脑其实也是 autoregressive 机器。
+我们说话看似是“直接说”，但实际上说的同时，output 会立即作为 input 回流进大脑并融合。
+所以一旦错位，embedding 会打结，说着说着思路就停了，继续不下去，很快会进入“怎么回事”的状态。
+也就是说，我们的大脑也是 autoregressive 机器。
+
+<span class="paragraph-timestamp" data-ts="16:18">16:18</span> **崔升准** 原来如此。那和今天的主题就完全对上了。这个链接我们稍后再介绍，我先把“轮回的 Token 巡礼”做成了几页 slide。我其实已经发过一次到自己的时间线了。一起看看吧。
+
+## 从 Token 第一人称看生成：prefill·KV cache“记忆宫殿”    *16:23*
+
+<span class="paragraph-timestamp" data-ts="16:34">16:34</span> **卢正锡** 很有意思。这也是你用 Prompting 让 AI 生成了图片和文本之类的内容，对吧。
+
+<span class="paragraph-timestamp" data-ts="16:42">16:42</span> **崔升准** 对，这份 slide 版本是我们录制前 1 分钟才出来的。能做到是因为我信 Claude。跑个 10 分钟就会出来
+
+<span class="paragraph-timestamp" data-ts="16:55">16:55</span> **卢正锡** 你已经知道它能出来了。对
+
+**崔升准**
+
+先说，我把 Token 设成了主角。然后我这次在想，输入 Prompt 后会先有 prefill。也就是说先并行跑一遍，KV cache 已经堆好。我们平时用的时候系统 Prompt 也早就 prefill 了，再加上用户 Prompt，就像先搭好某种结构体后再生成。所以我想从“下一个 Token 被生成时”的第一人称视角来看。
+于是我把这里堆起来的结构想象成 key 和 value，像钥匙形状的 key/value 建筑群。并且我设想“今天会在宫殿边缘再立起一座新塔，那就是我”。
+比如在这个比喻里有 32 层 layer，从起点穿过 32 层后就会发生下一件事，也就是轮回发生。我们往下看。
+
+## 层内旅行(1)：embedding→norm→QKV 分化·RoPE    *18:03*
+
+<span class="paragraph-timestamp" data-ts="18:03">18:03</span> **卢正锡** 所以最开始 Token 会 embedding 到 hidden space，这是对应的图像。也就是词表里某个词先映射成数字，再 embedding 到尚无上下文的 hidden space，那个流动过程可以看成 residual stream。
+所以这个 hidden space x 会不断给自己叠加。为了叠加得更好，会先做那个，叫什么来着？RMS？先把自己 normalize 一下。
+所以现在很多 Transformer 在 pre-norm / post-norm 上，如果说以前 vanilla 是 post-norm，现在更常见的是先缩一下再走。
+所以可以把它想成先获得“标准呼吸”，再稳住气息准备分化。
+
+然后分化发生。先分成 QKV，再拆成 multi-head。也就是多个头、多个视角、多个 key、多个 value，然后再把结果叠回自己。
+不过现在好像也有 GQA，为了更高效用 KV cache，会有共享机制。我这个之前也不太知道。
+
+<span class="paragraph-timestamp" data-ts="19:29">19:29</span> **卢正锡** Group Query Attention
+
+所以通过 attention，不是把自己不断切碎，而是先复制，再制造不同视角，从多视角看完再合并。于是就诗意地写成：Q 是我抛出的提问，K 是我留下的标记，V 是我留下的水。
+然后是 RoPE，也就是 position encoding。和以前不同，现在是那种旋转缠绕的感觉，用它来标定 Token 在序列中的位置，我也做了图像化表达。
+接着每次起步时，hidden state 会留下 KV 再往下一层走。所以看起来就是边走边持续堆结构。
+
+所以现在这个主角 hidden state 或 x 一路往前，每过一层都会通过 multi-head 看很多东西，用得到的内容形成 K 和 V，再“喝下去”改变自己，同时一路留下标记。
+
+而通常说的 attention score，就是给“该关注序列里的哪里”打分。基于这个分数，对来自自身及其他位置的 V（里面也可能包含知识）做加权和，我把这个画成一种“喝下某种改变自身之物”的感觉。
+
+## 层内旅行(2)：attention=soft lookup (Andrej Karpathy)    *21:18*
+
+<span class="paragraph-timestamp" data-ts="21:18">21:18</span> **卢正锡** 但这点 Andrej Karpathy 以及其他人都会说成 soft lookup。通常查询时是拿 key 发 query，拿到 value。
+
+而 soft lookup 的意思是，不是精准拿到一个，而是拿几个，按分数比如 0.1、0.4 这样做加权和。Andrej Karpathy 常这么讲。attention 本质也是 soft lookup，后面的 dense layer 叠起来的 FFN(feed-forward network)也是
+soft lookup，MoE 也是反复的 soft lookup。所以不是“选一个”，而是“按比例混合”。
+
+我也把“用 V 的加权和做出混合物，再叠加回 residual stream 自身”的过程做成了图像表达。它不是替换，而是往 x 上加 delta，感觉就是不断给自己补充意义和上下文。
+
+## MoE 路由意象：384 experts·top-k 选择与扩展    *22:31*
+
+<span class="paragraph-timestamp" data-ts="22:31">22:31</span> **卢正锡** 然后这个 384，DeepSeek 是 384，Kimi K2 也是 384。sparse auto Mixture-of-Experts 里，但 DeepSeek 好像又是 256。
+
+所以我把最近这个趋势比喻成：到了某一层有 384 扇门，其中 gate 或 router 只挑出和当前主角 x 最相关的 8 个，做 top-k。然后进去之后，图里这个是 router 的表达。
+x 会被复制，同时进 8 个方向去取知识，再汇回自身。还是一样的加权和，和刚才 attention 很像。
+所以它其实不只是“读取”，也在变形自身。不过我写下来后感觉“像读取”这个表述更能体现信息汇聚的感觉，所以我换了图像。
+然后也表达了把 residual 再次叠接起来。这里 router 的工作就很关键。
+
+而且这种方式能把参数规模扩很大。通常如果要非常大的参数量，全塞一个 FFN，FLOPs 计算会非常重；把它拆成多个合适大小的 expert，就能以更优方式扩参数，这就是现在在做的 scaling。它还是并行发生的。然后这种过程会在 32 层，比如刚才说某层有 384 个 expert，但并不是整个 Transformer 总共 384 个。是一整个 Transformer block 里就有 384 个 MoE。于是如果有 32 层，每层 sparse 选 8 个，那整网是“384 乘 32 层”，但实际激活只有每层 8 个，即 8 乘 32，少很多。而且这部分不会留下记录，没有 KV cache。
+
+也就是说做 MoE 运算时，像建筑一样持续长塔的，是 32 层 K 和 V 的坐标；会留下痕迹的是 attention 侧，不是 MoE 侧。所以 Transformer 最终就是在“沟通、思考、再沟通、再思考”中把层级拓宽并加深。
+
+有趣的是，听说至少要两层才会出现 induction circuit 这类结构。这是 Transformer 早期研究：需要两层，induction head 才能把某信息复制到别处并处理。
+因为要先写下记录，再利用记录，一层不够，必须两层以上电路才会形成。
+从某种角度也很自然。
+得先写下东西，才能用它。
+
+<span class="paragraph-timestamp" data-ts="25:56">25:56</span> **卢正锡** 我们大概两年前常讨论过一篇叫 Physics of LLM 的论文，它通过调 Transformer block 的 width、再降 depth、再改 embedding space 的窄宽，在 small model 上做实验，最后提出一种 conjecture。
+也就是一个推测：
+“它大概在承担这些角色。”
+低层负责抓低层 embedding space，高层越往上越处理抽象信息。
+但这不是谁事先规定好的，而是训练过程中 emerge 出来的。
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> **崔升准** 对，它会自己占位。虽然现在主角都画成同一个剪影，但严格说其实它已经是不同形态了。
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **卢正锡** 就是不断变成“在原本自己身上黏了越来越多其他信息”的状态。
+
+<span class="paragraph-timestamp" data-ts="26:49">26:49</span> **崔升准** 对，经验值在涨，成长了，含有多种上下文。然后这个循环不断重复，最后准备交接给下一个。
+但在那之前会有一道边界，不能直接交接，得再变换一次。变成数字或字符，那就是 sampling。
+
+所以比如先假设 vocab 大概 3.2 万，那么就从里面按分布取高概率候选，再交给下一个 Token。当前这个会消失，但后继接过来继续 auto-regressive，也就是自回归。
+
+而这个自回归体会看到前任留下的全部 KV。一次 auto sampling 的过程就是从 1 层走到 32 层，再在这里交接。这样的痕迹会在每次生成一个 Token 时都叠成塔。
+
+也就是 KV。然后再用 multi-attention 去看这些，逐层思考“该怎么做”。所以我把标题叫“巡礼”，是想说它在轮回中走着一段很宏大的旅程。
+同时会立起那些像建筑一样的记录。那我们做 prompting，本质不就是在这里一次性立起一座巨大的建筑吗？那这座建筑不也该很美吗？
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **卢正锡** 对，没错。到这里是最后一页 slide 吗？
+
+<span class="paragraph-timestamp" data-ts="28:44">28:44</span> **崔升准** 不不，不是。现在这里才是最后。
+
+<span class="paragraph-timestamp" data-ts="28:48">28:48</span> **卢正锡** 其实你画成一个人，实际上讲的是一个 Token。对吧。
+
+<span class="paragraph-timestamp" data-ts="28:53">28:53</span> **崔升准** 对，从 Token 开始，进入 hidden state 的状态。
+
+<span class="paragraph-timestamp" data-ts="28:55">28:55</span> **卢正锡** 对。你把这个下一步要作为 next input token 处理的“单个 Token”拟人化成一个人，然后它经历这趟旅行，产出 output，再作为下一个 token 回灌。你讲的就是这一个过程。对
+
+<span class="paragraph-timestamp" data-ts="29:13">29:13</span> **崔升准** 这是一轮，也就是一个 Token 生成的旅程。所以 KV cache 就像在生长的记忆宫殿，而参数是固定的。
+是不动的地形，KV cache 是其上生长的记忆宫殿，Token 是在两者之间往返的朝圣者。
+于是这件事不断重复，这条连锁轨迹就形成了我们称之为“意义”的风景。我是这样编这个故事的。不知道有没有帮助。
+
+<span class="paragraph-timestamp" data-ts="29:43">29:43</span> **卢正锡** 对，我听的时候也在想同一个点。
+
+因为对那些哪怕只用 PyTorch 跟过一次这种架构和所谓 tensor 旅程的人来说，这种 storytelling 会非常直观，一下就懂你在说什么；但对没有这块 knowledge 的人，听起来可能会变成“好像听懂了但又没懂”。
+对
+
+<span class="paragraph-timestamp" data-ts="30:16">30:16</span> **崔升准** 对，它确实是在有背景知识时更有趣。也就是说，比起“直接传授知识、帮助学习”，我更希望它是帮助大家去“咀嚼和体会”。
+
+<span class="paragraph-timestamp" data-ts="30:24">30:24</span> **卢正锡** 没错。但其实我们最早学 neural net，回到 2015 年、10 年前，先是 MNIST 用纯 FFN 来做，也就是当时我们说的 perceptron 形式，先做 FCN fully connected network；然后再加 convolution；再从 convolution 学到各种结构，从 VGG 到 ResNet；再往后到 RNN，先学一些非常简单的 RNN；再高级一点才到 LSTM、GRU。但到那时基本只讲概念，不自己实现了，通常直接接库。再往上，我觉得高级阶段就是自己实现 attention。那个坎也很难跨。
+
+在 RNN 里做 attention 很难，但理解 attention 后，对 transformer 为什么这么跑就会有直觉。
+
+所以 transformer 这块，升准你应该也投入了非常多时间。最开始要先建 vocabulary，理解 tokenizer；然后进入 embedding；以前还会加 position embedding。
+再之后进 attention block，而在 attention block 里其实也会发生很多“看不懂”的事。很多地方从哲学上不理解，只是为了理解架构先接受再往下走。
+我当时最不理解的是，multi-head attention 里比如 embedding 是 256，它会直接从前往后切成若干块，比如 8 块
+
+<span class="paragraph-timestamp" data-ts="32:11">32:11</span> **崔升准** 切得很细。
+
+<span class="paragraph-timestamp" data-ts="32:15">32:15</span> **卢正锡** 对，切细之后，明明它本来是一个整体 embedding，却拆开做 attention，再在后面拼回去。这件事哲学意义到底是什么，我现在也没完全懂。只是大概理解成“把 embedding 分到多个空间，探索更多可能性”。
+
+<span class="paragraph-timestamp" data-ts="32:33">32:33</span> **崔升准** 对，我也是这么理解。就是用多视角处理。
+
+<span class="paragraph-timestamp" data-ts="32:37">32:37</span> **卢正锡** 没错。所以有了 attention block，再 concat 成一体往上走，过一层 layer norm，
+然后进 FFN，再出现一次你刚才说的 soft lookup，最后又弹回相同 dimension
+
+<span class="paragraph-timestamp" data-ts="32:56">32:56</span> **崔升准** 所以这个主角始终是同一个 dimension。就是同一个角色一路走。
+
+**卢正锡**
+对，然后再进下一个 transformer block，就这样按层反复。
+对，然后中间有 residual，也就是给自己加回去的那些连接。它的出现本来是为了在很深的 block 里让 gradient 不至于消失，能一直传到前面，
+但现在回头看，它也有很强的哲学意味。
+升准。
+
+<span class="paragraph-timestamp" data-ts="33:27">33:27</span> **崔升准** 对，residual connection 不只是防梯度衰减，它还让起始意义保有一种“重力”，让相关东西继续附着上去，大概是那种感觉。
+
+<span class="paragraph-timestamp" data-ts="33:50">33:50</span> **卢正锡** 没错。然后最近带来这块创新的就是那个吧，最近发布的 DeepSeek MHC
+
+<span class="paragraph-timestamp" data-ts="33:56">33:56</span> **崔升准** MHC 就是多建几条高速路，然后避免爆掉，用那个 SyncOn 之类的算法
+
+<span class="paragraph-timestamp" data-ts="34:01">34:01</span> **卢正锡** 应该是 Manifold Constrained Hyper Connection
+
+<span class="paragraph-timestamp" data-ts="34:05">34:05</span> **崔升准** 这个就得请金成贤来讲得更细了。
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **卢正锡** 对。那样就把这段又优化了一次。然后 DeepSeek 最近还有篇论文是 N-gram
+
+<span class="paragraph-timestamp" data-ts="34:15">34:15</span> **崔升准** N-gram 那个就是
+
+<span class="paragraph-timestamp" data-ts="34:18">34:18</span> **卢正锡** 它还是那个。attention block
+
+<span class="paragraph-timestamp" data-ts="34:20">34:20</span> **崔升准** 对吧？就是把那个效率化。
+
+<span class="paragraph-timestamp" data-ts="34:21">34:21</span> **卢正锡** 对，现在太 word-by-word 了，所以如果按语义分组再喂进去，会不会更有意义
+
+<span class="paragraph-timestamp" data-ts="34:30">34:30</span> **崔升准** 这样反而能把推理算力用在更该用的地方
+
+<span class="paragraph-timestamp" data-ts="34:36">34:36</span> **卢正锡** 没错。所以我们也快要请金成贤来上课，讲讲 DeepSeek 去年和今年这两个 MHC 与 N-gram。再加上一个有趣的点，升准，我上次提过的 Nemotron，它是 Mamba block 和 transformer block 混合的。
+而且 Mamba block 本身就带 sequence，所以里面完全没有额外加 positional embedding 的阶段。
+就是先过几次 Mamba block，假设序列信息已经形成，再交给 attention block 和 MoE。
+但也能跑通。
+
+<span class="paragraph-timestamp" data-ts="35:13">35:13</span> **崔升准** 总之挺有意思，分支很多，很好玩。
+
+## 该学到什么程度：线性代数+toy 实现，Andrej Karpathy 课程    *35:17*
+
+**卢正锡**
+所以我前面讲这么长，其实是想问你这个问题。
+为了以后持续理解这个世界，你觉得要理解到多深？
+比如我会觉得，至少 transformer 的“journey of tensor”，也就是一个 Token 经历的旅程，最好完整理解过一次，才有能力解读现在发生的新闻。
+否则就只会跟风跑来跑去。“这个行、那个行”地追，思考会变得漂浮。
+如果真有意愿把这个领域理解透，而且这件事对人生确实重要，我会觉得这至少要做一次。
+那我直接问你：要理解你刚才讲的这些，最低要到什么 level？请你严格一点给个评论，会怎么说？
+
+<span class="paragraph-timestamp" data-ts="36:30">36:30</span> **崔升准** 我其实也不是很懂，但你刚才这个问题，确实就是我想说的重点。也就是为什么、学到哪里。这个本来是我后半段要讲的
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **卢正锡** 那就拉过来现在一起说吧。
+
+**崔升准**
+
+我觉得存在一种“虽然不懂，但必须能朝正确方向处理”的问题。比如今天我们在讲 transformer，这可能很难；但如果你要学的新东西、要解决的问题，本来就来自你不熟悉的领域，而学习本来就是学你不会的东西，那么关键是：如何借助 AI，去处理“虽然不懂，但要朝正确方向处理”的问题。这个是我最近最关心的。
+而“理解原理的 Prompting”这个标题，也有个假设：如果基于原理去写 Prompt，是否会更有帮助。再进一步，是否存在某种“正交的 MVK”，MVK 是我们去年开始明确认识的词。
+
+是否存在 Minimum Viable Knowledge，而且是正交的。也就是说，若有最小的一组正交 knowledge，可以通过线性组合或像合成函数那样去解决其他问题，那我是不是应该把它更新进自己的脑子。
+
+所以回答你的问题：怎么找到这个？要去 dogfooding。完全陌生的东西很难一步到位，应该先在“半懂不懂”的对象上实验，看能否形成这种 MVK。
+就我个人而言，把它写成故事后，对 MoE 的图景会很清晰，对 KV cache 的图景也会很清晰
+
+<span class="paragraph-timestamp" data-ts="38:44">38:44</span> **卢正锡** 没错。对
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **崔升准** 那到底是什么 knowledge 让它达成的？是讲故事能力吗？
+所以我也没答案，就自己做 CoT，把自己往上拉。
+最基础的能力是什么？我大概还是有一点数学基础，然后把它改写成故事形式对我有帮助。
+但这未必是人人通用的轴，也未必是共同的 basis。
+总之路径可以很多，但需要一个过程去觉察这些东西，不管是在什么上下文里。
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> **卢正锡** 我想就你这两点再聊一下。第一点，升准，
+为了理解 Transformer 的这个意象，关于它的架构、算法、内部实际发生的事，至少要懂到什么 level，才足以进行这种哲学思考，或者对世界做解释？
+即便 DeepSeek 发了新论文，也不是只会说“啊，新论文，鼓掌！”，而是能解释它有什么意义、为什么需要它。我的问题很直接，就是“学习要学到哪里为止”，
+结果你现在一直在...
+
+<span class="paragraph-timestamp" data-ts="40:06">40:06</span> **崔升准** 绕着说，但答案我其实已经写在这里了。
+
+<span class="paragraph-timestamp" data-ts="40:07">40:07</span> **卢正锡** 对，要到什么程度
+
+
+<ResourceLink url="https://math.mit.edu/linearalgebra" title="math.mit.edu" domain="math.mit.edu" />
+
+<span class="paragraph-timestamp" data-ts="40:09">40:09</span> **崔升准** 至少要懂本科一、二年级水平的线性代数。
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **卢正锡** OK。然后呢？
+
+<span class="paragraph-timestamp" data-ts="40:21">40:21</span> **崔升准** 然后至少要自己做过一次哪怕 toy 的实现。关于 transformer，哪怕不做到训练，至少做过 inference toy，实现一次肯定有帮助。当然如果连训练都做过会更好。
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **卢正锡** 至少要对“一个 Token 的旅程”有过一次完整体感。其实你刚说的这套课程，正是 Andrej Karpathy 在 Eureka Labs 做的那套。对吧。
+
+<span class="paragraph-timestamp" data-ts="40:48">40:48</span> **崔升准** 但我觉得只做到“实现”还不一定会有“可品味”的那一步。你可能能实现、能用，但不一定会主动去察觉意义。这种情况很多。但也不是说那一步一定必须。
+
+**卢正锡**
+所以当有人问我，我会给一个里程碑：当你达到这个点，knowledge 就够用了，从那里开始不必再深挖论文，可以先盖上，回到业务世界。
+这个分界点是：当我们把 tensor 块喂进 transformer block 时，那三个维度，embedding、sequence length、batch 数量，三者打包进去；
+这三者进去后如何被拆分、如何重新聚合，只要你能把这个维度层面的“拆开再相遇”算清楚，我就会说你已经理解到位了。
+
+<span class="paragraph-timestamp" data-ts="41:48">41:48</span> **崔升准** 对。但我这次又重新买书看了，韩文版 Gilbert Strang 线性代数第 6 版 12 月刚出，我也买来看。3Blue1Brown 讲 transformer 时说过，矩阵和向量的乘法，不应只从内积视角看，更要从线性组合视角看。那是两年前。
+
+<span class="paragraph-timestamp" data-ts="42:13">42:13</span> **卢正锡** 那内容做得太好了。真的。
+
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> **崔升准** 我当时只是“哦原来如此”地懂了一下，后来才知道，这其实是 Strang 在 2000 年代初就把线性代数课程范式彻底带成主流的东西。我之前不知道，因为我是 90 年代学的。所以我看到他把线代基础打得这么“艺术化”时很震惊，现在在重看。
+
+<span class="paragraph-timestamp" data-ts="42:44">42:44</span> **卢正锡** 不过看这张图，真的就是 transform 本身了。
+
+<span class="paragraph-timestamp" data-ts="42:52">42:52</span> **崔升准** 对。这个是把子空间做正交表达，总之他讲得非常卓越。我也在重看基础，觉得很有趣，也发现很多自己不懂的地方。然后再回到刚才 dense layer FFN，那些列其实是有意义的；问题在于，不管什么 prompt，最终都是 embedding 乘 weight，对吧，大 weight。那如果把 embedding 状态看成某种权重或提问，就会有一个意象：列向量里存的知识会被组合出来。等我意识到这一点后，才明白原来这些都能看成 soft lookup。
+
+这样看时，我们今天一直说的主角 hidden state，它里面的值可看作某种 score 或权重。若某些位置是 0，就拉不出对应列里的信息，无法组合。那它最初从哪来？从 Token 来。也就是说 Prompt 里最终得包含能够拉取这些信息的
+
+<span class="paragraph-timestamp" data-ts="44:03">44:03</span> **卢正锡** 全部 key。
+
+<span class="paragraph-timestamp" data-ts="44:09">44:09</span> **崔升准** 必须有才行。写 Prompt 时要让组合得以发生。而且每个 block 都在重复这种 soft lookup 意象。所以这话虽然跳跃很大，但我年初就是这种感觉。
+
+<span class="paragraph-timestamp" data-ts="44:19">44:19</span> **卢正锡** 我们刚才想说的第一点是“Transformer 要学到哪里为止”，这个大概聊出来了：
+大致答案是具备线性代数知识，
+再加上对 transformer block 跑动逻辑有一轮理解，对其中 vector space 有一点把握。
+
+## Minimum Viable Knowledge：质变转换与“猛灌 Token”扩展领域    *44:41*
+
+<span class="paragraph-timestamp" data-ts="44:41">44:41</span> **卢正锡** 第二点其实是这个 minimum viable knowledge。我对这件事有一套自己的土办法哲学。
+
+
+<ResourceLink url="https://transformer-circuits.pub/2025/attribution-graphs/biology.html" title="transformer-circuits.pub" domain="transformer-circuits.pub" />
+
+<span class="paragraph-timestamp" data-ts="44:50">44:50</span> **崔升准** 是什么？
+
+**卢正锡**
+
+这个，我觉得答案其实是“量变到质变”。比如我们设想有位财阀会长。对我们而言他几乎拥有无限资源。那他如果对 biology 或新药开发一无所知，但又想做新药新业务，他会怎么做？
+
+很简单，靠钱把他认为的专家一股脑全 hire 来，再 hire McKinsey、hire Bain，先砸钱。然后让他们做 report generation。再从生成出来的 report 里找 common keyword，发现“哦，这个能量等级高”，再只抽 common keyword，让秘书长压成更精炼的报告。
+
+接着读最后留下的 5 份左右报告，形成意象，抓到能量等级最高的 right question，然后从那里出发。这和你刚才说的完全相关。手里握住这些最有能量、可被提取的 key/query 后，再去面向世界、面向那些“几乎什么都懂”的专家层持续提问，结合反馈，就能以极快速度补齐陌生领域里的空白，建立什么是本质、什么是 sub、什么是 main。然后就能判断这事该不该做、要做该投多少钱。那就是这个财阀会长获取 minimum viable knowledge 的 methodology。好，那反过来回到我们的现实，现在其实是人人都能这样做的时代。
+
+比如我做化妆品，想研究某个新物质，但我化学知识不深，对这个物质没有知识。
+
+那我就把 Oh-My-Opencode，再加上最近那些 Claude Code skill 打包，什么 scientist skill、marketing skill 等等，很多整理得很好的东西拿来。然后按我的目标先跑一轮“该选哪些 skill”，一次选个 50 个。升准，然后把这些 skill 挂上去后，直接丢给 Oh-My-Opencode，我就去睡觉。
+
+这样一来，刚才那些会长们的方法论，我其实就等于在跑一批可能比 McKinsey 顾问还聪明的 frontier models。早上会掉出来一堆 report。然后我只看这些，再提炼“最高能量的是这个、分组逻辑是这样”，MVK 就长出来了。
+但如果没有这一步，直接让模型去 Gemini 做 Deep Research 或其他，怎么跑都出不来东西。所以你上次说的那件事，我在这儿又像突然亮灯了一样。
+没错。就是这个。我这两周一直在做你告诉我的实验：“把该领域术语、复杂信息大量压进去，模型 capability 会显著增加。”结果确实很好。
+
+同时我也想起之前在 Google 做搜索相关工作时，经历过很多“量变到质变”：一堆垃圾里，只要量足够大，再多想一步怎么筛，总能提取出质量。后来反复做这种事，就会觉得 quality 一直都是 quantity 的从属变量。所以这个 minimum viable knowledge 会这么生成。
+
+而且现在只要有意愿，我们就能不断扩展领域。所以当下重要的是，我们那个“逃亡者联盟”群里也是，你和我最近都在说：新年一到，世界又“咔哒”了一下。你也说“大家都疯了”，因为所有人都在采用这套方法论。
+
+<span class="paragraph-timestamp" data-ts="49:30">49:30</span> **崔升准** 这就是我前面说的那个。
+
+<span class="paragraph-timestamp" data-ts="49:36">49:36</span> **卢正锡** 对，大家都在猛灌 Token。我觉得这就是答案。猛灌 Token 是一件意义巨大的事。
+
+<span class="paragraph-timestamp" data-ts="49:45">49:45</span> **崔升准** 对，做得足够多，最终你的大脑里就会长出对应回路。
+
+<span class="paragraph-timestamp" data-ts="49:53">49:53</span> **卢正锡** 所以 harness 本身已经有意义；把 harness 用好也有意义。再看那些为了把 harness 用好而去构建“模型该如何组合”的意象的人
+
+<span class="paragraph-timestamp" data-ts="50:09">50:09</span> **崔升准** 肯定是做过很多次了。那东西最终要进到脑子里，方法论要成为一种体化经验。总之你刚刚这点很重要，我非常认同。要大量练习这件事再自然不过。刚才我提了游戏嘛。
+这话题可能会跑偏，但简单说，我玩那个游戏是因为它太像艺术品，很有趣。可有个区域特别难，我大概挑战了 150 到 200 次才过。
+想过那关就得形成肌肉记忆，休息一周后会做不到，虽然能恢复。
+你得先相信“这能做到”，也知道已经有人做到过，然后不断重复，把它彻底变成自己的能力，游戏里就是有这种必须通过的区间。
+所以我也有类似想法。这个至少要做 100 次。
+
+<span class="paragraph-timestamp" data-ts="51:03">51:03</span> **卢正锡** 对，这是 RLVR 的区间。
+
+<span class="paragraph-timestamp" data-ts="51:08">51:08</span> **崔升准** 对，很重要。还有我今天最想传达的核心意象，是我之前讲过很多次的 prompting 态度：“把第一千次生成，也当成第一次生成那样去惊叹”。
+现在确实是 abundant、丰饶、人人可做，但生成一个 Token 这件事，本身也可能是奇迹。里面可能有很多意义。
+而且刚才卢正锡说的那些，如果主角换成 Token，也有几条是通的：看多个、想多个、建立多个、选择多个。于是我就想把这段讲出来。
+
+## 2/6\~2/7 文来洞活动介绍与 Prompt 分享，收尾    *51:53*
+
+
+<span class="paragraph-timestamp" data-ts="51:53">51:53</span> **崔升准** 时间也差不多了，该收尾了。2 月 6 日和 2 月 7 日，我会分享最近打磨的 prompts。不过不只是我一个人讲，也会有一些想聊 AI 的人一起。主题是“未来是起伏不平的”，它是不均匀的未来，也可能是“未被选择的未来”。所以这次会有媒体艺术家一起讨论。顺便也算打个广告。
+地点在文来洞，时间是 2026 年 2 月 6、7 日，目前报名表还没做出来。先介绍到这里。
+
+另外，我也会在那边介绍最近做的一些 prompts。感兴趣的朋友可以看看，我把最近的思考压缩在里面了。简单说，它们可以把一两句话扩成大概四页可读内容。
+
+所以我个人可能有点偏执，我比“摘要”更偏好“读长文”。不是把东西压缩，而是把压缩过的内容再膨胀展开。用这种方式写 prompt，不是把整份文档塞进去，而是只塞一段，就会生成很多有意思的内容，大家可以看看。
+我会把资料分享出来，欢迎查看。今天就准备到这里，先这样收尾。
+
+<span class="paragraph-timestamp" data-ts="53:25">53:25</span> **卢正锡** 我在想，我们找个时间一起看 3Blue1Brown 的 Transformer 视频，边看边跟一遍，可能会是和这个系列非常衔接的一次尝试。
+
+<span class="paragraph-timestamp" data-ts="53:39">53:39</span> **崔升准** 因为现在再看也依然成立。
+
+<span class="paragraph-timestamp" data-ts="53:45">53:45</span> **卢正锡** 总之延续上周，这周也以升准的 Token 故事第二 session 来收尾。今天也很愉快。谢谢你，升准。
