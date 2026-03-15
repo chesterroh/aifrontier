@@ -93,6 +93,9 @@ alternateSlug: null
 
 <ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase" domain="developers.openai.com" />
 
+
+![Example of GPT-5.4 Thinking presenting a plan and adding detail](/episodes/ep89/ep89_0210_gpt54_thinking_plan.jpg)
+
 <span class="paragraph-timestamp" data-ts="01:57">01:57</span> **Seungjoon Choi** So GPT-5.4 came out.I haven't had a chance to examine it in detail,but I pulled together a few links,and these two videos were interesting,and this one was about the Computer Use agent side,so these days, since OpenAI released GPT-5.4,all the "I made this, I made that" poststhat people are sharing are all related to this.When it comes to making something like a game or a 3D scene well,it forms a feedback loop,and then in the middle of a conversation it can change direction,so that it can ask follow-up questions during CoT,and that ability to ask follow-up questions was good.
 
 <span class="paragraph-timestamp" data-ts="02:38">02:38</span> And the good demos are on the official showcase site,and when you go into the showcase, it's quite well done.There are widely discussed things like an RPG gameor something similar to SimCity,including projects people made like that.SimCity is probably over here on the left; there's a lot here.Anyway, various projects that 5.4 was aiming forare shared there, so it's worth checking out.The quality really seems to have come out well.
@@ -122,6 +125,9 @@ alternateSlug: null
 
 
 <ResourceLink url="https://mrdoob.github.io/three-quake/" title="Three.js Quake" domain="mrdoob.github.io" />
+
+
+![Example of Mr.doob's Three.js-based Quake port](/episodes/ep89/ep89_0514_threejs_quake_port.jpg)
 
 <span class="paragraph-timestamp" data-ts="05:14">05:14</span> **Seungjoon Choi** because AIs use Three.js a lot these days,its usage has shot way up.
 
@@ -165,6 +171,9 @@ alternateSlug: null
 
 
 <ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 실행 가능한 명세서" domain="x.com" />
+
+
+![Example of an executable specification built with Alloy](/episodes/ep89/ep89_0943_alloy_executable_spec.jpg)
 
 <span class="paragraph-timestamp" data-ts="09:43">09:43</span> **Seungjoon Choi** it also has the strong nuance of something tightly fastened,like a saddle or tack on a horse.That's what harness feels like. So as a reference casefor a tool that verifies and tightens things,Kang Kyuyoung, who is now the CTO at Korca,had been talking about a language called Alloy since last year.So Alloyis a system with a very domain-specific languagethat lets you create formal structures and verify them precisely.And with that, very recently,maybe yesterday, he posted a tweetabout using Alloy like this for end-to-end testing andexecutable specifications with natural-language descriptions attached,so a kind of test for working behavior,drawing ideas from the integrated test idea,to enable the model to do precise work,those kinds of verification tools, something beyond linting.It felt like he was doing harness engineering by building tools like that.So something I've been thinking about more these days is
 
@@ -256,6 +265,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="30:22">30:22</span> **Chester Roh** Didn't Jeonggyu mention that yesterday?In that group chat.Don't do things that seem likely to work.Because that means there's no value in them.
 
+
+![Experiment log with dozens of conversations and a large amount of accumulated code](/episodes/ep89/ep89_3038_chat_volume_experiment.jpg)
+
 <span class="paragraph-timestamp" data-ts="30:30">30:30</span> **Seungjoon Choi** The point I was thinking about earlier toois the difference between things that will work and things that won't,and the kinds of things that might workif you put in a bit of effort.So in the first week of March,Chester had been studying in that direction,and I had been studying in my own way too,but even now, when it comes to having conversations on the web,the web is much more convenient, so I do a lot of conversations on the web,and since I also like looking at CoT,I ended up going in this direction, starting around March 1,and up through yesterday I had about 60 conversations.
 
 ## A 3D Mesh Algorithm Challenge: From Paper to One-Click Experiment    *30:38*
@@ -278,9 +290,15 @@ alternateSlug: null
 
 ## When a PoC Works but Polishing Gets Hard    *33:05*
 
+
+![Screen from a paper-to-one-click experiment conducted with GPT-5.4](/episodes/ep89/ep89_3305_paper_to_click.jpg)
+
 <span class="paragraph-timestamp" data-ts="33:05">33:05</span> **Seungjoon Choi** I tested whether "paper to click" was really possible.It wasn't, but it came out pretty close.
 
 <span class="paragraph-timestamp" data-ts="33:11">33:11</span> **Chester Roh** So you've got the first half of the click,
+
+
+![Screen from a source-to-one-click experiment conducted with GPT-5.4](/episodes/ep89/ep89_3315_source_to_click.jpg)
 
 <span class="paragraph-timestamp" data-ts="33:15">33:15</span> but not the full click yet, right?So if I just show you this as a kind of "paper to click,"this took about 30 minutes, maybe 20 minutes of work,and at first I started simple like this,then made a plan, went back and forth a bit, set up a structure,and had it proceed from there.So I was trying to do it as an MVP, just a minimal implementation,and it did come out, but honestly there was a lot left to be desired,so I tried "source to click."There's also a GitHub repo that implements it based on that paper.So I downloaded the archive from that and tried it,and that took 10 minutes.But the quality is a bit lower.Because this is a port,it's a much less difficult problem.But there are sections like thisthat don't work, where it was supposedly implementedbut in fact didn't really succeed, things that don't even get to a click. Still,it could at least show the abilityto present a PoC with a very simple prompt,but there were also parts that really did click.So I think it was on March 1
 
@@ -307,6 +325,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="37:57">37:57</span> **Seungjoon Choi** but it was a big hint.And it also became a useful byproduct in itself.I thought I could use it elsewhere too.But the models opposed this, while I had an intuitionand pushed ahead thinking this might work.So I thought it would work,and figured I should use this in the state we saw earlier,but it only pretended to work.
 
 <span class="paragraph-timestamp" data-ts="38:19">38:19</span> **Chester Roh** It did get better.Visually, it looked a bit more connected, but in fact it still wasn't solved.
+
+
+![The process of narrowing down the problem by repeating hypotheses and experiments](/episodes/ep89/ep89_3836_hypothesis_experiment_loop.jpg)
 
 <span class="paragraph-timestamp" data-ts="38:27">38:27</span> **Seungjoon Choi** But GPT-5.4 did this too,and the problem was that I had reproduced the problem, notbrought over the exact original problem as-is.So there were quite a few cases where the situation itself was different.There was a mix of cases where it worked and cases where it didn't,so to do this properly, when you encounter a specific problem,you need to create a save point for itand then form various hypotheses there and search them first,and if a hypothesis succeeds, that's fine, but if it doesn't,then you go backward and try again.
 

@@ -93,6 +93,9 @@ alternateSlug: null
 
 <ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase" domain="developers.openai.com" />
 
+
+![GPT-5.4 Thinking展示计划并补充细节的示例](/episodes/ep89/ep89_0210_gpt54_thinking_plan.jpg)
+
 <span class="paragraph-timestamp" data-ts="01:57">01:57</span> **崔胜准** 那么，GPT-5.4出来了。虽然我还没来得及仔细看，不过我整理了几个链接，其中这两个视频很有意思，还有一个视频是关于Computer Use agent的，最近OpenAI在GPT-5.4出来之后，大家分享的那些“做了这个做了那个”的内容，基本都和这个有关。比如在很擅长制作某种游戏或3D场景时，会形成feedback loop，还有在对话过程中中途调整方向，因此能够继续追问，在CoT过程中可以提出后续问题，这个功能很不错。
 
 <span class="paragraph-timestamp" data-ts="02:38">02:38</span> 另外，好的demo都在showcase官网上，进去showcase之后会发现做得相当好。像经常被提到的某种RPG游戏，或者类似SimCity的东西，包括这些做出来的案例都能看到。SimCity大概在左边这个，不过内容很多。总之，5.4所追求的各种项目都分享在这边了，值得参考。质量看起来确实非常好。
@@ -122,6 +125,9 @@ alternateSlug: null
 
 
 <ResourceLink url="https://mrdoob.github.io/three-quake/" title="Three.js Quake" domain="mrdoob.github.io" />
+
+
+![Mr.doob基于Three.js移植Quake的示例](/episodes/ep89/ep89_0514_threejs_quake_port.jpg)
 
 <span class="paragraph-timestamp" data-ts="05:14">05:14</span> **崔胜准** 因为Three.js最近被AI大量使用，所以使用量一下子涨了很多。
 
@@ -165,6 +171,9 @@ alternateSlug: null
 
 
 <ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 실행 가능한 명세서" domain="x.com" />
+
+
+![基于Alloy的可执行规格示例](/episodes/ep89/ep89_0943_alloy_executable_spec.jpg)
 
 <span class="paragraph-timestamp" data-ts="09:43">09:43</span> 但同时也带有像马鞍或马具那样紧紧勒住的感觉，这种语感我觉得还挺强的。harness 这个词就是这样。所以作为这种验证并收紧的工具的参考案例，最近在 Corca 担任 CTO 的姜奎英从去年开始就一直在提 Alloy 这门语言。他从去年起就时常提到 Alloy 这门语言。所以 Alloy是一套使用非常 domain specific 的语言来构建形式，并进行精确验证的体系。而最近他马上就昨天还是前天发的一条推文里提到，可以这样利用 Alloy 来做 end-to-end 测试，以及附带自然语言说明的可执行规范，也就是从某种 working 测试、integrated test 的思路里获得灵感，从而让模型能够准确地完成某项工作，我觉得这类验证工具已经超越了 lint。感觉他就是在制作这样的工具，进行 harness engineering。所以最近我一直在进一步思考的是，
 
@@ -256,6 +265,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="30:22">30:22</span> **卢正石** 昨天正圭不是说过那个吗？就在那个群聊里。看起来会成的事就别做。因为那是没有价值的事。
 
+
+![累积了数十段对话和大量代码的实验记录](/episodes/ep89/ep89_3038_chat_volume_experiment.jpg)
+
 <span class="paragraph-timestamp" data-ts="30:30">30:30</span> **崔胜准** 我刚才也在想的点就是这个，会成的事和不会成的事，还有那些稍微努力一下就可能成的事，得对这些有感觉才行。所以我在 3 月第 1 周，正石在那一类方向上做了不少学习，我自己也算学了一些，但我到现在要对话的话，还是因为网页端方便得多，所以大多都在网页上聊，而且我也喜欢看 CoT，所以最后还是做了这边的东西，大概是从 3 月 1 日开始的，到昨天为止大概聊了 60 个对话。
 
 ## 3D 网格算法挑战记：论文到一键实验    *30:38*
@@ -278,9 +290,15 @@ alternateSlug: null
 
 ## PoC 能做，但一键困难的节点    *33:05*
 
+
+![使用GPT-5.4进行的论文到一键实验画面](/episodes/ep89/ep89_3305_paper_to_click.jpg)
+
 <span class="paragraph-timestamp" data-ts="33:05">33:05</span> **崔胜准** 我就试了一下“论文到一键”到底行不行。虽然没完全成，但已经做出了八九不离十的结果。
 
 <span class="paragraph-timestamp" data-ts="33:11">33:11</span> **卢正石** 现在是到了“嗒嗒”的部分，但“咔”还没出来。
+
+
+![使用GPT-5.4进行的源码到一键实验画面](/episodes/ep89/ep89_3315_source_to_click.jpg)
 
 <span class="paragraph-timestamp" data-ts="33:15">33:15</span> **崔胜准** 所以如果给你们看看这个“论文到一键”，这个大概做了 30 分钟，或者说 20 分钟左右，一开始是先简单起步，然后定计划、来回拉扯几轮，再把结构搭起来，就让它这样推进下去。所以本来是想做成 MVP 级别的最小实现，结果确实是做出来了，但老实说还是有不少遗憾。我还试了“源码到一键”。因为还有人看着那篇论文已经在 GitHub 上实现过了。所以我把那个 archive 下载下来做了，那个只花了 10 分钟。不过质量反而更低一些。因为这属于 porting，所以本来就是难度低得多的问题。但像这种区间，属于那种做不成的区间，虽然说是实现了，其实并没有真正成功，连一键都做不到的那些。但即便如此，它还是能展示出某种 PoC 级别的能力，用很简单的 prompt 就能做到，不过也确实有一些部分是一键搞定的。所以是从去年 3 月 1 日左右，大概 2 号那会儿，我做了这个。
 
@@ -307,6 +325,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="37:57">37:57</span> **崔胜准** 而且这本身也成了有用的副产物。以后还能用在别的地方。不过这个是虽然模型们反对，但我凭着某种直觉，认定“这个应该能行”并一路推进的。所以我当时觉得这应该能成，想着刚才那种状态下就该用这个了，结果它只是装作能运行而已。还是变好了一些。
 
 <span class="paragraph-timestamp" data-ts="38:19">38:19</span> **卢正石** 肉眼看上去是连上了一点，但其实还是没解出来。不过这个也是 GPT-5.4 做的，
+
+
+![通过反复提出假设和实验逐步缩小问题范围的过程](/episodes/ep89/ep89_3836_hypothesis_experiment_loop.jpg)
 
 <span class="paragraph-timestamp" data-ts="38:27">38:27</span> **崔胜准** 问题在于，我复现的是那个问题，而不是把原有的问题原封不动地拿过来。所以其实有不少情境本身不同的 case。能行的 case 和不行的 case 混在一起，要想把这个真正做好，遇到特定问题时就得先把它做成 save point，然后在那个点上提出各种假设并优先探索，假设成功当然很好，但如果不行，就再往回退着做。类似这样的算法有很多。
 
