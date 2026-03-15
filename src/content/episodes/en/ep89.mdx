@@ -1,0 +1,359 @@
+---
+episodeNumber: 89
+title: "One Click and Bumps"
+description: "With the release of GPT-5.4 and Claude's new feature announcements ushering in the 'one-click' era of AI coding tools, we explore how to effectively leverage AI agents through harness engineering and scaffolding."
+publishedAt: 2026-03-15
+duration: "44:03"
+youtubeId: "E-19gxHeBRU"
+thumbnail: "https://i.ytimg.com/vi/E-19gxHeBRU/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Yujin Kim
+chapters:
+  - time: "0:00"
+    title: "Intro: GPT-5.4 Launch and the One-Click Era"
+  - time: "0:31"
+    title: "Introducing the AI Frontier Site"
+  - time: "1:57"
+    title: "GPT-5.4 Key Features and Demo"
+  - time: "3:01"
+    title: "OpenAI's Position and the Competitive Landscape"
+  - time: "4:15"
+    title: "A Flood of New Features and One-Click Productivity"
+  - time: "5:12"
+    title: "Three.js and Ricardo Cabello's Quake Port"
+  - time: "6:21"
+    title: "Andrej Karpathy's Learning-Speed Experiment and Self-Improvement Loop"
+  - time: "7:11"
+    title: "Mitchell Hashimoto and Harness Engineering"
+  - time: "9:50"
+    title: "What a Harness Means: A Tool for Validation and Control"
+  - time: "11:19"
+    title: "How Senior Korean Developers Are Using AI for Coding"
+  - time: "12:36"
+    title: "If Someone Already Succeeded, It Can Be Done"
+  - time: "15:20"
+    title: "Donald Knuth: An 88-Year-Old Veteran Using AI"
+  - time: "17:10"
+    title: "Guido van Rossum and Kent Beck's Shift to AI"
+  - time: "19:04"
+    title: "Harnesses and Scaffolding: The Dilemma of Delegation and Skill Building"
+  - time: "22:12"
+    title: "Raising the Bar in Software Engineering and Expanding Domains"
+  - time: "30:38"
+    title: "A 3D Mesh Algorithm Challenge: From Paper to One-Click Experiment"
+  - time: "33:05"
+    title: "When a PoC Works but Polishing Gets Hard"
+  - time: "35:18"
+    title: "The Bump Zone: Boundary-Linking Problems Even Models Couldn't Solve"
+  - time: "38:36"
+    title: "Repeating Hypothesis, Experiment, and Intuition with a Save-Point Strategy"
+  - time: "40:24"
+    title: "The Era of Defining the Problem"
+  - time: "42:11"
+    title: "When the Tokens Run Out, You Become Human: Dependence and Brownouts"
+  - time: "43:21"
+    title: "Closing: Human Strengths to Build in the AI Era"
+lang: "en"
+alternateSlug: null
+---
+
+## Intro: GPT-5.4 Launch and the One-Click Era    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:05">00:05</span> **Chester Roh** This week, GPT-5.4, which we'd been waiting for, was released.Claude also announced new features,and everywhere you look, people are clicking away saying, "I made this,I made this," in all these look-what-I-built posts.Today, we'll look at GPT-5.4 and all that clicking,and the reality that exists behind all that clicking,which Seungjoon dubbed the "clunk,"and talk through those aspects.
+
+## Introducing the AI Frontier Site    *00:31*
+
+
+<ResourceLink url="https://aifrontier.kr/" title="aifrontier.kr" domain="aifrontier.kr" />
+
+<span class="paragraph-timestamp" data-ts="00:31">00:31</span> **Chester Roh** But before we get into today's main topic,we have a site called AI Frontier.It's a site our editor Yujin made for us.Yujin, could you introduce it and tell us what it is?Our AI Frontier, for me too,
+
+<span class="paragraph-timestamp" data-ts="00:48">00:48</span> **Yujin Kim** started with being a devoted listener, and then I ended upvolunteering to become the editor.One thing that always felt lacking wasthat YouTube itself is a closed platform,
+
+<span class="paragraph-timestamp" data-ts="00:59">00:59</span> so with Claude or ChatGPT,even if we carefully put together all the subtitles,there was a problem that agents couldn't read them.
+
+<span class="paragraph-timestamp" data-ts="01:09">01:09</span> So what I built by clicking away together with Claudeis this AI Frontier site.It provides all the features so you can
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> download an entire post as is.You can also pull out links by chapter,or copy only a specific chapter,since we've built those features in.
+
+<span class="paragraph-timestamp" data-ts="01:29">01:29</span> The link is included on our YouTube video description pages and so on.Since the link for each episode is there,you can use it by asking ChatGPT questionsbased on that content.
+
+<span class="paragraph-timestamp" data-ts="01:42">01:42</span> **Seungjoon Choi** Yujin said she just clicked her way through making this,but she still put real effort into it,and I've often found it helpfulto copy and paste it and talk with ChatGPT and others.I think it'd be great if people made good use of it.
+
+## GPT-5.4 Key Features and Demo    *01:57*
+
+
+<ResourceLink url="https://developers.openai.com/showcase" title="developers.openai.com" domain="developers.openai.com" />
+
+<span class="paragraph-timestamp" data-ts="01:57">01:57</span> **Seungjoon Choi** So GPT-5.4 came out.I haven't had a chance to examine it in detail,but I pulled together a few links,and these two videos were interesting,and this one was about the Computer Use agent side,so these days, since OpenAI released GPT-5.4,all the "I made this, I made that" poststhat people are sharing are all related to this.When it comes to making something like a game or a 3D scene well,it forms a feedback loop,and then in the middle of a conversation it can change direction,so that it can ask follow-up questions during CoT,and that ability to ask follow-up questions was good.
+
+<span class="paragraph-timestamp" data-ts="02:38">02:38</span> And the good demos are on the official showcase site,and when you go into the showcase, it's quite well done.There are widely discussed things like an RPG gameor something similar to SimCity,including projects people made like that.SimCity is probably over here on the left; there's a lot here.Anyway, various projects that 5.4 was aiming forare shared there, so it's worth checking out.The quality really seems to have come out well.
+
+## OpenAI's Position and the Competitive Landscape    *03:01*
+
+<span class="paragraph-timestamp" data-ts="03:04">03:04</span> **Chester Roh** Last week, when we were talking with Sunghyun,we said that RL environment scaling would likely become a very important factor,and that frontier labsseem to be far ahead there,and likely to make a lot of progress.On the Computer Use side, they were calling it CUA,giving it that name,and in the case of Computer Use agents,they really did an excellent job training on the environment underneath.There's no way they learned that in pretraining,and regarding what action to take and when in that environment,they must have gone through a tremendous amount of trial and errorand run RL to achieve that high quality.
+
+<span class="paragraph-timestamp" data-ts="03:42">03:42</span> **Seungjoon Choi** Right. OpenAI has had some ups and downs lately,not just in terms of various development situations,but also in the circumstances it's facing,and users were flocking to Claude for quite a while,so I don't know what kind of effect this will have.As for the quality being reported on the timeline,
+
+<span class="paragraph-timestamp" data-ts="03:59">03:59</span> **Chester Roh** there does seem to be a consensus that 5.4, for now,is the strongest model released so far.For practical work in everyday life,the fact that it performs far better than a typical humanis something we've reached a point of having to accept naturally.It's OpenAI's claim, of course,
+
+## A Flood of New Features and One-Click Productivity    *04:15*
+
+
+<ResourceLink url="https://x.com/trq212" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="04:18">04:18</span> **Seungjoon Choi** but something called GWS also came out from Google.I haven't tried it myself either,but there's a version that makes CLI runin Google Workspace.This also seems to be getting talked about, and besides GPT-5.4,
+
+<span class="paragraph-timestamp" data-ts="04:32">04:32</span> this person is also someone working on Claude Code.There was Schedule, Task, and Voice as well,and you can see it keeps saying "shipping shipping shipping."It feels like things are being released at such a tremendous pacethat it's hard to keep up with the features these days, and the reasonthat can happen is probably because AI is doing so much of the building now.If all you do is tell it to get started and what result it needs to produce,
+
+<span class="paragraph-timestamp" data-ts="04:57">04:57</span> **Chester Roh** the model already has almost all the knowledgeneeded to produce that result,so it really does feel like a true click happens, in many areas.It doesn't even feel like weekly releases, but daily releases,
+
+<span class="paragraph-timestamp" data-ts="05:09">05:09</span> **Seungjoon Choi** so things have been a bit hectic on the Claude Code side too.And then, in the current atmosphere,
+
+## Three.js and Ricardo Cabello's Quake Port    *05:12*
+
+
+<ResourceLink url="https://mrdoob.github.io/three-descent/" title="mrdoob.github.io" domain="mrdoob.github.io" />
+
+<span class="paragraph-timestamp" data-ts="05:14">05:14</span> **Seungjoon Choi** because AIs use Three.js a lot these days,its usage has shot way up.
+
+<span class="paragraph-timestamp" data-ts="05:21">05:21</span> But Ricardo Cabello, who made Three.js,a Spanish developerusually known as Mr.doob,worked with Claude on what's now a classic game,porting things like Quake and Descent.Since the source is publicly available,he ported it and attached things like assets,
+
+<span class="paragraph-timestamp" data-ts="05:42">05:42</span> and made something like Quake that runs liveto the point where it's almost fully working.
+
+<span class="paragraph-timestamp" data-ts="05:50">05:50</span> There's also Descent, and you can see examples of 3D games being ported.But what's important about that is
+
+<span class="paragraph-timestamp" data-ts="05:55">05:55</span> **Chester Roh** that it was finished in a very short amount of time.If you look at the GitHub here, you can see the history.
+
+<span class="paragraph-timestamp" data-ts="06:01">06:01</span> **Seungjoon Choi** And what's interesting isn't just the GitHub, but the start of the post itself."Okay Claude, can you port Quake to Three.js?"And then an hour later, it looks like this.Of course, it took longer than just one hour,and the GitHub history shows that,and there are various adjustment steps involved,but you can see the overall picture.
+
+## Andrej Karpathy's Learning-Speed Experiment and Self-Improvement Loop    *06:21*
+
+
+<ResourceLink url="https://x.com/karpathy/status/2029701092347630069" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="06:21">06:21</span> **Seungjoon Choi** A post from a few days ago by Andrej Karpathy, this was interesting.GPT-2 used to take about three hours a few months ago,but now you can train it in two hours.With an 8-H100 pod,
+
+<span class="paragraph-timestamp" data-ts="06:34">06:34</span> **Chester Roh** GPT-2 level training is done within two hours.But what's interesting here is the imagination involved,
+
+<span class="paragraph-timestamp" data-ts="06:41">06:41</span> **Seungjoon Choi** because it's interactive, closer to interactive,so it was imagining a directionwhere training happens almost immediately,
+
+<span class="paragraph-timestamp" data-ts="06:50">06:50</span> where AI agents take nanochatand automatically improve it in repeated cycles,to enjoy the feeling of post-AGI,which was kind of a joke people made.Over 12 hours, there were 110 changes,and there was talk about how much that reduced the loss,so that seems to be part of the current mood these days.It's the self-improvement loop.
+
+<span class="paragraph-timestamp" data-ts="07:09">07:09</span> **Chester Roh** So they just set it going and watched.
+
+## Mitchell Hashimoto and Harness Engineering    *07:11*
+
+
+<ResourceLink url="https://t.co/ck1WJI6fa8…—" title="t.co" domain="t.co" />
+
+<span class="paragraph-timestamp" data-ts="07:11">07:11</span> **Seungjoon Choi** And Mitchell Hashimoto, whom many people these daysknow from Ghostty,was also the founder of HashiCorp.I think he's sold that by nowand is working more like a coding artisan these days,making interesting, fast, and beautiful terminals,and a lot of people who use AIseem to be using Ghostty,and for him too, maybe it was the dawn when GPT-5.4 came out,a post he made right before GPT-5.4 was releasedsaid that Codex 5.3, over the past six months,solved problems he had been struggling with for months.There was another post related to that as well.So we've been looking at slicesof the current mood, especially among relatively younger people.
+
+<span class="paragraph-timestamp" data-ts="07:59">07:59</span> But the reason I brought up Mitchell Hashimoto againis that the term harness engineeringcame from his blog.So this article, "My AI Adoption Journey,"was, among what I read in February,one of the best pieces,and it's made up of about six chapters.From "discard the chatbot" to "design the harness,""always run the agent,""outsource the clearly easy work,"it's structured like that,and step 5 was "design the harness."So here we started thinking about the termharness engineering,where every time you discover an agent making a mistake, you spend timedesigning a solution that makes sure it never makes that mistake again.That concept of engineering it is what we call harness engineering,and he talked about two main things: prompting,and through actual programming tools,every time you see the agent doing something bad,you work to make sure it can never do that again,and whether the agent is doing something goodcan be self-verifiedby providing some kind of harness for that.It's a very good article, and there isa lot more in it besides this,
+
+<span class="paragraph-timestamp" data-ts="09:11">09:11</span> so I recommend giving it a read.
+
+<span class="paragraph-timestamp" data-ts="09:13">09:13</span> **Chester Roh** Seungjoon will probably talk about harnesses and scaffolding later,but the expression harnessis actually being used a lot.So a harness,for some people, means something like Claude Code or Codex,some chunk of software attached next to the modelthat we collectively almost call a harness,but the harness Mitchell Hashimoto talks aboutseems to include even more than that,extending all the way to the front end as part of the concept.But while it's an augmenting tool,
+
+
+<ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="09:43">09:43</span> **Seungjoon Choi** it also has the strong nuance of something tightly fastened,like a saddle or tack on a horse.That's what harness feels like. So as a reference casefor a tool that verifies and tightens things,Kang Kyuyoung, who is now the CTO at Korca,had been talking about a language called Alloy since last year.So Alloyis a system with a very domain-specific languagethat lets you create formal structures and verify them precisely.And with that, very recently,maybe yesterday, he posted a tweetabout using Alloy like this for end-to-end testing andexecutable specifications with natural-language descriptions attached,so a kind of test for working behavior,drawing ideas from the integrated test idea,to enable the model to do precise work,those kinds of verification tools, something beyond linting.It felt like he was doing harness engineering by building tools like that.So something I've been thinking about more these days is
+
+## What a Harness Means: A Tool for Validation and Control    *09:50*
+
+<span class="paragraph-timestamp" data-ts="10:44">10:44</span> **Seungjoon Choi** how can we sense what will be a one-click win and what won't.Usually, there are things that work when broken into small steps like this,and there are also things that don't workeven with that approach, or at least that's the feeling I get.So for every problem that needs to be solved,can everything really be handled by making precise tests and verification methods?A lot of it probably can, but if there are things that can't,I've been thinking about what kinds of things those would be.And how could we judge that,how could we sense it,those are the kinds of questions I have right now.But recently, when I look at trends among our domestic developers,
+
+## How Senior Korean Developers Are Using AI for Coding    *11:19*
+
+
+<ResourceLink url="https://medium.com/@ibare/%EC%8B%9C%EB%8B%88%EC%96%B4-%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-ai%EC%99%80-6%EA%B0%9C%EC%9B%94%EA%B0%84-25%EB%A7%8C-%EB%9D%BC%EC%9D%B8%EC%9D%98-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%84-%EB%A7%8C%EB%93%A4%EB%A9%B0-%EB%B0%9C%EA%B2%AC%ED%95%9C-%EA%B2%83%EB%93%A4-e3935857f35c" title="medium.com" domain="medium.com" />
+
+<span class="paragraph-timestamp" data-ts="11:24">11:24</span> **Seungjoon Choi** especially senior-level engineer developers,Jeonggyu, who appeared on our show,said he worked on a 1 million-line codebaseby himself for 40 days.So we talked about thataround two or three weeks ago, and it seems like an incredible feat.And then this week, there's also Min-tae Kim,one of those interesting people from the old KTH days,I think he was part of that group when a lot of talented people had gathered there,and after going through places like NC and Woowa Brothers,he's continued working steadilyfor a long time, and this week he shareda blog post about what he learned buildinga 250,000-line system with AI over six months.That post also had some pretty interesting parts.in it, I think.And Gyuyoung, whom I mentioned a little earlier,is also building something interesting,and with AI working alone on about 40,000 LOC over three weeks,for a codebase of this scale,it seems like we're starting to see patterns whereone person manages it alone together with AI agents.Chester, you see that a lot too, right?
+
+<span class="paragraph-timestamp" data-ts="12:34">12:34</span> Ah, but here the topic of organizing things comes up again.Someone has already succeeded,and that seems to be a big hint.Then some person clicked and made something happen.But while that person's capabilities matter, the reason it was actually possibleseems to be because the model and the harness had an impact.Then it's like, "Hey, me too," meaning a success case becomes, "Me too, me too."The fact that some person built somethingis itself a very big hint.All you need is the result that it worked,and if there's a codebase for that output,
+
+## If Someone Already Succeeded, It Can Be Done    *12:36*
+
+<span class="paragraph-timestamp" data-ts="13:06">13:06</span> **Chester Roh** then in effect it's almost the same as having obtained the design doc,and even if you just look at the final working use case and feed that into the model,the model will decompose it and make a planfor how it could be built.
+
+
+<ResourceLink url="https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf" title="www-cs-faculty.stanford.edu" domain="www-cs-faculty.stanford.edu" />
+
+<span class="paragraph-timestamp" data-ts="13:18">13:18</span> **Seungjoon Choi** That's an incredibly concrete hint, and beyond that,even just hearing that someone did something is a big hint.Where I felt that waswhen Lablup's CTO, with HWP and HWPX,created a meta-language through pairingand succeeded in generating HWP binaries,and Jeonggyu gave us that hint.Just knowing that someone named Joongiwas able to do that is a huge hint.You roughly know what kind of capabilities that person has,and then once you know what they accomplished, you can askthe model how they might have done it,so even if that isn't the exact answer,it helps with reasoning it out, like, how did they do this,or did they do it that way, those kinds of questions. What should I call it?Cases of reverse-engineering like thatare probably already quite common.So I've thought about that a bit too,
+
+<span class="paragraph-timestamp" data-ts="14:11">14:11</span> and this itself, around the meta of pairing,became a chance to think a bit more deeply.Here too, if you look, there's a pairing between A and B,and thinking about how that could be doneis similar to pairing a person with a success case,and in cases like this, when you do that pairing,if the success here is only a partial success,then by increasing the coverage of what gets converted,you can gradually get closer to perfection,so those things also seem to become ideas of a certain kind.And then this, back in September,what I introduced last September
+
+<span class="paragraph-timestamp" data-ts="14:53">14:53</span> was the idea that there may be quite a lot of caseswhere the time available to compound this isn't very long, and that came back to me again.So my tentative feeling on this part isif it's something someone has already succeeded at, then it's doable,and if it's something someone has already succeeded at, then it's something already done,so it seems likethe odds are very high that it can be done.But things like this may still be difficult.
+
+<span class="paragraph-timestamp" data-ts="15:17">15:17</span> Because what the true veterans are doing looked pretty hard,and Donald Knuth, the person behindthe lifetime work The Art of Computer Programming,is 88 years old as of 2026, and this even made the news.He published a paper showing the process of solving an unsolved combinatorics problem,and Hacker News covered it a few days ago too, and it looked like this wouldn't work,but then seeing it become possible rather than going the no-AI route,we can look at stories of an absolute master pulling that off.
+
+## Donald Knuth: An 88-Year-Old Veteran Using AI    *15:20*
+
+<span class="paragraph-timestamp" data-ts="15:50">15:50</span> **Chester Roh** It was a problem he had personally regarded as a very hard one,and he solved it with AI's help.I saw someone on Twitter saythey took Donald Knuth's problem as isand put it into GPT-5.4 Thinking,and it solved the whole thing correctly.They told it to solve it without searching. Right.
+
+<span class="paragraph-timestamp" data-ts="16:08">16:08</span> **Seungjoon Choi** So problems in combinatoricsseem to be getting solved a lot right now.That's kind of the impression I get.And Donald Knuth happens to still be writing a book,and I think it's currently out through Volume 4B, related to combinatorics,while he was in the middle of writing aboutcombinatorial algorithms, and it seems he got help in that area.So anyway, even this 88-year-old veteran, through AI,is continuing to move forward.
+
+<span class="paragraph-timestamp" data-ts="16:35">16:35</span> **Chester Roh** He's progressing without stopping.
+
+
+<ResourceLink url="https://www.webofstories.com/play/donald.knuth/62;jsessionid=B968A8BC8B936AB19E88AD5156E2F5E1" title="webofstories.com" domain="webofstories.com" />
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> **Seungjoon Choi** If you're curious about Donald Knuth, something you can check out isa fun video called Electronic Coach that a young Donald Knuth didback in the punch-card era,and then, he wanted to write,to write books, but there was no typesetting system, so he created TeX, right?And that eventually became LaTeX,which became the standard system for papers, and he's the person who made that.So if you're curious about that story, it's worth looking into.He's also someone who talked aboutthe concept of literate programming very early on.And I was surprised too,
+
+## Guido van Rossum and Kent Beck's Shift to AI    *17:10*
+
+
+<ResourceLink url="https://x.com/gvanrossum/status/2029021031219052768" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="17:11">17:11</span> **Seungjoon Choi** but while looking up ages, I found out that Guido van Rossum, who created Python, is 70 this year.
+
+<span class="paragraph-timestamp" data-ts="17:16">17:16</span> **Chester Roh** That's a 30-year gap from Andrej Karpathy.
+
+
+<ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="x.com" domain="x.com" />
+
+<span class="paragraph-timestamp" data-ts="17:19">17:19</span> **Seungjoon Choi** Guido van Rossum has also recently shiftedtoward using AI,and you can see things on his timeline likeusing Claude to do something.And Kent Beck, whom I've mentioned a few times, with Extreme Programming and so on,in the area of software design patterns,a well-known figure who also took part in the Agile Manifesto,and he's also very close with Ward Cunningham.So he's 64,and about doing things with an AI he called genie,he posted live coding sessions called genie sessions.But in 2023, he said this:that he felt reluctant, that it didn't really click with him emotionally,but he tried using ChatGPT somewhat against his will,and said 90% of his skill was disappearing,and he posted that in 2023,but now he's very excited because he's using it well.He says coding is fun,and he also has another recent talk scheduled.How has genie changed what programmers should do andshould not do? That's the title.
+
+<span class="paragraph-timestamp" data-ts="18:27">18:27</span> **Chester Roh** What you quoted below from April 2023is very fundamental too.90% of the skills I had lost their value, butthen the value of the remaining 10%,increased a thousandfold.Not just coding skills,but other kinds of knowledge, what we these days calldomain tacit knowledge for short, the value of that partrose much more, you were saying.
+
+<span class="paragraph-timestamp" data-ts="18:54">18:54</span> **Seungjoon Choi** That was around when we started the podcast,and already a lot of time has passed.So as of 2026, I still think there are thingsthat can be done with a harness and things that can be done with scaffolding.That's how I've come to think about it.Scaffolding gives you supporting steps, right?A harness is the tightening side we mentioned earlier,and scaffolding is also a term used a lot in education.It can mean setting up scaffolds that you'll remove later,but that help the learner climb up on their own,by creatinga certain situation or environment.
+
+## Harnesses and Scaffolding: The Dilemma of Delegation and Skill Building    *19:04*
+
+<span class="paragraph-timestamp" data-ts="19:30">19:30</span> **Seungjoon Choi** There was this part about GPT-5 and scaffolding,from a translated transcript,saying it absolutely can't do it if you just ask directly.If you throw a problem at GPT-5 as-is,you don't get an answer. It's too hard.So they built scaffolding around GPT-5.Here, that scaffolding takes several forms.One agent proposes ideas,another executes, another verifies,and another merges different results,instead of throwing an open-ended problem at it from the start.You warm it up first and get it to use the solutionsit already knew, by solving problems it understands,and then have it apply those solutionsin a context where it has to solve a more challenging problem,and attack a generalized version of the problem.In that process, things like CoTproduced surprisingly strong results.So the second half of this is interesting too.How do you use that as an asset,and then how do you go one step further
+
+<span class="paragraph-timestamp" data-ts="20:34">20:34</span> and build a way to automatically discoverinsights? How do you ask questionsthat no one has ever asked beforethrough this process? It gets into that,and in that context, related to scaffolding, there are things whereyou tighten things down and verify small units,and there are also things where you buildmore interesting hypotheses and push into them,and it feels like those coexist.When it becomes that kind of situation,the common theme is still delegation,
+
+<span class="paragraph-timestamp" data-ts="21:04">21:04</span> and the important point in my AI adoption journey is thatI think the approach of having AI handle one kind of workwhile I do other work offsets, to some extent,Anthropic's widely known skill formation paper.What Anthropic's skill formation paper says is thatfor work delegated to an agent,human skill does not develop, whereasin work I continue to do manually,skill naturally continues to form.So whether it's scaffolding or a harness,I'm using AI through delegation,but if I want to delegate without losing skills, without degrading,or if I want to develop other capabilities, what can I do?Like Kent Beck,there may be people who think their remaining 10%is still worth a thousand times more,but ordinary people can lose things as they delegate.That's the part that gives me pause.
+
+<span class="paragraph-timestamp" data-ts="21:50">21:50</span> **Chester Roh** Even before all this talk about AI or agent usage,this was always the kind of thing you sawin self-help books.What kinds of work make me valuable,and what kinds of work should I not keep grinding at,but instead delegate, or not do at all,discussions like that were already common.We ourselves are deeply immersedin software engineering.Because that's our background.And software engineering,in a way, over the past 20 to 30 years,has enjoyed a golden age.During COVID, even if you only did a six-week bootcamp,you could get hired at companieswith salaries of $150,000 or $200,000 a year,and that era just ended.So in a sense, we're the ones making a big fuss.But whenever supply and demand change,the market dynamics change completely.And in a way,because we're the ones directly affected by this Luddite moment,maybe we're overreacting to itand making too much of a fussabout that part, that's something I now think too,
+
+## Raising the Bar in Software Engineering and Expanding Domains    *22:12*
+
+<span class="paragraph-timestamp" data-ts="23:03">23:03</span> **Chester Roh** and in a way, hearing that Claude Code did this,or Codex did that,over the past two or three months every single day felt amazing,and it was a period where trying these things gave us a dopamine hit,but before we knew it, this became everyday life, not something only I can do,but a world where everyone can do it,and I think all our thoughts about what to do thenhave been pushed aside by that.So from there, what do we do and how?Earlier Kent Beck said, then I need tofigure out how to make my remaining 10%worth a thousand times more, that I need to recalibrate,and that means everyone has to recalibrate.That kind of timing is coming, and software engineering,
+
+<span class="paragraph-timestamp" data-ts="23:44">23:44</span> which in knowledge work was at least one of the cutting-edge areas,has now been swept up by the models,so next, when we still look at things like physics papers,or biology papers,or chemistry papers, or legal documents written by lawyers,it doesn't really hit home for us.And unless you had some kind of skill within that domain,you couldn't access it, but with the help of models,stepping into those domains no longer feels strange at all.That's the kind of world we've entered.So people who can learn something, define a problem, andlook at it from a new perspectiveare seeing this domain expand enormously.If tools like that didn't exist,this week for me toowas an incredibly busy week,but in weeks like this I end up looking at strange books for no reasonand reading difficult papers,so I read a few papers related to biotechnology,and things that in the past I wouldn't have dared to say I understoodeven a single sentence of, I can now read through carefully,and it teaches me all of it and explains the implications,and when I even put it into GPT-5.4,it says this paper is going to lead to this in the future.I don't have evidence either, but with almost a 90% probability,I think this is what will happen,and when you listen to those things,right now it's saying the kinds of thingsthat some biotech scientist aiming for a Nobel Prizeshould have been the one saying, and like Seungjoon mentioned earlier,when you hear that someone did this,it becomes, I can do that too, so that's the kind of world we've ended up in.Into other domains too,doesn't the frontier of exploration just keep expandingis what I find myself thinking.It's an interesting time.So anyway, if I summarize what I'm saying,
+
+<span class="paragraph-timestamp" data-ts="25:29">25:29</span> now with Claude Code and Codex too,what this harness can do and what its limits are,it feels like the time has come to put that conversation aside.This is just a solved game.It'll get encapsulated and pushed down to a lower layer,and we need to move up to the next leveland rethink the game from there,and honestly, when Seungjoon and I started this year,we said this harness debate would end soon,and the models would soon reach AGI,so in the next layer, toward the next domain like science and that sort of thing,we should head there too, and I remember us talking about that.But there has been so much newsthat we haven't talked much about AI science, or Alpha Genome,or the areas where biology combines with computation and AI,or the areas where chemistry gets combined in,we haven't talked much about those parts,but I've been thinkingmaybe we need to shift gears in that direction too.But listening to what you're saying,
+
+<span class="paragraph-timestamp" data-ts="26:28">26:28</span> **Seungjoon Choi** there's something that makes me want to ask back,since for Chester too, things like codingprobably are very likely not what you're doing anymore,but even so, looking into biotechnology like you mentioned earlier,or absorbing information that leads yourself to the next stage,that is something you're actually getting better at, right?That's where your capabilities are being expressed instead.Right. In the end, it's about being a learner,
+
+<span class="paragraph-timestamp" data-ts="26:54">26:54</span> **Chester Roh** and in the past, in self-help books too, we said that constantly learningand transforming yourself was important,and in the past, through learning, as an intellectual skill,if you put one skill in your head,there was a time when that could be used as labor value.But isn't that coming to an end now?People good at Python, people good at frontend,people good at DBs, people good at whatever,in fact, they didn't really needto care about the problem itself; if someone defined the problem and brought it to them,they became these contractors who were good at constructing the solution,and that's no different at all from people in the mid-1800swho were good at handling textile machines and weaving cloth.But those people,even then, this disappeared over maybe 20 or 30 years, over a generation,but for us it's basically six months right now.Claude Code came out last March.
+
+<span class="paragraph-timestamp" data-ts="27:45">27:45</span> And Seungjoon, the first time we used Claude Codewas maybe in May, so it's barely been a year,but in just one year, with Opus leveling upand GPT leveling upand the harnesses built alongside them like this,all of this got wrapped up in a single year.There are still a lot of people not using it.I think the number of people not using thisis still far greater than the number of people who are.Even among software engineers, the people who have started using itare spread out with this kind of time lag,but in the end, where this issue leads is upward equalization.It's like the very best people end up doing all the work,and everything gets equalized upward.Industrialization was like that, the textile business was like that,
+
+<span class="paragraph-timestamp" data-ts="28:26">28:26</span> the railroad business was like that, the automobile business was like that,the watch business was like that too,it always looks like a period of rapid growth is emerging,but when it's over, it's always three or four companies that finish everything.Maybe this field called software engineeringis also one where we keptsaying, there must still be some domain to escape to,there must be something,but as models with that powerful generality keep advancing,we're watching even those areas we thought were specificget steamrolled one by one.Even someone like Donald Knuth saying, I'm completely specialized in algorithms,doesn't really have anything to do now.Because if you give GPT-5.4 a problem, it'll solve it better.
+
+<span class="paragraph-timestamp" data-ts="29:09">29:09</span> So in a time like this, I do think we needto shift the lens of our values now.Of course, because of this time gap,there may still be business opportunities,but wow, even if you notice this time gapit's too compressed to exploit it.It's just too compressed,because in the end it's relative.Since they're relatively harder and rarer,there are still many domainswhere only certain specialists have gone.
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> And those domains are enormously large, and just like coding,you think, we need to go in there and have our run of the place once, and it'll get swept too,and with that in mind, just as Seungjoon and I are interested in physicsand areas like that,I'm looking at chemistry and biotechnology too.
+
+<span class="paragraph-timestamp" data-ts="29:57">29:57</span> **Seungjoon Choi** Anyway, if I try to recap what Chester is saying,it's not so much the idea itself, or rather than the idea,it means we need to look in a different direction altogether.If we combine it with other domains and things like this,
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **Chester Roh** there are areas we haven't been able to tap into until nowwhere there's just so much to do.Progress in coding and AI
+
+<span class="paragraph-timestamp" data-ts="30:18">30:18</span> **Seungjoon Choi** means we should treat that slope as a constant.It's going to keep going well.
+
+<span class="paragraph-timestamp" data-ts="30:22">30:22</span> **Chester Roh** Didn't Jeonggyu mention that yesterday?In that group chat.Don't do things that seem likely to work.Because that means there's no value in them.
+
+<span class="paragraph-timestamp" data-ts="30:30">30:30</span> **Seungjoon Choi** The point I was thinking about earlier toois the difference between things that will work and things that won't,and the kinds of things that might workif you put in a bit of effort.So in the first week of March,Chester had been studying in that direction,and I had been studying in my own way too,but even now, when it comes to having conversations on the web,the web is much more convenient, so I do a lot of conversations on the web,and since I also like looking at CoT,I ended up going in this direction, starting around March 1,and up through yesterday I had about 60 conversations.
+
+## A 3D Mesh Algorithm Challenge: From Paper to One-Click Experiment    *30:38*
+
+<span class="paragraph-timestamp" data-ts="31:03">31:03</span> **Chester Roh** They're all about 3D and that kind of thing.Conversations to solve a single problem.So in each of those conversations, the code
+
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **Seungjoon Choi** is often around a thousand lines,and after a few turns like that, even subtracting some turns,at a bare minimum there's around 60,000 lines of codein the total conversation volume.So what problem was I trying to solve?It was from a post I uploaded to social media in 2020,like, ah, this is something I'd like to build.There's a well-known algorithm called B-mesh.It was used in a 3D tool called Blender, and also in ZBrushwhere similar things had been used quite early on,and it's the kind of thing that smooths out a model.But back when there was no AI coding,I tried to implement something similar with human intelligence,and while I couldn't build that itself, I did build something derived from it,where if you input a child's drawing,it creates something rigged like this and makes something like this.
+
+<span class="paragraph-timestamp" data-ts="32:00">32:00</span> **Chester Roh** This is your 2021 work, Seungjoon.
+
+<span class="paragraph-timestamp" data-ts="32:02">32:02</span> **Seungjoon Choi** Even now there's a tool where you can see it right away like this,and for example, if I take some PNG file here,a PNG file that looks like this,and drag and drop it here, it makes it like this.
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **Chester Roh** Is this 3D? It must be 3D.Right. It's 3D, but the front and back are the same,
+
+<span class="paragraph-timestamp" data-ts="32:20">32:20</span> **Seungjoon Choi** and it's animated too, so this is what I made.When kids made drawings, I'd do this with them at graduation,taking each person's drawing and turning it into something like this.It was text where these characters would sort of talk to them,and that was something I had done.But these days I don't code things like this directly,
+
+<span class="paragraph-timestamp" data-ts="32:41">32:41</span> and the thing I couldn't take on back then wasn't making the front and back the same,it was trying to make it into a three-dimensional structure,and I couldn't really get that far on my own.Even though there were already known papers and code out there.
+
+<span class="paragraph-timestamp" data-ts="32:54">32:54</span> Because that actually sometimes dependson Eigen and things related to linear algebra.There's a library called Eigen, and it's a bit tricky,so it was hard to do in a web environment. But with GPT-5.4 out,
+
+## When a PoC Works but Polishing Gets Hard    *33:05*
+
+
+<ResourceLink url="https://chatgpt.com/c/69ab623f-0134-83a9-994e-c9235e0a7596" title="chatgpt.com" domain="chatgpt.com" />
+
+<span class="paragraph-timestamp" data-ts="33:05">33:05</span> **Seungjoon Choi** I tested whether "paper to click" was really possible.It wasn't, but it came out pretty close.
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> **Chester Roh** So you've got the first half of the click,
+
+
+<ResourceLink url="https://gemini.google.com/app/3d25fbf7c960ca44" title="gemini.google.com" domain="gemini.google.com" />
+
+<span class="paragraph-timestamp" data-ts="33:15">33:15</span> but not the full click yet, right?So if I just show you this as a kind of "paper to click,"this took about 30 minutes, maybe 20 minutes of work,and at first I started simple like this,then made a plan, went back and forth a bit, set up a structure,and had it proceed from there.So I was trying to do it as an MVP, just a minimal implementation,and it did come out, but honestly there was a lot left to be desired,so I tried "source to click."There's also a GitHub repo that implements it based on that paper.So I downloaded the archive from that and tried it,and that took 10 minutes.But the quality is a bit lower.Because this is a port,it's a much less difficult problem.But there are sections like thisthat don't work, where it was supposedly implementedbut in fact didn't really succeed, things that don't even get to a click. Still,it could at least show the abilityto present a PoC with a very simple prompt,but there were also parts that really did click.So I think it was on March 1
+
+<span class="paragraph-timestamp" data-ts="34:17">34:17</span> **Seungjoon Choi** or around the 2nd that I made this.What this is, even though it's hard to see here,if you type "Godzilla," it generates it.And then it can animate too,and then here, if you type Santa Claus,I think I probably typed that next.
+
+<span class="paragraph-timestamp" data-ts="34:31">34:31</span> If you type Santa Claus, it generates something like Santa Claus.But this may look similar to the earlier one,except this uses something called an isosurface,and it's a much easier algorithm.It's easy to make, but it lacks detail.Things like generating fingers.This took about 30 minutes.Polishing the PoC took another day or two.Then this one too was a PoC I made in about 30 minutes.To go a bit more properly, things like an actual modeling tool,where if there's a human figure you stretch it and shrink it a bitor try turning it into another shape,there was something like that in the 3D tool ZBrush,using a concept called ZSphere,and making something like thiswas especially easy because Gemini is particularly good at 3D.It was incredibly easy.
+
+## The Bump Zone: Boundary-Linking Problems Even Models Couldn't Solve    *35:18*
+
+
+<ResourceLink url="https://claude.ai/chat/7c322bea-7481-4678-855d-57988ba9001b" title="claude.ai" domain="claude.ai" />
+
+<span class="paragraph-timestamp" data-ts="35:18">35:18</span> **Seungjoon Choi** Up to this point, it was easy.So in the paper, the key pointis interpolating this and connecting it.The goal is to make this and use this as the target,and that's where it started to get shaky.Still, aside from the seam at the very end,restoring it was easy.But this part looks so easy to a human,
+
+<span class="paragraph-timestamp" data-ts="35:40">35:40</span> even though in reality there's a lot you have to think through mathematically.It's the joint area.So if I show you this,
+
+
+<ResourceLink url="https://gemini.google.com/app/8aae420730884e7c" title="gemini.google.com" domain="gemini.google.com" />
+
+<span class="paragraph-timestamp" data-ts="35:47">35:47</span> it's the same as before here,but if you connect and disconnect the middle, it turns out like this,and boundary edges and things like that show up like this,so connecting these junctions is not as straightforward as you'd think.Exploring the math and algorithms related to thatwasn't working even after using up the entire weekly limit,so I was also trying other models.So most of the conversation earlier was repeating those hypotheses and experiments.
+
+<span class="paragraph-timestamp" data-ts="36:16">36:16</span> But to do divide and conquer on the problem,I cut out parts of the problem, or reproduced similar problems,and then checked one by onewhether each of them worked or not.Adding a UI and all that was great because this part itself became click-simple.If I had tried to do this in the past,I would have spent a lot of time just implementing this itself,like applying some perturbation or adjusting the vertex count,but now those things happen instantly, so I just come up with hypotheses,and the AI runs the experiments.
+
+<span class="paragraph-timestamp" data-ts="36:50">36:50</span> So I tried this hypothesis,and tested the convex hull hypothesis.I hadn't thought of it myself, but while talking with the model,it suggested using dynamic programming.But using the dynamic programming algorithm, DP,in this way had never occurred to me.But when I followed what the model suggested,and looked it up myself,it turned out doing this kind of thing on meshes is fairly uncommon.
+
+<span class="paragraph-timestamp" data-ts="37:14">37:14</span> It wasn't nonexistent, but there was something there for me to learn.But there was one case where the models opposed me and I pushed my own intuition instead.So my intuition here was that when there are rings like this,when there are shapes that look like this,not quite to the level of topological equivalence,but they can be unfolded into something ring-like,and if you project that onto a sphere,then maybe by connecting these remaining parts like this,you could implement a convex hull,and I got the idea that this might do the job.
+
+<span class="paragraph-timestamp" data-ts="37:50">37:50</span> **Chester Roh** Then was this idea the exitthat finally gets you to the click?In conclusion, not yet,
+
+<span class="paragraph-timestamp" data-ts="37:57">37:57</span> **Seungjoon Choi** but it was a big hint.And it also became a useful byproduct in itself.I thought I could use it elsewhere too.But the models opposed this, while I had an intuitionand pushed ahead thinking this might work.So I thought it would work,and figured I should use this in the state we saw earlier,but it only pretended to work.
+
+<span class="paragraph-timestamp" data-ts="38:19">38:19</span> **Chester Roh** It did get better.Visually, it looked a bit more connected, but in fact it still wasn't solved.
+
+<span class="paragraph-timestamp" data-ts="38:27">38:27</span> **Seungjoon Choi** But GPT-5.4 did this too,and the problem was that I had reproduced the problem, notbrought over the exact original problem as-is.So there were quite a few cases where the situation itself was different.There was a mix of cases where it worked and cases where it didn't,so to do this properly, when you encounter a specific problem,you need to create a save point for itand then form various hypotheses there and search them first,and if a hypothesis succeeds, that's fine, but if it doesn't,then you go backward and try again.
+
+## Repeating Hypothesis, Experiment, and Intuition with a Save-Point Strategy    *38:36*
+
+
+<ResourceLink url="https://chatgpt.com/c/69aadf98-91ac-83a4-b342-f7098c09271f" title="chatgpt.com" domain="chatgpt.com" />
+
+<span class="paragraph-timestamp" data-ts="38:54">38:54</span> **Seungjoon Choi** There are a lot of similar algorithms like that.That's the Ralph loop, right? If you tell it to keep tryingfrom that point until it works
+
+<span class="paragraph-timestamp" data-ts="39:03">39:03</span> **Chester Roh** and feed it infinite tokens, it'll work eventually.But my perspective is a bit different.Because it depends on how you scaffold it,and the situation changes a bit depending on that, becausein graphics,there's been a view that TDD is a bit hard to do,at least in my day, people said it was hard.Some things are obvious when you look at them visually,and they may pass checks like vertex merge checks,but still have poor quality.What models are good at these daysis ultimately putting that information into the feedback loop.When that isn't working very well yet,it may look easy to a human,
+
+<span class="paragraph-timestamp" data-ts="39:41">39:41</span> **Seungjoon Choi** but algorithmically, or for the model to solve,there are still points that are difficult,and if you run the Ralph loop in that zone, there's a high chance of wasting tokens.Right now, it's still a repetition of back and forth.But my prior is that it will work.Because this is something that can be done,even though I'm going through some twists and turns right now,if I find a good path, it feels like it'll just click into place.That's why I wrote the title that way earlier.Click, getting stuck, and then suddenly clicking into place.But that is a bit of a matter of belief,and when AI and I work on it together,I'm not exactly sure how that sense that it'll work comes about.
+
+## The Era of Defining the Problem    *40:24*
+
+<span class="paragraph-timestamp" data-ts="40:27">40:27</span> **Seungjoon Choi** But once I have that feeling, it does seem like I can push through.But in the stretch Seungjoon just described,it contains everything we've always talked about.First, deciding what we need to do,defining the problem. And then when a problemruns into a hard challenge,bringing in human insight thereand doing it human in the loop, so not the so-called 90%but the 10% that's Seungjoon's own field knowledge, his tacit knowledge, gets brought in.And if you keep pushing with the will to do it until it works,
+
+<span class="paragraph-timestamp" data-ts="40:54">40:54</span> **Chester Roh** eventually it will work,and then that's where progress actually happens.The unfortunate part is that when word gets out that Seungjoon Choi did that,
+
+<span class="paragraph-timestamp" data-ts="41:03">41:03</span> if you post it publicly, someone else will too.I'm also doing this after seeing something someone else didand thinking, well, this should be possible,so of course it's easy to replicate.Because it means it can be done.And it wasn't done by human effort alone.It was done with the power of AI, and that's given out almost equally.Of course it does cost money,
+
+<span class="paragraph-timestamp" data-ts="41:23">41:23</span> **Seungjoon Choi** but in any case, that kind of accessibilityis much higher now than it used to be.After Jeonggyu, then Seonghyeon, and now today,in a way, our sense of frustration and these blocked-up stretches,these rattling sections,feel like they've been continuing all along.I think we've moved past the phase of simple click-click wins.It becomes, "This works, so don't do that,"and it feels like those ideas are getting set in our heads.Right now, for Seungjoon and honestly for me too,we can earn massive profits from things that work with a simple click,but when it's combined with something of my own to create completely different added value,defining that kind of problemis where a lot of our interest is going, from what I can see.So in the end, I think it's about the problem.Problem. So you need to identify the problem well,then be able to work through that problem well,and be able to guide the problem-solving process well,someone with those abilities.That kind of thing is what a personought to have as a core virtue.
+
+## When the Tokens Run Out, You Become Human: Dependence and Brownouts    *42:11*
+
+<span class="paragraph-timestamp" data-ts="42:32">42:32</span> **Chester Roh** Yesterday, right next to me,an engineer who was sharing frontier knowledgesaid something I still remember.He had used up all of his weekly tokenson that subscription, and the moment it ran out,he said he turns back into a mere insignificant human.Then, because there's nothing left to do,because there's not a single thing he can do, sleepingis the only thing he can do, he said.But somehow, that really resonated with me.Right now, all of our work
+
+<span class="paragraph-timestamp" data-ts="42:59">42:59</span> is being done with GPT and Claude right beside us.Honestly, without them, most of our day-to-day work nowis structured around working together with them.Without that, like Andrej Karpathy said,society as a whole goes into a brownout.Like the power has dropped a bit.
+
+## Closing: Human Strengths to Build in the AI Era    *43:21*
+
+<span class="paragraph-timestamp" data-ts="43:21">43:21</span> **Seungjoon Choi** Anyway, that's the kind of week we've had,and Chester had that kind of deep-diving experience,and I've been digging in too, in my own way.The important thing is what Chester mentioned earlier, I think:even so, as we delegate these things to AI,there are still things we need to acquireor strengthen even more.Things like persistence, or forming hypotheses,and even taking breaks is a good thing too.Because your mind needs to be clear to come up with good hypotheses.So thinking about those things too,and exploring them, is also interesting.Just solving problems like thisalso has a kind of fun to it.
+
+<span class="paragraph-timestamp" data-ts="43:59">43:59</span> That's what we've prepared for now.Yes, this was another enjoyable discussion today.
