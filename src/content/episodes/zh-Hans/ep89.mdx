@@ -85,7 +85,13 @@ alternateSlug: null
 ## GPT-5.4 主要功能与演示    *01:57*
 
 
-<ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase - GPT-5.4 데모 모음" domain="developers.openai.com" />
+<ResourceLink url="https://openai.com/ko-KR/index/introducing-gpt-5-4" title="OpenAI - GPT-5.4를 소개합니다" domain="openai.com" />
+
+
+<ResourceLink url="https://www.youtube.com/watch?v=YICiHiU2GBU" title="Computer Use & Frontend UI with GPT-5.4 Thinking" domain="youtube.com" />
+
+
+<ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase" domain="developers.openai.com" />
 
 <span class="paragraph-timestamp" data-ts="01:57">01:57</span> **崔胜准** 那么，GPT-5.4出来了。虽然我还没来得及仔细看，不过我整理了几个链接，其中这两个视频很有意思，还有一个视频是关于Computer Use agent的，最近OpenAI在GPT-5.4出来之后，大家分享的那些“做了这个做了那个”的内容，基本都和这个有关。比如在很擅长制作某种游戏或3D场景时，会形成feedback loop，还有在对话过程中中途调整方向，因此能够继续追问，在CoT过程中可以提出后续问题，这个功能很不错。
 
@@ -112,7 +118,10 @@ alternateSlug: null
 ## Three.js 与 Ricardo Cabello 的 Quake 移植    *05:12*
 
 
-<ResourceLink url="https://mrdoob.github.io/three-descent/" title="Mr.doob - Descent Three.js 포팅" domain="mrdoob.github.io" />
+<ResourceLink url="https://x.com/mrdoob/status/2015076521531355583?s=20" title="mrdoob - 'Claude로 Quake를 Three.js로 포팅할 수 있을까?'" domain="x.com" />
+
+
+<ResourceLink url="https://mrdoob.github.io/three-quake/" title="Three.js Quake" domain="mrdoob.github.io" />
 
 <span class="paragraph-timestamp" data-ts="05:14">05:14</span> **崔胜准** 因为Three.js最近被AI大量使用，所以使用量一下子涨了很多。
 
@@ -129,7 +138,7 @@ alternateSlug: null
 ## Andrej Karpathy 的学习速度实验与自我改进循环    *06:21*
 
 
-<ResourceLink url="https://x.com/karpathy/status/2029701092347630069" title="Karpathy - GPT-2 훈련 속도 실험 + 자기개선 루프" domain="x.com" />
+<ResourceLink url="https://x.com/karpathy/status/2029701092347630069" title="Andrej Karpathy - nanochat 자기개선 루프" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="06:21">06:21</span> **崔胜准** Andrej Karpathy 几天前发的帖子，这个很有意思。几个月前训练 GPT-2 大概要 3 个小时，现在则可以在 2 小时内完成训练。用 8 个 H100 pod
 
@@ -143,9 +152,6 @@ alternateSlug: null
 
 ## Mitchell Hashimoto 与 Harness Engineering    *07:11*
 
-
-<ResourceLink url="https://mitchellh.com/writing/my-ai-adoption-journey" title="Mitchell Hashimoto - My AI Adoption Journey (Harness Engineering)" domain="mitchellh.com" />
-
 <span class="paragraph-timestamp" data-ts="07:11">07:11</span> **崔胜准** 还有 Mitchell Hashimoto，最近很多人都很爱用的 Ghostty 就是他做的，而且他还是 HashiCorp 的创始人。现在他大概已经把公司卖掉了，以编程匠人的身份继续活动，做出了有趣、快速又漂亮的终端，我知道很多使用 AI 的人现在都在用 Ghostty，他也在 GPT-5.4 发布那天凌晨，还是说在 GPT-5.4 发布前不久发过一篇帖子，说 Codex 5.3 把他六个月来一直 struggling、苦苦纠缠的问题给解决了。他还专门写了一篇相关帖子。所以我也看到了一些最近氛围的侧面，尤其是相对年轻一代的一些侧面。
 
 <span class="paragraph-timestamp" data-ts="07:59">07:59</span> 不过我再次提到 Mitchell Hashimoto，是因为 harness engineering 这个词就出自他的博客。他那篇《我的 AI 引入之旅》是我 2 月读过的文章里最好的一篇之一，这篇文章大概由 6 个章节组成。从“抛弃聊天机器人”到“设计 harness”，“始终运行 agent”，“把明确且简单的工作外包出去”，大致就是这样的结构，其中第 5 步就是“设计 harness”。所以我们也在这里思考了一下所谓 harness engineering 这个词，每当发现 agent 犯错时，就投入时间设计出一个让它以后再也不犯这种错的解决方案。把它当成一种 engineering 的概念来理解，也就是 harness engineering，他主要讲了两点，一个是 prompting，另一个是通过实际的编程工具，每当看到 agent 做坏事时，就努力让它以后再也做不了这种事，同时也为 agent 提供某种 harness，让它能够自行验证自己做的是否是正确的事情。这是篇相当好的文章，里面除了这些之外
@@ -155,7 +161,10 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="09:13">09:13</span> 推荐大家读一读。应该也会提到，不过实际上 harness 这个说法现在真的被广泛使用着。所以说到 harness，有些人会把像 Claude Code 或 Codex 这样贴在模型旁边运行的一整套程序统称为 harness，但 Mitchell Hashimoto 说的 harness似乎连更前端的部分也都纳入了这个概念里。不过它虽然是增强型工具，
 
 
-<ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 형식 검증 + AI harness" domain="x.com" />
+<ResourceLink url="https://wiki.g15e.com/pages/Alloy%20Analyzer" title="Alloy Analyzer" domain="wiki.g15e.com" />
+
+
+<ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 실행 가능한 명세서" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="09:43">09:43</span> 但同时也带有像马鞍或马具那样紧紧勒住的感觉，这种语感我觉得还挺强的。harness 这个词就是这样。所以作为这种验证并收紧的工具的参考案例，最近在 Corca 担任 CTO 的姜奎英从去年开始就一直在提 Alloy 这门语言。他从去年起就时常提到 Alloy 这门语言。所以 Alloy是一套使用非常 domain specific 的语言来构建形式，并进行精确验证的体系。而最近他马上就昨天还是前天发的一条推文里提到，可以这样利用 Alloy 来做 end-to-end 测试，以及附带自然语言说明的可执行规范，也就是从某种 working 测试、integrated test 的思路里获得灵感，从而让模型能够准确地完成某项工作，我觉得这类验证工具已经超越了 lint。感觉他就是在制作这样的工具，进行 harness engineering。所以最近我一直在进一步思考的是，
 
@@ -192,22 +201,16 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="16:35">16:35</span> **卢正石** 就是在不断进步。
 
-
-<ResourceLink url="https://www.webofstories.com/play/donald.knuth/62;jsessionid=B968A8BC8B936AB19E88AD5156E2F5E1" title="Donald Knuth - Electronic Coach (젊은 시절 영상)" domain="webofstories.com" />
-
 <span class="paragraph-timestamp" data-ts="16:38">16:38</span> **崔胜准** 如果有人对 Donald Knuth 感兴趣，可以去参考一个很有意思的视频，讲的是年轻时的 Donald Knuth在打孔卡时代做的一个叫 Electronic Coach 的东西，还有就是，这位本来是想写文章、写书，结果因为没有排版系统，才做出了 TeX，不是吗？后来那东西最终发展成了 LaTeX，成了论文写作的系统，而他就是把它做出来的那个人。所以如果你对这些故事感兴趣，也可以去了解一下。像 literate programming 这样的概念，他也是非常早就提出来的人。而且我自己也很惊讶，
 
 ## Guido van Rossum、Kent Beck 的 AI 转向    *17:10*
-
-
-<ResourceLink url="https://x.com/gvanrossum/status/2029021031219052768" title="Guido van Rossum - AI 활용 전향" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="17:11">17:11</span> **崔胜准** 查年龄时发现，Python 的创造者 Guido van Rossum 今年已经70岁了。
 
 <span class="paragraph-timestamp" data-ts="17:16">17:16</span> **卢正石** 和 Andrej Karpathy 相差30年呢。
 
 
-<ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="Kent Beck - 90%의 스킬 가치 하락, 10%는 1000배 상승" domain="x.com" />
+<ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="Kent Beck - '90%의 스킬은 가치 하락, 남은 10%는 1000배 상승'" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="17:19">17:19</span> **崔胜准** Guido van Rossum 最近也转向了使用 AI，开始用起来了，像“用了 Claude 做了什么”这样的内容，在时间线上都能看到。还有我之前介绍过几次的 Kent Beck，像 Extreme Programming还有软件设计模式领域里非常有名的人，也参与过 Agile Manifesto，而且和 Ward Cunningham 关系也非常好。那位今年64岁，他会拿一个叫 genie 的 AI 来做各种事，还会把现场编程的视频发出来，叫作 genie session。不过他在 2023 年是这么说的。因为有点 reluctant，虽然心里并不是很认同，但还是有点勉强地去用了 ChatGPT，结果发现“我 90% 的 skill 都消失了”，他在 23 年发过这样的内容，后来转向好好使用，现在变得非常兴奋。他说写代码变得很有趣，最近还计划做一场相关的发表和讲座。genie 是如何改变程序员该做的事和不该做的事，标题就是这个。
 

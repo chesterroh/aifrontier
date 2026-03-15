@@ -151,7 +151,10 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **卢正石** 从概念上说，其实和 RLVR 很像。只不过层次不一样。RLVR 讲的是在训练过程中，如果能给出某种 verifiable 的，也就是可验证的信号，那模型就能在那个 domain 里持续训练下去。而这个则是把它实际拉到了应用过程中来，对吧。研究这类事情，归根结底也是如果面对一个非常强的模型，能给它设定奖励信号，也就是朝着变好的方向的目标，那它就能自主地朝着那个目标前进，这次其实就是证明了这一点。这个奖励信号不是 RL 里的那种奖励信号，
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Autoresearch 코드 구조 분석" domain="x.com" />
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
+
+
+<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **崔胜准** 虽然它并不可微，但只是给出一个能不能成的判定，就这么简单，只要有几个非常简单的文件，prepare.py，这个倒不是很重要，再有 train.py、program.md 这些，它就会朝着满足这个条件、直到成功为止不断把指标压低的方向去做 research，而且那个 MD 文件也不算长。最后有个很有意思的点，never stop。不要停，如果卡住了，想法卡住了，就去读论文再回来立这个假设试试看，再试试那个假设，别一直来问我要不要继续往下做最后那句咒语好像就是继续做下去而且实际已经开始看到成果的那些东西也在这里用图表展示出来了。就是这么回事，然后这里的 Andrej Karpathy 和
 
@@ -195,6 +198,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **卢正石** 要不要进入一下我们的“想当年”环节？
 
+
+<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
+
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **崔胜准** 我们这样你来我往地聊，可能会讲到我们各自的经历，也会讲当时有哪些发展脉络，我自己有印象的东西里，挑了几个一时能立刻想起来的。大概在 2011 年前后，我是在时间线上看到这个的。这是 Peter Norvig 的，Google现在应该还在吧，至于是不是还在 Google 我有点记不清了，反正他当时是最资深的 scientist 之一。就是和 Peter Norvig 一起做过 X 的那位。Google X，Sebastian Thrun。后来创办 Udacity 的那位当时一起在 Stanford 开了 AI 课程，Andrew Ng 也开了机器学习课程，然后好像还有一门数据库课程。我回头翻了下那段时间线，就看到了这些内容。所以 Stanford 当时做了 MOOC，可以说是现代 MOOC 起点的那类实验，而且这些全都是 AI、ML、数据库这些方向，据说吸引了这么多人参与。
 
 <span class="paragraph-timestamp" data-ts="19:58">19:58</span> 不过这里有个名字叫 Daphne Koller，Daphne Koller 后来和 Andrew Ng 共同创办了 Coursera，这位还创办了 insitro。她和生命科学也有很深的关联，总之当时有这些事情，也正是在那里，很多人，包括我在内，其他人应该也差不多，
@@ -216,6 +222,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="22:55">22:55</span> **崔胜准** 大概是 2014 年开始的。对，我开始接触这个，其实就是为了学习。然后不知道你们还记不记得这个，
 
 ## YouTube 猫识别实验与涌现现象    *23:00*
+
+
+<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **崔胜准** 要看核心的话，就是这张图。就是 YouTube 开始识别猫了，那件事。这个实验具体是怎么设计的，
 
@@ -258,6 +267,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="27:25">27:25</span> **卢正石** 我记得 2014 年是 VGG，不对，是 GoogLeNet 拿了冠军，然后 2015 年是 ResNet 拿了冠军。所以当时那种，和 vision 相关的东西特别火。
 
+
+<ResourceLink url="https://cs231n.stanford.edu/" title="CS231n: Deep Learning for Computer Vision" domain="cs231n.stanford.edu" />
+
 <span class="paragraph-timestamp" data-ts="27:40">27:40</span> **崔胜准** 所以 CS231n 最初的标题就是Deep Learning for Computer Vision。所以这里面也出了很多后来非常有名的人物。后来也都陆续出现了。
 
 <span class="paragraph-timestamp" data-ts="27:50">27:50</span> **李珍元** 在那里讲课的人后来很多都成了明星人物，确实如此。
@@ -277,10 +289,7 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="28:18">28:18</span> 就是当时说的 neural style。对，neural style。我们那位 Justin Johnson用 Lua 做了一个很干净的 Torch implementation，我记得我当时也跑了很多次。
 
 
-<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="DeepDream - Inceptionism (Google Research)" domain="research.google" />
-
-
-<ResourceLink url="https://colah.github.io/" title="Chris Olah's Blog" domain="colah.github.io" />
+<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="DeepDream: Inceptionism" domain="research.google" />
 
 <span class="paragraph-timestamp" data-ts="28:27">28:27</span> **崔胜准** 还有，在那些和 vision 相关的东西里，关于它为什么能起作用，真正提供线索的，最终还是 Chris Olah、以及 Alexander Mordvintsev、Mike Tyka这些人参与做过的那个叫 DeepDream 的工作，这个虽然在艺术领域也被反复提起，但归根结底它就是 feature 放大嘛。现在也可以说，这还是某种 interpretability 研究的起点性工作，从谱系上是可以这样讲的，而这类故事的脉络，在以 Chris Olah 为核心做的
 
@@ -291,9 +300,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="29:47">29:47</span> 却已经在分享这类工作了，
 
 <span class="paragraph-timestamp" data-ts="29:51">29:51</span> 还收到过 Yann LeCun 的评论之类的。那些博客到现在都还保存得很好，所以那边也挺有意思的。那时候开始做这些的人，过了大概 4 到 5 年后，其实就成了主流了。而且在 2014 年，哪怕只说 2014、2015 年，我们那时都还在聊图像、style transfer、CNN、这些东西，还有 ImageNet 之类的，但 Ilya Sutskever 发表 sequence to sequence 论文是 14 年。可当时我们拿着 RNN开始学习一些新奇的东西，然后做 chatbot、开始拿来玩，大概是 15 年之后的事了，
-
-
-<ResourceLink url="https://transformer-circuits.pub/" title="Transformer Circuits - Anthropic 해석가능성 연구" domain="transformer-circuits.pub" />
 
 <span class="paragraph-timestamp" data-ts="30:24">30:24</span> **卢正石** 应该是在 16、17 年左右。Ilya Sutskever 的 sequence to sequence 共同作者是 Oriol Vinyals 来着吗，那位现在还在 DeepMind。我可能记混了。不过好像是这样的。总之，这样的发展轨迹后来由 Chris Olah他最终也成了 Anthropic 的联合创始人之一，在 Anthropic 的可解释性研究中也通过 Transformer Circuits 的文章等
 
@@ -427,6 +433,9 @@ alternateSlug: null
 
 ## Stability AI 社区与韩国的 foundation model：HyperCLOVA    *47:30*
 
+
+<ResourceLink url="https://tv.naver.com/v/20349478" title="NAVER AI NOW: HyperCLOVA" domain="tv.naver.com" />
+
 <span class="paragraph-timestamp" data-ts="47:51">47:51</span> **崔胜准** 像 LAION 和 Eleuther，最近韩国有位叫凯文高的人，就是最近加入 Upstage 的那位，在做开源活动的时候也为这个社区做出贡献，还做过一些有意思的项目像 Polyglot 之类的还有就是，不知不觉间有一天回头一看 HyperCLOVA我当时还说韩国也在做这种东西两位不是更了解这里面的背景吗？
 
 <span class="paragraph-timestamp" data-ts="48:15">48:15</span> 我已经找到了 NAVER 在 2021 年发布 HyperCLOVA 等内容时的AI NOW 资料。不过那是在 2020 年就已经做出的判断吧。是看到 GPT-3 出来之后，觉得该狠狠干一笔大投资了大概是那个时候做出的判断吗？
@@ -470,6 +479,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="54:00">54:00</span> **卢正石** 是啊，现在这都已经是 Nano Banana 在做的事了。我这只是把 2022 年写在时间线上的那些内容都收集起来了。写着写着太多了，就放弃了，结果最后还是从开始用 LLM 的时候整理起来的。记得当时是按天各种都试着写过。我们的起点，
 
 ## Podcast 回顾与重访 Man-Computer Symbiosis    *54:18*
+
+
+<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **崔胜准** 靠近我们播客起点的时候，第 3 期聊的就是历史和技术。所以当时 Satya Nadella在 Build 2023 的时候提到过这个。从 1945 年的 As We May Think 开始，到 1960 年的 Man-Computer Symbiosis，一路讲下来，梳理了是如何走到 ChatGPT 的，
 

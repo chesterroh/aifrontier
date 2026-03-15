@@ -85,7 +85,13 @@ alternateSlug: null
 ## GPT-5.4 Key Features and Demo    *01:57*
 
 
-<ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase - GPT-5.4 데모 모음" domain="developers.openai.com" />
+<ResourceLink url="https://openai.com/ko-KR/index/introducing-gpt-5-4" title="OpenAI - GPT-5.4를 소개합니다" domain="openai.com" />
+
+
+<ResourceLink url="https://www.youtube.com/watch?v=YICiHiU2GBU" title="Computer Use & Frontend UI with GPT-5.4 Thinking" domain="youtube.com" />
+
+
+<ResourceLink url="https://developers.openai.com/showcase" title="OpenAI Showcase" domain="developers.openai.com" />
 
 <span class="paragraph-timestamp" data-ts="01:57">01:57</span> **Seungjoon Choi** So GPT-5.4 came out.I haven't had a chance to examine it in detail,but I pulled together a few links,and these two videos were interesting,and this one was about the Computer Use agent side,so these days, since OpenAI released GPT-5.4,all the "I made this, I made that" poststhat people are sharing are all related to this.When it comes to making something like a game or a 3D scene well,it forms a feedback loop,and then in the middle of a conversation it can change direction,so that it can ask follow-up questions during CoT,and that ability to ask follow-up questions was good.
 
@@ -112,7 +118,10 @@ alternateSlug: null
 ## Three.js and Ricardo Cabello's Quake Port    *05:12*
 
 
-<ResourceLink url="https://mrdoob.github.io/three-descent/" title="Mr.doob - Descent Three.js 포팅" domain="mrdoob.github.io" />
+<ResourceLink url="https://x.com/mrdoob/status/2015076521531355583?s=20" title="mrdoob - 'Claude로 Quake를 Three.js로 포팅할 수 있을까?'" domain="x.com" />
+
+
+<ResourceLink url="https://mrdoob.github.io/three-quake/" title="Three.js Quake" domain="mrdoob.github.io" />
 
 <span class="paragraph-timestamp" data-ts="05:14">05:14</span> **Seungjoon Choi** because AIs use Three.js a lot these days,its usage has shot way up.
 
@@ -129,7 +138,7 @@ alternateSlug: null
 ## Andrej Karpathy's Learning-Speed Experiment and Self-Improvement Loop    *06:21*
 
 
-<ResourceLink url="https://x.com/karpathy/status/2029701092347630069" title="Karpathy - GPT-2 훈련 속도 실험 + 자기개선 루프" domain="x.com" />
+<ResourceLink url="https://x.com/karpathy/status/2029701092347630069" title="Andrej Karpathy - nanochat 자기개선 루프" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="06:21">06:21</span> **Seungjoon Choi** A post from a few days ago by Andrej Karpathy, this was interesting.GPT-2 used to take about three hours a few months ago,but now you can train it in two hours.With an 8-H100 pod,
 
@@ -143,9 +152,6 @@ alternateSlug: null
 
 ## Mitchell Hashimoto and Harness Engineering    *07:11*
 
-
-<ResourceLink url="https://mitchellh.com/writing/my-ai-adoption-journey" title="Mitchell Hashimoto - My AI Adoption Journey (Harness Engineering)" domain="mitchellh.com" />
-
 <span class="paragraph-timestamp" data-ts="07:11">07:11</span> **Seungjoon Choi** And Mitchell Hashimoto, whom many people these daysknow from Ghostty,was also the founder of HashiCorp.I think he's sold that by nowand is working more like a coding artisan these days,making interesting, fast, and beautiful terminals,and a lot of people who use AIseem to be using Ghostty,and for him too, maybe it was the dawn when GPT-5.4 came out,a post he made right before GPT-5.4 was releasedsaid that Codex 5.3, over the past six months,solved problems he had been struggling with for months.There was another post related to that as well.So we've been looking at slicesof the current mood, especially among relatively younger people.
 
 <span class="paragraph-timestamp" data-ts="07:59">07:59</span> But the reason I brought up Mitchell Hashimoto againis that the term harness engineeringcame from his blog.So this article, "My AI Adoption Journey,"was, among what I read in February,one of the best pieces,and it's made up of about six chapters.From "discard the chatbot" to "design the harness,""always run the agent,""outsource the clearly easy work,"it's structured like that,and step 5 was "design the harness."So here we started thinking about the termharness engineering,where every time you discover an agent making a mistake, you spend timedesigning a solution that makes sure it never makes that mistake again.That concept of engineering it is what we call harness engineering,and he talked about two main things: prompting,and through actual programming tools,every time you see the agent doing something bad,you work to make sure it can never do that again,and whether the agent is doing something goodcan be self-verifiedby providing some kind of harness for that.It's a very good article, and there isa lot more in it besides this,
@@ -155,7 +161,10 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="09:13">09:13</span> **Chester Roh** Seungjoon will probably talk about harnesses and scaffolding later,but the expression harnessis actually being used a lot.So a harness,for some people, means something like Claude Code or Codex,some chunk of software attached next to the modelthat we collectively almost call a harness,but the harness Mitchell Hashimoto talks aboutseems to include even more than that,extending all the way to the front end as part of the concept.But while it's an augmenting tool,
 
 
-<ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 형식 검증 + AI harness" domain="x.com" />
+<ResourceLink url="https://wiki.g15e.com/pages/Alloy%20Analyzer" title="Alloy Analyzer" domain="wiki.g15e.com" />
+
+
+<ResourceLink url="https://x.com/_a6g_/status/2029923426056687752" title="강규영 - Alloy 기반 실행 가능한 명세서" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="09:43">09:43</span> **Seungjoon Choi** it also has the strong nuance of something tightly fastened,like a saddle or tack on a horse.That's what harness feels like. So as a reference casefor a tool that verifies and tightens things,Kang Kyuyoung, who is now the CTO at Korca,had been talking about a language called Alloy since last year.So Alloyis a system with a very domain-specific languagethat lets you create formal structures and verify them precisely.And with that, very recently,maybe yesterday, he posted a tweetabout using Alloy like this for end-to-end testing andexecutable specifications with natural-language descriptions attached,so a kind of test for working behavior,drawing ideas from the integrated test idea,to enable the model to do precise work,those kinds of verification tools, something beyond linting.It felt like he was doing harness engineering by building tools like that.So something I've been thinking about more these days is
 
@@ -192,22 +201,16 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="16:35">16:35</span> **Chester Roh** He's progressing without stopping.
 
-
-<ResourceLink url="https://www.webofstories.com/play/donald.knuth/62;jsessionid=B968A8BC8B936AB19E88AD5156E2F5E1" title="Donald Knuth - Electronic Coach (젊은 시절 영상)" domain="webofstories.com" />
-
 <span class="paragraph-timestamp" data-ts="16:38">16:38</span> **Seungjoon Choi** If you're curious about Donald Knuth, something you can check out isa fun video called Electronic Coach that a young Donald Knuth didback in the punch-card era,and then, he wanted to write,to write books, but there was no typesetting system, so he created TeX, right?And that eventually became LaTeX,which became the standard system for papers, and he's the person who made that.So if you're curious about that story, it's worth looking into.He's also someone who talked aboutthe concept of literate programming very early on.And I was surprised too,
 
 ## Guido van Rossum and Kent Beck's Shift to AI    *17:10*
-
-
-<ResourceLink url="https://x.com/gvanrossum/status/2029021031219052768" title="Guido van Rossum - AI 활용 전향" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="17:11">17:11</span> **Seungjoon Choi** but while looking up ages, I found out that Guido van Rossum, who created Python, is 70 this year.
 
 <span class="paragraph-timestamp" data-ts="17:16">17:16</span> **Chester Roh** That's a 30-year gap from Andrej Karpathy.
 
 
-<ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="Kent Beck - 90%의 스킬 가치 하락, 10%는 1000배 상승" domain="x.com" />
+<ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="Kent Beck - '90%의 스킬은 가치 하락, 남은 10%는 1000배 상승'" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="17:19">17:19</span> **Seungjoon Choi** Guido van Rossum has also recently shiftedtoward using AI,and you can see things on his timeline likeusing Claude to do something.And Kent Beck, whom I've mentioned a few times, with Extreme Programming and so on,in the area of software design patterns,a well-known figure who also took part in the Agile Manifesto,and he's also very close with Ward Cunningham.So he's 64,and about doing things with an AI he called genie,he posted live coding sessions called genie sessions.But in 2023, he said this:that he felt reluctant, that it didn't really click with him emotionally,but he tried using ChatGPT somewhat against his will,and said 90% of his skill was disappearing,and he posted that in 2023,but now he's very excited because he's using it well.He says coding is fun,and he also has another recent talk scheduled.How has genie changed what programmers should do andshould not do? That's the title.
 
