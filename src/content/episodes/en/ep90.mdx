@@ -151,7 +151,7 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **Chester Roh** Conceptually, it's actually similar to RLVR.But it's a different layer.RLVR says that during the training process, if you can provide some verifiable,checkable signal,then you can keep training in that domain.This one pulls that into the actual application process, right.In the end, research and things like that, when given to a highly capable model,if you can set a reward signal, a direction for improvement,and define some objective,then it can autonomouslymove toward that goal. That's what it showed.The reward signal wasn't an RL-style reward signal,
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="x.com" domain="x.com" />
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Autoresearch 코드 구조 분석" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **Seungjoon Choi** and it wasn't differentiable either, just a simple pass-or-failjudgment,and with just a very simple few files, prepare.py,which isn't that important,train.py, and program.md,it keeps researching in the direction of lowering it until it satisfiesthe condition, and the MD file isn't even that long.There's something interesting at the very end: never stop. Don't stop.If you get stuck, if you run out of ideas, go read papers.Form this hypothesis and test it.Test that hypothesis too, and don't keep asking me whether you should continue.I think the final instruction is to just keep going.And the things that are actually showing results from thatare visible here in this graph.That's what this is, and here Andrej Karpathy and
 
@@ -195,9 +195,6 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **Chester Roh** Shall we get into our "Back in my day" segment?
 
-
-<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="simonwillison.net" domain="simonwillison.net" />
-
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **Seungjoon Choi** What we're going to bounce back and forth on like thiscould be our own personal stories,and also what kinds of trends there were.I picked out a few thingsthat I personally recognized and immediately remembered.Around 2011, I saw this on my timeline.This was from Peter Norvig at Google,who's still around now, though I'm fuzzy on whether he's still at Google,but anyway, he was the most senior scientist.Peter Norvig and the person who did X with him.Google X, Sebastian Thrun. The person who later founded Udacityhad opened an AI course together at Stanford,and Andrew Ng had opened a machine learning course,and then there was also a database course.Looking through the timeline for that,this is what came up.So at Stanford, they ran experimentsthat became the beginning of the modern MOOC,and all of that was AI,ML, and databases,and apparently this many people flocked to them.
 
 <span class="paragraph-timestamp" data-ts="19:58">19:58</span> But there's a name here, Daphne Koller,and Daphne Koller co-founded Coursera with Andrew Ng,and she's the one who did insitro.She's connected to the life sciences, and so things like this were happening,and from there, people, myself included,and probably others as well,
@@ -220,9 +217,6 @@ alternateSlug: null
 
 ## The YouTube Cat Recognition Experiment and Emergent Behavior    *23:00*
 
-
-<ResourceLink url="https://chatgpt.com/c/69b36a2a-cf18-83a3-897a-db8ce5106d3e[Link" title="chatgpt.com" domain="chatgpt.com" />
-
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **Seungjoon Choi** It was that YouTube had started recognizing cats.It's not laid out exactlyhow this experiment was designed, but looking at this image,
 
 <span class="paragraph-timestamp" data-ts="23:13">23:13</span> **Chester Roh** I remember getting all excited with Dr. Sangho Leeand talking about it a lot.What it did was, with YouTube, at that time at least,they put something like a cluster of about a thousand machines there,set up things similar to a CNN architecture,and just fed in YouTube clips unsupervised the whole way through,and somewhere in a particular layer,there were a few images showing that a filter had formed that recognized cat faces.
@@ -242,7 +236,7 @@ alternateSlug: null
 ## Andrej Karpathy's Writing and the ImageNet Golden Age: CS231n, DeepDream, Chris Olah    *25:21*
 
 
-<ResourceLink url="https://chatgpt.com/c/69b36a2a-cf18-83a3-897a-db8ce5106d3e" title="chatgpt.com" domain="chatgpt.com" />
+<ResourceLink url="https://karpathy.github.io/neuralnets/" title="Hacker's Guide to Neural Networks" domain="karpathy.github.io" />
 
 <span class="paragraph-timestamp" data-ts="25:21">25:21</span> **Seungjoon Choi** Then something that went viral on the timeline wasthis by Andrej Karpathy,a document called Hacker's Guide to Neural Networks,which I think got talked about a lot too.
 
@@ -251,9 +245,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="25:36">25:36</span> It covered how backprop works and what a computation graph looks like,saying this is not actually as hard as it seems,and it explained it all in JavaScript.It really matters
 
 <span class="paragraph-timestamp" data-ts="25:48">25:48</span> **Chester Roh** who you were with, when, and where you were working,because that's the timing of life,and Karpathy was working on ImageNet, which was right at the center of all the buzz,as Professor Fei-Fei Li's PhD student.
-
-
-<ResourceLink url="https://chatgpt.com/c/69b35a78-e500-83a3-b911-7927054d21be[Link" title="chatgpt.com" domain="chatgpt.com" />
 
 <span class="paragraph-timestamp" data-ts="26:02">26:02</span> **Seungjoon Choi** Right, so here it says PhD student Stanford,and that he made ConvNetJS.ConvNetJS was naturally tied to Fei-Fei Li's line of work,so he was doing that, and Karpathy was also sharing and explaining those things,and he really seemed to love sharing.Back then, the benchmark was something like today's AIME
 
@@ -266,9 +257,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="27:08">27:08</span> only had 2 GB of memory back then.I plugged in that 2 GB GPU and tried to train on it.But the batch size, I don't remember exactly,but I think it only went up to around 2.Even so, I remember thinking I'd try it anywayand just running it.Back then, whatever you did felt genuinely amazing.
 
 <span class="paragraph-timestamp" data-ts="27:25">27:25</span> **Chester Roh** I remember 2014 being when VGG, or was it GoogLeNet, won,and then ResNet won in 2015.So at the time,vision-related things were really hot.
-
-
-<ResourceLink url="https://chatgpt.com/c/69b35a78-e500-83a3-b911-7927054d21be" title="chatgpt.com" domain="chatgpt.com" />
 
 <span class="paragraph-timestamp" data-ts="27:40">27:40</span> **Seungjoon Choi** That's why the original title of CS231n wasDeep Learning for Computer Vision.And a lot of absolutely huge namesended up emerging from there later too.
 
@@ -289,7 +277,10 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="28:18">28:18</span> They called it neural style.Right, neural style. Justin Johnsonmade a clean Torch implementation in Lua,and I remember running it a lot too.
 
 
-<ResourceLink url="https://karpathy.github.io/neuralnets/" title="karpathy.github.io" domain="karpathy.github.io" />
+<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="DeepDream - Inceptionism (Google Research)" domain="research.google" />
+
+
+<ResourceLink url="https://colah.github.io/" title="Chris Olah's Blog" domain="colah.github.io" />
 
 <span class="paragraph-timestamp" data-ts="28:27">28:27</span> **Seungjoon Choi** And in that kind of vision-related work, what gave a clue to why it workswas ultimately Chris Olah,and Alexander Mordvintsev, Mike Tyka,people like that, who worked onwhat was called DeepDream.It got talked about a lot in the art world too,but in the end it's feature amplification.And now it can also be described aswork that provided an early starting point for interpretability research,and that whole story, centered around Chris Olah,
 
@@ -302,7 +293,7 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="29:51">29:51</span> **Chester Roh** The people who were just getting started then, after about four or five years,actually became the mainstream.And in 2014, even just in 2014 and 2015,we were all talking about images and style transfer, CNNs,things like that, ImageNet and so on,but Ilya Sutskeverpublished the sequence-to-sequence paper in 2014.But with RNNs, we didn't really startexperimenting, building chatbots,and playing around with them until later,around 2016 or 2017.
 
 
-<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="research.google" domain="research.google" />
+<ResourceLink url="https://transformer-circuits.pub/" title="Transformer Circuits - Anthropic 해석가능성 연구" domain="transformer-circuits.pub" />
 
 <span class="paragraph-timestamp" data-ts="30:24">30:24</span> **Seungjoon Choi** The co-author of Ilya Sutskever's sequence-to-sequence paperwas Oriol Vinyals, I think, who's still at DeepMind.I might be mixing that up, though.But I think that's how it was.Anyway, trajectories like this were something Chris Olah,who ended up becoming one of Anthropic's co-founders,carried into Anthropic's interpretability research,through posts like Transformer Circuits,with that thread continuing steadily.
 
@@ -312,9 +303,6 @@ alternateSlug: null
 
 ## The Evolution of Deep Learning Frameworks: From Theano to PyTorch    *31:04*
 
-
-<ResourceLink url="https://colah.github.io/" title="colah.github.io" domain="colah.github.io" />
-
 <span class="paragraph-timestamp" data-ts="31:49">31:49</span> **Chester Roh** Back then, Eric Schmidt came to Google Campus too,the TensorFlow Korea meetup was held there as well,and together with AlphaGo,Google was really standing firmly at the center of the community.So I remember Jeff Dean came then too,but I didn't go.
 
 <span class="paragraph-timestamp" data-ts="32:04">32:04</span> **Jinwon Lee** I went there, but honestly I don't remember that much.A lot of people came,and what I remember is that people were very interestedin chatbots even then, but my impression of Jeff Dean at the time wasthat he wasn't all that interested in chatbots, like, "Chatbots? Is that really so hard?"I kind of remember him answering in that sort of way.
@@ -322,9 +310,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="32:25">32:25</span> But this was actually a little before AlphaGo for us.Since AlphaGo started on March 9,it was right before that, and TensorFlow,because at the time what people actually used the mostwas something called Caffe,and since Caffe was a framework developed at a university,the fact that Google was coming in properlyand doing thismade interest in TensorFlow extremely high.
 
 <span class="paragraph-timestamp" data-ts="32:52">32:52</span> **Chester Roh** Terms like session and feed_dict come to mind.Right. Speaking of those tool names,
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/Torch_(machine_learning" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="32:59">32:59</span> **Seungjoon Choi** the early part of Andrew Ng's course used Octave,so you had to study that and do the exercises in it,which was basically MATLAB's...
 
@@ -346,9 +331,6 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="34:21">34:21</span> **Chester Roh** Yeah, I think 2020 was the last time for me too.
 
-
-<ResourceLink url="https://transformer-circuits.pub/" title="transformer-circuits.pub" domain="transformer-circuits.pub" />
-
 <span class="paragraph-timestamp" data-ts="34:24">34:24</span> **Seungjoon Choi** Another person who was well known at the time was CEO Kim Sung-hoon,when he was still at HKUST.That was when he was giving lectures like Deep Learning for Everyone,and this was early 2016, which in the endfeels like a ripple effect of the AlphaGo shock.People were stunned by AlphaGo and thought they really had to understand this,and an atmosphere formed where people studied it together,and that's when the TensorFlow Korea Facebook group was created,and there were events, and people even went to Jeju Island together for workshops.
 
 <span class="paragraph-timestamp" data-ts="34:57">34:57</span> **Jinwon Lee** I was with TensorFlow Korea, which is now called AGI Koreaon Facebook after changing its name,and I was on the organizing team there too,and there were a lot of really interesting things.And TensorFlow, this was a user group,not exactly a user group in the strict sense,but it definitely had that character,and if you count it as a user group,it was the biggest in the world.So it was even introducedat actual Google events and things like that.I think it probably started with Soonseo Kwon at Google Koreaand CEO Kim Sung-hoon working together,
@@ -356,9 +338,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="35:30">35:30</span> **Seungjoon Choi** and then many people joined as members of the operating committee.It was Egoing's Life Coding and TensorFlow Korea.It felt like that was always showing up on my Facebook timeline, that community,and I think it was a time when it really had that kind of energy.But something else I found interesting wasthere was this somewhat mysterious blog back then.
 
 ## David Ha and Creative Coding: What the Community Left Behind    *35:45*
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/Theano_(software" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="35:51">35:51</span> **Seungjoon Choi** A blog that looked like this, and as you kept scrolling down like this,it had things that you could call a bit like media art made with machine learning,or in the style of creative coding,and there was someone posting lots of things like that.
 
@@ -491,9 +470,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="54:00">54:00</span> **Seungjoon Choi** This is just a collection of things I wrote down on the timeline in 2022.I gave up because there got to be too many as I kept writing them down,but in the end, it was something I started once I began using LLMs.I remember trying this and that with it on a daily basis.Our starting point,near the starting point of our podcast,
 
 ## Looking Back on the Podcast and Revisiting Man-Computer Symbiosis    *54:18*
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/TensorFlow" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **Seungjoon Choi** episode 3 was about history and technology.So this was when Satya Nadellapointed this out at Build 2023.Starting with "As We May Think" in 1945and then "Man-Computer Symbiosis" in 1960 and onward,he traced how we got all the way to ChatGPT,and we tried to read into what that meant,
 

@@ -151,7 +151,7 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **卢正石** 从概念上说，其实和 RLVR 很像。只不过层次不一样。RLVR 讲的是在训练过程中，如果能给出某种 verifiable 的，也就是可验证的信号，那模型就能在那个 domain 里持续训练下去。而这个则是把它实际拉到了应用过程中来，对吧。研究这类事情，归根结底也是如果面对一个非常强的模型，能给它设定奖励信号，也就是朝着变好的方向的目标，那它就能自主地朝着那个目标前进，这次其实就是证明了这一点。这个奖励信号不是 RL 里的那种奖励信号，
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="x.com" domain="x.com" />
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Autoresearch 코드 구조 분석" domain="x.com" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **崔胜准** 虽然它并不可微，但只是给出一个能不能成的判定，就这么简单，只要有几个非常简单的文件，prepare.py，这个倒不是很重要，再有 train.py、program.md 这些，它就会朝着满足这个条件、直到成功为止不断把指标压低的方向去做 research，而且那个 MD 文件也不算长。最后有个很有意思的点，never stop。不要停，如果卡住了，想法卡住了，就去读论文再回来立这个假设试试看，再试试那个假设，别一直来问我要不要继续往下做最后那句咒语好像就是继续做下去而且实际已经开始看到成果的那些东西也在这里用图表展示出来了。就是这么回事，然后这里的 Andrej Karpathy 和
 
@@ -195,9 +195,6 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **卢正石** 要不要进入一下我们的“想当年”环节？
 
-
-<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="simonwillison.net" domain="simonwillison.net" />
-
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **崔胜准** 我们这样你来我往地聊，可能会讲到我们各自的经历，也会讲当时有哪些发展脉络，我自己有印象的东西里，挑了几个一时能立刻想起来的。大概在 2011 年前后，我是在时间线上看到这个的。这是 Peter Norvig 的，Google现在应该还在吧，至于是不是还在 Google 我有点记不清了，反正他当时是最资深的 scientist 之一。就是和 Peter Norvig 一起做过 X 的那位。Google X，Sebastian Thrun。后来创办 Udacity 的那位当时一起在 Stanford 开了 AI 课程，Andrew Ng 也开了机器学习课程，然后好像还有一门数据库课程。我回头翻了下那段时间线，就看到了这些内容。所以 Stanford 当时做了 MOOC，可以说是现代 MOOC 起点的那类实验，而且这些全都是 AI、ML、数据库这些方向，据说吸引了这么多人参与。
 
 <span class="paragraph-timestamp" data-ts="19:58">19:58</span> 不过这里有个名字叫 Daphne Koller，Daphne Koller 后来和 Andrew Ng 共同创办了 Coursera，这位还创办了 insitro。她和生命科学也有很深的关联，总之当时有这些事情，也正是在那里，很多人，包括我在内，其他人应该也差不多，
@@ -220,9 +217,6 @@ alternateSlug: null
 
 ## YouTube 猫识别实验与涌现现象    *23:00*
 
-
-<ResourceLink url="https://chatgpt.com/c/69b36a2a-cf18-83a3-897a-db8ce5106d3e[Link" title="chatgpt.com" domain="chatgpt.com" />
-
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **崔胜准** 要看核心的话，就是这张图。就是 YouTube 开始识别猫了，那件事。这个实验具体是怎么设计的，
 
 <span class="paragraph-timestamp" data-ts="23:13">23:13</span> **卢正石** 其实并没有写得特别清楚，但看到这张图的时候，我记得我还和李相浩博士一起特别激动地讨论过这件事，它当时好像是把大概一千台左右的 cluster 搭起来，然后放上类似 CNN 的结构，就这样用 unsupervised 的方式把 YouTube clips 全部喂进去，结果在某个特定 layer 的某处，长出了一个能识别猫脸的 filter，当时有好几张这样的图。
@@ -242,7 +236,7 @@ alternateSlug: null
 ## Andrej Karpathy 文档与 ImageNet 黄金时代：CS231n、DeepDream、Chris Olah    *25:21*
 
 
-<ResourceLink url="https://chatgpt.com/c/69b36a2a-cf18-83a3-897a-db8ce5106d3e" title="chatgpt.com" domain="chatgpt.com" />
+<ResourceLink url="https://karpathy.github.io/neuralnets/" title="Hacker's Guide to Neural Networks" domain="karpathy.github.io" />
 
 <span class="paragraph-timestamp" data-ts="25:21">25:21</span> **崔胜准** 后来在时间线上火起来的一个东西，是 Andrej Karpathy 的一篇叫 Hacker's guide to Neural Networks 的文章，当时也被非常频繁地提起。
 
@@ -251,9 +245,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="25:36">25:36</span> 就是 backprop 怎么做，computation graph 长什么样，一边说这东西其实没想象中那么难，一边用 JavaScript 来解释这些内容。这就说明，在哪个时期、和谁一起、
 
 <span class="paragraph-timestamp" data-ts="25:48">25:48</span> **卢正石** 在什么地方做什么事，其实很重要，这就是人生的 timing。Karpathy 当时是在做 ImageNet，那正是 ImageNet 处于话题中心的时候，他是 Fei-Fei Li 教授的博士生。
-
-
-<ResourceLink url="https://chatgpt.com/c/69b35a78-e500-83a3-b911-7927054d21be[Link" title="chatgpt.com" domain="chatgpt.com" />
 
 <span class="paragraph-timestamp" data-ts="26:02">26:02</span> **崔胜准** 所以这里写着 PhD student Stanford，还做了 ConvNetJS。ConvNetJS 本来就和 Fei-Fei Li 的工作脉络相关，他一边做这些，Karpathy 还一边传播这些东西，看得出来他特别喜欢分享和交流。那时候的 benchmark 就像现在的 AIME，
 
@@ -266,9 +257,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="27:08">27:08</span> 在当时显存只有 2GB。我还插着那块 2GB 的 GPU，想着试着训练一下。不过 batch，我记不太清了，感觉 batch 好像最多也就到 2 左右。所以即便这样我也想试试看，就一直开着跑，记得很清楚。那时候真的是做什么都觉得特别神奇。
 
 <span class="paragraph-timestamp" data-ts="27:25">27:25</span> **卢正石** 我记得 2014 年是 VGG，不对，是 GoogLeNet 拿了冠军，然后 2015 年是 ResNet 拿了冠军。所以当时那种，和 vision 相关的东西特别火。
-
-
-<ResourceLink url="https://chatgpt.com/c/69b35a78-e500-83a3-b911-7927054d21be" title="chatgpt.com" domain="chatgpt.com" />
 
 <span class="paragraph-timestamp" data-ts="27:40">27:40</span> **崔胜准** 所以 CS231n 最初的标题就是Deep Learning for Computer Vision。所以这里面也出了很多后来非常有名的人物。后来也都陆续出现了。
 
@@ -289,7 +277,10 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="28:18">28:18</span> 就是当时说的 neural style。对，neural style。我们那位 Justin Johnson用 Lua 做了一个很干净的 Torch implementation，我记得我当时也跑了很多次。
 
 
-<ResourceLink url="https://karpathy.github.io/neuralnets/" title="karpathy.github.io" domain="karpathy.github.io" />
+<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="DeepDream - Inceptionism (Google Research)" domain="research.google" />
+
+
+<ResourceLink url="https://colah.github.io/" title="Chris Olah's Blog" domain="colah.github.io" />
 
 <span class="paragraph-timestamp" data-ts="28:27">28:27</span> **崔胜准** 还有，在那些和 vision 相关的东西里，关于它为什么能起作用，真正提供线索的，最终还是 Chris Olah、以及 Alexander Mordvintsev、Mike Tyka这些人参与做过的那个叫 DeepDream 的工作，这个虽然在艺术领域也被反复提起，但归根结底它就是 feature 放大嘛。现在也可以说，这还是某种 interpretability 研究的起点性工作，从谱系上是可以这样讲的，而这类故事的脉络，在以 Chris Olah 为核心做的
 
@@ -302,7 +293,7 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="29:51">29:51</span> 还收到过 Yann LeCun 的评论之类的。那些博客到现在都还保存得很好，所以那边也挺有意思的。那时候开始做这些的人，过了大概 4 到 5 年后，其实就成了主流了。而且在 2014 年，哪怕只说 2014、2015 年，我们那时都还在聊图像、style transfer、CNN、这些东西，还有 ImageNet 之类的，但 Ilya Sutskever 发表 sequence to sequence 论文是 14 年。可当时我们拿着 RNN开始学习一些新奇的东西，然后做 chatbot、开始拿来玩，大概是 15 年之后的事了，
 
 
-<ResourceLink url="https://research.google/blog/inceptionism-going-deeper-into-neural-networks/" title="research.google" domain="research.google" />
+<ResourceLink url="https://transformer-circuits.pub/" title="Transformer Circuits - Anthropic 해석가능성 연구" domain="transformer-circuits.pub" />
 
 <span class="paragraph-timestamp" data-ts="30:24">30:24</span> **卢正石** 应该是在 16、17 年左右。Ilya Sutskever 的 sequence to sequence 共同作者是 Oriol Vinyals 来着吗，那位现在还在 DeepMind。我可能记混了。不过好像是这样的。总之，这样的发展轨迹后来由 Chris Olah他最终也成了 Anthropic 的联合创始人之一，在 Anthropic 的可解释性研究中也通过 Transformer Circuits 的文章等
 
@@ -312,9 +303,6 @@ alternateSlug: null
 
 ## 深度学习框架的演变：从 Theano 到 PyTorch    *31:04*
 
-
-<ResourceLink url="https://colah.github.io/" title="colah.github.io" domain="colah.github.io" />
-
 <span class="paragraph-timestamp" data-ts="31:49">31:49</span> **卢正石** 对，我没去。其实那时候 Eric Schmidt 也来过 Google Campus，TensorFlow Korea 的聚会也在这里办，随着 AlphaGo 的出现，Google当时非常强势地站到了社区的中心。所以我记得 Jeff Dean 那时候也来过，
 
 <span class="paragraph-timestamp" data-ts="32:04">32:04</span> 不过我没去。我当时去过，不过其实已经记不太清了。当时来了非常多的人，我记得的是，大家那时候对 chatbot也已经很感兴趣了，但 Jeff Dean 在我印象里对 chatbot 好像没那么感兴趣，像是说过一句“chatbot 那有什么难的”，
@@ -322,9 +310,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="32:25">32:25</span> **李珍元** 我大概还记得是这种感觉的回答。不过这时候其实还是 AlphaGo 前后那段时间，再早一点吧。因为 AlphaGo 是从 3 月 9 日开始的，所以就是紧挨着之前，而 TensorFlow当时其实大家用得最多的还是叫 Caffe 的那个，但 Caffe 毕竟是学校开发出来的 framework，而 Google 这次是正式下场来做这件事，
 
 <span class="paragraph-timestamp" data-ts="32:52">32:52</span> 所以当时大家对 TensorFlow 的关注度非常非常高。我会想到 session、feed_dict 这些术语。
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/Torch_(machine_learning" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="32:59">32:59</span> **崔胜准** 对。说到这些工具名，Andrew Ng 课程前半部分是要学 Octave 的，也就是说得拿它做练习，
 
@@ -346,9 +331,6 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="34:21">34:21</span> **崔胜准** 差不多就那样，真要说正经做过什么，已经没什么印象了。
 
-
-<ResourceLink url="https://transformer-circuits.pub/" title="transformer-circuits.pub" domain="transformer-circuits.pub" />
-
 <span class="paragraph-timestamp" data-ts="34:24">34:24</span> **卢正石** 对，我大概也是 2020 年左右之后就没怎么碰了。所以说，当时另一个很有名的人是金圣勋代表，那时候他还在香港科技大学。所以也是他在讲《大家的 Deep Learning》这类课程的时候，而这正好是 2016 年初，这归根结底我觉得还是 AlphaGo 冲击带来的连锁反应。大家被 AlphaGo 震撼到了，觉得必须认真了解这个，于是形成了那种一起学习的氛围，后来 Facebook 上还建了 TensorFlow Korea 的 Facebook 群组，
 
 <span class="paragraph-timestamp" data-ts="34:57">34:57</span> **崔胜准** 也办活动，甚至一起去济州岛开 workshop 之类的。我当时也在这个 TensorFlow Korea，现在改名叫 AGI Korea 了，Facebook 上已经换了名字，我那时也是 TensorFlow Korea 的运营成员，里面有很多很有意思的事。而且 TensorFlow 这个组织，虽然严格来说不太能算 user group，但不管怎么说也有那种性质，如果把它算作 user group 的话，那它是全球规模最大的。所以实际上在 Google 的一些活动上也曾被专门介绍过。一开始大概是 Google Korea 的权顺序
@@ -356,9 +338,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="35:30">35:30</span> 和金圣勋代表一起做起来的，后来很多人也一起作为运营委员参与进来了。还有生活 coding 的 egoing，和 TensorFlow Korea 一起。当时感觉 Facebook 时间线上总能看到这些内容，那个社区确实是很有活力的一段时期。不过我当时还看到一个挺有意思的博客，
 
 ## David Ha 与创意编程：社区留下的痕迹    *35:45*
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/Theano_(software" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="35:51">35:51</span> **崔胜准** 那会儿有个有点神秘的博客。就是这种风格的博客，这样一路往下翻，上面会发一些用 machine learning 做的，有点像 media art，
 
@@ -491,9 +470,6 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="54:00">54:00</span> **卢正石** 是啊，现在这都已经是 Nano Banana 在做的事了。我这只是把 2022 年写在时间线上的那些内容都收集起来了。写着写着太多了，就放弃了，结果最后还是从开始用 LLM 的时候整理起来的。记得当时是按天各种都试着写过。我们的起点，
 
 ## Podcast 回顾与重访 Man-Computer Symbiosis    *54:18*
-
-
-<ResourceLink url="https://en.wikipedia.org/wiki/TensorFlow" title="en.wikipedia.org" domain="en.wikipedia.org" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **崔胜准** 靠近我们播客起点的时候，第 3 期聊的就是历史和技术。所以当时 Satya Nadella在 Build 2023 的时候提到过这个。从 1945 年的 As We May Think 开始，到 1960 年的 Man-Computer Symbiosis，一路讲下来，梳理了是如何走到 ChatGPT 的，
 
