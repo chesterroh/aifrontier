@@ -96,8 +96,9 @@ alternateSlug: null
 
 
 
-![GPT-5.4 Thinking展示计划并补充细节的示例](/episodes/ep89/ep89_0210_gpt54_thinking_plan.jpg)
-*📷 GPT-5.4 Thinking展示计划并补充细节的示例*
+
+
+![OpenAI同时发布的三款产品介绍卡片：从左到右分别显示“GPT-5.4 Thinking”“Introducing ChatGPT for Excel”“GPT-5.3 Instant”标题的发布图片](/episodes/ep89/notion_03.png)
 
 <span class="paragraph-timestamp" data-ts="01:57">01:57</span> **崔胜准** 那么，GPT-5.4出来了。虽然我还没来得及仔细看，不过我整理了几个链接，其中这两个视频很有意思，还有一个视频是关于Computer Use agent的，最近OpenAI在GPT-5.4出来之后，大家分享的那些“做了这个做了那个”的内容，基本都和这个有关。比如在很擅长制作某种游戏或3D场景时，会形成feedback loop，还有在对话过程中中途调整方向，因此能够继续追问，在CoT过程中可以提出后续问题，这个功能很不错。
 
@@ -132,8 +133,6 @@ alternateSlug: null
 
 
 
-![Mr.doob基于Three.js移植Quake的示例](/episodes/ep89/ep89_0514_threejs_quake_port.jpg)
-*📷 Mr.doob基于Three.js移植Quake的示例*
 
 <span class="paragraph-timestamp" data-ts="05:14">05:14</span> **崔胜准** 因为Three.js最近被AI大量使用，所以使用量一下子涨了很多。
 
@@ -164,6 +163,9 @@ alternateSlug: null
 
 ## Mitchell Hashimoto 与 Harness Engineering    *07:11*
 
+
+![Mitchell Hashimoto 的博客封面图片，标题为“MY AI ADOPTION JOURNEY”，并配有如树枝般向外延展的网络图形](/episodes/ep89/notion_10.png)
+
 <span class="paragraph-timestamp" data-ts="07:11">07:11</span> **崔胜准** 还有 Mitchell Hashimoto，最近很多人都很爱用的 Ghostty 就是他做的，而且他还是 HashiCorp 的创始人。现在他大概已经把公司卖掉了，以编程匠人的身份继续活动，做出了有趣、快速又漂亮的终端，我知道很多使用 AI 的人现在都在用 Ghostty，他也在 GPT-5.4 发布那天凌晨，还是说在 GPT-5.4 发布前不久发过一篇帖子，说 Codex 5.3 把他六个月来一直 struggling、苦苦纠缠的问题给解决了。他还专门写了一篇相关帖子。所以我也看到了一些最近氛围的侧面，尤其是相对年轻一代的一些侧面。
 
 <span class="paragraph-timestamp" data-ts="07:59">07:59</span> 不过我再次提到 Mitchell Hashimoto，是因为 harness engineering 这个词就出自他的博客。他那篇《我的 AI 引入之旅》是我 2 月读过的文章里最好的一篇之一，这篇文章大概由 6 个章节组成。从“抛弃聊天机器人”到“设计 harness”，“始终运行 agent”，“把明确且简单的工作外包出去”，大致就是这样的结构，其中第 5 步就是“设计 harness”。所以我们也在这里思考了一下所谓 harness engineering 这个词，每当发现 agent 犯错时，就投入时间设计出一个让它以后再也不犯这种错的解决方案。把它当成一种 engineering 的概念来理解，也就是 harness engineering，他主要讲了两点，一个是 prompting，另一个是通过实际的编程工具，每当看到 agent 做坏事时，就努力让它以后再也做不了这种事，同时也为 agent 提供某种 harness，让它能够自行验证自己做的是否是正确的事情。这是篇相当好的文章，里面除了这些之外
@@ -181,8 +183,6 @@ alternateSlug: null
 
 
 
-![基于Alloy的可执行规格示例](/episodes/ep89/ep89_0943_alloy_executable_spec.jpg)
-*📷 基于Alloy的可执行规格示例*
 
 <span class="paragraph-timestamp" data-ts="09:43">09:43</span> 但同时也带有像马鞍或马具那样紧紧勒住的感觉，这种语感我觉得还挺强的。harness 这个词就是这样。所以作为这种验证并收紧的工具的参考案例，最近在 Corca 担任 CTO 的姜奎英从去年开始就一直在提 Alloy 这门语言。他从去年起就时常提到 Alloy 这门语言。所以 Alloy是一套使用非常 domain specific 的语言来构建形式，并进行精确验证的体系。而最近他马上就昨天还是前天发的一条推文里提到，可以这样利用 Alloy 来做 end-to-end 测试，以及附带自然语言说明的可执行规范，也就是从某种 working 测试、integrated test 的思路里获得灵感，从而让模型能够准确地完成某项工作，我觉得这类验证工具已经超越了 lint。感觉他就是在制作这样的工具，进行 harness engineering。所以最近我一直在进一步思考的是，
 
@@ -230,9 +230,15 @@ alternateSlug: null
 
 <ResourceLink url="https://x.com/KentBeck/status/1648413998025707520" title="Kent Beck - '90%의 스킬은 가치 하락, 남은 10%는 1000배 상승'" domain="x.com" />
 
+
+![Kent Beck（@KentBeck）于 2023 年 4 月 19 日发布的推文：『The value of 90% of my skills just dropped to $0. The leverage for the remaining 10% went up 1000x. I need to recalibrate.』— 140 万次浏览](/episodes/ep89/notion_13.png)
+
 <span class="paragraph-timestamp" data-ts="17:19">17:19</span> **崔胜准** Guido van Rossum 最近也转向了使用 AI，开始用起来了，像“用了 Claude 做了什么”这样的内容，在时间线上都能看到。还有我之前介绍过几次的 Kent Beck，像 Extreme Programming还有软件设计模式领域里非常有名的人，也参与过 Agile Manifesto，而且和 Ward Cunningham 关系也非常好。那位今年64岁，他会拿一个叫 genie 的 AI 来做各种事，还会把现场编程的视频发出来，叫作 genie session。不过他在 2023 年是这么说的。因为有点 reluctant，虽然心里并不是很认同，但还是有点勉强地去用了 ChatGPT，结果发现“我 90% 的 skill 都消失了”，他在 23 年发过这样的内容，后来转向好好使用，现在变得非常兴奋。他说写代码变得很有趣，最近还计划做一场相关的发表和讲座。genie 是如何改变程序员该做的事和不该做的事，标题就是这个。
 
 <span class="paragraph-timestamp" data-ts="18:27">18:27</span> **卢正石** 你在下面写的那篇 23 年 4 月写的文章也非常抓住本质。我拥有的 90% skill 价值下降了，接下来 remaining，也就是剩下的 10% 的价值涨了一千倍。不是单纯写代码的能力，而是别的某种东西，我们最近把它概括称作领域默会知识，这部分的价值高了很多，你当时是这么说的。
+
+
+![Anthropic 报告封面：标题为“支持对编程技能形成的影响，2026 年 1 月 29 日”，配有一只手调节滑块的插图](/episodes/ep89/notion_15.png)
 
 <span class="paragraph-timestamp" data-ts="18:54">18:54</span> **崔胜准** 那是我们刚开始做播客的时候，转眼已经过去很久了。所以到了 2026 年的现在，我开始觉得，有些事适合用 harness 来做，有些事适合用 scaffolding 来做。我是这么想的。scaffolding 就是给你一个辅助台阶嘛。harness 则是刚才说的收紧那一类，scaffolding 在教育学里也是常用术语，比如说搭设脚手架，虽然之后会拆掉，但它是帮助学习者能自己往上爬的某种情境或环境，也可以指这种设置。
 
@@ -277,8 +283,6 @@ alternateSlug: null
 
 
 
-![累积了数十段对话和大量代码的实验记录](/episodes/ep89/ep89_3038_chat_volume_experiment.jpg)
-*📷 累积了数十段对话和大量代码的实验记录*
 
 <span class="paragraph-timestamp" data-ts="30:30">30:30</span> **崔胜准** 我刚才也在想的点就是这个，会成的事和不会成的事，还有那些稍微努力一下就可能成的事，得对这些有感觉才行。所以我在 3 月第 1 周，正石在那一类方向上做了不少学习，我自己也算学了一些，但我到现在要对话的话，还是因为网页端方便得多，所以大多都在网页上聊，而且我也喜欢看 CoT，所以最后还是做了这边的东西，大概是从 3 月 1 日开始的，到昨天为止大概聊了 60 个对话。
 
@@ -305,8 +309,9 @@ alternateSlug: null
 
 
 
-![使用GPT-5.4进行的论文到一键实验画面](/episodes/ep89/ep89_3305_paper_to_click.jpg)
-*📷 使用GPT-5.4进行的论文到一键实验画面*
+
+
+![Claude Code 工作结果界面：左侧列出了 bmesh-mvp-preview.obj 等项目文件并带有勾选标记，右侧显示一个呈 T 姿势的人体白色 3D 网格模型](/episodes/ep89/notion_22.png)
 
 <span class="paragraph-timestamp" data-ts="33:05">33:05</span> **崔胜准** 我就试了一下“论文到一键”到底行不行。虽然没完全成，但已经做出了八九不离十的结果。
 
@@ -315,8 +320,6 @@ alternateSlug: null
 
 
 
-![使用GPT-5.4进行的源码到一键实验画面](/episodes/ep89/ep89_3315_source_to_click.jpg)
-*📷 使用GPT-5.4进行的源码到一键实验画面*
 
 <span class="paragraph-timestamp" data-ts="33:15">33:15</span> **崔胜准** 所以如果给你们看看这个“论文到一键”，这个大概做了 30 分钟，或者说 20 分钟左右，一开始是先简单起步，然后定计划、来回拉扯几轮，再把结构搭起来，就让它这样推进下去。所以本来是想做成 MVP 级别的最小实现，结果确实是做出来了，但老实说还是有不少遗憾。我还试了“源码到一键”。因为还有人看着那篇论文已经在 GitHub 上实现过了。所以我把那个 archive 下载下来做了，那个只花了 10 分钟。不过质量反而更低一些。因为这属于 porting，所以本来就是难度低得多的问题。但像这种区间，属于那种做不成的区间，虽然说是实现了，其实并没有真正成功，连一键都做不到的那些。但即便如此，它还是能展示出某种 PoC 级别的能力，用很简单的 prompt 就能做到，不过也确实有一些部分是一键搞定的。所以是从去年 3 月 1 日左右，大概 2 号那会儿，我做了这个。
 
@@ -325,6 +328,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="34:31">34:31</span> 不过这个看起来和刚才那个有点像，但它用了 isosurface，所以这是简单得多的算法。这个虽然很容易做出来，但细节会差一些。像生成手指这种。这个大概花了 30 分钟。PoC 后来再打磨，又多花了一两天。接下来这个 PoC 也是大概 30 分钟做出来的。为了做得更像样一点，干脆朝着 modeling tool 那种方向走，比如有个人体形状时，可以把它拉长、再缩短一些，或者改造成别的形态，ZBrush 这个 3D 工具里有个叫 ZSphere 的概念，就是做这种东西的，像这种程度的制作，尤其是 Gemini 在 3D 方面做得很好，所以做起来特别轻松。到这里都还很容易。
 
 ## 颠簸路段：模型也未能解决的边界连接问题    *35:18*
+
+
+![Zsphere v5 HTML 查看器中显示人体 3D 网格的画面。“Boundary Edges”和“Gap Edges [*1]”图层已启用，躯干与四肢连接处清晰可见白色边界线](/episodes/ep89/notion_23.png)
 
 <span class="paragraph-timestamp" data-ts="35:18">35:18</span> **崔胜准** 所以论文里的关键在于，要把这个做插值然后连起来。先把这个做出来，再以这个为目标，从那里开始就进入颠簸了。不过除了最末端那个接缝之外，其余部分的还原还是很容易的。但这一部分在人看来明明非常简单，可真要用数学去思考，里面其实有很多东西。
 
@@ -347,8 +353,6 @@ alternateSlug: null
 
 
 
-![通过反复提出假设和实验逐步缩小问题范围的过程](/episodes/ep89/ep89_3836_hypothesis_experiment_loop.jpg)
-*📷 通过反复提出假设和实验逐步缩小问题范围的过程*
 
 <span class="paragraph-timestamp" data-ts="38:27">38:27</span> **崔胜准** 问题在于，我复现的是那个问题，而不是把原有的问题原封不动地拿过来。所以其实有不少情境本身不同的 case。能行的 case 和不行的 case 混在一起，要想把这个真正做好，遇到特定问题时就得先把它做成 save point，然后在那个点上提出各种假设并优先探索，假设成功当然很好，但如果不行，就再往回退着做。类似这样的算法有很多。
 
@@ -371,6 +375,9 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="41:23">41:23</span> **卢正石** 其实从正圭之后，再到成铉，再到今天，某种意义上，我们那种郁闷感，以及这种被卡住的区间，关于颠簸区间的讨论，好像一直在延续。我们大家都在一键一键地做着我觉得好像已经越过了那样的阶段。就是会在脑子里形成一种想法：这个既然能做到，那就别自己做了。现在胜准也是，其实我也是，虽然能在一键就完成的区间里获得巨大利益，但如果能和我自身的某些东西结合，从而产出完全不同的附加价值，我觉得我们现在相当关注的就是如何去定义那样的问题。所以归根结底还是 problem。Problem。所以要善于捕捉问题，之后还能把问题好好推演下去，并且能够很好地引导整个解决问题的过程，我觉得这才是人该具备的素质。昨天在我身边，
 
 ## 一旦 token 中断，人就回来了：依赖与 Brownout    *42:11*
+
+
+![ChatGPT 使用量界面：在“每周限额”部分，“所有模型”项目的仪表已满，并显示“已使用 100%”和“22 小时 14 分钟后重置”](/episodes/ep89/notion_24.png)
 
 <span class="paragraph-timestamp" data-ts="42:32">42:32</span> **卢正石** 有位会分享 frontier knowledge 的工程师说过一段话，我还记得。他说自己把 weekly token在订阅额度里全都用完后，就在那一刻自己又变回了一个微不足道的人类。因为那样就没事可做了，因为完全没有任何能做的事，所以只能睡觉，他说那就是自己唯一能做的事。不过那话还真有种微妙的共鸣。我们现在做的所有事情，也都是把 GPT 和 Claude 带在身边嘛。
 
