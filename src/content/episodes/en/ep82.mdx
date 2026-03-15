@@ -90,8 +90,9 @@ The underlying principles, I'd like to trace them back.
 
 
 
-![Graph screen comparing changes in the 50%-time horizon of multiple AI models with dots and lines](/episodes/ep82/ep82_0134_metr_time_horizon_graph.jpg)
-*📷 Graph screen comparing changes in the 50%-time horizon of multiple AI models with dots and lines*
+
+
+![METR benchmark chart: a scatter plot showing task duration on the x-axis, by release year, for various LLMs on software engineering tasks that they can complete with 50% probability. It shows an exponential upward curve from GPT-2 in 2020 to Claude Opus 4.5 in 2026 (about 4 hours 49 minutes), with Claude Opus 4.5 marked at the highest value in the upper-right of the graph.](/episodes/ep82/notion_01.png)
 
 <span class="paragraph-timestamp" data-ts="01:34">01:34</span> **Seungjoon Choi** First, to cover a few newsworthy items, on December 20th, 2025, it seems we failed to mention that this graph was updated. We must not have mentioned it. So, this is the one we've introduced several times, related to the METR 50%-time horizon. But if you look at the linear scale, you can see that Claude Opus 4.5 has jumped significantly to 4 hours and 49 minutes, almost 5 hours. You can see it has leaped forward. So if you look at this on a log scale, it still looks like it's progressing well, though it feels like a slight increase, but looking at this, it feels like this.
 
@@ -178,6 +179,9 @@ But Claude I got the feeling that it has been completely productized. There's a 
 
 <span class="paragraph-timestamp" data-ts="16:17">16:17</span> **Seungjoon Choi** But why do skills work so well?
 
+
+![A slide composed of three sections. At the upper left is the large title “Why do SKILLs work so well?”, and at the upper right is the subtitle “A pipeline that creates pipelines that generate useful byproducts” with a chain-shaped diagram. At the bottom, two screenshots are arranged side by side: an example Domain Priming skill screen from the Claude interface (including code and explanation), and a table about AI self-improvement policies (including items such as name, methodology, and scope).](/episodes/ep82/notion_02.png)
+
 <span class="paragraph-timestamp" data-ts="16:22">16:22</span> **Chester Roh** I'm not sure.
 
 
@@ -185,8 +189,6 @@ But Claude I got the feeling that it has been completely productized. There's a 
 
 
 
-![Screenshot of a social media post showing the code-simplifier agent announcement and installation instructions](/episodes/ep82/ep82_1625_code_simplifier_agent.jpg)
-*📷 Screenshot of a social media post showing the code-simplifier agent announcement and installation instructions*
 
 <span class="paragraph-timestamp" data-ts="16:23">16:23</span> **Seungjoon Choi** So, skills are actually based on the spec-driven approach that was popular last year, it has that foundation. And then, following a certain format, with MDs, these days MD files are ultimately a type of programming, the MDs are structured perfectly, and it's not just MDs, there are scripts with code in them. So, it's not quite static, but rather... there are parts that execute precisely, and there are instructions and code that execute probabilistically. It's a neat packaging of all those things. To be reusable.
 
@@ -209,8 +211,6 @@ What I've been constantly thinking about is that you need to input the right tok
 
 
 
-![Metaphorical image where only some areas are revealed on a game screen or map while the surroundings remain dark](/episodes/ep82/ep82_1840_game_map_analogy.jpg)
-*📷 Metaphorical image where only some areas are revealed on a game screen or map while the surroundings remain dark*
 
 <span class="paragraph-timestamp" data-ts="18:37">18:37</span> **Seungjoon Choi** There is a bit of a difference in nuance, but doesn't it also have the feeling of being a perfect fit right now? Isn't that part of it? I'm not exactly sure either, but so when you write that, I often use a game analogy. When you play a game, whether it's a real-time simulation like StarCraft or when playing a role-playing game, the player has to go to a specific area for the nearby map the minimap to be revealed. It lights up. From being dark. So you have to go to that area for the space to open up. That's how I feel.
 
@@ -298,8 +298,6 @@ Why is it that when you appropriately lengthen it, when you use test-time comput
 
 
 
-![Concept diagram showing with arrows how a conditional path is activated in an expression and leads to the next expression](/episodes/ep82/ep82_3214_hidden_state_path_circuit.jpg)
-*📷 Concept diagram showing with arrows how a conditional path is activated in an expression and leads to the next expression*
 
 <span class="paragraph-timestamp" data-ts="32:09">32:09</span> **Seungjoon Choi** So those things, in CoT, so from the conception, starting from the scratchpad, to Jason Wei's 'Let's think step by step', starting from things like that, from the trend from late 2022 to early 2023, I had some time to look back and study what has continued to this day. I had time to study.
 
@@ -314,6 +312,9 @@ In the end, it's driving the work by continuously outputting auto-regressive tok
 <span class="paragraph-timestamp" data-ts="33:18">33:18</span> **Seungjoon Choi** And so, at OpenAI, what they talked about in the second half of last year was that they started talking about the concept of Monitorability. So now, if you intervene in CoT, the model might deceive it or such phenomena occur. Still, running it with only internal representations was also announced in research from Meta. So if you make it auto-regress continuously with internal representations, humans can't know in the end. So monitoring is very important, and what they're saying here, it has various meanings, but they talk about a Monitorability tax. Even if it costs more, making a good CoT visible is a meaningful alignment task, and making those things happen well has some meaning. They expressed it from a research perspective. But at OpenAI, the appearance of a Korean page was seen once again recently.
 
 <span class="paragraph-timestamp" data-ts="34:24">34:24</span> **Chester Roh** The model is probably doing it all. Yes.
+
+
+![A slide with large black text on a yellow background reading “From f(x) and g(x) to f(g(x)):” and, below it in smaller text, the explanatory sentence “LLMs learn new skills in RL by combining existing skills.”](/episodes/ep82/notion_04.png)
 
 <span class="paragraph-timestamp" data-ts="34:26">34:26</span> **Seungjoon Choi** Right. But it was very well done. So I did some research yesterday, I looked as far back as 2016, and the older ones aren't in Korean, but the recent ones are very well localized. So it's helpful for reviewing like this again. I think it's helpful.
 
@@ -335,6 +336,9 @@ But that too, in the end, the fact that the model calls such tools and is good a
 So the transformer, this was probably around July 2024, when I wrote an article about looking into the transformer step by step, and I remember sharing that and having a fun conversation about it. I remember us having a fun chat about it. I thought I should revisit that.
 
 So this time, the transformer's MLP or FFN, as it's called, those big chunks, are now all replaced with MoE. So I've prepared the MoE version of the transformer, step by step. I've prepared it.
+
+
+![A typography slide on a beige background with the large Korean calligraphy-style title “Step-by-Step Transformer,” with the abbreviation “MoE” also shown in red on the right.](/episodes/ep82/notion_05.png)
 
 <span class="paragraph-timestamp" data-ts="37:59">37:59</span> **Chester Roh** The conclusion, as Seungjoon said earlier, is that putting some background before the prompt is extremely important.
 
@@ -433,6 +437,9 @@ And in last year's keynote by Seonghyun the presentation started with MoE, right
 <span class="paragraph-timestamp" data-ts="47:07">47:07</span> **Seungjoon Choi** It's the MoE version of the transformer and for our subscribers when Jeongkyu came on the show we talked a lot about things like KV cache, right? What is that?
 
 And in the transformer in today's context, I've said several times that a certain token has to go in for that space to open up. What's the operating principle that makes it work like that?
+
+![A slide with the title “The meaning of nonlinear activation functions” on the left, followed by Korean mathematical explanations showing that in an MLP, without nonlinear activations, multiple layers collapse into a single linear transformation. On the right, Python code using NumPy verifies the linear-combination equivalence of a two-layer MLP, alongside the execution result confirming that the two arrays are identical.](/episodes/ep82/notion_08.png)
+
 <span class="paragraph-timestamp" data-ts="47:33">47:33</span> **Chester Roh** Then we'll look inside at attention and within that attention the core QKV. What on earth do these things do?
 
 And then it moves to the next layer FFN, which is MoE these days. What on earth does MoE do? And between the transformer blocks the meaning of things like residual connections we need to take another look at these things. I want to look at them. And if I click this link it will be in here.
