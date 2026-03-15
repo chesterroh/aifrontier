@@ -561,7 +561,6 @@ const { videoId, title = 'YouTube video' } = Astro.props;
 <style>
   .youtube-container {
     container-type: inline-size;
-    transition: all 0.3s ease;
   }
 
   .youtube-container :global(iframe) {
@@ -570,6 +569,17 @@ const { videoId, title = 'YouTube video' } = Astro.props;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  /* Mini player appear animation */
+  .mini-player-floating,
+  .mini-player-top-right {
+    animation: mini-appear 0.2s ease-out;
+  }
+
+  @keyframes mini-appear {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
   }
 
   /* Mini player floating (mobile - top right) */
