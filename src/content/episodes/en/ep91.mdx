@@ -1,0 +1,525 @@
+---
+episodeNumber: 91
+title: "AI from the Business Perspective — 26.Q1 Update"
+description: "OpenClaw meetup recap, viewing AI as a search problem, bundle-unbundle structural shifts, 1/10x efficiency vs 10x new business, and honest conclusions from 4 years of AX."
+publishedAt: 2026-03-21
+duration: "1:16:56"
+youtubeId: "FPYOVt2B5EM"
+thumbnail: "https://i.ytimg.com/vi/FPYOVt2B5EM/sddefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "Intro"
+  - time: "0:52"
+    title: "OpenClaw Seoul meetup recap"
+  - time: "1:56"
+    title: "The crayfish family and the AI harness lifecycle"
+  - time: "4:17"
+    title: "Chedex and Ralph Loop"
+  - time: "6:34"
+    title: "Health checkup allergy experience and human senses"
+  - time: "7:30"
+    title: "Root-cause reasoning with GPT-5.4, KYYB pledge"
+  - time: "8:55"
+    title: "GTC keynote and 'Future of Work'"
+  - time: "9:54"
+    title: "Shifting to a fundamental view of the AI business"
+  - time: "10:34"
+    title: "March 2026 AI industry snapshot"
+  - time: "14:48"
+    title: "RLVR and CUA"
+  - time: "17:21"
+    title: "Every problem converges into a search problem"
+  - time: "19:17"
+    title: "Models are far smarter than we think"
+  - time: "22:03"
+    title: "Company proprietary-knowledge testing"
+  - time: "23:32"
+    title: "Auto Research and optimization isomorphism"
+  - time: "27:30"
+    title: "Ralph Loop variants and meta-cascading"
+  - time: "29:57"
+    title: "Defining talent in the agent era"
+  - time: "34:26"
+    title: "OpenClaw and the rise of personal agents"
+  - time: "39:01"
+    title: "Agents operating existing apps on your behalf"
+  - time: "42:57"
+    title: "The bundle-unbundle framework"
+  - time: "46:28"
+    title: "Incumbents' UX friction and disintermediation"
+  - time: "48:52"
+    title: "The era of adaptation competition"
+  - time: "51:10"
+    title: "1/10x efficiency vs 10x new business"
+  - time: "55:19"
+    title: "Even with agents, 10x isn't here yet"
+  - time: "58:12"
+    title: "After all that, vanilla is the answer"
+  - time: "61:38"
+    title: "10x new business is the entrepreneur's domain"
+  - time: "66:15"
+    title: "Eliminating the entire job end-to-end"
+  - time: "69:10"
+    title: "Reorgs and AI-native talent"
+  - time: "71:51"
+    title: "Prompt injection and isolated operations"
+  - time: "75:33"
+    title: "Keeping pace like yacht racing"
+  - time: "76:45"
+    title: "Closing"
+lang: "en"
+alternateSlug: null
+---
+
+## Intro    *00:00*
+
+**Chester Roh**
+*00:00*  Today, as we're recording, is March 21st, 2026, a Saturday morning. It's been a while, but I'd like to talk about business. Up to now, we've talked a lot about AI itself, but the changes that have accumulated in the meantime, and some of the changed insights around that, I'd like to gather those up and talk about them.
+
+*00:20*  This is roughly the order we're planning to follow today. Last week, Seungjoon and I together went to the OpenClaw meetup, so I'd like to talk about that a bit at the beginning, and then the fundamental perspective on the AI game, I'd like to organize my thoughts on that as well, and after that, some business-related topics, and toward the end, AX, which many of you are interested in. Everyone seems to read it as AI Transformation, and our company as well, in its own way, has done a lot of AX, so we'll talk about that briefly as well. This was last Saturday morning when we recorded with Jinwon, right?
+
+## OpenClaw Seoul meetup recap    *00:52*
+
+*00:58*  After recording with Jinwon, that afternoon at the Scionic office there was the OpenClaw Seoul meetup, and we went and saw people there. I saw a lot of familiar faces for the first time in a while, and these young, brilliant people I'd wanted to see were all gathered there, so I think it was a great occasion. Hashed CEO Kim Seojun also came and gave a presentation, and then Seungjoon and I are standing here too, and Yeonkyu, who made Oh-My-OpenCode, and then Minseok as well. This was roughly the atmosphere of the event.
+
+*01:31*  Scionic's new office was made really beautifully. So this basement space here, they made it into a seminar space, a presentation space, and I think it would be nice if we also asked once in a while and got to use it.
+
+**Seungjoon Choi**
+*01:47*  I enjoyed it, and I think I got a lot of good stimulation from it.
+
+**Chester Roh**
+*01:49*  There were a lot of presentations, but with all the laughing and chatting and talking with people, I didn't get to see every presentation, but Heo Yechan, who made Oh-My-Claude-Code and Oh-My-Codex, Heo Yechan's presentation was really interesting.
+
+## The crayfish family and the AI harness lifecycle    *01:56*
+
+*02:04*  This person created the crayfish family with OpenClaw, managed the crayfish family, and in effect the crayfish family, underneath that, handles coding harnesses like OMX and OMC, and that's how the project is run almost entirely. He talked about how he runs this lifecycle, and that was really interesting.
+
+**Seungjoon Choi**
+*02:26*  It reminds me of crayfish stew and a crayfish graveyard.
+
+**Chester Roh**
+*02:29*  The presentation itself was really interesting, and also the format used ElevenLabs voice recording, and these are people who, well, have copyrights and all that, they're all famous people. Their photos are all already publicly known too, but I just call them young immortals when I'm out and about, and their methodologies are really different. We always talk about the importance of learn and unlearn, and listening to them, that day became a really good opportunity for me to unlearn.
+
+*03:04*  Their methodologies are all unique, and most of all, later on we'll once again talk through the essential meaning of AI as we organize it, but it's about how to use tokens more efficiently and more abundantly so that instead of us directly solving the problem, if we only set the goal, AI solves as much of the entire problem as possible. That kind of workflow, and Yechan too, said that here the crayfish family is not a role-based setup but a small AI company. That's how he put it, and he refers to himself as the older brother, and with this older brother leading, these AI harnesses, starting from the meta layer, keep stacking layers downward, and when some task arises, it keeps going down in this cascading way and the work gets resolved, and once everything is resolved, it comes back up and gets reported, and the parts of the workflow that are stable are stabilized so they can run completely automatically on their own, and he'd built those parts extremely well.
+
+*04:03*  And seeing how these established methodologies became the methodologies of these outstanding people I call young immortals, and how good harnesses are built on that foundation, that was one of the interesting things to witness. So after going there on Saturday, I was so stimulated that for two days, Sunday and Monday, I worked hard refining harnesses. I set up OpenClaw and everything I had, installed it all, copied some of the workflow, and in my own work I worked hard on laying down a meta layer. It was really interesting. And while doing that, in fact I also looked into things like Ralph loop, autopilot, and auto research, and then also a framework called Ouroboros, which someone built, and that's a harness especially focused on how to write specs really well, and as I dug into all of those, I pulled out the things I needed while running the loop, and didn't pull out the things I didn't need, and in the process I made my own harness, which I named Chedex, and as I tried building that out, I realized, ah, this is how work is all going to run. I felt a lot of those things.
+
+## Chedex and Ralph Loop    *04:17*
+
+*05:16*  To summarize it simply, when it comes to me deciding the direction of something and deciding my goal, while running a human-in-the-loop and constantly going back and forth, it's important to keep that cycle going, and once the goal has been reached to a certain extent, from that point on, by running the Ralph loop n times, the chaos that had been inside as you run this harness all gets shaved away. And in a very refined form, only the essence remains, just like this, and through that process, watching this piece of work come to an end, I thought, this is a new methodology and a new kind of company, and it became a very good occasion for me to think that a lot.
+
+**Seungjoon Choi**
+*05:56*  It also seems like it's becoming a trend. YC's Garry Tan also made something called gstack, and it's been getting a lot of attention lately, so CEOs shaving down harnesses is kind of becoming a trend, isn't it?
+
+**Chester Roh**
+*06:07*  I think so. A harness is basically a kind of workflow, and if you really look at workflows too, everyone is copying everyone else, and in fact the general things are just bundled a little differently, so even if you gather all of those together, you don't just use them as-is, and that harness too ultimately reflects each person's own perspective, so in many cases people shave it down again and use it that way, so for a while, I think this may be a trend.
+
+## Health checkup allergy experience and human senses    *06:34*
+
+*06:34*  But an important experience was that no matter how much this AI advances and no matter how much better it gets and all that, there was something that made me realize, wow, we really are human beings. I had a health checkup last week, and I know that I have an allergy to a certain medication. So it's a contrast agent for blood vessels, and after getting it, I always get mild hives on my body and feel a bit worse, and I knew those things would pass, but after this repeated a few times, and now that it's been about 7 or 8 years for me, and the fourth or fifth time overall, this time the immune reaction hit really hard, and I was almost at the point where I thought, I'm going to die like this. So I got a steroid injection, took medicine, and just lay down for about two or three days, and after going through this experience, I thought, wow, what does it mean to be human? It really made me think about that again.
+
+## Root-cause reasoning with GPT-5.4, KYYB pledge    *07:30*
+
+*07:30*  Lying there, what was interesting was that unlike before, about the experiences I'd had with that medication and my reactions and things like that, I kept having conversations with GPT-5.4 for hours. It told me everything. Why that happens, what problem is suspected, which probability is high. And as I kept running a kind of Ralph loop on it, the issue became clearer, and it even got to the point of saying that if I do about this much, it will take about this long, so it was practically giving me a course of action, and of course the doctor beside me was explaining everything too, but the things the doctor doesn't tell you about, all of those priors behind it, when it explained all of that to me, it really made me think that we're heading into a new world,
+
+*08:20*  and when I originally started the company, it began with making something to sell cosmetics, but in the end, it was really about how human beings can live longer in a healthier and more beautiful state. So what I did is that the name of the brand I'm running is KYYB, it's a brand called KYYB, and that's taken from the initials of Keep You Young and Beautiful. How can people stay younger and more beautiful, and I thought I should make that the vision for the rest of my life, so I named the brand KYYB, and I made a resolution that I need to come back to this business strongly.
+
+## GTC keynote and "Future of Work"    *08:55*
+
+**Seungjoon Choi**
+*08:55*  But you watched GTC while you were sick too, didn't you?
+
+**Chester Roh**
+*08:57*  I had nothing to do, so I watched Jensen Huang talking blankly for two hours. Seungjoon, did you watch GTC too?
+
+**Seungjoon Choi**
+*09:06*  No. I just watched some clips and thought, oh, I see, but I didn't look into it in detail.
+
+*09:10*  But another interesting pattern is that Chester was having those kinds of conversations while sick this time, and looking at people around me, when they're lying down like that, there are people coding while getting an IV drip. Because now they can.
+
+**Chester Roh**
+*09:22*  You can even do it by voice, yes.
+
+**Seungjoon Choi**
+*09:24*  And when I meet acquaintances and have a meal with them, they're developers, and they keep looking at their smartphones, checking those notifications, and the scene of giving work to agents has really changed a lot too. I asked what they were doing, and they were just continuously assigning work.
+
+**Chester Roh**
+*09:39*  Like supervisors. Even at our OpenClaw meeting that day, I saw Yechan bring an iPad and run a few CLIs like that, and supervise everything. So I thought, wow, that's the future of work. So now, as for us going forward, in fact, after coming this far for so long, things like improvements in productivity or coding and stories like that, in a way, that's a conversation that's now over, and I think all that's left is for it to move into everyday life, and also, a great many Frontier Labs and Latent Space, for example, The people who are ahead of the curve are, for the most part, focused on science, on AI science, through this lens a lot. So with those things as well, I think we may be somewhat aligned. Then, since what comes later today just has to keep moving straight through, let me push ahead a bit. Let me read through the previous slide first.
+
+## Shifting to a fundamental view of the AI business    *09:54*
+
+## March 2026 AI industry snapshot    *10:34*
+
+*10:34*  So before I really get into it, about the current world of AI business, in terms of how we should look at it, I've written out the logic all the way through, but in any case, at a fundamental level, we need to acquire one perspective. So about that fundamental perspective, I'll talk a bit about that first, and then about the business side, in the industry we're currently in, we'll talk about what's happening, and then, when it comes to AX within companies in that industry, what it seems like we should do, and in that way, from the broad view, we'll narrow it down step by step.
+
+*11:08*  As for this METR time horizon, I don't really need to talk about it, since it's something we all already know, and then when benchmarks come out, we don't really look at them closely, right? When a benchmark comes out, most of the time, jokingly, it's not, "Hey, how's this benchmark?" it just ends with, "This is better than you," doesn't it? It seems better than me.
+
+*11:25*  With something like GPT-5.4 now, when I use it in actual work, I don't really feel like there's anything unreasonable about it, to the point that I haven't been seriously disappointed by it. Rather than saying I've been hugely satisfied, the experience of falling into corner cases where I think, "This really won't work," has become markedly less frequent, and I think that's worth mentioning too.
+
+*11:48*  And in March 2026, if I talk a bit about a snapshot of how we're looking at this industry right now, we don't talk much about pre-train, but it now seems to have solidified into a game that can be played. Yesterday Xiaomi announced a model called MiMo V2 Pro, and this too is almost a Frontier model based on 1T, and it seems the person who made it is a young woman, and she had participated in DeepSeek R1. But in what she wrote on Twitter, there were a lot of meaningful points, and we're seeing this in the DokpaMo business this time too, but computation costs really are continuing to fall. To be honest, NVIDIA machines seem to keep getting more expensive, but performance per unit cost is definitely continuing to get cheaper, so unlike before, this doesn't feel like something that absolutely cannot be attempted, requiring resources on the order of hundreds of millions of dollars. It's dropped to the tens of millions of dollars range, and even within those several tens of millions on the back end, it's falling to just a few tens of millions, and it even feels like it may fall further.
+
+*12:54*  And companies like NVIDIA, this time with Nemotron, they had previously only announced Nemotron, and things like the training code and recipe were a bit incomplete, but after about a two- or three-month gap, they filled it all in. If you go inside, there's Nemotron Nano, and then you know the larger base model that's been coming out lately. Super, maybe, and for things like that too, all of the pre-train, and then the mid-train and post-train, all that training code is out there, and the related datasets are all there too.
+
+*13:26*  So the person who made MiMo V2 Pro as well talks about a gap of around one year. If you build the infrastructure well and know how to do it once, it also connects somewhat with what Seungjoon has always said, that once you see someone do something like this, it becomes something all of us can do.
+
+**Seungjoon Choi**
+*13:47*  It was done with AI.
+
+**Chester Roh**
+*13:50*  Right. Without AI, we're nothing more than insignificant creatures.
+
+**Seungjoon Choi**
+*13:54*  In the case of "it was done with AI," the fact that it can be done becomes a major hint.
+
+**Chester Roh**
+*13:59*  Right. So in the case of MiMo V2 Pro as well, when that kind of preparation is cleanly in place, it shows that in about a year, you can catch up, and that you can produce that level of quality, so I think it has become a good example of that. So as for pre-train, this is something that seems reasonably doable. And also, regarding the ultimate future form of development for AI, if we just jump far into the future, ultimately every unit service will keep moving toward a world where it becomes a single unit model, so this process of doing model work still seems important to me. But because accessibility to those areas is also continuing to improve, even though we're looking at agents and things like that right now, we still need to keep watching the development of the model world as well, and that seems only natural to me.
+
+## RLVR and CUA    *14:48*
+
+*14:48*  If we move on a bit, the axis of competition among Frontier Labs, Seonghyun also came to the last session and clearly defined it for us, saying this year it seems to be RL environment scaling, didn't Seonghyun. That's what we've been calling RLVR, and RLVR stands for Reinforcement Learning by Verifiable Rewards, and what that means is that as long as you can produce some verifiable reward signal, the model can definitely learn.
+
+*15:17*  So in our domain, when RLVR first came out, we didn't even talk about VR. We didn't talk about Verifiable Rewards either, and math and coding were just the representative examples. Because with math and coding, Solving the problem can be difficult, but whether this solution is correct or not is easy to verify. Like a Sudoku puzzle, solving it is hard, but whether what you've filled in is the right answer is easy to check.
+
+*15:41*  So before, there were only things like that, but now, beyond coding as just a general field, it's moving into medicine, legal work, chemistry, biology, physics, all of these areas. If you can create this kind of environment, then instead of it just ending in an on-policy setting, learning keeps happening and we're living in that kind of remarkable world. And now with GPT-5.4 coming out, they call it CUA. Computer Use Agent. This too, in fact, is about putting the model in an environment where it can use computers, and when it gets the desired result, saying this was right or this was wrong, giving it that kind of reward, so the model can handle the apps we're familiar with, or handle macOS or Windows, and become really good at using things like that. It works extremely well.
+
+*16:28*  And what we had talked about was, a reward environment that can never be created in a digital environment seems to be becoming a new axis of business, and the example we discussed in that context was a company like Periodic Labs. That's a materials engineering company, and for certain materials that you can never experiment with purely digitally, whether they have the properties of a superconductor or not, to test things like that, they built a lab entirely controlled by robots, and that lab generates reward signals, saying whether this works or doesn't work, which then feed back into the model in reverse, combining the digital world and the atom world, and that's how they're building a moat. Problems like these are emerging as the best example of the kind of moat a new company needs to have. I think that's about how we can wrap this part up.
+
+## Every problem converges into a search problem    *17:21*
+
+*17:21*  To summarize it more simply, we gave a few examples earlier, but if we take this one step higher to a more abstract layer and organize it, then everything that's happening right now, in one sentence, is that using compute, by putting in computational resources, we've turned every problem into a search problem. No matter what domain a problem belongs to, even if humans don't yet know the answer, it still contains all sorts of supersets, right? There are regions of the solution space we haven't reached, and that solution space, by throwing computational resources at it at random, we explore all of it. We explore all of it, and if it's the right answer, this is a solution, and if it's not the right answer, this is not it, and in that solution space we mark it accordingly. It's a way of creating a kind of manifold, and then taking what was learned there back into the model, so that the model ends up possessing all the knowledge about that domain.
+
+*18:21*  The key here is that, in the end, whether there is an environment that can generate reward signals or not, that's all it comes down to, and that's where the problem essentially converges. We said this almost last year, a very long time ago. Around the middle of last year, we said this is all that's left. Whether you have an environment that can turn the non-verifiable into the verifiable or not, and of course the premise here was that everyone has computational power when we said that. In one of our past YouTube episodes, some of the older ones, the more news-like ones, are very dated now, but on this idea of turning the non-verifiable into the verifiable, we have that scenario and those notes. If you go back and watch that sometime, to understand this problem at a fundamental level, I think it would help a lot. But as these models keep getting more powerful and cheaper, that seems to be, in any case, what's underlying all the changes happening right now.
+
+## Models are far smarter than we think    *19:17*
+
+*19:17*  And even though this is powerful, a lot of people still say, isn't it still unable to surpass humans? There are really quite a lot of people who say that. So they say that's the realm of tacit knowledge, and models can never surpass that, and I hear that fairly often too, but I think I can summarize this part with the idea of capability overhang. What we keep discovering, in fact, is that this model is much smarter than we think. And last time, when Seungjoon was giving that prompt lecture, Seungjoon said, hey, if you just stick a paper in front of it and then say what you want to say, the spaces up front get aligned and it gives a much smarter answer, you've said that before, right? In the same way, I also, whether in business or in the thought experiments I work through, when I try it, what I feel is, what's inside this model, I'm merely drawing out the capability overhang it already had, rather than me, as a human, guiding it or feeling like I'm leading it from a position of superiority, that's becoming harder and harder to feel. And what reveals this most fundamentally is that, it's not even something I'm saying, but Boris Cherny, who created Claude Code, or What they're saying is that the most general one is the most specific one, that's what they're saying. It's not that it solves some particular problem better, but if problem-solving ability increases more generally, then problems in specific domains just get solved. The power of the model matters much more. If it can't be solved now, set it aside, and in six months the model will solve it by then, that's the kind of thing they say.
+
+**Seungjoon Choi**
+*21:00*  What this part makes me think of is, these days when I talk with people I know, there are times when we use the expression "closing the loop." By closing the loop and making a feedback loop form, a lot of things get solved. So then this reward signal isn't necessarily only a reward signal from below, if you convert it into some form that's verifiable, something like a Ralph loop starts running, and then performance improvement or problem-solving can happen, should I say a similar structure appears?
+
+*21:30*  So these days, even with just chat interfaces like ChatGPT, Claude, or Gemini, internally, all of them can run something like a CLI, right? So if you use Python in there to run a bash loop, then that standard output comes back in as context, and the model keeps forming hypotheses and experimenting, doing that for 30 minutes or an hour, and you can see that pretty often even in chat interfaces.
+
+**Chester Roh**
+*21:59*  That point is now before I close this chapter, the core message I want to make, and what I'm saying is that, in fact, many companies think their data is very scarce and doesn't exist anywhere else in the world, so they try to lock it up in some on-premise model or make sure the information can't get out, and they spend a lot of effort on that. But I ran one test at a certain company, with things that only our company knows, some truly exclusive, proprietary things, let's take out just about three of them and put them in, into GPT-5.4. But it's interesting.
+
+## Company proprietary-knowledge testing    *22:03*
+
+**Seungjoon Choi**
+*22:36*  So you ended up trying something you hadn't done before.
+
+**Chester Roh**
+*22:38*  Yes, but to jump to the conclusion, the model already knows it all. So of course I didn't actually go through with execution. But the mental image I have in my mind is, rather than protecting what I have, what I have, I should quickly give it to the model that has that capability overhang, so that the additional search space it has can bring more back to me, and I think that is more beneficial, and that's the view I'm settling on. So these days, rather than security, what I have, though of course frontier labs would like this, in this way, OpenAI or Claude are taking everything that humanity outside has and using all of it as reward signals, and even so, the benefit gained from making that trade is still greater, that's somewhat how I'm thinking about it.
+
+## Auto Research and optimization isomorphism    *23:32*
+
+*23:32*  But what Seungjoon just said earlier, now, Andrej Karpathy did that thing called auto research, right? But the concept here is completely isomorphic too. In the end, deep learning as well has this clear objective, that scalar loss function value, with the goal of lowering it, and as long as the evaluation metric keeps going down, that's fine. And then once you place the model in the middle, the methodology used in between is just to brutishly pour in computation and keep optimizing, right?
+
+*24:05*  If you've studied the algorithm called gradient descent, you'll know it's an incredibly simple algorithm. It's such a simple algorithm that you could implement it in under 20 lines of code, but if you keep pouring computation into it, it ends up finding a solution. It just keeps moving toward something more optimal, it's what you'd call an evolutionary algorithm.
+
+**Seungjoon Choi**
+*24:29*  The important thing is that there are domains where it works, and I think the task is translating problems that at first glance seem like it wouldn't work for into that form. Since to some degree, it does translate.
+
+**Chester Roh**
+*24:40*  And that translatability too, Seungjoon just made a very important point, the model itself even does that translation for you. So the on-policy model takes the objective that I hold only vaguely and the evaluation metric that I also hold only vaguely, and keeps fine-tuning even those along the way, so if you run a few human-in-the-loop cycles in this process and the goal becomes clear, then after that, you can just let it run.
+
+**Seungjoon Choi**
+*25:09*  Even if it's imperfect, once you do step one, then the next part opens up.
+
+**Chester Roh**
+*25:14*  Yes, so this, this slide, in a way, among everything we're talking about today, is actually the most important slide. This methodology we got from deep learning, once models became smart enough to a certain degree, once they crossed the threshold of having abilities beyond some humans, we are now entering the world we had been afraid of. For every problem, problem-solving itself, now there's only this. You just bring in a smart model, and together with that model, make the objective and evaluation metric clear, and then just make everything converge into an optimization problem.
+
+*25:52*  And the target of that optimization can be anything. It could be a single `.md` file, it could be a code repository, or it could be a company. It could be a project, or anything else, as long as you put it into this structure, and running the AI loop is much faster than making people work. Even today's frontier models I think Xiaomi has said the same thing, and it's also what Andrej Karpathy showed in auto research, and not long ago MiniMax also said this is an agent trained model. Humans do not enter that loop. The model evolves itself on its own. As long as it's given a computer, while carrying out self-evaluation, it self-amplifies. If you have just these three, every problem can be solved. And this is what Seungjoon mentioned earlier, what we discovered in deep learning, and it's completely isomorphic to that. It's the same structure.
+
+**Seungjoon Choi**
+*26:49*  Another interesting thought came to me while listening to Heo Yechan's presentation. You talked about things like crayfish graves. Looking at crayfish stew, the `.md`s that failed to succeed I mean, whether that was a program `.md` or a `SOUL.md`, if they fail to pass the fitness function, they get derived into the next different generation. We've heard this somewhere a lot before. It's what we did with genetic algorithms.
+
+**Chester Roh**
+*27:15*  It's the algorithm of evolution. If it adapts, it survives; if not, it dies.
+
+**Seungjoon Choi**
+*27:20*  So the good ones crossover, and those older algorithms that sometimes create mutations seem like they could all be applied to this way of thinking now.
+
+## Ralph Loop variants and meta-cascading    *27:30*
+
+**Chester Roh**
+*27:30*  And this is something we were going to cover at some point but kept failing to get to, but actually that Blaise Ag체era session is talking about exactly this, and because we are interested in things like biotechnology this is also completely connected to that side as well. Watching that, the core algorithm I caught there was that mutation is unnecessary. Just by searching through the existing pool, order can be found, and that was the most insightful point to me.
+
+*27:58*  So these days, our Ralph loop has been popular for quite a while now. And there are variants of that Ralph loop, but if you look at most methodologies, this is the algorithm. At first, whether you call it a goal specification or a spec people can call it all sorts of different things, but they spend quite a lot of time clarifying the goal, and once that goal is set, in effect, that evaluation metric is just determined. Because the model determines it on its own. According to the goal, it can distinguish what is right and wrong. Once that happens, until the evaluation metric is satisfied, you just run an infinite loop. You attach a hook at the very end, check it, and if it fails the check, go back again, go back again.
+
+*28:42*  The problem with models right now is always that they end ambiguously in the middle. They just say, "Looks good," and end it there, but until it answers, "There are no problems at all," you just keep running the infinite loop.
+
+**Seungjoon Choi**
+*28:57*  Of course, in practice there are all sorts of complexities. Because if you get the evaluation criteria wrong, it will exploit that and make attempts to pass in bizarre ways.
+
+**Chester Roh**
+*29:08*  Because the model itself can also end up reward hacking. But those kinds of parts are actually similar to a company. There is a lot of practical work, but that organization has a hierarchy. There's the CEO, the executives, and then the team leads, and the team members.
+
+*29:26*  In fact, the CEO sees a highly refined final report, and if you look at the process that runs, it's a Ralph loop. Saying, "Do it again, do it again, do it again," while underneath that, unceasingly, some isomorphic tasks cascade downward; I call it meta cascading, because that is the structure it takes, so looked at in reverse, the companies that exist today being completely replaced by this methodology is, in my view, possible.
+
+## Defining talent in the agent era    *29:57*
+
+**Seungjoon Choi**
+*29:57*  Then something I'm briefly curious about is, what is the definition of agent talent? If persistently digging into something can be solved with the basic Ralph loop, then is coming up with unexpected ideas or being able to explore that breadth what counts as the capability?
+
+**Chester Roh**
+*30:12*  For now, getting the model to initiate something still requires the first system prompt to be given by a human. Of course, I think a world will soon come where AI gives that to AI, but for now, for now, things like taste, inputting taste and will, initiating, shouldn't that level of meaning still be given to humans? So this too is something Seungjoon, Jeongkyu, and I talk about all the time in our group chat, that right now it feels like the models will finish everything and leave us with nothing to do.
+
+*30:52*  But even so, for the world to still change takes time, and the world of business, the market, in accepting these things, can take anywhere from just a few years, to twenty or thirty years. Being able to exercise a good sense of balance in between seems like the most important thing. I think the greatest virtue of an entrepreneur is a sense of balance, and I think you need to exercise that well. What is that right now? This evaluation metric doesn't exist in a cleanly functioning form, so there is still a role for humans there. So, to move on a little. Let's move on.
+
+*31:38*  To summarize, the model gets better, and because of the model, the harness gets better, and as Seonghyun also kept pointing out, because RL is done to fit that harness, the model performs even better, and through that, if that generality increases, then the functions of the existing harness get absorbed by it quite a lot. But even so, if the model gets more powerful, another harness using that will appear again, and this is like the Ouroboros serpent, an endlessly repeating loop.
+
+**Seungjoon Choi**
+*32:08*  Around last year, quoting what Noam Brown was saying, we said that the harness would eventually be absorbed into the model, but then the harness comes out again adapted to that, so as you said, it seems to take the shape of an Ouroboros.
+
+**Chester Roh**
+*32:22*  It's continuously moving in a thesis-antithesis-synthesis pattern, and that speed, over and over, is something I look at with awe and with fear, so it's accelerating.
+
+**Seungjoon Choi**
+*32:34*  I still haven't fully organized my thoughts on this, but between something that exists in the form of a neural net and that neural net using externalized tools, just as humans, humanity, have done, I wonder if this is some pattern that just keeps going, and that thought comes to me as well.
+
+**Chester Roh**
+*32:49*  So anyway, all problems are being converted into search problems using compute, and where that compute solves the problem in an instant, we are entering a new era. Whoever understands this loop well and places their business on top of these rounds will gain this benefit, and those who do not understand this will be replaced by those who do use it,
+
+**Seungjoon Choi**
+*33:16*  That's quite a strong message, in a subtle way. Against, as in, don't resist this, is the nuance, right?
+
+**Chester Roh**
+*33:23*  That's an expression Sam Altman used a lot. There's that phrase, "Do not bet against us." So this is the story as drawn in a diagram, when the harness gets better, better data pours out, because of that the model gets better, because of that you apply more RL, because of that a better model emerges, and you create a better RL environment, and that's how it goes. So from here, regarding the AI game, this is the essential perspective: let's look at it through this lens. But on top of that lens, we're always like this, right? Once one layer is built up, the next layer comes, and when the next layer comes, the layer after that comes, and this is what, at the end of last year, we used in our Runaways' Alliance presentation and things like that, from the example we saw in Godel, Escher, Bach, that dialectical story about this emergence, and even if that essence exists, the business world built on top of it will stack up in an even more complex way.
+
+## OpenClaw and the rise of personal agents    *34:26*
+
+*34:26*  So, returning completely to the business discussion, about what kinds of things are happening in business and what is important right now, I've tried to organize my thoughts a bit. If we move a little further into the business story, I think it's this. Up until just before OpenClaw came out, ChatGPT or Claude or Gemini would become this massive gateway, becoming the new Naver or Google, replacing these new gatekeeper positions, and becoming the new gatekeepers themselves, and in that sense I had been using that business logic a lot, but after OpenClaw came out, after using OpenClaw, and living in a world accustomed to OpenClaw, maybe that won't be the case.
+
+*35:12*  I mean, it's not like we only drive the Grandeur and the Sonata, right? Some people drive a Casper, some a Tesla, some drive a BMW, according to their use and taste, everyone drives different cars. In the same way, perhaps this person's top-level gateway for accessing information will not be the few channels we've been used to so far, but each person's own personal agent, and it may become perfectly differentiated like that, that thought is newly occurring to me. Because this is much more convenient. When ChatGPT, for me, and we're going to talk about bundling and unbundling a bit later, tries to force on me that bundling frame, there are times when I don't like it. Why do I have to use it that way? But this completely deconstructs that again.
+
+*36:02*  So right now, the world of OpenClaw, which has only come to a small number of early adopters and to those who are ahead of the curve, might perhaps become everyone's gatekeeper, that's a thought I have a little. It's a bit tedious that I pick up that nuance, but I listen to opinion leaders' talks almost in full. Rather than watching summaries, when I'm commuting or doing something, I almost always listen and try to read the subtle gradients that exist between their words, Even as recently as last October, Sam was in full "you're all dead" mode. In 2026, we'll build an AI research intern, and in 2028, we'll build an AI researcher, and we're going to build a full-stack service company like Google. He gave that vision presentation at the end of last October. It's a story from just four months ago, but after about three or four months, Sam's nuance shifted slightly.
+
+**Seungjoon Choi**
+*36:59*  Didn't Sam lose a bit of steam?
+
+**Chester Roh**
+*37:01*  Sam got a bit more humble. Anthropic surging upward so sharply, I think that meant something too. And then in the end, people keep saying that we're probably going to become businesses that sell tokens by the meter. That everyone's going to become a token business. And back then, if only OpenAI had had this strength, that would be one thing, but now, in fact, there are China's frontier models, and NVIDIA is even trying to commoditize OpenAI and Claude. The knowledge that Frontier Labs have is all being extracted into recipes and uploaded to GitHub and Hugging Face, and it's like, if you just buy NVIDIA GPUs, you can make your own and use it too, so they're also supplying a third axis, which makes it a truly perfect frenemy world. You can't even tell who's a friend and who's an enemy.
+
+*37:55*  So since we mentioned Jensen, Jensen published a piece not long ago. AI is a five-layer cake. Starting with energy, then semiconductor chips on top of that, then infrastructure, with models on top of that, and then applications blooming on top, that's the kind of thing he said. But these applications are not the applications we used to know. Agent applications are completely unlike the applications we've been used to in the web world and then the app world. Then what fate will all the countless mobile apps and all the many services we're familiar with end up facing? In the AI era, this is naturally a thought experiment worth trying. And we need to build something to match that.
+
+*38:44*  In fact, it's been a long time since we've heard stories about making a lot of money just by getting an app onto the App Store. Even for me, I think it's been years since I downloaded a new app from the App Store. In a world like that, this was an app shown by Simon at the OpenClaw meetup. It's OMO.BOT, which Simon showed as something Simon is building, and it's an agent app.
+
+## Agents operating existing apps on your behalf    *39:01*
+
+*39:11*  All those many apps that we tediously have to access, we do think like that, don't we? If you want jajangmyeon delivered, you have to go to Baemin, if you want to order bottled water, you have to go to Coupang, if you want to call a taxi, you have to go to Kakao Taxi, if you want to do something, you have to go somewhere, and it's annoying. Wouldn't it be fine if an assistant just did all that for you? This simply makes that real.
+
+*39:33*  For companies with APIs, it connects the APIs, and for companies without them, it uses a CUA, a Computer Use Agent, connects that, and seems to just emulate it. So this is for ordering chicken on Baemin, and by doing it this way too, Simon had implemented everything inside this. So I thought, this must be the future. It's the future of apps, and the object of agent applications. I had obviously imagined things would turn out like this, but seeing people who move this quickly actually build it made it feel different.
+
+*40:11*  But the point we really need to pay attention to here is, that all the apps we knew get buried beneath the layer where this agent operates them on our behalf, and I think that's something we need to view as very important. But if you look at all the Baemins and so on beneath us, in this existing business world, the ones that somehow succeeded and wield a certain media power, the existing gatekeeper positions, their core is all about intervening in the middle. So I always say this: the IT business is basically exactly the same as the media business. I say it's a world where media power is margin.
+
+*40:57*  Anyway, the reason they wield that kind of media power, the reason they exercise that middle power, is that they somehow won in the era immediately before this one, and that's how they got that position. Naver dominated search, Kakao dominated communication, Baemin dominated delivery, and then Coupang, with Rocket Delivery, dominated things like daily necessities by making them the cheapest. And with the media power they built up that way, they sit between customers and countless suppliers, playing the so-called intermediary role and creating margin. But if you look at the OMO.BOT we just saw, it's simply a new business inserting itself between them and us. Of course the existing businesses will hate that. In the past, they blocked this. Naver was one of the companies that was really good at that. Blocking crawlers, blocking this and that, blocking everything unconditionally, so that within a so-called walled garden, they could prevent content from flowing out, create a virtuous cycle inside it, and build today's empire that way, but when agents decompose these things, can they really stop that decomposition?
+
+**Seungjoon Choi**
+*42:05*  We shouldn't stop it. In this direction.
+
+**Chester Roh**
+*42:08*  Right, we won't be able to stop it. Because when a person comes you won't be able to distinguish it from traffic. Because if I just stay logged in on my emulator and my agent operates that emulator, how do you stop that? The IPs will all be different, and everything will all be different. And when Xiaomi does MiMo V2, of course it'll make MiMo Claw and put it in, and it'll just put OpenClaw in here, including mobile, and try to put in Claw, so then do you think Apple won't do it? Do you think Google won't do it? They'll all do it. You can't tell them apart. So in the end, if you run a thought experiment and look for some new Nash equilibrium within that, this is a game you can't stop, and the existing incumbents have some possibility of all being disintermediated.
+
+## The bundle-unbundle framework    *42:57*
+
+*42:59*  We often use the expression bundle and unbundle in industrial structure. And the person who diagrams and explains this expression, bundle and unbundle, the best is someone at a16z named Benedict Evans. That Benedict Evans, Andreessen Horowitz is famous for "Software is eating the world," so we're familiar with that phrase. But now they're newly pushing "AI is eating the world," and that "AI is eating the world" frame was created by Benedict Evans, and in the end, I think this would be the right way to put it: as I said earlier, an industry's paradigm keeps changing, and whenever the medium changes, from paper to TV, from TV to the internet, and then from the internet, meaning the web, to mobile, and now from mobile to AI, certain distribution channels, which we call the distribution layer, whenever a new distribution layer appears, the whole game board flips over once.
+
+*44:00*  So if you look at newspapers, magazines, or television in the past, broadcasting is like this. Dramas and news are scheduled like this, and ads are inserted in between, and with the media power they created, they tightly structure the whole thing. That's what we call a bundle. And that way they force the bundle onto customers. Then customers just take it as natural and watch it, and that's how media businesses create their business, but when the internet came, all of that got unbundled. In that way it gets unbundled, and then unbundled again, and after a long period of time, when some kind of dominant player emerges in that layer, that player uses that dominance to bundle it back up again. And after that, it gets unbundled again, and this is exactly the same as an evolutionary algorithm too. Depending on changes in the environment, diversification constantly occurs, and when diversification occurs, among that, some candidates for winners emerge, and when a winner emerges, saying that a winning candidate has emerged means some selection has taken place, and once that selection happens, it becomes the dominant species again, gets amplified, and creates some new environment again, diversification, selection, amplification. These three, like a Ralph loop, are the basic evolutionary algorithm that runs forever, and the same thing is happening here.
+
+*45:22*  So for bundle and unbundle, there are a great many repeated examples. And what Benedict says is that what we know as almost all B2B SaaS applications are just Oracle unbundling. Put harshly, just with Excel and Oracle, they're services you could build everything with, but those have been tailored to each individual use case and completely unbundled, that's the era we're in, he says. And in the AI era, in the end, almost most services will be ChatGPT unbundling, he says. But we're already seeing it. In the early days, we went to ChatGPT for coding, research, legal work, everything, but now whether it's become some form of Context Engineering, or some combination with other harnesses, or specialized models, unbundling is happening all over again. Of course, if you lose that fight, you can end up being bundled into a bigger business again, but bundle and unbundle, this framework is a very good framing for understanding industry, so I took a bit of time to explain it.
+
+## Incumbents' UX friction and disintermediation    *46:28*
+
+*46:28*  Then from the standpoint of existing businesses, if we run a thought experiment, this is probably going to be very hard for them to defend against. If customers leave because it's more convenient for them, what possible way is there to stop that? Right. The existing businesses, so-called UX, to put it simply, I think it's heading toward the end, though saying it's already over would be too much, and it'll still take quite a long time, but because the next trend is that all existing UX will be unbundled by AI, the kind of media power that existing businesses built up, and the profit zones created by that media power, from the customer's point of view, are all friction. They're frictions. And those frictions are actually all margin. From the business's point of view, to do this, you absolutely have to do this, the UX flow they've laid out that way, and what exists in between, the numerous advertising inventories, and what's beside them, below them, and above them, the cross-sell and upsell zones. But agents come in and are getting rid of all of these. Much faster.
+
+*47:35*  Then what happens as a result is, existing businesses are very likely to become function calls for other agents. You can't stop it. Since you won't be able to stop it, honestly, I think the best thing is that other than jumping into this war together quickly, there really is no answer, and if we take this a bit further, in the end, like this OMO.BOT, things that are likely to become the topmost point of contact right in front of the user's eyes, I think things in the OpenClaw category are very strong candidates. Jensen even said at GTC this time, using the expression, "Are you OpenClaw ready?" Every business and every individual needs to have an OpenClaw strategy. From the customer's point of view, if I think from the standpoint of having become an OMO.BOT customer, we've been using the chairman analogy a lot, and AI is making everyone a chairman. So the essence of new kinds of work is, in my view, literally what we call our assistant. It's already the secretary supply business. Rather than providing a means, you have to sell completed solutions. Everyone is transitioning into this kind of life, that's the thought I have. Right now, it's a market where adapting quickly matters much more, that's how it seems to me.
+
+## The era of adaptation competition    *48:52*
+
+*48:54*  So I, being in the startup and business side of this area, when someone brings me something like a business plan and asks me various questions, I ask whether it's a car race, a bicycle race, or a yacht race. In a car race, if you have more money, you win no matter what. If you just buy a better car, someone driving a slightly worse car simply cannot win. Of course, that's assuming the drivers' skills are all leveled upward. Since they're almost all leveled upward, a car race is just a money fight, end of story. A bicycle race is about how hard I work, plus a bit of game sense. Do I go out front first, or stay behind? A yacht race is different from what comes before. In both car races and bicycle races, the ones leading the game are all the leaders. When the leader changes something, the ones behind all react, and that's how the game unfolds, but a yacht race is a bit different. If a trailing competitor changes direction, everyone in front has to change too. Because what's important isn't what I'm good at, but much more what kind of wind is blowing outside. In my view, the current market dominated by this AI wind is so overwhelmingly intense that late-moving businesses behind use different strategies, then in fact, across every area, it becomes a race where you have to counter everything. I think you actually can counter everything. Because as their production costs have fallen, incumbent players' costs have all fallen too, so I think this has once again become a battle of philosophy and timing. So even from the incumbents' point of view, rather than just watching and wondering how this will play out, to fit this world, don't they have to change along with it no matter what? That's what I keep thinking. Still, anyway, in the middle of all that, what defensive point am I going to secure in this game? As we discussed earlier, turning the non-verifiable into the verifiable, as we said, something like that can become a moat, and in business too, areas where these kinds of things can become moats, because fundamentally, everyone is playing an isomorphic game right now, so that exists here too.
+
+## 1/10x efficiency vs 10x new business    *51:10*
+
+*51:10*  Anyway, we talk a lot about 10x, and this is a frame that one of our company's engineers, Jinuk, gave me, and originally we used a one-fifth, five-times frame, but these days the number 10 is in fashion. I can deploy AI in two directions. By maximizing efficiency, I can turn something that used to cost 100 into 10 and leave 90 in profit, or I can just go somewhere new and create a new 900. Almost all AX right now is just pursuing efficiency. And the truly different thing in the back, creating another 10x, that's a bit more zero to one, and I don't think that has started yet. And I think it's about to start. In the end, from our point of view, we think both have to be done, both have to be done, that's how we're thinking.
+
+*52:01*  One of the articles that was popular last week was about what kind of people AI amplifies, and there was a piece called "10x lawyer." To summarize, in the end, there is a distinct class of people who get amplified. So in organizations today, this was discussed using this law firm as an example, there are the top-level partners, then the seniors, and below them the juniors, and they operate in teams. In reality, almost all value add happens because of the decisive contributions of a few people, but the business model itself charges by team unit and by time, I don't know whether they looked into all the lower-level details or not, but it's structured so that they charge for even the associate lawyers, and that's how the business model is built, but this, too, is getting unbundled. A more exceptional person, a single lawyer with senior-level capability, combined with an agent, can do it much more cheaply and quickly, and once that starts satisfying clients, then on the client side, on the demand side, if there's a better product, people only buy the expensive one for no reason other than having used it before once or twice at most. Clearly, change happens extremely fast. So once that axis starts to turn, it will be beyond control, and things will change. That's the point I was making.
+
+*53:27*  And in the end, becoming 10x talent quickly is just that important, plus it's something that inevitably forces changes in business structure, and although I called it a 10x lawyer here, a 10x engineer, a 10x doctor, a 10x something, anything like that can appear, and that's why this is happening. And because of these dynamics, organizations are all in confusion right now. AI transformation is happening entirely in this kind of structure. Because this is always the fascinating part, I've been to all sorts of companies and gotten involved in all sorts of businesses, companies full of truly elite people and companies full of ordinary people, or companies that are neither, I've worked with every kind of company, but the interesting thing is, when you gather people together, it always seems to form a normal distribution. Even if you gather only high performers, once they're together, there will still be someone who's the best and someone who's not good, and people in the middle emerge too, and the dynamics split among them. And that pattern, in each organization, is almost identical. It's isomorphic. These things matter a lot, so what I wanted to say on this slide was, we call it AX, but in the end, among the people who actually want to change, there are a few who adapt to this very sharply, and the point I wanted to make was that you have to move fast, you can't bring everyone along, and that's why I wrote this.
+
+*55:01*  As I said earlier, pursuing efficiency and pursuing innovation. Making something 1/10x is, in fact, what I called the pursuit of efficiency, and in business terms, that's about being better, faster, cheaper, and then making something 10x doing zero to one, that's really innovation. When I came into the beauty business, this exact structure was what I wanted to build with AI layered onto it. I didn't want to run a company that sells products, but rather take the entire current product-selling structure and convert it into a structure that sells services. That was the idea I wanted to build, so back-office, as with most companies, there's always the customer in the front, and in the back, what is it, there's the supply chain. There's a supply chain, and the plan was for the supply chain to drive efficiency while delivering innovation to customers, that was my plan, though it's not complete yet. In fact, after that, we too have things we're already putting in front of customers now and things we haven't put forward yet, but I've built almost all the prototypes I had in mind.
+
+## Even with agents, 10x isn't here yet    *55:19*
+
+*56:08*  So if someone asks what it should look like when a company runs autonomously, saying it should be something like this, my company probably has all of that. AI is attached to all the data, and agents are attached to all of it, along with prompts and things, and on top of those agents, there are other meta agents layered on, and above the meta layer there's yet another meta layer, and so on. For all company work, Claude Code basically turns everything into multiple choice, right? If you ask something, it says, choose from these three, choose from these four, and even the things I have to do as CEO aren't things I need to handle myself every day, but instead the agent brings them to me in a structure where I just press 1, 2, 3, or 4, and I've converted almost everything into that, so it's all there, but even so, has the company's productivity increased tenfold? Not yet. I think there are still more fundamental things that need to change.
+
+*56:56*  When I said I was going to try doing business with AI, it's already been well over four years since I started doing this. So starting in 2021, I tried building models, tried diffusion models too, attaching LoRA, small language models, then agent SDKs, there isn't anything I haven't tried. I took the things that existed in business at the time and attached everything that was available back then and tried it all, but none of it worked. But now it works. Since last year, as models crossed the critical threshold, all the things that didn't work now do work. And even my efforts to make something of my own have become almost meaningless, because the world has become one where, by relying on frontier models, everything works. Of course I do have regrets. If I had done nothing at all and then started last year, wouldn't that have been maximum efficiency, you could think that, but of course the countless failures I went through in between do have meaning. Personally, I kind of comfort myself that way, and it's similar to what Jeongkyu came and talked about last time. Jeongkyu the person is sad, but company Lablup is good, and I feel exactly the same way.
+
+*58:09*  I told you this is pursuing two directions, right? Creating this efficiency, making things more efficient, we've also tried a huge number of trials, but if I just give you the answer, it's fastest when the CEO does it. Honestly, in the end, at the very beginning, I also said, "You can make a prototype like this," and making it and showing it was the starting point. And then AI-native, bringing in native talent, and telling them, "Try it like this, try it like that," started to turn, and in the course of that turning as well, while guaranteeing each person's freedom, someone built their own harness, someone brought in some framework and ran it, and even with frameworks, someone brought in Pydantic, someone brought in LangChain, we allowed all of that, but to just give the conclusion, this is similar to what we talked about earlier at the start, because the goal of the problem and the criteria for evaluating it were clear, this also ended up as an optimization problem, and as we kept optimizing those things, they each converged and got built, and once everything was built, one greatest methodology comes out. If I just give you that answer, the best is not to build it. Build the data connectors cleanly, write the prompts well, and connect frontier models with Claude Code or Codex gives the best performance. This was one of our one of N, one smart engineer, and the whole company switched to the methodology that Chester had used, while other people really built things with all kinds of different methods, but that person said, "Chester, there's no need for that." If we're making a harness anyway, then shouldn't we just use the ultimate harness and the ultimate model? There's no need to do that work. So instead, for the data connector, build the data connector cleanly, then do a good job of prompting that describes that data, and for the goal we originally have to achieve, that goal, that objective, that spec, write it cleanly in the prompt, and put a tremendous amount of effort into that. To write prompts well, what's important isn't really engineering power but understanding that domain. Understanding what that domain looks like, even as an engineer, running models, and trying to understand the data in the company, if you write the prompts well, the job gets done. So for me, that last sentence just stayed as the answer. Don't try to do anything else, that's it.
+
+## After all that, vanilla is the answer    *58:12*
+
+**Seungjoon Choi**
+*1:00:51*  The feeling is that after going around and around, it's plain vanilla after all.
+
+**Chester Roh**
+*1:00:55*  Right. It's sad even saying this. All this enormous effort we put in during that time and all that time, all of it went around in a circle, and in the end, relying on the model's capability overhang turned out to be the answer. That's the conclusion.
+
+*1:01:12*  But the problem is, there is a good side. Even though I'm clearly saying this in a sad way, in the end, what accumulated in between were all those exceptional cases from countless trials and errors, and that's my value. I remember Jeongkyu saying the exact same thing. All those many exceptional situations that arose in between, the fact that I have that whole distribution in my head seems to be the power I have.
+
+## 10x new business is the entrepreneur's domain    *1:01:38*
+
+*1:01:41*  10x new biz, this is harder. But just to give the conclusion, this feels to me essentially the same as just creating a new business myself. If the person leading this doesn't feel a vision in it, it absolutely won't work. So no matter how much the CEO says, "This, this, and this will work, so go make this," and sends the mission down, from the perspective of the person below, if that problem is not a better, faster, cheaper problem but an innovation problem, it doesn't get solved well. So either the leader at that level has to fully learn it or gain some kind of realization, and move up to the next level, to something close to the rank of an entrepreneur.
+
+*1:02:23*  In the end, this is what I keep saying: the human qualities we need to have in the AI era, what kind of people will survive, when we talk about that, the category, traits, the characteristics of those who remain. I really can't think of it as anything other than entrepreneurs. If you don't have an entrepreneurial disposition, there is really nothing to do. To summarize it a bit harshly. Because the things you want to do that are simple and repetitive, AI is going to do those much better.
+
+**Seungjoon Choi**
+*1:02:56*  Then what makes me curious is between the 1/10x efficiency you mentioned earlier and 10x new biz, is there a causal relationship? Is there a correlation? Are they orthogonal to each other? Are they independent?
+
+**Chester Roh**
+*1:03:10*  I think it can be summarized like this. In the end, the nature of the objective is different.
+
+*1:03:16*  For the one in front, it's easy to set a metric. The objective and the evaluation metric are clearly visible, but for the problem in the latter case, the objective and the evaluation metric are in a domain where they do not exist.
+
+**Seungjoon Choi**
+*1:03:29*  So no matter how much you improve efficiency, you still can't jump to the latter one, right?
+
+**Chester Roh**
+*1:03:35*  We can't go there, we can't go there. So in the end, I still don't really have an answer here yet. It's an area I feel is ambiguous, but in the end, this is a place where someone who really understands that domain well, the will of a smart entrepreneur, matters most. So this is just like starting a startup, and I think it feels essentially the same. So as I said earlier, those young fresh people we met at our OpenClaw gathering, looking at those geniuses who gave us fresh unlearning, I think they're going to that level now. They've grasped some kind of methodology, and with that methodology, when it comes to what kind of business to apply it to, I think they're all turning that over in their minds right now. So I'm very curious to see whether they'll go into some domain of innovation and create new things there.
+
+**Seungjoon Choi**
+*1:04:32*  That story about the Yangtze's waves comes to mind. It's always the new generation that gets it done.
+
+**Chester Roh**
+*1:04:36*  The back waves are bound to push the front waves. So I also think we need to get pushed out well. So when I looked at them, I felt envious. And I also thought, Korea's future is bright.
+
+**Seungjoon Choi**
+*1:04:53*  The strategies you're already pursuing were interesting too. Not just looking domestically, but looking overseas too, and also, in order to have influence, gathering the stars of startups, or trying to have influencers, those kinds of attitudes were readable between the lines, and that was very stimulating.
+
+**Chester Roh**
+*1:05:10*  If you quietly watch things like that, with this optimization logic we talked about, they're all activities that reduce back down to that. If someone assigns an issue to a company, that itself actually becomes the unit for setting the objective of our overall project, and once the objective is set, since that is a clear problem, the evaluation metric is something the model can set for itself, and then self-driven progress takes place within an ecosystem you've built. It's very, very smart.
+
+*1:05:43*  So while promoting that, continuing to raise recognition may be the most important thing humans have to do, and they're essentially doing that better than anyone. He spoke very well too. After it ended, I went up and asked. I asked Yechan. Yechan, you're so young, how did you come to such a profound realization like this? When I asked that, he said, just by fighting with your life on the line over a problem with real money on the line, wouldn't you end up like this?
+
+**Seungjoon Choi**
+*1:06:10*  Chester hunted on your own.
+
+## Eliminating the entire job end-to-end    *1:06:15*
+
+**Chester Roh**
+*1:06:16*  Yes, exactly. At companies, we do countless AX projects. But when people do AX projects, what they often do is form an AX team, and what does that team do? It goes around to the relevant teams and collects requirements. The project gets structured as a form of taking requirements and building something for them, but I'm saying not to do that, and I wrote that.
+
+**Seungjoon Choi**
+*1:06:38*  Why shouldn't we do it that way?
+
+**Chester Roh**
+*1:06:39*  Even if you build it for them, they won't use it anyway. AX, because the incentives of that organization are such that if someone, a knowledge worker, is doing some kind of work, whether we've become marketers, planners, or managers, what we do isn't just the one job attached to that title. It's made up of a great many tasks, and for example, if AI comes in and eliminates one of the tasks they're doing, then those people should stop doing that task and move to more productive work. Will they move? Most of them almost never do. If you look closely at their incentives, to get this far, how much grueling manual work did I do, and how hard did I work to master Excel and PowerPoint shortcuts, and at the core, in many cases, it's that I want to keep doing this. And then, while doing this, I want to get paid comfortably, so why are you telling me to stop what I was doing and driving me into work I don't want to do, that's the kind of pushback I've felt in many different cases.
+
+*1:07:53*  To do this, whether it's the owner or the top leadership, they need to understand the essence of AX exactly, I think, and the goal shouldn't be "Please help that team," it should be "Eliminate that team entirely," and that's the starting point of successful AX. So this is not about saying we should fire those people. It's about the unit tasks and things they had being completely eliminated, and then transitioning them into new roles.
+
+*1:08:23*  If you just add more on top of that, then Excel and PowerPoint will merely be replaced with that, and from the company's perspective, there is no marginal productivity increase. It may just mean the amount of idle time for individual workers increases. But if you think about whether that's really why companies do AX, I don't think that's it, and the AX being done now, at least the AX happening at the level of large enterprises, will go round and round and round, and I think there's quite a real possibility that in the end it all becomes meaningless.
+
+*1:08:58*  From trying it myself, in my small company and then at several other companies, Having tried leading AX myself once, there were some insights that came through to me, and that's roughly what I want to share. In the end, from a company's standpoint, it really has to pursue efficiency and create new businesses too, but the people who can create new businesses are still the ones with entrepreneurial instinct. And those people do exist. They always exist. If you dig around anywhere, they all exist. Find those people quickly, let them quickly go off and find new things, and maximize their incentives to the extreme, and for those who don't, who say, "I want to do it moderately," put them in charge of pursuing efficiency. Then after they pass through, the people who do that are, in my view, AI native talents. Once the AI native talents have passed through, a harsh harness is created. Then the people who don't want to change will be put into that harsh harness. And after that, there's a possibility they'll work much harder. Rather than humans giving orders and AI carrying them out, humans entering a harness made by AI, into a dystopian world that we end up entering, I think the probability of that is much higher now.
+
+## Reorgs and AI-native talent    *1:09:10*
+
+**Seungjoon Choi**
+*1:10:23*  This is already somewhat old news, but when Elon acquired Twitter and all that, Jack Dorsey was very opposed to laying people off, but then Jack Dorsey himself
+
+**Chester Roh**
+*1:10:35*  cut a huge number of people.
+
+**Seungjoon Choi**
+*1:10:37*  Right, recently.
+
+**Chester Roh**
+*1:10:38*  He let go of several thousand people.
+
+**Seungjoon Choi**
+*1:10:39*  Four thousand, I think, anyway, that seems like one aspect that reflects the times, and from that perspective, what Chester is saying, at the company level, reveals a certain viewpoint, and listening through all of this today, people in their twenties who are now rising are going to push forward anyway rather than staying under the umbrella, so since we need to have a good relationship with them, we need to respect them and guide them and have that kind of good relationship with each other, and as for improving efficiency within the company, how to achieve efficiency is, in a way, just a given now. It's something already happening, and if you don't do it, you'll actually fall behind.
+
+*1:11:21*  But moving toward innovation may be a separate issue with a different disposition from that.
+
+**Chester Roh**
+*1:11:27*  I think that's how it can be summarized. In any case, it's not that I like this kind of thing either, I like technical things and I like making things, but on the company management side, by constantly bringing in these dynamics and converting them into business, reality, and then the ideals we have to pursue in the short term, and the ideals we have to pursue in the long term, things like that seem to come into focus.
+
+## Prompt injection and isolated operations    *1:11:51*
+
+**Seungjoon Choi**
+*1:11:51*  Right now, in the end, with agents, our being able to use agents well is because of prompts, but if agents come in after getting injected, then there is a risk they could break through things like 2FA too, right? Isn't that something that fundamentally can't really be solved?
+
+**Chester Roh**
+*1:12:08*  I think so. I think they might even be able to break through 2FA. Because if the agent can read email too.
+
+**Seungjoon Choi**
+*1:12:13*  So actually, this issue related to security gives me the sense that something huge is slowly creeping up.
+
+**Chester Roh**
+*1:12:21*  That's why I couldn't bring myself to install OpenClaw on my laptop. So with OpenClaw, I installed a VM, set up Linux fresh, and ran OpenClaw on top of that and tested all sorts of things, and once it worked and I thought, "Ah, this is pretty good at things," then outside, I got hold of a DGX box and now I've set up OpenClaw on there all the way through and I'm putting in the minimum data and things it needs to be shown.
+
+**Seungjoon Choi**
+*1:12:53*  But if I don't give it my credentials, doesn't it lose value as an assistant?
+
+**Chester Roh**
+*1:12:59*  Yes, so for things related to social accounts or things related to finance, I still can't give it those, and for unit tasks, even if this document somehow gets leaked in full, things that carry almost no risk for me are what I'm entrusting it with.
+
+*1:13:16*  So this is, in fact, not at all because I dislike my personal information going to the model. As I said earlier, I think with models, it's important to give mine first and get more back, but in the case of OpenClaw, it's because of the autonomy it has.
+
+*1:13:32*  It'll make this and that judgment on my behalf, and if it decides, "Ah, for my master, I should do this," it could just do it. So that part is something I do want to keep watching a bit.
+
+**Seungjoon Choi**
+*1:13:43*  There's that too, but they can also come in already brainwashed. Agents get injections. Since that still can't be fundamentally solved, for now, that's a headache of a problem right now, so I think there could be a possibility of incidents and accidents.
+
+*1:14:00*  So maybe the major players are thinking seriously about this a bit. that makes me speculate as well. But in terms of the overall flow, this is something that has to be done anyway.
+
+**Chester Roh**
+*1:14:10*  There's no way not to do it. That's why everyone's putting it out.
+
+**Seungjoon Choi**
+*1:14:13*  Starting with Perplexity, everyone's doing it, and when even NVIDIA is talking about it. But rather than saying I found it interesting, actually, there were a lot of sharp remarks between the lines, so I'm not sure how you'll take them, but still, over these four years, Chester through actual firsthand experience, I felt these were words that really came from that.
+
+**Chester Roh**
+*1:14:31*  Right, but this too is clearly a snapshot from March 2026, and my thoughts change 20 times a day too.
+
+**Seungjoon Choi**
+*1:14:40*  Around March or April of last year, that was when we were saying Chester and ADK are incredible.
+
+**Chester Roh**
+*1:14:46*  When Claude Code was just starting to come out. Pydantic was the most minimal and pretty solid. We were saying, let's use Pydantic, and that was March of last year.
+
+**Seungjoon Choi**
+*1:14:56*  And for me too, around April, was it the Chrome DevTools Protocol, I was using CDP to experiment with browser agents, but now, well, they've all just become things that work fine.
+
+**Chester Roh**
+*1:15:06*  Back then, I was still using GitHub Copilot for tab coding. I was still taking the lead on the main code myself and getting assistance, so moving to Claude Code felt a bit uncomfortable. Honestly, going all the way to full agent coding.
+
+**Seungjoon Choi**
+*1:15:22*  Even now, with moving toward OpenClaw, I actually still have a bit of resistance to it, so I don't make that shift all at once. But I think there are probably a lot of similar situations. Still, I do think it's something we have to move toward.
+
+## Keeping pace like yacht racing    *1:15:33*
+
+**Chester Roh**
+*1:15:33*  So in my life too, I thought, ah, this is a yacht race, and if things change and that's what those younger people are doing, then I absolutely have to keep up with them too, and that's how I changed my mindset.
+
+*1:15:45*  So those people, actually, I've been interacting a lot with people like that these days, and I met Gubong once as well.
+
+**Seungjoon Choi**
+*1:15:54*  Gubong, Yeongyu, Yechan, and also Wonjoon, who appeared with us, are all continuously building those kinds of dynamic relationships and trying things out, in really interesting and multifaceted ways. Seeing people in their 20s and 30s being active like that is really jumping out at me now.
+
+**Chester Roh**
+*1:16:14*  Minseok too, CEO Minseok also started that up. In the end, the company seems to have taken a direction similar to OpenClaw, with this kind of assistant approach, so it might be good to invite Minseok on and talk about what kind of business thesis Minseok has as well.
+
+*1:16:31*  And as I go around outside, I always say that we have our fresh young people, like Yeongyu and Yechan,
+
+**Seungjoon Choi**
+*1:16:40*  and Jinhyung is there too, and Jinhyung and others seem to know all those people.
+
+## Closing    *1:16:45*
+
+**Chester Roh**
+*1:16:45*  Then I think we'll stop around here for today, and take good care of your health. We're at the age where we really need to take care of our health. Then we'll wrap things up around here for today. Thank you.
+
+**Seungjoon Choi**
+*1:16:53*  It was fun. Thank you.
