@@ -1,0 +1,196 @@
+---
+episodeNumber: 45
+title: "AI Business Survival Strategy: Where Should You Build an AI Business?"
+description: "How can startups survive the assault of frontier models? We discuss the fork in the road between building services on top of AGI infrastructure and creating vertically integrated AI services, and share the insight that the non-verifiable data domain is the true moat that frontier models cannot invade."
+publishedAt: 2025-03-29
+duration: "31:39"
+youtubeId: "-RsENpvbSHc"
+thumbnail: "https://i.ytimg.com/vi/-RsENpvbSHc/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "Opening: Non-Verifiable Data Domain Is All You Need"
+  - time: "1:11"
+    title: "The Two Profit Engines in AI Business: Infrastructure vs. Vertical Integration"
+  - time: "2:40"
+    title: "The AI Industry Landscape Through Three Lenses: Service, Algorithm, and Compute"
+  - time: "4:29"
+    title: "Two Options for Startups and the Data Flywheel"
+  - time: "5:51"
+    title: "AGI Is Near: The Explosive Progress of Frontier Models"
+  - time: "7:23"
+    title: "Verifiable Reward Functions and Test-Time Compute"
+  - time: "9:32"
+    title: "The Virtuous Cycle of Distillation and Reasoning Models"
+  - time: "11:31"
+    title: "Escaping to Non-Verifiable Domains"
+  - time: "12:52"
+    title: "AI Services Built on Frontier Models and GTM"
+  - time: "14:39"
+    title: "Core Point: The Real Definition of Proprietary Data"
+  - time: "15:27"
+    title: "How Environment Creates Verifiability: Robots and VLA"
+  - time: "17:26"
+    title: "The Domain of Taste and Subjectivity: The Makeup Dataset Case"
+  - time: "20:39"
+    title: "Closed-Loop Systems That Turn Non-Verifiable into Verifiable"
+  - time: "23:54"
+    title: "Key Takeaways and an AI Practice Suggestion"
+  - time: "27:10"
+    title: "Seungjoon Choi's Recap and Closing"
+lang: "en"
+alternateSlug: null
+---
+
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is Saturday afternoon, March 29th, 2025. On March 22nd, I went to an event and gave a short presentation, and now that the content is a bit more organized, I wanted to introduce it to Seungjoon as well. So the title is non-verifiable data domain is all you need, but in a way, as AGI is about to become a reality, in the face of this offensive by frontier models, how are we supposed to survive, as startup founders, and then as AI engineers, when, unlike OpenAI or Google, we cannot develop frontier models ourselves, what should we do from that kind of position?
+
+<span class="paragraph-timestamp" data-ts="00:43">00:43</span> You can think of this as a kind of thought experiment. So it is somewhat subjective, and there may be areas where it is not perfectly logical, but since this is a discussion of one perspective, let me talk it through. So I made this material with technical entrepreneurs who want to seize opportunities in this AI era as the audience, and so I think it would be good if you looked at it from that perspective.
+
+<span class="paragraph-timestamp" data-ts="01:15">01:15</span> We talk a lot about areas that combine AI and business, and as we do that, one thing we always say is that in the AI world, there seem to be only one or two areas that actually make money. Other than that, most of them don't make money. Then when we ask where those two areas are, the answer is, one is places like NVIDIA that provide chips, and then places like Lablup that provide the orchestration layer, and then provide cloud services on top of that, in other words, the side related to AGI infrastructure is one axis that makes money, and the other axis outside of that is a clearly defined vertical like Tesla, where, with that vertical, the empty spaces in between are connected using AI services, and areas with that kind of vertical integration seem to make money.
+
+<span class="paragraph-timestamp" data-ts="02:04">02:04</span> And the core of those areas is data that only I can have, proprietary data, and that data makes the service better, and the service generates even better data, so that this virtuous cycle of a kind of data flywheel becomes important. Saying this to those startups, either just develop services on top of AGI, which of course is also a huge opportunity, or else escape into some new domain, and I've always said it would be better to do one of those two.
+
+## The AI Industry Landscape Through Three Lenses: Service, Algorithm, and Compute    *2:40*
+
+<span class="paragraph-timestamp" data-ts="02:40">02:40</span> I've always looked at service, algorithm, and compute, things like that, through those three perspectives as a way of viewing the world, and that's how I've talked about this. It seems that only the compute and engineering layer are making money right now. The algorithm layer is currently the most commoditized and democratized, so unless you go work for Big Tech here or become a professor at a university, this seems to be the area that loses out the most in terms of value capture from a capital perspective. That's what I used to say, and then, as we know, NVIDIA, OpenAI, Google, and Meta, and now x.ai has been added here today as well, although they all have different starting points, NVIDIA started from chips at the bottom, supplying the meta layers and middleware in the middle, and keeps moving further up toward services, OpenAI started with services, and they too are developing chips and doing various things, expanding like this, Google was a company that had been doing everything across the board from the start, and Meta is coming down from the very top service layer, and in Tesla's case, they are working in the entirely different automobile domain, and as for some of the layers in the middle, in fact Tesla isn't developing LLMs or anything like that, they are taking technologies that are truly in the open domain and leveraging them well.
+
+<span class="paragraph-timestamp" data-ts="04:07">04:07</span> But by connecting those well, from top to bottom like this, they are doing this kind of vertical integration, so on one side, AGI really is the ultimate kind of destination, and on the other, full-stack vertical integration is the key domain. That's how I divided it up and explained it. So we only have two options. From a startup's perspective, either build a service startup on top of AGI, or, like Tesla, pick one vertical, and then through vertical integration, build something, and I've said that you have to do one of those two, for almost three or four years now, and the reason I've actually been saying this for three or four years is that rather than constantly verifying to myself that I'm right, I don't really care whether I'm right or wrong. It's just that the direction the world is heading and which direction that is matters. I still haven't seen another player that surpasses this.
+
+<span class="paragraph-timestamp" data-ts="05:06">05:06</span> So when it comes to Tesla, Andrej Karpathy talked about this a lot. This virtuous cycle, he explained it using Tesla as an example. Once you get a data source, with that, because of more accurate labels, Autopilot becomes much more accurate, and because of that Autopilot, more Tesla cars get sold, and because more cars get sold, more data comes in, and because of that data, the service gets strengthened further, Autopilot gets stronger, so more cars get sold, and doing things like this, creating what you might call a virtuous cycle loop, seems to be the only way out. And this idea was called the data flywheel.
+
+<span class="paragraph-timestamp" data-ts="05:50">05:50</span> So if we go back again, I think the future will only go in one of two directions. One is on top of frontier models, either building AI services, or, if these frontier models can't handle a certain domain, building a vertically integrated AI service in that area, and I said you have to do one of those two. If we take everything we've discussed so far about AI and set everything else aside and summarize only the important point, pulling out just the conclusion, even Dario Amodei says that by 2027, in every domain, surpassing humans a model like that will emerge, and he's saying that quite openly. And Google Gemini 1.5 came out just the other day, and the performance is really good, and the benchmarks were astonishing too. Like that, in just the span of two or three months, haven't we seen enormous progress?
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> And Seungjoon will cover this again in the session, but since DeepSeek R1 was announced at the end of last January, things have been moving at an incredible pace, right? Grok, Llama 3, Claude 3.7 Sonnet, GPT-4, GPT-5, Gemini 2.0, and so on, all moving forward, so I personally think AGI will be achieved soon. And the models we're looking at now, it's just that we don't want to admit it, but in fact, in a great many areas, in almost most areas, they are already in domains far superior to humans, and I don't think it would be unreasonable to say that. I think we've somewhat lost all our standards for value judgment.
+
+## Verifiable Reward Functions and Test-Time Compute    *7:23*
+
+<span class="paragraph-timestamp" data-ts="07:23">07:23</span> But I and Seungjoon have covered test-time compute a tremendous amount, haven't we? In terms of how important this is and why, so through last year and into the beginning of this year, we also discussed a great deal the significance of OpenAI o1 and DeepSeek R1. One of the really important implications of this, I think, is that if there is some verifiable reward function in a domain where you can create one, through an algorithmic method, this verifiable reward function, a verifiable reward function, in domains where it can be created, in fact, DeepSeek R1 showed us that, didn't it? How OpenAI o1 was made, you could say it was a model that validated that. You just have to find it. If you're only given the answer sheet, then the reasoning tokens in between can keep being generated endlessly by pouring in test-time compute, and now we know that, so in those kinds of domains, typically mathematics or science, or coding, those kinds of domains, were all created at once. Here, the dataset has completely through reinforcement learning moved into a domain where it is all self-generated.
+
+<span class="paragraph-timestamp" data-ts="08:40">08:40</span> And then another thing: the physical world. In environments like robotics too, while Seungjoon was talking about NVIDIA, Seungjoon also talked a lot about Omniverse and simulator environments, but in the case of simulators provided by NVIDIA, I think they are in fact environments that create verifiable reward functions. So on this point, a little later, in somewhat more detail, let's talk about it then.
+
+<span class="paragraph-timestamp" data-ts="09:06">09:06</span> So to summarize one important message, in domains where some reward function can be clearly established, in domains that can be created through an algorithmic method, just all the Big Tech players will automatically generate the dataset. They will generate it automatically, and the capability for that will all be built into the frontier models. Right. And we also covered this a great deal in the distillation examples, but once one giant reasoning model appears, for a tremendous number of problems, it writes out all the reasoning tokens in full, doesn't it? And then for difficult or very difficult high-quality domains like those, if you collect those reasoning tokens, and carefully select only those datasets, and distill them into a much smaller model, if you fine-tune it, what we call SFT, if you do supervised fine-tuning, even a 32 million-parameter model can things that improve to performance comparable to OpenAI o1-mini and the like we've seen them. And the paper that really pushed that to the extreme was something like Stanford Alpaca, and I think papers have taught us a lot.
+
+<span class="paragraph-timestamp" data-ts="10:22">10:22</span> So the countless datasets generated that way when those datasets increase, we talk a lot about this virtuous cycle, but if reasoning models expand datasets by this much, then those models, those countless datasets, for the next generation of instruct models, if they train on that, in the past, reasoning models used test-time compute and kept writing things down on a scratchpad like this, and then produced an answer, but the next models are, so to speak, memorizing that, and between memorizing it and understanding it, and being able to solve it, I think they're almost equivalent. The moment you ask, they just know it. I think that's what's happening.
+
+<span class="paragraph-timestamp" data-ts="11:10">11:10</span> So recently DeepSeek-V2 released a new version, right? A new version came out, the 0324 version came out, and even though it's an instruct model, in fact, even with respect to complex reasoning power, it just briefly gives answers quite often. I think that also shows that kind of capacity. So that gives rise to one idea. Then maybe we can escape into areas that can't be verified. On this part, areas that can't be verified.
+
+<span class="paragraph-timestamp" data-ts="11:41">11:41</span> But even on this point, there's actually a bit of a contradiction. LLMs, our frontier models, for example, Shakespeare's novels, or poetry, or things that humanity, as it has progressed, has kept accumulating, a kind of standard for political value judgments, in fact, these parts aren't verifiable domains either. But as people make value judgments, in the form of what we call knowledge, we've been creating datasets. So those already very large and numerous domains, those non-verifiable areas, they're memorizing them wholesale. So if we define those frontier models more clearly here, they are systems with an enormous amount of verifiable data domains all memorized, known, and understood, plus they can also explore verifiable domains on their own, so I think it's correct to view them as very large systems equipped even with that capability.
+
+<span class="paragraph-timestamp" data-ts="12:49">12:49</span> To explain those two areas, the area of building AI services for frontier models, this part, I don't think of it as a very shallow service, like some kind of LLM wrapper or GPT-2 wrapper. The LLM itself has already become a massive piece of infrastructure, so this too could be an enormously large opportunity, but within this itself, some function related to AI, or something related to AI, what we call a moat, an advantage that only you can have, is actually hard to implement. I call it go-to-market, GTM, and I think go-to-market is the only way. Build a good team, define a good problem, execute quickly, and make the service well, and as examples like Cursor show, an enormously large business in a remarkably short period of time can be built, because they're showing that, so this area too is a very, very, very large area, I think.
+
+<span class="paragraph-timestamp" data-ts="13:55">13:55</span> But this part is for people with excellent business sense, and when you say GTM, rather than being something truly profound in engineering, it's much closer to the business side, so rather than tech entrepreneurs, entrepreneurs with outstanding business sense are likely much better suited to this area, and if we, from the standpoint of entrepreneurs who know technology, were to do it anyway, then for us, the second area, in fact, where frontier models don't handle things well, in those vertical domains, it would be better to build AI services there.
+
+<span class="paragraph-timestamp" data-ts="14:31">14:31</span> So this is also today's topic, data that only you can have, people say all the time that you need proprietary data. They say that a lot. As for what that proprietary data is, I've taken it slightly one step further: this is it. Namely, areas where, by algorithmic methods, you cannot create a verifiable reward function. But these kinds of parts can also be described another way: even if you combine prompt work or agents well, no matter how well you combine them, where truth and falsehood are clear, you still cannot generate synthetic data well. Those areas are included here.
+
+<span class="paragraph-timestamp" data-ts="15:19">15:19</span> **Seungjoon Choi** I'm curious. What do you mean?
+
+<span class="paragraph-timestamp" data-ts="15:22">15:22</span> **Chester Roh** There are an enormous number of those areas. So to help bring this to mind, I want to show you one thing, and this is the environment. About two weeks ago, Gemini Robotics announced this. Google made a big announcement once, right? Right?
+
+<span class="paragraph-timestamp" data-ts="15:44">15:44</span> In VLA, Vision-Language-Action models, in fact, they built a frontier model and then pushed it out into the world, but in robotics, over the past two years, an incredibly large number of outstanding people started companies, right?
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> Now, for models centered on text, vision, or video, the frontier models seem to have all been wrapped up by the so-called big tech players. Then among other kinds of models, where do you need frontier models?
+
+<span class="paragraph-timestamp" data-ts="16:17">16:17</span> The place people went to the most was robotics, and the results around this lately, whether it's Figure AI or Professor Chelsea Finn's company, I suddenly can't remember the name. Is it Physical Intelligence, I can't remember the name. Anyway, I think models from companies like that are pouring out, and if you look, Gemini too, and then many groups in VLA that say they're doing frontier models as well, all have environments like this.
+
+<span class="paragraph-timestamp" data-ts="16:51">16:51</span> For example, if the task we want to create is, "Put the grapes on the plate with the bananas," when the task becomes something like this, this environment itself exists, so unless information comes in through vision, you simply can't create this at all. You can't generate the label itself.
+
+<span class="paragraph-timestamp" data-ts="17:13">17:13</span> I think environments like these are what turn non-verifiable areas into verifiable ones. And in a bigger frame, if you think about it, things like asking about people's preferences, data from highly subjective domains comes in here in huge amounts, and when you ask something, for example, a machine answers ambiguously, but humans have parts where preferences emerge.
+
+<span class="paragraph-timestamp" data-ts="17:45">17:45</span> For example, in our company, we're creating a great many datasets on makeup combinations, and that is a representative case of an area a machine cannot judge. One way or another, in some cases the machine says something is good, and in other cases it says it's bad. But for humans, when this context is given, this is clearly good, and this is clearly disliked, and they keep labeling those things.
+
+<span class="paragraph-timestamp" data-ts="18:11">18:11</span> So if you constantly show people makeup combinations, and customers go "like," "dislike," "like," "dislike," in whatever form, whether they directly say "like" or "dislike," or subtly click this and just pass over that, and in this way give feedback, if there is that kind of loop, then labels are created there.
+
+<span class="paragraph-timestamp" data-ts="18:34">18:34</span> Then the kind of service I was just talking about is in fact turning the non-verifiable into something verifiable as an environment.
+
+<span class="paragraph-timestamp" data-ts="18:43">18:43</span> So I've taken the long way around to say something simple, but these kinds of AI services, like the cameras attached to Tesla cars, those cameras actually capture environments where the user slams on the brakes, or environments where the user accelerates suddenly, or environments where Autopilot is disengaged, and they give you data mapping vision to those kinds of things.
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> And those things come in together with data judged using a certain kind of user feedback, and because that can in fact be called a label, combining these kinds of AI services lets us obtain something in data domains that frontier models can never possess. Those are the kinds of thoughts I came to have.
+
+<span class="paragraph-timestamp" data-ts="19:37">19:37</span> So only these kinds of environments can provide a binary label of 0 or 1 for success or failure. And without this kind of environment, you can never obtain anything.
+
+<span class="paragraph-timestamp" data-ts="19:52">19:52</span> As I mentioned earlier with the simulator, in the case of Physical AI as well, this wasn't possible before, but in fact many labs established those experimental environments, and by bringing those experimental environments into simulator environments, these things are getting more environments that can give 0 and 1 labels more cheaply.
+
+<span class="paragraph-timestamp" data-ts="20:16">20:16</span> So then this thing I showed earlier, this system that turns the non-verifiable into the verifiable, this environment, as I define it, this is what it is. I may change this definition again later, but it's a bit of an insight for this moment.
+
+<span class="paragraph-timestamp" data-ts="20:33">20:33</span> Then what should we call an AI service or simulator that makes those things possible? Something that turns the non-verifiable into the verifiable that this is a closed-loop system,' is how I defined it.
+
+<span class="paragraph-timestamp" data-ts="20:49">20:49</span> Once I defined it this way and looked at the world, even with the same proprietary data, this is something an LLM could do. This is something an LLM could not do,' that kind of judgment criterion turned out to be somewhat useful, is what I want to say.
+
+<span class="paragraph-timestamp" data-ts="21:03">21:03</span> **Seungjoon Choi** I don't know if that's the case, but when I suddenly think about it in terms of nuance, on the side that studies open-endedness, there seemed to be a part that slightly resonates with the reinforcement learning line of work.
+
+<span class="paragraph-timestamp" data-ts="21:12">21:12</span> On the open-endedness side, not only the agent but also the environment is viewed as a trainable object. So the relationship between the two has this part where it gets all intertwined, and that thought suddenly
+
+<span class="paragraph-timestamp" data-ts="21:28">21:28</span> **Chester Roh** Yes, yes. It's probably similar. Honestly, I also didn't make some enormous discovery, but in business, I need to establish a perspective for myself to decide whether to take on that task or not, and that's usually how those decision-making processes go.
+
+<span class="paragraph-timestamp" data-ts="21:44">21:44</span> At first, you read papers and watch other people's YouTube videos, and it feels like an image is forming, but it doesn't really hit home.
+
+<span class="paragraph-timestamp" data-ts="21:52">21:52</span> If it does hit home, then in a somewhat vague state, you think, maybe if we use that reasoning model, we could do those things, maybe if we also do token work, we could get this far, and then you hold a bunch of meetings with engineers and set up experiments, and build all sorts of things in bulk. And then a few months pass like that.
+
+<span class="paragraph-timestamp" data-ts="22:09">22:09</span> After that, in fact, everything ends up coming down to evaluation, and then you realize something. If it's a project where you can't clearly imagine the evaluation framework at the start, you shouldn't begin it.
+
+<span class="paragraph-timestamp" data-ts="22:24">22:24</span> So you have to define the evaluation metric clearly first, and the act of clearly defining the evaluation metric itself is actually equivalent, to some extent, to saying that the 0 and 1 of the label are determined.
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> So once that realization comes, you think, I shouldn't do this.
+
+<span class="paragraph-timestamp" data-ts="22:42">22:42</span> Plus, the things that paper was talking about at the time, or the reason other people do it that way, that's what it was. Newly, as you fully realize your own stupidity, you go on and do something.
+
+<span class="paragraph-timestamp" data-ts="22:57">22:57</span> So what I told Seungjoon today is probably something that, to other people, may sound too obvious, but personally, I'm always talking about proprietary data, that data only I can have is important, and regarding what that data only I can have actually is, I felt like I had made a small step forward, so I organized this a bit.
+
+<span class="paragraph-timestamp" data-ts="23:21">23:21</span> **Seungjoon Choi** Anyway, listening to this now, it feels like the narrative structure is that there's some insight here and that you want to talk about it.
+
+<span class="paragraph-timestamp" data-ts="23:28">23:28</span> **Chester Roh** Yes, looking back later, it could still turn out to be nonsense. But in the end, those things perhaps are the role of a simulator, and, in a broad sense, the AI services we're building from a data perspective need to fit as services that generate a certain kind of data, and they can tell us things like that. So, as I mentioned earlier, if I repeat this important message once, the part we've been talking about so far, what is the proprietary data that only you can have,' can be defined a bit more specifically.
+
+<span class="paragraph-timestamp" data-ts="24:05">24:05</span> So what is that? It's some environment that turns non-verifiable things into verifiable ones, a certain environment, a closed environment. I define this as either a simulator or an AI service. And what form this AI service should take will probably differ from domain to domain. Whether it's healthcare or education or some kind of HR service and so on, if you just ask an LLM, it can immediately pull out the knowledge it has in its weights and combine it, but there are still a great many areas where it cannot do that.
+
+<span class="paragraph-timestamp" data-ts="24:49">24:49</span> So the system would be a simulator or AI service combined with some specific vertical domain. And personally, in AI services like those, I feel far more opportunity. These kinds of AI services are built on top of the powerful performance of frontier models, but they're a bit different from just wrapping them. There are a great many examples of these kinds of things, but of course, because this isn't a math problem, the story I told today itself is just one opinion of mine, and it's non-verifiable.
+
+<span class="paragraph-timestamp" data-ts="25:27">25:27</span> And depending on each perspective, it can all become something relative, so what perspective you define here actually becomes one of the company's strategic points, so I'd like to wrap up like this. Then we should be shown examples of such things to study, right? But what is it that we always do? What Seungjoon and I do is converse with AI because we orient ourselves toward the value of broadening our horizons, so I'll leave this as homework for today.
+
+<span class="paragraph-timestamp" data-ts="25:59">25:59</span> **Seungjoon Choi** Ah, is it homework? So you're not going to tell us now?
+
+<span class="paragraph-timestamp" data-ts="26:02">26:02</span> **Chester Roh** No, saying homework was a bit presumptuous. Practice. In any case, the people who want to try it will do it, and the people who won't, because they will never do it. I have these slide contents originally written out continuously in Emacs in an editor, you know. I just pasted that in here, and you can just take this as is to Google AI or ChatGPT or Claude, just paste it in, and then for your first question, you can try starting with this.
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> "Hey, I work in this kind of domain, and in my domain, turning non-verifiable into verifiable for an example of a closed-loop system, tell me about that," and if you ask, I've tried quite a lot of these, actually, and it gives examples very well. And in a domain I don't know, rather than me forcing my own imagination, this thing will do a much better job,
+
+<span class="paragraph-timestamp" data-ts="27:00">27:00</span> so I'll leave the rest of the work to this thing, and what I wanted to tell you today I'll wrap up around here.
+
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **Seungjoon Choi** That was fun to listen to. Let me just try, not with artificial intelligence, but with human intelligence, to do a recap. The title at first was non-verifiable, and you emphasized creating data, and there were two paths for entrepreneurs, so to speak, entrepreneurs who want to use and leverage AI. One was, for teams starting newly and nimbly, something suitable, as I understood it. That was number 1. Number 2 was an existing company taking proprietary data in the direction of making it non-verifiable, and that Chester has now gone a bit more toward execution on the number 2 side, and that Chester got some kind of idea from there, that's what you wanted to tell us just now, right?
+
+<span class="paragraph-timestamp" data-ts="27:53">27:53</span> **Chester Roh** Yes, that's right. In fact, other than developing the number 2 side well, in most areas, frontier models will be much better than us, so with them...
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **Seungjoon Choi** You did say number 1 also has opportunity, though. But the nuance of number 1, although you didn't say it directly, is that these days people can start so small, and the layer that gets help from algorithms, or coding help, is being disrupted, so doing those things quickly on a small scale, for example something like Cursor, is that number 1?
+
+<span class="paragraph-timestamp" data-ts="28:33">28:33</span> **Chester Roh** Yes, taking Cursor as an example, I think Cursor too, in the essence of the service itself, is taking Claude's capabilities and using them as they are, so I think it's putting a service layer on top of AI infrastructure.
+
+<span class="paragraph-timestamp" data-ts="28:49">28:49</span> If you really think about it from the perspective of number 2, countless coders use it, and some things succeeded while others did not, and so-called coding style, or problem definition, and things like that, in those areas, in fact, there are places where the non-verifiable becomes verifiable in Cursor as well, of course.
+
+<span class="paragraph-timestamp" data-ts="29:12">29:12</span> I think a service like Cursor itself sits right on top of AI infrastructure, takes the capabilities that AI has, productizes them and brings them outward, so it strikes me as a representative example of that. A great many examples we now see in Y Combinator's portfolio companies are in area number 1.
+
+<span class="paragraph-timestamp" data-ts="29:32">29:32</span> **Seungjoon Choi** Number 1, but number 2 is something like there is an existing business, and within that, to create data that other places have difficulty touching, you have to obtain signals from the environment, and you have to be able to create that environment, the environment that receives signals.
+
+<span class="paragraph-timestamp" data-ts="29:51">29:51</span> **Chester Roh** Yes, that's how I organize it. Yes, I see.
+
+<span class="paragraph-timestamp" data-ts="29:59">29:59</span> What I talked about today, regarding these business areas, if you've spent a lot of time thinking about where to escape to, you'll relate to it a lot, because even for me alone, if Seungjoon were starting a business, you wouldn't want to go into an area that OpenAI will just finish off next year.
+
+<span class="paragraph-timestamp" data-ts="30:17">30:17</span> **Seungjoon Choi** Of course not.
+
+<span class="paragraph-timestamp" data-ts="30:18">30:18</span> **Chester Roh** Yes, so as I kept thinking about those things, I ended up fleeing all the way here. I see. I was trying not to use this expression, but the biggest theme of this is how to escape. About how to escape, this is an escape diary, really, not something all that proud, actually.
+
+<span class="paragraph-timestamp" data-ts="30:41">30:41</span> **Seungjoon Choi** That's meaningful. An escape diary. Anyway, the situation is changing so fast right now, and last year and this year are so different too, right?
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **Chester Roh** Doesn't it feel like it just keeps accelerating?
+
+<span class="paragraph-timestamp" data-ts="30:55">30:55</span> **Seungjoon Choi** Absolutely. How should I put it... You mentioned the Red Queen, and it really does feel like that situation all the time.
+
+
+<span class="paragraph-timestamp" data-ts="31:06">31:06</span> **Chester Roh** If you convert it into logs, since it's linear now, this is incredibly exponential. Right.
+
+<span class="paragraph-timestamp" data-ts="31:15">31:15</span> So right now, if we imagine something now, worrying about whether AI will be able to do it in 2027 or not, isn't that meaningless? Wouldn't it be right to do things assuming it will? Right, that would be right.
+
+<span class="paragraph-timestamp" data-ts="31:30">31:30</span> Understood. Then for today, around this point, I'll wrap up my topic.
+
+<span class="paragraph-timestamp" data-ts="31:36">31:36</span> **Seungjoon Choi** Thank you.

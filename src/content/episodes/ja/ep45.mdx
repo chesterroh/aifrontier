@@ -1,0 +1,241 @@
+---
+episodeNumber: 45
+title: "AIビジネスの生存戦略 どこにAIビジネスを築くべきか？"
+description: "フロンティアモデルの攻勢に対して、スタートアップはいかにして生き残れるのか。AGIインフラ上のサービスと垂直統合型AIサービスという二つの道のどちらに立つべきかを論じつつ、non-verifiable data domainこそがフロンティアモデルに侵食されない真の堀(moat)であるという洞察を共有します。"
+publishedAt: 2025-03-29
+duration: "31:39"
+youtubeId: "-RsENpvbSHc"
+thumbnail: "https://i.ytimg.com/vi/-RsENpvbSHc/maxresdefault.jpg"
+hosts:
+  - ロ・ジョンソク
+  - チェ・スンジュン
+chapters:
+  - time: "0:00"
+    title: "オープニング: Non-Verifiable Data Domain Is All You Need"
+  - time: "1:11"
+    title: "AIビジネスで稼ぐ二つの軸: インフラ vs 垂直統合"
+  - time: "2:40"
+    title: "サービス・アルゴリズム・コンピュート、三つの視点で見るAI産業の地形"
+  - time: "4:29"
+    title: "スタートアップの二つの選択肢とData Flywheel"
+  - time: "5:51"
+    title: "AGI間近: フロンティアモデルの爆発的な進化"
+  - time: "7:23"
+    title: "Verifiable Reward FunctionとTest-Time Compute"
+  - time: "9:32"
+    title: "DistillationとReasoning Modelの好循環"
+  - time: "11:31"
+    title: "検証不可能な領域へ逃げる"
+  - time: "12:52"
+    title: "フロンティアモデル上のAIサービスとGTM"
+  - time: "14:39"
+    title: "核心: Proprietary Dataの本当の定義"
+  - time: "15:27"
+    title: "環境が生み出す検証可能性: ロボットとVLA"
+  - time: "17:26"
+    title: "好みと主観の領域: メイクアップデータセットの事例"
+  - time: "20:39"
+    title: "Non-VerifiableをVerifiableに変えるClosed-Loop System"
+  - time: "23:54"
+    title: "結論の整理とAI実践の提案"
+  - time: "27:10"
+    title: "チェ・スンジュンのRecapと締めくくり"
+lang: "ja"
+alternateSlug: null
+---
+
+<span class="paragraph-timestamp" data-ts="00:06">00:06</span> **ロ・ジョンソク** 録画をしている今日は 2025年3月29日土曜日の午後です。 私がこの前の3月22日にあるイベントに行って 短く発表を一つしたんですが その内容が少し整理できたので スンジュンさんにも一度ご紹介してみようと思います。
+
+<span class="paragraph-timestamp" data-ts="00:19">00:19</span> それでタイトルを non-verifiable data domain is All you need と付けたんですが、なんというか これからまもなくAGIになる フロンティアモデルたちのこの攻撃から どう生き残るべきか スタートアップのfounderとして その次にAIエンジニアとして このOpenAIやGoogleのように フロンティアモデルを開発できない そういう立場で 何をすべきなのかについて 一種の思考実験だと見ていただければいいです。
+
+<span class="paragraph-timestamp" data-ts="00:47">00:47</span> ですから少し主観的でもあり また論理的に完全には合わない領域があるかもしれませんが 一つの観点についての話なので 一度話してみようと思います。
+
+<span class="paragraph-timestamp" data-ts="00:57">00:57</span> それで私は 何かこのAI時代にチャンスをつかみたいと考えている 技術系起業家たちをaudienceとして この資料を作りました。 その観点から見ていただけるといいと思います。
+
+## AIビジネスで稼ぐ二つの軸: インフラ vs 垂直統合    *1:11*
+
+<span class="paragraph-timestamp" data-ts="01:11">01:11</span> AIとビジネスを融合したそういう領域の話を ものすごくたくさんしていますよね。 そうしながら いつもする話がAI worldで お金を稼げる領域はせいぜい一つか二つくらいしか ない気がする。 それ以外は ほとんどお金を稼げていない。
+
+<span class="paragraph-timestamp" data-ts="01:26">01:26</span> ではその二つの場所はどこなのか という話をしたとき 一つはこのNVIDIAのようにチップを提供して、その次に何か Lablupのように orchestration layerを提供し その次に その上でcloud serviceを提供する いわゆるそういう AGI infrastructureに関連するそういう側が お金を稼ぐ一つの軸で それを外れたもう一つの軸は テスラのように何か明確な一つのvertical そのverticalを持って その合間合間の空白を AI serviceを使って こうつないだような領域 垂直統合化した領域が お金を稼いでいるようだ。
+
+<span class="paragraph-timestamp" data-ts="02:10">02:10</span> そしてその領域の核心が 自分だけが持てるデータ proprietary dataであり そのデータがサービスをより良くし そのサービスがより良いデータを生み出し こうして好循環が回る 一種のdata flywheelが重要な領域だ。
+
+<span class="paragraph-timestamp" data-ts="02:26">02:26</span> こういう話をしながらそのスタートアップたちに ただAGIの上でサービスをdevelopするか もちろんこれもものすごく大きなチャンスです。あるいは 何か新しい領域へ逃げるか そのどちらかをやるのがいいだろうという話を いつもしていたんです。
+
+## サービス・アルゴリズム・コンピュート、三つの視点で見るAI産業の地形    *2:40*
+
+<span class="paragraph-timestamp" data-ts="02:40">02:40</span> 私はいつもサービスとアルゴリズムとcompute、まあこういう 三つのある種の観点で 世界を少し見ながら こういうふうな話をしていました。 computeとengineering layerだけが 今お金を稼いでいるようだ。 algorithm layerが今いちばん commoditizeとdemocratizeが激しくて ここはBig Techに就職するか そういうのでなければ 大学で教授になるかでもなければ ここが今、何か資本的な観点では value captureでいちばん損をしている領域のようだ。 こんな話をしていましたし
+
+<span class="paragraph-timestamp" data-ts="03:13">03:13</span> そして私たちが知っている NVIDIAやOpenAIや GoogleやMetaなど いわゆるここに 今日x.aiも一つ入れたんですが 何か出発点はみな違うものの NVIDIAは下のチップから始まって 真ん中にあるmeta layerやmiddlewareを供給しながら ずっとサービス側へとさらに上がってきていて OpenAIはサービスから始まって あそこもチップを開発したり何だりしながら こうして広げていっていますし Googleはもともと全方位で全部やっていた会社で Metaは本当に最上段のサービスから また下へ降りてきています。
+
+<span class="paragraph-timestamp" data-ts="03:52">03:52</span> テスラの場合は 自分たちはまったく別の自動車領域でやりながら 真ん中にあったある種のlayerは、実はテスラは 彼らがLLMを開発したりしているわけではなく 本当にopen domainにある技術を うまくleverageして使っているところなんですよね。 ところがそれらをうまくつないで こう上から下まで 垂直統合化するこういうことをやっているんですが
+
+<span class="paragraph-timestamp" data-ts="04:20">04:20</span> だから片方は本当にAGIが ある究極的なこういう到達点であり もう一つはfull-stack vertical integrationがkeyな領域なんです。 こうやって私が分けて説明していたんです。
+
+## スタートアップの二つの選択肢とData Flywheel    *4:29*
+
+<span class="paragraph-timestamp" data-ts="04:29">04:29</span> だから私たちにはoptionが二つしかない。 スタートアップの立場では AGIの上でサービススタートアップを作るか あるいはテスラのように 何か一つのverticalを押さえて 何かをこう 垂直的な統合を通じて 何かを作るか この二つのうち一つをやるべきだという話を もうほぼ3、4年
+
+<span class="paragraph-timestamp" data-ts="04:52">04:52</span> 実際、3、4年こういう話をしている理由が 私が正しいということを自分でずっと検証し続けるのではなく 私は自分が正しくても間違っていても関係ないんです。 ただ世界が向かう方向が どの方向なのかが重要なのであって まだこれを飛び越える別のプレイヤーは見たことがない。
+
+<span class="paragraph-timestamp" data-ts="05:06">05:06</span> だから、テスラといえば Andrej Karpathy が こういう話をすごくたくさんしていましたよね。 この好循環、 自分でテスラの例を挙げながら話していました。 data source が生まれると それを使って より正確な label によって Autopilot がはるかに正確になり その Autopilot によって テスラ車がもっと売れるようになり 車がもっと売れることで データがさらに多く入ってきて そのデータによって またサービスがさらに強化されて Autopilot が強くなり それで車がもっと売れて こうしたことを行う いわゆる好循環ループを作る 唯一の出口のようです。 そしてこの話を data flywheel と呼んでいました。
+
+## AGI間近: フロンティアモデルの爆発的な進化    *5:51*
+
+<span class="paragraph-timestamp" data-ts="05:51">05:51</span> それで改めて振り返ってみると 私は、未来は二つの方向性しかないように思います。 一つはフロンティアモデルの上で AI service を build するか あるいはこのフロンティアモデルが handle できないようなある領域で 垂直統合された AI service を作るか この二つのうちどちらかをやるべきだという話をしていましたが
+
+<span class="paragraph-timestamp" data-ts="06:11">06:11</span> 私たちがこれまでしてきたこの AI の話を ただ一つだけ、他のことはすべて脇に置いて 重要な話だけ要約して 結論だけ取り出してみると Dario Amodei も 2027 年にはあらゆる領域で人間を上回る このモデルが出てくるだろうという話を 公然としていて 一昨日、Google Gemini 1.5 が出ましたが 性能は本当に良くて benchmark も驚きでした。 そういうふうに このわずか二、三か月の間に とてつもない進歩を見ているではありませんか。
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> そして スンジュンさん、また session で扱ってくださると思いますが この1月末の DeepSeek R1 発表以降から ものすごく加速しましたよね。 Grok, Llama 3, Claude 3.7 Sonnet, GPT-4, GPT-5 Gemini 2.0 などなど 進んでいるわけですが
+
+<span class="paragraph-timestamp" data-ts="06:59">06:59</span> だから私は AGI はまもなく達成されるだろうと 個人的には考えていて また今私たちが見ているモデルを 認めたくないだけであって 実際にはすでに非常に多くの領域、 ほとんどの領域で 人間よりはるかに優れている領域に 到達したと見ても差し支えないと思います。 価値判断の基準を少し全部失ってしまった気がします。
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> でも私は この test-time compute について スンジュンさん、私も本当にたくさん扱ってきましたよね。 これがどれほど、なぜ重要なのかについて だから私たちが去年から今年初めにかけて 実際 OpenAI o1 と DeepSeek R1 の意味についても 本当にたくさん扱ってきましたが
+
+<span class="paragraph-timestamp" data-ts="07:38">07:38</span> 私は、これが示唆することが非常に大きいものの一つは 何らかの検証可能な reward function を 作ることができる領域、 どう algorithmic な方法で この verifiable reward function、検証可能な reward function を 作ることができる領域は 実際、私たち DeepSeek R1 が見せてくれましたよね。 OpenAI o1 がどう作られたのかを 検証したモデルだと見ることができますが とにかく見つければいい。 解答だけ与えられれば その間の reasoning token は絶えずずっと test-time compute を投入すれば作られるということを 私たちは知ることになったので、
+
+<span class="paragraph-timestamp" data-ts="08:23">08:23</span> だからそういう領域は 代表的には数学とか科学とか あるいはコーディングのような領域が ただ一気に全部作られたわけです。 ここは dataset が完全に reinforcement learning を通じて すべて自己生成される領域へ移ったようです。
+
+<span class="paragraph-timestamp" data-ts="08:43">08:43</span> そしてもう一つ、 physical world、 私たちのロボットのような環境も スンジュンさんが NVIDIA をされながら Omniverse と simulator 環境についても たくさん話してくださいましたが 私はこの NVIDIA が提供する simulator のようなものも 実際には検証可能な reward function を作ってくれる 環境だと思うんです。
+
+<span class="paragraph-timestamp" data-ts="09:03">09:03</span> なのでこの部分については後でもう少し詳しく 話すことにして それで重要な message を一つ要約してみると 何らかの reward function が確実に作られる、 algorithmic な方法で作られる領域は、ただ Big Tech player たちが dataset を全部自動生成するだろう。 自動生成して、それに対する能力は フロンティアモデルがすべて搭載することになるだろう。そうですよね。
+
+## DistillationとReasoning Modelの好循環    *9:32*
+
+<span class="paragraph-timestamp" data-ts="09:32">09:32</span> そして私たち、また distillation 抽出の例でも本当にたくさん扱いましたが そういう reasoning model は、一つ巨大なモデルができると 本当に多くの問題について reasoning token をずっと全部書いてくれるじゃないですか。 そして難しい、あるいは非常に難しくて 品質の高いそういう領域の reasoning token を集めた その dataset だけをうまく選り分けて はるかに小さいサイズのモデルに distillation して fine-tune をかければ SFT と言いますよね。supervised fine-tune をかければ、3200万のモデルでも OpenAI o1-mini のようなものに匹敵する性能へと伸びていくものを 私たちは見てきました。
+
+<span class="paragraph-timestamp" data-ts="10:12">10:12</span> そして、それを極限まで押し上げてくれた論文が Stanford Alpaca のような 論文で、私はそこから多くを学ばせてもらったと見ています。
+
+<span class="paragraph-timestamp" data-ts="10:22">10:22</span> それで、そうして生成された数多くの dataset が dataset が増えてくると 私たちはこの好循環についてよく話しますが reasoning model たちが dataset をこれだけ増やしてくれると そのモデル、その膨大な dataset は 次世代の instruct model たちが それを使って学習すれば 以前は reasoning model が test-time compute を通じて 絶えずメモ用紙に何かを書きながら 答えを出していたとしたら その次のモデルたちはそれを いわば覚えていたり 私は、覚えていることと理解していることは 解決可能であることとほぼ同値だという気がするのですが ただ聞かれた瞬間に分かるんです。 そういうことが起きている気がします。
+
+<span class="paragraph-timestamp" data-ts="11:10">11:10</span> それで最近 DeepSeek-V2 が 新バージョンを出したじゃないですか。 新バージョンが出たんですが 0324 バージョンが出たんですが instruct model なのに 実は複雑な reasoning power についても ただ簡潔に 答えを出すようなものを たくさん見せているんですよ。 私はそれも、そうした capacity を 示しているのだと思います。
+
+<span class="paragraph-timestamp" data-ts="11:29">11:29</span> それで、ここで一つの idea が生まれるわけです。 では検証不可能な領域に逃げればいいのだなと この部分について 検証不可能な領域
+
+<span class="paragraph-timestamp" data-ts="11:45">11:45</span> でもこの部分についても 実はやや矛盾があるのは LLM、私たちの frontier model たちが 例えば Shakespeare の小説だとか あるいは詩だとか あるいは何か、私たちが 人類が進歩していく中で ずっと積み上げてきた、ある種の 政治的な価値判断の基準だとか 実はこういう部分もすべて verifiable な domain ではないんです。 でも人々が何らかの価値判断をしながら 私たちが知識という形で dataset を作ってきたわけじゃないですか。 つまり、そういう すでに非常に大きくて広い多くの領域の non-verifiable な領域を まるごと全部覚えているんですよ。
+
+<span class="paragraph-timestamp" data-ts="12:25">12:25</span> だからここで、その frontier model たちを もっと明確に定義すると、彼らは 非常に大量の verifiable data domain を すべて覚えていて、知っていて 理解しているだけでなく、plus 検証可能な領域は自ら探索できる ところまで備えている非常に大きなシステムだと見るのが 妥当な判断だと思います。
+
+## フロンティアモデル上のAIサービスとGTM    *12:52*
+
+<span class="paragraph-timestamp" data-ts="12:52">12:52</span> その二つの領域について説明してみると frontier model のために AI サービスを作る領域 この部分が 一種の LLM ラッパーだとか GPT-2 ラッパーのような とても浅いサービスだとは思わないんです。 すでに LLM 自体が 一つの巨大な infrastructure になったので これもまたとてつもなく大きな opportunity になるだろうという 気がするんですが
+
+<span class="paragraph-timestamp" data-ts="13:18">13:18</span> これ自体においては 何か AI に関連した function や AI に関連した何かの いわゆる私たちが言う moat 自分たちだけができる強みは 実際、実装するのは難しいですよね。 私は go-to-market、GTM と呼んでいますが go-to-market が唯一の方法だと思います。 良いチームを作って 良い問題を define して素早く execution してサービスをうまく作れば Cursor の事例などを見ても分かるように 非常に大きな事業を 極めて短い期間で 作ることができるということを 示しているので この領域も 非常に非常に非常に大きな領域だという 気がします。
+
+<span class="paragraph-timestamp" data-ts="13:55">13:55</span> ただ、この部分はビジネスセンスに優れていて GTM というなら 本当に何か深遠な engineering というよりは むしろビジネス寄りの領域にずっと近いので 何か tech entrepreneur よりは ただ単にビジネスセンスに優れた entrepreneur たちのほうが はるかにうまくできる領域だという気はしていて
+
+<span class="paragraph-timestamp" data-ts="14:17">14:17</span> もし私たちが 技術を知る entrepreneur の立場であえてやるなら 私たちは二つ目の領域 実は frontier model たちが うまく扱えない そうした vertical 領域での AI サービスを作るのがよさそうだ。
+
+<span class="paragraph-timestamp" data-ts="14:31">14:31</span> それで今日のテーマでもあるのですが 自分だけが持てるデータ proprietary データを持たなければならないという話を とてもよくするじゃないですか。 そうした proprietary データが 何なのかということについて 私が少しもう一段先に進めた話なんですが これなんです。
+
+<span class="paragraph-timestamp" data-ts="14:57">14:57</span> つまり、algorithmic な方法で 検証可能な reward function を作れない領域。 でもこういう部分が また何に使えるかというと この prompt work や agent をうまく組み合わせることで いくらうまく組み合わせても 真偽が明確な synthetic data をうまく生成できない 領域がここに含まれるんです。
+
+<span class="paragraph-timestamp" data-ts="15:19">15:19</span> **チェ・スンジュン** 気になるんですが。どういうことですか？
+
+<span class="paragraph-timestamp" data-ts="15:22">15:22</span> **ロ・ジョンソク** そういう領域はものすごく多いですよ。
+
+## 環境が生み出す検証可能性: ロボットとVLA    *15:27*
+
+<span class="paragraph-timestamp" data-ts="15:27">15:27</span> それで これにイメージを思い浮かべてもらうために これを一つお見せしたいんですが これが環境なんです。 これが2週間前くらいに Gemini Roboticsで発表した 一度Googleで大きな発表があったじゃないですか。そうですよね？ 何かVLA、Vision Language Actionモデルにおいて、実は フロンティアモデルを作って また世の中にぱっと出してしまったんですが 実はロボットのほうではこの2年間 優秀な人材がものすごくたくさん 起業していたじゃないですか。
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> これで何か テキストやビジョンやVideo、こういうモデルを 中心にしているところでの フロンティアモデルは いわゆるビッグテックのplayerたちが全部やり終えたようだ。 では他のモデルの中で フロンティアモデルが必要なところはどこかということで いちばん多く向かった先がロボットで これらに対する成果が 最近Figure AIだとか チェルシー・フィン教授の会社の名前が 急に思い出せませんね。 Physical Intelligenceだったか 名前が思い出せませんね。 とにかくそういう会社の モデルがたくさん出てきているんだと 思うんですが、見てみると Geminiもそうですし、その次に 多くのVLAのほうで フロンティアモデルをやるというlabもそうですし みんなこういう環境を持っているんです。
+
+<span class="paragraph-timestamp" data-ts="16:51">16:51</span> 例えば私たちが作りたいtaskが、ブドウを バナナがある皿に入れてくれ、という こういうtaskになったとき、この環境自体があって 何かvisionで 情報が入ってこないのであれば これをそもそも作ることが できないんです。 label自体を生成することができないんです。
+
+<span class="paragraph-timestamp" data-ts="17:13">17:13</span> こういう部分の環境がnon-verifiableな領域を verifiableに変えてくれる環境なんだと思います。
+
+## 好みと主観の領域: メイクアップデータセットの事例    *17:26*
+
+<span class="paragraph-timestamp" data-ts="17:26">17:26</span> そしてもっと大きな枠で 考えてみると 何か人々の好みを聞くことだとか かなり主観的な領域のデータが ここにはものすごくたくさん入ってくるんですが 何かを尋ねたとき、例えば 機械は曖昧に答えるけれど 人間は好みが生まれる部分があるんです。
+
+<span class="paragraph-timestamp" data-ts="17:48">17:48</span> 例えばうちの会社の場合は メイクの組み合わせに対するデータセットを ものすごくたくさん作っているんですが それが代表的に 機械が判断できない領域なんです。 何だかんだで機械は、ある場合は良いと言い ある場合は悪いと言うんです。 でも人間は このcontextが与えられると これは明確に良くて これは明確に嫌だというものを ずっとlabelingするんです。
+
+<span class="paragraph-timestamp" data-ts="18:11">18:11</span> それで何か人々に絶えずメイクのcombinationを見せて 顧客がそれを「好き」、「嫌い」、「好き」、「嫌い」 何らかの形で直接的に 「好き」、「嫌い」をするか、あるいは それとなくこれは押してみるとか、これはそのまま通り過ぎるとか こういう形でフィードバックを与える そういうloopがあるとすれば そこにlabelが生まれるんです。
+
+<span class="paragraph-timestamp" data-ts="18:34">18:34</span> すると私が今話したようなそういうサービスが 実はnon-verifiableを verifiableに変えてくれる ある種の環境なんです。
+
+<span class="paragraph-timestamp" data-ts="18:43">18:43</span> それで、簡単な話をずいぶん遠回りしてきたんですが こういうAIサービスが Teslaの車に付いているカメラのように カメラが実は userが急ブレーキをする環境だとか あるいは急加速をする環境だとか あるいはAutopilotを解除する環境だとか こういう部分とvisionをmappingしたデータを持ってきてくれるじゃないですか。
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> そしてそれらが 一定のあるユーザーのフィードバックを持って 判断したデータが一緒に入ってくるわけです。 それが実はlabelだと言えるので こういうAIサービスを結びつける部分が 私たちがフロンティアモデルでは絶対に持てない そういうデータ領域で何かを持てるようにする領域なんだなという そういう考えを するようになったんです。
+
+<span class="paragraph-timestamp" data-ts="19:41">19:41</span> それで こういう環境だけが 何か成功であれ失敗であれ 0、1のlabelを与えられる。 そしてこういう環境がなければ 絶対に何も得られないんです。
+
+<span class="paragraph-timestamp" data-ts="19:52">19:52</span> さっきsimulatorのところで申し上げましたが Physical AIの場合も 以前はこれができなかったんですが、実は多くのlabが その実験環境を備えていて その実験環境をsimulator環境に持ってくることで さらにこれらを 0と1のlabelを与えられる環境が より安く生まれてきている、そういうことなんです。
+
+## Non-VerifiableをVerifiableに変えるClosed-Loop System    *20:39*
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> それで では、さっきお見せしたこのnon-verifiableを verifiableに変えてくれるこのシステム このenvironmentを 私なりに定義すると こういうものなんだなと。 この定義は後でまた変えることもできますが 今の時点でのちょっとした気づき。
+
+<span class="paragraph-timestamp" data-ts="20:36">20:36</span> では、そういうものを可能にする AIサービスやsimulatorを何と定義すればいいだろうか？ non-verifiableをverifiableに変えてくれる これが closed-loop system なんだな」と 私はこう定義しました。
+
+<span class="paragraph-timestamp" data-ts="20:52">20:52</span> こう定義して世の中を見てみると 同じ proprietary データでも これは LLM がやるだろう。 これは LLM にはできないだろう」という判断の基準に 多少なるんだ、ということをお伝えしたいんです。
+
+<span class="paragraph-timestamp" data-ts="21:07">21:07</span> **チェ・スンジュン** あるかどうかは分かりませんが ふとニュアンスで見ると open-endedness を研究する側に 強化学習系と少し共鳴する部分が あるように感じました。 open-endedness のほうでは agent だけでなく環境も trainable object として見るんですよね。 だからその両者の関係が どんどん絡み合っていく部分があるんですが ふとその考えが
+
+<span class="paragraph-timestamp" data-ts="21:30">21:30</span> **ロ・ジョンソク** はい、はい。 たぶん似ていると思います。 私も実は 私が何かものすごい発見をしたわけではなくて 何かをビジネス的に自分なりの観点で捉えて あの task をやるかやらないか、そういうことを決めるには 決める過程というのはたいていそうなんです。 最初は何となく論文を読んでみたり 他の人の YouTube を聞いてみたりすると 何か像が結ぶようでいて、でもあまり実感が湧かないんです。
+
+<span class="paragraph-timestamp" data-ts="21:52">21:52</span> 実感が湧くとすれば、少し曖昧な状態で あの reasoning モデルを使えばああいうことができるんじゃないか うちでも token work をやってみればこれくらいはいけるんじゃないか と思って エンジニアたちとひたすら会議して実験を走らせ 大量にいろいろ作ってみるんです。 そうしているうちに数か月たつんです。
+
+<span class="paragraph-timestamp" data-ts="22:12">22:12</span> 実際、そうしてからは 結局は全部 evaluation に帰着するんですが そのときに感じることがあるんですよ。 最初に evaluation の枠組みが明確に思い描けないプロジェクトは 始めてはいけない。 だから evaluation metric を先に明確に定義しておいて evaluation metric を明確に定義するということ自体が 実は label の 0、1 が決まるという話と また少し同値でもあるので それでそのあとに気づきが生まれると これはやってはいけないんだな。 それに加えて、そのとき論文で言っていた話や 他の人たちがああしている理由はこれなんだな。 あらためて 自分の愚かさを一気に思い知りながら 何かをやるわけです。
+
+<span class="paragraph-timestamp" data-ts="22:57">22:57</span> だから今日私がスンジュンさんにお話しした内容はたぶん 他の方々からご覧になると あまりに当たり前の内容かもしれませんが、私は個人的に いつも proprietary データ、 自分だけが持てるデータが重要で その自分だけが持てるデータとは何かについて 少し一歩前進したような感じが したので、これを少し整理してみたんです。
+
+<span class="paragraph-timestamp" data-ts="23:23">23:23</span> **チェ・スンジュン** 今、とにかく聞いているうちに 話の構造として、今ある種の洞察があって それを話したいという感じがするんですよね。
+
+<span class="paragraph-timestamp" data-ts="23:28">23:28</span> **ロ・ジョンソク** はい、後から見ればまたたわ言かもしれません。 でも そういうものが結局ひょっとすると simulator が果たす役割であり 大きな意味で私たちが作っている AI サービスが データの観点では どんなデータを生成するサービスとして ぴたりとはまらなければならないんだな ということを語ってくれるんです。 それで先ほど申し上げた この重要なメッセージを一度繰り返してみると 私たちがこれまで話してきた あなただけが持てる proprietary データとは何か」という部分を もう少し詳しく定義できる。 ではそれは何かというと、 何か non-verifiable なものを verifiable に変えてくれる ある環境、closed 環境なんです。私はこれが simulator であるか あるいは AI サービスだと、こう定義しています。 この AI サービスの形が何であるべきかは 実はドメインごとに全部違う気がします。
+
+<span class="paragraph-timestamp" data-ts="24:29">24:29</span> ヘルスケアであったり教育であったり あるいは何らかの HR サービスなど LLM はただ聞けば すぐに自分が weight に持っている知識を 取り出して組み合わせてくれはするけれど できない、そういう領域が依然として非常にたくさんあるんです。 だからシステムは 何か特定の vertical domain と結びついた simulator か AI サービスなんだろう。 そして個人的には そういうものに AI サービスで はるかに大きな機会を感じています。
+
+<span class="paragraph-timestamp" data-ts="25:06">25:06</span> このような AI サービスは その frontier model の強力な性能の上に ただラッパーとして載せるのとは少し違うんです。 この部分については非常に多くの例や こういうものがありますが 当然、これは数学の問題ではないので 私が今日話した内容自体も 私の一つの意見であり non-verifiable なんです。 そしてそれぞれの観点によって いくらでも変わりうる 相対的なものなので ここでどんな観点を定義するかが 実は会社のある種の戦略的な point になるので この締めはこうしたいです。
+
+<span class="paragraph-timestamp" data-ts="25:42">25:42</span> では、そういうものの例について 学習させてあげないといけないじゃないですか。 でも、私たちがいつもやっていることは何ですか。 スンジュンさんと私がやっているのは AI と対話しながら 地平を広げることをある価値として志向しているわけですから これを今日、宿題として一つ残してみます。
+
+<span class="paragraph-timestamp" data-ts="25:59">25:59</span> **チェ・スンジュン** あ、宿題なんですか。ではこれから教えてくださるんですか。
+
+<span class="paragraph-timestamp" data-ts="26:02">26:02</span> **ロ・ジョンソク** いいえ、宿題という表現は少しおこがましかったですね、実習です。
+
+<span class="paragraph-timestamp" data-ts="26:07">26:07</span> どうせやってみたい方はやるでしょうし やらない方々は 永遠にやらないので 私がこのスライドの内容を もともとEmacsでそのままずっとエディタに書いておいた内容があるんですけど これをそのままここに貼り付けたんですが これをそのまま持っていって Google AIでもChatGPTでもClaudeでも そのまま貼り付けて その後の最初の質問を これで始めてみるわけです。
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> ねえ、私はこういうこういうドメインで働いているんだけど 私のドメインでnon-verifiableをverifiableに変えてくれる closed-loop systemの例について 教えてくれと言えば 私はいくつかかなりたくさんやってみたんですけど とても例をうまく出してくれます。
+
+<span class="paragraph-timestamp" data-ts="26:52">26:52</span> そして私が何か知らないドメインで 自分の頭で無理に想像してやるより こいつのほうがはるかに上手いはずなので 残りの作業はこいつに任せて
+
+<span class="paragraph-timestamp" data-ts="27:04">27:04</span> 私が今日お伝えしたかったことは このあたりで締めくくらせていただきます。
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **チェ・スンジュン** 面白く聞かせていただきました。
+
+## チェ・スンジュンのRecapと締めくくり    *27:10*
+
+<span class="paragraph-timestamp" data-ts="27:10">27:10</span> ちょっと一度、人工知能ではなく 人間の知能でrecapしてみると 最初のタイトルは non-verifiable データを作ることを少し強調してくださいましたし 二つの、ある起業家の つまりAIを使って 活用しようとする起業家の 分かれ道が二つあって、そのうち一つは 新しく機敏に始めるチームで 適した、私が感じるには 形でしたよね、1番は。
+
+<span class="paragraph-timestamp" data-ts="27:42">27:42</span> 2番は 既存の企業なんだけど proprietaryデータを non-verifiableにする方向にして ロさんは今、少し実行が2番のほうへ向かったということを そしてそこで何かアイデアを得たということを 今お話ししたかったわけですよね
+
+<span class="paragraph-timestamp" data-ts="27:55">27:55</span> **ロ・ジョンソク** はい、そうです。 実際、2番のほうをうまくdevelopすること以外には ほとんどの領域は フロンティアモデルのほうが 私たちよりはるかに うまくやるようになるはずなので、彼らと
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **チェ・スンジュン** 1番にもチャンスがあるとおっしゃってはいましたよね。でも 1番のニュアンスは、直接そうおっしゃってはいませんでしたが 最近はとにかく小さく始められるように アルゴリズムというか、コーディング支援を受けるそういうレイヤーが かき乱されているので 小さく速くそういうことをやり遂げる たとえばCursorみたいな そういう方向が1番なんですか？
+
+<span class="paragraph-timestamp" data-ts="28:38">28:38</span> **ロ・ジョンソク** はい、Cursorの例で言うと、私はCursorも そのサービスの本質自体はこのClaudeの能力を そのまま持ってきて使うことなので AIインフラの上にサービスレイヤーを載せたものだと考えているんです。
+
+<span class="paragraph-timestamp" data-ts="28:49">28:49</span> あえて2番の観点で考えてみると、無数の このコーダーたちが使いながら 何は成功して何は成功しなかったかという いわゆるコーディングスタイルだとか 問題の定義だとか こういう部分について 実際、non-verifiableが verifiableに変わる領域がCursorにも もちろんあります。
+
+<span class="paragraph-timestamp" data-ts="29:12">29:12</span> 私は Cursorのようなサービス自体が まさにAIインフラの上で そのAIが持っている能力そのものを product化して外に取り出す そういう代表的な例ではないかと思います。
+
+<span class="paragraph-timestamp" data-ts="29:25">29:25</span> 私たちが今Y Combinatorのポートフォリオ企業で見ている 非常に多くの例が1番の領域ですよね
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> **チェ・スンジュン** 1番は、でも2番は何か 既存のビジネスがあって、そこで ほかでは触りにくいデータを作り出すには 環境からシグナルを得なければならないということで その環境を作り出せなければならないわけですね シグナルを受け取る環境を
+
+<span class="paragraph-timestamp" data-ts="29:57">29:57</span> **ロ・ジョンソク** はい、そう私は整理しています。はい、そうですね。 この部分が今日私がお話ししたことなんですが このビジネスの部分について どこへ逃げるかをたくさん悩んでみた方なら とても共感されるはずです。なぜなら 私にしても、スンジュンさんも事業を始めるなら これが来年OpenAIにぴたりと終わらせられてしまう領域には 行きたくないはずですよね。
+
+<span class="paragraph-timestamp" data-ts="30:17">30:17</span> **チェ・スンジュン** 当然そうでしょうね
+
+<span class="paragraph-timestamp" data-ts="30:18">30:18</span> **ロ・ジョンソク** はい、なのでそういう部分を考えているうちに こんなところまで逃げてきましたね。 そうなんですね。 この表現は使いたくないんですが これの一番大きなテーマは、どう逃げるかなんです どう逃げるかについての 逃避日記なのであって、これはそれほどこう 実は誇らしい内容ではないんですよね
+
+<span class="paragraph-timestamp" data-ts="30:43">30:43</span> **チェ・スンジュン** 含みがありますね。 逃避日記ですか。 今はとにかく状況があまりにも速く変わっていて 去年と今年がまたあまりにも違うじゃないですか。そうですよね
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **ロ・ジョンソク** ずっと加速している感じがしませんか？
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **チェ・スンジュン** 本当にそうですね。何というか… ずっと赤の女王とおっしゃっていましたけど ずっとその状況みたいです。
+
+<span class="paragraph-timestamp" data-ts="31:10">31:10</span> **ロ・ジョンソク** 対数に変えて見てみると 今はlinearだから これはものすごくexponentialなんですよ。 そうですよね。 だから今は 今私たちが何かを想像するなら 2027年にAIができるかどうかという悩みは 無意味ではないでしょうか？ できるという前提で何をするかを考えるのが正しいでしょうね？ そうですね、それが正しいでしょう。 分かりました。では今日はこのくらいで 私のテーマは締めくくらせていただきます。
+
+<span class="paragraph-timestamp" data-ts="31:36">31:36</span> **チェ・スンジュン** ありがとうございます。

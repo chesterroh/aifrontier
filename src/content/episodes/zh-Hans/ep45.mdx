@@ -1,0 +1,178 @@
+---
+episodeNumber: 45
+title: "AI 商业生存战略：AI 业务该建在哪里？"
+description: "在前沿模型的攻势下，初创公司该如何生存？本期讨论两条分岔路: 建立在 AGI 基础设施之上的服务，还是垂直整合型 AI 服务，并分享一个关键洞察: non-verifiable data domain，才是前沿模型无法侵入的真正护城河(moat)。"
+publishedAt: 2025-03-29
+duration: "31:39"
+youtubeId: "-RsENpvbSHc"
+thumbnail: "https://i.ytimg.com/vi/-RsENpvbSHc/maxresdefault.jpg"
+hosts:
+  - 卢正锡
+  - 崔升准
+chapters:
+  - time: "0:00"
+    title: "开场: Non-Verifiable Data Domain Is All You Need"
+  - time: "1:11"
+    title: "AI 商业中赚钱的两大支柱: 基础设施 vs 垂直整合"
+  - time: "2:40"
+    title: "从服务、算法、算力三个视角看 AI 产业版图"
+  - time: "4:29"
+    title: "初创公司的两种选择与 Data Flywheel"
+  - time: "5:51"
+    title: "AGI 迫近: 前沿模型的爆发式进展"
+  - time: "7:23"
+    title: "Verifiable Reward Function 与 Test-Time Compute"
+  - time: "9:32"
+    title: "Distillation 与 Reasoning Model 的正向循环"
+  - time: "11:31"
+    title: "逃向不可验证的领域"
+  - time: "12:52"
+    title: "前沿模型之上的 AI 服务与 GTM"
+  - time: "14:39"
+    title: "核心: Proprietary Data 的真正定义"
+  - time: "15:27"
+    title: "由环境塑造的可验证性: 机器人与 VLA"
+  - time: "17:26"
+    title: "偏好与主观性的领域: 彩妆数据集案例"
+  - time: "20:39"
+    title: "将 Non-Verifiable 转化为 Verifiable 的 Closed-Loop System"
+  - time: "23:54"
+    title: "结论总结与 AI 实操建议"
+  - time: "27:10"
+    title: "崔胜准的 Recap 与收尾"
+lang: "zh-Hans"
+alternateSlug: null
+---
+
+
+## 开场: Non-Verifiable Data Domain Is All You Need    *0:00*
+
+<span class="paragraph-timestamp" data-ts="00:02">00:02</span> **卢正石** 今天录制这段视频的时间是 2025年3月29日，星期六下午。 我在3月22日去参加了一个活动 还做了一个简短的发表 现在那部分内容稍微整理出来了 也想给胜准介绍一下。 所以标题 我起成了 non-verifiable data domain is All you need，不过总觉得有点 这即将成为 AGI 的 面对前沿模型的这种进攻 该如何生存下来 作为创业公司的 founder 以及作为 AI 工程师 像 OpenAI 或谷歌这样的 无法开发前沿模型 在这样的立场上 应该做些什么 你们可以把这看作是一种思想实验。 所以会稍微有些主观 也可能存在一些在逻辑上并不完全严密的部分 但因为这是关于一种视角的讨论 我就来讲一讲。 所以我 把那些想在 AI 时代抓住机会的 技术创业者当作 audience 制作了这份材料。 希望大家能从那个角度来看。
+
+## AI 商业中赚钱的两大支柱: 基础设施 vs 垂直整合    *1:11*
+
+<span class="paragraph-timestamp" data-ts="01:11">01:11</span> 关于 AI 与商业融合的那些领域 不是已经讨论得非常多了吗 同时 我一直会说，在 AI world 里 能赚钱的领域似乎也就只有一两个 而已。 除此之外 大部分都赚不到钱。 那这两个地方是哪里 说到这个问题时 一个是像 NVIDIA 这样提供芯片，然后还提供某种 像 Lablup 这样 提供 orchestration layer 然后 在其上提供 cloud service 的 所谓那种 与 AGI infrastructure 相关的方向 是赚钱的一条主轴 另一条脱离它的主轴则是 像特斯拉那样某个明确的 vertical 拿着那个 vertical 把其中各处的空白 借助 AI service 这样连接起来的那些领域 实现垂直整合的那些领域 看起来是在赚钱。
+
+<span class="paragraph-timestamp" data-ts="02:10">02:10</span> 同时这些领域的核心 是只有我自己才能拥有的数据 也就是 proprietary data 这些数据让服务变得更好 而服务又会生成更好的数据 如此形成正向循环 这种某种意义上的 data flywheel 是很重要的领域。 我一边这样说，一边对那些创业公司 要么就在 AGI 之上开发服务 当然这也是非常大的机会。要么 逃到某个新的领域去 最好在这两者之中做一个 我一直都是这么说的。 我总是把服务、算法和 compute 之类的 从这三种某种视角 去看这个世界 然后讲这样的话。
+
+<span class="paragraph-timestamp" data-ts="02:49">02:49</span> 似乎只有 compute 和 engineering layer 现在在赚钱。 algorithm layer 现在是 commoditize 和 democratize 最严重的 所以这里除非去 Big Tech 就职 不然的话 或者除非去大学当教授 不然从资本的角度来看 这里似乎是在 value capture 上最吃亏的领域。 我以前也说过这样的话 还有我们所知道的 NVIDIA、OpenAI 谷歌或者 Meta 所谓在这里 今天还加上了一个 x.ai 虽然它们的出发点各不相同 NVIDIA 是从下面的芯片开始 在中间供应那些 meta layer、middleware 并且持续不断地往服务那边更往上走 OpenAI 是从服务开始的 他们现在也在开发芯片之类的 就这样不断扩展着 谷歌本来就是一家全方位都在做的公司 Meta 则是从最上层的服务 又在往下走 至于特斯拉 他们是在完全不同的汽车领域里做 而中间那些 layer 其实特斯拉 并不是说他们自己开发 LLM 之类的 而是真的把 open domain 里的技术 很好地 leverage 并加以使用的地方。
+
+<span class="paragraph-timestamp" data-ts="04:07">04:07</span> 但是他们把这些很好地连接起来 这样从上到下 正在做这种垂直整合的事情 所以一边是真正把 AGI 视为某种终极性的到达点 另一边则是 full-stack vertical integration 是 key 的领域。 我当时就是这样分开来说明的。 所以我们其实只有两个 option。 站在创业公司的立场上 要么在 AGI 之上做服务型创业公司 要么像特斯拉那样 抓住某一个 vertical 去把某种东西 通过垂直整合 做出来 也就是说必须在这两者里选一个 这话我差不多已经讲了三四年。
+
+<span class="paragraph-timestamp" data-ts="04:50">04:50</span> 其实我之所以三四年来一直在讲这种话，是因为 不是一直在自己验证我是对的这件事 我其实不在乎我是对还是错。 只是世界前进的方向 到底是哪个方向才重要， 但我还没见过别的 player 能超越这个。 所以一提到特斯拉，Andrej Karpathy 就 经常说这种话嘛。 这个正循环 他是拿特斯拉的例子来讲的。 一旦有了 data source 拿着那个 因为有了更准确的 label Autopilot 就会变得准确得多， 又因为那个 Autopilot 特斯拉汽车会卖得更多， 又因为车卖得更多 会有更多数据进来， 又因为那些数据 服务会进一步增强， Autopilot 也会变强， 所以车又会卖得更多， 做这种事情的 也就是构建所谓正循环 loop 的 似乎是唯一的出路。 而且这个说法 当时被称作 data flywheel。
+
+<span class="paragraph-timestamp" data-ts="05:56">05:56</span> 所以再回头来看 我觉得未来大概只会有两种方向。 一种是在 frontier model 之上 去 build AI service， 要么就是这个 frontier model 在无法 handle 的那种领域里 去做垂直整合的 AI service 也就是必须在这两者中选一个。 那我们到目前为止讲过的这些 AI 的话题 如果先把其他东西都放一边 只总结最重要的内容 只提炼结论的话， Dario Amodei 也公开表示，到 2027 年，在所有领域都超越人类的 这种模型会出现， 而且已经是在公开这么说了， 前两天谷歌 Gemini 1.5 也出来了， 性能真的很好， benchmark 也很惊人。
+
+<span class="paragraph-timestamp" data-ts="06:43">06:43</span> 就像那样， 仅仅在这两三个月之间 我们不是已经看到了惊人的进展吗？ 而且胜准应该也会在 session 里讲到， 从今年 1 月底 DeepSeek R1 发布之后开始 发展得非常猛啊 Grok、Llama 3、Claude 3.7 Sonnet、GPT-4、GPT-5 还有 Gemini 2.0 等等等等 都在往前走， 所以我 个人认为 AGI 很快就会实现， 这就是我的看法， 而且对我们现在正在看到的模型 只是因为不愿意承认罢了， 但事实上在非常多的领域 几乎大多数领域里 都已经到了远远超过人类的层次 这么看也完全不过分。 我觉得我们好像已经把价值判断的标准都弄丢了。
+
+## Verifiable Reward Function 与 Test-Time Compute    *7:23*
+
+<span class="paragraph-timestamp" data-ts="07:23">07:23</span> 不过我呢， 关于 test-time compute 我和胜准也讲过非常多次了嘛。 关于这件事到底为什么这么重要 所以我们一直到去年和今年年初 其实对于 OpenAI o1 和 DeepSeek R1 的意义 也讨论了很多， 我觉得它带来的启示非常大，其中之一就是 某种可验证的 reward function 能够构建出来的领域 能用 algorithmic 的方法 把这种 verifiable reward function，也就是可验证的 reward function 构建出来的那些领域， 其实我们 DeepSeek R1 已经展示出来了嘛。 OpenAI o1 是怎么做出来的 可以说它是一个验证了这一点的模型， 反正只要去找就行了。
+
+<span class="paragraph-timestamp" data-ts="08:09">08:09</span> 只要给出答案 中间的 reasoning token 就会不断地持续地 只要投入 test-time compute 就能够生成， 我们已经知道了，所以那样的领域 代表性的像数学、科学之类 或者编码这种领域 一下子就全都做出来了。 这里的数据集已经完全 通过 reinforcement learning 进入了全部自我生成的领域。 然后还有一点 就是 physical world 我们像机器人这类环境也是 胜准在做 NVIDIA 的时候 也讲了很多 Omniverse 和 simulator 环境， 不是吗， 我觉得 NVIDIA 提供的这种 simulator 其实也是在提供一种可验证的 reward function 的 环境。 所以关于这一部分，后面再稍微更详细地 讲一讲。
+
+<span class="paragraph-timestamp" data-ts="09:10">09:10</span> 所以如果总结一个重要的 message 那就是凡是 reward function 能够被明确构建出来的 能用 algorithmic 方法构建出来的领域，就是 Big Tech player 们都会把 dataset 自动生成出来。 自动生成之后，与之相关的能力 frontier model 们都会全部搭载上。对吧。 而且我们还 在 distillation 提炼的例子里也讲了很多， 一旦这种 reasoning model 里出现一个巨大的模型 对于非常多的问题 它都会一路把 reasoning token 全部写出来嘛。 然后把那些困难的或者非常困难、 质量很高的那些领域里的 reasoning token 收集起来 只要把那些 dataset 好好筛选出来 再 distillation 到体量小得多的模型上 再做 fine-tune 也就是所谓 SFT，做 supervised fine-tune 的话，连 3200 万参数的模型也能 我们看到了那些增长，性能已经能媲美 OpenAI o1-mini 之类的模型。 我们已经看到了。
+
+<span class="paragraph-timestamp" data-ts="10:12">10:12</span> 而把那件事推向极致的论文，像 Stanford Alpaca 这样的， 我认为让我从论文中学到了很多。 所以那样生成出来的大量数据集， 当数据集越来越多时， 我们虽然经常谈这个正向循环， 如果 reasoning model 把数据集扩展到这个程度， 那个模型，那大量的数据集， 到了下一代 instruct model 用这些去训练的话， 以前 reasoning model 是通过 test-time compute 不断在草稿纸上写着什么， 然后得出答案的话， 那么下一代模型则会把那个 所谓地记住， 我觉得“记住了”和“理解了” 以及“能够解决”几乎是同义的， 就是你一问，它马上就知道。 好像会变成那样。 所以最近 DeepSeek-V2 不是出了新版本吗， 出了新版本， 出了 0324 版本， 明明是 instruct model， 但其实对于复杂的 reasoning power 也能很简洁地 给出答案， 这种情况已经展示了很多。 我认为这也是在 展示那种 capacity。
+
+## 逃向不可验证的领域    *11:31*
+
+<span class="paragraph-timestamp" data-ts="11:31">11:31</span> 所以这里就产生了一个想法。 那么逃到不可验证的领域不就行了吗 关于这一部分， 不可验证的领域 不不过关于这一部分， 其实也稍微有点矛盾， LLM，也就是我们的 frontier models， 比如说， 像 Shakespeare 的小说， 或者诗歌， 又或者某些我们 人类在不断进步的过程中 持续积累起来的一种 政治价值判断的标准之类的， 其实这些部分也都不是 verifiable 的 domain。 但人们在进行某种价值判断时， 以我们所谓知识的形式 不就是一直在制作 dataset 吗。 所以说， 那些已经非常庞大、范围也极广的 non-verifiable 的领域， 它们其实是整个都记住了。
+
+<span class="paragraph-timestamp" data-ts="12:25">12:25</span> 所以在这里，如果把 frontier models 定义得更明确一点，它们就是 拥有极其大量的 verifiable data domain， 全都记住了、知道了， 不仅理解了，而且 plus 对于可验证的领域，还具备可以自行探索的 能力，把它看作一个具备这种范围的巨大系统， 我觉得这是更正确的判断。 如果来说明那两个领域的话， 第一类是为 frontier model 做 AI 服务的领域。 这一部分 并不会让我觉得只是某种 LLM wrapper，或者 GPT-2 wrapper 那样的 很浅层的服务。 因为 LLM 本身 已经变成了一个巨大的基础设施， 所以这也会成为 一个极其巨大的 opportunity， 我是这么想的。 但在这件事本身上， 与 AI 相关的某种 function，或者 与 AI 相关的某种 所谓我们说的 moat，只有你们能做的优势， 其实很难实现。 我把它叫作 go-to-market，也就是 GTM， 我觉得 go-to-market 好像是唯一的方法。 组建一个好团队， 定义一个好问题，快速执行，把服务做好， 就像 Cursor 的例子之类你也看得到， 一个非常大的生意 在极其短的时间内 也是可以做出来的， 因为它已经展示了这一点， 所以这个领域 也是一个非常非常非常大的领域， 我是这么认为的。
+
+<span class="paragraph-timestamp" data-ts="13:55">13:55</span> 不过这一部分更需要很强的商业 sense， 说到 GTM 的话， 与其说是什么特别深奥的工程， 不如说是更接近商业的一块， 所以比起 tech entrepreneur， 反而是那些商业 sense 很强的 entrepreneur 更能做好的领域，我是这么觉得的。 如果我们 非要站在懂技术的 entrepreneur 的立场去做， 那我们就该看第二个领域。 其实是那些 frontier models 不太擅长处理的 那种 vertical 领域里的 AI 服务，做这个会更好。
+
+## 核心: Proprietary Data 的真正定义    *14:39*
+
+<span class="paragraph-timestamp" data-ts="14:39">14:39</span> 所以这也是今天的主题， 只有你才能拥有的数据， 也就是必须拥有 proprietary 数据这件事， 不是经常会说吗。 那么那种 proprietary 数据 到底是什么， 我想在这个问题上再往前走一步， 就是这个。也就是说，用算法性的方法 无法构造出可验证的 reward function 的领域。 但这些部分 还能再次被用在什么地方呢， 就是即使把这种 prompt work 或 agent 很好地组合起来， 无论组合得多么好， 对于真假明确的 synthetic data 也无法很好生成的地方。 这些领域都包含在这里。
+
+<span class="paragraph-timestamp" data-ts="15:19">15:19</span> **崔胜准** 我很好奇。是哪些呢？
+
+## 由环境塑造的可验证性: 机器人与 VLA    *15:27*
+
+<span class="paragraph-timestamp" data-ts="15:27">15:27</span> **卢正石** 这样的领域非常多。 所以 为了让大家对这个形成一些具体印象 我想给大家看一个例子 这就是环境。 这大概是在两周前 Gemini Robotics 发布的 Google 不是还做过一次重大发布吗？对吧？ 某种意义上，在 VLA、Vision Language Action 模型这件事上， 他们做出了前沿模型 然后又一下子推向了全世界 其实在机器人这边，过去两年里 非常多优秀的人才 都去创业了，对吧。 现在某种程度上 无论是文本、视觉还是 Video，这类模型 以它们为中心的领域里 所谓的前沿模型 感觉都已经被那些大科技 player 做完了。 那么在其他模型里 如果问哪里还需要前沿模型 去得最多的地方就是机器人
+
+<span class="paragraph-timestamp" data-ts="16:29">16:29</span> 而这些方面的成果 最近像 Figure AI 之类的 还有切尔西·芬教授那家公司的名字 我突然想不起来了。 是叫 Physical Intelligence 吗 我想不起名字了。 总之，那些公司的 模型正在大量涌现出来， 我是这么看的。你们看 Gemini 也是，然后 还有很多做 VLA 方向 前沿模型的 lab 也是 全都有这种环境。 比如说我们想做的 task 是“把葡萄 放到有香蕉的盘子里” 当任务变成这样的时候，就需要有这种环境本身 如果没有通过 vision 输入信息的话 这东西根本就 做不出来。 因为连 label 本身都生成不了。 我觉得这类环境，就是把 non-verifiable 的领域 变成 verifiable 的环境
+
+<span class="paragraph-timestamp" data-ts="17:33">17:33</span> 而且从更大的框架来 思考的话 比如说询问人们的喜好 这种非常主观领域的数据 其实也有很多会进入这里面 比如说当你问某件事的时候 机器会模糊地回答 但人类会在某些地方形成偏好。 例如以我们公司为例 关于妆容组合的数据集 我们做了非常多 而这就是一个很典型的 机器无法判断的领域。 不管怎样，机器在某些情况下会说好 在另一些情况下又会说不好。 但人类呢 如果给定这个 context 就会明确觉得这个好 那个明确不喜欢 并持续去做 labeling。 所以如果不断向人们展示各种 makeup combination 客户对它说“喜欢”“不喜欢”“喜欢”“不喜欢” 无论是以什么形式 是直接表达“喜欢”“不喜欢”也好，或者 是隐性地这个点开看看、那个直接划过去也好 以这样的方式给出反馈 如果存在这样的 loop 那么那里就会产生 label
+
+## 将 Non-Verifiable 转化为 Verifiable 的 Closed-Loop System    *20:39*
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> 那么我刚才说的那种服务 其实就是把 non-verifiable 变成 verifiable 的 一种环境。 所以这个本来是个简单的话题，我绕了很大一圈才说到这里 这种 AI 服务 就像 Tesla 汽车上装的摄像头一样 摄像头其实 会把用户急刹车的环境之类的 或者急加速的环境之类的 或者解除 Autopilot 的环境之类的 这些部分与 vision 对应起来的数据带过来，对吧。 而且这些东西 还会带着某种用户反馈 一起作为被判断过的数据输入进来 因为那其实就可以说是 label 所以把这些 AI 服务结合起来的部分 会让我们在前沿模型绝对无法拥有的 那种数据领域里获得一些东西， 于是我就有了 这样的想法。所以 只有这种环境 无论是成功还是失败 才能给出 0、1 的 label。 而如果没有这种环境 就绝对不可能得到任何东西
+
+刚才在 simulator 那里我也提到了 像 Physical AI 这种情况 以前其实是做不到的，但很多 lab 已经具备了那些实验环境 又把那些实验环境带到了 simulator 环境里 于是让这些东西 能够给出 0 和 1 的 label 的环境 正在以更低成本不断出现，就是这么回事。 所以 那么刚才给大家看的这个把 non-verifiable 变成 verifiable 的系统 这个 environment 如果由我来定义的话 原来是这么回事。 当然这个定义以后也还可以再改 但这是我在当前这个时间点的一点领悟
+
+<span class="paragraph-timestamp" data-ts="20:36">20:36</span> 那么，能够让这些成为可能的 AI 服务或 simulator，该怎么定义才好呢？ 把 non-verifiable 变成 verifiable 的 这是个 closed-loop system 啊” 我是这样定义的。 这样定义之后再去看世界， 即使是同样的 proprietary 数据， 这个 LLM 能做。 这个 LLM 做不了”这种判断的标准， 我想说的是，多少就能建立起来。
+
+<span class="paragraph-timestamp" data-ts="21:07">21:07</span> **崔胜准** 不知道是不是这样， 但如果从语感上来看， 在研究 open-endedness 的那一边， 和强化学习这一系有点产生共鸣的部分 我感觉得是有的。 在 open-endedness 那边， 不只是 agent，环境也 被看作是 trainable object。 所以两者之间的关系 有那种不断缠绕进去的部分， 我突然就想到这个了。
+
+
+<span class="paragraph-timestamp" data-ts="21:33">21:33</span> **卢正石** 对，对。 大概是类似的。 其实我也是， 不是说我发现了什么了不起的东西， 而是从商业上我得先给自己建立一个视角， 才能决定这个 task 要不要做之类的， 通常决策过程就是这样的。 一开始会去读很多论文， 也去看别人的 YouTube， 好像脑中渐渐有了个图景，但又不太真切。
+
+<span class="paragraph-timestamp" data-ts="21:52">21:52</span> 如果说有点感觉的话，也是在一种比较模糊的状态下， 会想是不是用了那个 reasoning model 就能做那些事， 我们要是也试试 token work，是不是也能做到这个程度， 然后就这样， 和工程师们开很多会、安排实验， 再大量做各种东西。 就这样几个月时间过去了。
+
+<span class="paragraph-timestamp" data-ts="22:12">22:12</span> 其实那之后， 最终一切还是都会归结到 evaluation 上， 这时候就会有种体会。 那些一开始就无法清晰想象 evaluation 框架的项目， 就不该开始。 所以要先把 evaluation metric 明确定义好， 而所谓明确定义 evaluation metric 这件事本身， 其实和 label 的 0、1 被确定下来 也是某种程度上等价的， 所以在那之后一旦有了这种领悟， 就会明白这个不能做。
+
+<span class="paragraph-timestamp" data-ts="22:45">22:45</span> 再加上当时论文里说的那些话， 以及别人为什么那样做，原来是因为那个。 会重新 一下子看清自己的愚蠢， 然后去做些什么。
+
+<span class="paragraph-timestamp" data-ts="23:04">23:04</span> 所以今天我跟胜准说的这些内容，可能 在别人看来， 也许是再明显不过的内容，但对我个人来说， 总是在说 proprietary 数据 那种只有我才能拥有的数据很重要， 而关于那种只有我才能拥有的数据究竟是什么， 我有种稍微又往前迈了一步的感觉， 所以就稍微整理了一下这个。
+
+<span class="paragraph-timestamp" data-ts="23:23">23:23</span> **崔胜准** 现在总之听下来， 我感觉叙事结构里现在是有某种洞察， 而且有种想把它说出来的感觉。
+
+<span class="paragraph-timestamp" data-ts="23:35">23:35</span> **卢正石** 对，过后再看也可能是胡扯。 不过， 那些东西归根结底说不定 就是 simulator 在扮演的角色， 而从更大的意义上说，我们正在做的 AI 服务 从数据的角度来看， 也应该是某种生成数据的服务， 才能对得上。 这些东西是可以讲清楚的。
+
+## 结论总结与 AI 实操建议    *23:54*
+
+<span class="paragraph-timestamp" data-ts="23:54">23:54</span> 所以把刚才说的 这个重要信息再重复一遍的话， 我们到现在为止谈到的 只有你自己才拥有的 proprietary 数据是什么”这一部分， 其实可以定义得更具体一些。 那么那是什么呢， 就是把某些 non-verifiable 的东西变成 verifiable 的 某种环境，是个 closed 环境。我认为这要么是 simulator， 要么就是 AI 服务，我是这样定义的。
+
+<span class="paragraph-timestamp" data-ts="24:26">24:26</span> 而这个 AI 服务应该长什么样， 其实看起来每个领域都会不一样。 比如医疗健康、教育， 或者某种 HR 服务等等， 如果只是直接去问 LLM， 它会立刻把自己 weight 里已有的知识 拿出来做组合， 但做不到的那种领域其实依然非常多。
+
+<span class="paragraph-timestamp" data-ts="24:49">24:49</span> 所以系统 应该会是某种与特定 vertical domain 结合的 simulator，或者 AI 服务。 而且我个人 对那样的东西，在 AI 服务里 感受到的机会要大得多。 这种 AI 服务 是建立在 frontier model 的强大性能之上， 但和只是套一层 wrapper 还是有点不一样。
+
+<span class="paragraph-timestamp" data-ts="25:15">25:15</span> 关于这部分，其实有非常多的例子 和这类东西， 当然，因为这不是数学题， 所以我今天讲的这些内容本身 也只是我的一种意见， 是 non-verifiable 的。 而且根据各自的视角， 也都可能 变得不同， 因为这是相对性的东西， 所以在这里定义什么样的视角，其实就会成为公司的某些战略 point， 所以我想这样来收尾。
+
+<span class="paragraph-timestamp" data-ts="25:47">25:47</span> 那关于这种东西的例子， 总得让大家去学习一下才行吧。 但是我们平时总在做什么呢？ 胜准和我做的，是一边和 AI 对话 一边以拓宽地平线这件事作为某种价值取向， 所以今天我把这个留作一次作业吧。
+
+<span class="paragraph-timestamp" data-ts="25:59">25:59</span> **崔胜准** 啊，是作业吗？现在是要告诉我答案吗？
+
+<span class="paragraph-timestamp" data-ts="26:02">26:02</span> **卢正石** 不是，“作业”这个说法有点托大了，算是实操。 反正想试试看的人就会去做， 不想做的人就会 因为会永远不去做 我把这些幻灯片内容 本来在 Emacs 里就用编辑器一路写好了一份内容 我只是把这个贴到这里来了 你们就直接把这个带过去 到 Google AI、ChatGPT 或 Claude 里 直接粘贴进去 然后把第一个问题 用这个来开始试试。
+
+<span class="paragraph-timestamp" data-ts="26:38">26:38</span> 喂，我是在这种这种领域工作， 在我的领域里，把 non-verifiable 变成 verifiable 的 closed-loop system 的例子 告诉我吧，这样说的话 我试过很多次了 它会给出非常好的例子。
+
+<span class="paragraph-timestamp" data-ts="26:52">26:52</span> 而且在某个我不了解的领域里 与其让我靠脑子硬想 这家伙肯定做得好得多 所以剩下的工作就交给这家伙。
+
+<span class="paragraph-timestamp" data-ts="27:02">27:02</span> 我今天想跟大家说的话 就在这里收尾吧。
+
+## 崔胜准的 Recap 与收尾    *27:10*
+
+<span class="paragraph-timestamp" data-ts="27:10">27:10</span> **崔胜准** 听得很有意思。 我就不用人工智能， 用人类智能来 recap 一下的话 一开始的标题是 non-verifiable 您强调了要去创造数据这件事 有两条某种创业者的 也就是说，使用 AI、 想要利用 AI 的创业者的 分岔路有两条，其中一条是 对于新近灵活起步的团队来说 更合适的，我感觉是 这种形态，这是 1 号路。2 号路则是 已有的企业 把 proprietary 数据 变成 non-verifiable 的方向 正石现在在执行上稍微偏向了 2 号路 以及在那里获得了一些想法 您现在是想表达这个，对吧
+
+<span class="paragraph-timestamp" data-ts="27:55">27:55</span> **卢正石** 是的，没错。 其实除了把 2 号路好好 develop 之外 大多数领域 frontier models 都会比我们 做得好得多，所以和它们相比
+
+<span class="paragraph-timestamp" data-ts="28:14">28:14</span> **崔胜准** 您也说过 1 号路也有机会。不过 1 号路的那个语气，虽然您没有直接这么说 但现在本来就已经可以从很小规模开始 不管是算法也好，还是获得编码帮助的那一层 都在被扰动 所以能够小而快地把那些做出来的 比如像 Cursor 那种方向算是 1 号路吗？
+
+
+<span class="paragraph-timestamp" data-ts="28:33">28:33</span> **卢正石** 是的，如果拿 Cursor 来举例，我觉得 Cursor 也是 那个服务的本质本身就是把 Claude 的能力 直接拿来使用 所以我认为那是在 AI 基础设施之上叠加了服务层。
+
+<span class="paragraph-timestamp" data-ts="28:49">28:49</span> 如果硬要从 2 号路的角度来想，那无数 这些 coder 在使用时 哪些成功了，哪些没成功 所谓编码风格之类的 还有问题定义之类的 对于这些部分 其实 non-verifiable 变成 verifiable 的领域，Cursor 当然也是 一定存在的。
+
+<span class="paragraph-timestamp" data-ts="29:12">29:12</span> 我 觉得像 Cursor 这样的服务本身 正是在 AI 基础设施之上 把 AI 所拥有的能力本身 产品化后向外拿出来 的那种代表性例子，不是吗。 我们现在在 Y Combinator 的投资组合公司里看到的 非常多的例子都属于 1 号领域
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> **崔胜准** 1 号路，不过 2 号路是某种 已有既有业务，而在那里 要产出别的地方难以触及的数据 就得从环境中获得信号， 也就是说得能够创造出那个环境 能接收信号的环境
+
+<span class="paragraph-timestamp" data-ts="29:51">29:51</span> **卢正石** 是的，我是这么整理的。是，原来如此。 今天我讲的这一部分 关于这些业务部分 如果是认真想过该往哪里逃的人 应该会很有共鸣，因为 就拿我来说，如果胜准也开始创业的话 你也不会想进入那种明年就会被 OpenAI 一下子做完的领域吧。 也不想去那边，对吧。
+
+那当然。
+
+<span class="paragraph-timestamp" data-ts="30:28">30:28</span> **卢正石** 是的，所以一边思考这些部分 就一路逃到这里来了。 原来如此。 我本来不想用这个表达， 但这件事最大的主题就是该怎么逃。 关于怎么逃 这其实是一本逃亡日记，并不是那种特别 值得炫耀的内容，实际上并不是
+
+<span class="paragraph-timestamp" data-ts="30:47">30:47</span> **崔胜准** 很意味深长啊。 逃亡日记啊。 现在总之情况变化得太快了， 去年和今年又太不一样了。对吧
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **卢正石** 你们不觉得是在持续加速吗？
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **崔胜准** 太是了。怎么说呢…… 您提到过红皇后那个说法， 我觉得一直就是那个状态。
+
+<span class="paragraph-timestamp" data-ts="31:10">31:10</span> **卢正石** 如果换成对数来看 现在是 linear， 那这就非常 exponential 了。 对吧。 所以现在 如果我们现在在想象某件事 去纠结到 2027 年 AI 到底能不能做到 不是已经没有意义了吗？ 按照它会做到这个假设去做点什么，才是对的吧？ 对，应该就是那样。 明白了。那么今天就到这里 我的主题就此收尾吧。
+
+谢谢。
