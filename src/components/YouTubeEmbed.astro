@@ -379,18 +379,23 @@ const { videoId, title = 'YouTube video' } = Astro.props;
   }
 
   // Intersection Observer to detect when player leaves viewport
-  // Use rootMargin to create hysteresis: mini mode activates when wrapper is 100px above viewport,
-  // but deactivates only when wrapper is 100px inside viewport, preventing rapid toggling at boundary
+  // Debounce transitions to prevent flickering on mobile (address bar hide/show changes viewport)
   const wrapper = document.querySelector('.youtube-wrapper');
   if (wrapper) {
+    let miniDebounceTimer: ReturnType<typeof setTimeout> | null = null;
+    const MINI_DEBOUNCE_MS = 150;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting && !userClosedMini) {
-            enableMiniMode();
-          } else if (entry.isIntersecting) {
-            disableMiniMode();
-          }
+          if (miniDebounceTimer) clearTimeout(miniDebounceTimer);
+          miniDebounceTimer = setTimeout(() => {
+            if (!entry.isIntersecting && !userClosedMini) {
+              enableMiniMode();
+            } else if (entry.isIntersecting) {
+              disableMiniMode();
+            }
+          }, MINI_DEBOUNCE_MS);
         });
       },
       { threshold: 0.3, rootMargin: '-50px 0px 0px 0px' }
@@ -584,7 +589,8 @@ const { videoId, title = 'YouTube video' } = Astro.props;
   .mini-player-floating,
   .mini-player-top-right {
     animation: mini-appear 0.2s ease-out;
-    will-change: transform;
+    will-change: auto;
+    transform: translateZ(0);
   }
 
   @keyframes mini-appear {
