@@ -46,16 +46,23 @@ const placeholder = placeholders[lang] ?? 'Search...';
     if (pagefindLoaded) return;
 
     try {
-      // Use string concatenation to prevent Vite from analyzing the import
-      const pagefindPath = '/pagefind/' + 'pagefind.js';
+      // Load Pagefind UI CSS
+      if (!document.querySelector('link[href*="pagefind-ui.css"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/pagefind/pagefind-ui.css';
+        document.head.appendChild(link);
+      }
+
+      // PagefindUI is exported from pagefind-ui.js, not pagefind.js
+      const uiPath = '/pagefind/' + 'pagefind-ui.js';
       // @ts-ignore
-      const pagefind = await import(/* @vite-ignore */ pagefindPath);
-      await pagefind.init();
+      const module = await import(/* @vite-ignore */ uiPath);
 
       const container = document.getElementById('pagefind-container');
       if (container) {
         // @ts-ignore
-        new pagefind.PagefindUI({
+        new module.PagefindUI({
           element: container,
           showSubResults: true,
           showImages: false,
