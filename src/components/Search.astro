@@ -96,6 +96,20 @@ const placeholder = placeholders[lang] ?? 'Search...';
     document.body.style.overflow = '';
   }
 
+  // Intercept result link clicks to append highlight query param
+  searchModal?.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest('.pagefind-ui__result-link') as HTMLAnchorElement;
+    if (!link) return;
+    const input = document.querySelector('#pagefind-container input') as HTMLInputElement;
+    const query = input?.value?.trim();
+    if (query && link.href) {
+      e.preventDefault();
+      const url = new URL(link.href, window.location.origin);
+      url.searchParams.set('highlight', query);
+      window.location.href = url.toString();
+    }
+  });
+
   searchBtn?.addEventListener('click', openSearch);
 
   searchModal?.addEventListener('click', (e) => {
