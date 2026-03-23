@@ -259,6 +259,7 @@ const homeLabel = ui.home;
     color: inherit;
     padding: 0.05em 0.15em;
     border-radius: 2px;
+    scroll-margin-top: 40vh;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -639,7 +640,7 @@ const homeLabel = ui.home;
       if (!target) {
         target = container.querySelector('mark.search-highlight');
       }
-      target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   })();
 
