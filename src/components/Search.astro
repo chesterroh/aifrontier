@@ -54,15 +54,18 @@ const placeholder = placeholders[lang] ?? 'Search...';
         document.head.appendChild(link);
       }
 
-      // PagefindUI is exported from pagefind-ui.js, not pagefind.js
-      const uiPath = '/pagefind/' + 'pagefind-ui.js';
-      // @ts-ignore
-      const module = await import(/* @vite-ignore */ uiPath);
+      // pagefind-ui.js is an IIFE that sets window.PagefindUI
+      await new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = '/pagefind/pagefind-ui.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load pagefind-ui.js'));
+        document.head.appendChild(script);
+      });
 
       const container = document.getElementById('pagefind-container');
-      if (container) {
-        // @ts-ignore
-        new module.PagefindUI({
+      if (container && (window as any).PagefindUI) {
+        new (window as any).PagefindUI({
           element: container,
           showSubResults: true,
           showImages: false,
