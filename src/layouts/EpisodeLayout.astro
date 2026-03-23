@@ -623,10 +623,13 @@ const homeLabel = ui.home;
       textNode.parentNode?.replaceChild(frag, textNode);
     }
 
-    // Scroll to first highlight
-    const firstMark = container.querySelector('mark.search-highlight');
-    if (firstMark) {
-      firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Only scroll to first highlight if URL has no hash anchor
+    // (if hash exists, browser already scrolls to the correct section)
+    if (!window.location.hash) {
+      const firstMark = container.querySelector('mark.search-highlight');
+      if (firstMark) {
+        firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   })();
 
