@@ -1,0 +1,461 @@
+---
+episodeNumber: 92
+title: "EP 92. Close the Loop"
+description: "Centered on podcasts featuring Andrej Karpathy and Sarah Guo, along with an interview between Terence Tao and Dwarkesh Patel, this episode examines the possibilities and limits of 'manifest' in the age of AI."
+publishedAt: 2026-03-29
+duration: "1:06:30"
+youtubeId: "xTYTA8dLTko"
+thumbnail: "https://i.ytimg.com/vi/xTYTA8dLTko/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "Preview: Andrej Karpathy and Terence Tao"
+  - time: "0:58"
+    title: "Things that click vs things that don't"
+  - time: "2:37"
+    title: "Where to escape to"
+  - time: "3:18"
+    title: "Andrej Karpathy and Sarah Guo on the age of manifests"
+  - time: "5:01"
+    title: "Andrej Karpathy's changing coding habits"
+  - time: "7:50"
+    title: "Auto-research recap: if it's verifiable, it gets automated"
+  - time: "10:16"
+    title: "Jokes and the limits of auto-research in unverifiable domains"
+  - time: "11:47"
+    title: "Why microgpt couldn't be built as an agent"
+  - time: "12:55"
+    title: "The future of education: shifting to teaching agents"
+  - time: "14:45"
+    title: "What agents can't do is your job"
+  - time: "16:47"
+    title: "Andrej Karpathy's interest in biotech and the escape to domain expertise"
+  - time: "18:51"
+    title: "Math and AI from Dwarkesh Patel's interview with Terence Tao"
+  - time: "21:58"
+    title: "The AGI debate and the march of nines"
+  - time: "24:42"
+    title: "Terence Tao on the need for semi-formal languages"
+  - time: "26:59"
+    title: "Richard Feynman and the value of inefficiency, from the Princeton Institute for Advanced Study"
+  - time: "28:25"
+    title: "Anthropic AI science blog: vibe physics and Claude as a grad student"
+  - time: "33:39"
+    title: "Comparing the vanilla harness philosophy of Codex and Claude Code"
+  - time: "37:01"
+    title: "AI for Science: where scientists and engineers encroach on each other"
+  - time: "40:09"
+    title: "A writing experiment: crafting prose with loops and acceptance criteria"
+  - time: "44:03"
+    title: "Attempting jokes with the same harness—and failing"
+  - time: "46:38"
+    title: "The power of taste: even what you dislike is a strong signal"
+  - time: "49:53"
+    title: "The tacit knowledge reverse engineering hypothesis"
+  - time: "53:47"
+    title: "Making all work verifiable with OKRs"
+  - time: "59:13"
+    title: "Anthropic's multi-agent harness design guide inspired by GANs"
+  - time: "62:50"
+    title: "Capybara model rumors and the next frontier"
+  - time: "64:14"
+    title: "Closing"
+lang: "en"
+alternateSlug: null
+---
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is March 28th, 2026,a Saturday morning.Last week, using reinforcement learning, RL,if you put in computing resourcesand, plus, some kind of reward signalif you can only make it clearly enough,that domain can be conquered easily.Going forward, as a search problem using computing,every problem will end up being solved,along with that kind of argument,we also talked a bit about business-related topics.
+
+In the meantime, the famous Andrej Karpathytogether with Sarah Guorecorded another podcast episode,and the contents in it alsohave a lot that is very similar to what we talked about.Still, Andrej Karpathy is famous, and his remarksfor us to go over them oncecould still be meaningful, so today, Karpathy's remarks,and in addition, Terence Tao,also a mathematician Seungjoon likes very much.
+
+What Terence Tao said in an interview with Dwarkesh Patel,and also the subtext within that,we'll go over those as well.
+
+<span class="paragraph-timestamp" data-ts="0:58">0:58</span> **Seungjoon Choi** So first, the content we'll cover today,I pulled it a bit further up frontand tried to make it more top-line first.These days, even the National AI Strategy Committeeis pushing Markdown as an important format,which is nice news, and just for fun,I also tried making a 3D Markdown renderer.
+
+For now, it seems that things that go click are easy.Since everything is becoming easy.But making something click like thatmight have value to oneself,but whether it also has value to other peopleis somethingI've been thinking about these days.Because it just gets made so easily.
+
+So Andrej also used the term ephemeral software.That's the term he used.It's not easy to compound it, either,and while it does get made in a fun way,it can be somewhat fleeting.Therefore, we have to take on things that don't just go click,but work that doesn't go clickalso comes with no guarantee that it will stay not-clickable in the future,because some things, over time, can becomecandidates for click work. That's something I thought about.Extending that and connecting it a bit,maybe click candidates are really just things you can wait for,
+
+relatively low-value candidates for easy work,that's another thought I had.Of course, if you wait through that time meaningfully,if the time is simply long enough,meaning could still emerge.Then, by elimination, what remainsare the things that still won't go click in the future,
+
+what are the things that won't go click? And they are things that won't work,things that won't work, butcould there still perhaps be work that produces value anyway?Those are the kinds of questions I've been thinking about.So today's discussiondoes seem like it may be related to that.
+
+<span class="paragraph-timestamp" data-ts="2:37">2:37</span> **Chester Roh** This connects with that question we always ask,namely, where are we going to escape to?If it's something you can do right now,but also something everyone else can do,then its relative valuedrops tremendously, so work that only I can do,and work where that relative advantage in timecan be defended for a long time,there are a lot of questions these days aboutthat kind of work. Everyone is thinking about this.
+
+<span class="paragraph-timestamp" data-ts="3:03">3:03</span> **Seungjoon Choi** Right.Jeongkyu too, what was it, if it's going to work out, don't do it,that kind of thing, continuously,for several weeks, actually it's already been over a month,he had been saying. So with those concernsplaced up front, let's follow the discussion.
+
+So here now, about code agents, auto research,and the age of loops,Sarah Guo posted that Andrej was back again, inviting the sensei,inviting the teacher,and it's also interesting that Noam Brown left a comment there,which I'll introduce in a bit.
+
+Calling it the age of manifest, sheintroduces the term manifest right from the start.How did you take the term manifest?
+
+<span class="paragraph-timestamp" data-ts="3:45">3:45</span> **Chester Roh** Sarah Guo says, express my will, to AI,it feels like I'm engaging in an act of expressing my will.These days, then, AI takes care of the restfor me, that's what she's saying,but Andrej slightly shifts that expression, express my will,into manifest.Manifest, in Korean,it doesn't seem like there's a single perfectly matching word,did you translate it as balhyeon?Hyeonhyeon, balhyeon. So, with intention,
+
+<span class="paragraph-timestamp" data-ts="4:13">4:13</span> **Seungjoon Choi** making something actually appearseems to be the sense of it.So usually, manifest.json,
+
+a JSON file and things like that come to mind first,but here, with a slightly different nuance,it also seems to be used that way.And if you look here, there's another interesting expression
+
+early on: AI psychosis.I translated it as psychosis for now,but an obsessive relationship with AI, a fixated relationship,having to keep giving it tasks,things like that, like when you still have quota left,a real sense of anxiety arises,that's what he was talking about.People who use it a lot these days
+
+<span class="paragraph-timestamp" data-ts="4:54">4:54</span> **Chester Roh** have these AIs, things like Claude Code or Codex,running eight at a time and making them work.
+
+<span class="paragraph-timestamp" data-ts="5:01">5:01</span> **Seungjoon Choi** So Andrej's tone was very different back in October.That was the interview with Dwarkesh Patel,and in the interview with Dwarkesh Patel,there were still parts that were progressing step by step, slowly.He said he mainly used Tab, but that changed quickly.So now, since December,he hasn't typed code even once.
+
+Back in around October, he said it was 80 to 20,and now it's changed to 20 to 80,talking about it that way,he confessed how he's changed these days.What's interesting is that he's become a Peter wannabe.
+
+Peter Steinberger, who made OpenClaw,I want to become like Peter too.It's shown here.
+
+<span class="paragraph-timestamp" data-ts="5:47">5:47</span> **Chester Roh** Peter Steinberger has a really large number ofterminal windows open.
+
+<span class="paragraph-timestamp" data-ts="5:53">5:53</span> **Seungjoon Choi** So Andrej is a bit, some people saythat rather than Andrej's old serious side,he seems to have gone too far toward the hype side,there are people who say that too.But if you scroll down a bit more,there's also a part where he talks about his own perspective.So in this part,Andrej talked a bit about skill,about human skill.So what Sarah Guo asked waswhat it looks like to become proficient from there,and she unpacked it that way.But this flow, to be honest, is
+
+too long to go through all of it, so I'll skip ahead a bitand go overthe points I was paying attention to.To introduce it briefly,an important part of what Peter accomplished isthings like shaping an agent's personality,there are about five important parts.So there was a part where he praised Peter very highly.
+
+Then, in the part about Andrej Karpathy's experience,this click momentwas when his home automation setupwas, almost like reverse-engineering it with OpenClaw,easily accomplished,and there's a part where he introduces that.He said it was done with three prompts,and there was a part where he introduced it that way.Then, the future of software,what people want, these kinds of things,
+
+actually align in tone withwhat we've talked about in the sessions we've done so far.So rather than going into that in detail now,the part I found important wassomething like the limits of auto-research here,I found that important.Making that self-improving loop succeed,Andrej Karpathy has packaged that as auto-research,and it's becoming a big issue right now,but the fact that there are domains wherethat doesn't work, I found important.Shall we briefly review auto-research?If the goal is clearly definedand some output for that goal, and for that output
+
+<span class="paragraph-timestamp" data-ts="7:57">7:57</span> **Chester Roh** you can evaluate it reliably,then whether what's in the middle is a document,or research, or a GitHub repo,or a model, in whatever form, if you put this LLM into it,put tokens into it,then you can do so-called optimization, optimize it.You can find a solution.
+
+<span class="paragraph-timestamp" data-ts="8:16">8:16</span> **Seungjoon Choi** But what Andrej Karpathy is good at isimplementing that kind of thing very minimally.So this time too, auto-research was implemented very minimally,with maybe three MD files,and one code MD file, `program.md`,and then one Python file.And as it kept updating itself,the repo kept accumulating like this, right?But regarding that part,
+
+<span class="paragraph-timestamp" data-ts="8:39">8:39</span> **Chester Roh** to explain the background briefly,this is how he made it, right?Improving the model's performance,improving the performance of the very simple modelthat Andrej Karpathy made,and `program.md` is actually this manifest.It clearly lays out what to doand what purpose it has,and then as the target program for that,`train.py` and `prepare.py`,he provided these kinds of things.That's just the preparation part,
+
+<span class="paragraph-timestamp" data-ts="9:07">9:07</span> **Seungjoon Choi** the core is continuously improving the train file.So the goal here is,
+
+<span class="paragraph-timestamp" data-ts="9:13">9:13</span> **Chester Roh** to lower the loss value,since that's a clear goal,again, if there's this measurable, verifiablekind of evaluation,then you can leave it to the model.It will go find papers on its own,and try fixing things based on what it already knows,try changing this and that, taking inall the positive feedback and negative feedback, strengthening what worksand discarding what doesn't, while constantly searching for the optimal solutionand moving forward, that's the core of auto-research.
+
+<span class="paragraph-timestamp" data-ts="9:44">9:44</span> **Seungjoon Choi** But what surprised even Andrej Karpathy himself after making it was thathe'd been doing this kind of thing for 20 years,and it caught things he had missed.So in actual validation,the code that reduced the losshad things to learn from,and that was the surprising part.
+
+<span class="paragraph-timestamp" data-ts="10:00">10:00</span> **Chester Roh** Since it's better than Andrej Karpathy,the model is much better than most people.So Sarah Guo asked a somewhat challenging question,
+
+<span class="paragraph-timestamp" data-ts="10:10">10:10</span> **Seungjoon Choi** whether this method could also make it write `program.md`better than Andrej Karpathy,and she talked about that a bit.But even so, there are still limits.So that issue of those limits,I watched that part with some interest,
+
+and while this works extremely well in verifiable domains,in things that are hard to verify, it all drifts,he used the expression that it drifts.If you look here, Andrej Karpathyhad stated a hypothesis,This part was just expressed as wandering around.Then, with things like that,
+
+a representative example is when you ask it to make a joke,even a model from 3 to 4 years ago, or the latest model,can't get beyond the level of jokes a model from 3 to 4 years ago could make.So what Andrej Karpathy thinks isthat this is an area RL,current RL, does not seem to cover.There are quite a few areas like that,so its abilities seem uneven,that's the kind of point being made.
+
+<span class="paragraph-timestamp" data-ts="11:08">11:08</span> **Chester Roh** He uses the expression jagged a lot.In some things it's a real super genius,and in other things it's a terrible idiot.
+
+<span class="paragraph-timestamp" data-ts="11:16">11:16</span> **Seungjoon Choi** So while talking a bit about that,something I was interested in toward the latter part,was this idea that this part, something like auto-research,if you wanted to do it like a project such as SETI@home or Folding@home,it seems like you could.SETI@home is about searching for extraterrestrial civilizations,and Folding@home, before AlphaFold came out,was about crowdsourcing protein folding.So there was also some talk aboutsending out agents like this,
+
+with people sending out their agents,and the ambition of solving complex problems.This microgpt part,we also introduced microgptonce before,and compressed GPT into 200 lines.But this,apparently, can't be done in the same way as before.
+
+Making code like microgptis something Andrej Karpathy couldn't reachby running agents, and this was something only Andrej Karpathy could do,a result of the compression experience Andrej Karpathy had built up over 20 years.And the interesting thing is,Andrej Karpathy founded Eureka Labs.But he hasn't really done much with it.And after putting out microgpt,in the past he would have made a YouTube video about thisand explained how to learn it,but he says he no longer feels the need to do that.
+
+<span class="paragraph-timestamp" data-ts="12:32">12:32</span> **Chester Roh** Why is that?
+
+Why is that?
+
+<span class="paragraph-timestamp" data-ts="12:55">12:55</span> **Seungjoon Choi** that's the nuance of what he says.So the future of education is shifting from teaching peopleto teaching agents,and if you teach agents so they can do it,then agents teaching peoplecan be generated on the spot,like interactive content.That kind of talkwas what made this session memorable for me.Chester, but another thing that stood out
+
+is that there may have been other thingsthat impressed you as well. How did you see it?I think he's making two points.First, just as we were talking about,
+
+<span class="paragraph-timestamp" data-ts="13:26">13:26</span> **Chester Roh** if there's anything where we can attachsome kind of verifiable measuring device,then not only for training the modelbut for general problems as well,this is something that can all be solved that way,and that was one point he was talking about.Second, this layergoes beyond just training a model
+
+and analyzing the model further,and the model itself is, if you put it in older terms,something like a CPU,making it into a single engine like a CPU,and this layer too, Andrej Karpathytalks about something like that.Up until last December, Andrej Karpathy was directly handling codeand coding,but now he says he no longer does those things at all,saying that,and this connects to manifest,it feels like moving up one layer now.Andrej Karpathy is talking aboutthe value of the things on that higher layer.It's not about how the model performs well,
+
+or how good the benchmark is, but rather, with this,what additional problems we'll be able to solve,how this will change our work,and how it will change education,that kind of application domain,a higher domain, one layer up,the whole agenda has switched there.That was the clear impression I got.
+
+<span class="paragraph-timestamp" data-ts="14:45">14:45</span> **Seungjoon Choi** So what Andrej Karpathy saidat the very end of this session was this:What agents can't do is now your job.What agents can dothey probably do better than you, or soon will.So you need to be strategic about where you spend your time.He wrapped up the interview with that kind of remark.
+
+<span class="paragraph-timestamp" data-ts="15:02">15:02</span> **Chester Roh** But this is a very open-ended question.As we said earlier at the beginning,hey, if this is something that can be done in a week or two,don't click it into existence. Because people are clicking from all directions,so it would already have been made in real time.Then things that will happensix months from now, those are the kinds of things you have to do,and the ability to set that kind of topic,to read the current contextand clearly set the topic, is important.I think that's the interpretationof the statement that you need to be strategic about where you spend your time.
+
+<span class="paragraph-timestamp" data-ts="15:35">15:35</span> **Seungjoon Choi** Anyway, even though there were points that really make you think,he also unfolded the discussion in a very engaging way,and Andrej Karpathy really talks incredibly fast.saying that if you listen at 0.8x speed, that's normal speed.But with someone famous like Andrej Karpathy,
+
+<span class="paragraph-timestamp" data-ts="15:50">15:50</span> **Chester Roh** maybe what that celebrity is saying is, in a way,about what Seungjoon and I are saying,a kind of evaluation in its own right.So the fact that what we're saying and what Karpathy is sayingwere not all that different in contextmeans that we gotthat kind of positive feedback.It's a relief that we're aligned in that sense.
+
+<span class="paragraph-timestamp" data-ts="16:12">16:12</span> **Seungjoon Choi** Anyway, Andrej Karpathy also said in the interviewthat even though he's no longer at a frontier lab,having this kind of autonomyhas the advantage that he can easily say whatever he wants to say.But then, if you want to know the latest information,you have to keep going in and out,and he said something along those lines too.He probably hears everything.Right. He still has friends there and all,so in the science space,
+
+Liam Fedus, who founded Periodic Labs,is also a close friend of Andrej Karpathy,and he says he's been over there too,though he didn't go into detail.Still, I assume he's also trackingwhat kinds of things are becoming possible in science.
+
+<span class="paragraph-timestamp" data-ts="16:47">16:47</span> **Chester Roh** A field Andrej Karpathy has been very interested in for a long timeis biotechnology.So I know that he personally brings inthese really thick molecularbiology books and other biotech books, and in the backgroundhe's studying that field very intensely.And we talk a lot about where we need to run to,but
+
+the price of things that are over with just one clickkeeps falling.There are also a huge number of new entrants into the market,and it's really just that someone got there two months earlier,or started working two months earlier,but for the people coming up behind them,it's just too easy to catch up with that, honestly.The further back you are, the more advantageous it gets.
+
+<span class="paragraph-timestamp" data-ts="17:30">17:30</span> **Seungjoon Choi** Because the performance of the models and harnesses keeps improving.
+
+<span class="paragraph-timestamp" data-ts="17:32">17:32</span> **Chester Roh** Exactly. They're going into battle with better tools.So the things the people in fronthave been selling for the last six monthsbecome completely meaningless,and we're witnessing this kind of worldwhere the starting line keeps getting reset.We've been talking about doing AI science this year,and about people likeTerence Tao quite a bit,and if you look at the areas those smart people are running to now,
+
+it's things like the materials engineering that Periodic Labs is doing,like finding new materials,or else these days, because of things likeAlphaGenomics and AlphaFold,biotechnology itselfis being completely software-ized.No longer do you need to be handling liquids in a beakeror doing experiments in what's called a wet lab,literally a wet lab,and it's rapidly movingtoward software environments that don't require those things,and it seems like everyone is running in that direction.
+
+But that kind of area requiresfairly deep domain knowledge.It requires domain knowledgeat least on the level of a PhD program,so it feels like when people go into those areas,they're all setting up businesses one by one.Spotting that quickly and starting a business there,or spotting those people early and investing in them,seems to be the trend right now.That definitely sounds plausible, but
+
+<span class="paragraph-timestamp" data-ts="18:53">18:53</span> **Seungjoon Choi** I think it's something we should revisit.First, something else I found interesting,Dwarkesh Patel, whom I always enjoy listening to, this timeinterviewed the renowned mathematician Terence Tao.Dwarkesh Patel always seems to interviewwith a particular intention.Naturally, I guess, but regarding the point he wants to make,he tends to do a kind of agenda-setting.To emphasize once more what Andrej Karpathy said,if you're within the RL range, you move at superluminal speed, and if you're outside that range,everything just drifts. That's what he said.Then, about that,he mentioned something like the case of jokes,and Dwarkesh Patel, while discussing matters related to mathematicswith Terence Tao,says that the reason we survive in this epistemological hellis a mixture of judgment and heuristicsthat we can't clearly articulateor encode into a reinforcement learning loop because we don't properly understand them.To return to the content of the interview,to summarize it briefly,it starts with Kepler.
+
+Kepler was around the time of the geocentric and heliocentric models.And then there was that thing about what the orbit is proportional to,something I learned in middle school or maybe high school,wasn't there a formula with something like a squared and b cubed?But in terms of figuring that out,as he unpacks the process and the history,back then, those kinds of innovative ideaswere actually rather inaccurate.The older way,when done using the geocentric model,was actually more accurate at first,while using the heliocentric model was somewhat inaccurate,but in fact the heliocentric model was the correct one.And then for that to be properlyincorporated into the trajectory of normal scienceand start functioning properly took quite a long time.So what has local incentives in the beginningmay actually not be right over the long arc,and he talks about these kinds of thingsthat miss the mark in that sense.
+
+The reason for bringing in Terence Taois that around the end of last year and the beginning of this year, with AI math,a lot of things like Paul Erdős problems got solved.But then he brings up the phenomenon that we're now on a plateau.Dwarkesh Patel, so for a while things kept getting solved,and all the easy problems, the low-hanging fruit, got picked,and now there is still continued progress,but after there was a big burst of breadth-first explorationusing AI toexplore what corresponds to the search space,once the things in that category had been harvested in large numbers,at present we've entered a plateau again.Then what mathematicians actually have to do isto keep going in this direction, like,what do you think about that,so what is your way of doing research,and he keeps pushing on those things in the interview.That's Dwarkesh Patel's intention.Here, with the current regime,there is something more that does not work.What expresses that in compressed formis that there is some huge epistemological heuristic and there is tacit knowledge,and the part that gets him to talk aboutthose things was that kind of content.But what's really interesting about this is thatas Seungjoon mentioned earlier,
+
+<span class="paragraph-timestamp" data-ts="22:02">22:02</span> **Chester Roh** things like Paul Erdős's problems as well,if GPT-3.0 had solved them three years ago,that would have been something truly earth-shattering,and people would have said this is AGI.But even solving things like that last year
+
+<span class="paragraph-timestamp" data-ts="22:15">22:15</span> **Seungjoon Choi** was earth-shattering too. At the end of last year.
+
+<span class="paragraph-timestamp" data-ts="22:18">22:18</span> **Chester Roh** But our expectations just keep rising.Relatively speaking. So the model's performance nowactually, Jensen Huang said it at the last GTC too,and Elon Musk is saying it as well,isn't it already at AGI-level performance,is the question people are asking,and nevertheless peoplekeep looking for what it still cannot do and saying it still doesn't work,saying it still doesn't work,and I think these kinds of pointsare closely related tothe sense of balance that each of us needs to have.Because even Andrej Karpathy already,
+
+talking about the march of nines,said, sure, there are issues up to 90, but from 99 on it's usable,but then that keeps becoming 99.9, 99.99,moving in the direction of99.999, and so on,and this differs by sector, but in a great many areasthere are actually already many things that are in the 99 range.But just because a few more 9s have not been added after that,to say that this does not workfeels a bit harsh to me.But Terence Tao
+
+<span class="paragraph-timestamp" data-ts="23:27">23:27</span> **Seungjoon Choi** is not just saying it does not work.Terence Tao is actively making use of AIand has an attitude of continuing to look for breakthroughs,and Dwarkesh Patel is not drawing a line and saying it does not work either.In each session, whenever he does an interview,he juggles.With this person he moves toward the hype side,with that person he approaches more neutrally,and because he is juggling like that, with intention,I do think he did this episode that way.So if you actually look at it,there is a part where the logic is unpacked in a very interesting way.
+
+So he uses the analogy of a high-temperature LLM,something that at that time one could not think of,unexpected ideas that come from a high temperature,are also an area LLMs can be good at,and we can get leverage through that,and he draws out implications like that in the discussion,but what he is trying to have Terence Tao sayis, in the latter part, that each of these has its own strengths,getting him to say that human mathematicians too, still working together with AI,have areas where they can actually do better,so there is some pointing out of those aspects.
+
+But what I found most interesting in this sessionis this part that comes in the very latter half.We need a semi-formal language.So what this means is, in a way similar to whatAndrej Karpathy did earlier, through Gwern Branwen,the current AI innovations in mathematics have happened.By using proof machines that can verify things,the LLM can operate that proof machineand receive feedback from it, so it can tellwhat works and what does not, and push toward what works,and that's how problems have been solved, but what Terence Tao is saying now is thatthe way mathematicians actually think, collaborate, and work through problems,that kind of tacit knowledge,not in a fully formal language like Lean, but in a semi-formal language,how could we make that,and I felt that he was grappling with that frontier question.In a company, that would be likesomething similar to organizational culture,
+
+but things like the way mathematicians collaborateand the way they think, how can we make that semi-formal,thinking about thatfelt really important to me.Thanks to LLMs, this level for everyone,the layer, is all moving up.
+
+<span class="paragraph-timestamp" data-ts="25:42">25:42</span> **Chester Roh** Everything is moving to a more abstract layer,and it is all being pushed upward continuously.Put negatively, it is being pushed away,put positively, it is continuously progressing.But he also says that such things
+
+<span class="paragraph-timestamp" data-ts="25:55">25:55</span> **Seungjoon Choi** have to stand the test of time,and I also found this test of timeto be a very persuasive point.What follows is a bit speculative,but Terence Tao's conclusion, the conclusion thatDwarkesh Patel draws out from Terence Tao,is that the human-AI hybridwill dominate mathematics for longer.Each has its own role,and a collaborative systemmay be the picturethat Terence Tao is envisioning.But the future is uncertain.What I said may not necessarily be right.Andrej Karpathy adds that kind of disclaimer too,and Terence Tao does exactly the same.As Seonghyun talked about the fog of progress,people like this also cannot predict it at all.What will unfold going forward
+
+What was interesting was this sort of praising inefficiency, rather,and also treating serendipity as importantwhile talking about Terence Tao, who thinks that way.This is just speculation, butthere was an interesting episode.I'm introducing this just for fun,but this place is called the Institute for Advanced Study in Princeton,and it's apparently a research institute in New Jersey.It's a place only eminent scientists can go to.But Terence Tao said it's an excellent place with no distractions.You can do nothing but research there.The first few weeks are excellent,but after some time, inspiration runs dry.But on Dwarkesh Patel's tweet about this,someone left a commentsaying Richard Feynman said the exact same thing.A situation where you can do nothing but researchis the fastest wayto ruin a scientist, was the nuance they pointed out.So actually meeting people and trying to teach studentsand thinking through the fundamentals againare, in fact, simply comfortablethings that do not happen in a placewhere you can do nothing but meditate on research, and that was the point.Richard Hamming, alsoa famous figure in computer science, said the same thing.The Institute for Advanced Study ruined many great scientists.The fact that people saidthings like that was a pretty interesting point.So the reason I brought this inis that unexpected things, a whole series of things that look like noise,may actually be very helpfulexperiences for humans,and that was, personally speaking,an interesting point.So I'll move past that quickly,
+
+and what was actually interesting was thata lot of very practical posts came out from Anthropic.AI for science is important right now,and around the 23rd, Anthropiclaunched an AI science blogand posted two pieces as the first entries: "vibe physics" and "long-running Claude forscientific computing."So this is quite long,but it introduced in great detail how scientists are using AI these days,including the prompts.There are prompt examples and code in it,and I was surprised by how meticulously it explained everything.
+
+So the conclusion of vibe physics,to tell you the rough content and the conclusion,is that this person, Matthew Schwartz,is a physicist, apparently a fairly prominent physicist,and he recently published a paper on quantum field theory with AIthat caused quite a stir, quite a stir among physicists.It was a meaningful paper, and the question is how he wrote it.So he told that process as a very detailed story,and what a vibe graduate student means isthat it is not yet a fellow scientist but a graduate student.So how did I manage that graduate studentand actually co-author a paper together,and get itpublished? It's a very detailed and interesting story about that.But if you look here, what works and what doesn'tin today's situation, meaning the current state in early 2026,is laid out very carefully,and it was rich and interesting in content.So some of it reflects exaggerated expectations,but even so, why this should not be chat-basedbut should use an agent,and how, by guiding it like advising a graduate student,while guiding Claude,he ended up producing an impressive paper, tracing that journey,so it's quite interesting.
+
+<span class="paragraph-timestamp" data-ts="30:21">30:21</span> **Chester Roh** I think this entire approach to problemsis all like this.
+
+<span class="paragraph-timestamp" data-ts="30:26">30:26</span> **Seungjoon Choi** So there are actual Claude Code screens and such,and drafts, but if you look here, the things Claude gets wrong,and the things Claude likes to tell you what you want to hear on,and the way it lies that it got something done,he talks about how he guided all of those thingsthrough that process.Since this person is a domain expert,he corrected the parts that were wobblingand, if not all the way to a harness,at least kept catching everything tightly like thisand making it work properly.So the result was that if he had done it alone, it would have taken 3 to 4 months,but instead, in about 10 days to 2 weeks,he was able to publish the paper,and the conclusion was thatit was not something you could do with just one click; it required a great deal of guidance.
+
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **Chester Roh** That's right.In the end, he used himself as the evaluator here.But even here, the methodology operating at the top levelwas still auto research.He does intervene in the middle,
+
+<span class="paragraph-timestamp" data-ts="31:24">31:24</span> **Seungjoon Choi** but there are turns that are similar to auto research.So here too, what Claude is good at at first istireless repetition, no complaints.
+
+<span class="paragraph-timestamp" data-ts="31:32">31:32</span> **Chester Roh** No complaints. That's important.
+
+<span class="paragraph-timestamp" data-ts="31:34">31:34</span> **Seungjoon Choi** It knows all the basics, draws figures well, and synthesizes literature well.So things like LaTeX and such,making diagrams, Terence Tao said the exact same thing,those things take a lot of time, but it does them all well.
+
+What Claude cannot do: when the conventions are nonstandard,if it's not something well known,it just keeps going back to the default.If it was in pretraining, and pushing things through to the end,this person's assessment is that it still has shortcomings there as well.Then, reading the direction.It lacks aesthetic sense.It must have been put under a lot of pressure, since it cannot endure pressure.In any case, because he is a top-tier researcher,I think that's why he says things like this.So the tips that were effective,how to cross-validate,and how to maintain this hierarchical structure,
+
+By doing things like asking repeated queries,they say they arrived at this conclusion,and in the end, how does thislead AI to a PhD-level,and what should human graduate students do?Separating out the experiments could also be a good method,they say things like that too.
+
+<span class="paragraph-timestamp" data-ts="32:34">32:34</span> **Chester Roh** So then this person just used the Claude clientas is, right? Claude.
+
+<span class="paragraph-timestamp" data-ts="32:40">32:40</span> **Seungjoon Choi** They used Claude Code, Claude Code.Their own harness on top of Claude Codeif they had just applied it a bit more precisely like this,
+
+<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **Chester Roh** that problem we talked about earlier, where Claude can't do it,honestly, those are all things that can be solved right now.
+
+<span class="paragraph-timestamp" data-ts="32:53">32:53</span> **Seungjoon Choi** But the fact that Anthropic's official science blog did thisshows that cases like this actually exist,and that this is the current level of capability and awareness.The scientists currently at the front lines,are achieving things like this,and this is one episode that reveals that.The other thing is, if you look here, they also provide metrics.
+
+The total number of Claude sessions, so the input tokenswere 27.5 million, and as for output tokens, with all those papers,they could have just thrown in a huge number of them.So you can see that a fairly substantial amount of work was done.But even solving a big problem like that,
+
+<span class="paragraph-timestamp" data-ts="33:31">33:31</span> **Chester Roh** if you add up the number of tokens, in fact, for us,that's only around 30 million or 40 million tokens,
+
+and probably right now in engineering...You're using them in the hundreds of millions, right?That's right.But what I want to say is,
+
+it's not necessarily a good thing just because it reached hundreds of millions of tokens.In fact, that is what's normal.Getting strong results within 30 million tokens,by giving good guidance and setting goals well,that, to me, is a more meaningfuldirection.
+
+So on our team too, there's one engineerwho's extremely good,and this person is a purist.They don't stick on a bunch of extra harnesses and things.For example, beyond our Claude Code or Codex,there are a lot of very meta harnesses layered on top,and that's trendy these days,but if you look at the functions those meta harnesses have,even the other day, or rather yesterday for us,Codex 0.117 came out yesterday, and features it didn't have beforewere added in huge numbers.So the functions that used to be in those outside meta harnessesare really all moving inside.But when you look at what gets brought in,
+
+Claude Code feels like, with the things out there,if there's something good, it just throws it in,and then sorts it out afterward, whereaswith Codex, and this is why Iprefer Codex more,it feels like it says, ah, that's not really necessary,and clears away all that so-called clutter, all those useless chunks,and packs just the essence neatly into the vanilla product.It hasn't even been that long since hooks came into Codex,and only just now, things like app serversand separating into a client structure,or the kinds of things where people split work up into teamworks,it's only now been set up so people can do those things.So what I wanted to say is,that highly capable engineer
+
+uses exactly this kind of methodology Seungjoon just showed.It's important for a person to guide it wellso the work gets finished accurately and quickly,
+
+<span class="paragraph-timestamp" data-ts="35:32">35:32</span> **Seungjoon Choi** rather than having to keep running the model over and over.
+
+<span class="paragraph-timestamp" data-ts="35:34">35:34</span> **Chester Roh** Right, making it too much of a search problemisn't the answer either, and in that range, of course I always think searchwith, say, tens of billions of tokens,turning everything into a search problem,converting it into that kind of problem,and solving it that way is also possible,but I think this is the right approach.Probably it's the kind of area where human value and AI's valuecombineat the highest possible level.So in the latter part, they talk about a simulator
+
+<span class="paragraph-timestamp" data-ts="36:05">36:05</span> **Seungjoon Choi** made by a physicist who is a researcher,and explain it in great detail again.The prompts are disclosed here too, and the code is also publicly available.This is about a simulation related to the cosmic microwave background,not quite at the level of a commercial model,but something customizable enough for their own research,and it shows the process of building it in JAX.
+
+So here too, there are lessons they learned,and something a bit like a harness,and also how some kind of git history,the value of having a remaining commit history left behind,and then the loop ultimately being a kind ofRalph loop,those kinds of things come up,so how usable it had become to some degree,and other such points are addressed in a concrete way,with a promise that they would keep continuingthis blog series, and that was this week's introduction on the Anthropic blog.They said they would keep this series going, and I'm looking forward to it.Even if we can't understand all of it,
+
+the scientists at the very front linesshowing examples of how they use AI,so at Anthropic,and at OpenAI too,of course they're doing things like that as well,but with a bit more concreteness,it gives the feeling of really explaining it.So if you think about this a little,as I said at the very beginning,
+
+<span class="paragraph-timestamp" data-ts="37:25">37:25</span> **Chester Roh** all the smart people in Silicon Valley are fleeing into science,that's what I told you, right?What happened in codingcould very well happen in science too.
+
+And I think this is our opportunity right now,because now anyone can code.Actually, saying "anyone" is a bit much, buteven people who couldn't do it before, too.Combined with the model's capability overhang,while learning what they themselves don't know,if they just have the will,things that in the past only top-tier engineers could do,are now things people can do if they have the willThat's the kind of era we've entered.But I think science is exactly the same too,I think that substitution will happen there as well.In the past, if you were developing a new drug,or trying to treat cancer,
+
+you'd do genetic sequencing on my cancer,find the altered parts, and because of those altered parts,identify the proteins being expressed,and then use AlphaFold on thatto manifest it, to actually visualize it,and then find other antibody candidates that fit it,for things like this, even to acquire the knowledge for it,you needed at least the level of knowledge of a biotechnology PhD,and you needed training,but now, if you really just read one well-organized bookand gain a philosophical insight,you can just get to that stage.
+
+Things that would never have been possible beforeare now becoming possible,and it's not even that they're biotechnology PhDs,Right, and then MDs, meaning,they're not even people with medical licenses,but engineers are entering the front lines of biology right nowand doing those kinds of things,and that's what we're seeing right in front of our eyes,and to me, this is AI for science, and Anthropic too,OpenAI too, and a lot of people in the Bayhave fled into domains.Into domains where you have to be more difficult and smarter,it feels like we've just entered an era of going there,and I do think this might work too.
+
+<span class="paragraph-timestamp" data-ts="39:24">39:24</span> **Seungjoon Choi** But this isn't competition, exactly, but how should I put it,since it's vice versa,the example from just a little while agowas of a scientist who doesn't know JAX or things like thatdoing engineering, building tools, and encroaching.It's all mutual encroachment.
+
+<span class="paragraph-timestamp" data-ts="39:39">39:39</span> **Chester Roh** The fact that Rust has become popular recently too,there are a lot of people whoput in a great deal of effort to become Rust engineers,but these days, when I hear someone who wasn't an engineersay they've rebuilt and are rewriting the backend in Rust,when I hear things like that,I wonder how I should interpret this,and I have very mixed feelings too.I guess I need to think more deeply about the word manifest.
+
+<span class="paragraph-timestamp" data-ts="40:06">40:06</span> **Seungjoon Choi** It felt like I'd found a really good word.So I ran a bit of an experiment too.What kind of experiment did I run?Andrej Karpathy said that jokesjust don't work,so I went back to writing and ran some experiments,and a few interesting pieces came out.
+
+But I started here with a piece called Tangerine.What I drew here as an imageI described as closing the loop,and by creating my own evaluation system,as you can see here, I wrote a constitution,then wrote something like a draft poem,then gave it a harsh self-evaluation,and set acceptance criteria, and these acceptance criteria,there's apparently a concept called ATD.So I set the acceptance criteria,and then until those acceptance criteria were met,I ran it in a loop.For now, this still onlyworks pretty well with Claude,
+
+and Claude has something like a repository conceptthat you can have even on the web in a session,and of course Claude Code can do it,and you can use it kind of like a repository on Claude web.So if you look now,that earlier one is the repository where I did this creative work.So in that repository, kind of like auto research,it kept revising the outputs,and then the harness that makes it,even the main prompt itself,I had it revise recursively.So I kept escalating the acceptance criteria.When I did it that way,I was able to observethat interesting prose was coming out.This was after I watched the movie Hail Mary,and I had it write science fiction,
+
+and while reading it, I had the experience of getting a fairly interesting novel,and this is what surprised me the most.This is the prompt, and of course the detailed instructionswere over 500 lines before this,and the part where I actually told it what to make was this section.
+
+So under the title Visualization and Representation,as the art of making words visible,this thing called creative writingcame up while I was talking with Professor Wan-Cheol Lim,and the title of a paper Professor Wan-Cheol Lim wrote with AIwas based on this. I thought, what if I turned that into a novel,what if I turned it into prose, and that's how this came out,and while reading this, I was a bit taken aback.From my perspective,it produced a very creatively well-written piece.Roughly speaking, it's about a proofreader,
+
+and that proofreader is reading a certain writer's workand undergoes gestalt collapse.Originally, this proofreader's ability was that when reading writing,they could intellectuallyconjure images in their mind,but one day, suddenly, when seeing "water," it comes across as just ㅁ, ㅜ, ㄹ,and it gets recognized only as letters like that,and no image comes to mind, as ifthey are going through a stage of gradually going blind,and conversely, the part that really surprised me was this part here,where, if you look here, it decomposes the consonants and vowelsand preserves that sense of mystery,and when I saw it writing content like that,I thought, how did it come up with an idea like this,that's the part that made me feel that way.By decomposing the consonants and vowels
+
+The thing is, I no longer really picture images anymore,but as other senses get refreshed,I ended up writing about the kind of things I feel in terms of sound.I did it thinking, what is this,and looking here, what went into it was that`entities` set up a protagonist called "Eun,"and then in terms of the situation and environment, and thenhow the story arc, the narrative, would unfold,what to discard and what to choose,doing that while running the loop over and over,and when I looked at what came out in the end,it must have run for about 30 minutes, and I was a little surprised.So this feels a bit different.
+
+So prose is fine, but with that same mechanismI had it write jokes. They were not funny at all.So for a sitcom scene,a few days ago, while I was coming back on a bus at night,using the late-night bus as the topic, with that same mechanism,I had it write something, and it did run the same loop,but it wasn't funny.
+
+But the mechanism inside it,whether it's widely known stand-up comedyor sitcomsor Japanese manzai, it had researched those kinds of methodologies,and how to evaluate them and so on,it had all those kinds of plans,but what actually came out wasn't very good.
+
+So some generated prose feels outstanding,and why jokes don't work with the same approachis what I was thinking about this week.The reason I was thinking about that is, if something like a jokeis non-verifiable,then does that mean non-verifiable things don't work in this way,that was what I was curious about.But even that is something humans find enjoyable,
+
+<span class="paragraph-timestamp" data-ts="45:06">45:06</span> **Chester Roh** find funny, right? There are levels to jokes.If you make it handle the lower level, wouldn't it be conquerable?It's just that there isn't a verifier yet.It may simply not have been trained with RL,
+
+<span class="paragraph-timestamp" data-ts="45:15">45:15</span> **Seungjoon Choi** because it's not like that has any advantage compared to coding.RL could also be an environment with that kind of erratic RL training,and OpenAI,
+
+around this time last year, put out GPT-4.5 and then withdrew it pretty quickly.That was presumed to be a modelwhere pre-training had been scaled up more,and it writes very creatively well.But they may have judgedthat that was not a business domain and withdrawn it,well, I don't know.
+
+But anyway, with current models, even if you use the same harness,jokes don't work well.Or, as Andrej said,the skill I built, the skill that made that harness,may have been lacking.So I keep trying this and that,but in this way, this famous "Oppa isa clicker" song was parodied to find a laugh point,but what's interesting about this is thatwhat is funny and what isn'tthese days, models making jokes,and explaining them, are something they're extremely good at,but trying to get them to produce it at that level,what I've sort of organized is thatthe current regime is to throw everything into pre-training,do domain training in mid-training,and in post-training, with RL plus the environment,even going as far as the harness,and that still seems to be the side where things like jokes are not captured.They may not have invested in it,and my tentative conclusion is that it simply is not being captured.
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> **Chester Roh** People probably won't be very interested in this, maybe.
+
+<span class="paragraph-timestamp" data-ts="46:40">46:40</span> **Seungjoon Choi** I tend to think that may or may not be true,but the people currently in this industryare all an extreme collection of Ts,
+
+<span class="paragraph-timestamp" data-ts="46:49">46:49</span> **Chester Roh** and when it comes to the domain of F,people who don't even knowhow to do evaluation there will probably be the vast majority.
+
+<span class="paragraph-timestamp" data-ts="46:55">46:55</span> **Seungjoon Choi** But isn't there also a lot of business in the domain of F?
+
+<span class="paragraph-timestamp" data-ts="46:57">46:57</span> **Chester Roh** Probably. Yes. But once someone opens the way there,then everyone will rush in that direction too,and these kinds of areas are actuallygood areas for us to escape into, really.So anyway, Jinwon Lee alsobrought that up in a messenger chat,
+
+<span class="paragraph-timestamp" data-ts="47:13">47:13</span> **Seungjoon Choi** saying it might connect to the term value function,and that also resonated with me.But how to implement that yetdoesn't seem to be something that's known.The idea that emotion connects to the term value functionis still an area we don't really understand.
+
+<span class="paragraph-timestamp" data-ts="47:28">47:28</span> **Chester Roh** `value function = evaluation metric`, right?It's all pretty much the same story.But the quality was very different.Prose and creating some kind of punchline
+
+<span class="paragraph-timestamp" data-ts="47:40">47:40</span> **Seungjoon Choi** don't seem to be things that are easily done with the current approach.What Andrej Karpathy said, anyway,I confirmed that myself too.Yes, RL environments for good writingseem to be developing quite a lot.
+
+<span class="paragraph-timestamp" data-ts="47:51">47:51</span> **Chester Roh** I think we also saw that a lot before, even in papers last year,and these days I don't have time for papers,so I don't really read them, but before, in things like Kimiand papers like that, a substantial amount of effort that went inwas on-policy, just using the model's own capabilities,and RL environments that keep working relentlesslytoward good writing were, as I recall, treated as quite important.But there probably wouldn't be poetry or jokes in there, of course.I think that was my prior.
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **Seungjoon Choi** Because there's that expression, "crafting comedy," right?Those comedians also hold meetings,try this and that hypothesis and experiment with things,and do something like an evaluation session,saying, that's not funny, not funny, not funny, while doing that,and then they do the work of shaving it down.It seemed like doing something similar would work,but when you look at what actually came out, that's what it was, and things related to taste
+
+were also an insight I had this week.Taste isn't just about what you like;what you dislike is an extremely powerful form of taste.In the prompt, rejection, I,When there is some reason not to adopt that,I felt very strongly that the quality of the writing improved.
+
+<span class="paragraph-timestamp" data-ts="48:54">48:54</span> **Chester Roh** That's feedback too.Taste isn't just about what you like,
+
+<span class="paragraph-timestamp" data-ts="48:59">48:59</span> **Seungjoon Choi** but what you dislike is also a very important signal.And then another interesting thing is
+
+that the kinds of things we're working on these daysall tend to have a loop-like nature,so when you do this kind of thing together with people,what are you supposed to do while the agents are running?Recently, with a few people,when doing something like a workshop,another thought that comes up iswith something like this,after agreeing and assigning work to an agent,what can people do that is actually fun,and that this is another interesting point.Some people call thatsocial coding,and you can keep giving workto the agents,but still, while that's running,couldn't a few people have certain conversations,put forward certain ideas,and make plans for what to do nextand try doing some of that?So there's something I've been experimenting with a bit,and I'll talk about that in relation to this sometime later.
+
+To wrap up, I compressed this week's experienceand came up with another hypothesis.A reverse-engineering hypothesis about tacit knowledge.When there is some output produced by a certain person,create the minimum harness expected to produce that outputand a repository that operates as a bootstrapping loopthat takes in and raises the acceptance criteria itself.These days I've been thinking that I need to make a repository for everything.
+
+<span class="paragraph-timestamp" data-ts="50:20">50:20</span> **Chester Roh** Right, memory.A repository could consist of various files.In the repository, the process of asymptotically approaching the outputremains as byproducts, whether MD files, code, or commit history.If that bootstrapping loop passes the acceptance criteriaand creates something comparable to the output,then you see whether it can generate other outputs of that level,and repeat the loop again while broadening the coverage.
+
+<span class="paragraph-timestamp" data-ts="50:47">50:47</span> **Seungjoon Choi** Then the question that came to mind was,what is the hardest part to implement in this hypothesis?If it is your own tacit knowledge, because you write yourselfand you can make the harness yourself.So you can evaluate it well yourself,and if you succeeded in extracting your own tacit knowledgeand made it reproducible, then what becomes your value?You can reproduce yourself,but is there some condition that others cannot reproduce?That question came to mind.If I can reproduce it,can't other people reproduce it too?That's true, but someone who knows it a bit better,
+
+<span class="paragraph-timestamp" data-ts="51:19">51:19</span> **Chester Roh** there is value in someone who does it well because they have that skill,and of course the problem isthat value is shrinking at light speed because of LLMs,but in the end all of this, as a timing issue,will probably asymptotically converge a bit.What is the time value of my having done it quickly,the relative value of time.And when other people copy this with a click,
+
+whether this is one click away or three clicks awayis what matters.So going forward, in the business world, that sense of timeis likely to be evaluated as the company's value,or that person's value.If someone always puts out new things first,other people can all take that itself,and in fact everyone can make bags. Even so,the reason people buy Hermes bagsis that it kept doing somethingand that became the brand.Then once it becomes a brand,people flock there again.
+
+Then even if there are people doing those click-clicks,even if there is an old man carving clubs exactly the same way,there is still someone who is the best because they repeated it for a long time,and if that is the case, even if that talent iscompletely equalized, people still buy that.Because a preference for that brand develops.So what Seungjoon said,this loop is all exactly right,and then I do think that we are already livingin this kind of world,and even so,areas for us to escape into still keep emerging.
+
+<span class="paragraph-timestamp" data-ts="52:53">52:53</span> **Seungjoon Choi** From what Chester has been saying all this time,doesn't Chester wantto automate this tacit knowledge?I do that a lot.I do it a lot, and while doing that,
+
+<span class="paragraph-timestamp" data-ts="53:02">53:02</span> **Chester Roh** I also run into reality quite a bit.At the company too, I said that this function and that functionshould be automated,but there are also peoplewho do not want to understand that process of automation at all,and they want the organizational structure they are familiar withto be rebuilt quickly.Even so, they say,isn't there work that people still have to do?But I think, no, that personis doing work that only a person can do right now,but that part has to be automated,and I have a kind of manifesto about that,and because the underlying basis is different, opinions diverge. So those parts
+
+make me think that this is not something happening only to me,but something that, going forward,will happen in other worlds too,and what I've been practicing these days is,when there is a scientific paper or a harness someone else has made,or some kind of article,within the domain of tacit knowledge,what becomes an extremely important ability is, in those ambiguous areas,the ability to decide what to set as the goal,and even if you ask an LLM about that right now,there are still many cases where it isn't good at it.In engineering, or elsein cases like math and science,it knows more than I do,or because I don't know that area very well,there are many cases where it does better.But for example, in reality, like earlier,things like business judgment, areas a bit closer to writing,areas that are closer to people,it can't make metrics well.Then defining those metrics,up to what point counts as success,and up to what point means progress in a certain direction,I think that's now that person's ability.In that way,these days, all of my problemsI'm solving by translating them all.
+
+If the deliverable is Excel, if the deliverable is slides,if the deliverable is a report, then what is the objective,and in business schoolthere's something called OKR.If you ask, how are you going to define your work and performance,it's Objective and Key Results.Back when I worked at Google, I was trained on it enormously,and somehow, because I did everything only with that,that's kind of hardened into my life, so whatever I do,I write strongly what its objective is,and when that objective is achieved, or is being achieved, what we will see,what are the expected key results, the core deliverables.That's called expected key results, and that's OKR,and they tell you not to write it as emotionally as possible,but to translate everything into numbers.If you say you'll launch something by when,there has to be an exact date,and what the expected visuals of those things areall have to be described,and if that matches, if that expectation is met,you give it about 0.7 or 0.8,if it's much better you give it 1.0, otherwise you give it 0,and in that way,the experiments that kept continuouslygiving rewards to objective and key resultsare actually helping me tremendously in what I'm doing now.
+
+I use OKRs for auto research too.My most recent experience isfor example, in that harness,I now have my own harness,I've made something called Chedex,and I use it lightly layered on top of Codex,and it brings in a very strong Ralph loop,an auto research loop,and then things like Ultrawork as well,and what I used in the process of bringing those in was a similar loop too.Then in the end, how do you apply similar things?Then my goal is that the baremetal version of this Codex keeps rapidly improving, butwith respect to the points that change every time it improves,the new native features that came inand the features that were already in the Chadex we had made,and then what I used as a reference,things like Yechan's Oh My Codex,then among those, that changes too,Oh My Codex changes too, and then native changes too,and Chadex changes too, and so on,so what is it that I want?While preserving native as much as possible,using only the hook functions that native provides,I set up a kind of governing structure, a loop structure,and even so, if I have to bring in the features over there,then in between all that, whatthe right metric is has to be defined.That side is objective B, this side isobjective A, and the deliverable is C,and you define the delta between this and that as a scalar,and define the delta between those and those as a scalar,and once a certain degree of features has been extracted,from that point on you just take the result Cand run a self-improvement loop on its own.You put on an auto research loopfor the consistency between this document and the code,and then for the kinds of problemsthe code strategically has, things like that,you interrogate it.So if you say to keep the loop goinguntil the number of things it found as defects becomes zero,then those so-called crudely squeezed-out thingsonce their rough purposes have been drawn out,in fact you're bringing in the prize called the objective.Then by running a recursive loop on its own,because of the excellence pulled out from this model's capabilities,it evolves on its own.Keep doing that until it becomes zero,and once all those things match up, as far as I can calculate,if it falls within that metric range,in the meantime, I haven't ever looked at intermediate outputs or codeor even opened them once, butit runs for about two hours.After it runs for two hours and finishes, I deploy it,and I trust it and use it.
+
+That's how I'm changing this whole work loop.So even when doing some kind of work with people,no matter who I'm doing what work with, objective and key resultsin as much of a verifiable reward form as possible for the model,so that it can accept them in the form of scalar values,defining them has become all of my work these days.So it's very effective.So right now, it does feel like
+
+
+<ResourceLink url="https://file.notion.so/f/f/6e0fbd1d-6a2e-4654-a38b-4981bf9e6db7/196a3cac-3cc0-47bc-ad06-6bc88dec3d39/image.png?table=block&id=330d5c9e-7e59-80e9-ae1c-e3b5a557ea51&spaceId=6e0fbd1d-6a2e-4654-a38b-4981bf9e6db7&expirationTimestamp=1774828800000&signature=V1V3mjMdPBnsunT2Vd3a_ESxCifvQ6m6C97KGrTABAY" title="image" domain="file.notion.so" />
+
+<span class="paragraph-timestamp" data-ts="59:13">59:13</span> **Seungjoon Choi** a different variation on a similar point, butanyway, the ability to translate that into something verifiableis what's important right now.That's where the dependency is.But what I left out earlier and didn't mentionis that this was released by Anthropic this week,a harness design for long-duration application development,
+
+and it says almost the same thing.And here, I've now highlighted a few things,and they used the idea of GANs.Drawing inspiration from Generative Adversarial Networks,it's a multi-agent structuremade up of an agent evaluator and an agent,and this is also a Ralph loop.What they set out to do, in the design domain,was to develop a set of criteria that would turn subjective judgment into concretely scorable items,and that comes up in the introduction,and this too is ultimately about turning it into scores.At first glance, it's something that's hard to score.It wasn't possible just in a straightforward way, but rather than a naive implementation,they refined the harness and built it up,and there's a whole story of how they did that.If we jump to the very last part, let me read it.What comes next?As models keep improving, we can generally expect them to work longerand handle more complex tasks.In some cases, the scaffolding around the modelbecomes less important over time,so developers can naturally solvesome problems just by waiting for the next model.On the other hand, as models get better,beyond the baseline alone,there is also more room to develop harnessesthat achieve complex tasks it otherwise cannot do.With this point in mind,there are a few lessons from this work that are worth carrying forward.Directly experimenting with the model you are building on,reading its traces on real-world problems,and tuning performance to get the results you wantis always a good habit.For more complex tasks, breaking the work downand applying agents specialized for each aspectcan also create additional room for improvement.And when a new model appears,it is generally a good idea to review the harness again,strip away the parts where performance is no longer the key issue,and add new componentsthat can draw out greater capabilitiesthat were previously impossible.The conviction I came away with from this work is this:as models improve, the space of interesting harness combinationsdoes not shrink. Rather, that space shifts.And the interesting work for AI engineersis to keep discovering the new combinations that come next.This is kind of a cleaned-up edition of the point I was talking about.This is exactly how I think too.Right now, everyone sees it the same way.Everyone agrees on what's possible as of 2026,So the important point is,people use this expression "drift" a lot these days.Originally, between what we are aiming forand some gap that has opened up, some delta,we describe that part as drift,and that too is becoming quite a buzzword,but for me, the reference point for that driftis always the latest frontier model and, for that frontier model,the cutting edge of the harness precisely aligned to it.That's what moves.That just keeps getting better.It keeps getting better,and because it gets better, things that weren't possible before,like I mentioned earlier,it becomes a world where I can even do drug discovery.I'm trying to do drug discovery,and for things like that,you need yet another harness.There will be some kind of definition for a new harness.In the age of AI,that, to me, is the point of value we all need to pursue.As I keep going through experiences like this,I think I'm also starting to develop a sense that this iswhere the next area of challenge is, this is where the essence is,and this is what I need to be more obsessed with.On the subject of shifting, there are rumors too.About the next model, so this isthat "capybara" is not the model name,so this is not exact,but it's the tier after Opus.A much, much better model.There are rumors coming outthat after Opus comes capybara.Right now, with Opus,if you look at models like Kimi or DeepSeek,producing something close to frontier-level performance is around 1T,somewhere between 1T and 2T,and there seem to be a lot of estimates that Opus and Gemini 3.1are probably around that level too.Maybe someone like Andrej Karpathy knows the truth,but we don't,So in the rumors, the internal model is 10T,there is talk like that, but we won't know until it comes out.10T, Elon Muskalso said that the next modelwould be 7T.He said 7T, so if this is 10T,they can't serve this right now, but won't they eventually?In fact, you just need to attach more computers.Anyway, there was a leaked documentsaying they would provide early access,and things like that came out later this week.The immediate issue is that Claude had a lot of outages this week.Demand must be high.Demand is increasing a lot right now,so when something like this stops, what happens,and it makes me think once again ofThe Day the Earth Stood Still, which I mentioned before.So that's all we prepared for today.Still, my current observation is that jokes don't work,but if any of you watching on YouTubewant to give it a try, and if you have a success case,please let us know in the comments.We pulled a delta this week.The content of Andrej Karpathy's answeractually contains a lot of very essential points,so taking a look at the script Seungjoon preparedfrom time to time,or putting it into a model and going back and forth with it,would probably be a big help.Then we'll see you again next time,Yes, next time, with next week's content again,we'll continue the conversation.Then we'll wrap it up here for this week. Thank you.
+
+
+## Andrej Karpathy와 Terence Tao 이야기 예고    *0:00*
+
+
+## 복습: 문제는 검색화된다    *0:06*
+
+
+## Andrej Karpathy와 Terence Tao 인터뷰 예고    *0:28*
+
+
+## 딸깍 되는 일 vs 딸깍 안 되는 일    *0:58*
+
+
+## Andrej Karpathy와 Sarah Guo가 말하는 manifest의 시대    *3:18*
+
+
+## AI psychosis: 집착적 사용과 에이전트 워크플로    *4:28*
+
+
+## Andrej Karpathy의 코딩 습관 변화    *5:06*
+
+
+## Peter Steinberger와 OpenClaw: 미니멀 구현의 미학    *6:38*
+
+
+## 오토리서치 핵심: 검증 가능하면 자동화된다    *7:52*
+
+
+## 오토리서치의 한계: 농담과 검증 불가능한 영역    *10:24*
+
+
+## microgpt는 왜 에이전트로 만들 수 없었나    *11:21*
+
+
+## 에이전트에게 가르치는 것으로 바뀌는 교육의 미래    *12:55*
+
+
+## 에이전트가 못하는 것이 당신의 일이다    *14:45*
+
+
+## 생명공학 관심과 도메인으로의 도피    *16:29*
+
+
+## Terence Tao 인터뷰: 수학과 AI    *18:55*
+
+
+## Kepler 이야기: 부정확해도 긴 궤도에서 맞는 혁신    *19:52*
+
+
+## AGI 논쟁과 march of nines    *21:58*
+
+
+## Terence Tao가 말하는 semi-formal 언어의 필요성    *24:41*
+
+
+## 프린스턴 고등연구소에서 배우는 Richard Feynman과 비효율의 가치    *26:59*
+
+
+## Anthropic AI 과학 블로그가 보여주는 vibe physics와 대학원생으로서의 Claude    *28:25*
+
+
+## Matthew Schwartz 사례: vibe 대학원생으로 논문 만들기    *29:29*
+
+
+## 사람이 evaluator가 되는 방식: 하네스와 교차검증    *31:11*
+
+
+## Codex vs Claude Code: 바닐라 하네스 철학    *34:03*
+
+
+## AI for Science: 과학자와 엔지니어의 상호 침범    *37:23*
+
+
+## 루프와 인수 조건으로 산문을 만드는 글쓰기 실험    *40:09*
+
+
+## 농담과 value function: 평가 지표 없는 영역의 난점    *45:23*
+
+
+## 취향은 싫어하는 것도 강력한 시그널이다    *48:38*
+
+
+## 암묵지 리버스 엔지니어링 가설    *49:53*
+
+
+## OKR로 모든 업무를 verifiable하게 만들기    *54:57*
+
+
+## Chadex 사례: 네이티브 기능으로 거버넌스 루프 짜기    *56:04*
+
+
+## Anthropic 하네스 설계 가이드: GAN 영감의 멀티 에이전트    *59:23*
+
+
+## 카피바라 모델 소문과 다음 프론티어    *62:50*
+
+
+## 마무리    *64:14*
