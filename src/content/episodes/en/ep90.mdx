@@ -62,6 +62,7 @@ chapters:
     title: "OpenClaw Event and Closing Remarks"
 lang: "en"
 alternateSlug: null
+notionUrl: "https://erucipe.notion.site/10-322d5c9e7e5980529504fc32dd81b7a9?pvs=73"
 ---
 
 ## Intro and Guest Introduction (HyperAccel CTO Jinwon Lee)    *0:00*
@@ -103,6 +104,9 @@ alternateSlug: null
 
 ![An image of a Go board marked with move 37 and the title of the Google DeepMind blog post commemorating AlphaGo's 10th anniversary, "From games to biology and beyond: 10 years of AlphaGo's impact"](/episodes/ep90/notion_01.png)
 
+
+<ResourceLink url="https://x.com/polynoamial/status/2031404079583473953" title="Noam Brown on AlphaGo and Today's Reasoning Models" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="3:53">3:53</span> **Seungjoon Choi** there were official posts from Demis Hassabisand from Google DeepMind,including one titled "From games to biology and beyond:10 years of impact from AlphaGo,"and then last year on our episode,we covered that Google DeepMind podcast once,and introduced the final episode of that year.But this year's first episode too, and last year's final one,which was an interview with Demis Hassabis,opened with a podcast related to AlphaGo's 10th anniversary.Both of those were good, so I brought them up.
 
 <span class="paragraph-timestamp" data-ts="4:27">4:27</span> Rather than explaining the contents in detail, I think they're worth checking out,and related to this, Noam Brown made a post like this.In the translated version, it says that the core approachbehind today's frontier reasoning models is surprisingly similar to AlphaGo:imitate vast amounts of human data, and for better reasoning,increase compute at inference time.Back then it was Monte Carlo Tree Search,and today it's Chain of Thought. Use reinforcement learningto go beyond simple imitation. The approach is very similar,and I think Demis Hassabis also left a comment on it.Anyway, after Noam Brown said this,
@@ -123,6 +127,9 @@ alternateSlug: null
 
 
 ![An aerial rendering of Google DeepMind's new headquarters, "Platform 37," featuring a rooftop garden and trees, with the London skyline in the background](/episodes/ep90/notion_03.png)
+
+
+<ResourceLink url="https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/platform-37-the-ai-exchange/" title="Platform 37 and The AI Exchange" domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="6:17">6:17</span> **Seungjoon Choi** As in AlphaGo's famous move.What move number was Lee Sedol's amazing human move again?It was move 78. So it was move 78, and AlphaGo was move 37, and it seemsthe new Google DeepMind headquarters is being named after move 37.They say people will start moving in this summer.
 
@@ -150,6 +157,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="9:13">9:13</span> **Chester Roh** After the AlphaGo matches ended, just about every professorand every well-known person was explaininghow it had been built, and there were presentation decks and YouTube recordings,and I remember a huge amount of that coming out.In a way, couldn't you sayKorea benefited from that a bit?
 
+
+<ResourceLink url="https://www.youtube.com/watch?v=8Z2eLTSCuBk" title="Demis Hassabis KAIST Talk" domain="youtube.com" />
+
 <span class="paragraph-timestamp" data-ts="9:32">9:32</span> **Seungjoon Choi** We got hit hard early on, so it felt personal,and that made us pay closer attention. I think this was probably the video ofthe lecture Demis Hassabis gave at KAIST after the matches ended.So he showed things like DQN there,and talked about the context it actually fit intoand things like that,which made it possible to see those ideas more vividly.I think that was what the 2016 experience was like.
 
 <span class="paragraph-timestamp" data-ts="9:57">9:57</span> **Chester Roh** Around 2014, 2015, and 2016, even DQN alonewas cutting-edge technology,and I think that was also when people werestarting to experiment a little with RL-type things in OpenAI Gym.I also remember
@@ -158,6 +168,9 @@ alternateSlug: null
 
 ## Andrej Karpathy's Autoresearch and the Iteration of Verifiable Signals    *10:24*
 
+
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="10:40">10:40</span> **Chester Roh** How is this different from the Ralph loop?It is the Ralph loop. But it's just operating
 
 <span class="paragraph-timestamp" data-ts="10:46">10:46</span> **Seungjoon Choi** in a specific domain, a specific area, with an evaluable validation metric, that's all.Not even up to testing, just using the validation scoreto come up with all kinds of ideas for lowering itand experiment, experiment, and keep doing thatwas the kind of feel it had.
@@ -165,17 +178,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **Chester Roh** Conceptually, it's actually similar to RLVR.But it's a different layer.RLVR says that during the training process, if you can provide some verifiable,checkable signal,then you can keep training in that domain.This one pulls that into the actual application process, right.In the end, research and things like that, when given to a highly capable model,if you can set a reward signal, a direction for improvement,and define some objective,then it can autonomouslymove toward that goal. That's what it showed.The reward signal wasn't an RL-style reward signal,
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
-
-
-<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
-
-
 
 
 
 
 ![A screen showing an autoresearch progress graph (83 experiments, 15 improvements retained) and Karpathy's March 2026 post stating, "An army of autonomous AI agents evolved the codebase for 10,205 generations"](/episodes/ep90/notion_04.png)
+
+
+<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **Seungjoon Choi** and it wasn't differentiable either, just a simple pass-or-failjudgment,and with just a very simple few files, prepare.py,which isn't that important,train.py, and program.md,it keeps researching in the direction of lowering it until it satisfiesthe condition, and the MD file isn't even that long.There's something interesting at the very end: never stop. Don't stop.If you get stuck, if you run out of ideas, go read papers.Form this hypothesis and test it.Test that hypothesis too, and don't keep asking me whether you should continue.I think the final instruction is to just keep going.And the things that are actually showing results from thatare visible here in this graph.That's what this is, and here Andrej Karpathy and
 
@@ -220,14 +230,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **Chester Roh** Shall we get into our "Back in my day" segment?
 
 
-<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
-
-
 
 
 
 
 ![Banner for Stanford's online course "Introduction to Artificial Intelligence" from September to December 2011, displaying the phrase "Open to anyone in the world"](/episodes/ep90/notion_06.png)
+
+
+<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
 
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **Seungjoon Choi** What we're going to bounce back and forth on like thiscould be our own personal stories,and also what kinds of trends there were.I picked out a few thingsthat I personally recognized and immediately remembered.Around 2011, I saw this on my timeline.This was from Peter Norvig at Google,who's still around now, though I'm fuzzy on whether he's still at Google,but anyway, he was the most senior scientist.Peter Norvig and the person who did X with him.Google X, Sebastian Thrun. The person who later founded Udacityhad opened an AI course together at Stanford,and Andrew Ng had opened a machine learning course,and then there was also a database course.Looking through the timeline for that,this is what came up.So at Stanford, they ran experimentsthat became the beginning of the modern MOOC,and all of that was AI,ML, and databases,and apparently this many people flocked to them.
 
@@ -252,14 +262,14 @@ alternateSlug: null
 ## The YouTube Cat Recognition Experiment and Emergent Behavior    *23:00*
 
 
-<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
-
-
 
 
 
 
 ![Text explaining that neurons in an artificial neural network spontaneously learned to recognize cats by training on YouTube video frames, alongside a blurry image of a cat's face](/episodes/ep90/notion_08.png)
+
+
+<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **Seungjoon Choi** It was that YouTube had started recognizing cats.It's not laid out exactlyhow this experiment was designed, but looking at this image,
 
@@ -277,10 +287,10 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="25:15">25:15</span> **Seungjoon Choi** and Peter Norvig,so I watched some videos and materials a few times,but I never thought about really digging into it.
 
-## Andrej Karpathy's Writing and the ImageNet Golden Age: CS231n, DeepDream, Chris Olah    *25:21*
-
 
 <ResourceLink url="https://karpathy.github.io/neuralnets/" title="Hacker's Guide to Neural Networks" domain="karpathy.github.io" />
+
+## Andrej Karpathy's Writing and the ImageNet Golden Age: CS231n, DeepDream, Chris Olah    *25:21*
 
 
 
@@ -531,10 +541,10 @@ alternateSlug: null
 ## Looking Back on the Podcast and Revisiting Man-Computer Symbiosis    *54:18*
 
 
-<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
-
-
 ![A Microsoft presentation slide titled "Pursuit of the Dream Machine," showing a timeline from the 1945 essay "As We May Think" to 1960's Man-Computer Symbiosis, 1968's The Mother of All Demos, the 2007 iPhone, and 2022's ChatGPT](/episodes/ep90/notion_13.png)
+
+
+<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **Seungjoon Choi** episode 3 was about history and technology.So this was when Satya Nadellapointed this out at Build 2023.Starting with "As We May Think" in 1945and then "Man-Computer Symbiosis" in 1960 and onward,he traced how we got all the way to ChatGPT,and we tried to read into what that meant,
 

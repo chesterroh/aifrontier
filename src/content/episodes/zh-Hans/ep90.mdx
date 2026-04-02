@@ -62,6 +62,7 @@ chapters:
     title: "OpenClaw 活动与结束致辞"
 lang: "zh-Hans"
 alternateSlug: null
+notionUrl: "https://erucipe.notion.site/10-322d5c9e7e5980529504fc32dd81b7a9?pvs=73"
 ---
 
 ## 开场与嘉宾介绍（HyperAccel CTO 李珍元）    *0:00*
@@ -103,6 +104,9 @@ alternateSlug: null
 
 ![Google DeepMind 博客上刊登的 AlphaGo 十周年纪念文章《From games to biology and beyond: 10 years of AlphaGo's impact》标题，以及标有第 37 手的围棋棋盘图像](/episodes/ep90/notion_01.png)
 
+
+<ResourceLink url="https://x.com/polynoamial/status/2031404079583473953" title="Noam Brown on AlphaGo and Today's Reasoning Models" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="3:53">3:53</span> **崔胜准** Demis Hassabis 和Google DeepMind 那边都发了正式文章，其中有一篇叫做“从游戏到生物学，乃至更远：AlphaGo 留下的十年影响”的文章，另外就是去年我们在节目里播放过一次的那个 Google DeepMind podcast，当时还给大家介绍过那一年的最后一期。结果今年的第一期内容也是，去年的最后一期是和 Demis Hassabis 的访谈，而今年则是以 AlphaGo 10周年相关的 podcast 开场。我觉得这两部分内容都很好，所以拿来聊聊。
 
 <span class="paragraph-timestamp" data-ts="4:27">4:27</span> 具体内容我就不展开细讲了，大家有空可以自己看看，另外关于这件事，Noam Brown 还发过这样一则 post。翻译过来的意思大概是，今天最前沿的推理模型其核心方法，令人惊讶地与 AlphaGo 很相似。先模仿海量的人类数据，为了获得更好的推理在推理时增加计算量。当年是 Monte Carlo Tree Search，而今天则是 Chain of Thought。再通过强化学习超越单纯模仿。这套方式非常相似，我记得 Demis Hassabis 还在下面留了评论。总之，在 Noam Brown 说完这些之后，
@@ -123,6 +127,9 @@ alternateSlug: null
 
 
 ![Google DeepMind 新总部“Platform 37”的鸟瞰效果图，设有屋顶花园和树木，背景可见伦敦城市天际线](/episodes/ep90/notion_03.png)
+
+
+<ResourceLink url="https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/platform-37-the-ai-exchange/" title="Platform 37 and The AI Exchange" domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="6:17">6:17</span> **崔胜准** 就是取自 AlphaGo 那步惊人的棋。那人类棋手李世石九段那步惊人的棋是第几手来着？是第 78 手。李世石是 78 手，AlphaGo 是 37 手，所以他们好像是沿用了这步 37 手的名字来给 Google DeepMind 的新总部命名。说是从夏天开始入驻。
 
@@ -150,6 +157,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="9:13">9:13</span> **卢正石** AlphaGo 对局结束之后，很多教授或者知名人士都开始讲它到底是怎么做出来的，一下子冒出了很多讲解资料、YouTube 录播，我记得真的非常多。某种程度上，也可以说韩国因此受益了吧？是不是也能这么看？
 
+
+<ResourceLink url="https://www.youtube.com/watch?v=8Z2eLTSCuBk" title="Demis Hassabis KAIST Talk" domain="youtube.com" />
+
 <span class="paragraph-timestamp" data-ts="9:32">9:32</span> **崔胜准** 因为很早就被正面重击了一下，带着切身感受去看这件事，而这大概就是 Demis Hassabis在对局结束后于 KAIST 做演讲的视频。他在里面讲了 DQN 之类的内容，还梳理了它具体处在什么样的脉络中，也讲了这些东西，所以那时候确实能更有实感地看到这些内容，这大概就是我对 2016 年的体验。
 
 <span class="paragraph-timestamp" data-ts="9:57">9:57</span> **卢正石** 如果说 14 年、15 年、16 年那时候，光是 DQN都已经算是非常前沿的技术了，而且那时大家也开始在 OpenAI Gym 里一点点尝试一些偏 RL 的东西。我也记得当时把一些感想
@@ -158,6 +168,9 @@ alternateSlug: null
 
 ## Andrej Karpathy 的 Autoresearch 与可验证信号的反复迭代    *10:24*
 
+
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="10:40">10:40</span> **卢正石** 这个和 Ralph loop 有什么区别？就是 Ralph loop。只不过它是在
 
 <span class="paragraph-timestamp" data-ts="10:46">10:46</span> **崔胜准** 非常明确的 domain、非常明确的可评估 validation 上运作，仅此而已。不是做到 test 那一步，而只是拿 validation 分数，朝着能把那个分数压低的方向不断提出各种点子，反复实验、继续实验，让它能一直这样做下去，大概就是这种感觉。
@@ -165,17 +178,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **卢正石** 从概念上说，其实和 RLVR 很像。只不过层次不一样。RLVR 讲的是在训练过程中，如果能给出某种 verifiable 的，也就是可验证的信号，那模型就能在那个 domain 里持续训练下去。而这个则是把它实际拉到了应用过程中来，对吧。研究这类事情，归根结底也是如果面对一个非常强的模型，能给它设定奖励信号，也就是朝着变好的方向的目标，那它就能自主地朝着那个目标前进，这次其实就是证明了这一点。这个奖励信号不是 RL 里的那种奖励信号，
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
-
-
-<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
-
-
 
 
 
 
 ![显示 autoresearch 进展图表（83 次实验，保留 15 项改进）以及 Karpathy 于 2026 年 3 月发布的“自主 AI 代理军团将代码库进化了 10,205 代”内容的画面](/episodes/ep90/notion_04.png)
+
+
+<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **崔胜准** 虽然它并不可微，但只是给出一个能不能成的判定，就这么简单，只要有几个非常简单的文件，prepare.py，这个倒不是很重要，再有 train.py、program.md 这些，它就会朝着满足这个条件、直到成功为止不断把指标压低的方向去做 research，而且那个 MD 文件也不算长。最后有个很有意思的点，never stop。不要停，如果卡住了，想法卡住了，就去读论文再回来立这个假设试试看，再试试那个假设，别一直来问我要不要继续往下做最后那句咒语好像就是继续做下去而且实际已经开始看到成果的那些东西也在这里用图表展示出来了。就是这么回事，然后这里的 Andrej Karpathy 和
 
@@ -220,14 +230,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **卢正石** 要不要进入一下我们的“想当年”环节？
 
 
-<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
-
-
 
 
 
 
 ![2011 年 9 月至 12 月斯坦福大学“Introduction to Artificial Intelligence”在线课程横幅，上面写着“全世界任何人都可以参加”](/episodes/ep90/notion_06.png)
+
+
+<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
 
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **崔胜准** 我们这样你来我往地聊，可能会讲到我们各自的经历，也会讲当时有哪些发展脉络，我自己有印象的东西里，挑了几个一时能立刻想起来的。大概在 2011 年前后，我是在时间线上看到这个的。这是 Peter Norvig 的，Google现在应该还在吧，至于是不是还在 Google 我有点记不清了，反正他当时是最资深的 scientist 之一。就是和 Peter Norvig 一起做过 X 的那位。Google X，Sebastian Thrun。后来创办 Udacity 的那位当时一起在 Stanford 开了 AI 课程，Andrew Ng 也开了机器学习课程，然后好像还有一门数据库课程。我回头翻了下那段时间线，就看到了这些内容。所以 Stanford 当时做了 MOOC，可以说是现代 MOOC 起点的那类实验，而且这些全都是 AI、ML、数据库这些方向，据说吸引了这么多人参与。
 
@@ -252,14 +262,14 @@ alternateSlug: null
 ## YouTube 猫识别实验与涌现现象    *23:00*
 
 
-<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
-
-
 
 
 
 
 ![说明人工神经网络中的神经元通过学习 YouTube 视频帧而自发学会识别猫的文字，以及一张模糊的猫脸图像](/episodes/ep90/notion_08.png)
+
+
+<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **崔胜准** 要看核心的话，就是这张图。就是 YouTube 开始识别猫了，那件事。这个实验具体是怎么设计的，
 
@@ -277,10 +287,10 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="25:15">25:15</span> **崔胜准** 还有 Peter Norvig 的课程，视频和资料也看过几次，但没想过要深入钻研。
 
-## Andrej Karpathy 文档与 ImageNet 黄金时代：CS231n、DeepDream、Chris Olah    *25:21*
-
 
 <ResourceLink url="https://karpathy.github.io/neuralnets/" title="Hacker's Guide to Neural Networks" domain="karpathy.github.io" />
+
+## Andrej Karpathy 文档与 ImageNet 黄金时代：CS231n、DeepDream、Chris Olah    *25:21*
 
 
 
@@ -531,10 +541,10 @@ alternateSlug: null
 ## Podcast 回顾与重访 Man-Computer Symbiosis    *54:18*
 
 
-<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
-
-
 ![微软演示幻灯片《Pursuit of the Dream Machine》，展示了从 1945 年《As We May Think》到 1960 年 Man-Computer Symbiosis、1968 年 The Mother of All Demos、2007 年 iPhone 以及 2022 年 ChatGPT 的时间线](/episodes/ep90/notion_13.png)
+
+
+<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **崔胜准** 靠近我们播客起点的时候，第 3 期聊的就是历史和技术。所以当时 Satya Nadella在 Build 2023 的时候提到过这个。从 1945 年的 As We May Think 开始，到 1960 年的 Man-Computer Symbiosis，一路讲下来，梳理了是如何走到 ChatGPT 的，
 

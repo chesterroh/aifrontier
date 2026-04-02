@@ -62,6 +62,7 @@ chapters:
     title: "OpenClawイベントと締めの挨拶"
 lang: "ja"
 alternateSlug: null
+notionUrl: "https://erucipe.notion.site/10-322d5c9e7e5980529504fc32dd81b7a9?pvs=73"
 ---
 
 ## イントロとゲスト紹介（HyperAccel イ・ジンウォン CTO）    *0:00*
@@ -103,6 +104,9 @@ alternateSlug: null
 
 ![Google DeepMindのブログに掲載された、AlphaGo 10周年記念記事「From games to biology and beyond: 10 years of AlphaGo's impact」のタイトルと、37手目が示された碁盤の画像](/episodes/ep90/notion_01.png)
 
+
+<ResourceLink url="https://x.com/polynoamial/status/2031404079583473953" title="Noam Brown on AlphaGo and Today's Reasoning Models" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="3:53">3:53</span> **チェ・スンジュン** Demis HassabisやGoogle DeepMindのほうから公式な投稿がありましたが、今、「ゲームから生物学、そしてその先へ:AlphaGoが残した10年の影響」という投稿が一つあり、それから去年、私たちがエピソードで一つ取り上げたあのGoogle DeepMindポッドキャストを、その年の最後の回として少しご紹介しましたよね。ところが今年最初の内容も、去年の最後の回がDemis Hassabisとのインタビューだったのですが、AlphaGo 10周年に関するポッドキャストで始めていたんです。その二つの内容が良かったので、少し持ってきました。
 
 <span class="paragraph-timestamp" data-ts="4:27">4:27</span> 本文の内容は詳しく説明するより、参考にしていただくのがよさそうですが、これに関連してNoam Brownがこういう投稿をしていました。翻訳されたものでは、今日の最前線の推論モデルを可能にした中核的な方式は、驚くほどAlphaGoと似ている。膨大な量の人間データを模倣し、より良い推論のために推論時点で計算量を増やし、当時はMonte Carlo Tree Searchでしたが、今日ではChain of Thoughtだ。強化学習を使って単純な模倣を超える。これは非常によく似た方式ですが、Demis Hassabisがまたコメントを付けていた気がします。とにかくNoam Brownがこの話をしたあと、
@@ -123,6 +127,9 @@ alternateSlug: null
 
 
 ![屋上庭園と樹木が設けられたGoogle DeepMindの新社屋「Platform 37」の鳥瞰レンダリング。背景にはロンドン市街のスカイラインが見える](/episodes/ep90/notion_03.png)
+
+
+<ResourceLink url="https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/platform-37-the-ai-exchange/" title="Platform 37 and The AI Exchange" domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="6:17">6:17</span> **チェ・スンジュン** AlphaGoのあの驚くべき手だと。人間であるイ・セドル九段の驚くべき手は何手でしたっけ。78手でしたね。78手で、AlphaGoは37手なんですが、その37手の名前にちなんであのGoogle DeepMindの新社屋ができるみたいです。夏から入居するそうです。
 
@@ -150,6 +157,9 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="9:13">9:13</span> **ロ・ジョンソク** AlphaGoの対局が終わったあと、たいていの教授や有名な方たちがみんな、それがどう作られたのか解説者になって、発表資料やYouTubeの録画がものすごくたくさん出てきた記憶があります。ある意味、韓国はその恩恵を少し受けたとも言えるのではないでしょうか。
 
+
+<ResourceLink url="https://www.youtube.com/watch?v=8Z2eLTSCuBk" title="Demis Hassabis KAIST Talk" domain="youtube.com" />
+
 <span class="paragraph-timestamp" data-ts="9:32">9:32</span> **チェ・スンジュン** かなり早い段階で強く打たれて、当事者性を持って見るようになったわけですが、これはたぶんDemis Hassabisが対局のあとKAISTで行った講演動画です。それでここでDQNのようなものを見せて実際それがどんな文脈にあるのかといったことを押さえていた話みたいなこともしてくれてそういうものを少し実感を持って見られた2016年の経験だった気がします。
 
 <span class="paragraph-timestamp" data-ts="9:57">9:57</span> **ロ・ジョンソク** 14年、15年、16年、この頃だと実際DQNだけを取ってみてもとてつもない先端技術でしたしそれにOpenAI GymでRLっぽいものを少しずつ試していた、そんな時期だった気がします。私もその時の所感みたいなものを
@@ -158,6 +168,9 @@ alternateSlug: null
 
 ## Andrej KarpathyのAutoresearchと検証可能なシグナルの反復    *10:24*
 
+
+<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="10:40">10:40</span> **ロ・ジョンソク** これはRalph loopと何が違うんですか。Ralph loopですよね。でも機能する
 
 <span class="paragraph-timestamp" data-ts="10:46">10:46</span> **チェ・スンジュン** まさにそのドメイン、その領域で評価可能なvalidation、それだけをやったんです。テストまでではなく、ただvalidationスコアだけを持ってそれを下げられる方向にあらゆるアイデアを出して実験して実験して、ずっとそれを続けられるようにするそんな感じでした。
@@ -165,17 +178,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="11:07">11:07</span> **ロ・ジョンソク** コンセプトとしてはRLVRと実際かなり似ていますよね。ただレイヤーが違うんです。RLVRは学習過程で、そのverifiableな、検証可能なシグナルさえ与えられればそのドメインで学習を続けられるという話をしたわけでこれはそれを実際の応用プロセスに持ち込んだ、そうですよね。研究のようなものも結局は、非常に優れたモデルに対して報酬シグナル、良くなる方向について何らかの目標設定ができるなら自律的にそのモデルがその目標に向かって進んでいけるということを示したんです。報酬シグナルがRLでの報酬シグナルではなくて
 
 
-<ResourceLink url="https://x.com/alifmunim/status/2031992674991976630" title="Alif Munim on Autoresearch for Interpretability" domain="x.com" />
-
-
-<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
-
-
 
 
 
 
 ![autoresearchの進行グラフ（83回の実験、15件の改善を維持）と、Karpathyの2026年3月の投稿「自律AIエージェントの軍団がコードベースを10,205世代進化させた」の内容が表示された画面](/episodes/ep90/notion_04.png)
+
+
+<ResourceLink url="https://simonwillison.net/2026/Mar/13/liquid" title="Simon Willison on Liquid Performance Improvements" domain="simonwillison.net" />
 
 <span class="paragraph-timestamp" data-ts="11:48">11:48</span> **チェ・スンジュン** 微分可能ではないのに、ただできるかできないかだけを判定してくれたんですがすごく簡単な数個のファイル、prepare.py、これはあまり重要ではなくてtrain.py、program.md こういうのがあればその条件を達成するものを、達成できるまで下げていく方向でリサーチをするんですが、MDファイルはそれほど長くもないんです。最後のところに面白いことがあるんですが、never stop. 止まらずにもし詰まったら、アイデアが詰まったらペーパーを読んできてこの仮説を立てて実験してみてあの仮説も実験してみて、私にこれで進めるか聞き続けるのではなくとにかく続けろ、というのが最後のメッセージのようですがそれを実際に成果として見せているものがここにグラフで見えています。そういう話なんですが、ここでその Andrej Karpathy と
 
@@ -220,14 +230,14 @@ alternateSlug: null
 <span class="paragraph-timestamp" data-ts="18:46">18:46</span> **ロ・ジョンソク** 僕たちの「昔はさ」で入ってみましょうか。
 
 
-<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
-
-
 
 
 
 
 ![2011年9月から12月にかけてのスタンフォード大学オンライン講義「Introduction to Artificial Intelligence」のバナー。「世界中の誰でも受講可能」という文言が表示されている](/episodes/ep90/notion_06.png)
+
+
+<ResourceLink url="https://www.ted.com/talks/peter_norvig_the_100_000_student_classroom" title="Peter Norvig: The 100,000-Student Classroom" domain="ted.com" />
 
 <span class="paragraph-timestamp" data-ts="18:49">18:49</span> **チェ・スンジュン** こうやって僕たちが掛け合いで話していくと自分自身の話にもなり得ますしどんな流れがあったのかということなんですが、僕が認識していたものの中でもすぐ思い出せるものだけをいくつか選んでみました。2011年ごろには、これをタイムラインで見ていたんですよ。これがPeter Norvigの、Google今もいらっしゃる、Googleにまだいるのかはちょっとあやふやですがとにかく最もシニアなサイエンティストでした。Peter NorvigとXをやっていた方ですよね。Google XのSebastian Thrun。後にUdacityを作った方が一緒にAI講義をスタンフォードで開いていて、Andrew Ngが機械学習の講義を開いていて、そのあとデータベースの講義ももう一つあったそうです。それについてタイムラインをざっと見てみるとこんな話が出ていました。それでスタンフォードでMOOC、現代的なMOOCの先駆けとなるそういう実験をしていてそれが全部AI、ML、データベースという形でこれくらいの人数が集まったそうです。
 
@@ -252,14 +262,14 @@ alternateSlug: null
 ## YouTube猫認識実験と創発現象    *23:00*
 
 
-<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
-
-
 
 
 
 
 ![人工ニューラルネットワークのニューロンが、YouTube動画のフレームを学習することで自発的に猫を認識するようになったと説明する文章と、ぼやけた猫の顔の画像](/episodes/ep90/notion_08.png)
+
+
+<ResourceLink url="https://blog.google/innovation-and-ai/products/using-large-scale-brain-simulations-for/" title="Using Large-Scale Brain Simulations for Machine Learning and A.I." domain="blog.google" />
 
 <span class="paragraph-timestamp" data-ts="23:04">23:04</span> **チェ・スンジュン** YouTubeで猫を認識し始めた、あれでしたよね。これが実験としてどう設計されていたのかは正確には出ていないんですが、この図を見て
 
@@ -277,10 +287,10 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="25:15">25:15</span> **チェ・スンジュン** Peter Norvigの講義があることは知っていて動画や資料を何度か見ましたがそれを掘り下げようとは思っていなかったんですよ。
 
-## Andrej Karpathyの資料とImageNet全盛期: CS231n、DeepDream、Chris Olah    *25:21*
-
 
 <ResourceLink url="https://karpathy.github.io/neuralnets/" title="Hacker's Guide to Neural Networks" domain="karpathy.github.io" />
+
+## Andrej Karpathyの資料とImageNet全盛期: CS231n、DeepDream、Chris Olah    *25:21*
 
 
 
@@ -531,10 +541,10 @@ alternateSlug: null
 ## ポッドキャスト回顧とMan-Computer Symbiosisの再訪    *54:18*
 
 
-<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
-
-
 ![マイクロソフトの発表スライド「Pursuit of the Dream Machine」。1945年の「As We May Think」から、1960年のMan-Computer Symbiosis、1968年のThe Mother of All Demos、2007年のiPhone、2022年のChatGPTまでのタイムラインが示されている](/episodes/ep90/notion_13.png)
+
+
+<ResourceLink url="https://groups.csail.mit.edu/medg/people/psz/Licklider.html" title="Man-Computer Symbiosis" domain="groups.csail.mit.edu" />
 
 <span class="paragraph-timestamp" data-ts="54:22">54:22</span> **チェ・スンジュン** エピソード3が歴史と技術だったんですよね。それでこの時、Satya NadellaがBuild 2023でこれに触れたじゃないですか。1945年のAs We May Thinkから始まって1960年のMan-Computer SymbiosisまでずっとたどってChatGPTまでどうやって来たのかを整理していたのを私たちなりにその意味を読み取ってみようとしたことがあったんですが、
 
