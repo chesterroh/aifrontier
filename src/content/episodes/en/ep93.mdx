@@ -1,0 +1,453 @@
+---
+episodeNumber: 93
+title: "After the Claude Code Source Code Leak"
+description: "On March 31, 2026, Claude Code's entire source code was leaked through npm distribution. With Noah Ko (Sionic CEO), we discuss the timeline, the Claw Code controversy, and how IP value is transforming in the age of harness engineering."
+publishedAt: 2026-04-07
+duration: "1:08:00"
+youtubeId: "jH3IzdDamcM"
+thumbnail: "https://i.ytimg.com/vi/jH3IzdDamcM/maxresdefault.jpg"
+guests:
+  - 고석현
+hosts:
+  - 노정석
+  - 최승준
+chapters:
+  - time: "0:00"
+    title: "Opening: The Claude Code source code leak incident"
+  - time: "1:46"
+    title: "Person at the center of the controversy: Sigrid Jin and the Oh-My series"
+  - time: "3:14"
+    title: "Recording context: Why we visited Sionic"
+  - time: "4:25"
+    title: "Key question: Is it legitimate to use leaked IP?"
+  - time: "6:13"
+    title: "The AI-native generation’s view of copyright"
+  - time: "9:34"
+    title: "Incident timeline recap: From the npm leak to DMCA"
+  - time: "11:49"
+    title: "A rewrite in 2 hours: The grammar of virality and memes"
+  - time: "14:11"
+    title: "Meta harness and pushing token usage to the limit"
+  - time: "16:53"
+    title: "What Claude Code revealed: The reality of AI-written code"
+  - time: "24:03"
+    title: "Community absorption and comparison with OpenClaw"
+  - time: "27:02"
+    title: "Clean-room debate: Is AI rewriting copyright infringement?"
+  - time: "33:05"
+    title: "Declining IP value: An era where source code converges to zero"
+  - time: "48:37"
+    title: "AI code generation and security: The threat of supply chain attacks"
+  - time: "59:52"
+    title: "Harness engineering and the future of business"
+  - time: "63:25"
+    title: "Closing: New tools create new value"
+lang: "en"
+alternateSlug: null
+---
+
+## Opening: The Claude Code source code leak incident    *00:00*
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is April 3rd, 2026, a Friday night. It was about three days ago. On March 31, one day before April Fools' Day, something very April Fools-like happened. The Claude Code source code was leaked in its entirety. Was it the model's mistake, or a human mistake? There was a lot of talk like that, but officially, they're saying it was human error. After all, thanks to Claude Code, Anthropic made tremendous strides over the past year. So because of things like that, it's an area that naturally draws a lot of attention, and after the leak, what happened was someone cleaned up the source nicely and uploaded it to a GitHub repo, right?
+
+<span class="paragraph-timestamp" data-ts="00:46">00:46</span> **Noah Ko** I was honestly pretty taken aback too. The fact that such a large codebase went up like that was surprising, and really, the characteristics of the language are something you can't ignore here. In the case of Claude Code, it's JavaScript, or more precisely TypeScript, family code, so if the maps from compilation were there, the source code could be restored perfectly, and the fact that it got included together in some CI/CD deployment and integration process is a huge deal.
+
+<span class="paragraph-timestamp" data-ts="01:16">01:16</span> **Chester Roh** It's a major incident. And from Anthropic's perspective, it's something truly painful, and one that affects the company's value, so it can't help but be an enormous incident.
+
+<span class="paragraph-timestamp" data-ts="01:26">01:26</span> A Chinese engineer who had worked in blockchain security posted that there was this kind of thing on Twitter first, and after that, a lot of people found it and tried to access it somehow, and as it happened, the person who did that was Park Jinhyung, Sigrid Jin, who officially works at a company called Sionic.
+
+## Person at the center of the controversy: Sigrid Jin and the Oh-My series    *01:46*
+
+<span class="paragraph-timestamp" data-ts="01:49">01:49</span> **Noah Ko** Back in our early days, and I'm Noah, the CEO of Sionic, Sigrid was also one of our early members, and is currently on leave from the company.
+
+<span class="paragraph-timestamp" data-ts="01:58">01:58</span> **Chester Roh** So as the story keeps unfolding, the person at the center of it is Sigrid Jin, Park Jinhyung, that's right. And Yeongyu, who created Oh-My-Opencode, and also Yechan, who created Oh-My-Claude-Code and Oh-My-Codex, right now the authors of the Oh-My series are the three people standing at the very center of this controversy, and of those three, two are in fact officially employees of Sionic. And Yechan, Yeongyu, and Jinhyung are all very close, and I call them the so-called young prodigy group, they're friends from that group.
+
+<span class="paragraph-timestamp" data-ts="02:34">02:34</span> **Seungjoon Choi** So why are we here today?
+
+<span class="paragraph-timestamp" data-ts="02:36">02:36</span> **Chester Roh** Since you've communicated most closely with them, and from whether what happened was right or wrong to everything else, it would be meaningful to discuss this with Sionic's CEO.
+
+<span class="paragraph-timestamp" data-ts="02:48">02:48</span> **Seungjoon Choi** I don't know if it's fate or fate playing a joke, but in episode 40, when you first appeared, we talked about an employee who uses a huge number of tokens, and then in episode 70, Jinhyung came on with us as the ultra 100x engineer, didn't we talk about that? And more recently, Chester, also mentioned what was really impressive at the OpenClaw meetup, and somehow all of this has connected straight through, and I think we've ended up here through the power of those connections.
+
+## Recording context: Why we visited Sionic    *03:14*
+
+<span class="paragraph-timestamp" data-ts="03:14">03:14</span> **Chester Roh** So the place where we're recording right now is different from our usual setup, because we basically barged into Sionic. That's right. So with the CEO in the middle, we're going to ask quite bluntly about various opinions, and there are also a lot of points of controversy around this. It's clear that this was wrong, but the question is whether, just because it was wrong, we should unconditionally blame it, or whether this is some kind of new starting point, and as the AI world becomes universal, the kinds of things that will happen to everyone may have just appeared in advance as a case study.
+
+<span class="paragraph-timestamp" data-ts="03:51">03:51</span> **Seungjoon Choi** Wrong is wrong, but as we discussed it, there was also a message this seems to symbolize that we wanted to convey.
+
+<span class="paragraph-timestamp" data-ts="03:56">03:56</span> **Noah Ko** I thought it was really important to properly explain this situation. Earlier, Chester said you barged in, and that's really true. It really did feel that urgent and important, and honestly, we, and I, have a lot to say, so I'll unpack it slowly.
+
+<span class="paragraph-timestamp" data-ts="04:16">04:16</span> **Chester Roh** So with Noah, who was the closest to this, officially and unofficially, we'll have a kind of freewheeling conversation. Then naturally, we have no choice but to ask the most sensitive question. In the group chat where we debate intensely, Jeongkyu is there, and Jinwon is there, and it's a room with a lot of very well-known people, and opinions on this are sharply divided. But what everyone commonly agrees on is that this was an employee's mistake that leaked some of the company's core IP, and that actively using it, spreading it, and reus- ing it raises moral concerns, and that criticism is valid.
+
+## Key question: Is it legitimate to use leaked IP?    *04:25*
+
+<span class="paragraph-timestamp" data-ts="05:00">05:00</span> **Noah Ko** So within this agenda, the biggest axis is whether it's justified, and whether it's legal. I think it splits into those two. One is a moral issue. And the other is really a matter of the law. But in this case, as I see it, those two issues are revealed in a very multidimensional way.
+
+<span class="paragraph-timestamp" data-ts="05:20">05:20</span> But in fact, some of this is self-evident. When asking whether it's justified, from a surface-level view, a company's core IP was leaked, and is it justified to profit from that? I think really no one would say that it is justified.
+
+<span class="paragraph-timestamp" data-ts="05:35">05:35</span> **Chester Roh** And also, Anthropic, since this was such a sudden and major incident for them, has been going back and forth in its response. First they said to take all the source code down via DMCA, then after that they reversed everything, and in the meantime, that company too seems to have a lot on its mind. But now, there is in fact a possibility that they may take some kind of legal action. And regarding that, Jinhyung or the people who carried this forward may also end up bearing responsibility. On that point, I don't really have anything I can say.
+
+<span class="paragraph-timestamp" data-ts="06:05">06:05</span> **Seungjoon Choi** There was also talk that OpenClaw's Peter Steinberger, because of that Claw, received something like a formal legal notice.
+
+<span class="paragraph-timestamp" data-ts="06:10">06:10</span> **Chester Roh** Then this is where the issue really begins. Seungjoon and I host this AI podcast, and we're all entering this click-click AI era, and why have we entered this era? Because the models are just that good. If all you see is the output, then even if you can't see the spec, it's basically the same as being complete to a certain extent, that's what Seungjoon said.
+
+## The AI-native generation’s view of copyright    *06:13*
+
+<span class="paragraph-timestamp" data-ts="06:35">06:35</span> And actually, right now, if you look at these young people who use AI to the extreme, these AI natives, their concept of copyright is very faint. Because AI just click-click copies all that stuff, and from IP that someone else already created, it's a tool that creates powerful leverage. So if there's a site, a target site, it extracts only the so-called juice from that site and recombines it into some new service, and that's just becoming these people's new, extremely,
+
+<span class="paragraph-timestamp" data-ts="07:09">07:09</span> **Noah Ko** ordinary payload, if anything.
+
+<span class="paragraph-timestamp" data-ts="07:12">07:12</span> **Chester Roh** Because this is the kind of era we're in, Anthropic's source code has now been leaked, but it wasn't only Jinhyung's group that used it. Right now, a huge number of people are attaching themselves to it and reusing it, or uploading interpreted versions of it. There are so many. Before I started this broadcast, I took a quick look at that Claw Code, and it had already been forked over 100,000 times. That's how widely it spread, and in a situation where all of them are reusing it, then is using it first what's wrong, but using it later is okay, and if you use it directly that's a big problem, but if you use it subtly, is that still a problem?
+
+<span class="paragraph-timestamp" data-ts="07:54">07:54</span> Gemini or Grok, after some time lag, by all the so-called harnesses that are trendy these days, this Claude Code, which is supposedly the furthest ahead, the things that Claude Code has, the juice of this Claude Code, its essence, its core genes, will be extracted and embedded into their own tools, into their own services.
+
+<span class="paragraph-timestamp" data-ts="08:15">08:15</span> But this isn't something that only happens with AI, because even in our existing open-source community, this was something that happened all the time.
+
+<span class="paragraph-timestamp" data-ts="08:22">08:22</span> **Seungjoon Choi** These days they even call it whitewashing. All in that kind of way, rebuilding it again with AI and swapping out the license once, there are attempts like that, right?
+
+<span class="paragraph-timestamp" data-ts="08:32">08:32</span> **Chester Roh** To both of you, I think I need to ask the question here. This is, in fact, when a person does it, you can admire the effort and say, well, that much effort deserves some credit, but because AI is doing all of this with a few clicks, who did it five minutes earlier, who did it three hours earlier, these kinds of issues start to look like six of one, half a dozen of the other. are emerging right now. So then, at this point, for both of you, regarding this situation, since I also asked an open-ended question, what thoughts do you have?
+
+<span class="paragraph-timestamp" data-ts="09:03">09:03</span> **Seungjoon Choi** First of all, personally, when we were talking about it earlier, I felt there was a lot to be disappointed about. Jeongkyu said something similar, there are other problems where people could actually show their skill, but the way this one caught the timing so interestingly and became an issue, in a way, made me think wow at the same time, but also that this gives us a lot to think about. I was on the side that felt somewhat negative about it. As we talk about it today, where that feeling came from is something I hope we can talk through as well.
+
+## Incident timeline recap: From the npm leak to DMCA    *09:34*
+
+<span class="paragraph-timestamp" data-ts="09:34">09:34</span> **Noah Ko** Then if I were to describe the incident as a timeline, as you mentioned earlier at the start, it is true that it was made public. On the npm package registry, by mistake. What was exposed through that mistake moved over to GitHub, and if I remember correctly, around 8,000 copies were made in bulk, and Anthropic responded extremely quickly, with DMCA-related, copyright-related takedown requests, and sent deletion requests, and if I remember the timeline correctly, between 4 and 5 a.m. Korea time, most of the repositories were deleted. Even at the time, how should I put it? There were some mistakes in that too. For example, their own repositories got deleted, and repositories with absolutely nothing to do with it were deleted just because they had the same name, so there were some issues like that. As far as I know, Anthropic recognized that as well, and for most of them, except the original repository and some forks, they withdrew the takedown, but I don't think that means they gave up the copyright itself. Because the response had been far too broad, in order to prevent damage from that, for some of them, regarding copyright, I'll just say DMCA, they withdrew the DMCA takedown, and that's my understanding of where things stand now.
+
+<span class="paragraph-timestamp" data-ts="10:49">10:49</span> But when there were thousands of them, why did the repo Jinhyung uploaded draw so many problems, or so much concentrated attention? Actually, this goes back to what I mentioned earlier. Two of our team members are involved as well. And by coincidence, that group was also in San Francisco together. I infer, to some extent, that they really hit it off there, and that group has said, based on the code Anthropic made public, that they used other AI models on this code to reconstruct it in Python and Rust. Then in that case, from the outside, at a simple glance, under traditional law, you could say it infringed copyright, but there wasn't a single identical code statement. But in reality, people would know, right? They'd know the core idea was rearranged like this. Maybe that's why this is such a sensitive issue, and in the DMCA takedown request I mentioned earlier, this repository was later excluded from it.
+
+<span class="paragraph-timestamp" data-ts="11:44">11:44</span> But one reason I think that could happen is that it was unbelievably fast. This was a huge codebase, about 500,000 lines, and for something like this, in almost just two hours, for it to be completely ported over and then made public was quite surprising to me, and in the process, among people who were somewhat supportive of Anthropic in one way or another, engineers who are very interested in Claude Code, people all around the world gave it a huge number of stars, and the star count rose extremely fast at first, and I think that's what made it kind of famous.
+
+## A rewrite in 2 hours: The grammar of virality and memes    *11:49*
+
+<span class="paragraph-timestamp" data-ts="12:19">12:19</span> **Seungjoon Choi** Hasn't the grammar of stars changed now? Rather than coding quality, it's the viral aspect that stars are weighted toward now.
+
+<span class="paragraph-timestamp" data-ts="12:25">12:25</span> **Noah Ko** That's a very big part of this. I actually talked to Jinhyung about it too. I asked, what do you think about this? But the answer I heard was more unexpected than I thought. He said he thinks of it as a meme. When I asked why he thought that, he said the code hardly actually worked. It was just something with a conceptual outline, basically a bit of junk, is how he described it. Even so, people barely tried running it, and just hit the star button based only on what it represented.
+
+<span class="paragraph-timestamp" data-ts="12:51">12:51</span> Well, compared to this project now, there are a huge number of famous projects with fewer stars. For example, Kubernetes, Node.js, Go, Rust, those are enormously great and famous projects, aren't they? But this Claude Code, which we think is the issue right now, has more stars than all of those repos. But did people actually run it? Was this a case where stars attached before the code itself, and maybe it was being used in a different grammar altogether? I remember having that kind of conversation.
+
+<span class="paragraph-timestamp" data-ts="13:19">13:19</span> **Seungjoon Choi** If I remember correctly, I also became interested and looked into it a bit, and there was a Chinese person who had uploaded the source by unzipping it and making a GitHub repo, and in San Francisco, I think that was part of the story, there seemed to be that conviction. So they went to sleep and used Ralphthon, and after sleeping and waking up, it had gone hugely viral, and then they thought, ah, this is a bit problematic, so they did a hard push, and that's the part that's controversial again now.
+
+<span class="paragraph-timestamp" data-ts="13:48">13:48</span> When the Python version got praised and the Rust version got praised, since these people are harness experts, they ran a lot of things like sub-agents, and in the end, in about two hours this time, they managed to pull it off. And I think that probably became an issue even on Korea's GeekNews.
+
+<span class="paragraph-timestamp" data-ts="14:08">14:08</span> **Chester Roh** Right, right. What I feel is that when we say we're good at using Claude Code or Codex right now, we're still at the stage of what we call Ralph, not some other kind of meta-harness, but just vendor-provided Claude Code or Codex existing as they are, and being good at the human-in-the-loop part is what makes someone really good at using AI right now.
+
+## Meta harness and pushing token usage to the limit    *14:11*
+
+<span class="paragraph-timestamp" data-ts="14:30">14:30</span> The reason I paid attention to people like Yechan, Yeongyu, and Jinhyung is that these people very actively built a meta-harness layer on top of that. They asked how to scale this even further, and at first they showed extreme token consumption, and then as that extreme token consumption settled in, things like UltraWork or Ralph loop, and even Autoresearch, those are interesting too.
+
+<span class="paragraph-timestamp" data-ts="15:03">15:03</span> In fact, with copyright, Yechan took Oh-My-Opencode and just turned it into Oh-My-Claude-Code, basically reusing it as-is. But the original author, Yeongyu, and Yechan just found that funny, they're close, and they exchange things with each other. But even there, copyright is already completely broken down.
+
+<span class="paragraph-timestamp" data-ts="15:19">15:19</span> Frankly, though, now these people, by showing that kind of methodology, are drawing attention because it's far more productive than the productivity others are showing. And this time they applied that high productivity here, and Claude Code is actually a 500,000-line codebase, but they drove Codex hard on it anyway and transformed it, and now it's sitting there in this form called Claw Code.
+
+<span class="paragraph-timestamp" data-ts="15:45">15:45</span> **Seungjoon Choi** But with that kind of nuance, Jinhyung posted a long thread on Twitter, probably saying, Don't look at the finger, look at the moon. This all happened on Discord. What this means right now was the kind of message he was trying to convey, but now, from the perspective of people who had been tracking the incident, quite a lot of them think that's not what's important right now.
+
+<span class="paragraph-timestamp" data-ts="16:10">16:10</span> **Chester Roh** But these parts now, what I would call our generation, the people who coded stitch by stitch and felt some kind of kinship with it, what those people feel and the AI natives in their late teens and early twenties, who first entered through AI, seem to differ at a fundamental level. And for them, coding as they first encountered it, or the AI tool itself called agent coding, was something that just ignored things like copyright altogether and clicked everything into existence for you.
+
+<span class="paragraph-timestamp" data-ts="16:42">16:42</span> **Seungjoon Choi** We can't exactly praise it, but somehow, right now, it feels like we're witnessing a change of the times.
+
+<span class="paragraph-timestamp" data-ts="16:48">16:48</span> **Noah Ko** Let me talk about this a bit first. Then the biggest thing here, I think there are probably two. One is what Anthropic said at the beginning: that most of Anthropic's code is written by AI, and that really was true. In other words, these were codes that you couldn't really say were written by humans at all, and in terms of the complexity of the code, or maybe just its beauty, I think beauty ultimately comes down to maintainability. Code that humans can understand well and keep building over time, in other words, code with much better human interpretability, is what we used to call good code. But none of that was considered at all; it was just code that was good to feed into models, and code written in a style that looked like a model would write it, and there were really 500,000 lines of it laid bare, but if a human were to port this code directly, How long do you think it would have taken? I think it could have taken at least several months and maybe even years for a project team of dozens or hundreds of people.
+
+## What Claude Code revealed: The reality of AI-written code    *16:53*
+
+<span class="paragraph-timestamp" data-ts="17:46">17:46</span> **Seungjoon Choi** The audience may not know this well, but the code quality wasn't very good, right?
+
+<span class="paragraph-timestamp" data-ts="17:51">17:51</span> **Chester Roh** Right, because Claude Code leaked, there are really a lot of articles like this. It was pretty remarkable just now, in terms of the structure, and there are also a lot of documents interpreting it, but those interpretive documents too, coincidentally, probably weren't written by a single human, AI probably wrote all of them.
+
+<span class="paragraph-timestamp" data-ts="18:05">18:05</span> **Noah Ko** Maybe no one has read all of it? Right. Time-wise.
+
+<span class="paragraph-timestamp" data-ts="18:12">18:12</span> **Chester Roh** But now, for example, Noah just picked one and brought it over, and what these are saying, let's just quickly go over that once, little by little, because we should study it too, after all.
+
+<span class="paragraph-timestamp" data-ts="18:21">18:21</span> **Noah Ko** The first point is this. It's saying it's garbage, and when I actually checked several times myself, I thought, ah, I see, this really was only written for the product, and it may have been something they could just use and throw away. But these days, in development, people also say this a lot. In fact, the meaning could be exactly the same as a clean room, if our specification is accurate and the implementation method that satisfies it might not be all that important. So in a way, this thing called code itself exists on top of the product, and it seems to be treated almost like a consumable, and in making that, Anthropic is putting out the best something right now, and Anthropic actually just proved it, and said it themselves. I think that's actually a pretty big point.
+
+<span class="paragraph-timestamp" data-ts="19:04">19:04</span> Let's scroll down a bit and talk through it. It seems like this kind of thing keeps appearing. When Anthropic contributes internally or something like that, sometimes there's a record left saying Claude Code contributed. But from a certain point on, that stopped being left behind, or in fact it seemed to show a tendency to decrease, and when used inside a company, there may be a purpose for that, but it was explicitly blocked like this, or there were rules making it removable. Those things felt a bit more interesting. It was simpler and more intuitive than expected. I think there are probably a lot of parts like that.
+
+<span class="paragraph-timestamp" data-ts="19:37">19:37</span> Besides this, there are so many things in the analysis write-ups as well, and a lot has been visualized or shown, but didn't Anthropic really do exactly what it said, didn't it implement it exactly as described, and use it exactly that way? And compared with other competitors, I wouldn't say it's overwhelmingly better in performance, but it had a lot of, maybe you could call them preferences? It was a tool that had that kind of support, and in reality it was all happening internally. It wasn't something special about the model alone. I think that's also quite distinctive.
+
+<span class="paragraph-timestamp" data-ts="20:07">20:07</span> **Chester Roh** Yes, that's right. Jeongkyu, CEO Jeongkyu too, said that if you attach Gemini 3 to this Claude harness, it seems especially better, so he mentioned that as well.
+
+<span class="paragraph-timestamp" data-ts="20:16">20:16</span> And we were saying, the model has advanced this far, so do we really need a harness? But with this thing called Claude Code, when this kind of harness is layered on top, what kinds of things, what kinds of almost magical things become possible, we've really felt that deeply over the past year.
+
+<span class="paragraph-timestamp" data-ts="20:32">20:32</span> **Seungjoon Choi** Actually, as of April, in March, this thing called harness engineering went hugely viral, and I think the trigger for that was really Claude Code.
+
+<span class="paragraph-timestamp" data-ts="20:41">20:41</span> **Chester Roh** So now the model and the harness go together almost like a CPU and an operating system. The model is now the semantic CPU, and the harness is the operating system for how to process it, and then on top of this operating system, if you use other harnesses too, that then becomes the companies' business logic, and that kind of concept was starting to take shape, and the one moving fastest on that was Anthropic.
+
+<span class="paragraph-timestamp" data-ts="21:10">21:10</span> **Seungjoon Choi** Hearing this, it sounds like they just made code that works, not beautiful code, but something that was packaged well enough to run anyway.
+
+<span class="paragraph-timestamp" data-ts="21:20">21:20</span> **Noah Ko** There are a lot of points where it looks that way. I do think there is an artistic part to it. But that art, as I see it, doesn't seem to have been about model performance.
+
+<span class="paragraph-timestamp" data-ts="21:29">21:29</span> One of the areas Claude Code is focusing on internally seems to be token consumption, and money, quite a lot. If you look at the leaked contents of Claude Code, it calls various tools, writes queries, and does a lot of the things a general harness does. But one of the parts that is handled very thoroughly among them is this input called the prompt. It aligns the harness's outputs well as neatly as possible, preserving what I'd call the same order cache as before. It's the part that burns the cache. So Claude Code surely has performance, but I think it also reflects a lot of thought on maximizing token caching to reduce Anthropic's internal GPU usage, and actually, I think this too might be one of Anthropic's major assets, and I find myself thinking that a lot.
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **Seungjoon Choi** It feels like what they place value on has shifted a bit.
+
+<span class="paragraph-timestamp" data-ts="22:22">22:22</span> **Noah Ko** Yes, there's a lot of that too. Actually, I haven't checked every single part myself, but empirically, when you actually use it, if you look at certain qualitative performance characteristics, it seems to work quite well with other models too. Even if you pair it with models commonly mentioned, like Codex or Gemini, and use Claude Code, it seems to work well.
+
+<span class="paragraph-timestamp" data-ts="22:45">22:45</span> Actually, on our team, we also have an Oh-My-Opencode, Open agent developer, so I know there was a bit of an issue with Claude. So right now, I understand that it probably isn't integrated, and OpenAI Codex allows this a bit, so I understand it's being used in some way there.
+
+<span class="paragraph-timestamp" data-ts="23:03">23:03</span> But actually, even looking at that, it doesn't seem to be a harness that works well only with a specific model, but one that's becoming more general-purpose, or for certain tasks, perhaps moving in a more specific form, and maybe it showed the kinds of things that had always been concerns. Those are some thoughts that come to mind,
+
+<span class="paragraph-timestamp" data-ts="23:18">23:18</span> **Chester Roh** We talk like this, but actually we've all looked at it little by little. It really was very well made. Conceptually too, it's excellent, and in terms of controlling agents, this kind of agent OS, which we now call a harness, but if you go up a level, I expect it'll eventually be called an OS, it has all the principles you'd expect to need there. Things like how context should be managed, and then, as Noah just said, how to make this more efficient.
+
+<span class="paragraph-timestamp" data-ts="23:49">23:49</span> **Seungjoon Choi** But actually, things like Gemini CLI or Codex CLI are already open source, and yet there was still something that felt a bit uniquely Anthropic.
+
+<span class="paragraph-timestamp" data-ts="24:00">24:00</span> **Chester Roh** I'm not sure. For example, Anthropic, when Heo Yechan was making Oh-My-Codex, I once heard him say there on the spot why he focuses so much on making it famous, with GitHub stars and all that, he talked about that once, because for him, the starting point of beginning the work is actually something he often says is human will.
+
+## Community absorption and comparison with OpenClaw    *24:03*
+
+<span class="paragraph-timestamp" data-ts="24:25">24:25</span> If you make the project that famous, then when you give people issues as missions for what needs to be fixed, Yechan's development tasks then become something where, by doing that, they develop themselves and such structures are already in motion, he said.
+
+<span class="paragraph-timestamp" data-ts="24:40">24:40</span> From Anthropic's point of view too, we even joke about this sometimes. If you want to know the strategy of listed companies, meaning publicly traded companies, you can just go look at stock message boards. You get things like, ah, this is what our company should do, things like that exist. But internally at companies, they don't actually think about it that much.
+
+<span class="paragraph-timestamp" data-ts="24:57">24:57</span> Actually, what Tesla should be like, what Anthropic should be like, what Meta should be like, a lot of that comes from those so-called public commentators talking from the outside, but from Anthropic's perspective, and Claude Code's perspective too, many prototypes of the innovations they need to build all emerge first in the community. Ralph loop came first, and then in Open Code team mode appeared too, that thing.
+
+<span class="paragraph-timestamp" data-ts="25:20">25:20</span> **Seungjoon Choi** It also feels like there's a bit of an OpenClaw smell in there.
+
+<span class="paragraph-timestamp" data-ts="25:23">25:23</span> **Chester Roh** Yes, and Claude Cowork too, in a way, is now taking the advantages in the OpenClaw that Peter made. So if ideas are a kind of bundle of genes, then you just go there and
+
+<span class="paragraph-timestamp" data-ts="25:37">25:37</span> **Seungjoon Choi** And there's a tool that does that.
+
+<span class="paragraph-timestamp" data-ts="25:38">25:38</span> **Chester Roh** Actually, that's the model now. This development just keeps happening. So as Noah just said, they didn't do that through human effort, painstakingly polishing it stitch by stitch.
+
+<span class="paragraph-timestamp" data-ts="25:52">25:52</span> **Seungjoon Choi** It naturally becomes the kind of expression that says of course not.
+
+<span class="paragraph-timestamp" data-ts="25:54">25:54</span> **Chester Roh** Yes, AI will just consume that gene of an idea and implement it inside itself. Those things are now all visible like this as evidence. This is really
+
+<span class="paragraph-timestamp" data-ts="26:06">26:06</span> **Seungjoon Choi** version 2.1.88 that got leaked, and over the past few days 2.1.90, and 2.1.91 also came out a few hours ago today, right. They say it keeps coming out.
+
+<span class="paragraph-timestamp" data-ts="26:14">26:14</span> **Chester Roh** So what people are now saying is, I'm not saying this because the agenda here is to say that Jinhyung or Yechan or Yeongyu did well or did a good job. But now the agenda of the discussion is shifting. Hey, looking at it, Anthropic too is taking these things that exist outside and just click-clicking them with AI and putting them all inside as one big bundle, so then should what they've combined here just be seen as 100% theirs, or is it just something distilled by them from things made by humanity's knowledge community as a whole?
+
+<span class="paragraph-timestamp" data-ts="26:54">26:54</span> **Seungjoon Choi** There were already those kinds of conventions and protocols, though.
+
+<span class="paragraph-timestamp" data-ts="26:58">26:58</span> **Chester Roh** In the form of copyright.
+
+<span class="paragraph-timestamp" data-ts="27:00">27:00</span> **Noah Ko** Patents and copyright seem like broader concepts. If we just take patents as an example, if you trace back the origin of patents, it's actually not simply about protecting intellectual property rights, but about being more beneficial to humanity, so it's protected for a certain period of time, but the contents are disclosed so that knowledge beneficial to humanity can be shared. I think it's something along those lines.
+
+## Clean-room debate: Is AI rewriting copyright infringement?    *27:02*
+
+<span class="paragraph-timestamp" data-ts="27:23">27:23</span> Yes, actually that's a very good thing, but there is probably a qualifier here. Maybe not a legal qualifier, but if people looked at this patent, they probably wouldn't be able to use it exactly as-is. Or I think there is open source too. Open source is all disclosed like this, and there is tremendous technology there. But even if you look at the code, you still can't make it exactly the same.
+
+<span class="paragraph-timestamp" data-ts="27:43">27:43</span> But this idea that using open source is better, cheaper, and more stable, and that in the end you can still build an economic moat, was something everyone had accepted, and that was completely shattered this time.
+
+<span class="paragraph-timestamp" data-ts="27:58">27:58</span> Actually, I don't think the word clean room is appropriate. Because this talk of clean rooms seems to be creating a lot of controversy, and actually, recently, maybe it was Jinhyung, I had a call one evening, and I asked what he thought about this, about this incident, about this kind of reimplementation. But the answer that came back was that this is a meme. So I thought, okay, maybe this could be a completely different kind of story, and that was what I started thinking.
+
+<span class="paragraph-timestamp" data-ts="28:23">28:23</span> **Chester Roh** Please unpack the subtext a little. Because Jinhyung defined it as a meme, but someone else says this is copyright infringement. The perspectives are just completely different,
+
+<span class="paragraph-timestamp" data-ts="28:34">28:34</span> **Noah Ko** First, let me go over the definition of a clean room. A clean room is when, regarding some code or target, without knowing anything at all about its internals, you treat it as a black box. You analyze it externally and make something that behaves exactly the same.
+
+<span class="paragraph-timestamp" data-ts="28:53">28:53</span> So this can be used in bad ways, there have been abusive cases, for example, using it to circumvent copyright, but there are good cases too. For example, a project newly built through a clean room approach can end up with much higher performance and a more permissive license in some cases. So in the open-source industry and the development industry, let's call it that, this is a rather sensitive issue.
+
+<span class="paragraph-timestamp" data-ts="29:16">29:16</span> But as for whether the current repository is a clean room, in practical terms, this OpenClaw, or whatever it was, Claw Code, since the TypeScript version of the original Claude Code was made public, if someone claims they didn't look at it and can't prove that, then the chances of it being a clean room seem very low. At least by a very strict definition.
+
+<span class="paragraph-timestamp" data-ts="29:42">29:42</span> So from here, another line of discourse comes to mind: then when we talk about AI models,
+
+<span class="paragraph-timestamp" data-ts="29:46">29:46</span> **Seungjoon Choi** Isn't it impossible not to look? In this context, of course AI looked at it and did it.
+
+<span class="paragraph-timestamp" data-ts="29:51">29:51</span> **Chester Roh** That's what you meant, right?
+
+<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **Seungjoon Choi** Everyone is going to look at it.
+
+<span class="paragraph-timestamp" data-ts="29:53">29:53</span> **Chester Roh** That's a reasonable assumption.
+
+<span class="paragraph-timestamp" data-ts="29:55">29:55</span> **Noah Ko** Actually, if you look at that repo, it says they looked at the code. And it says this isn't our code, and that Anthropic didn't give permission, and even that it was rewritten after looking at the code, that's what it says. So rather than even the simple definition of a clean room, from the title itself, yes, it already says rewriting. So it doesn't hold.
+
+<span class="paragraph-timestamp" data-ts="30:16">30:16</span> But if you think about why they used the word clean room, in Anthropic's case, it must have learned from code written by countless people so far and from humanity's knowledge in general. And among those, there must have been people who intended it only for public use, not for AI training, surely at least one person. But then if this model is learning from the open source humanity has produced, can one of those trained models rewrite something in a clean-room way? Wouldn't that mean it isn't a clean room after all?
+
+<span class="paragraph-timestamp" data-ts="30:48">30:48</span> But up to now, I think OpenAI as well, at least that's my understanding, and Anthropic and the AI industry's consistent claim has been that what AI rewrites and interprets comes from inference and from that kind of learning, so this does not create a copyright problem. That had been the main discourse. But when Anthropic itself, the very Anthropic at the center of this controversy, had its own code leaked, it requested that everything be taken down through the DMCA, yet among those takedowns, for things rewritten through AI, the takedown request was missing.
+
+<span class="paragraph-timestamp" data-ts="31:20">31:20</span> So from my point of view, is the answer whether this is a clean room or not? No, it isn't that simple. But the situation surrounding it is very multidimensional, and why, well, they're on our team too, but still, young people talk about it this way, why young people call it a meme. From there, I realized the perception itself is completely different, and I thought that was the core point.
+
+<span class="paragraph-timestamp" data-ts="31:42">31:42</span> **Seungjoon Choi** How is it different? That expression, calling it a meme, I don't think I fully understand it, so I'm asking.
+
+<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **Noah Ko** Why would they call it a meme? Actually, the reason I think it's a meme is that Anthropic had been claiming that this kind of rewriting was not copyright infringement, but when its own code was leaked, and then that code was rewritten, and even in the case of code that doesn't actually work, would it then turn around and invoke the DMCA? And it was missing from the initial response, and even from some of the things later withdrawn, it kept remaining absent, so I started thinking, what exactly is Anthropic's basic position on this? That's why I saw it as kind of a meme. It's self-contradictory. In a way.
+
+<span class="paragraph-timestamp" data-ts="32:19">32:19</span> **Seungjoon Choi** Was it late last year for Anthropic? Or early this year? Project Panama, that book factory, the book-devouring factory, became quite an issue when the WSJ introduced it, and although it did follow the law, there was a case where it caused emotional discomfort.
+
+<span class="paragraph-timestamp" data-ts="32:37">32:37</span> **Chester Roh** But even if we look at the development of this industry in the past, to put it nicely, there have been many cases of standing on the shoulders of giants. To put it negatively, on top of someone else's IP, people built businesses in a very gray zone, and if they went big fast, they became incumbents, and then once they had become incumbents, there have been many cases where they went on to make the world more just.
+
+<span class="paragraph-timestamp" data-ts="33:03">33:03</span> For example, YouTube. YouTube was literally just an illegal movie-sharing site. It gathered all its users on top of someone else's IP, but now it operates on a completely different concept. But it wasn't so much that it got past that by sorting out the legal issues. The world just changed and moved on.
+
+## Declining IP value: An era where source code converges to zero    *33:05*
+
+<span class="paragraph-timestamp" data-ts="33:22">33:22</span> So in a way, this issue right now too, because technology is the tool we have now, that's why these things are happening, and AI too, this will just get buried. Because from now on, everyone is going to do this. Everyone will do it this way. Then the question is whether they wrote it after looking at the code, or whether, behind the scenes, they saw some working prototype or just a product with the UX already defined and copied it that way, that's a very small difference. To that extent, the value of source code itself has really gone down a lot. The meaning that source code originally had, if you just have a few PRDs, even that now seems to be producible in the world we're living in.
+
+<span class="paragraph-timestamp" data-ts="34:02">34:02</span> The reason that's possible is entirely because of the models. Because the models are superintelligence. That's why right now we're not really talking about it, and instead from a very old perspective we're interpreting futures, no, presents, but if you think about this from the point of a world in 2028 where superintelligence handles everything, these are all things that are completely natural. Even if the source code of Claude Code had not been leaked, if Claude Code and a superintelligence that can banter back and forth with it were paired up, it would become something made in a single day. So that story ends up veering a bit away from the discourse. There is, to some extent, a side of it that has been shifted into my new perspective, I would say.
+
+<span class="paragraph-timestamp" data-ts="34:43">34:43</span> But the odds that this incident becomes a legal issue or turns into something like that, instead of just being passed over, I think are extremely high. So this is where people end up feeling very conflicted again. If these kinds of things are part of the direction of development in a new world, then the rational choices are, like what Jinhyung did, to react the fastest, to secure some kind of brand the fastest, and regardless of whether that is notorious or famous, doing those things becomes the rational choice.
+
+
+<span class="paragraph-timestamp" data-ts="35:16">35:16</span> **Noah Ko** For example, regarding this Claude Code leak incident, let's assume there is some website that reviewed it technically. People learned that certain features existed. And since users know those features exist, for example, it could be a completely different harness project, maybe Codex. Or it could be some other OpenClaw-related thing, and let's assume they posted a spec saying, "I need this kind of feature." Let's assume that. But that person never saw the code. They receive some interpretive technical write-up from someone whose access to the code is unknown. And to that open source project, a request goes in saying, "We need something like this." Then AI will produce it somehow.
+
+<span class="paragraph-timestamp" data-ts="35:49">35:49</span> In that case, is this using Claude Code's idea? Or not? This is where it becomes extremely difficult. Most of the copyright we think about is really based on code identity, and if you look at it that way, that one line in the DMCA that was an issue earlier, the "it's not identical" part, let those issues slip past, and now it becomes a completely different discussion. Then the question becomes: the concept of IP, built on human intellectual ability, level of perception, resources, and capital, how quickly will it collapse, how quickly will it disappear meaninglessly or be replaced, honestly, I think this is an extremely important point.
+
+<span class="paragraph-timestamp" data-ts="36:24">36:24</span> **Chester Roh** Right, so things like copyright are also based on what is unique to humans, on the idea of guaranteeing the input of a person's own effort. There is this element of saying, "We will recognize the value of human intelligence," but that human value, the value of human intelligence, is becoming very weak, and AI is becoming much stronger, so right now we're saying, "What do we do with this, how do we deal with it," but I think discussions like this will disappear pretty soon.
+
+<span class="paragraph-timestamp" data-ts="36:55">36:55</span> For example, earlier I talked about search and YouTube and things like that, and now Mark Zuckerberg, in relation to OpenAI, took people who had the core recipe for hundreds of millions of dollars. Then with OpenAI, even the act of training a model is, in a sense, about someone possessing tacit knowledge about a few designs. The hyperparameters have to be set like this, the dataset has to be this when showing this, these are the GPU errors that come up, and so on, and all those countless exceptional cases, that mass of tacit knowledge is probably the core, but if that person changes jobs, all of that goes with them. So if Mark Zuckerberg paid money and acquired that, did he legitimately buy OpenAI's IP? Not really, right?
+
+<span class="paragraph-timestamp" data-ts="37:39">37:39</span> **Noah Ko** There was someone saying exactly that. They said, "At least Musk paid for it, but this side didn't pay." It was partly meant as a joke, but I do think it suggests quite a lot.
+
+<span class="paragraph-timestamp" data-ts="37:51">37:51</span> **Chester Roh** Right. Then if you mount a defense based on that, you could say, "Okay, I didn't pay for it, but I also didn't make money from it," and use that as a defense too. But even under the legal system of the past, it won't be able to keep up with what AI has created.
+
+<span class="paragraph-timestamp" data-ts="38:07">38:07</span> **Noah Ko** In fact, all CLI and harness tools are suddenly going to feel much better. People will feel like, "This seems like a feature I saw in Claude Code," or "This feels like the experience I had using it back then," and everyone will build that, but then whether saying, "I made it this way, by doing this and that," becomes a problem, and whether not disclosing it means it is no longer a problem, that also feels like a very gray area. But what is obvious is that everyone will use this. And actually, in Jinhyung's case, he is currently on leave from our company and attending school in Canada, and if a college student says, "I was scared because of this and that, and I ported this in this way. This isn't my code, and Anthropic did not grant permission. If he disclosed that and uploaded it, to what extent is that something that should be condemned? I think I'd be very curious about that.
+
+<span class="paragraph-timestamp" data-ts="39:02">39:02</span> **Seungjoon Choi** My thoughts are a bit tangled right now too, but this incident is somewhere near the whole "click" sentiment we've kept talking about. In the end, with "click" too, you see that it works, and then reproducing it becomes easy.
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> It meant that copying becomes easy, right? So I think I still need to keep discussing this some more, but is there anything else you'd like to introduce?
+
+<span class="paragraph-timestamp" data-ts="39:26">39:26</span> My thoughts are a bit tangled too, but that doesn't mean it's okay to probe whether this works or not.
+
+<span class="paragraph-timestamp" data-ts="39:34">39:34</span> **Noah Ko** Of course it isn't okay, is it? This is something that should be viewed morally, and law and morality are different, aren't they?
+
+<span class="paragraph-timestamp" data-ts="39:43">39:43</span> **Seungjoon Choi** Right now, personally, I do feel a bit saddened by it.
+
+<span class="paragraph-timestamp" data-ts="39:44">39:44</span> **Chester Roh** Right. From one point of view, for me too, it's a very uncomfortable incident. But from another point of view, I also wonder whether this isn't an example showing the future.
+
+<span class="paragraph-timestamp" data-ts="39:54">39:54</span> **Seungjoon Choi** But if we recap a bit from earlier, Chester, you said at the beginning that the era is changing, something along those lines, maybe during our recording, or maybe while we were just talking, but something has changed now, right?
+
+<span class="paragraph-timestamp" data-ts="40:11">40:11</span> **Chester Roh** Right. AI is, in a way, an incredibly massive lever. Yes, we're in a world where everyone is basically Iron Man now, and sure, some people fly better, some people don't fly as well, and there are individual differences across the board, but in a sense, if you talk about this in a community of people who really know how to fly well, they greatly admire that act, I think there is admiration there too. There are also views like, "I should have done that too, I missed that opportunity."
+
+<span class="paragraph-timestamp" data-ts="40:41">40:41</span> On the other hand, if you go to another community, people say this is absolutely outrageous, and get angry, so across communities, the spectrum is extremely wide and the reactions are completely different.
+
+<span class="paragraph-timestamp" data-ts="40:55">40:55</span> **Seungjoon Choi** What happened then happened, so with this, with regard to this, if there is no real disadvantage or penalty, does that create an incentive? Then does that mean it's okay to do this, that this is what the new normal means?
+
+<span class="paragraph-timestamp" data-ts="41:05">41:05</span> **Noah Ko** On that, I think Anthropic and the market should be the ones to answer, yes, though I think it's difficult, yes, I do have that thought as well. But right now I've talked with several groups and started having these discussions while consulting with them.
+
+<span class="paragraph-timestamp" data-ts="41:19">41:19</span> There is one thing everyone commonly empathizes with and agrees on. All harnesses and open-source projects coming out from now on will suddenly get much better. It seems no one really disagrees on that point.
+
+<span class="paragraph-timestamp" data-ts="41:29">41:29</span> **Seungjoon Choi** The issue is visibility. So someone did it openly, while someone else didn't reveal it but still absorbed it, right?
+
+<span class="paragraph-timestamp" data-ts="41:36">41:36</span> **Noah Ko** If anything, if you reveal it and talk about it, it will be regarded as something very bad. Meanwhile, builders who do it without revealing it will, in practice, improve their products.
+
+<span class="paragraph-timestamp" data-ts="41:46">41:46</span> **Chester Roh** Excellent genes have been released into the market, and everyone has to pick them up and put them into their own thing.
+
+<span class="paragraph-timestamp" data-ts="41:52">41:52</span> **Seungjoon Choi** Even if it's just at the level of specs or ideas, the nuance is that the likelihood of reproducing it is high, right?
+
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> **Noah Ko** That's how I see it. And in reality, that's where it's heading too. In the case of Yechan, whom I understand participated in a lot of the code for this implementation, I was at a previous meetup offline, and he once said something like this. Just by building open source and receiving user feedback, the features kept improving continuously. So in the end, the AI itself that implements this is becoming incredibly cheap, almost close to zero cost, while only the value of the user ecosystem and market that actually uses it seems to rise without limit. He said something along those lines before.
+
+<span class="paragraph-timestamp" data-ts="42:31">42:31</span> But wouldn't it be the same? You try Claude Code, and think, "Claude Code did this well, but with some other open source, we can use a different model, or there are no licensing issues, so we're using that." But then if a customer, or some open-source issue, says, "We wish it behaved like Claude Code," or some open-source issue gets submitted, then are you not allowed to make it, because that idea did not come from the code? Can you be certain of any such claim? I think absolutely not. Then it becomes an increasingly difficult matter.
+
+<span class="paragraph-timestamp" data-ts="43:01">43:01</span> **Seungjoon Choi** It also makes you wonder whether, just because you can do it, that means you should.
+
+<span class="paragraph-timestamp" data-ts="43:04">43:04</span> **Noah Ko** That's right. If this is appropriate, then I think companies could intentionally leak their own code and say, "We're sorry our code was leaked, but we'd rather other places not use it." That could become an incredibly powerful form of securing intellectual property rights, couldn't it? It may be an excessive thought, but that's what I think. Whatever can happen will happen.
+
+<span class="paragraph-timestamp" data-ts="43:26">43:26</span> **Chester Roh** That may also be why OpenAI keeps Codex open source. In fact, Claude Code has pulled ahead for now, but even with that, the community had all kinds of proposed, interesting implementations, didn't it? And Claude Code, so to speak, despite being big tech, adopted those things very quickly, and rather, Claude Code would absorb new features like that, almost like an alpha version, and then Codex would follow behind that, taking only the highly refined core functions from there in a clean way, and that's how it had been developing. In a way, it's all symbiotic. Symbiotic, yes. Since it's been going like that, well,
+
+<span class="paragraph-timestamp" data-ts="44:09">44:09</span> **Noah Ko** So when I first heard about this incident, well, this person is our employee and someone close to us, but the first thing I said was not a joke. I mean, I said I'd prepare tofu. First of all, it's definitely not a good thing, but if you say you're going to do this, I don't think I'm really in a position to say much about it, and I think that's what I said, and in fact, there is so much discourse and only once we've decided what we think can I really talk about this.
+
+<span class="paragraph-timestamp" data-ts="44:37">44:37</span> So I'm assuming Anthropic probably won't be able to answer this, that's my assumption, and if they do, maybe we can really move on to the next something, and I have a bit of that hope as well.
+
+<span class="paragraph-timestamp" data-ts="44:46">44:46</span> **Seungjoon Choi** So what you're saying is that you did this knowing that it was problematic in some way.
+
+<span class="paragraph-timestamp" data-ts="44:52">44:52</span> **Noah Ko** To me, the full implication of that was, "This is just a meme. I posted code through AI that doesn't even run, and I still hit 100K, surpassing the total stars of really important repositories on GitHub. My phone was off, and when I woke up the next day, I was still the same, but everyone in the world was looking for me." I couldn't just laugh that off. It felt like such a stark story, and you said it was a kind of corruption of our condition and that it had a different character, and I think that came across so vividly.
+
+<span class="paragraph-timestamp" data-ts="45:25">45:25</span> **Chester Roh** So I think we need to wrap this discussion up now, but we can't really make a value judgment on this. Actively taking advantage of someone else's misfortune is morally wrong. But legally, or in terms of how Anthropic exercises its rights from here on out, because AI is involved, this could provoke extremely complex discourse.
+
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> **Seungjoon Choi** What's happening now, or what will happen going forward, could be a symbol that serves as a kind of catalyst, and that's the part that makes me want to talk about it a bit.
+
+<span class="paragraph-timestamp" data-ts="46:04">46:04</span> **Chester Roh** The right question we need to ask here is: as AI clicks away like this, and hands over all the IP, what we call intellectual property, then in this kind of era, what is the value added? That's the question we should ask.
+
+<span class="paragraph-timestamp" data-ts="46:23">46:23</span> **Noah Ko** Looking at what I put up earlier here, this content, if you look at it purely economically, it's PMF. In the end, what matters is whether the market wants this, whether it makes money in the market, and of course ideas matter.
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> But isn't the value of code itself really dropping? In fact, one of the most successful software projects in the world, Claude Code, when you actually look at it, was written almost entirely with AI, and not only written with AI, but of course there would also be issues with code quality. In the end, it seems that only making what customers need is what matters, but AI is still in a very early stage, isn't it?
+
+<span class="paragraph-timestamp" data-ts="47:02">47:02</span> So this is only going to accelerate further, and won't it ultimately head in this direction, where the value of code is often said to be zero? Maybe you can't make it completely zero, but won't it approach zero much faster, I find myself thinking that a lot.
+
+<span class="paragraph-timestamp" data-ts="47:15">47:15</span> **Chester Roh** So it may look like OpenAI or Anthropic is doing something with a major advantage when it comes to these giant models, but in fact, according to people like Peter Diamandis or Elon Musk, people who think far more radically than we do, the moment AGI arrives, this is no longer really about source code intellectual property. The value of all intellectual abilities humans possess drops to zero. Because it will do it far better than we can, and far faster too. When it becomes that kind of era, then the question of what value added means is something we have to think about. Then in the end, even if we talk about PMF, market fit, it really just goes back to a problem-solving market.
+
+<span class="paragraph-timestamp" data-ts="48:01">48:01</span> **Seungjoon Choi** But listening to today's context, like this, our audience is obviously like that, and our background is also in a technology-related context. So because of that, we may not be able to think outside the box. From a completely different domain, this could be an event seen from a totally different perspective. We don't really know that part either. For now, it just feels a bit unsettling. Actually, not just a bit.
+
+<span class="paragraph-timestamp" data-ts="48:30">48:30</span> Leaving that possibility open, another topic I want to raise is this: this week and last week as well, there were quite a lot of signals where AI-generated code and security issues were intertwined. There was LiteLLM, and there was also something related to Axios. So Andrej Karpathy tweeted about it several times too, and those things, in terms of supply chain attacks, what is that exactly?
+
+## AI code generation and security: The threat of supply chain attacks    *48:37*
+
+<span class="paragraph-timestamp" data-ts="48:55">48:55</span> **Chester Roh** There are even very popular libraries, and you can plant something malicious into the code of that library itself, or into the lower-level libraries that it depends on. In fact, they all have maintainers, and through some kind of open-source community consensus, decisions are made on whether to accept those commits or not.
+
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> But in the case of those low-level libraries underneath, sometimes there is no maintainer, or just by making a small contribution, you can gain maintainer privileges, because it's such a highly democratic system in many cases, so if you fix something minor in some neglected area way down below, then because everything has dependencies, it all spreads upward. Because it has to be changed. So it becomes a way of inducing the action you want, a kind of social engineering.
+
+<span class="paragraph-timestamp" data-ts="49:45">49:45</span> **Seungjoon Choi** But with things like that, when people code through AI, a proper developer would have locked things down or done something like that, but instead they just keep clicking away, use some vulnerable library as is, and there's concern about being exposed to zero-days and things like that, so there were those kinds of effects,
+
+<span class="paragraph-timestamp" data-ts="50:04">50:04</span> and on the other hand, this is also a somewhat different kind of what we often call technical debt. It's mass-producing a different kind of debt right now, too much code, unmanageable code, code that works but can't really be reviewed carefully, and in terms of generation versus management, signals of that kind of asymmetry, the kind that isn't being managed, are showing up quite a bit on the timeline.
+
+<span class="paragraph-timestamp" data-ts="50:32">50:32</span> **Chester Roh** But we've already been through that once in the age of email. When only a small number of pioneers used email, it was a very clean tool, but once everyone piled in and started treating it as something with commercial value, now just open your Gmail or Naver Mail. Ninety percent of it is spam.
+
+<span class="paragraph-timestamp" data-ts="50:51">50:51</span> We should expect the same kind of thing to happen in this code space too. Yes, then brand will become even more important, and things with business models built around that will emerge as well.
+
+<span class="paragraph-timestamp" data-ts="51:01">51:01</span> So even if it's the same LLM, won't we move into an era where we actually prefer using Anthropic models or OpenAI models over Chinese models? Jeongkyu once said, again, that maybe it would become the age of brands again, and this continues to connect with that a lot.
+
+<span class="paragraph-timestamp" data-ts="51:18">51:18</span> **Seungjoon Choi** To come back a bit to Claude Code, and connect this, in fact, until Boris Cherny confirmed it, didn't we say quite a bit that this was clearly just an AI mistake? That this wasn't being managed, and in fact, late last year, Anthropic had acquired Bun, right? Related to that acquisition, wasn't there speculation that some kind of vulnerability had been triggered, and then when they opened the code, There was that thing on the Axios side, and people wondered whether some kind of exfiltration had happened there. Until it was revealed to be Boris Cherny, people were saying this wasn't a human-factor problem, but rather that code generated by AI might have been left unmanaged.
+
+<span class="paragraph-timestamp" data-ts="51:58">51:58</span> **Chester Roh** Right, well, that's all kind of conspiracy stuff, so who knows. In Anthropic's case, actually, they had been operating by delegating more tasks to the model. Okay, so if this time they said it was human error, even if by any chance it had been the model's mistake, Anthropic would never have done something as stupid as saying, "It was the model's mistake."
+
+<span class="paragraph-timestamp" data-ts="52:23">52:23</span> **Seungjoon Choi** That's right. Because that would be a much bigger blow....
+
+<span class="paragraph-timestamp" data-ts="52:25">52:25</span> **Chester Roh** It's much more beneficial to say a human made a mistake.
+
+<span class="paragraph-timestamp" data-ts="52:28">52:28</span> **Seungjoon Choi** But another interesting point is that on Anthropic's side, around late February or early March, anyway, that zero-day vulnerability could be found by something like Claude Opus 4.6, that's how they framed it. But if they automated it, then it should be finding those things well, and yet it didn't, right?
+
+<span class="paragraph-timestamp" data-ts="52:46">52:46</span> Right, so this is where things are a bit kind of bouncing around.
+
+<span class="paragraph-timestamp" data-ts="52:50">52:50</span> **Noah Ko** If this was human error, then it would be a very simple deployment issue, but honestly, before even looking at the zero-day, I also wonder whether they might not have been using AI in their own pipeline in the first place. AI might actually have done better. It might actually be that humans are more of the problem, and honestly, this is also a slightly different point, but related to what you mentioned earlier: I think all kinds of supply-chain security attacks already existed.
+
+<span class="paragraph-timestamp" data-ts="53:17">53:17</span> But while there were a great many of them, finding a zero-day was something that required a lot of human resources. And those were traded at very high prices.
+
+<span class="paragraph-timestamp" data-ts="53:27">53:27</span> But according to Anthropic's claim about something like Claude Opus 4.6, it can immediately find a zero-day, create the exploit, and even escape with it, but security doesn't really work that way. If just one weakest link gets breached, everything gets breached, and the more that codebase grows, the more likely it is, probabilistically, to create security problems.
+
+<span class="paragraph-timestamp" data-ts="53:45">53:45</span> But what changed is that security vulnerabilities that used to be found through human intellect and enormous amounts of time are now being found almost automatically, in real time. So that makes me think maybe that's why we're experiencing more security issues.
+
+<span class="paragraph-timestamp" data-ts="53:58">53:58</span> **Seungjoon Choi** This feels a bit like putting puzzle pieces together, and the incident starts to feel more three-dimensional. These things are just interlocking, and where is this heading now?
+
+<span class="paragraph-timestamp" data-ts="54:08">54:08</span> That's why even among senior developers, people are saying this is moving too fast right now, and we need to hit the brakes a little. Mario Zechner said that, the one who made Pi. So now it feels like we need some shift in awareness, and I can also feel the gap between what is actually possible in practice and what can't be managed.
+
+<span class="paragraph-timestamp" data-ts="54:28">54:28</span> **Chester Roh** Right, but this is like a prisoner's dilemma, so I don't think this direction of change can be stopped. Even if I stay still, someone who acts will step over me and profit from it, and the moment that affects everyone in exactly the same way, for everyone to run in that direction becomes the most rational choice. This can't be stopped.
+
+<span class="paragraph-timestamp" data-ts="54:53">54:53</span> **Noah Ko** And it's only going to accelerate.
+
+<span class="paragraph-timestamp" data-ts="54:55">54:55</span> **Seungjoon Choi** So if it accelerates, does that mean security incidents will just keep happening?
+
+<span class="paragraph-timestamp" data-ts="54:58">54:58</span> **Noah Ko** Yes, even those supply-chain attacks you just mentioned can be addressed through AI-based reimplementation. If you internalize the entire codebase, and if that's possible because you have AI, then that may actually be a controllable means. At the very least, even though it has problems, downloading issues caused by famous open-source projects or libraries can be prevented to some extent, and of course code made by AI could be even more problematic. But because it's not the focus of attackers' attention, and because it stays hidden better, in a way it's kind of like a dark forest. Yes, that's the feeling I get. But the world is changing too fast, and the problems, so to speak, the hurdles, all seem to come from human thinking capacity, the amount of time humans can work, and human intellectual ability, so I think security is the same way.
+
+<span class="paragraph-timestamp" data-ts="55:50">55:50</span> **Seungjoon Choi** So do we just have to endure this and move on to the next stage?
+
+<span class="paragraph-timestamp" data-ts="55:55">55:55</span> **Chester Roh** If I had to summarize it bluntly, I think with those individual elements, even the work of interpreting and defining something is increasingly likely to stop being human work. In other words, every problem can simply be reduced to computation and processed. So rather than spending time worrying about and debating those things, we should spend that time keeping up more with the changes in this world, and that's just my own personal strategy at this point.
+
+<span class="paragraph-timestamp" data-ts="56:29">56:29</span> **Noah Ko** Won't only human tastes and preferences remain? Products that people fundamentally like more, forms that people fundamentally prefer, only those will remain, and won't AI do everything else? Even if people dislike it, in that environment, we still want to make something, and we're still makers and builders, but if what AI does is just too perfect, won't that really be all that's left? I see it as a dystopia.
+
+<span class="paragraph-timestamp" data-ts="56:55">56:55</span> **Chester Roh** It could be a dystopia, or it could be a utopia. Yes, but for example, if an age of infinite computation arrives and a Matrix-like world comes, where we live not in reality but in an ideal virtual reality, doing exactly the same things we do in our lives now, would that be a utopia? Or a dystopia? For some, it's a dystopia; for others, a utopia.
+
+<span class="paragraph-timestamp" data-ts="57:19">57:19</span> **Noah Ko** The reason I called it a dystopia is probably because I have, at a fundamental level, the bias of being someone who wants to build and make things. But if people were truly born into that era, they could think, this is just how things naturally are, this is what the world is like. Kind of like what's happening now, so for us,
+
+<span class="paragraph-timestamp" data-ts="57:36">57:36</span> **Chester Roh** Now, after going around and around, we're reaching some kind of conclusion, and there are parts of this conclusion where we have to ask whether this is really right, but the core point isn't that this is wrong or right, rather than talking about it that way, the essence this incident is showing us is that things like this will become extremely commonplace going forward.
+
+<span class="paragraph-timestamp" data-ts="58:00">58:00</span> **Seungjoon Choi** It won't even be an issue anymore.
+
+<span class="paragraph-timestamp" data-ts="58:02">58:02</span> **Chester Roh** And the way people like Jinhyung, Yechan, and Yeongyu showed us, the question is how they used computation to create greater leverage than others and profit from having that methodology in place.
+
+<span class="paragraph-timestamp" data-ts="58:21">58:21</span> **Seungjoon Choi** But at this point, that is inevitably within Chester's domain, because there's a strong business bias there, so I think you can't help but speak from that perspective. But even I myself can't really think outside the box very well on this.
+
+<span class="paragraph-timestamp" data-ts="58:36">58:36</span> Still, going back to what I mentioned a moment ago, like Mario Zechner said, productive friction, shouldn't we hold on to things like that? In the builder context, the things I liked, the things I assigned meaning and value to, shouldn't just all become seamless; I have a choice in that. And I think that position also deserves respect.
+
+<span class="paragraph-timestamp" data-ts="58:56">58:56</span> But then again, when you have to take this and build a business and push forward, that might sound leisurely, in a sense. Even so, though, I do think there will be a variety of opinions on this. There will be different attitudes, and those could also be values and tastes.
+
+<span class="paragraph-timestamp" data-ts="59:14">59:14</span> **Chester Roh** Yes, exactly. What we had actually originally planned for today was to take a look at Claude Code's structures, and also how they designed the agent loop, how they called tools, and how they handled memory, and discuss whether they really did it well.
+
+<span class="paragraph-timestamp" data-ts="59:33">59:33</span> But all of that now is a matter of putting your own repositories into Claude Code and Codex, and click-click-click, studying it yourself in this world. Is there anyone these days who doesn't study with models?
+
+<span class="paragraph-timestamp" data-ts="59:45">59:45</span> Then before we wrap up, lastly, I'd like to ask this question. Looking at how things are unfolding now, it feels like this harness and LLM and these things have combined into some kind of new unit, or at least that they will, and that seems to carry quite a lot of implications for business too. I'd like to ask just a little more about the business side.
+
+## Harness engineering and the future of business    *59:52*
+
+<span class="paragraph-timestamp" data-ts="1:00:10">1:00:10</span> **Noah Ko** Harness engineering also feels like it's developing in a very domain-specific way. The fact that the word harness is even coming up will probably feel unfamiliar to a lot of people. But it's really important and widely used, and because it's actually solving certain problems, treating it as just some new buzzword feels too light; it seems important and weighty. In fact, we are also a company that used to do prompt engineering in the past, and context-related context management, making products like that. So naturally, the people there are in a structure where they can't help but take a big interest in this. But for example, this... Looking at the most popular harnesses lately, or projects like Pi that run some kind of core loop, they're extremely simple. They only have about three functions, and they use Bash or things like that, and they operate with only really basic features, but the fact that this keeps getting broken down further and built out feels very obvious to me. The same goes for OpenClaw, and really, it's our general impression of AI companies, I guess. In those areas, they build models really well, and if it's about models, then naturally that also means refining data well, training, and evaluating, and that most of their capabilities would be concentrated on things like that. I do think that's true in reality as well.
+
+<span class="paragraph-timestamp" data-ts="1:01:28">1:01:28</span> But looking at the internal implementation of Claude Code this time, it's like a product polished to the absolute limit, if you think of it as SaaS, like something where they've studied user experience for 10 years, 20 years, and I get a lot of that kind of feeling from it. The code isn't what matters, the code structure isn't what matters, it's how the customer feels, how the user actually using this feels, and what kind of outcomes they get, and it feels like they stayed focused on that all the way to the end.
+
+<span class="paragraph-timestamp" data-ts="1:01:51">1:01:51</span> But the thing is, this was an AI company. Then what matters going forward is, I think, just something that naturally comes out of this. In the end, it's not which model matters, and it's not which harness matters, but the work the customer wants, the domain I want to pursue, so that it can enable the work that needs to be done, at the optimal cost and with the optimal approach, the team that can design that is the one that will inevitably lead the next company, and in my business, in the work I want to do, what is going to help with the kind of enjoyment I want? For now, I think this will be a clear standard, and I've kept saying that PMF was always king, and the code doesn't matter, and repeating things like that over and over, but actually, for a very long time, I too was someone who worked by writing code, so this feels very awkward and even unpleasant, but I think we're heading toward a future that's just too self-evident.
+
+<span class="paragraph-timestamp" data-ts="1:02:42">1:02:42</span> **Chester Roh** In the end, I think we can compare it like this. Back when the PC era was just beginning, there were debates over whether Korean should be 7-bit or 8-bit, whether it should be the precomposed type or the combinational type, and all sorts of things like that, but now none of that means anything. Computers just became a big tool that helps us, and because of that, we ended up with more work and more complexity, and this too will play that kind of role, becoming a new tool. Yes, and while we can't know it now, humans will probably end up chasing some new kind of value again.
+
+<span class="paragraph-timestamp" data-ts="1:03:16">1:03:16</span> **Seungjoon Choi** It can feel like we're chasing it, but these days I also often feel like we're being pushed along.
+
+<span class="paragraph-timestamp" data-ts="1:03:21">1:03:21</span> **Noah Ko** I agree as well. Yes.
+
+<span class="paragraph-timestamp" data-ts="1:03:22">1:03:22</span> **Seungjoon Choi** Anyway, those were the kinds of thoughts I was having around April 1.
+
+## Closing: New tools create new value    *1:03:25*
+
+<span class="paragraph-timestamp" data-ts="1:03:27">1:03:27</span> **Chester Roh** There's a lot more to say, but we'll wrap up that conversation here for now, and this recording here at Sionic, we'll bring it to a close with this. Yes, thank you for your hard work.
+
+<span class="paragraph-timestamp" data-ts="1:03:35">1:03:35</span> **Noah Ko** Thank you for your hard work.

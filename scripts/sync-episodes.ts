@@ -65,7 +65,7 @@ interface EpisodeMetadata {
   thumbnail: string;
   hosts: string[];
   chapters: Chapter[];
-  lang: 'ko' | 'en';
+  lang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug: string | null;
 }
 
@@ -311,15 +311,18 @@ alternateSlug: ${meta.alternateSlug ? `"${meta.alternateSlug}"` : 'null'}
 `;
 }
 
-function findPublishFile(epDir: string, lang: 'ko' | 'en'): string | null {
+function findPublishFile(epDir: string, lang: 'ko' | 'en' | 'ja' | 'zh-Hans'): string | null {
   const outputsDir = path.join(epDir, 'outputs');
   if (!fs.existsSync(outputsDir)) return null;
 
   const files = fs.readdirSync(outputsDir);
-  const patterns =
-    lang === 'ko'
-      ? ['_kor_paragraphed_publish.md', '_publish.md', '_kor_paragraphed_codex.md']
-      : ['_en_publish.md', '_en_paragraphed_publish.md'];
+  const patternMap: Record<string, string[]> = {
+    'ko': ['_kor_paragraphed_publish.md', '_kor_paragraphed_codex.md'],
+    'en': ['_en_paragraphed_publish.md', '_en_publish.md'],
+    'ja': ['_ja_paragraphed_publish.md', '_ja_publish.md'],
+    'zh-Hans': ['_zh_paragraphed_publish.md', '_zh_publish.md'],
+  };
+  const patterns = patternMap[lang] || [];
 
   for (const pattern of patterns) {
     const found = files.find((f) => f.endsWith(pattern));
@@ -337,7 +340,7 @@ function extractFirstHeadingTitle(content: string): string {
   return 'Untitled Episode';
 }
 
-function syncEpisode(epNum: number, lang: 'ko' | 'en' = 'ko'): boolean {
+function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko'): boolean {
   const epDir = path.join(EXAMPLES_DIR, `ep${epNum}`);
   if (!fs.existsSync(epDir)) {
     console.error(`Episode directory not found: ${epDir}`);
@@ -361,11 +364,13 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' = 'ko'): boolean {
   content = convertInlineTimestamps(content);
 
   // Parse chapters
-  const chaptersFile = path.join(
-    epDir,
-    'chapters',
-    lang === 'ko' ? `ep${epNum}_human.txt` : `ep${epNum}_en_human.txt`
-  );
+  const chapterFileMap: Record<string, string> = {
+    'ko': `ep${epNum}_human.txt`,
+    'en': `ep${epNum}_en_human.txt`,
+    'ja': `ep${epNum}_ja_human.txt`,
+    'zh-Hans': `ep${epNum}_zh_human.txt`,
+  };
+  const chaptersFile = path.join(epDir, 'chapters', chapterFileMap[lang]);
   const chapters = parseChaptersFile(chaptersFile);
   console.log(`  Chapters: ${chapters.length}`);
 
@@ -438,7 +443,7 @@ function findAllEpisodes(): number[] {
 const args = process.argv.slice(2);
 let epNum: number | null = null;
 let syncAll = false;
-let lang: 'ko' | 'en' = 'ko';
+let lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko';
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--ep' && args[i + 1]) {
@@ -447,7 +452,7 @@ for (let i = 0; i < args.length; i++) {
   } else if (args[i] === '--all') {
     syncAll = true;
   } else if (args[i] === '--lang' && args[i + 1]) {
-    lang = args[i + 1] as 'ko' | 'en';
+    lang = args[i + 1] as 'ko' | 'en' | 'ja' | 'zh-Hans';
     i++;
   }
 }
