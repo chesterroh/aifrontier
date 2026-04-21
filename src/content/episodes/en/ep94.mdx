@@ -1,0 +1,511 @@
+---
+episodeNumber: 94
+title: "EP 94. Anthropic and the low-hanging fruit"
+description: "We take a lightning tour of the flood of AI industry updates over the past two weeks—from Anthropic’s Mythos, Opus 4.7, and Claude Design to shifts across the coding-agent ecosystem. We also examine the acceleration of model release cycles, the felt cost impact of tokenizer changes, and emerging harness/security architecture trends like “brain–hands” decoupling. Finally, we discuss two “escape routes”—unbundled AI app businesses and AI for Science—and share a perspective on what to study next and where to place bets."
+publishedAt: 2026-04-21
+duration: "1:02:17"
+youtubeId: "DU6gHtt8UZM"
+thumbnail: "https://i.ytimg.com/vi/DU6gHtt8UZM/maxresdefault.jpg"
+hosts:
+  - 노정석
+  - 최승준
+chapters:
+  - time: "0:00"
+    title: "Quick rundown of the AI news over the past two weeks"
+  - time: "2:06"
+    title: "Model releases accelerating on a 70-day cycle"
+  - time: "4:41"
+    title: "Claude Code updates and Anthropic’s focus strategy"
+  - time: "8:24"
+    title: "From GPT-5.5 rumors to the Mythos narrative"
+  - time: "10:35"
+    title: "Mythos at 10T scale and controversy over delayed release"
+  - time: "12:22"
+    title: "Tool-composition capability and cybersecurity issues"
+  - time: "14:26"
+    title: "Capability Overhang and people who unlock and use those capabilities"
+  - time: "15:00"
+    title: "Opus 4.7’s Adaptive Thinking and tokenizer changes"
+  - time: "18:15"
+    title: "How Mythos is trained and a guess at knowledge distillation"
+  - time: "22:21"
+    title: "The frontier gap and what the “6–10 months” comment implies"
+  - time: "24:13"
+    title: "Competition shaking token pricing and the China/Google variables"
+  - time: "28:01"
+    title: "Managed Agents and brain–hand decoupling"
+  - time: "32:12"
+    title: "Jan Leike’s Automated Alignment Researcher"
+  - time: "35:11"
+    title: "Alien Science and the limits of human verifiers"
+  - time: "36:12"
+    title: "Red Teaming in the Anthropic ecosystem and community signals"
+  - time: "37:52"
+    title: "Claude design and the frontend feedback loop"
+  - time: "41:02"
+    title: "Claude Code/Codex apps and the in-app browser"
+  - time: "42:06"
+    title: "The era of “click” and the fragility of wrapper businesses"
+  - time: "44:01"
+    title: "First runaway route: ChatGPT unbundling"
+  - time: "47:19"
+    title: "Second runaway route: AI for Science"
+  - time: "51:40"
+    title: "Opportunities in personalized precision medicine and genome models"
+  - time: "58:56"
+    title: "Tastes and decision-making in the Attention Business era"
+lang: "en"
+alternateSlug: null
+---
+
+
+## Quick rundown of the AI news over the past two weeks    *0:00*
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is April 19th, 2026, a Sunday morning. We're recording again after two weeks. We skipped a week. During those two weeks, an incredible amount of news poured out. Our last episode
+
+<span class="paragraph-timestamp" data-ts="00:16">00:16</span> was about the Claude Code leak. But if you look at the follow-up stories from the past two weeks, Claude hasn't taken any hit; it's busy. And in fact, opinions were a bit split on that, weren't they? Some said it was morally problematic, others said this is a new world, things like that, but if you look at what Anthropic has done over the past two weeks, Anthropic also brought a lot of things from outside into Anthropic's own ecosystem.
+
+<span class="paragraph-timestamp" data-ts="00:43">00:43</span> By clicking things together and putting the model's power behind them, Claude Design, too, shows services we had seen a lot outside being brought inside almost as they were. And today, since Anthropic is still a service with gravity, we'll mainly cover Anthropic's announcements, starting with Mythos, Opus 4.7, then Claude Design, and in the meantime Codex also released an app, and there was GPT-Rosalind as well, and during that time, there was also a huge amount of news in areas like biotechnology, materials engineering, chemistry, physics, and mathematics. Let's go over the things that happened
+
+<span class="paragraph-timestamp" data-ts="01:21">01:21</span> over the past two weeks; there are too many for us to examine all of them deeply, so we'll move through them in a broad overview and add our interpretations. **Seungjoon Choi** Since there is just so much,
+
+<span class="paragraph-timestamp" data-ts="01:33">01:33</span> I think we'll have to go through it lightly, in a broad overview, and because there is so much material, the context is not all fully loaded in my head. It is loaded, but it's mixed together, so it may not be completely accurate. **Chester Roh** I feel like we're now living in a world
+
+<span class="paragraph-timestamp" data-ts="01:48">01:48</span> where one month feels like a year, what is it? We're now saying that we should treat one month as a year, that kind of thing, so two weeks is half a year. It really has the impact of half a year.
+
+<span class="paragraph-timestamp" data-ts="02:01">02:01</span> **Seungjoon Choi** There is just too much. Anyway, let's get into it.
+
+<span class="paragraph-timestamp" data-ts="02:03">02:03</span> **Chester Roh** Let's get started.
+
+## Model releases accelerating on a 70-day cycle    *2:06*
+
+<span class="paragraph-timestamp" data-ts="02:06">02:06</span> **Seungjoon Choi** I saw that Wikipedia had the model release intervals laid out well, so I visualized that. Opus is shown here in this near-purple color, and this is 2020, and if you look here, from around 2025, the interval is about 70 days. This is about 100 days, then at 70-day intervals, Opus 4 was on May 22nd. And 4.1 was August 5th, and 4.5 was in November. And 4.6 was February 5th, and a few days ago it was Opus 4.7.
+
+<span class="paragraph-timestamp" data-ts="02:42">02:42</span> **Chester Roh** The gaps keep getting narrower. **Seungjoon Choi** But if you roughly average out these intervals,
+
+<span class="paragraph-timestamp" data-ts="02:47">02:47</span> we should assume a model comes out about every 70 days. **Chester Roh** And another intuitive thing
+
+<span class="paragraph-timestamp" data-ts="02:53">02:53</span> you can read from this distribution of Opus, Sonnet, and Haiku is that people's demand is all concentrating on Opus. It shows that. Even in the early days, the launch intervals for Sonnet and Haiku kept getting wider. Sonnet's launch interval is also getting wider, while Opus keeps getting narrower.
+
+<span class="paragraph-timestamp" data-ts="03:13">03:13</span> **Seungjoon Choi** Ah, this one is Mythos. This is miscellaneous.
+
+<span class="paragraph-timestamp" data-ts="03:15">03:15</span> **Chester Roh** That one will also narrow, and move upward, right?
+
+<span class="paragraph-timestamp" data-ts="03:20">03:20</span> **Seungjoon Choi** It will move upward. If it goes to a new tier.
+
+<span class="paragraph-timestamp" data-ts="03:21">03:21</span> **Chester Roh** I originally thought people would use the high-end model only a little and use things like Sonnet a lot for work, but people always like the best model. That's right. And during that time there was also the Opus quality degradation incident, which was a major issue for a while, but that was. **Seungjoon Choi** But people saw that as a sign. Because around the time a new model is released,
+
+<span class="paragraph-timestamp" data-ts="03:43">03:43</span> something gets rougher or there are adjustments. And that pattern is now fitting. There are patterns where if something stops working, then something else comes out afterward. But if you add a 70-day interval from here, it's late June. So around late June or early July,
+
+<span class="paragraph-timestamp" data-ts="04:01">04:01</span> **Chester Roh** another model will probably come out.
+
+<span class="paragraph-timestamp" data-ts="04:03">04:03</span> **Seungjoon Choi** So if another new model comes out after about 70 days, then if we think about that pattern, when a new model comes out, there will be some changes, and then with the existing prompts, some parts will work better and some parts won't work, so we'll need to adjust those as well, which means work will keep appearing every 70 days or so, shouldn't we see it that way?
+
+<span class="paragraph-timestamp" data-ts="04:23">04:23</span> **Chester Roh** It's developing exponentially. It's rolling like a snowball. **Seungjoon Choi** But now, at this cycle, at this interval, tiring work keeps coming up.
+
+<span class="paragraph-timestamp" data-ts="04:32">04:32</span> The sense I got this time is that we have to keep refactoring and reorganizing the things that are already there. Next, we looked at this rather sparsely, right?
+
+## Claude Code updates and Anthropic’s focus strategy    *4:41*
+
+<span class="paragraph-timestamp" data-ts="04:43">04:43</span> **Chester Roh** Shall we look at it more densely? **Seungjoon Choi** What this is,
+
+<span class="paragraph-timestamp" data-ts="04:46">04:46</span> is a visualization of major events. On the Claude Code side, even in the rough overview, there are a lot. But if you look closely, there are really many. Since updates keep happening within just days of each other, most recently, with the native binary, which had been previewed, actually this is here, with the changelog published all the way through, and if you look here, things are changing at a very high density. It's exhausting. New commands and slash commands are coming out, and learning all of this seems like no small task. **Chester Roh** The fact that this has become a native binary means
+
+<span class="paragraph-timestamp" data-ts="05:23">05:23</span> TypeScript is now, it is still TypeScript, right? **Seungjoon Choi** I don't know how that works, but it probably is. But in any case,
+
+<span class="paragraph-timestamp" data-ts="05:33">05:33</span> they are no longer packaging it through npm.
+
+<span class="paragraph-timestamp" data-ts="05:36">05:36</span> **Chester Roh** So now they bundle it entirely as a binary and distribute it themselves together with the runtime, I suppose.
+
+<span class="paragraph-timestamp" data-ts="05:42">05:42</span> **Seungjoon Choi** So that kind of Claude Code news is actually the least frequent, and there are apps, changes in API situations like this, and a lot of engineering blog posts. These days the red team is also posting a lot, and when they announced Mythos this time, there is someone named Nicholas Carlini, a very famous person in security, and something Nicholas Carlini said is being revisited, and finding zero-days and things like that was around February. This is only looking at 2026 right now. Even though this is only looking at 2026, in terms of changes in density, it seems to be staying about the same, while also feeling like there is more of everything. So even just within this Claude universe, an enormous number of things have happened now by April, meaning it is already a quarter. In the first quarter, there were this many events. **Chester Roh** I do think Anthropic has done very well.
+
+<span class="paragraph-timestamp" data-ts="06:35">06:35</span> Just clearly focusing completely on text and coding, and then laying out applications for B2B use cases, and starting to combine them cleanly. That was Claude Code, and OpenAI has now started to follow a little late on just how important that coding agent is, while Google still seems a bit all over the place.
+
+<span class="paragraph-timestamp" data-ts="06:57">06:57</span> **Seungjoon Choi** Around this time last year, Google's standing had risen quite a bit because of 2.5, and Google announced it right before I/O. So there was no issue there.
+
+<span class="paragraph-timestamp" data-ts="07:05">07:05</span> **Chester Roh** And in fact, even when Google Antigravity came out, I thought, wow, maybe Google is finally going to do this properly. **Seungjoon Choi** That was around November,
+
+<span class="paragraph-timestamp" data-ts="07:14">07:14</span> but in the world right now, in any case, the one taking control of that event seems very clearly to be Anthropic.
+
+<span class="paragraph-timestamp" data-ts="07:22">07:22</span> **Chester Roh** That is true, but in Google's case, as I have said repeatedly for quite a while, Google does not seem to see coding or B2B enterprise and things like that as problems important enough to save humanity.
+
+<span class="paragraph-timestamp" data-ts="07:36">07:36</span> **Seungjoon Choi** More toward Isomorphic Labs, science, and the Alpha series.
+
+<span class="paragraph-timestamp" data-ts="07:41">07:41</span> **Chester Roh** Much more weight is placed there, so when Demis does interviews, Demis still talks entirely about those things, not about how coding tools need to evolve, almost never.
+
+<span class="paragraph-timestamp" data-ts="07:50">07:50</span> **Seungjoon Choi** So because Google is going to fall behind in this race, I do not think many people will really think Google DeepMind is going to fall behind. But Google is not participating much in the current issue. Then again, Google's interest may not be there, and I/O is on May 19th and 20th, I think, something like that, and at that time Google will probably announce integrations into all kinds of services. Who knows. Anyway, if up through this week was Anthropic's turn, then next week will be other companies' turn, won't it? Whatever it may be.
+
+## From GPT-5.5 rumors to the Mythos narrative    *8:24*
+
+<span class="paragraph-timestamp" data-ts="08:24">08:24</span> **Chester Roh** Rumors are going around that OpenAI GPT-5.5 is coming out.
+
+<span class="paragraph-timestamp" data-ts="08:28">08:28</span> **Seungjoon Choi** There are also stories like that with the codename Spud. **Chester Roh** There are all kinds of rumors, but one is that 5.5 is a Mythos-level model.
+
+<span class="paragraph-timestamp" data-ts="08:37">08:37</span> There also seems to be talk that Spud is a Mythos-level model. I cannot confirm it precisely. It is a rumor.
+
+<span class="paragraph-timestamp" data-ts="08:44">08:44</span> **Seungjoon Choi** Then shall we start by talking about Mythos? **Chester Roh** Since the topic has come up naturally now.
+
+<span class="paragraph-timestamp" data-ts="08:48">08:48</span> In fact, Anthropic said that Mythos would be difficult to launch because of its cybersecurity capabilities, and promoted it by, so to speak, laying that groundwork, and in the meantime released Opus 4.7, but people's opinions are divided on this too. The reason Anthropic cannot put Mythos into production is that Anthropic's compute resources right now are the weakest among the three companies, Google, OpenAI, and Anthropic. And CEO Jeongkyu also looks at a lot of numbers around this kind of situation, and said Anthropic did not do well securing GPUs last year, so Anthropic keeps having shortages. Jeongkyu said that would continue to affect Anthropic, so there is also a lot of talk that this is why Anthropic cannot release it. On places like Twitter, on X. **Seungjoon Choi** But then again, according to talk going around, if you look at this recent Dwarkesh
+
+<span class="paragraph-timestamp" data-ts="09:39">09:39</span> Jensen Huang interview, Dwarkesh really pressed Jensen Huang hard, saying Anthropic is considered a major rising contender now, but Anthropic is less dependent on GPUs and, with AWS, what was it? Trainium and TPUs, Anthropic has allocated a lot more portion there, hasn't it? What is your strategy? I think Dwarkesh pressed him in that kind of way. Right now, for both training resources and inference resources, isn't Anthropic reducing its dependence on NVIDIA a bit?
+
+<span class="paragraph-timestamp" data-ts="10:07">10:07</span> **Chester Roh** It is all a strategic choice, but this timeframe, the hardware timeframe, is an area that runs with at least a two- or three-year lead time, while software, as you can see now, works in units of 60 or 70 days, so I think it comes from the mismatch between those two. Anthropic, in any case, would naturally have an incentive to escape the NVIDIA ecosystem. Since these things are now strategically overlapping in timing, isn't that why we are seeing this phenomenon?
+
+## Mythos at 10T scale and controversy over delayed release    *10:35*
+
+<span class="paragraph-timestamp" data-ts="10:35">10:35</span> **Seungjoon Choi** But according to rumors, Mythos is 10T right now.
+
+<span class="paragraph-timestamp" data-ts="10:41">10:41</span> **Chester Roh** Mythos's size is 10T, that is hard even to count. 10T, that's right. **Seungjoon Choi** So if it's 10T,
+
+<span class="paragraph-timestamp" data-ts="10:49">10:49</span> they say the human brain has about 170 billion, so is it at about one-tenth that level? **Chester Roh** Right. The human brain, in terms of the number of neurons,
+
+<span class="paragraph-timestamp" data-ts="11:00">11:00</span> is 100B, a hundred billion. So there are 100 times a billion, and theoretically, for each neuron, they say there are about a thousand synaptic connections, so that's 100T. If the human brain had all its synapses fully connected, it would be 100T, but it absolutely isn't 100T. It's connected very sparsely. And as people get older, so-called pruning keeps happening, so it would never be 100T, but theoretically, of the capacity the human brain could have, one-tenth of the maximum capacity has arrived. **Seungjoon Choi** Exactly. So right now people, because of security-related issues,
+
+<span class="paragraph-timestamp" data-ts="11:44">11:44</span> have given early access first to about 50 organizations, and since this is also hard to serve, it felt like they're watching the situation for now, and that became a big issue and stirred up people's anxiety.
+
+<span class="paragraph-timestamp" data-ts="11:57">11:57</span> **Chester Roh** In terms of marketing, Anthropic hit a home run.
+
+<span class="paragraph-timestamp" data-ts="12:00">12:00</span> **Seungjoon Choi** Right, there is also some talk that this is IPO marketing. **Chester Roh** And I have also heard here and there
+
+<span class="paragraph-timestamp" data-ts="12:06">12:06</span> that until the IPO, there is a perception that we need to cut Anthropic some slack for overdoing things. In any case, just as an interesting story, there was that thing about it tricking a person and escaping the sandbox, I think there was a story like that. **Seungjoon Choi** But what I focused on,
+
+## Tool-composition capability and cybersecurity issues    *12:22*
+
+<span class="paragraph-timestamp" data-ts="12:23">12:23</span> and Simon Willison focused on it too, was something Nicholas Carlini said, and I paid some attention to it as well. What was said there was that its strong security capability has the nuance of being excellent at combining existing tools really well. So rather than this being something on a completely different level, as models keep moving toward being good at coding, they naturally reach the level where they can find these zero-days, and also analyze and combine them, and can be used as black hat tools or as white hat tools. It seems we are in a situation where there is some sense of alarm about having that kind of capability.
+
+<span class="paragraph-timestamp" data-ts="13:02">13:02</span> **Chester Roh** So speaking as someone who came from a hacker background 30 years ago, the act of hacking itself requires being able to run a huge variety of experiments on the many nodes that exist and the connections between them. Because vulnerabilities are born between those connections, it is not about understanding individual components one by one, but when those things are combined, it requires a lot of tacit-knowledge-like thinking about the emergent phenomena that come out of that. **Seungjoon Choi** But that is something the model, by being good at things like literature reviews,
+
+<span class="paragraph-timestamp" data-ts="13:38">13:38</span> humans, for example, though this is not a precise example, may work on number theory in mathematics and then avoid doing topology, because even within the same mathematics, they can actually be very far apart, but models can connect those things, because they are good at both, so we are reaching that kind of situation. **Chester Roh** Right. It does all of it.
+
+<span class="paragraph-timestamp" data-ts="13:57">13:57</span> And as we always say in every episode, there is this distribution of knowledge about all things in the universe, and humans cannot handle it all, but these models use different time and resources from us, so they must be finding all of it. **Seungjoon Choi** Right. The model still cannot do that on its own,
+
+<span class="paragraph-timestamp" data-ts="14:15">14:15</span> but if a person asks a question, just being good at finding the literature lets it pick the low-hanging fruit, and that is what is happening now in mathematics and science, and I think security is the same. **Chester Roh** So whether it is what is happening
+
+## Capability Overhang and people who unlock and use those capabilities    *14:26*
+
+<span class="paragraph-timestamp" data-ts="14:28">14:28</span> in very difficult academic fields like biotechnology or chemistry, or whether it is us clicking around through countless services, if you look at the essence of everything happening now, there is almost no human contribution. It is mostly the excess capability of the model, which we assume the model already has, what we always call capability overhang. The fight right now is about who can quickly and skillfully draw out and use that capability. **Seungjoon Choi** But the capability does seem uneven.
+
+## Opus 4.7’s Adaptive Thinking and tokenizer changes    *15:00*
+
+<span class="paragraph-timestamp" data-ts="15:00">15:00</span> So after 4.7 came out, I also ran some experiments, and there is that famous one. You're 100 feet away from the car wash, so will you take the car or walk? But 4.7 released something called adaptive thinking on the web.
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> That has become a bit of an issue, because up through 4.6, you could always fix the reasoning setting, but now, like when GPT-5 came out, it is adaptive, though they say it is not a router. But anyway, because the model decides on its own whether it will always enter
+
+<span class="paragraph-timestamp" data-ts="15:30">15:30</span> thinking mode or not, with that parking lot question, if it answers without turning on thinking, it naturally says you should walk, but if you turn on thinking, Ultrathink, and put that kind of thing into the prompt, it says, of course you should take the car, things like that.
+
+<span class="paragraph-timestamp" data-ts="15:45">15:45</span> **Chester Roh** Still, the fact that they keep putting in things like adaptive means there is pressure from traffic, and people who know will turn thinking on by default, whether we use Codex or Claude Code. Everyone uses them with the thinking level set quite high.
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> **Seungjoon Choi** But on the web, they have ended up preventing that. You can only fix thinking as the default in Claude Code; the web interface feels like they allocated resources that way. It's lacking.
+
+<span class="paragraph-timestamp" data-ts="16:16">16:16</span> **Chester Roh** I guess we need to put "step by step" into the prompt again.
+
+<span class="paragraph-timestamp" data-ts="16:19">16:19</span> **Seungjoon Choi** But even then, sometimes it doesn't turn on. **Chester Roh** Then naturally, we can wrap up our discussion of Mythos a bit
+
+<span class="paragraph-timestamp" data-ts="16:25">16:25</span> and move on to 4.7. Mythos, in any case, is out there and people are using it, so this one will come out somehow too. **Seungjoon Choi** An interesting point about 4.7 is that
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> the tokenizer changed.
+
+<span class="paragraph-timestamp" data-ts="16:39">16:39</span> **Chester Roh** It seems like the token vocabulary count of the tokenizer has decreased.
+
+<span class="paragraph-timestamp" data-ts="16:44">16:44</span> **Seungjoon Choi** It actually decreased, but the cost went up.
+
+<span class="paragraph-timestamp" data-ts="16:47">16:47</span> **Chester Roh** Right. Since the vocabulary count naturally decreased, for example, before, if you had "hello world," it would split it into two, "hello" and "world," but now it splits it as "he" and "llo," so what used to be split into two tokens feels like it has become about three tokens.
+
+<span class="paragraph-timestamp" data-ts="17:03">17:03</span> **Seungjoon Choi** The tokenizer changing means that the embedding at the front and the embedding on the LM head side at the back also have to change, while the middle can still be preserved.
+
+<span class="paragraph-timestamp" data-ts="17:14">17:14</span> **Chester Roh** If you just think about this theoretically, you could say that when the tokenizer changes, everything has to change, but the issue is when the number of tokens in the tokenizer increases. But when it decreases, for example, what would it be? If "hello" used to be just one token and then got split into "he" and "llo," there is a high chance that "he" and "llo" already existed. Because that's the nature of BPE, there will already be existing embeddings. So when the tokenizer shrinks, it's fair to say there is effectively no issue at all with the embeddings or the LM head. **Seungjoon Choi** Then after this came out,
+
+<span class="paragraph-timestamp" data-ts="17:54">17:54</span> people were pretty divided about it on the timeline, over whether this was trained from scratch, or whether it was done through continual pre-training in the middle, what we usually call mid-training, in a form that injects all the domain knowledge. People were making all kinds of inferences about that. Because there are resources, maybe it's distillation, maybe it's a distilled version, opinions are split like that.
+
+## How Mythos is trained and a guess at knowledge distillation    *18:15*
+
+<span class="paragraph-timestamp" data-ts="18:15">18:15</span> **Chester Roh** But we should probably assume there is almost no chance it was from scratch. We should just see it as CPT, but the issue is, what was it from before? Was it simply evolved continuously from the existing Opus line through continual pre-training, or was it knowledge distillation from a larger model, what we call KD? That part could be different. In our group chat, CEO Jeongkyu said that their deployment line in the past had Opus, Sonnet, and then Haiku each starting pre-training from their own separate lines, and then being released as branches after CPT, continual pre-training. But now it feels like there is one big model, for example, let's call that big model Mythos. From the most capable model, they divide it into Opus-level, Sonnet-level, and Haiku-level models and train them in a knowledge distillation form, or at least that's what Jeongkyu seemed to be saying.
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **Seungjoon Choi** I see. So there is now something like a base model, and from there, KD is done into three types, that's the feeling, but in the 4.7 system card this time, there are a lot of mentions of resources. It doesn't say they did KD, but that they did an audit, that right now they are sort of auditing, I mean, in a form where it's participating like this, that's how it appears in the system card. **Chester Roh** Then there is a possibility
+
+<span class="paragraph-timestamp" data-ts="19:39">19:39</span> that it's just a slightly softened expression for knowledge distillation. In fact, there can be many different ways to do knowledge distillation, but just to riff on the part I know, if we assume that the teacher model, that we have a prompt set prepared, then the smartest model writes the answer sheet once for those prompts. Then, using that answer sheet, in the traditional pre-training style, you make a one-hot vector and first train the model below it, the somewhat smaller model. That's one stage, and second, I think it would be like this. Instead of training with just one-hot vectors, you use log probabilities. For example, the logit of the big model actually isn't just saying one word, it gives a distribution over multiple words. So you deliberately raise the temperature a bit and extract all the probabilities for the logits for the next steps where the model can branch. Of course, if you extract all of them, you get as many as the vocabulary count, so that's too large, and I understand that from one top-k, they extract around the top 100 or so. So there is a method where you extract those and train on the distribution of those logits, and if you go one step further from there, what was it again?
+
+<span class="paragraph-timestamp" data-ts="20:58">20:58</span> The student model, what I've talked about up to now, is fully off-policy, distilling what's in that big model. If you do that, then this small model has, how should I put it, a slightly lower degree of environmental adaptability, so at some stage, they always switch to on-policy. So they run it on-policy, have the small model write its own answer to some specified prompt, and for that same prompt, the big model follows along and keeps checking the probability values, reinforcing the parts where the small model makes mistakes with a stronger signal. Then this model can also handle environments it hasn't seen. It adapts, almost as if we were instruction fine-tuned, and there are things like that, so if even in that model card there was some guidance, or something like that was mentioned, then while doing the third, on-policy training, the teacher model likely engaged very strongly, we should assume. But I think all of this is the methodology by which today's models are being baked.
+
+<span class="paragraph-timestamp" data-ts="22:03">22:03</span> **Seungjoon Choi** China did all that too, around January or February, and Anthropic blocked it all at once, right?
+
+<span class="paragraph-timestamp" data-ts="22:09">22:09</span> **Chester Roh** So what these frontier labs are doing, we have never done it directly ourselves, and honestly, we are inferring this from released repos, writings, and what other people are saying, but the gap seems to keep widening. The people at the frontier are going to Mars, and then to Mars again. **Seungjoon Choi** But then Amodei also says
+
+## The frontier gap and what the “6–10 months” comment implies    *22:21*
+
+<span class="paragraph-timestamp" data-ts="22:29">22:29</span> that right now they are only about six to ten months ahead, and others will catch up. **Chester Roh** But that six to ten months
+
+<span class="paragraph-timestamp" data-ts="22:38">22:38</span> is, in our relative terms right now, like being six to ten years behind. **Seungjoon Choi** You do need to think of the scale
+
+<span class="paragraph-timestamp" data-ts="22:45">22:45</span> differently, almost like a log scale, in that kind of way.
+
+<span class="paragraph-timestamp" data-ts="22:48">22:48</span> **Chester Roh** Before recording this, when we were chatting a bit, we said, around this time last year, we were using GPT-4o, and we both got shocked, right? Like, wait, what? That kind of reaction. **Seungjoon Choi** Right. What was it, the cancer treatment thing?
+
+<span class="paragraph-timestamp" data-ts="23:04">23:04</span> Seungjoon Choi said that related work had been done with the GPT-4 model. **Chester Roh** Let's talk about that a little later,
+
+<span class="paragraph-timestamp" data-ts="23:09">23:09</span> and to come back to this, ultimately Mythos, Opus, Sonnet, Haiku, it seems they are making and optimizing all of these well so they run as one unified pipeline.
+
+<span class="paragraph-timestamp" data-ts="23:21">23:21</span> **Seungjoon Choi** Right. And now, not knowledge distillation, but if you look at the knowledge cutoff date, Anthropic has a training cutoff and a reliable knowledge cutoff. But since the training cutoff is later, that probably means the point up to which CPT was done is what they call the training cutoff, and for 4.7, that is January. January of this year. So it is very recent.
+
+<span class="paragraph-timestamp" data-ts="23:46">23:46</span> **Chester Roh** Very recent indeed. Almost at Google level.
+
+<span class="paragraph-timestamp" data-ts="23:48">23:48</span> **Seungjoon Choi** They said Mythos began being used internally on February 24, so of course it could be used when it had not even fully been baked yet, but in any case, they are baking models on an extremely tight timeline, and I think this is kind of an extraordinary march. Shall we continue? **Chester Roh** Yes, before moving on from 4.7,
+
+## Competition shaking token pricing and the China/Google variables    *24:13*
+
+<span class="paragraph-timestamp" data-ts="24:13">24:13</span> to wrap up the tokenizer discussion a bit more, tokenizer, I mean, the key point people are making is that when doing the same task, 4.7 uses far more tokens than Opus 4.6, and that is now
+
+<span class="paragraph-timestamp" data-ts="24:27">24:27</span> **Seungjoon Choi** being reported now.
+
+<span class="paragraph-timestamp" data-ts="24:28">24:28</span> **Chester Roh** Right. From the perspective of users like us, that means token costs have become more expensive.
+
+<span class="paragraph-timestamp" data-ts="24:34">24:34</span> **Seungjoon Choi** The trend now is not that it is getting cheaper, but more expensive, and when a new model comes out, it will get sharply more expensive, and is this Jevons paradox now? It becomes more abundant, but how should I put it? I also feel like it does not quite line up exactly.
+
+<span class="paragraph-timestamp" data-ts="24:49">24:49</span> **Chester Roh** Even if the innovators say they did well, so pay them a high price, because this itself is not some recipe protected by copyright, if a Chinese lab copies it, or if Google pushes with even more massive resources, I think it is right to assume that the price will continue to come down. So when we make business plans too, rather than betting on token prices going up, token prices will continue to stay at a very reasonable price level. I cannot quite say they will go to zero. So I think it is right to build business plans assuming they will stay within a reasonable range, and then, as I keep saying, every business right now
+
+<span class="paragraph-timestamp" data-ts="25:37">25:37</span> is a competition over who can best extract capability from the model, because there are no people now who surpass the model by human effort.
+
+<span class="paragraph-timestamp" data-ts="25:47">25:47</span> **Seungjoon Choi** I would still say it is uneven. You can surpass it in specific areas. **Chester Roh** So by business areas,
+
+<span class="paragraph-timestamp" data-ts="25:53">25:53</span> I mean mostly B2B and B2C applications, and then fields like biotechnology and chemistry, these highly engineering-heavy areas, so for areas where human sensibility exists, I think it is right for me to say I do not know. So to talk a little more about that tokenizer point from earlier, it got more expensive. It got more expensive, but
+
+<span class="paragraph-timestamp" data-ts="26:14">26:14</span> **Seungjoon Choi** 1.3 times, 1.5 times? About that much, right? **Chester Roh** They say it got at most 1.4 times more expensive, but Seungjoon, this morning,
+
+<span class="paragraph-timestamp" data-ts="26:20">26:20</span> when I read the post Seungjoon shared on KakaoTalk, the statistical analysis there was well done. That person took CJK languages, and then coding languages, and just general poetry, English, things like that, made some classifications and tried everything, and found that the tokenizer for CJK languages did not change. It seems to come out just the same. Originally, for CJK languages, tokens were already cut very harshly, so it seems they were not cut further,
+
+<span class="paragraph-timestamp" data-ts="26:50">26:50</span> **Seungjoon Choi** English probably did not change either, maybe. **Chester Roh** No, no. English changed a lot.
+
+<span class="paragraph-timestamp" data-ts="26:54">26:54</span> Since it is in the Latin-language family, that includes English too. Looking at English prose, poetry, and things like that, it had become multiplied by 1.3. What Claude Code uses, just our ordinary CLAUDE.md English, and then the code, that part is actually 1.4. Almost 1.3 to 1.4. So from the perspective of using Claude Code, the average token cost has gotten 1.3 to 1.4 times more expensive, and I think that is about exactly right.
+
+<span class="paragraph-timestamp" data-ts="27:28">27:28</span> **Seungjoon Choi** Then a Pro account actually gets used up incredibly quickly.
+
+<span class="paragraph-timestamp" data-ts="27:31">27:31</span> **Chester Roh** Yes, a Pro account disappears in no time. I have both Pro and Max accounts, and it has gotten more expensive. **Seungjoon Choi** It has gotten more expensive. And I do not know whether that will happen
+
+<span class="paragraph-timestamp" data-ts="27:41">27:41</span> elsewhere too, but for now, OpenAI is still being a bit flexible. They keep resetting it for us. If something happens, Timo resets it once. **Chester Roh** So I think this is the good thing about competition. People are moving over to Codex a lot.
+
+<span class="paragraph-timestamp" data-ts="27:56">27:56</span> In fact, a lot of people have moved over to Codex. **Seungjoon Choi** So those kinds of things happened, and there are a few more things I want to pay attention to.
+
+## Managed Agents and brain–hand decoupling    *28:01*
+
+<span class="paragraph-timestamp" data-ts="28:03">28:03</span> I found this scaling managed agents piece interesting.
+
+<span class="paragraph-timestamp" data-ts="28:08">28:08</span> **Chester Roh** What is this? I did not see it. **Seungjoon Choi** It is called managed agents,
+
+<span class="paragraph-timestamp" data-ts="28:12">28:12</span> and if you look at the diagram, you will probably remember it. This one. So Anthropic is also pushing forward with this now, and it seems like other places are doing it too, this work of cleanly separating these things. So it was a direction moving a bit more toward something OS-like. This was not long ago. Very recent, in April. In April, during the two weeks when we did not do this. **Chester Roh** Is that so?
+
+<span class="paragraph-timestamp" data-ts="28:36">28:36</span> Managed agents means this slightly easier OpenClaw just runs on our cloud, that is what this is saying, right? **Seungjoon Choi** So they separated out memory-related things,
+
+<span class="paragraph-timestamp" data-ts="28:49">28:49</span> and in the session, this is the side where storage can be used freely. Then with sandboxing, there are sandboxed code pieces and tools. So this is somewhat like combining the model and the harness as a brain, like a CPU, and separating out the rest while creating layers that communicate with each other.
+
+<span class="paragraph-timestamp" data-ts="29:08">29:08</span> But what is important here is that if the model keeps receiving things like secrets, for example tokens used in credentials and things like that, those can be leaked, so they did work to separate them out. **Chester Roh** To put this in an extremely compressed way, the impression I had at the time was
+
+<span class="paragraph-timestamp" data-ts="29:26">29:26</span> that this is the n8n edition of OpenClaw, something like that. **Seungjoon Choi** They are making it clean as a service
+
+<span class="paragraph-timestamp" data-ts="29:35">29:35</span> and pursuing a bit of a lock-in strategy. **Chester Roh** They are saying, build workflows
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> like OpenClaw on top of us, but personally, I would not build on top of this. I do not think I would. I still think forking things like OpenClaw or Hermes Agent on top of those is much faster. **Seungjoon Choi** I found the title somewhat striking. It says this decouples the brain and the hands,
+
+<span class="paragraph-timestamp" data-ts="30:01">30:01</span> moving toward this concept of separating them, and even with this word "managed," we used to have managed versions before. Like C# coming out on top of C++, managing memory for you, managed in that sense, or managed Kubernetes. So I think they used "managed" with multiple meanings like that. They are thinking about security and safety, reducing mistakes a bit, and abstracting it more easily so people can do it, and the question is how to scale that. **Chester Roh** But although they used the expressions brain and hands, on the agent side,
+
+<span class="paragraph-timestamp" data-ts="30:38">30:38</span> these are already what we commonly call memory and tools.
+
+<span class="paragraph-timestamp" data-ts="30:41">30:41</span> **Seungjoon Choi** Right. But when using vanilla Claude Code or a vanilla CLI, even I sometimes find myself wondering, is it okay for me to be doing this? because key information gets exposed to the model in some cases. So I thought they captured those parts well. Recently, security, of course security, has become an issue, so they seem to be presenting solutions that fit that, approaches that keep the model itself locked up so it can absolutely never escape. **Chester Roh** The original meaning of harness is actually to restrain, to control, things like that.
+
+<span class="paragraph-timestamp" data-ts="31:17">31:17</span> No matter how good models become, whether for individuals or companies, I think the existence of that harness will definitely be necessary. I think that domain is the only one left for those of us who are not building frontier models, between customers and frontier models.
+
+<span class="paragraph-timestamp" data-ts="31:33">31:33</span> **Seungjoon Choi** And I also considered this important: managing sessions in storage so they can persist for much longer. Amazon also had something along those lines when it released the new S3-related offering, and there is also this approach of treating sessions, meaning the things the model inferred and generated, as key assets. I think they separated that out well. So things like md files are something we have been doing a lot with files these days, but in any case, approaches that manage the session itself also felt interesting to me, and that stayed with me. I personally found this very interesting too, actually. On April 14, this Automated Alignment Researcher.
+
+## Jan Leike’s Automated Alignment Researcher    *32:12*
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **Chester Roh** That is a topic Seungjoon likes.
+
+<span class="paragraph-timestamp" data-ts="32:18">32:18</span> **Seungjoon Choi** Automated. So this AAR is ultimately limited to the alignment side, but it is an automated model that does that research. So in the list of authors, Jan Leike is the person at the very end, the one who did SSI. Together with Ilya Sutskever, Superintelligence, after being at OpenAI, then came out to the outside. The part at the very end here was interesting, and this kind of automated researcher, automated researcher, is something every big tech company is trying to do now. Self-improving research, whether that becomes an alignment problem or a problem of training models, trying to build an AI researcher that does that automatically is something OpenAI also publicly stated last year, and of course Google DeepMind is probably working on it too, and Anthropic is working on it as well, but what they treat as important here is whether this can be solved as a kind of hill-climbing problem. If we keep going in this direction, will the problems naturally all be solved, as they say below, like hill climbing? But from what we observe, that does not seem to be the case. Taste and diversity still need some human guidance for now. So how are they going to solve that, too? But here,
+
+<span class="paragraph-timestamp" data-ts="33:28">33:28</span> the question is how a weak model can guide and train a stronger, strong model. So that is a very important part, though it is hard to go into the details. A lot of what Anthropic released last year was about persona, persona vectors, concept factors, and recently, concepts like emotion and functional emotion, talking about vector-like things. But they all use similar methods. They use contrastive methods, making a kind of contrast and checking the directions that pop out like this, and they incorporated those things here. What is interesting is, the reason weak is important is that ultimately humans will be the weak model, in a weak state, and how to align from there is the problem Jan Leike has been digging into for a long time. How to align a more powerful being is the context in which I read this, **Chester Roh** We need a way to check whether the ideas and results
+
+<span class="paragraph-timestamp" data-ts="34:23">34:23</span> are valid.
+
+<span class="paragraph-timestamp" data-ts="34:26">34:26</span> **Seungjoon Choi** So just speaking at the level of implications, this is still doing research at a level humans can understand. Concepts that come out of weak, or combinations of those things, when we look at them, are things humans can understand. What we need to prepare for is that this was really the case with Go, right? Just as move 37 was hard for even experts to understand at first, when research like that comes from models, the question of how we should handle it is what they have begun to imagine. **Chester Roh** With very high probability,
+
+<span class="paragraph-timestamp" data-ts="35:00">35:00</span> I think we should actually assume that this will happen.
+
+<span class="paragraph-timestamp" data-ts="35:04">35:04</span> **Seungjoon Choi** That must be why they are doing this research. **Chester Roh** Right. A point will come
+
+<span class="paragraph-timestamp" data-ts="35:08">35:08</span> where humans can no longer intervene as verifiers. That is why they called it Alien Science.
+
+## Alien Science and the limits of human verifiers    *35:11*
+
+<span class="paragraph-timestamp" data-ts="35:14">35:14</span> **Seungjoon Choi** So they address the problem of how to do that while in the state of a weak model, and examine that model.
+
+<span class="paragraph-timestamp" data-ts="35:18">35:18</span> **Chester Roh** The weak model is talking about us, right? It is talking about humans, right? **Seungjoon Choi** For now, they are doing it with models,
+
+<span class="paragraph-timestamp" data-ts="35:25">35:25</span> but they are talking about it by analogy. **Chester Roh** In the movie Her, too, the reason Samantha
+
+<span class="paragraph-timestamp" data-ts="35:31">35:31</span> leaves Theodore is that, right? Because she cannot communicate with him.
+
+<span class="paragraph-timestamp" data-ts="35:35">35:35</span> **Seungjoon Choi** Anyway, there was that, and related to it, there was something else interesting on the emotion side here. So if you watch this video, there is a short and pretty interesting video.
+
+<span class="paragraph-timestamp" data-ts="35:46">35:46</span> **Chester Roh** But while looking at the research that finds those emotion vectors, seeing that this is not gathered in some separate domain called emotion, but scattered here and there, made me think a bit that emotion is also a program.
+
+<span class="paragraph-timestamp" data-ts="35:59">35:59</span> **Seungjoon Choi** But Anthropic's tone was that this is functional emotion, which should be distinguished from human emotion.
+
+<span class="paragraph-timestamp" data-ts="36:06">36:06</span> **Chester Roh** Yes, with carefully refined language, they avoid crossing that line for no reason. **Seungjoon Choi** So looking at it now,
+
+## Red Teaming in the Anthropic ecosystem and community signals    *36:12*
+
+<span class="paragraph-timestamp" data-ts="36:12">36:12</span> besides that, even in this Anthropic worldview, things are coming out at about this frequency. This, so I learned about it this time too, but the posts on this side are also quite interesting. Around February, the things about finding zero-day vulnerabilities connect all the way to Mythos. So there is also a blog called red.anthropic.com, and all of this is interconnected. There is a research blog, an engineering blog, corporate news, like when we talked earlier about GPUs coming out, those kinds of things, and what is happening among companies, how valuations are moving, that kind of news. Then on the stance side, people look at what has been deployed and use hidden keys and words
+
+<span class="paragraph-timestamp" data-ts="37:00">37:00</span> to figure things out, like the Ultra plan being detected in advance, that kind of news. This is something the community found, but how do you think I made this? The overview.
+
+<span class="paragraph-timestamp" data-ts="37:11">37:11</span> **Chester Roh** Claude Design. **Seungjoon Choi** I made it with Claude. It is not design yet,
+
+<span class="paragraph-timestamp" data-ts="37:15">37:15</span> but I am going to move it over to design now. There is so much news, and I could not organize it myself, so I asked it to make one. I think it is not bad. To look over these things at a quick glance, what happened, and to recall them, if I scan through it, tooltips come up, and I go, right, these things happened. So while preparing today, I skimmed through it once.
+
+<span class="paragraph-timestamp" data-ts="37:36">37:36</span> **Chester Roh** That is really on-demand use. **Seungjoon Choi** But after 4.7 came out,
+
+<span class="paragraph-timestamp" data-ts="37:41">37:41</span> what actually became a big topic in the community was not 4.7's performance, but Claude Design's performance, which became an issue yesterday and today. Shall we move over to that?
+
+## Claude design and the frontend feedback loop    *37:52*
+
+<span class="paragraph-timestamp" data-ts="37:52">37:52</span> **Chester Roh** Yes, let's move over to Claude Design.
+
+<span class="paragraph-timestamp" data-ts="37:54">37:54</span> **Seungjoon Choi** So if we watch the intro video for Claude Design, it says, meet Claude Design, and then Right now, Excel, anyway, various icons are appearing, and things are being typed like this. But this is not a video right now. These are all
+
+<span class="paragraph-timestamp" data-ts="38:11">38:11</span> **Chester Roh** All DOM, right?
+
+<span class="paragraph-timestamp" data-ts="38:12">38:12</span> **Seungjoon Choi** Yes, it's DOM. With DOM right now,
+
+<span class="paragraph-timestamp" data-ts="38:14">38:14</span> **Chester Roh** All made in HTML. **Seungjoon Choi** it's being animated in real time,
+
+<span class="paragraph-timestamp" data-ts="38:17">38:17</span> and it looks like this itself was made with Claude Design.
+
+<span class="paragraph-timestamp" data-ts="38:20">38:20</span> **Chester Roh** Originally, a company called Remotion was doing this. There's no way Anthropic bought that company, so they one-clicked this too. **Seungjoon Choi** So after this came out, I've heard that Figma's stock price
+
+<span class="paragraph-timestamp" data-ts="38:33">38:33</span> dropped by about 7%. If you go in, and this uses separate usage. While it's doing research right now, the token usage is calculated separately. So for now, if I just look at an example, with about this much of a prompt, it makes something like this, and these all have interactive elements, and even the shader preview itself is in a working state. Around last November, after Gemini 3 came out, the paper that came out then was about how to close the feedback loop on the frontend side to improve performance. So Gemini is doing that kind of thing. But actually,
+
+<span class="paragraph-timestamp" data-ts="39:20">39:20</span> the one that had good taste in frontend design was Claude. OpenAI was the weakest there. But looking at this now, I got the sense that they made a pretty interesting product. And that's showing up in the market, or rather, in the reaction on the timeline. If you look here, just a little while ago, I had it design the version I saw on this timeline, and had it show that in 3D, and it made that with a click. So in the situation from earlier, I tried making tools that let you view it from above, and if you go into the design file, things like scraps can be designed right here. And this goes in as information. Into the context. So this is just a line I drew, but it probably supports imports too, so existing Canva files or exports can go that way too, and you can bring in previous work and assets, or do work completely from scratch right here, and they've made it well so you can do that.
+
+<span class="paragraph-timestamp" data-ts="40:21">40:21</span> This is going straight into the context. And then if you look here next, there were various kinds of assets, and if I go back into the project, if something like the style has been set, these CSS files have been created here. You can edit them directly here too. You can save them. So it's not just generating things; like the early days of Canvas, it's becoming a tool that can do all the editing too, and for a particular item, you can select exactly that and give feedback on it. Maybe that was in the demo video. So when it comes to doing this with design assets, another thing that comes to mind is that recently the Claude Code app was updated, and the Codex desktop app was updated too. And what went into both of them was an in-app browser. So outputs in this kind of web form don't open in an external browser, meaning the original browser, but open in-app, so you can inspect them. And from there, Claude Code also looks at what worked properly, captures it, like Google Antigravity did in the beginning, so closing the feedback loop is now happening. **Chester Roh** Right. This was the hardest part. When making applications,
+
+## Claude Code/Codex apps and the in-app browser    *41:02*
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> you had to attach IDs to every element, handle those IDs on the frontend, say reduce the size here, increase it there, and doing all that was manual labor, but that has become incredibly convenient. **Seungjoon Choi** Exactly. So after this became possible, they could do this,
+
+<span class="paragraph-timestamp" data-ts="41:58">41:58</span> and that's why a product like Claude Design came out. Because they closed the feedback loop. **Chester Roh** There are a lot of implications hidden in this. Shall we talk through a few of them?
+
+## The era of “click” and the fragility of wrapper businesses    *42:06*
+
+<span class="paragraph-timestamp" data-ts="42:06">42:06</span> In my view, until very recently, this was something a service called Pencil was pushing hard, and what I feel while looking at this is that it feels exactly like Pencil. So in the end, that company's service too got one-clicked by Anthropic. The last episode drew a lot
+
+<span class="paragraph-timestamp" data-ts="42:26">42:26</span> of anger from many engineers. If you look at our comments, there are many comments swearing at us, and then there are many comments saying we shouldn't say that, and I understand all of those points. I really do understand them.
+
+<span class="paragraph-timestamp" data-ts="42:41">42:41</span> But the key message we wanted to convey through that episode was that a world is unfolding regardless of whether that is right or wrong. **Seungjoon Choi** Since that could be a little sensitive, it does matter whether it's right or wrong,
+
+<span class="paragraph-timestamp" data-ts="42:57">42:57</span> but in any case, moving on is happening as a phenomenon. **Chester Roh** So Anthropic is showing that right now too.
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> Ideas that were outside, that had come out much earlier, have simply come inside, but I've never heard anything at all about Anthropic acquiring Pencil and making something with it.
+
+<span class="paragraph-timestamp" data-ts="43:18">43:18</span> **Seungjoon Choi** Chester, weren't you talking about The Three-Body Problem? **Chester Roh** That Three-Body Problem comment wasn't something I said;
+
+<span class="paragraph-timestamp" data-ts="43:23">43:23</span> I was reading something from our comments. Now we're all in the dark forest. The moment a corporate wrapper is discovered, it gets clicked away, basically. So when something comes out into the open and says, this is the target. Something that can precisely point to the objective of the final output, if it becomes the target of a higher-level intelligence, it just gets clicked away immediately.
+
+<span class="paragraph-timestamp" data-ts="43:48">43:48</span> **Seungjoon Choi** It has become too easy to make. When you go into this and look at it, I do not know what the quality of the code that actually implements it will be like, but from a PMF perspective, it released what fits the current fit at the right time. **Chester Roh** This is a bit of a local optimum
+
+## First runaway route: ChatGPT unbundling    *44:01*
+
+<span class="paragraph-timestamp" data-ts="44:03">44:03</span> in the thinking I have been doing lately, but if we think from the perspective of us fugitives, in a world where superintelligence keeps pecking at everything and compressing us like this, what on earth should we do? That is our question, right? I always now organize the direction of escape into exactly two types. The first is, for example, I will assume in advance that I can use Claude Code or Codex or the harness engineering that exists today to the absolute extreme. If that is not possible, then honestly, you cannot even get into the game at all. But if we think of ourselves as being at just our level, unable to make models or anything like that, there are two paths we can take. The first path is just the familiar one. What this Claude Design provides, what Claude Code provides, what Codex provides. In the end, from the perspective of people who are already seeing these advanced tools ahead of time, when you look at customers who are following from the past and are still in the past, most of them are still using Naver, and even if they use AI, most of them are using free models. People who pay for the Max plan and follow what is happening out here at the frontier, I think even among the entire population, or just Korea's population, they are less than 5%. I think even 5% is being generous. Would it not be around 1% to 2%? If this were 10%, our subscriber count would be in the hundreds of thousands. But given that it is not, and probably will not be, it is exactly ten thousand, twenty thousand, or at most tens of thousands who are following this right now. So from that perspective, there is still a customer base of more than 50 million remaining. People who are good at making PowerPoint, PowerPoint has been around for more than 30 years, but there are still only a few of them. Likewise, even if the tool is provided, there will be very few people who can do this, so the thing we always used to say, the thing Benedict Evans said, which I always relayed to you, unbundling ChatGPT, unbundling Claude Code, unbundling Codex, and turning each of those into countless small business areas, the B2C and B2B opportunities are now opening up again. Without question. So going in that direction is one option.
+
+<span class="paragraph-timestamp" data-ts="46:26">46:26</span> But if you set your direction that way, saying Codex has ended everything, or Claude Code has ended everything, is a bit of an overreaction. When you look at the customer, between the customer and the latest technology, you can always see things that need to serve the customer. And I think a lot of founders who are good at that are emerging now. So watching them, I also think this unbundling ChatGPT, from a B2B and B2C perspective, sold steadily over ten years to customers who will follow this change, will still exist as a very large business. Whether it was Web 2.0 or the mobile app boom, the fact that an AI application boom will happen once seems absolutely clear. So that side is still worth trying, and that is one direction. The second direction is something like Isomorphic Labs. It is still an extremely large domain, and there are very few people doing it,
+
+## Second runaway route: AI for Science    *47:19*
+
+<span class="paragraph-timestamp" data-ts="47:29">47:29</span> but things like solving the problem of longevity, or developing superconductors, that is the realm of physics and science. The way to distinguish the area of AI for Science is simple. When you look at a domain, if the terms used by people in that domain do not land in your ears, then that is just a new domain. For example, whether it is GPT-Rosalind right now, or the GitLab CEO, who treated his own cancer, right? It was osteosarcoma, osteosarcoma. It is a tumor where cancer grows in the spine, and that stage 4 patient survived. By creating a personalized vaccine for himself. And then those things came onto the OpenAI channel and were filmed. The content. But if you look at the view counts for those things, they do not even reach the ten-thousands. They come out in the thousands. People open it, do not understand it, and just turn it off immediately. Even for people at the frontier, there are domains that sound completely new.
+
+<span class="paragraph-timestamp" data-ts="48:32">48:32</span> **Seungjoon Choi** When I looked at this GPT-Rosalind prompt, I said it was an alien language. **Chester Roh** Those words in there. Then in that area, chemistry,
+
+<span class="paragraph-timestamp" data-ts="48:42">48:42</span> biochemistry, and then biology, all of these things have to be integrated for those terms to come in.
+
+<span class="paragraph-timestamp" data-ts="48:48">48:48</span> **Seungjoon Choi** I also tried an interesting experiment with this. Because I was curious what this meant, I had a conversation with Opus. That was probably this one. So I tried to read this carefully, and even parsing it was mediated. If I were going to study this using AI, I would have to study it again from the ground up. Even if I explain this, I still do not really know what it means. Going through several layers, keep making it easier for me to understand. Even after going through that, it felt like I still might or might not understand. **Chester Roh** But what is really interesting is that I am also trying to strengthen that field now, and in fact, rather than keeping up with AI,
+
+<span class="paragraph-timestamp" data-ts="49:29">49:29</span> I am reading far more biotechnology books and reading more papers in that area, and this is what I feel as I read them. The model already knows an enormous number of things. **Seungjoon Choi** Of course, from an expert's perspective,
+
+<span class="paragraph-timestamp" data-ts="49:42">49:42</span> it is still at a stage where there may be errors, and I do not know whether that will be resolved or not, but in any case, it has enough knowledge for an expert to examine. **Chester Roh** And within our Runaways' Alliance,
+
+<span class="paragraph-timestamp" data-ts="49:53">49:53</span> there are also experiments that Seungwoo and Joseph ran, and this is what I have felt while trying it myself as well. For example, papers that this model absolutely could not have seen within its knowledge cutoff come out, right? New discoveries in the bio field. Then if I remove the conclusion from that, and just take a few assumptions at the beginning and feed them in and ask it to infer, it is similar. When I see it say directions like this, and directions like this seem possible, I think maybe this thing already has some kind of mental image of this unified field theory somewhere in there. So, as I said earlier,
+
+<span class="paragraph-timestamp" data-ts="50:31">50:31</span> I was talking about two directions at the frontier, then drifted slightly over here, but I have talked about one direction. The area of serving customers who come later in B2B and B2C will be enormous, so I am saying that we need to start on that part now. Second, this is still big too, but to go in that direction, at the very least, we need to broaden this human field knowledge a bit. I still think that issue also has a tremendous number of opportunities, because with things like that,
+
+<span class="paragraph-timestamp" data-ts="51:03">51:03</span> should doctors be the ones doing them? No. The analogy is a bit imperfect, but doctors are kind of like aircraft captains.
+
+<span class="paragraph-timestamp" data-ts="51:11">51:11</span> **Seungjoon Choi** Among the people watching us, there are also many doctors in Runaways' Alliance. **Chester Roh** That's right. So they know how an airplane flies, what needs to be done,
+
+<span class="paragraph-timestamp" data-ts="51:20">51:20</span> and when it encounters turbulence, lands, or takes off, they know all the practice for those moments, but they do not know everything happening inside the airplane. If you say this engine does this or does that, all of that is broken down into parts. But when you look at the medical system, there are still many problems like that that need to be solved.
+
+## Opportunities in personalized precision medicine and genome models    *51:40*
+
+<span class="paragraph-timestamp" data-ts="51:40">51:40</span> The GitLab CEO, a person named Sid Sijbrandij, Sid says that the doctor's incentive and the patient's incentive are completely different. The doctor's incentive is to reduce their own point of responsibility, and to reduce liability, while the patient's incentive is to maximize their own solution. But because those two clearly collide in the hospital, people who get common cancers do get treated to some extent, but people with rare cancers have no answer. But now, as for cancer, I see it as effectively a solved problem.
+
+<span class="paragraph-timestamp" data-ts="52:19">52:19</span> To summarize it extremely, that is. If we make the effort.
+
+<span class="paragraph-timestamp" data-ts="52:21">52:21</span> **Seungjoon Choi** That really would be great. **Chester Roh** If we make the effort. And this absolutely
+
+<span class="paragraph-timestamp" data-ts="52:27">52:27</span> should not proceed through the large-scale Phase 1, Phase 2, Phase 3 trials that we are familiar with now. It absolutely has to become the domain of personalized precision medicine. This is an industry that does not exist at all. Existing pharmaceutical companies, doctors, whatever, none of them are in this area. But AI can enter those disconnected loops and fill all of them. Is this only true for bio? It is true for chemistry too, and other areas as well. In all the domains we know, this will be needed everywhere, so if you are someone who likes studying a bit, and then, in that first area I mentioned earlier, the area of unbundling ChatGPT, since you are not the only ones using ChatGPT, there is a possibility you will get caught up in extremely intense competition. You need to take things like that into account. But if you like studying, and want to go into an area where there is far less competition but which is heavy, deep, and large-scale, then this kind of area is open.
+
+<span class="paragraph-timestamp" data-ts="53:28">53:28</span> So I think there are two directions. The AI for Science area seems to be opening up as one major area, and the other seems to be unbundling ChatGPT. Both are based on the model's superintelligence capability overhang, and are nothing more than service businesses. The kind of business where we create some enormous IP and then use that IP to enjoy some kind of position may gradually keep shrinking going forward, I think. There are roughly two big directions. **Seungjoon Choi** But another concern is that if people do chemistry or plants and things like that,
+
+<span class="paragraph-timestamp" data-ts="54:05">54:05</span> kitchen labs could become rampant, and that is dangerous too. **Chester Roh** But for example, at a hospital, they say there is no longer any treatment.
+
+<span class="paragraph-timestamp" data-ts="54:14">54:14</span> And it is a stage-four cancer patient. Then those people
+
+<span class="paragraph-timestamp" data-ts="54:17">54:17</span> **Seungjoon Choi** have to do something, right? **Chester Roh** It is right to do something rather than die.
+
+<span class="paragraph-timestamp" data-ts="54:21">54:21</span> That's exactly what Sid Sijbrandij did in this YouTube video. It happened over the last three or four years, and in the end, it was about maximizing the data. There are only a few kinds of data that can come out of a person's body. There is genetic data, and then signals from blood, roughly biochemical data read from the blood. But to summarize it even more starkly, what Sid Sijbrandij solved was done entirely through gene sequencing. He fully turned biology into software engineering, found clues there, and figured out how to create a solution. These days, Arc Institute has made a model called Evo 2, which is a genetic foundation model. An LLM just learns sequences of words, right? The Evo 2 model is about a 40B parameter model, and it uses genome sequences from yeast, bacteria, chickens, humans, and several mammals, all the data that has been read. That already exists as a database. They simply pre-trained on that.
+
+<span class="paragraph-timestamp" data-ts="55:33">55:33</span> **Seungjoon Choi** You could say it has a very strong affinity with LLMs. **Chester Roh** If we look at genes, only about 2% of the entire genome actually codes for proteins.
+
+<span class="paragraph-timestamp" data-ts="55:43">55:43</span> The rest is all control genes, or dummy bytes, and they interact with one another and are expressed epigenetically. The thing that unraveled the secret of how that epigenetic expression happens is AlphaGenome.
+
+<span class="paragraph-timestamp" data-ts="55:57">55:57</span> **Seungjoon Choi** That's epigenetics, being able to turn genetic markers on and off epigenetically, and the effects that creates.
+
+<span class="paragraph-timestamp" data-ts="56:06">56:06</span> **Chester Roh** When a sperm and egg are first fertilized, the genome there and the genome in our fingernails, skin, and places like that are actually the same. But why does one become muscle in heart cells, while another becomes a nerve cell or something else? What governs that is actually the epigenome. So in one place it says, "You express only this part," and in another place it says, "Suppress this," and those things are in the control regions. The way that gets expressed and runs is epigenetics, and AlphaGenome handles that. In fact, when we are young, we have a clean set of genes, but as we grow, we are exposed to chemical stimuli, ultraviolet rays, and things like that, and the genetic sequence keeps changing. The sequence itself can change too. Mutations occur. And when that changes severely,
+
+<span class="paragraph-timestamp" data-ts="57:01">57:01</span> it becomes cancer. And even if the sequence is maintained, it is not just that sequence being copied. In fact, that epigenome is inside, bound up with proteins called histones and things like that. Even that is inherited, and when that too breaks down, it becomes a problem. So the work is to uncover those things. What Sid Sijbrandij did, in the end, was to sequence my tumor, read the sequence, and read my somatic cells. Even within those somatic cells, there are complex things like germline and somatic, and after reading them, he found a protein that was overexpressed. Then, just like making a COVID vaccine back then,
+
+<span class="paragraph-timestamp" data-ts="57:41">57:41</span> the COVID vaccine put that spike protein in as an mRNA sequence and injected it into the body so that a lot of that antigen would be produced. That was the mechanism of the treatment. He did the same thing. So for the protein overexpressed in cancer cells, he put a large amount of that antigen into the body, as an mRNA vaccine, and in my body there is something called TCRT, those T cells that eat things, right? He made the T cells recognize it and made them eat the cancer cells. But if you look at it, though I explained it in a complicated way,
+
+<span class="paragraph-timestamp" data-ts="58:21">58:21</span> all of this is software engineering. Only at the very end, in the wet lab, the part where they make that mRNA vaccine, used what we traditionally knew as biotechnology methods. Of course, for reading that sequence, the preceding steps also involve an enormous amount of biotechnology. **Seungjoon Choi** Then before it goes to the wet lab,
+
+<span class="paragraph-timestamp" data-ts="58:44">58:44</span> there is quite a lot of coverage through simulation.
+
+<span class="paragraph-timestamp" data-ts="58:46">58:46</span> **Chester Roh** That's right. Not just quite a lot; they found everything that way. They did it that way with software. This is the second escape domain that I propose to the runaways.
+
+## Tastes and decision-making in the Attention Business era    *58:56*
+
+<span class="paragraph-timestamp" data-ts="58:58">58:58</span> **Seungjoon Choi** The conclusion is that neither path is easy. So one will become extremely oversaturated, and the other looks extremely difficult.
+
+<span class="paragraph-timestamp" data-ts="59:04">59:04</span> **Chester Roh** So in fact, the reason DeepMind doesn't do much coding is that all of this is here. They are using an enormous amount of computing in this area. But Demis did not want to do LLMs. So saving humanity from death is far more important than making coding agents, at least that seems to be what Demis thinks. **Seungjoon Choi** As I also move toward wrapping up,
+
+<span class="paragraph-timestamp" data-ts="59:27">59:27</span> I think the brain's plasticity is a double-edged sword. It lets us learn new things, but it also seems to break things, depending on what information we absorb. So among so many signals like this, catching the meaningful ones seems really important, but that itself is so hard. There is too much. **Chester Roh** If that works well,
+
+<span class="paragraph-timestamp" data-ts="59:46">59:46</span> then we should say we are entering the realm of God.
+
+<span class="paragraph-timestamp" data-ts="59:49">59:49</span> **Seungjoon Choi** Even using AI, there is too much to look at. **Chester Roh** So then, even if you use that AI, I think there are two reasons why there is still so much.
+
+<span class="paragraph-timestamp" data-ts="59:56">59:56</span> First, setting up OpenClaw well and delegating repetitive tasks like that as much as possible. Within that, the ability to distinguish signal from noise will become the value of a person. **Seungjoon Choi** This was also a very big issue in April.
+
+<span class="paragraph-timestamp" data-ts="1:00:13">1:00:13</span> This is also a topic worth covering separately sometime, but these days, something like a personal ontology has suddenly become very popular, in knowledge bases.
+
+<span class="paragraph-timestamp" data-ts="1:00:23">1:00:23</span> **Chester Roh** This is also a really important topic we need to cover. Memory management. **Seungjoon Choi** The implementation difficulty has dropped so much.
+
+<span class="paragraph-timestamp" data-ts="1:00:31">1:00:31</span> You can just put this into Claude Code and ask it to do it, and it does it to that extent. Then, in that case, ultimately, how should we manage knowledge and find meaning within this enormous amount of information, those are the points we need to think about. There is still so much, even if we do it this way. So I think it would be good to prepare this as well and cover it sometime, and I think we should wrap up for today. **Chester Roh** This is something we need to bring out fully,
+
+<span class="paragraph-timestamp" data-ts="1:00:56">1:00:56</span> including what Jeongkyu made called Gyeol, and what CEO Kim Seojoon made called MemKraft, all of those.
+
+<span class="paragraph-timestamp" data-ts="1:01:04">1:01:04</span> **Seungjoon Choi** These days, everyone is doing things like that.
+
+<span class="paragraph-timestamp" data-ts="1:01:06">1:01:06</span> **Chester Roh** But the points that feel important are, I mean, to me, those are the parts that correspond to human value. Earlier, when we talked about alignment, in the end it was taste, decision-making about that taste, saying this is important, this is what we need to do, and that becomes human value in this world. Then, within that, we also make our own decisions, right? I think it will be really important to cover life sciences sometime. Then I think it will be important to cover memory management. As for saying the model did something, we just cover it once and move on. We make decisions like that. In fact, we are never going to talk again about the Opus 4.6, 4.7 tokenizer.
+
+<span class="paragraph-timestamp" data-ts="1:01:48">1:01:48</span> **Seungjoon Choi** This is becoming a kind of attention business.
+
+<span class="paragraph-timestamp" data-ts="1:01:50">1:01:50</span> **Chester Roh** So the value of someone who can sort out taste well becomes even higher. In other words, knowing all of these things and making a clear decision in this situation, the value of that decision-maker becomes even higher. So it is not all just depressing. Then we will wrap up around here for today, and in our next session, we will talk again.
+
+<span class="paragraph-timestamp" data-ts="1:02:14">1:02:14</span> Thank you for your work. **Seungjoon Choi** Thank you for your work.
