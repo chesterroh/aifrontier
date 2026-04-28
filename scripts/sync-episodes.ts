@@ -288,6 +288,9 @@ function generateFrontmatter(meta: EpisodeMetadata): string {
   const chaptersYaml = meta.chapters
     .map((c) => `  - time: "${c.time}"\n    title: "${c.title.replace(/"/g, '\\"')}"`)
     .join('\n');
+  const hostsYaml = meta.hosts
+    .map((host) => `  - ${host}`)
+    .join('\n');
   const thumbnail =
     meta.thumbnail?.trim() || `https://i.ytimg.com/vi/${meta.youtubeId}/maxresdefault.jpg`;
 
@@ -300,8 +303,7 @@ duration: "${meta.duration}"
 youtubeId: "${meta.youtubeId}"
 thumbnail: "${thumbnail.replace(/"/g, '\\"')}"
 hosts:
-  - 노정석
-  - 최승준
+${hostsYaml || '  []'}
 chapters:
 ${chaptersYaml || '  []'}
 lang: "${meta.lang}"
@@ -340,6 +342,42 @@ function extractFirstHeadingTitle(content: string): string {
   return 'Untitled Episode';
 }
 
+function extractHostsFromContent(content: string): string[] {
+  const hosts: string[] = [];
+  const seen = new Set<string>();
+  for (const line of content.split('\n')) {
+    const match =
+      line.match(/<span class="paragraph-timestamp"[^>]*>[^<]*<\/span>\s+\*\*([^*]+)\*\*/) ||
+      line.match(/^\*\*([^*]+)\*\*\s*$/);
+    if (!match) continue;
+    const host = match[1].trim();
+    if (!host || seen.has(host)) continue;
+    seen.add(host);
+    hosts.push(host);
+  }
+  return hosts;
+}
+
+function sortHosts(hosts: string[]): string[] {
+  const preferredOrder = [
+    '노정석',
+    '최승준',
+    '김성현',
+    'Chester Roh',
+    'Seungjoon Choi',
+    'Seungjun Choi',
+    'Seonghyun Kim',
+    'ロ・ジョンソク',
+    'チェ・スンジュン',
+    'キム・ソンヒョン',
+    '卢正锡',
+    '崔升准',
+    '金成贤',
+  ];
+  const rank = new Map(preferredOrder.map((host, index) => [host, index]));
+  return [...hosts].sort((a, b) => (rank.get(a) ?? 999) - (rank.get(b) ?? 999));
+}
+
 function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko'): boolean {
   const epDir = path.join(EXAMPLES_DIR, `ep${epNum}`);
   if (!fs.existsSync(epDir)) {
@@ -373,6 +411,7 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko')
   const chaptersFile = path.join(epDir, 'chapters', chapterFileMap[lang]);
   const chapters = parseChaptersFile(chaptersFile);
   console.log(`  Chapters: ${chapters.length}`);
+  const hosts = sortHosts(extractHostsFromContent(content));
 
   // Extract title from first heading or use placeholder
   const fallbackTitle = extractFirstHeadingTitle(content).replace(/\s+\*[\d:]+\*$/, '');
@@ -396,7 +435,7 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko')
     duration: ytMeta?.duration_string || extractDuration(chapters),
     youtubeId: ytMeta?.id || 'REPLACE_ME',
     thumbnail: ytMeta?.thumbnail || '',
-    hosts: ['노정석', '최승준'],
+    hosts: hosts.length > 0 ? hosts : ['노정석', '최승준'],
     chapters,
     lang,
     alternateSlug: null,

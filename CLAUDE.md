@@ -9,7 +9,7 @@
 
 ## 프로젝트 개요
 
-**AI Frontier**는 Astro 5로 구축된 이중언어(한국어/영어) 팟캐스트 블로그입니다.
+**AI Frontier**는 Astro 5로 구축된 다국어(한국어/영어/일본어/중국어 간체) 팟캐스트 블로그입니다.
 - **사이트**: https://aifrontier.kr
 - **기능**: 에피소드 트랜스크립트, 챕터 네비게이션, 인터랙티브 YouTube 플레이어, 전문 검색
 
@@ -24,7 +24,9 @@ blog/
 │   │   │   ├── index.astro # 홈 (에피소드 그리드)
 │   │   │   ├── episodes/[...slug].astro  # 에피소드 상세
 │   │   │   └── rss.xml.ts  # RSS 피드
-│   │   └── en/             # 영어 페이지 (동일 구조)
+│   │   ├── en/             # 영어 페이지 (동일 구조)
+│   │   ├── ja/             # 일본어 페이지
+│   │   └── zh-Hans/        # 중국어 간체 페이지
 │   ├── components/         # 재사용 컴포넌트
 │   │   ├── YouTubeEmbed.astro  # 플레이어 + 미니/모달
 │   │   ├── ChapterNav.astro    # 챕터 네비게이션
@@ -36,7 +38,9 @@ blog/
 │   ├── content/
 │   │   └── episodes/
 │   │       ├── ko/         # 한국어 에피소드 (.mdx)
-│   │       └── en/         # 영어 에피소드 (.mdx)
+│   │       ├── en/         # 영어 에피소드 (.mdx)
+│   │       ├── ja/         # 일본어 에피소드 (.mdx)
+│   │       └── zh-Hans/    # 중국어 간체 에피소드 (.mdx)
 │   └── styles/global.css   # 글로벌 스타일
 ├── scripts/
 │   └── sync-episodes.ts    # srt2md → 블로그 동기화
@@ -120,7 +124,7 @@ chapters:
 | `duration` | string | O | 재생 시간 ("MM:SS" 또는 "H:MM:SS") |
 | `youtubeId` | string | O | YouTube 영상 ID |
 | `thumbnail` | string | - | 썸네일 URL (기본: YouTube 썸네일) |
-| `hosts` | string[] | - | 호스트 목록 (기본: 노정석, 최승준) |
+| `hosts` | string[] | - | 호스트 목록. 다국어 에피소드는 각 언어 표기 사용 |
 | `chapters` | array | O | 챕터 목록 [{time, title}] |
 | `lang` | 'ko'\|'en' | - | 언어 (경로에서 자동 추론) |
 | `alternateSlug` | string | - | 번역본 연결용 slug |
@@ -174,11 +178,15 @@ npx tsx scripts/sync-episodes.ts --ep 84
 # youtubeId, duration, title 등을 가져와서 frontmatter 작성
 ```
 
-### 영어 버전 추가
+### 다국어 버전 추가
 
-1. `src/content/episodes/en/ep{N}.mdx` 생성
-2. `lang: "en"` 설정
-3. 한국어 버전에 `alternateSlug` 추가하여 연결:
+1. `src/content/episodes/{en,ja,zh-Hans}/ep{N}.mdx` 생성
+2. `lang: "en"`, `lang: "ja"`, `lang: "zh-Hans"` 설정
+3. 호스트/화자명은 언어별 기존 관례를 따른다.
+   - EN: `Chester Roh`, `Seungjoon Choi`, `Seonghyun Kim`
+   - JA: `ロ・ジョンソク`, `チェ・スンジュン`, `キム・ソンヒョン`
+   - ZH-Hans: `卢正锡`, `崔升准`, `金成贤`
+4. 한국어/영어 slug가 다를 때만 한국어 버전에 `alternateSlug` 추가하여 연결:
    ```yaml
    # ko/ep83.mdx
    alternateSlug: "ep83"
@@ -249,6 +257,8 @@ dist/
 │   │   └── ep83/index.html
 │   └── rss.xml
 ├── en/                  # 영어 (동일 구조)
+├── ja/                  # 일본어 (동일 구조)
+├── zh-Hans/             # 중국어 간체 (동일 구조)
 └── pagefind/           # 검색 인덱스
 ```
 
