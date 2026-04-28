@@ -1,0 +1,414 @@
+---
+episodeNumber: 95
+title: "Reading the DeepSeek-V4 paper"
+description: "A deep dive into DeepSeek-V4 — how the 1.6T scale, Sparse Attention, mHC, and Muon Optimizer reshape long-context performance and KV cache cost, alongside this week's GPT-5.5 and Cloud Next news."
+publishedAt: 2026-04-28
+duration: "1:04:54"
+youtubeId: "rJEMaldMyLE"
+thumbnail: "https://i.ytimg.com/vi/rJEMaldMyLE/maxresdefault.jpg"
+hosts:
+  - 노정석
+  - 최승준
+  - 김성현
+chapters:
+  - time: "0:00"
+    title: "This week’s AI news around GPT-5.5 and DeepSeek-V4"
+  - time: "1:06"
+    title: "DeepSeek’s position in China’s frontier lab landscape"
+  - time: "3:34"
+    title: "DeepSeek-V4’s 1.6T model scaling and architecture changes"
+  - time: "4:03"
+    title: "Sparse attention for reducing compute and KV cache"
+  - time: "8:16"
+    title: "The meaning of sparse attention through from-scratch training"
+  - time: "12:10"
+    title: "The three core components that make sparse attention work"
+  - time: "17:10"
+    title: "Lightning Indexer and top-k selection for handling the KV cache"
+  - time: "21:36"
+    title: "Top-k non-differentiability and training instability"
+  - time: "27:24"
+    title: "MLA removal and Muon optimizer adoption"
+  - time: "30:57"
+    title: "The DeepSeek-V4 algorithm without N-grams"
+  - time: "31:18"
+    title: "MoE pipeline optimization for stronger training infrastructure"
+  - time: "34:08"
+    title: "Mega-kernel and FP4 quantization for infrastructure efficiency"
+  - time: "39:02"
+    title: "Expanded pre-training with 32T tokens and long-context learning"
+  - time: "42:37"
+    title: "Anticipatory Routing for training instability"
+  - time: "46:35"
+    title: "On-Policy Distillation and Rubric Reward for refined post-training"
+  - time: "50:08"
+    title: "DeepSeek-V4 benchmarks against Claude, GPT, and Gemini"
+  - time: "54:31"
+    title: "Contributors, Huawei chips, and Meta Muse Spark behind the scenes"
+  - time: "56:39"
+    title: "A quick roundup of Cloud Next and GPT-5.5"
+  - time: "60:00"
+    title: "Accelerated development and burnout through Cat Wu’s interview"
+  - time: "62:08"
+    title: "The shift from model performance to business value"
+  - time: "64:37"
+    title: "Closing thoughts and the next episode"
+lang: "en"
+alternateSlug: null
+---
+
+## This week’s AI news around GPT-5.5 and DeepSeek-V4    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is April 26, 2026, a Sunday morning. There was a lot of major news this week. Google Cloud Next is taking place, and GPT-5.5, after all those rumors, has finally been released. Its performance is truly on another level. But more than anything, the most important news seems to be the release of DeepSeek-V4. It has gotten really cheap. People are saying it offers incredible value, and China's frontier labs are no joke. Just the ones we're aware of seem to number nearly five. DeepSeek and Kimi, and Z.ai, known for GLM, the famous Yao Shunyu recently moved to Tencent and built Hunyuan 3, while someone who made major contributions at DeepSeek also moved over to Xiaomi and released a frontier model called MiMo. At the top of all this is DeepSeek, and nearly a year and four months after R1, DeepSeek has finally come out with V4. Today, I thought it would be good to take a close look at DeepSeek-V4, so with Seonghyun, who is in the UK, we've come together again after a long time. Welcome, Seonghyun. This week was extremely interesting.
+
+
+## DeepSeek’s position in China’s frontier lab landscape    *1:06*
+
+<span class="paragraph-timestamp" data-ts="1:17">1:17</span> **Seonghyun Kim** GPT-5.5 came out, and there was all sorts of other news, but DeepSeek-V4 seems to have given us, from a research perspective and a technical perspective, a really interesting topic after a long time. As it happens, GPT-5.5 is doing this too, and so is the rumored Claude Mythos, with everyone updating their pre-trained base models, and DeepSeek has also updated its pre-trained base model. And unlike other companies, DeepSeek talks about its updated model very candidly. The famous Luo Fuli, who moved from DeepSeek to Xiaomi and now leads LLMs there, said that China has probably, in terms of pre-training, caught up with the United States, or may even have areas where it is technically ahead. The case that best shows the peak of that may be DeepSeek-V4. At the same time, people still say China lags behind the United States in some areas of post-training. And what provides clues about that may also be DeepSeek-V4, I think.
+
+In the move from DeepSeek-V3 to V4, the model size grew significantly. There were also very big changes architecturally. And all of those changes were interesting. Going further, what this report shows is that the DeepSeek team must have had an incredibly hard year, and it reveals a lot about the very painful process they went through. In that sense, it is a very interesting report. At the same time, DeepSeek-V3 became the base for many frontier models in China. In the case of models like Kimi, they found it extremely hard to improve on DeepSeek-V3's architecture. Rather than spending time on that, they judged that adopting the architecture as is would be much better, so they actually adopted it that way. Viewed from that perspective, I think it may become the new base model for Chinese models that come out going forward. At the same time, because the DeepSeek team went through such a painful process with this architecture, when it comes to reproducing it, I also think Chinese teams may have to go through a lot of difficulty.
+
+
+## DeepSeek-V4’s 1.6T model scaling and architecture changes    *3:34*
+
+<span class="paragraph-timestamp" data-ts="3:34">3:34</span> **Seonghyun Kim** First, DeepSeek-V4 is larger in model size. DeepSeek-V3 did not have a small model. It was about a 600B model, but it has grown into a 1.6T model. The activated parameter count is also slightly larger. If I remember correctly, V3 was about 37B. And a small model was released alongside it. They really do always release a small model alongside it. But that does not necessarily mean one came before the other, and they may have trained them at the same time. A small model also came out, and in terms of architecture, there were very major changes. One major pillar is Sparse Attention. And the other major pillar is an architectural improvement called mHC, while Muon Optimizer is an optimizer that all the Chinese models are using these days. And in that respect, in terms of the model's results, in terms of performance results, I think these two, these three graphs show it best. The performance of the base model and the post-trained model improved significantly, and at the same time, in terms of long-context, the cost dropped very substantially. The compute usage itself decreased, and the size of the KV cache, which affects the memory burden, also decreased very substantially. What is most directly related to this is, of course, Sparse Attention. And because of this Sparse Attention, the DeepSeek team probably went through a great deal of hardship.
+
+
+## Sparse attention for reducing compute and KV cache    *4:03*
+
+<span class="paragraph-timestamp" data-ts="4:55">4:55</span> **Chester Roh** I have not looked through all the formulas for Sparse Attention myself, but almost at the level of alchemy, things that make you wonder, "Would this work if done this way?" they somehow create all of them. So if we interpret this graph on the right, the longer the context gets, normally the amount of computation should increase tremendously, but that part is being kept at a very low level. Can we understand that as the difference?
+
+<span class="paragraph-timestamp" data-ts="5:24">5:24</span> **Seonghyun Kim** Yes, attention basically has to reference all previous tokens from a single token. Because of that, as the sequence length, or the input length, gets longer and longer, the compute requirements continue to increase significantly. DeepSeek greatly reduced the rate of that increase. And it also greatly reduced the overall scale itself. From a long-context perspective, this is a very important change. And at the same time, in long-context situations, because attention has to reference all previous tokens, all previous tokens have to be stored in memory. What that means is that memory consumption increases very significantly as the context length increases. But DeepSeek also greatly reduced that at the same time.
+
+It reduced it very significantly. And this is important from a long-context perspective, and when we say long-context is important, actually, last year or the year before, even with DeepSeek-V3, DeepSeek mentioned that long-context seemed very important, so they wanted to keep improving this area. The importance of long-context has become much greater than it was then. Back then, when we talked about the importance of long-context, it felt like wanting to put in a lot of documents. Now, the importance of long-context is growing in the context of agents. The longer the length of the context that can be handled, from an agent perspective, the greater the complexity and scale of the problems it can handle. Previously, it was about increasing the length and capacity of the input, but now it has become connected to increasing the scale and complexity of the tasks this model can perform. In that sense, long-context has become much more important than before, I think. If we think about it in that context,
+
+DeepSeek-V4 has made a very major improvement in that respect, and what makes it notable is that this improvement was achieved through architectural innovation. I think that is a very interesting point. That's right. So, as it says in the sentence below,
+
+<span class="paragraph-timestamp" data-ts="7:30">7:30</span> **Chester Roh** for Pro, it is actually a model almost 2.5 to 3 times larger than the previous-generation V3, but even for Pro, the compute required for token operations was reduced to about 27%. That's almost one-third. And memory consumption became one-tenth. It was reduced to 10%. What these two graphs show is another really major breakthrough that DeepSeek-V4 has shown this time, I think.
+
+Seonghyun, should we go a bit deeper into this? The most important part
+
+<span class="paragraph-timestamp" data-ts="8:09">8:09</span> **Seonghyun Kim** seems to be this Sparse Attention. I think we need to go further into this. I think we should start here. First, I think we need to briefly explain what Sparse Attention is. As I just mentioned, attention basically refers to all previous tokens. For a single token, it refers to all previous tokens. So as a result, the longer the context gets, the more compute and memory it requires. So many people have wanted to improve that part. DeepSeek itself, shortly after R1 came out, introduced something called Native Sparse Attention. That naturally raises the question of whether we need to reference all previous tokens. Especially as the context gets longer and longer, for a single token, not all previous tokens contain important information or meaning, right? So you start to wonder whether it could look at only a small number of tokens. You start to wonder whether it could look only at a small number of important tokens, and that leads to Sparse Attention. Sparse Attention means that instead of referencing everything, it sparsely refers to only a very small portion of it. That is what sparse means here. It means sparse. Instead of looking at everything, it only looks at a sparse subset of tokens.
+
+
+## The meaning of sparse attention through from-scratch training    *8:16*
+
+<span class="paragraph-timestamp" data-ts="9:36">9:36</span> **Seonghyun Kim** So DeepSeek actually had already introduced this early last year. They said it was very successful and seemed to work well. But I think the lesson is that it did not work well. Because DeepSeek itself later, with models like DeepSeek-V3.2, abandoned that structure. In fact, one very important part of that Sparse Attention was the idea of training Sparse Attention from the beginning and building a model pre-trained from scratch. DeepSeek seemed to step back from that structure. Instead, they first did pre-training with what is called dense attention, attention that refers to all previous tokens, and then later, as a kind of post-training, add Sparse Attention on top. So they introduced a structure called DeepSeek Sparse Attention. The reason for that
+
+is probably that training Sparse Attention from scratch was probably because it is extremely difficult to train. DeepSeek itself did not make that kind of comment directly, but regarding the structure of Sparse Attention, many other companies in China experimented with it and analyzed it. But their conclusion was that it is difficult. It is difficult to train. Training it from scratch, in particular, was too difficult. Training Sparse Attention from scratch is difficult, and paradoxically, you need dense attention in order to train Sparse Attention. That was the conclusion they reached. So then, it becomes a compromise or a tradeoff. They could not push Sparse Attention from the very beginning, and after using dense attention, then later, for cost reduction, Sparse Attention appeared as a compromise they could adopt. That was the kind of conclusion Xiaomi and Tencent reached. But I think DeepSeek wanted to do that. Training Sparse Attention almost from scratch. Even here, even in V4, it is not completely from scratch. For the first roughly 1T, about 1 trillion, tokens, they train dense attention. But for the remaining 30T-plus tokens, they train Sparse Attention. That means they wanted to push nearly from-scratch pre-training through Sparse Attention, and it seems they were probably mostly successful. But the process they had to go through for that seems to have been extremely difficult.
+
+And architecturally, it is also very sophisticated and complex. So they devote a large portion to the Sparse Attention part. Sparse Attention appears here as three components. One is the basic sliding window attention. Sliding window attention is very similar to existing dense attention, but it limits the past tokens that a token can look at. Existing dense attention looks at all tokens, but sliding window attention, no matter how long the context length becomes, restricts one token to looking at, for example, only 500 past tokens. That attention is included by default. This is actually a structure that is very widely adopted now.
+
+
+## The three core components that make sparse attention work    *12:10*
+
+<span class="paragraph-timestamp" data-ts="12:49">12:49</span> **Seonghyun Kim** You can think of the structure combining sliding window attention and full dense attention as a structure that is now often used as the default. So this part is not especially different. Another thing is included, and that other attention is, for example, if there are 10,000 tokens, an attention mechanism that reduces those 10,000 tokens down to one-hundredth. So after summarizing 10,000 tokens down to one-hundredth, in other words, you can think of it as compressing each 100 tokens into one token. The compressed tokens, since 10,000 tokens are compressed to one-hundredth, would come out to 100 tokens. For those 100 tokens, there is an attention structure that performs full attention.
+
+The most complex structure is probably Compressed Attention, or Compressed Sparse Attention. Compressed Sparse Attention compresses this context somewhat. In DeepSeek, they compress it to one-fourth. After compressing it to one-fourth, from that one-fourth, only some of the highest-ranked, only the top-k, receive attention. Sparse Attention is included. Through the combination of these three types of attention, you can think of DeepSeek's attention for supporting long-context as being built this way. Each structure, the structural changes it causes, and even after building it this way, to run inference efficiently with it, you also need the necessary infrastructure. Those structures themselves are very complex as well.
+
+<span class="paragraph-timestamp" data-ts="14:24">14:24</span> **Chester Roh** But there is some intuition in this diagram. It takes the KV coming up from below, and toward both ends on the right, the lines that concatenate the signal as is are still there, while this token-level compressor in the middle splits it into two, one goes and combines with the query, then does MQA again and sends something over, and over there, the compressed part just goes up. Things like this were not just found by chance. Through countless experiments, they must have found the intuitions that these things would work. It took almost a year. Native Sparse Attention, which became the basis
+
+<span class="paragraph-timestamp" data-ts="15:07">15:07</span> **Seonghyun Kim** for these studies, came out early last year after R1, not long after that. And after that, as a kind of intermediate compromise, DeepSeek Sparse Attention came out. And the structure that came out after wrestling with it to the end seems to be this structure.
+
+<span class="paragraph-timestamp" data-ts="15:25">15:25</span> **Chester Roh** Right. When DeepSeek-V3 was released last year, they also did quite a few interesting things with MoE. DeepSeek really is almost a leader algorithmically. Yes, I think it is at the highest level. And since the big tech companies
+
+<span class="paragraph-timestamp" data-ts="15:43">15:43</span> **Seonghyun Kim** in the U.S. do not disclose what their architectures look like, I don't know how far along they are over there, but in my view, at this level, even compared with something highly advanced there, it is equal, or perhaps may even have parts that are better. I think it is true that this is that kind of model. In the end, we are looking at the diagram,
+
+<span class="paragraph-timestamp" data-ts="16:03">16:03</span> **Chester Roh** but Seonghyun Kim is giving DeepSeek-V4 a lot of praise, saying that they are really remarkable, so I will take it that way for now and keep moving on. It is technically astonishing as well.
+
+<span class="paragraph-timestamp" data-ts="16:16">16:16</span> **Seonghyun Kim** The fact that they created these kinds of structures and implemented them at the same time, and the fact that they succeeded in training them, is also surprising. At the same time, how difficult that process must have been is already very clearly shown in the paper.
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **Chester Roh** DeepSeek really seems to be pursuing the position of a frontier lab among frontier labs.
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> **Seonghyun Kim** Especially from an architectural perspective, yes.
+
+<span class="paragraph-timestamp" data-ts="16:42">16:42</span> **Chester Roh** Right. We will drive the new algorithms. It feels like they are aiming to be the celebrity of celebrities, and it is fair to see it that way.
+
+I think they did very well. So I think it would be good to explain Sparse Attention. As you said, if you only look at this diagram, it is hard to understand, but in this diagram itself, the core structure of that Sparse Attention is revealed quite clearly. You can think of the KV cache this way. There will be tokens from the previous context, and at that point, each token is assigned small vectors, and all of these vectors are stored. So the vectors corresponding to all tokens are stored in memory. Because all of those tokens have to be stored so that when attention is used, calculations can be done using these tokens and the previous ones. But while each vector is not that large, if you think of something like one million tokens, the scale of these tokens becomes enormous. And these tokens do not just need to be stored once for the whole model; they have to be stored for each layer. So if there are 60 layers, these 60 KV caches have to be stored, so the overall memory requirement grows to a nontrivial size. That is why you want to compress this part, and at the same time, while compressing it, you start wanting to reduce the number of KV caches actually used, the number of KV caches used in computation.
+
+
+## Lightning Indexer and top-k selection for handling the KV cache    *17:10*
+
+<span class="paragraph-timestamp" data-ts="18:20">18:20</span> **Seonghyun Kim** In step one, you compress the KV cache. You compress it to one quarter. You reduce it roughly to one quarter. After compressing it to one quarter, from that quarter, you select only part of it. The part that selects only part of it is called the Lightning Indexer.
+
+<span class="paragraph-timestamp" data-ts="18:36">18:36</span> **Chester Roh** That is the important part.
+
+<span class="paragraph-timestamp" data-ts="18:37">18:37</span> **Seonghyun Kim** The Lightning Indexer uses a relatively lightweight computation to identify the vectors and tokens that need to be selected from the KV cache. It selects the top-k, the top k items. And only for those k items, it performs the attention computation. It does not do it over the entire context. That is the core idea. If you think of it this way, it is not an extremely complex flow. First, compress it. Reduce the number.
+
+After reducing the number, from the reduced set, select only k items. And only for those selected k items, perform the attention computation. That is the structure. The other two components are likewise simple and not difficult.
+
+One of the others removes this operation of selecting k items, and compresses it, but greatly increases the compression ratio. It increases it to one hundredth, or more. That is the structure. And the remaining component removes this compression and the selection of k items, and instead limits the range of attention. For example, it limits it to only about 500. This structure is included, and the combination of these three kinds of attention becomes the core attention mechanism for DeepSeek-V4's long-context.
+
+But once you get into the details, this structure is quite complex. First of all, the way it compresses attention itself is quite unusual. My impression is that when compressing, they make two sets and combine them. I do not know why they did it this way.
+
+<span class="paragraph-timestamp" data-ts="20:14">20:14</span> **Chester Roh** They probably did it because it worked. There is no explanation. After making those two sets, they combine the two sets and calculate,
+
+<span class="paragraph-timestamp" data-ts="20:21">20:21</span> **Seonghyun Kim** then split the two sets again and merge them, doing a kind of compression. I do not know why they did it that way. When we talk about this area of deep learning,
+
+<span class="paragraph-timestamp" data-ts="20:32">20:32</span> **Chester Roh** we often say it really feels like alchemy. When you try it, it is all addition and multiplication, but when someone says, it worked when we did it that way, then a path opens up there. Yes, there probably was some intuition.
+
+<span class="paragraph-timestamp" data-ts="20:44">20:44</span> **Seonghyun Kim** There was intuition, and there must have been some research direction, but it is not clear why they made these choices. Maybe if we actually run experiments on this part and look at things like its characteristics, something might become visible. But these points were probably conclusions reached through a lot of trial and error. The concept called the Lightning Indexer probably appeared last year as well under the name DeepSeek Sparse Attention. It is almost identical to that. You have to find the top-k set, and finding that top-k set is not easy either. In any case, finding the top-k that is, finding the top k items from the whole set means you have to look at everything anyway. You have to look at everything to figure out which k items are the most significant. The component that finds those k items is the Lightning Indexer.
+
+
+## Top-k non-differentiability and training instability    *21:36*
+
+<span class="paragraph-timestamp" data-ts="21:36">21:36</span> **Seonghyun Kim** So because it has to look at everything, this component has to be very lightweight. The process of finding these k items is, in a way, the part that makes sparse attention extremely difficult. Sparsity is always very appealing in deep learning, but being sparse means it can reduce the amount of computation, because you do not compute most things and only need to compute a subset, so it is always an attractive structure in deep learning. But at the same time, when something is sparse in deep learning, it always creates problems. Because, for example, structures like MoE are sparse structures in exactly that sense. Because when we say something is sparse, a very commonly used operation is the top-k operation. The operation that selects only k items from the whole set. But the problem is that top-k is non-differentiable. Basically. Of course, once something is selected, strictly speaking, for the selected items, gradients do occur, but for the selection process itself, it cannot be differentiated. Selection is the most important part, but you cannot learn the act of selection itself. Basically. So this is where instability and difficulty in training arise.
+
+<span class="paragraph-timestamp" data-ts="22:51">22:51</span> **Chester Roh** How did DeepSeek get past that?
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **Seonghyun Kim** I think that part is probably made trainable because all of these overall structures are combined together. So previously, last year in China, the sparse attention papers that came out in China, which were similar to this, kept saying that it was too difficult to train. Sparse attention is too difficult to train. In fact, MoE also has many aspects that become tricky to train because of its sparsity, but in the case of attention, that effect is much stronger.
+
+For example, there are far more choices. If there are one million items, then out of those million, it becomes a problem of selecting k items. Since the scale of the problem itself grows and becomes harder, the difficulty of training sparse attention was the common conclusion. So people kept saying that sparse attention alone would not be enough, and that only by combining it with dense attention and full attention does it seem possible to use sparse attention.
+
+But DeepSeek tackled this problem head-on. It did tackle it head-on, but from the standpoint of model choice, or modeling choices, it is very subtle. So from the very early version called Native Sparse Attention, the flow is not very different. In Native Sparse Attention as well, the structure of compressing the KV cache and selecting top-k from it appears in exactly the same way there too. But there are differences in the concrete details. And there may be differences in the specific combination. There may also be differences in how it combines with other attention mechanisms. From that perspective, it is very subtle. So if someone asks why Native Sparse Attention does not work, but this one does, it is very difficult to answer. It does not immediately click.
+
+<span class="paragraph-timestamp" data-ts="24:37">24:37</span> **Chester Roh** But with experts, you only have to choose from a little over a hundred, whereas here, you have to choose from a million, so the scale of the problem is completely different from the start. Yes, and in the case of MoE,
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **Seonghyun Kim** there is something called load balancing, and that helps a lot with training, but with attention, it is hard to use something like that.
+
+<span class="paragraph-timestamp" data-ts="24:55">24:55</span> **Chester Roh** So, to add a quick comment on what Seonghyun has been saying, this has been a really difficult and fascinating topic, and I think he keeps conveying how surprising it is that they managed to make these things work. Yes, in China, it probably seemed like it would not work,
+
+<span class="paragraph-timestamp" data-ts="25:14">25:14</span> **Seonghyun Kim** and I think there was even a bit of resignation. But somehow, they made it work. They did make it work, but why doing it this way made it work is still not very clear. Since DeepSeek has now shown that doing it this way can work, I think there will probably be much more trial and error around why it worked. And many people will try it.
+
+<span class="paragraph-timestamp" data-ts="25:40">25:40</span> **Chester Roh** There must also clearly be know-how from the training process. Complex know-how.
+
+<span class="paragraph-timestamp" data-ts="25:45">25:45</span> **Seonghyun Kim** Yes, my guess is that this probably contributed quite a lot to training instability. Regarding that training and pre-training, they talk about the instability they themselves experienced in many areas. These modeling choices probably had a major impact on training instability. In any case, the details clearly show how they built it. And because they disclosed every part, we can know that for sure. But as for why doing it this way works, I think more studies will probably come out in the future. And I think a lot need to come out.
+
+<span class="paragraph-timestamp" data-ts="26:21">26:21</span> **Chester Roh** Also, DeepSeek must have quite a bit of that kind of thing hidden away. They boast about things like this externally, but they must have their own so-called tacit knowledge that they keep hidden internally. I get the sense that a lot of it is probably hidden in the know-how around the training process.
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **Seonghyun Kim** And there are probably countless pieces of experimental evidence and experiences that could not all be organized into the paper.
+
+<span class="paragraph-timestamp" data-ts="26:50">26:50</span> **Chester Roh** The paper is about 40 pages long, and every single paragraph is about something substantial. It feels like this is material that should have been written as an entire book, but they seem to have worked very hard to fit it into about 40 pages. And just as a note before we move on, even when I look at these equations Seonghyun is showing, I only roughly know what they mean, but I do not understand them. So just because this does not make sense to you, there is absolutely no need to feel bad. You can just look at it as, "Okay, that is the general idea," and move on. Seonghyun, please keep moving on to the next part.
+
+
+## MLA removal and Muon optimizer adoption    *27:24*
+
+<span class="paragraph-timestamp" data-ts="27:24">27:24</span> **Seonghyun Kim** This is about Heavily Compressed Attention. And another minor detail that goes along with it is that MLA, the attention mechanism that had been symbolic of DeepSeek, has been removed.
+
+<span class="paragraph-timestamp" data-ts="27:34">27:34</span> **Chester Roh** Really? I guess it can be removed, then. Yes, I guess it should be removed. Yes, it ended up being removed, and regarding MLA,
+
+<span class="paragraph-timestamp" data-ts="27:42">27:42</span> **Seonghyun Kim** someone like Luo Fuli said it would probably be better not to use MLA. That is what Luo Fuli was saying. In practice. And if that happens, Chinese models will also likely move toward abandoning MLA. They will move to a simpler structure called Multi-Query Attention. Then they added the Muon Optimizer.
+
+The Muon Optimizer is an optimizer that, after Adam, is now being adopted very widely. Almost all Chinese models are using it now. It helps accelerate training speed. Accelerating training speed also means making computation more efficient. In other words, it reduces computational cost. But faster training can also mean greater data efficiency when data is limited. In that respect, the Muon Optimizer is getting a great deal of attention, and right now it is also an optimizer widely used almost as a default. And regarding this part as well, what I found somewhat interesting was that
+
+DeepSeek seems to dislike following the standard things others use. There is a commonly used Muon Optimizer setup, but they expanded that part a bit and made it a little more accurate. They made some modifications so that it becomes more exactly 1. And regarding this part, in China, Moonshot AI's Kimi was actually the pioneer. They did adopt quite a few of the choices Kimi led.
+
+<span class="paragraph-timestamp" data-ts="29:08">29:08</span> **Chester Roh** And did we already talk about this? Manifold-Constrained Hyper-Connections.
+
+<span class="paragraph-timestamp" data-ts="29:14">29:14</span> **Seonghyun Kim** The structure called a residual connection is a core structure in deep learning. It is an important component that makes deep models trainable. To summarize mHC very simply, it means widening the pathway. Because the pathway is limited, it has to be shared, and within that limited pathway, later stages also have to be taken into account, which creates too many constraints. So if the pathway is widened, there will be much more room. Those constraints are effectively relaxed. That is the kind of structure you can think of it as. But if you just widen the pathway indiscriminately, the cost becomes very large,
+
+so the question is whether there is a cheaper way to do it. That was Hyper-Connections. And mHC is HC stabilized.
+
+<span class="paragraph-timestamp" data-ts="30:01">30:01</span> **Chester Roh** Hyper-Connections solved that, and Hyper-Connections were Manifold-Constrained, confined to a manifold. I guess that is how we can think of it.
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **Seonghyun Kim** You can think of it as having stabilized that.
+
+<span class="paragraph-timestamp" data-ts="30:14">30:14</span> **Chester Roh** So when it comes to the algorithmic innovations in the DeepSeek paper, the three things they are pushing are, first, this mHC, and second, this Sparse Attention part. This part, explained as CSA and HCA, will probably be the biggest contribution of DeepSeek-V4, namely the Sparse Attention part. And then they used the Muon Optimizer. Those were the main points. So we have now summarized those three algorithmic points a bit, so shall we move on to the next part? What other points are there?
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **Seonghyun Kim** One thing is missing on the algorithmic side. I think that part will now become an interesting topic going forward. N-gram is missing. Ah, yes, yes.
+
+
+## The DeepSeek-V4 algorithm without N-grams    *30:57*
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **Seonghyun Kim** Many people expected N-gram to appear in DeepSeek-V4, but it was left out here. So how N-gram reappears in the future will be an interesting point to watch. In any case, DeepSeek-V4 does not have it yet. Right. And then infrastructure comes up.
+
+
+## MoE pipeline optimization for stronger training infrastructure    *31:18*
+
+<span class="paragraph-timestamp" data-ts="31:18">31:18</span> **Seonghyun Kim** Infrastructure is also no small matter. One is optimization for the MoE part. I am not really sure how far I should go in explaining this either.
+
+When we talk about distributed training, there is communication and there is computation. So when you do distributed training, in the process of splitting and combining information, you have to communicate with other workers. There is communication, and then you have to do the actual computation. There is computation. To put it simply, you can communicate and compute at the same time. Right. Strictly speaking, it does not always work perfectly that way, but basically, they can overlap. They have to overlap. But in many cases, they are structured in a way that makes simple overlap difficult. The algorithm itself cannot overlap them. Communicate and compute, communicate and compute, that is the structure you get. But you want to overlap that.
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **Chester Roh** You want them to run simultaneously. They have to be simultaneous. Because then computational efficiency
+
+<span class="paragraph-timestamp" data-ts="32:18">32:18</span> **Seonghyun Kim** increases tremendously. One of the tricks for that is something called a pipeline. You split it up. While communicating and computing one part of the task, you communicate the next part, then compute and communicate, and compute, and so on. They did that work.
+
+For MoE, there was actually earlier research called Comet that did something similar for MoE, from ByteDance, and they improved on that. That is the basic flow, and Comet improved it, then they split it further and improved it again. Actually, in DeepSeek-V3 as well, they gave a lot of explanation about these parts
+
+<span class="paragraph-timestamp" data-ts="32:54">32:54</span> **Chester Roh** that optimize communication and computation, and they used that as a way to overcome the limits of the compute resources they had, since NVIDIA was not exporting advanced chips to China. So they said they completed the computation at a very low cost, and actually, a year ago, or a year and a half ago, that caused quite a stir. This is about experts, right? If anything has changed in the meantime, the overall structure of all models has shifted toward increasing the number of experts, and in the process of training and running those experts, they improved once again on how to reduce these so-called bubbles, compared with Comet.
+
+<span class="paragraph-timestamp" data-ts="33:34">33:34</span> **Seonghyun Kim** Yes, in DeepSeek-V3, they addressed the cost of experts by overlapping it with something called pipeline parallelism, but here they improved MoE itself. But actually, although it sounds simple, Comet is incredibly complex. They made this even more complex again, so honestly, I do not really feel up to looking at it. They expressed it with this very nice diagram, but I am a little afraid of what the internal details might look like.
+
+
+## Mega-kernel and FP4 quantization for infrastructure efficiency    *34:08*
+
+<span class="paragraph-timestamp" data-ts="34:08">34:08</span> **Chester Roh** Yes. And they also improved the kernel itself a great deal. If you ask how much they improved it, I think this paragraph explains it very well.
+
+What is that kernel?
+
+<span class="paragraph-timestamp" data-ts="34:19">34:19</span> **Seonghyun Kim** What we call a kernel is something that runs on CUDA,
+
+<span class="paragraph-timestamp" data-ts="34:22">34:22</span> **Chester Roh** You mean the kernel that performs computation in CUDA, right? Yes, they greatly enlarged that kernel
+
+<span class="paragraph-timestamp" data-ts="34:28">34:28</span> **Seonghyun Kim** into something called a mega-kernel. They packed computation and communication together as much as possible, greatly increasing computational density. Increasing computational density means that it actually puts puts far more load on the accelerator. And how far did it go? The kernel density became so high, the computation density became so high, that power throttling started to kick in. It reached a level where it could no longer handle the power demand. So power now becomes the constraint. On the hardware side, they mention that going forward, they will likely need to expand the power infrastructure further. It is a very romantic kind of story.
+
+There is something called TileLang. Actually, TileLang itself is open source, separate from DeepSeek. While developing kernels, they worked with TileLang and made many contributions to the DSL for kernel development called TileLang. That is what they are saying. They significantly improved TileLang itself.
+
+<span class="paragraph-timestamp" data-ts="35:30">35:30</span> **Chester Roh** Each individual block has a lot packed into it.
+
+<span class="paragraph-timestamp" data-ts="35:33">35:33</span> **Seonghyun Kim** They say they improved TileLang through integer optimization, but I do not really want to imagine what that means here. If you think about the code each of these implies, what form that code would take is not something I really want to imagine. You can think of each of these as work to reduce overhead and increase computation density. And one very interesting part is batch invariance. This is also a huge contribution, though I think this will also be hard to understand. But it is a very big contribution, and a group called Thinking Machines researched batch invariance and published a blog post that became a major topic. I do not know whether they properly released all of those batch invariance kernels, but these batch invariance kernels were released again by DeepSeek, and these released kernels have been optimized extremely heavily. As far as I know, they say the overhead caused by batch invariance has been reduced very significantly. And then quantization comes in.
+
+In DeepSeek-V3, 8-bit quantization was the main approach, but here they pushed it one step further. For things like expert weights, they use MXFP4, 4-bit compression. It is 4-bit compression, and in fact it appeared in GPT-OSS as well. You can think of it as trying those techniques here too.
+
+<span class="paragraph-timestamp" data-ts="37:06">37:06</span> **Chester Roh** Since NVIDIA's latest hardware is pushing FP4 as the main format, if you want to use it ahead of time, you have to consider all these things too. Yes, basically, with FP4 compression,
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **Seonghyun Kim** the model weights get smaller, which is an advantage. And starting with Blackwell, acceleration kicks in. For 4-bit, and even 4-bit compression, it seems to work well. For experts, 4-bit compression seems to be becoming almost standard now.
+
+<span class="paragraph-timestamp" data-ts="37:34">37:34</span> **Chester Roh** Okay. Next come the optimizations for Muon. Optimizations for mHC, and this will come up with DeepSeek-V4, another very important detail that will come up, is that they train with long-context starting from pre-training. There are optimizations for long-context, and optimizations for distributed long-context training.
+
+<span class="paragraph-timestamp" data-ts="37:54">37:54</span> **Seonghyun Kim** And especially here, because they compress the context, to handle that compression, the problem became even more complicated once again. Optimizations for that are included, and beyond optimizations for something called activation checkpointing, Here, they work on making that part a bit simpler and more flexible.
+
+<span class="paragraph-timestamp" data-ts="38:16">38:16</span> **Chester Roh** Training with long-context from pre-training means starting from pre-training, they just put in 1M outright, right? That's incredible.
+
+<span class="paragraph-timestamp" data-ts="38:24">38:24</span> **Seonghyun Kim** You can think of 1M as being included too. For other models,
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **Chester Roh** when they first train, during pre-training, isn't it usually 4K or 8K context? Is that right? 4K, 8K? If they go long, 8K.
+
+<span class="paragraph-timestamp" data-ts="38:37">38:37</span> **Seonghyun Kim** And in China, they also used 4K a lot. Right.
+
+And they did work for inference optimization. Here, three types of attention are used. To use those three types of attention for inference, the inference infrastructure has to support that too. Yes, that's right.
+
+That work was done. And storing the KV cache on disk, that is also something of a DeepSeek specialty. And now pre-training comes up. Finally, the pre-training data section appears. They do not say much about the data. They say they prepared 32T tokens. I do not really know what they prepared or how.
+
+
+## Expanded pre-training with 32T tokens and long-context learning    *39:02*
+
+<span class="paragraph-timestamp" data-ts="39:12">39:12</span> **Chester Roh** In any case, high-quality 32T tokens, right. And long-context. I think we should probably talk about this part later.
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> **Seonghyun Kim** And DeepSeek has published a lot of OCR papers, right? OCR-processed PDF documents from ebooks, and ebooks probably went in in very large quantities. Synthetic data is very popular these days, but they do not mention synthetic data. I am not sure whether they used a lot of synthetic data and simply did not mention it, or whether they did not use it. I do think there is also a possibility they did not use it.
+
+<span class="paragraph-timestamp" data-ts="39:45">39:45</span> **Chester Roh** Still, probability-wise, I think it is much more likely that they used it. In fact, even the papers we were looking at just about six months ago mostly had pre-training datasets of around 15 to 20T tokens, but theirs is almost double that now. Yes. Interestingly, they do not mention it at all. I do not know why.
+
+<span class="paragraph-timestamp" data-ts="40:07">40:07</span> **Seonghyun Kim** There is a paper that mentions something similar here, and that paper argues that synthetic data should not be used. So I am not sure what exactly was going on.
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> **Chester Roh** In fact, the line between natural and synthetic is now becoming hard to draw, I think that is the world we are in. Increasingly so. Let's move on. Pre-training setup details. And these are the details.
+
+<span class="paragraph-timestamp" data-ts="40:30">40:30</span> **Seonghyun Kim** The training setup is somewhat important, and this part is long-context pre-training. They start at 4K, raise it to 16K, and then train on about 1T tokens there. Then the remaining 30T is trained at 64K or above. This is a very interesting part. Even among Chinese models so far, there had not been a case like this. Training at 64K means training at this scale is extremely efficient. First, attention basically increases quadratically, as people commonly say, so if it increases to 64K, the cost here should be large, but through Sparse Attention and various optimizations, training is extremely efficient even at this scale, which is one thing it means.
+
+The other thing is that data at this scale exists in sufficiently meaningful quantities, that is what it means. So when training at 64K, for 64K to be meaningful, there have to be sufficiently many documents with lengths of at least 32K or more. It means they prepared a lot of that kind of data. Earlier, in the dataset section,
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **Chester Roh** they specifically called it a long dataset. At the same time, another point is that
+
+<span class="paragraph-timestamp" data-ts="41:47">41:47</span> **Seonghyun Kim** long training with long-context matters a lot. That means long-context capabilities will likely matter a great deal, and if that is the case, Chinese models will all end up following this structure. And now, doing pre-training at long-context lengths That makes sense. Other models mostly complete
+
+<span class="paragraph-timestamp" data-ts="42:10">42:10</span> **Chester Roh** the pre-training phase at 4K or 8K, and then, at the very final stage, they do just a little work to expand the context. But these models did not do that. They just went all in
+
+<span class="paragraph-timestamp" data-ts="42:20">42:20</span> **Seonghyun Kim** Yes, it gets integrated into pre-training. The idea of handling long-context during post-training after pre-training will disappear, and it will become integrated with pre-training. And that will probably really help with long-context capability. And these are signs of the pain.
+
+
+## Anticipatory Routing for training instability    *42:37*
+
+<span class="paragraph-timestamp" data-ts="42:41">42:41</span> **Seonghyun Kim** Training instability. How do they reduce training instability? But one interesting point is that training instability itself
+
+does not come up much these days. These days, people building LLMs often say their training is extremely stable, that kind of thing. But here, they experienced a lot of training instability. But I am not sure exactly why. It might have been because of attention, and here, they say many causes of instability came from the MoE side, but they also made a lot of detailed changes to MoE. I do not know why, but they changed the gating part a bit and made a lot of modifications to areas like that, and although I do not know why they made those choices, they did make those modifications. And probably because of those modifications, training seems to have become unstable. It could also have been a data issue. They made a lot of fixes in that area,
+
+and clamping is relatively intuitive. If you set maximum and minimum values and limit the range of values, instability often occurs when values are too large or too small. So if you constrain that, if you limit it, things can sometimes improve. That is a simple structure, but what everyone finds strange is this concept called Anticipatory Routing. When routing in MoE,
+
+you decide which expert this token should be sent to. They perform this routing using training weights from several steps earlier. They built a structure that does this routing with past training weights, with a past model. It is an extremely complex structure, and the infrastructure needed to use this efficiently in training must have been extremely complex. But they implemented it and used it. Why they had to do that is a mystery. Why they had to go this far to implement it, that process is a bit of a mystery. This is something we will have to keep thinking through,
+
+<span class="paragraph-timestamp" data-ts="44:39">44:39</span> **Chester Roh** and I do not think we will understand it until someone explains it. Yes. No one understands it.
+
+<span class="paragraph-timestamp" data-ts="44:46">44:46</span> **Seonghyun Kim** Everyone is wondering why this works, why they did this, and beyond that, why training was unstable enough that they had to do this.
+
+<span class="paragraph-timestamp" data-ts="44:56">44:56</span> **Chester Roh** I have a feeling this might be a kind of regularization.
+
+<span class="paragraph-timestamp" data-ts="45:00">45:00</span> **Seonghyun Kim** Yes, that could be. There is also a possibility that they mixed in To prevent self-loops from being reinforced,
+
+<span class="paragraph-timestamp" data-ts="45:08">45:08</span> **Chester Roh** they may have mixed in noise first. For generalization.
+
+<span class="paragraph-timestamp" data-ts="45:14">45:14</span> **Seonghyun Kim** They deliberately cut some of the connected links. To do that cutting, they must have gone through a very complex process, but in any case, they had to do it. Yes, that's the situation. Yes, exactly. I thought that if we just covered the three algorithm parts earlier,
+
+<span class="paragraph-timestamp" data-ts="45:31">45:31</span> **Chester Roh** we might get into DeepSeek-V4, but what Seonghyun always emphasizes is this. What really matters is data, but people don't talk much about data. So the data part was actually skipped over in just one paragraph, and after that, training, or maybe data and training, is really the core, isn't it? Even in those parts, there are many paragraphs we can't understand.
+
+<span class="paragraph-timestamp" data-ts="46:00">46:00</span> **Seonghyun Kim** That's why the infrastructure is extremely complex.
+
+<span class="paragraph-timestamp" data-ts="46:02">46:02</span> **Chester Roh** Yes, they're really at the frontier of the frontier. That's just my impression. And here, evaluation comes up again, and they compare their own models there.
+
+<span class="paragraph-timestamp" data-ts="46:13">46:13</span> **Seonghyun Kim** With the model size and data both increasing, I think, especially in terms of knowledge, especially since this is pre-training, evaluating knowledge is much easier in some ways. They made very substantial progress in terms of knowledge. It's similar on post-training benchmarks as well. Their long-context capability also improved a lot. And then post-training appears. There are also a lot of details in post-training. In post-training, they create one model, and this is the important issue. For example, there are coding experts, coding-specialized models, coding-specialized reasoning models, math-specialized reasoning models, or general reasoning models, and so on. How to combine these is the interesting part. DeepSeek used On-Policy Distillation here. So after training each specialist, they used a method of distilling those specialists. So when making the final model, it seems they didn't do RL. And they used a rubric-based reward model. They published a paper on rubric-based reward models after R1 came out. They adopted that. Then they talk about the format of tool calls, things like that. And how reasoning uses tool calls along the path to construct the context for reasoning, this is something DeepSeek actually talked about in V3.2 as well. On-Policy Distillation came up. And there is also discussion of infrastructure for doing On-Policy Distillation efficiently, and then, when doing distillation, what kinds of details need to be handled, they talk about those details, but each of these details greatly increases the infrastructure burden. And they added infrastructure to cover that.
+
+
+## On-Policy Distillation and Rubric Reward for refined post-training    *46:35*
+
+<span class="paragraph-timestamp" data-ts="47:59">47:59</span> **Chester Roh** There's discussion of the infrastructure for doing RL.
+
+<span class="paragraph-timestamp" data-ts="48:03">48:03</span> **Seonghyun Kim** Yes, it comes up. The method used here, even within On-Policy Distillation, has a heavy infrastructure burden. So to support that, they included an infrastructure structure, and doing RL with FP4, using FP4 to do RL, may sound easy, but it's actually a very difficult problem. Then once again, RL infrastructure comes up again. Since they did pre-training on 1M tokens, they also have to do RL on 1M tokens. Doing RL on 1M tokens means generating 1M tokens. Since they have to generate those 1M tokens, generation has to be fast. Yes, since they have to generate one million tokens, they need to generate one million tokens quickly, and while generating one million tokens, at the same time, they have to do agentic post-training, because doing agentic post-training means generating tokens during post-training while actually interacting with a sandbox. To interact with a sandbox,
+
+this is actually something needed across the entire post-training infrastructure, but each environment has to be spun up quickly. For example, things like Docker containers have to be spun up quickly. To spin up Docker containers quickly, those images have to be read quickly, and to read the images quickly, the storage service
+
+has to support that as well. I talked about that yesterday. Right.
+
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **Chester Roh** Yesterday, I only read the algorithm part of this paper closely, and for the later sections, I skimmed through them paragraph by paragraph, but as I looked at it, I thought I shouldn't go to the U.S., I should go here. I thought I should go to Hangzhou. I should go sit in a cafe in Hangzhou and ask the engineers I run into there something. I really got the feeling that the frontier is here. Now, when agents interact,
+
+<span class="paragraph-timestamp" data-ts="49:48">49:48</span> **Seonghyun Kim** of course errors happen and there are many failures. The infrastructure needed to respond in those situations, and those infrastructure and scale-up processes, all become issues, and they talk a lot about that. They still don't talk about data here, right?
+
+<span class="paragraph-timestamp" data-ts="50:05">50:05</span> **Chester Roh** Right. For benchmarks, we just look at the figures and move on. In the end, it's about how much better it got. They compared it with Claude Opus 4.6, GPT-5.4, and Gemini 3.1. For Chinese models, Kimi K2.6 and They are a little disappointed.
+
+
+## DeepSeek-V4 benchmarks against Claude, GPT, and Gemini    *50:08*
+
+<span class="paragraph-timestamp" data-ts="50:22">50:22</span> **Seonghyun Kim** They are a bit disappointed with the post-training, with DeepSeek's post-training. They say there may be a lot more room to push it further. Since the model class has gotten larger and they did much better pre-training, through post-training that should bring that out, they may be able to draw out even more. The architectural changes are so significant that it's fair to say
+
+<span class="paragraph-timestamp" data-ts="50:41">50:41</span> **Chester Roh** they have almost used a new species, so as 4.1 and 4.2 come out, won't the disappointments Seonghyun just felt be addressed somewhat? Because their foundation has changed a bit. In fact, even setting aside the uncertainty and instability of training, they also need time to get more gains from it. 4.1 and 4.2 will probably come out soon. Yes.
+
+<span class="paragraph-timestamp" data-ts="51:05">51:05</span> **Seonghyun Kim** Right now, I think it was basically at the preview stage. And from the beginning, they will probably focus on post-training. Since they now have a pre-trained model. And once again, the important battle seems likely to be in the post-training stage. To quote what I said earlier, when it comes to pre-training, they have already reached an equivalent level. What remains now is reaching an equivalent level in post-training, and at the same time, for post-training, using as much compute as they use for pre-training.
+
+<span class="paragraph-timestamp" data-ts="51:41">51:41</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="51:42">51:42</span> **Seonghyun Kim** For now, in my view, the compute that has gone into post-training is probably only a fraction of pre-training. In the case of something like DeepSeek-V4, when it comes to this post-training, they will invest even more compute, eventually at a level comparable to pre-training. Through that, I think we may see some further improvements. How much they can improve through that process will be, for DeepSeek, an extremely important issue. And even so,
+
+they also talk a great deal about the post-training process here. They also discuss math benchmarks like PutnamBench. This is a bit different, but improvements in long-context, I do not know how far DeepSeek-V3 had gotten, but it shows a very large improvement, with quite good numbers. That is what they are talking about. In areas like MRCR,
+
+they also talk about HLE and Terminal Bench 2.0, and they even talk quite a lot about things like Chinese writing. To improve Chinese writing, they discuss how much effort they put in, compared with Gemini, to build a better writing model, and say they made a lot of effort there. On white-collar tasks as well,
+
+they say they experimented with post-training for those tasks and compared it with Opus.
+
+<span class="paragraph-timestamp" data-ts="52:54">52:54</span> **Chester Roh** That's right. Yes.
+
+<span class="paragraph-timestamp" data-ts="52:57">52:57</span> **Seonghyun Kim** Anthropic often said that DeepSeek queried Opus for the purpose of distillation, in that kind of way, but honestly, I tend to think they may have used it a lot for things like this too. More than benchmark distillation, yes. I tend to think it may have been done for comparison and benchmarking. Yes, we
+
+as a coding agent, especially in Korea, actually, interest in China is not that high,
+
+<span class="paragraph-timestamp" data-ts="53:24">53:24</span> **Chester Roh** and because so much of our news is tied to Silicon Valley across the Pacific, that is a very interesting point, but Japan and Korea are much closer to the U.S., and the things happening in China are not something we pay that much attention to, so to speak, but I do not think we should be that way. Tremendous progress is happening. Understood. The conclusion, all this tremendous content,
+
+about 50 pages, shall we scroll down once more to the back? The contributors, the contributor names, were listed all the way at the back, so how many are there? Shall we try reading through them? We We should have counted them. I was curious too.
+
+<span class="paragraph-timestamp" data-ts="54:02">54:02</span> **Seonghyun Kim** Within this DeepSeek organization, how many research and engineering contributors there are, Right.
+
+Yes. But there are not that many. Even just looking at the number, actually, These days, among frontier labs,
+
+I do think it may still be on the fairly large side. Everyone is very interested in keeping teams small. Right. Yes. They say the AI frontier is led by Chinese people in mainland China
+
+<span class="paragraph-timestamp" data-ts="54:28">54:28</span> **Chester Roh** and Chinese people in the U.S., do they not? There is also one important point in the paper, where they say they used NVIDIA chips and Huawei chips together. They do not mention the proportions, but since they must have used them quite a lot by now, the Huawei chips would have been mentioned too, and in their infrastructure, alternatives are emerging for semiconductors as well, in China. And another interesting point that comes to mind is,
+
+
+## Contributors, Huawei chips, and Meta Muse Spark behind the scenes    *54:31*
+
+<span class="paragraph-timestamp" data-ts="54:56">54:56</span> **Seungjoon Choi** Maybe because it was a minor release, we did not cover it, but Muse Spark did come out, right? This month, they also put in an enormous amount of compute resources and talent, but when it actually came out, in some ways, DeepSeek-V4 seemed better. That was the impression. Where is Muse from?
+
+<span class="paragraph-timestamp" data-ts="55:13">55:13</span> **Chester Roh** Meta. Meta has had so little presence that it slipped my mind. Sorry. Right, that side... They have been very stingy about releasing models, so I am not sure.
+
+<span class="paragraph-timestamp" data-ts="55:28">55:28</span> **Seonghyun Kim** I think we need to think about that part.
+
+<span class="paragraph-timestamp" data-ts="55:32">55:32</span> **Seungjoon Choi** But they also put in an enormous amount of compute resources and talent, and DeepSeek also, in moving from DeepSeek-V3 to DeepSeek-V4, took quite a lot of time, so they spent a similar amount of time, right? But in the end, when you look at what was released, DeepSeek-V4 feels a bit more impactful.
+
+<span class="paragraph-timestamp" data-ts="55:46">55:46</span> **Seonghyun Kim** That is probably, in fact, partly due to the difference in salience from disclosing so much information. But as I said, the important part now seems to have shifted to post-training, and the difference in post-training quality is something we can really only know by hearing from users who actually try it. But with Muse Spark, details on the architecture or pre-training were not disclosed, but as I said before, I do think it may not quite be at this level. So if we focus on the pre-training, the architecture and technical aspects of pre-training, the improvements or innovations there may not be at this level, at least that is what I think. That is my guess. But since they have not disclosed what it actually looks like, we cannot know. Right. Then, since we have spent quite a bit of time now,
+
+
+## A quick roundup of Cloud Next and GPT-5.5    *56:39*
+
+<span class="paragraph-timestamp" data-ts="56:39">56:39</span> **Chester Roh** let's wrap up the DeepSeek-V4 review here, and this week, besides DeepSeek-V4, we also have Google Cloud, then GPT-5.5, and various other news, and Seungjoon has summarized a few things, so shall we take a quick look at those?
+
+<span class="paragraph-timestamp" data-ts="56:55">56:55</span> **Seungjoon Choi** I think we really need to do it quickly. Quickly, GPT 2.0 Image actually became a big issue. So the Elo score came out very high, and that was around Tuesday. Then there was Cloud Next, and what drew attention was the release of 8th-generation training-mode and inference-mode TPUs, things like that. Then at Anthropic, around Thursday, there was also a bit of an explanation for why performance had dropped. And then on Friday, as GPT-5.5 had been previewed, something rumored to be called Spud came out, and it definitely got faster. After using it, it feels faster, and the performance is also quite satisfying. The interesting point is that this is the unicorn benchmark Sébastien Bubeck had talked about several times before. But the reason the unicorn benchmark suddenly improved is that it used a bit of a trick, which is, it first generated an image with Image 2.0, and then had the model draw that. So it was a bit of a trick, but the point is that ultimately, things will move in this direction. In other words, within inference, things like image generation will be included, and the model will use them, that was the kind of implication. As if reflecting that, recently, patterns where people generate with Image 2.0 and then build with GPT-5.5 have increased sharply. This is not just frontend work, but there have also been attempts powered by image models.
+
+What I still want to spend some time introducing is the rhythm we looked at last week. Last week, we looked at Opus, so if we looked at the rhythm on the Claude side, this is the release sequence. And this plots it across that time period. Even looking only at flagship models, around here, it takes quite a while, but looking around 2025, from o3, 4.5 was in February of last year, and o3 was April 16, around this time. From there, the jump to August in the summer took some time, but after that, moving up by 0.1 seems to have taken far less time, and that pattern seems to be getting confirmed again. If you include Codex here, it gets even denser. So it feels like an enormous pipeline is running right now, and ultimately, as we once discussed in the group chat, like Chrome browser updates, we may reach a point where we no longer pay attention to model updates either.
+
+Then, in the 3D area as well, GPT-5.5 showed some remarkable performance improvements. And another interesting point was that NVIDIA seemed to be strongly backing GPT-5.5, while Google is investing in Anthropic again. So there was a lot of news this week too, but if I had to pick just one final item, the interview with Claude product team member Cat Wu at Anthropic was quite interesting. So I pulled out some of the summarized points and put them up front here. The dramatic acceleration of development speed. So what the interviewer pointed out was whether resources had helped somewhat, but Cat Wu did not fully acknowledge that, and only acknowledged it slightly, saying that some kind of flywheel is already turning. Then the conversation went on about the role of PMs and so on, but I found the very last part interesting. This is the part I brought in exactly from the original text. How to stay sane in the middle of a tornado. How do humans endure amid this kind of change? So one of Anthropic's co-founders, Ben Mann, said that this is the most normal state the world will ever have going forward, and talked a bit about the kind of talent that has resilience at a very high frequency. So rather than saying that everything in the world is going crazy, he talked about people who can keep their wits about them even in the middle of this, people who do not burn out, and I picked that as this week's news. That ability is really hard to build. Yes. So this week as well, there was dense DeepSeek content, but across the board, all the things happening show that each company is doing something, showing some incredible frequency. But it's easy to burn out. Now, actually, even our click-click work has become a new daily routine, so those things don't feel that surprising anymore. And when someone says they used hundreds of millions of tokens, or billions of tokens, I also see quite often people moving away from that kind of token maxxing. I see that fairly often. That is not the answer. It feels like certain balance points are emerging. Also, until now, when it comes to AI, we have been focused on the idea that it can do everything, on the novelty and functions of AI itself, Everything will disappear because of this, people said all the SaaS companies would disappear, and in fact, SaaS stock prices are not only falling, but their new orders are also plunging. In other words, even inside companies now, people are starting to build and use their own tools easily in an AI-native way, and there are signals everywhere that this is taking hold. So as Seungjoon just said earlier, the market may no longer care about how much better a model has gotten, or what has changed, and it may become as routine as a Chrome update. Or it may become a world where people just say, "It's AGI anyway." But with this, then how are we going to build a business, and what kind of value are we going to create? I think things will rapidly move toward those questions. I can feel those signals. And the people who are ahead are no longer talking about how to build a harness, or what Claude Code is like, or how to use Codex, things like that. Instead, they're asking how to make money with this, what customers want, and how to close the gap between those things. Lately, I have been seeing many of them calmly move forward with conversations like that. So as Seonghyun also pointed out earlier, the base models are all changing right now. Anthropic may not be at 4.7, but Mythos has definitely changed its base, Spud has changed its base model, and DeepSeek has also changed its base model. So after this, incrementally, models will keep being updated at this frequency, and even GPT-5.5, from what people are saying, seems to be an early checkpoint. That means they will keep coming out. Not long after they said Spud pre-training was finished, GPT-5.5 came out. Exactly. It means they will keep coming out. That's a good thing. We're just grateful that they let us use such good models at such low prices. Though prices have been going up lately. Right. DeepSeek is also running a 75% discount event for ten days. This is the kind of world we are in now. So today, DeepSeek, then GPT-5.5, and there was also a Google Cloud event, but on the cloud side, from Google, there does not seem to have been anything especially noteworthy, so I think it got buried. This is the kind of world it has become. So today was also a bit long, and in some ways it may have been a very difficult session, but we talked through DeepSeek-V4 and GPT-5.5. Seungjoon, Seonghyun, thank you. Good work. It was interesting.
+
+
+## Accelerated development and burnout through Cat Wu’s interview    *60:00*
+
+
+## The shift from model performance to business value    *62:08*
+
+
+## Closing thoughts and the next episode    *64:37*

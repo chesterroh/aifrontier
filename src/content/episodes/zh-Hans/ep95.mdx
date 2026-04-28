@@ -1,0 +1,414 @@
+---
+episodeNumber: 95
+title: "解读 DeepSeek-V4 论文"
+description: "深入解读 DeepSeek-V4：1.6T 规模、Sparse Attention、mHC 与 Muon Optimizer 如何改变 long-context 性能与 KV cache 成本结构。"
+publishedAt: 2026-04-28
+duration: "1:04:54"
+youtubeId: "rJEMaldMyLE"
+thumbnail: "https://i.ytimg.com/vi/rJEMaldMyLE/maxresdefault.jpg"
+hosts:
+  - 노정석
+  - 최승준
+  - 김성현
+chapters:
+  - time: "0:00"
+    title: "从 GPT-5.5 和 DeepSeek-V4 开始的本周 AI 新闻"
+  - time: "1:06"
+    title: "中国前沿实验室格局中 DeepSeek 的位置"
+  - time: "3:34"
+    title: "扩大到 1.6T 的 DeepSeek-V4 模型扩展与架构变化"
+  - time: "4:03"
+    title: "降低计算量和 KV cache 的 Sparse Attention"
+  - time: "8:16"
+    title: "从 from-scratch 训练看 Sparse Attention 的意义"
+  - time: "12:10"
+    title: "构成 Sparse Attention 的三个核心组件"
+  - time: "17:10"
+    title: "处理 KV cache 的 Lightning Indexer 与 top-k 选择"
+  - time: "21:36"
+    title: "Top-k 选择的不可微性与训练不稳定性"
+  - time: "27:24"
+    title: "移除 MLA 与引入 Muon Optimizer"
+  - time: "30:57"
+    title: "不含 N-gram 的 DeepSeek-V4 算法梳理"
+  - time: "31:18"
+    title: "提升训练基础设施的 MoE pipeline 优化"
+  - time: "34:08"
+    title: "提高基础设施效率的 Mega-kernel 与 FP4 Quantization"
+  - time: "39:02"
+    title: "扩展到 32T token 和 long-context 训练的 pre-training"
+  - time: "42:37"
+    title: "处理训练不稳定性的 Anticipatory Routing"
+  - time: "46:35"
+    title: "精细化 post-training 的 On-Policy Distillation 与 Rubric Reward"
+  - time: "50:08"
+    title: "与 Claude、GPT、Gemini 对比的 DeepSeek-V4 benchmark"
+  - time: "54:31"
+    title: "contributor、华为芯片以及 Meta Muse Spark 背后的故事"
+  - time: "56:39"
+    title: "Cloud Next 与 GPT-5.5 消息快速整理"
+  - time: "60:00"
+    title: "从 Cat Wu 采访看加速开发与倦怠"
+  - time: "62:08"
+    title: "从模型性能转向商业价值的竞争格局"
+  - time: "64:37"
+    title: "今天讨论收尾与下期预告"
+lang: "zh-Hans"
+alternateSlug: null
+---
+
+## 从 GPT-5.5 和 DeepSeek-V4 开始的本周 AI 新闻    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **卢正石** 今天录制时是2026年4月26日，星期日早上。这一周有很多重磅消息。Google Cloud Next 正在举行，传闻已久的 GPT-5.5，GPT-5.5 终于发布了。性能简直强到难以企及。不过最重要的消息，我觉得应该是 DeepSeek-V4 发布了。真的变便宜了。很多人都在说性价比真的很高，中国的前沿实验室不可小觑。光是我们知道的，似乎就差不多有5家。DeepSeek，还有 Kimi，以及以 GLM 闻名的 Z.ai，还有著名的 Yao Shunyu 最近转到了腾讯，做出了 Hy3，另外曾在 DeepSeek 立下汗马功劳的某位人士又去了小米，推出了名为 MiMo 的前沿模型。而站在顶点的可以说是 DeepSeek，DeepSeek 终于在 R1 之后时隔将近1年4个月，带来了这个 V4。今天我觉得很适合仔细聊一聊 DeepSeek-V4，所以和在英国的成铉久违地一起坐下来录制。成铉，欢迎你。这一周非常有意思。
+
+
+## 中国前沿实验室格局中 DeepSeek 的位置    *1:06*
+
+<span class="paragraph-timestamp" data-ts="1:17">1:17</span> **金成铉** GPT-5.5 也发布了，也有各种消息，但 DeepSeek-V4 久违地从研究层面、技术层面来看，都提供了非常有意思的素材。正好 GPT-5.5 也是如此，那个传闻中的 Claude Mythos 也是如此，在大家都在更新经过 pre-training 的 base model 的情况下，DeepSeek 也更新了经过 pre-training 的base model。而且与其他公司不同，DeepSeek 对自己更新后的模型讲得非常坦诚。从 DeepSeek 转到小米、现在负责领导 LLM 的著名的 Luo Fuli 曾说过，中国也许在 pre-training 方面已经追上了美国，或者说也许在技术上还有一些更领先的地方，而展现这一点的顶峰案例，我觉得可能就是 DeepSeek-V4。同时，虽然现在依然如此，但也有人说中国在 post-training 上还有落后于美国的地方。而能提供这方面线索的，我认为也正是 DeepSeek-V4。
+
+从 DeepSeek-V3 到 V4，模型规模变得非常大。在架构方面也有非常大的变化。而这些变化全都很有意思。再进一步说，这份报告所展现的是，DeepSeek 团队在过去一年里真的吃了很多苦，经历了非常痛苦的过程，这一点在里面体现得很明显。从这个角度看，这是一份非常有意思的报告。同时，DeepSeek-V3成为了中国国内许多前沿模型的 base。像 Kimi 这样的模型，要在 DeepSeek-V3 的基础上进一步改进、改进架构是非常困难的。与其把时间花在那里，不如直接采用那个架构，他们判断这样要好得多，实际上也确实那样采用了。从这个角度来看，我觉得它很可能会成为今后中国模型的新 base model。同时，因为 DeepSeek 团队在这个架构上经历了非常痛苦的过程，所以在重新复现这些东西时，中国团队可能也会吃不少苦，我同时也有这样的想法。
+
+
+## 扩大到 1.6T 的 DeepSeek-V4 模型扩展与架构变化    *3:34*
+
+<span class="paragraph-timestamp" data-ts="3:34">3:34</span> **金成铉** DeepSeek-V4 首先是模型规模变大了。DeepSeek-V3 当时没有小模型。它大概是 600B 规模的模型，现在扩大到了 1.6T。activated parameter 也稍微变大了一些。我记得 V3 大概是 37B。而且小模型也一起发布了。他们总是会把小模型一起推出。不过这并不一定有先后关系，也可能是同时训练的。小模型也发布了，接着架构上的变化也非常大，其中一个大方向是 Sparse Attention。另一个大方向是被称为 mHC 的架构改进，而 Muon Optimizer 是最近中国模型普遍在用的 optimizer。然后从模型最终结果、性能结果的角度来看，我觉得这两个、这三个图展现得最清楚。base model 的性能，以及经过 post-training 的模型性能都有大幅提升，同时在 long-context方面的成本也大幅降低了。计算消耗本身减少了，与内存负担相关的 KV cache 大小本身也大幅减少了。和这一点关系最大的，还是 Sparse Attention。而且因为这个 Sparse Attention，DeepSeek 团队大概吃了很多苦。
+
+
+## 降低计算量和 KV cache 的 Sparse Attention    *4:03*
+
+<span class="paragraph-timestamp" data-ts="4:55">4:55</span> **卢正石** Sparse Attention 的那些公式，我也没能全部仔细看完，但几乎到了炼金术的程度，那些让人觉得“这样也行吗”的东西，他们全都做出来了。所以如果我们来解读右边这个图，context 越长，原本计算量应该会大幅增加，但这一部分被维持在非常低的水平，我们可以把这理解为差异点吗？
+
+<span class="paragraph-timestamp" data-ts="5:24">5:24</span> **金成铉** 是的，attention 基本上是从一个 token参照它之前的所有 token。因此 sequence 的长度，也就是输入长度越长，计算需求量就会持续大幅增加。它大幅降低了这种增长速度。而且整体规模本身也大幅降低了。从 long-context 的角度看，这是非常重要的变化。同时，在 long-context 情况下，因为 attention 必须参照之前所有 token，所以必须把之前所有 token 存到内存里。也就是说，内存消耗会随着 context 长度增加而大幅增加。但它同时也把这一点大幅降低了。
+
+降低得非常多。而这在 long-context 方面很重要，说到 long-context 的重要性，其实是去年、前年年底的时候吧。DeepSeek-V3 中也提到过，long-context似乎非常重要，所以想继续改进这一部分。long-context 的重要性已经比那时更大了。如果说当时 long-context 的重要性是想多放一些文档进去，类似这种感觉，那么现在 long-context 的重要性是在 agent 语境下变得重要。能够处理的 context长度越长，从 agent 的角度来看，能处理的问题复杂度和规模就越大。如果说以前只是输入长度和容量增加，那么现在则关系到这个模型能够完成的任务规模和复杂性会随之提升。从这个角度看，long-context 相比以前具有了更加重要的意义，我觉得可以这样理解。如果结合这个背景来看，
+
+从这个方面来说，DeepSeek-V4 取得了非常大的改进，而且这个改进正是通过架构层面的创新实现的，这点非常有意思。没错。所以结果上，这里下面这句话也写着，
+
+<span class="paragraph-timestamp" data-ts="7:30">7:30</span> **卢正石** 以 Pro 为基准，其实 Pro 相比上一代 V3几乎是容量大了 2.5 倍到 3 倍左右的模型，即便以这个 Pro 为基准，用于 token 计算的计算量也降到了 27% 左右。几乎变成了三分之一。而内存消耗量变成了十分之一。也就是降到了 10%。这两个图表所展示的，我觉得可能就是 DeepSeek-V4 这次又展现出的真正重磅的一击。
+
+成铉，那我们再深入看一下这些内容吧？最重要的部分
+
+<span class="paragraph-timestamp" data-ts="8:09">8:09</span> **金成铉** 应该就是这个 Sparse Attention。这一部分好像需要再往下看一点。应该要从这里开始，先简单介绍一下Sparse Attention 是什么。就像刚才说的那样，attention 基本上会参考之前所有 token。对一个 token 来说，会把之前所有 token都参考进去。所以结果上，context 的长度越长，计算消耗和内存需求就会增加。因此很多人都想改进这一部分。DeepSeek 自己在 R1 发布之后，不久也拿出了 Native Sparse Attention这样的东西。于是就会产生一个想法：之前所有 token是否都有必要参考？尤其是 context 越长，对于一个 token 来说，之前所有 token 并不都包含重要信息，也并不都具有意义，不是吗？因此会想到，能不能只看少数 token，会产生这样的想法。能不能只看某些重要的少数 token，会这样想，而这就引向了 Sparse Attention。所谓 Sparse Attention，不是参考全部内容，而是只稀疏地参考其中很小一部分，也就是进行参考，这就对应到了 sparse。也就是稀疏。不是把整体都看一遍，而是所看的 token只是其中稀疏的一部分。
+
+
+## 从 from-scratch 训练看 Sparse Attention 的意义    *8:16*
+
+<span class="paragraph-timestamp" data-ts="9:36">9:36</span> **金成铉** 所以这些东西其实 DeepSeek在去年年初就已经拿出来了。并且说非常成功。说看起来效果不错。但是我觉得应该把它理解为一个教训：它其实并没有顺利奏效。因为 DeepSeek 自己后来到了 DeepSeek-V3.2 这样的模型时，也放弃了那个结构。其实在那个 Sparse Attention 中，非常重要的部分之一，是从一开始就训练 Sparse Attention，做出一个 from scratch 进行 pre-training 的模型，重点就在这里。但它表现出似乎要放弃这种结构的走向。也就是先用所谓 dense attention，这种会参考之前所有 token 的 attention，来进行 pre-training 训练之后，再以 post-training 的概念，把 Sparse Attention 叠加上去，也就是所谓 DeepSeek Sparse Attention，它拿出了这种叠加的结构。至于为什么会这样，
+
+大概是因为从 from scratch 开始训练 Sparse Attention因为学习起来非常困难。DeepSeek 自己并没有直接提到这一点，但关于 Sparse Attention 的结构，中国许多其他企业做过实验和分析。但他们的结论是：很难。学习起来很难。尤其是从零开始训练，实在太难了。直接从零开始训练 Sparse Attention 很难，虽然有点矛盾，但必须有 dense attention，才能学会 Sparse Attention。结论就走向了这个方向。所以这样一来，就成了一种妥协或折中。Sparse Attention 不能从一开始就直接推进，而是在完成 dense attention 之后，为了后续降低成本，作为一种可采用的折中方案，Sparse Attention 以这种形式出现。小米和腾讯得出的结论就是这样。但 DeepSeek 似乎想做这件事。也就是几乎从零开始训练 Sparse Attention。不过在这里，V4 也不是完全从零开始。前期大约 1T，也就是 1 trillion 左右的token 会训练 dense attention。但剩下超过 30T 的 token，则会训练 Sparse Attention。这意味着 DeepSeek 想通过 Sparse Attention做几乎从零开始的 pre-training，并把这条路推进下去，而且似乎基本成功了。但为了做到这一点，他们似乎经历了非常艰难的过程。
+
+而且架构上也非常精巧复杂。所以报告在 Sparse Attention 部分用了很多篇幅。Sparse Attention 在这里会以三个组件的形式出现。一个是基本的 slidingwindow attention。所谓 sliding window attention，和现有的 dense attention 非常相似，只是会限制 token 能看到的过去 token，也就是限制能看到的 token 数量。现有的 dense attention 会看所有 token，而 sliding window attention不管 context length 变得多长，都会把一个 token 能看到的过去 token 限制为比如 500 个。也就是做这样的限制。这种 attention 会作为基础加入。其实这现在是很多人非常广泛采用的结构。
+
+
+## 构成 Sparse Attention 的三个核心组件    *12:10*
+
+<span class="paragraph-timestamp" data-ts="12:49">12:49</span> **金成铉** sliding window attention 和full dense attention 结合的结构，现在可以说是 default，也就是被大量作为默认结构使用，可以这样理解。所以这一部分差异不大。还会加入另一种机制，另一种 attention，比如说有 1 万个 token 的话，会加入一种把这 1 万个 token 缩减到百分之一的attention。所以先把 1 万个 token 压缩到百分之一，也就是说，可以理解为把每 100 个 token压缩成 1 个 token。压缩后的 token，1 万个 token 压缩到百分之一，就会得到 100 个 token。针对这 100 个 token，会加入一种做 full attention 的 attention 结构。
+
+最复杂的结构应该是 Compressed Attention，也就是 Compressed Sparse Attention。Compressed Sparse Attention会稍微压缩这个 context。DeepSeek 会把它压缩到四分之一。压缩到四分之一之后，在这四分之一里，只选排名靠前的一部分，只对 top-k 做 attention 的会加入 Sparse Attention。可以理解为，通过这三种 attention 的结合，构成了 DeepSeek 用来支持 long-context 的attention。各个结构，以及这些结构带来的结构性变化，还有即便这样重新构建之后，为了高效地进行推理，还需要相应的 infrastructure。这些结构本身也非常复杂。
+
+<span class="paragraph-timestamp" data-ts="14:24">14:24</span> **卢正石** 不过这张图里确实有 intuition。它会拿到一种从下面上来的 KV，然后在右侧两端，像这样原样把 signalconcatenation 的线还保留着，而中间这个 token levelcompressor 会把它分成两路，一路过去和 query 结合，再做 MQA，然后输出一些东西，那边则只是压缩后的东西往上走，这些肯定不是随便摸索出来的吧。应该是通过无数实验，找到了这些东西可行的那些 intuition 吧。差不多花了一年。作为这些研究基础的
+
+<span class="paragraph-timestamp" data-ts="15:07">15:07</span> **金成铉** Native Sparse Attention，是去年年初 R1 之后没过多久就出来的。然后在那之后，作为中间阶段的折中方案，DeepSeek Sparse Attention 也出来了。而一路和它反复较劲到最后形成的结构，应该就是这个结构。
+
+<span class="paragraph-timestamp" data-ts="15:25">15:25</span> **卢正石** 是啊。去年推出 DeepSeek-V3 的时候，他们在 MoE 相关方面也做了不少挺有意思的东西，DeepSeek 在算法层面几乎是领跑者了。是的，我觉得是顶尖水平。而美国那边的 Big Tech
+
+<span class="paragraph-timestamp" data-ts="15:43">15:43</span> **金成铉** 不会公开自己的架构长什么样，所以不知道那边已经发展到什么程度，但在我看来，达到这种水平，即使和那边非常先进的东西相比，也能持平，甚至可能还有更好的部分，这样的模型，应该可以说是事实。结果上我们是在看图，
+
+<span class="paragraph-timestamp" data-ts="16:03">16:03</span> **卢正石** 但我先理解为成铉对 DeepSeek-V4 大加称赞，说它们真的很厉害，然后继续往下看。从技术上也令人惊叹。
+
+<span class="paragraph-timestamp" data-ts="16:16">16:16</span> **金成铉** 能够做出这样的结构，同时还把它实现出来，并且成功完成训练，这本身也很惊人。同时，这个过程到底有多艰难，在论文里也已经体现得非常清楚。
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **卢正石** DeepSeek 真的像是在追求这些 frontier lab 的frontier lab 地位。
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> **金成铉** 尤其是在架构层面确实如此。
+
+<span class="paragraph-timestamp" data-ts="16:42">16:42</span> **卢正石** 没错。新算法由我们来引领。有种瞄准“明星中的明星”这种位置的感觉，可以说差不多就是这样，
+
+确实做得很好。所以我觉得可以说明一下 Sparse Attention。应该会比较好。其实就像您说的，只看这张图，虽然不容易理解，理解起来也很难，但这张图本身已经大量呈现了Sparse Attention 的核心结构。KV cache 可以这样理解。前面 context 里会有一些 token，那时每个 token 都会被赋予小尺寸的向量，这些向量会全部被保存下来。也就是说，对应所有 token 的向量都会存进内存里。因为必须把那些 token 全部保存下来，在使用 attention 的时候，才能用当前 token 和之前的 token来进行计算。不过每个向量本身并不是特别大，但如果考虑一百万 token 这种规模，这些 token 的规模就会变得非常大。而且这些 token 并不是针对整个模型只保存一次就可以，而是每一层都需要保存。因此，如果有 60 层，这 60 份 KV cache都需要保存，所以整体内存占用会大到相当不可忽视。所以就会想压缩这一部分，同时在压缩这一部分的同时，也会想减少实际使用的 KV cache 的数量，也就是用于计算的KV cache 的数量。
+
+
+## 处理 KV cache 的 Lightning Indexer 与 top-k 选择    *17:10*
+
+<span class="paragraph-timestamp" data-ts="18:20">18:20</span> **金成铉** 第一步先压缩 KV cache。压缩到四分之一。大致减少到四分之一。压缩到四分之一之后，再从这四分之一当中抽取一部分。负责抽取其中一部分的，就是叫作 Lightning Indexer 的部分。
+
+<span class="paragraph-timestamp" data-ts="18:36">18:36</span> **卢正石** 这是很重要的。
+
+<span class="paragraph-timestamp" data-ts="18:37">18:37</span> **金成铉** Lightning Indexer 会通过相对轻量的计算，从这些 KV cache 中找出需要抽取的向量和 token。抽取 top-k，也就是排名最靠前的 k 个。然后只对那 k 个进行 attention 运算。不是对整个 context 都做。这就是核心想法。这样想的话，流程并不是特别复杂。首先进行压缩。减少数量。
+
+减少数量之后，再从减少后的部分中只抽取 k 个。然后只对抽取出的那 k 个进行 attention 运算，就是这样的结构。另外两个 component同样也不难，很简单。
+
+另一个是去掉抽取 k 个的这个运算，进行压缩，但大幅提高压缩率。压到一百分之一，甚至更高的压缩率。是这样的结构。另外剩下的一个 component，则去掉压缩和抽取 k 个，改为限制 attention 的范围。比如只限制在 500 个左右。里面包含的是这种结构，而这三种 attention 的组合，就成为 DeepSeek-V4 用于 long-context 的attention 核心。
+
+但是进入细节之后，这个结构相当复杂。首先，压缩 attention 的方法本身就相当特别。我的感觉是，压缩的时候会做出两套，然后把这两套结合起来。不知道为什么要这样做。
+
+<span class="paragraph-timestamp" data-ts="20:14">20:14</span> **卢正石** 应该是因为这样能行才这么做吧。里面没有说明。做出那两套之后，把两套合在一起计算，
+
+<span class="paragraph-timestamp" data-ts="20:21">20:21</span> **金成铉** 然后再把两套拆开再合并，通过这种方式进行某种压缩。不知道为什么要这么做。我们在讲深度学习的时候，
+
+<span class="paragraph-timestamp" data-ts="20:32">20:32</span> **卢正石** 经常说这一块真的很像炼金术，实际做起来全都是加法和乘法，但如果说“这么做之后就能行”，那里就会形成一条路。是，应该是有直觉的。
+
+<span class="paragraph-timestamp" data-ts="20:44">20:44</span> **金成铉** 有直觉，也应该有某种研究上的脉络，但为什么做出这种选择并不明确。也许针对这一部分实际做实验，再观察一些特性之类的话，可能会看出些什么。不过这些部分大概是通过大量试错得出的结论。所谓 Lightning Indexer 的概念，也曾以 DeepSeek Sparse Attention 这个名字大概在去年出现过。和那一部分几乎相同。需要找 top-k，而寻找 top-k 这件事也并不容易。不管怎么说，所谓找 top-k，也就是从整体中找出排名最靠前的 k 个，终究是必须把整体都看一遍的。只有把整体都看一遍，才能从中找出最显著的 k 个到底是什么。负责找出这 k 个的，就是 Lightning Indexer。
+
+
+## Top-k 选择的不可微性与训练不稳定性    *21:36*
+
+<span class="paragraph-timestamp" data-ts="21:36">21:36</span> **金成铉** 因此，因为它必须看完整体，这一部分就必须相当轻量。找出这 k 个的过程，从某种角度来说，正是让 sparse attention 变得非常困难的部分。所谓 sparse，在深度学习里一直很有吸引力，但 sparse 意味着可以减少计算量，也就是对大部分都不计算，只计算其中一部分就可以，所以在深度学习里一直是很有吸引力的结构。但与此同时，在深度学习里说到 sparse，总是会引发问题。因为比如 MoE 这样的结构，正是在这个层面上属于 sparse 结构。因为说到 sparse 时，非常常用的一种运算就是 top-k 运算。也就是从整体中只选出 k 个的运算。但问题是，top-k 本质上是不可微的。基本上是这样。当然，被选中的部分，严格来说，对于被选中的那些对象，会产生 gradient，但对于这个选择过程本身，是不可微的。选择是最重要的部分，但这个选择动作本身无法学习。基本上是这样。因此这里会出现不稳定、难以学习的部分。
+
+<span class="paragraph-timestamp" data-ts="22:51">22:51</span> **卢正石** DeepSeek 是怎么跨过这些问题的呢？
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **金成铉** 我想，可能正是这些整体结构全部结合起来，才让它变得可以学习。也就是说，之前中国在去年出现过的那些类似 sparse attention 的中国论文，一直都在说这个太难学习了。sparse attention 太难学习了。其实 MoE 也因为 sparse 这一层面，会出现很多让学习变得棘手的部分，但在 attention 的层面上，这种影响会强得多。
+
+比如选择项本身也会多得多。如果是 100 万个，那就变成要从 100 万个里面选出 k 个的问题。问题本身的规模变大，也变得更困难，所以 sparse attention 很难学习，这是共同的结论。因此大家一直在说，只靠 sparse attention 应付不了，必须和 dense attention、full attention 结合，才能使用 sparse attention，一直是这样的说法。
+
+但 DeepSeek 是正面突破了这个问题。而且它确实正面突破了，但从模型选择、建模选择的角度来看，非常微妙。也就是说，所谓 Native Sparse Attention那个非常早期的版本中，整体思路并没有太大的不同。在 Native Sparse Attention 里，压缩 KV cache，然后从中选出 top-k，这个结构本身在那里也同样出现过。但在具体细节层面存在差异。而且不同组合之间也会有差异。和其他 attention 的组合方式也会有差异。从这个角度看，其实非常微妙。所以如果问，为什么 Native Sparse Attention 不行，而这个就可以呢，就非常难回答。不是一下子就能理解的。
+
+<span class="paragraph-timestamp" data-ts="24:37">24:37</span> **卢正石** 不过其实 expert 是从一百多个里面选就可以了，而这个是要从 100 万个里面去选，所以其实维度本身就完全不一样。是的，而且像 MoE 的情况，
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **金成铉** 有所谓的 load balancing，这些对训练很有帮助，但这个 attention 就很难用那种东西。
+
+<span class="paragraph-timestamp" data-ts="24:55">24:55</span> **卢正石** 所以对成铉一直在说的内容，我中间稍微评论一下的话，这是一个非常难又很神奇的主题，他们到底是怎么把这些做成的，成铉似乎一直在传达一种“真是令人惊讶”的感觉。是的，在中国大概也觉得好像做不成，
+
+<span class="paragraph-timestamp" data-ts="25:14">25:14</span> **金成铉** 甚至有点自暴自弃的心态。但他们还是想办法把它做成了。不过虽然做成了，为什么这样做之后就能成功，目前还不太清楚。这大概是因为以后 DeepSeek已经展示了这样做是可行的，至于为什么能成功，可能还会有更多试错。而且很多人都会去尝试。
+
+<span class="paragraph-timestamp" data-ts="25:40">25:40</span> **卢正石** 另外这里在 training 过程中肯定也有很多 know-how。很复杂的
+
+<span class="paragraph-timestamp" data-ts="25:45">25:45</span> **金成铉** 是的，我推测这可能对训练的不稳定性有相当大的影响。关于训练和 pre-training，他们也在谈很多自己亲身经历过的不稳定性。大概这里建模上的选择，可能对训练不稳定性产生了很大影响。总之，通过这些细节可以看出他们是怎么做出来的，这一点是明确呈现出来的。而且因为所有部分都公开了，所以这一点可以明确知道。但是至于为什么这样做就可以，以后大概还会有很多研究陆续出来。也确实需要更多研究出来。
+
+<span class="paragraph-timestamp" data-ts="26:21">26:21</span> **卢正石** 另外，DeepSeek 肯定也有相当一部分把这些东西藏了起来吧。这些东西他们会对外展示，但内部隐藏着只有他们自己才有的所谓隐性知识，这肯定是存在的。我感觉可能在训练过程的诀窍部分隐藏了很多东西。
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **金成铉** 而且大概还有很多无法全部整理进论文里的各种实验性证据或经验之类的东西吧。
+
+<span class="paragraph-timestamp" data-ts="26:50">26:50</span> **卢正石** 论文大概有 40 页左右，每一段都是很有分量的内容。感觉这些内容本来像是应该写成一本书的，但他们为了塞进 40 页左右，应该费了很多功夫。另外顺便说一下，在继续之前，成铉现在展示的这些公式，我看了也是大概只知道那是在表达什么，并不能真正理解。所以大家不需要因为看不懂这个而感到难过。只要看一下，大概知道是这种感觉，然后继续就可以了。成铉，请继续往下讲吧。
+
+
+## 移除 MLA 与引入 Muon Optimizer    *27:24*
+
+<span class="paragraph-timestamp" data-ts="27:24">27:24</span> **金成铉** 这就是关于 Heavily Compressed Attention 的内容。同时还有一个顺带提到的小细节，DeepSeek 标志性的 MLA 这个attention 被去掉了。
+
+<span class="paragraph-timestamp" data-ts="27:34">27:34</span> **卢正石** 是吗？去掉也可以吧。是的，应该去掉才对。是的，变成去掉了。关于 MLA，
+
+<span class="paragraph-timestamp" data-ts="27:42">27:42</span> **金成铉** 像 Luo Fuli 就说，MLA 应该是不使用才对，他们是这么说的。实际上也是如此。而且如果这样的话，中国的模型大概也会更多地走向放弃MLA的方向。转向一种叫Multi-Query Attention的更简单结构。然后还采用了Muon Optimizer。
+
+Muon Optimizer是在Adam Optimizer之后，现在被广泛采用的一种Optimizer。中国那边的模型几乎大多都在用它。它有加快训练速度的效果。所谓加快训练速度，也有提升计算效率的一面。也就是说，计算成本会降低。不过训练速度的提升，在数据受限的情况下，也会带来数据效率的提升。从这个角度看，Muon Optimizer正受到非常大的关注，现在也几乎成了很多地方默认使用的Optimizer。而且关于这一点，我觉得有点有意思的是，
+
+DeepSeek好像不太喜欢跟随别人常用的默认做法。通常有一套常用的Muon Optimizer设置，但他们把那部分稍微扩展了一下，让它更精确了一些。也就是做了一些修改，让它更精确地变成1。而且关于这一点，其实在中国那边，Moonshot AI的Kimi算是先行者。他们确实借鉴了很多Kimi所引领的选择。
+
+<span class="paragraph-timestamp" data-ts="29:08">29:08</span> **卢正石** 另外，我们刚才是不是讲过这个了？Manifold-Constrained Hyper-Connections。
+
+<span class="paragraph-timestamp" data-ts="29:14">29:14</span> **金成铉** Residual Connection这种结构，在深度学习里是非常核心的结构。它是让深层模型能够训练起来的重要组件。如果非常简单地概括mHC，就是要把通道的宽度拓宽。因为通道宽度有限，所以要共享它，并且在有限的通道里还要顾及后续阶段，因此会产生很大的约束。那么如果把通道宽度拓宽，这方面的余量就会大很多。那个约束实际上就被解开了。可以把它理解成这样一种结构。但是如果一味拓宽通道宽度，成本会变得非常高，
+
+所以有没有办法低成本地做到这一点？这就是Hyper-Connections。而让HC稳定下来的就是mHC。
+
+<span class="paragraph-timestamp" data-ts="30:01">30:01</span> **卢正石** Hyper-Connections本来是解决这个问题的，而Hyper-Connections加上Manifold-Constrained，就是把它限制在manifold里。可以这样理解吧。
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **金成铉** 可以理解为他们让它稳定下来了。
+
+<span class="paragraph-timestamp" data-ts="30:14">30:14</span> **卢正石** 所以我们说DeepSeek论文里的算法创新，它主推的三项内容里，第一项就是这个mHC，第二项就是这个Sparse Attention部分。用CSA和HCA说明的这一部分，恐怕正是这次DeepSeek-V4最大的贡献点，也就是Sparse Attention部分。然后就是使用了Muon Optimizer。有这些内容。那么现在这三项算法层面的内容就先简单总结到这里，接下来我们继续往下看吧？还有哪些其他要点呢？
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **金成铉** 从算法角度来看，还漏掉了一项。这个部分今后可能会成为一个有意思的主题。N-gram缺席了。啊，是是。
+
+
+## 不含 N-gram 的 DeepSeek-V4 算法梳理    *30:57*
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **金成铉** 很多人原本预测N-gram会出现，并被放进DeepSeek-V4里，但这里没有采用。所以今后N-gram会如何再次登场，可能会成为更有意思的看点。不管怎样，DeepSeek-V4 里还没有这个。没错。接下来是 infrastructure。
+
+
+## 提升训练基础设施的 MoE pipeline 优化    *31:18*
+
+<span class="paragraph-timestamp" data-ts="31:18">31:18</span> **金成铉** infrastructure 现在也是不容小觑的一部分。其中一点是 MoE 部分的优化。这个我也不太确定该讲到什么程度。
+
+说到分布式训练，就有通信和计算。也就是说，因为要做分布式训练，在拆分和合并信息的过程中，就需要和其他一些 worker 通信。有通信，然后还要进行实际计算。也就是有计算。简单来说，通信和计算可以同时进行。对。严格来说，并不是完全都能做到那样，但基本上可以重叠。而且必须重叠。但它通常会变成一种很难直接重叠的形式。算法本身没法重叠。通信、计算，再通信、再计算，就会变成这样的结构。但他们想把这些重叠起来。
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **卢正石** 就是想同时进行。对，必须同时进行。这样计算效率
+
+<span class="paragraph-timestamp" data-ts="32:18">32:18</span> **金成铉** 就会大幅提升。为此的技巧之一就是 pipeline。也就是把它切分开。在对任务的一部分通信和计算的同时，对下一部分通信，然后再计算、通信，再计算，就是这样。他们做了这项工作。
+
+关于 MoE，其实之前有一项叫 Comet 的研究，做的就是类似的事，也就是针对 MoE的一项研究，来自 ByteDance，他们改进了它。基本流程是这样，Comet 做过改进，他们又把它切得更细，再进一步改进。其实在 DeepSeek-V3 里，他们也对这种优化通信和计算的
+
+<span class="paragraph-timestamp" data-ts="32:54">32:54</span> **卢正石** 部分做过很多说明，那是为了突破他们自身计算资源的限制，因为 NVIDIA 不向中国出口高端芯片，所以他们把它作为突破限制的手段。因此他们以非常低的成本完成了计算，其实是在一年前，不，是一年半前。当时确实造成过很大的冲击，而这次是关于 expert 的。如果说这期间有什么变化，就是整体上所有模型的结构都变成了增加 expert 的结构，而在训练和运行这些 expert 的过程中产生的所谓 bubble，要如何减少，他们相较于 Comet 又进一步改进了一次。
+
+<span class="paragraph-timestamp" data-ts="33:34">33:34</span> **金成铉** 是的，像 DeepSeek-V3 是把 expert 的成本和一种叫 pipeline parallelism 的东西重叠起来解决的，而这里则是改进了 MoE 本身。不过说起来很简单，但 Comet 本身非常复杂。他们又把它再复杂化了一层，说实话，我对这个有点不太敢去看。虽然这里用很漂亮的图表表达出来了，但我有点害怕里面的细节会是什么样。
+
+
+## 提高基础设施效率的 Mega-kernel 与 FP4 Quantization    *34:08*
+
+<span class="paragraph-timestamp" data-ts="34:08">34:08</span> **卢正石** 嗯。然后他们也对 kernel 本身做了很多改进。要说改进到什么程度，我觉得这一段很好地说明了这一点。
+
+那个 kernel 是什么？
+
+<span class="paragraph-timestamp" data-ts="34:19">34:19</span> **金成铉** 所谓 kernel，就是在 CUDA 上运行的，
+
+<span class="paragraph-timestamp" data-ts="34:22">34:22</span> **卢正石** 是指在 CUDA 上执行计算的那个 kernel 吧？对，他们把那个 kernel 的规模
+
+<span class="paragraph-timestamp" data-ts="34:28">34:28</span> **金成铉** 大幅扩大成了 Mega-kernel 这种形式。他们把计算和通信尽可能压缩进去，从而极大提高了计算密度。计算密度提高，实际上意味着会给加速处理器会带来大得多的负载。那到底到什么程度呢？kernel 的密度变得太高，计算密度变得太高，开始触发电力 throttling。也就是说，已经到了无法承受电力需求的程度，他们是在说这个。所以现在电力成了约束。hardware，也就是说他们提到以后可能需要进一步扩充电力基础设施，他们提到了这一点，这其实是很有浪漫色彩的事。
+
+有一个叫 TileLang 的东西，其实 TileLang是和 DeepSeek 无关的开源项目。他们在开发 kernel 的过程中和 TileLang 合作，对于那个用于 kernel 开发的DSL 语言 TileLang 做了很多贡献。他们是在讲这样的事情。也就是大幅改进了 TileLang 本身。
+
+<span class="paragraph-timestamp" data-ts="35:30">35:30</span> **卢正石** 每一个小块里的内容都真不少。
+
+<span class="paragraph-timestamp" data-ts="35:33">35:33</span> **金成铉** 他们做了 integer 优化，通过 integer 优化改进了 TileLang，但我并不太想在这里想象这到底是什么。如果把这些分别理解成它们所对应的代码，这些代码会是什么形态，我实在不太想去想象。可以把这一项项工作都理解为是在减少 overhead，并提高计算密度的工作。这样看就可以了。另外非常有意思的一部分是 batch invariance。这也是一个非常大的贡献，但说实话，这个也不太容易理解。不过这同样是非常大的贡献，Thinking Machines 那边做了关于 batch invariance 的研究，并发布了 blog，当时引起了很大关注。那些 batch invariance kernel我不知道有没有完整公开，而这些 batch invariance kernelDeepSeek 又公开了一次，而这次公开的 kernel做了极其大量的优化，据我所知，由 batch invariance 产生的 overhead被大幅降低了。然后还加入了 quantization。
+
+DeepSeek-V3 主要采用的是8-bit quantization，这里又进一步推进，对于 expert weight 这类部分，采用 MXFP4，也就是 4-bit 压缩。虽然是 4-bit 压缩，其实这也是 GPT-OSS 里出现过的东西。可以理解为这些东西在这里也进行了尝试。
+
+<span class="paragraph-timestamp" data-ts="37:06">37:06</span> **卢正石** 因为 NVIDIA 最新的 hardware正在主推 FP4，所以如果要提前使用它，这些也都必须考虑进去。是的，基本上做 FP4 压缩的话，
+
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> **金成铉** 模型 weight 的大小会变小，所以有优势。从 Blackwell 开始也会有加速。对 4-bit 的支持，以及 4-bit 压缩本身似乎也做得很好。对 expert 做 4-bit 压缩，现在几乎正在成为标准。
+
+<span class="paragraph-timestamp" data-ts="37:34">37:34</span> **卢正石** OK。然后接下来有针对 Muon 的优化。还有针对 mHC 的优化，后面也会谈到 DeepSeek-V4，虽然也是非常重要的细节，后面会讲，它从 pre-training 开始就是用 long-context 来训练的。有针对 long-context 的优化，也有针对分布式 long-context 训练的优化。
+
+<span class="paragraph-timestamp" data-ts="37:54">37:54</span> **金成铉** 而且这里尤其因为会压缩 context，为了应对这种压缩，问题又进一步变复杂了。针对这一点也加入了优化，还有针对 activation checkpointing的优化之上，这里会进一步把这部分做得更简单、更灵活。
+
+<span class="paragraph-timestamp" data-ts="38:16">38:16</span> **卢正石** 用 long-context 做 pre-training，是说从 pre-training 一开始就直接放到 1M，对吧？太惊人了。
+
+<span class="paragraph-timestamp" data-ts="38:24">38:24</span> **金成铉** 可以理解为也包含 1M。其他模型
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **卢正石** 在最初训练，也就是 pre-training 的时候，基本不都是 4K、8K context 吗？对吧？4K、8K？长一点就是 8K。
+
+<span class="paragraph-timestamp" data-ts="38:37">38:37</span> **金成铉** 而且中国那边也大量做过 4K。嗯。
+
+然后还做了 inference 优化相关的工作。这里不是有三种 attention 吗？为了在 inference 中使用这三种 attention，inference 基础设施也需要相应适配。是，没错。
+
+这部分工作也做了。还有把 KV cache 存到磁盘上，这也算是 DeepSeek 的拿手项。接下来就是 pre-training。终于到了 pre-training 数据部分。他们对数据没有说太多。说是准备了 32T token。具体怎么准备的，我不太清楚。
+
+
+## 扩展到 32T token 和 long-context 训练的 pre-training    *39:02*
+
+<span class="paragraph-timestamp" data-ts="39:12">39:12</span> **卢正石** 总之是高质量的 32T token，对吧。还有 long-context。这部分可能后面再讲比较好。
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> **金成铉** 而且 DeepSeek 不是发了很多 OCR 论文吗？OCR 过的电子书、PDF 文档，以及电子书，应该放进去了很多。synthetic data 最近非常流行，但他们并没有提到 synthetic data。到底是大量使用了合成数据但没有提，还是没有用，我不太清楚。也确实有可能没用。
+
+<span class="paragraph-timestamp" data-ts="39:45">39:45</span> **卢正石** 不过从概率上看，用了的可能性应该高得多。其实直到大概六个月前，我们看到的这类 paper，大多数 pre-training 数据集的规模都在 15 到 20T 左右，他们现在几乎翻了一倍。是。有意思的是，他们完全没有提。我不知道为什么。
+
+<span class="paragraph-timestamp" data-ts="40:07">40:07</span> **金成铉** 这里有一篇提法类似的论文，那篇论文是说不应该使用 synthetic data的论文。所以到底是什么情况，我也不太清楚。
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> **卢正石** 其实 natural 和 synthetic 的差异，现在已经是很难区分了，我觉得应该这么看。而且会越来越这样。继续吧。pre-training setup details。然后这些是细节。
+
+<span class="paragraph-timestamp" data-ts="40:30">40:30</span> **金成铉** training setup 比较重要，这一部分就是 long-context pre-training。从 4K 开始，提升到 16K 之后，在那里训练大约 1T。那么剩下的 30T就用 64K 以上来训练。这是非常有意思的部分。到目前为止，中国模型里也没有过这样的案例。用 64K 来训练，意味着在这个规模上训练非常高效。第一，attention基本上会像大家常说的那样按平方级增长，所以增长到 64K 的话，这里的成本应该会很高，但通过 Sparse Attention 和各种优化，即使在这个规模上训练也非常高效，这是它意味着的一点。
+
+另一点是，这个规模的数据有足够多，而且足够有意义，这也是它意味着的。也就是说，用 64K 训练时，如果 64K 要有意义，至少长度在 32K 以上的文档就必须有足够多。也就是说，他们准备了大量这样的数据。前面在数据集部分
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **卢正石** 也特别提到了长数据集。同时还有一点是，
+
+<span class="paragraph-timestamp" data-ts="41:47">41:47</span> **金成铉** 用 long-context 长时间训练很有意义。这意味着它对 long-context 能力会有很大的意义，如果是这样，中国模型也都会跟进这种结构。然后，在 long-context 的长序列上进行 pre-training 的结构，是这样啊。其他模型基本都是用 4K、8K
+
+<span class="paragraph-timestamp" data-ts="42:10">42:10</span> **卢正石** 把 pre-training 阶段基本做完之后，在最后阶段稍微做一点扩展 context 的工作嘛。但他们不是这么做的，而是一开始就
+
+<span class="paragraph-timestamp" data-ts="42:20">42:20</span> **金成铉** 对，是整合到 pre-training 阶段里。long-context 在 pre-training 之后、post-training 阶段再处理的做法会消失，它会和 pre-training 整合在一起。而且这大概会对 long-context 能力实际上有很大的帮助。然后，这就是痛苦的证据。
+
+
+## 处理训练不稳定性的 Anticipatory Routing    *42:37*
+
+<span class="paragraph-timestamp" data-ts="42:41">42:41</span> **金成铉** 训练不稳定性。如何降低 training 不稳定性。不过有一点有意思的是，训练不稳定性这件事本身
+
+最近已经不太常被提到了。现在做 LLM 的领域里，经常会说我们的训练非常稳定，很多人都这么说。但这里经历了很多训练不稳定性。不过具体为什么会这样，我也不太清楚。好像也可能是因为 attention，这里说在 MoE 方面产生了很多不稳定性的原因，但 MoE 里也做了很多细节上的改动。不知道为什么，他们稍微改了 gating 部分，对这些部分做了很多修改，虽然不知道为什么做那些选择，但确实做了那些修改。而且大概也是因为那些修改，训练才变得不稳定。也可能是数据问题。他们对那部分做了很多修正，
+
+clamping 相对来说比较直观。最大值、最小值，某个值，如果把取值范围限制住，不稳定性通常会在值过大或过小时频繁出现。那么如果把它约束住，限制住，有时候情况会变好一些。这是简单的结构，但大家觉得奇怪的是Anticipatory Routing这个概念，大家都觉得有点奇怪。在做 MoE routing 的时候，
+
+要决定把这个 token 送到哪个 expert，会进行 routing。而这个 routing是用前几 step 的训练 weight 来做的。他们用过去的训练 weight、过去的模型，做出了这种 routing 结构。这是极其复杂的结构，为了把它高效地用于训练，必须构建的基础设施应该也极其复杂。但他们实现并使用了它。为什么非得这样做，是个谜。为什么必须做到这种程度来实现它，这个过程有点神秘。这个得长期反复琢磨一下，
+
+<span class="paragraph-timestamp" data-ts="44:39">44:39</span> **卢正石** 在有人解释之前，好像理解不了。嗯。大家都没理解。
+
+<span class="paragraph-timestamp" data-ts="44:46">44:46</span> **金成铉** 为什么这个能行，为什么要这么做，进一步说，为什么训练会不稳定到必须这么做的程度，大家都觉得疑惑。
+
+<span class="paragraph-timestamp" data-ts="44:56">44:56</span> **卢正石** 我觉得这是不是一种regularization。
+
+<span class="paragraph-timestamp" data-ts="45:00">45:00</span> **金成铉** 对，有可能。某种意义上，为了防止为了防止自我循环被强化，
+
+<span class="paragraph-timestamp" data-ts="45:08">45:08</span> **卢正石** 也可能是先混入了 noise。为了 generalization。
+
+<span class="paragraph-timestamp" data-ts="45:14">45:14</span> **金成铉** 是故意切断了原本连接在一起的部分。为了完成这个切断工作，虽然应该经历了非常复杂的操作，但无论如何，首先必须这么做。对，就是这种情况。嗯，是啊。其实我本来觉得，只要抓住前面算法的三个部分，
+
+<span class="paragraph-timestamp" data-ts="45:31">45:31</span> **卢正石** DeepSeek-V4 应该就能讲到了，但其实成铉一直强调的就是那个嘛。真正重要的是数据，但人们不太谈数据。所以数据部分其实就用一个 paragraph 跳过去了，后面就是 training，也许数据和 training其实才是真正的核心，不是吗？那些部分里也有很多我们无法理解的段落。
+
+<span class="paragraph-timestamp" data-ts="46:00">46:00</span> **金成铉** 所以基础设施非常复杂。
+
+<span class="paragraph-timestamp" data-ts="46:02">46:02</span> **卢正石** 对，它们几乎真的是前沿中的前沿。只是我的感觉。然后这里又出现了评估，他们在那里比较自己的模型。
+
+<span class="paragraph-timestamp" data-ts="46:13">46:13</span> **金成铉** 由于模型规模变大、数据增加，我认为尤其是在知识层面，特别是因为这是 pre-training，所以评估知识确实会更容易一些。在知识层面有了非常大的进步。在 post-training benchmark 上也类似。long-context 能力也进步了很多。然后 post-training 出现了。post-training 里也有非常多细节。post-training 是做出一个模型，重要议题就在这个部分。比如编码专家、编码专用模型、编码专用推理模型、数学专用推理模型，或者通用推理模型，这类东西有很多。要如何把这些结合起来，这就是有点有趣的部分。DeepSeek 在这里用了 On-Policy Distillation 方法。所以是先训练各个专家，然后采用对这些专家进行 distillation 的方法。所以在制作最终模型时，看起来没有做 RL。并且使用了基于 rubric 的 reward model。基于 rubric 的 reward model 是在 R1 出来之后他们曾经发过一篇论文的。这里采用了那个。接下来会讲 tool call 的格式是怎样的，诸如此类的内容。还有像 reasoning 之类的东西，在路径中进行 tool call，并用于 reasoning，如何构成 context，这件事其实 DeepSeekV3.2 里也讲过。这里出现了 On-Policy Distillation。还有为了高效进行On-Policy Distillation 的基础设施内容，接着在做 distillation 的时候，细节应该怎么处理，会讲这些细节，但这些细节每一项都会把基础设施层面的负担增加得非常大。并且也配套了用来支撑它的基础设施。
+
+
+## 精细化 post-training 的 On-Policy Distillation 与 Rubric Reward    *46:35*
+
+<span class="paragraph-timestamp" data-ts="47:59">47:59</span> **卢正石** 里面有关于为了做 RL 的基础设施的内容，
+
+<span class="paragraph-timestamp" data-ts="48:03">48:03</span> **金成铉** 对，会出现。这里使用的方法在 On-Policy Distillation 当中也是基础设施负担很大的方法。所以为了支持它，加入了基础设施层面的结构。用 FP4 做 RL，并且使用 FP4来做 RL，说起来容易，但其实也是非常困难的问题。接下来又一次讲到 RL infrastructure。因为对 1M token 做了 pre-training，RL 也应该对 1M token 做。对 1M token 做 RL，这意味着要生成相当于 1M token 的内容。因为必须生成那 1M token，所以生成速度得快。对，因为要生成一百万 token，生成一百万 token 的速度必须快，而且在生成一百万 token 的同时，还要进行 agentic post-training，所以所谓进行 agentic post-training，就是在 post-training 过程中一边生成 token，一边实际和 sandbox 交互。要和 sandbox 交互的话，
+
+这其实是整个 post-training所需基础设施都需要具备的内容，必须能快速启动各个环境。比如像 Docker container 这样的东西，就必须能快速启动。要快速启动 Docker container，就必须快速读取那些 image，要快速读取 image，storage 服务
+
+也必须支撑得住。我昨天讲过这个。没错。
+
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **卢正石** 昨天我其实只精读了这篇 paper 的算法部分，后面的部分只是按段落稍微跳着读了一下，但我看着看着就觉得，不该去美国，而是应该去这里。我觉得应该去杭州。去杭州的咖啡馆坐着，找这里的工程师问点东西，我非常强烈地感觉到，frontier 就在这里。现在在 agent 场景下交互的话，
+
+<span class="paragraph-timestamp" data-ts="49:48">49:48</span> **金成铉** 当然会出现 error，也会有很多失败。在那种情况下需要应对的基础设施，还有那些基础设施、那些 scale-up 过程之类的，全都成了问题，他们也大量讨论了这一部分。这里也不谈数据，对吧？
+
+<span class="paragraph-timestamp" data-ts="50:05">50:05</span> **卢正石** 没错。benchmark 就只是看一下图就带过去了。一路看下来，最终就是变好了多少。它和 Claude Opus 4.6、GPT-5.4、Gemini 3.1 做了比较。中国模型是 Kimi K2.6 和他们是有点觉得可惜。
+
+
+## 与 Claude、GPT、Gemini 对比的 DeepSeek-V4 benchmark    *50:08*
+
+<span class="paragraph-timestamp" data-ts="50:22">50:22</span> **金成铉** 对 post-training，DeepSeek 的 post-training，确实有点觉得可惜。他们说是不是还有很多可以继续推进的空间。因为模型量级变大了，又做了好得多的 pre-training，那么通过与之匹配的 post-training，是否还能进一步发挥出来，他们在讲这个。现在几乎可以说它用了一个全新的物种，
+
+<span class="paragraph-timestamp" data-ts="50:41">50:41</span> **卢正石** 架构变化就是这么剧烈，所以之后 4.1、4.2 出来时，成铉刚才感受到的那些遗憾，应该会多少解决一些吧？因为他们的基础已经有点不一样了。其实即便把训练的不确定性、不稳定性先放在一边，他们也需要一些时间来获得更多 gain。4.1、4.2 应该很快会出来吧。嗯。
+
+<span class="paragraph-timestamp" data-ts="51:05">51:05</span> **金成铉** 现在看起来完全还是 preview 阶段。而且从一开始，之后大概就会集中在 post-training 上。因为已经有了完成 pre-training 的模型。然后再一次，重要的战斗应该会在 post-training 阶段。如果再次引用前面说过的话，关于 pre-training，已经达到了同等水平。剩下的就是在 post-training 上也达到同等水平，同时对于 post-training，也要像对 pre-training 那样使用算力。
+
+<span class="paragraph-timestamp" data-ts="51:41">51:41</span> **卢正石** 是啊。
+
+<span class="paragraph-timestamp" data-ts="51:42">51:42</span> **金成铉** 以我的看法，目前投入到 post-training 的算力大概还只是 pre-training 的一部分。像 DeepSeek-V4 这种情况不过关于这个 post-training会投入更多更多的计算量现在会投入到 pre-training 水平的计算量吧。通过这个过程，应该会看到进一步改进的效果。通过这个过程能改善到什么程度对于 DeepSeek 来说我觉得会是非常重要的问题。而且，不过
+
+这里对于 post-training 过程也讲了非常多内容。也提到了 PutnamBench 这样的数学基准。这个稍微有点不同，但还有对 long-context 的改进，不知道 DeepSeek-V3 做到了什么程度，也不知道大概会做到什么程度，但这是非常大的改进，展示了相当不错的数值。他们讲到了这些。在 MRCR 之类的项目上
+
+对于 HLE 或 Terminal Bench 2.0也有提到，甚至对于中文写作之类的内容也讲了相当多。为了改进中文写作，以及为了能和 Gemini 相比，打造更好的写作模型，他们做了很多努力，也讲到了这些。对于 white-collar task
+
+也说为了这些任务执行的 post-training做了实验，并和 Opus 进行了比较。
+
+<span class="paragraph-timestamp" data-ts="52:54">52:54</span> **卢正石** 是的。嗯。
+
+<span class="paragraph-timestamp" data-ts="52:57">52:57</span> **金成铉** Anthropic 那边经常说 DeepSeek 查询 Opus是为了做 distillation，他们经常这么说，但我其实觉得，哪怕是为了做这些事情，他们也很可能用了很多。我觉得比起 benchmark distillation，嗯。更可能是为了比较和做 benchmark才这么做的。嗯，我们
+
+作为 coding agent尤其在韩国，其实对中国的关注并没有那么高，
+
+<span class="paragraph-timestamp" data-ts="53:24">53:24</span> **卢正石** 我们很多消息都和太平洋对岸的硅谷联系在一起，这点确实挺有意思的，日本和韩国要更亲近美国，而中国发生的事情我们其实不太关注，韩国算是这样的国家之一，但我觉得不该这样。正在发生惊人的发展啊。明白了。Conclusion，这么庞大的内容
+
+大概有 50 页，后面能再往下翻一次吗？这里 contributor，也就是贡献者的名单后面列了很长，不知道有多少人，我们要不要读一下？我们早知道数一下就好了。我也挺好奇的。
+
+<span class="paragraph-timestamp" data-ts="54:02">54:02</span> **金成铉** 在 DeepSeek 这个组织内部做 research 的人和 engineering contributor 的人数到底有多少。对吧。
+
+是。不过人数并不多啊。其实光看数字也是。不过在如今的前沿实验室里，
+
+我也觉得规模应该算是相当大的了。因为大家都很关注把团队做小。是的。嗯。不是说这个 AI frontier 是由中国本土的中国人
+
+<span class="paragraph-timestamp" data-ts="54:28">54:28</span> **卢正石** 和在美国的中国人引领的吗？另外论文里还有一个重要内容，他们说 NVIDIA 芯片和 Huawei 芯片是一起使用的。虽然没有提到比例，但既然已经用了相当多，华为芯片才会被提到，在他们的 infrastructure 里，半导体也开始出现替代选项了。在中国。另外还有一个让我想到的有趣点，
+
+
+## contributor、华为芯片以及 Meta Muse Spark 背后的故事    *54:31*
+
+<span class="paragraph-timestamp" data-ts="54:56">54:56</span> **崔胜准** 可能因为比较小众，我们没有讨论，但 Muse Spark 不是也出来了吗？这个月那边也投入了惊人的计算资源和人才，但实际拿出来看的时候，某种意义上会觉得 DeepSeek-V4看起来更好。Muse 是哪家公司？
+
+<span class="paragraph-timestamp" data-ts="55:13">55:13</span> **卢正石** Meta 啊。Meta 存在感太弱，所以我一时没想起来。抱歉。嗯，那边那边模型公开得很少，不过我也不太确定。
+
+<span class="paragraph-timestamp" data-ts="55:28">55:28</span> **金成铉** 这部分可能还需要再想一想。
+
+<span class="paragraph-timestamp" data-ts="55:32">55:32</span> **崔胜准** 但那边也投入了惊人的计算资源和人才，DeepSeek 现在从 DeepSeek-V3 到 DeepSeek-V4也花了相当长的时间，用的时间也差不多嘛。但最终看到公开出来的结果时，会觉得 DeepSeek-V4 更有冲击力。
+
+<span class="paragraph-timestamp" data-ts="55:46">55:46</span> **金成铉** 也许那其实也有公开信息多带来的显著性差异。我再说一遍，重点现在似乎已经转向 post-training 了，post-training 的质量差异，其实必须听那些实际使用的用户怎么说，才能知道。不过 Muse Spark 虽然没有公开关于架构或 pre-training 的细节，但就像我之前说的，我觉得它的水平也许没有达到这种程度。也就是说，如果重点看 pre-training，pre-training 在架构或技术层面上的改进或创新之类的东西，也许并没有达到这种水平，我是这么想的。只是推测。不过实际会是什么形式，他们没有公开，所以没法知道。嗯。那么我们现在时间也差不多了，
+
+
+## Cloud Next 与 GPT-5.5 消息快速整理    *56:39*
+
+<span class="paragraph-timestamp" data-ts="56:39">56:39</span> **卢正石** DeepSeek-V4 的评测就到这里结束吧，另外这周除了 DeepSeek-V4，还有 Google Cloud，然后 GPT-5.5，以及各种消息，胜准也整理了一些内容，我们快速看一下这些内容吧？
+
+<span class="paragraph-timestamp" data-ts="56:55">56:55</span> **崔胜准** 真的得非常快才行。快速说，GPT 2.0 图像其实成了一个大话题。所以现在 Elo 分数非常高，这是大概星期二左右的事。然后还有 Cloud Next，其中受到关注的是第 8 代 training 模式和inference 模式 TPU 新发布，有这些事情。然后 Anthropic 那边对于此前性能下降的原因做了一些解释，那也是大概星期四左右的事。然后星期五 GPT-5.5 如预告那样，虽然 Spud 这个名字只是传闻，但它发布了，而且确实变快了。用过之后感觉变快了，性能也相当令人满意，有趣的一点是，这是此前 Sébastien Bubeck多次提到过的独角兽基准测试。但独角兽基准突然变好了，这有点像用了取巧的方法，是什么呢，就是先用图像 2.0 生成图像，然后再让它照着那个去画。所以有点像取巧，但提到这一点，最终意思是会朝这个方向发展。也就是说，在 inference 内部会加入图像生成之类的东西，然后模型会利用它，有一点会走向这个方向的意味。像是反映这一点一样，最近可以看到，先用图像 2.0 生成，再用 GPT-5.5 制作的模式急剧增加。这不是单纯做一个 frontend，也有一些借助图像模型能力的尝试。
+
+不过我还是想花点时间介绍的是，我们上周不是看了发布节奏嘛。上周如果说我们看的是 Opus，也就是 Claude 这边的节奏，那么现在这就是发布顺序。然后这个是按时间段标出来的，即便只看旗舰模型，在这个阶段会隔得比较久，但从 2025 年左右来看，从 o3 到这里，4.5 是去年 2 月，o3 是 4 月 16 日，差不多就是这个时候。但从那里跳到夏天 8 月，虽然花了一些时间，之后每次提升 0.1所需时间几乎都大幅缩短，呈现出这样的趋势，这一点似乎又得到了确认。如果把 Codex 也算进去，就会更密集。所以现在似乎有一条非常庞大的 pipeline正在运转。最终就像我们在群聊里也说过的，像 Chrome 浏览器更新一样，模型更新也会变成不太需要在意的事，可能会到那样一个阶段。
+
+然后在 3D 方面，GPT-5.5 也有一些令人刮目相看的性能提升。还有一个有趣的点是，NVIDIA 现在似乎非常力推 GPT-5.5，而 Google 则再次投资 Anthropic。所以这周消息也非常多，最后如果只选一个的话，就是 Anthropic 产品团队的 Claude，Cat Wu 的采访相当有意思。所以关于这个的摘要内容，我提前摘了一些放在前面。开发速度的剧烈加速。采访者指出的是，资源是不是也起到了一些帮助，但 Cat Wu 并没有完全承认这一点，只是稍微承认了一点，并说某种飞轮已经转起来了。然后还谈了 PM 的角色等等，我觉得最后一部分很有意思，这里就是我直接引用原文的部分。如何在龙卷风中心保持清醒。在这种变化中，人要如何撑住。所以现在 Anthropic 的共同创始人之一，Ben Mann 说的是，现在就是未来这个世界可能拥有的最正常的样子，并由此谈到了在非常高的频率下仍具备恢复韧性的人才形象。所以并不是说世界上的一切都正在变得疯狂，而是在这样的局面中仍能保持清醒，不会 burnout 的人，关于这一点的讨论，我把它选作了这周的新闻。要具备那种能力确实很难。嗯。所以这一周也非常虽然有 DeepSeek 这种高密度的内容，但整体上散布开的这些事情，都是在展示各家公司正在做什么，展示出一种惊人的频率。但确实很容易 burnout。其实现在我们这种点点点的操作，也已经成了新的日常，那些东西现在也不怎么令人惊讶了。然后有人用了几亿 token，用了几十亿 token，说是在做这种 token maxxing，我也经常看到有些人开始从中抽离出来。那不是答案。似乎正在形成各自的某种平衡点。另外，到现在为止，我们一直觉得 AI什么都可以帮我们做，所以沉浸在 AI 本身的新奇感、功能，这些东西里面，会因为这个全都消失掉，SaaS 都会消失，当时是这么说的，但实际上不仅 SaaS 的股价在下跌，它们的新订单也在急剧减少。也就是说，现在公司内部也开始以 AI-native 的方式，轻松制作并使用自己的工具，这样的做法正在扎根，这种信号在很多地方都能看到。所以就像刚才胜准所说，现在这个模型性能提升了多少，又怎样怎样，可能会变得像 Chrome 更新一样，成为一种日常情况，也可能变成反正都是 AGI 了，这样的世界。但围绕这个，那我们到底要怎么做业务，要创造什么样的价值，我觉得会迅速转向这些问题。我能感觉到这样的信号。另外，走在前面的人们，现在已经不再谈要怎么构建 Harness，Claude Code 怎么样，Codex 要怎么用，不是这些话题，而是用这个到底怎么赚钱，客户到底想要什么，他们之间的差距要怎么弥合，最近我经常看到他们平静地转向这些话题，继续往前走。所以刚才成铉也指出了，那个 base model 现在等于是全部换了一轮。Anthropic 虽然不一定是 4.7，但 Mythos 的 base 确实变了，Spud 的 base model 也变了，DeepSeek 的 base model 也变了，所以在这之后，模型会持续渐进式地，按照这个频率不断更新，GPT-5.5 也是，据大家说，好像是 early checkpoint。这也就是说还会持续推出吧。Spud pre-training 结束了才没过多久，GPT-5.5 就出来了。就是啊。意思就是会一直出来。这是好事。我们能以这么便宜的价格使用这些好模型，实在只有感谢。只是最近价格在涨。是啊。DeepSeek不过又办了十天75% 折扣活动。已经变成这样的世界了。那么今天 DeepSeek，然后 GPT-5.5，还有 Google Cloud 的活动，不过云这边，Google 方面好像没有看到特别值得关注的点，所以似乎被埋没了。已经成了这样的世界。那么今天也稍微有点长，从某种角度看也可能是非常难的一期，关于 DeepSeek-V4 和 GPT-5.5，我们聊了一下。胜准，成铉，谢谢。辛苦了。很有意思。
+
+
+## 从 Cat Wu 采访看加速开发与倦怠    *60:00*
+
+
+## 从模型性能转向商业价值的竞争格局    *62:08*
+
+
+## 今天讨论收尾与下期预告    *64:37*
