@@ -90,7 +90,13 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="09:36">09:36</span> 그것들을 사실 DeepSeek이 작년 초에 이미 들고 나왔었습니다. 굉장히 성공적이고 잘 되는 것 같다는 얘기를 했었죠. 그런데 그게 잘 되지 않았다는 교훈으로 보는 게 맞을 것 같습니다. 왜냐하면 DeepSeek 자신도 그 이후 DeepSeek-V3.2 같은 모델이 되면서 그 구조를 포기했었거든요. 사실 그 sparse attention에서 굉장히 중요한 부분 중 하나는 처음부터 sparse attention을 학습해서 from scratch로 pre-training 된 모델을 만들겠다는 것에 있었습니다. 그런데 그 구조를 약간 포기하는 듯한 행보를 보였어요. 그냥 dense attention, 즉 이전의 모든 토큰을 참조하는 attention으로 pre-training 학습을 한 다음, 이후에 post-training 개념으로 sparse attention을 얹자, 그래서 DeepSeek Sparse Attention이라는 얹는 구조를 들고 나왔거든요.
 
-<span class="paragraph-timestamp" data-ts="10:30">10:30</span> 그게 왜 그런가 하면 아마 from scratch로 sparse attention을 학습하는 게 굉장히 어려웠기 때문일 겁니다. DeepSeek 자신이 그런 언급을 직접적으로 하지는 않았는데 sparse attention의 구조에 대해서 중국의 다른 많은 기업들이 실험을 하고 분석을 했습니다. 그런데 그쪽의 결론은 어렵다였습니다. 학습하기가 어렵다. 특히 from scratch로 학습하기가 너무 어렵다는 거였습니다. sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적이지만 dense attention이 있어야 sparse attention을 학습할 수 있다. 이런 결론으로 흘러갔습니다. 그래서 그러면 타협이나 절충이 되는 거죠. sparse attention을 바로 처음부터 밀어붙이지 못하고 dense attention을 한 다음에 그 이후에 비용 감소를 위해서 채택할 수 있는 절충점으로 sparse attention이 등장하는 형태로 나왔습니다. 샤오미나 텐센트에서 나왔던 결론이 그런 식이었습니다. 그런데 DeepSeek은 그걸 하고 싶었던 것 같아요. sparse attention을 거의 from scratch로 학습하는 것. 여기서도 V4에서도 완전히 from scratch는 아닙니다. 초반 1T 정도, 1 trillion 정도 토큰은 dense attention을 학습해요. 그렇지만 나머지 30T 이상의 토큰에 대해서는 sparse attention을 학습하거든요. 그렇다는 거는 sparse attention을 통한 거의 from scratch pre-training을 밀어붙이고 싶었다는 것이고 아마 거의 성공적인 것 같습니다. 그런데 그걸 위해서 거쳐야 했던 과정들이 굉장히 힘든 과정들을 거쳤던 것 같아요.
+<span class="paragraph-timestamp" data-ts="10:30">10:30</span> 그게 왜 그런가 하면 아마 from scratch로 sparse attention을 학습하는 게 굉장히 어려웠기 때문일 겁니다.
+
+DeepSeek 자신이 그런 언급을 직접적으로 하지는 않았는데 sparse attention의 구조에 대해서 중국의 다른 많은 기업들이 실험을 하고 분석을 했습니다. 그런데 그쪽의 결론은 어렵다였습니다. 학습하기가 어렵다. 특히 from scratch로 학습하기가 너무 어렵다는 거였습니다.
+
+sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적이지만 dense attention이 있어야 sparse attention을 학습할 수 있다. 이런 결론으로 흘러갔습니다. 그래서 그러면 타협이나 절충이 되는 거죠. sparse attention을 바로 처음부터 밀어붙이지 못하고 dense attention을 한 다음에 그 이후에 비용 감소를 위해서 채택할 수 있는 절충점으로 sparse attention이 등장하는 형태로 나왔습니다. 샤오미나 텐센트에서 나왔던 결론이 그런 식이었습니다.
+
+그런데 DeepSeek은 그걸 하고 싶었던 것 같아요. sparse attention을 거의 from scratch로 학습하는 것. 여기서도 V4에서도 완전히 from scratch는 아닙니다. 초반 1T 정도, 1 trillion 정도 토큰은 dense attention을 학습해요. 그렇지만 나머지 30T 이상의 토큰에 대해서는 sparse attention을 학습하거든요. 그렇다는 거는 sparse attention을 통한 거의 from scratch pre-training을 밀어붙이고 싶었다는 것이고 아마 거의 성공적인 것 같습니다. 그런데 그걸 위해서 거쳐야 했던 과정들이 굉장히 힘든 과정들을 거쳤던 것 같아요.
 
 <span class="paragraph-timestamp" data-ts="12:01">12:01</span> 그리고 아키텍처적으로도 굉장히 정교하고 복잡합니다. 그래서 sparse attention 부분에 많은 부분을 할애하고 있어요. sparse attention이 여기서 세 가지 component로 등장을 하게 됩니다. 한 가지는 기본적인 sliding window attention이라는 게 있습니다. sliding window attention이라는 건 기존의 dense attention하고 굉장히 비슷한데 토큰이 보는 과거 토큰을, 보는 토큰의 숫자를 제한하는 겁니다. 기존의 dense attention은 모든 토큰을 다 보는데 sliding window attention은 어떤 context length가 길어지더라도 한 토큰이 과거에 예를 들어서 500 토큰만 보게 제한을 시키는 겁니다. 그 attention이 기본적으로 들어가고요. 이거는 사실 지금 많이들 굉장히 많이 채택하고 있는 구조입니다.
 
@@ -320,7 +326,13 @@ alternateSlug: null
 
 <span class="paragraph-timestamp" data-ts="46:02">46:02</span> **노정석** 네, 얘네가 거의 정말 프론티어의 프론티어예요. 제가 그냥 느낌상.
 
-<span class="paragraph-timestamp" data-ts="46:13">46:13</span> **김성현** 그리고 여기서 또 평가가 나오는데 거기서 자기들 모델 비교를 하고 있죠. 모델 크기 커지고 데이터 증가하고 한 것에 의해서 제 생각에는 이제 특히 지식적인 측면에서, 특히 이건 pre-training이다 보니까 지식을 평가하는 게 훨씬 쉽게 용이한 점은 있긴 한데요. 지식적인 측면에서 굉장히 크게 발전했다. post-training 벤치마크에서도 비슷합니다. long-context 능력도 많이 발전했고요. 그리고 post-training이 등장합니다. post-training에서도 디테일이 굉장히 많이 있습니다. post-training은 한 가지 모델을 만들어서 중요한 이슈가 이 부분이거든요. 예를 들어서 코딩 전문가, 코딩 전문 모델, 코딩 전문 추론 모델, 수학 전문 추론 모델, 아니면 일반적인 추론 모델, 이런 것들이 많이 있는데 이것들을 어떻게 결합할 건가, 이게 약간 흥미로운 부분입니다. DeepSeek은 여기서 On-Policy Distillation 방법을 썼어요. 그래서 각각 전문가를 학습시킨 다음에 그 전문가를 distillation 하는 방법을 썼습니다. 그래서 최종 모델을 만들 때는 RL을 안 한 것 같아요. 그리고 rubric 기반의 reward model을 사용했고요. rubric 기반 reward model은 R1 나온 이후에 한 번 논문 낸 적이 있습니다. 그거 채택했고요. 그다음에는 tool call의 형식이 어떻다, 이런 얘기를 합니다. 그리고 reasoning 같은 게 경로에서 tool call하고 reasoning에 사용해서 context를 어떻게 구성한다, 이 얘기는 사실 DeepSeek V3.2에서도 얘기를 했었습니다. On-Policy Distillation이 나왔고요. 그리고 On-Policy Distillation을 효율적으로 하기 위한 인프라 얘기도 나오고 그다음에 distillation 할 때 디테일을 어떻게 해야 된다는 디테일들을 얘기하는데 이 디테일들 각각의 인프라적인 부담을 굉장히 크게 늘리는 내용들입니다. 그리고 그걸 커버하기 위한 인프라가 붙었고요.
+<span class="paragraph-timestamp" data-ts="46:13">46:13</span> **김성현** 그리고 여기서 또 평가가 나오는데 거기서 자기들 모델 비교를 하고 있죠. 모델 크기 커지고 데이터 증가하고 한 것에 의해서 제 생각에는 이제 특히 지식적인 측면에서, 특히 이건 pre-training이다 보니까 지식을 평가하는 게 훨씬 쉽게 용이한 점은 있긴 한데요. 지식적인 측면에서 굉장히 크게 발전했다. post-training 벤치마크에서도 비슷합니다. long-context 능력도 많이 발전했고요. 그리고 post-training이 등장합니다.
+
+post-training에서도 디테일이 굉장히 많이 있습니다. post-training은 한 가지 모델을 만들어서 중요한 이슈가 이 부분이거든요. 예를 들어서 코딩 전문가, 코딩 전문 모델, 코딩 전문 추론 모델, 수학 전문 추론 모델, 아니면 일반적인 추론 모델, 이런 것들이 많이 있는데 이것들을 어떻게 결합할 건가, 이게 약간 흥미로운 부분입니다.
+
+DeepSeek은 여기서 On-Policy Distillation 방법을 썼어요. 그래서 각각 전문가를 학습시킨 다음에 그 전문가를 distillation 하는 방법을 썼습니다. 그래서 최종 모델을 만들 때는 RL을 안 한 것 같아요. 그리고 rubric 기반의 reward model을 사용했고요. rubric 기반 reward model은 R1 나온 이후에 한 번 논문 낸 적이 있습니다. 그거 채택했고요.
+
+그다음에는 tool call의 형식이 어떻다, 이런 얘기를 합니다. 그리고 reasoning 같은 게 경로에서 tool call하고 reasoning에 사용해서 context를 어떻게 구성한다, 이 얘기는 사실 DeepSeek V3.2에서도 얘기를 했었습니다. On-Policy Distillation이 나왔고요. 그리고 On-Policy Distillation을 효율적으로 하기 위한 인프라 얘기도 나오고 그다음에 distillation 할 때 디테일을 어떻게 해야 된다는 디테일들을 얘기하는데 이 디테일들 각각의 인프라적인 부담을 굉장히 크게 늘리는 내용들입니다. 그리고 그걸 커버하기 위한 인프라가 붙었고요.
 
 ## post-training을 정교화하는 On-Policy Distillation과 Rubric Reward    *46:35*
 
