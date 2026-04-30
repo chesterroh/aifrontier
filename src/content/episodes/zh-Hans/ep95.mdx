@@ -30,7 +30,7 @@ chapters:
   - time: "27:24"
     title: "移除 MLA 与引入 Muon Optimizer"
   - time: "30:57"
-    title: "不含 N-gram 的 DeepSeek-V4 算法梳理"
+    title: "不含 en-gram 的 DeepSeek-V4 算法梳理"
   - time: "31:18"
     title: "提升训练基础设施的 MoE pipeline 优化"
   - time: "34:08"
@@ -205,12 +205,12 @@ DeepSeek好像不太喜欢跟随别人常用的默认做法。通常有一套常
 
 <span class="paragraph-timestamp" data-ts="30:14">30:14</span> **卢正锡** 所以我们说DeepSeek论文里的算法创新，它主推的三项内容里，第一项就是这个mHC，第二项就是这个Sparse Attention部分。用CSA和HCA说明的这一部分，恐怕正是这次DeepSeek-V4最大的贡献点，也就是Sparse Attention部分。然后就是使用了Muon Optimizer。有这些内容。那么现在这三项算法层面的内容就先简单总结到这里，接下来我们继续往下看吧？还有哪些其他要点呢？
 
-<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **金成贤** 从算法角度来看，还漏掉了一项。这个部分今后可能会成为一个有意思的主题。N-gram缺席了。啊，是是。
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **金成贤** 从算法角度来看，还漏掉了一项。这个部分今后可能会成为一个有意思的主题。en-gram缺席了。啊，是是。
 
 
-## 不含 N-gram 的 DeepSeek-V4 算法梳理    *30:57*
+## 不含 en-gram 的 DeepSeek-V4 算法梳理    *30:57*
 
-<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **金成贤** 很多人原本预测N-gram会出现，并被放进DeepSeek-V4里，但这里没有采用。所以今后N-gram会如何再次登场，可能会成为更有意思的看点。不管怎样，DeepSeek-V4 里还没有这个。没错。接下来是 infrastructure。
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **金成贤** 很多人原本预测en-gram会出现，并被放进DeepSeek-V4里，但这里没有采用。所以今后en-gram会如何再次登场，可能会成为更有意思的看点。不管怎样，DeepSeek-V4 里还没有这个。没错。接下来是 infrastructure。
 
 
 ## 提升训练基础设施的 MoE pipeline 优化    *31:18*
