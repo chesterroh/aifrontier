@@ -97,6 +97,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <ResourceLink url="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf" title="DeepSeek-V4 Technical Report" domain="huggingface.co" />
 
+
+![논문 페이지에 위아래 두 개의 선 그래프가 배치된 화면으로, 위 그래프는 연산량 추세를, 아래 그래프는 메모리 사용 추세를 보여준다.](/episodes/ep96/ep96_0142_deepseek_context_graph.jpg)
+
 <span class="paragraph-timestamp" data-ts="01:42">01:42</span> **노정석** 저희 지난주에 DeepSeek 이야기를 했었는데, 사실 DeepSeek이 페이퍼 가장 1장에서 내놨던 내용이 사실 이거지 않습니까? 이 오른쪽에 있는 그래프가 사실 이 논문의 앙꼬라고 말씀드렸는데, 위에 있는 게 computation에 대한 내용이고 아래에 있는 게 메모리에 대한 내용인데요.
 
 <span class="paragraph-timestamp" data-ts="02:01">02:01</span> 이거 그냥 요약하면 토큰 포지션이 k니까 0에서부터 100만까지를 나타내는 건데, 요새 100만 토큰의 context length를 프론티어 랩들이 다 제공을 하고 있는데 사실 100만은 굉장히 비싼 서빙이거든요. 그래서 대부분 현실적으로 20만 이 정도에서 티어가 나눠져 있는 걸로 알고 있는데, 그 티어가 왜 나눠져 있는지도 저도 이번에 알게 됐거든요.
@@ -231,6 +234,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <span class="paragraph-timestamp" data-ts="14:13">14:13</span> **노정석** 저희가 조금 이따 트랜스포머 블록을 보면서도 얘기를 하겠지만, 이게 사실 토큰이 입력되면 똑같이 생긴, 이게 트랜스포머의 매력인데 똑같이 생긴 트랜스포머 블록을 그냥 61번 반복해서 토큰이 지나가는 거잖아요. 그 말씀을 방금 승준님이 하신 거고, 그리고 output token은 맨 위에 있는 블록에서 꺼내서 걔를 다시 토큰으로 바꾸는 거죠.
 
+
+![트랜스포머 동작을 설명하는 인터랙티브 웹페이지 화면으로, 토큰 입력과 모델 블록 흐름이 시각적으로 배치되어 있다.](/episodes/ep96/ep96_1444_transformer_explainer_ui.jpg)
+
 <span class="paragraph-timestamp" data-ts="14:44">14:44</span> **최승준** 그렇죠. 맨 마지막에 생성된 거에서 이제 돌려줘야 되는데, 그게 autoregressive라는 방식이거든요. 자세한 부분은 시간이 좀 걸릴 수도 있겠습니다만, 이 트랜스포머 익스플레이너 사이트가 굉장히 잘돼 있어요. 이게 3차원으로 보는 버전보다도 이해하기가 쉽게 설명이 되어 있고, GPT-2가 실제로 돌아가게 되는데, 제가 딸깍 한국어 버전으로 설명을 만들어 봤습니다.
 
 <span class="paragraph-timestamp" data-ts="15:06">15:06</span> **노정석** 아이고, Codex가 해줬군요.
@@ -275,6 +281,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 <span class="paragraph-timestamp" data-ts="19:36">19:36</span> 그런데 그렇게 만들어 놓은 일종의 inductive bias, 저희가 그냥 어떤 저자의 설계라고 생각하시면 맞아요.
 
 <span class="paragraph-timestamp" data-ts="19:46">19:46</span> 얘가 왜 이렇게 되면 query가 되고 key가 되고 value가 돼요라는 질문은 하시지 말고 넘어갑시다.
+
+
+![토큰들 사이의 연결 관계가 삼각형 형태의 마스크와 함께 표시된 attention 애니메이션 화면이다.](/episodes/ep96/ep96_1950_attention_mask_animation.jpg)
 
 <span class="paragraph-timestamp" data-ts="19:50">19:50</span> **최승준** 하지만 이 애니메이션은 재미있으니까 한번 보겠습니다. attention 자세히 들어가서 보면 저런 식으로 모든 서로의 토큰에 대해서 뭔가를 계산을 해요. 그래서 그 맥락 정보가 생기거든요. 그런데 여기 삼각형 모양으로 생기는 거는 미래의 거를 프롬프트에 입력할 때, 그건 넘어갈게요. causal mask 설명하려면 좀 어려워서
 
@@ -330,6 +339,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <span class="paragraph-timestamp" data-ts="25:47">25:47</span> **최승준** 그렇습니다. 그래서 이렇게 LM head 설명을 안 했는데 LM head는 어쨌든 맨 마지막, 많은 걸 계산해 놓고 그래서 맨 마지막에 있는 토큰에 그러니까 이 벡터에 대해서만 다음 거를 추론할, 다음 토큰이 뭐가 나올지를 예측하는 데 쓰이긴 하는데요. 그거와 다음 장이 아마 좀 전에 말씀해 주셨던 그거의 메커니즘을 다이어그램으로 표현한 거고 더하기가 있는 게 residual을 합쳐주는 부분입니다.
 
+
+![어텐션 블록과 MLP 블록, 더하기 기호의 잔차 연결이 포함된 트랜스포머 블록 다이어그램이 보이는 화면이다.](/episodes/ep96/ep96_2615_transformer_block_diagram.jpg)
+
 <span class="paragraph-timestamp" data-ts="26:15">26:15</span> **노정석** 아래 녹색 선이 residual connection이죠.
 
 <span class="paragraph-timestamp" data-ts="26:19">26:19</span> **최승준** 잔차 연결을 하는 거죠.
@@ -380,6 +392,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <span class="paragraph-timestamp" data-ts="30:14">30:14</span> **노정석** 네, 우리 기계가 어떻게 만들어지는지를 보여주네요. Blackwell GPU 한 장이 이 다이 두 개 합쳐져서 만들어졌다.
 
+
+![검은 배경 위에 칩 패키지와 노란색 HBM 모듈이 강조되어 표시된 하드웨어 구성도 화면이다.](/episodes/ep96/ep96_3024_blackwell_hbm_layout.jpg)
+
 <span class="paragraph-timestamp" data-ts="30:24">30:24</span> **최승준** 숫자가 빠르게 지나가긴 할 건데요. 저 노란색으로 붙은 거가 HBM이에요. HBM 메모리네요. 그리고 두 개에, 하나가 붙었어요.
 
 <span class="paragraph-timestamp" data-ts="30:33">30:33</span> **노정석** GPU 두 개에 CPU 하나.
@@ -395,6 +410,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 <span class="paragraph-timestamp" data-ts="30:52">30:52</span> **최승준** 그러니까 Blackwell 두 개에 CPU 하나죠.
 
 <span class="paragraph-timestamp" data-ts="30:58">30:58</span> **노정석** 방금은 통신을 위한 interface 카드가 들어가고
+
+
+![여러 개의 서버 모듈이 랙 안에 층층이 배치되고 중앙 스위치와 연결되는 데이터센터 랙 구성 영상 화면이다.](/episodes/ep96/ep96_3109_nvl72_rack_overview.jpg)
 
 <span class="paragraph-timestamp" data-ts="31:09">31:09</span> **최승준** 그래서 이게 합하면 72개 쌓을 수 있다는. 그리고 이게 스위치, 좀 전에 다이어그램에서 봤던 거죠. 저걸 이제 spine에다가 꽂아서 결국에는 어떤 고속도로를 깔 수 있느냐인 것 같아요. 물리적으로. 그래서 여기에 랙 하나, 72개를
 
@@ -727,6 +745,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <span class="paragraph-timestamp" data-ts="1:00:00">1:00:00</span> **노정석** 그렇죠. 산수죠. 그래서 위아래에 있는 그 핵심이 다 용량들이니까요. 그래서 결국은 초가 나오는 거죠. 그래서 이 두 개를 가지고 현대의 LLM inference가 도대체 시간이 어디서 걸리는지를 하겠다는 거죠. 그래서 이것과 t_memory가 batch와 context length에 큰 영향을 받는다는 얘기를 하고 있는 거죠.
 
+
+![칠판 위에 t_compute와 t_mem 수식, 시퀀스 길이와 배치 개념을 나타내는 작은 도식이 함께 적혀 있는 강의 화면이다.](/episodes/ep96/ep96_6032_batch_latency_graph.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:00:32">1:00:32</span> 이제 넘어가 볼까요? 그래서 이 그래프를 제가 자막을 좀 끄겠습니다. 이 그래프를 그리는 게 오늘 이해하는 데 매우 중요하잖아요. 이 오른쪽 x축에는 batch, 그러니까 한 time당 유저를 얼마나 처리할 거냐라는 이 batch size와 그것 때문에 걸리는 시간, 이것의 함수를 얘가 그려보는 거죠.
 
 <span class="paragraph-timestamp" data-ts="1:01:04">1:01:04</span> 그러면서 이 앞에 있는 이 term들에서 저희가 산수를 해요. t_compute는 사실 여기 배치에 선형 함수일 테니까 얘가 이렇게 선형으로 그린 거고 그다음에 이 메모리 타임에 total memory 로딩하는 타임은 그냥 한 번 로딩하면 그다음은 계속 꺼내서 쓸 수 있으니까, 그렇기 때문에 여기에 굉장히 큰 intuition이 하나 들어 있죠.
@@ -776,6 +797,9 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 <span class="paragraph-timestamp" data-ts="1:06:32">1:06:32</span> latency가 궁금하신 분들은 이 사이에 했었던 설명들이 이거예요. 승준님과 저와 방금 나눈 대화 같도록 그럼 attention 뭐가 줄어들면 저게 줄어드는 거냐 늘어나는 거냐, 이런 얘기를 했고 여기 그래프를 하나 더 그립니다.
 
 ## batch에 따른 토큰당 비용 곡선과 최적점    *1:06:48*
+
+
+![칠판에 세로축 t와 가로축 B가 표시된 그래프가 그려져 있고, 지연 시간 하한과 여러 곡선이 함께 보이는 강의 화면이다.](/episodes/ep96/ep96_6648_token_cost_curve.jpg)
 
 <span class="paragraph-timestamp" data-ts="1:06:48">1:06:48</span> cost, 토큰당 cost인 거예요. 근데 이거죠.
 
