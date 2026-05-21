@@ -1,0 +1,546 @@
+---
+episodeNumber: 97
+title: "People in the Age of AI Psychosis"
+description: "From Claude Code and Codex evolving into super apps to T_brain, burnout, and AI psychosis, Roh Jungseok and Choi Seungjun look at the human bottlenecks and new working rhythms emerging in the AI era."
+publishedAt: 2026-05-21
+duration: "1:17:03"
+youtubeId: "cUc8iK6LG0k"
+thumbnail: "https://i.ytimg.com/vi/cUc8iK6LG0k/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "Opening: Google I/O's harness strategy"
+  - time: "3:01"
+    title: "GPT-5.6, Anthropic's compute-constraint hypothesis and the model release cycle"
+  - time: "5:34"
+    title: "Moving away from NVIDIA, the inference chip ecosystem and T_brain bottlenecks"
+  - time: "8:45"
+    title: "Claude's policy changes and the super app Codex"
+  - time: "11:36"
+    title: "Hwidong Bae's 120x and engineer burnout"
+  - time: "14:25"
+    title: "The end of the privilege of building software"
+  - time: "17:25"
+    title: "The end of the infrastructure era and the dawn of the AI application era"
+  - time: "20:23"
+    title: "AI surface and the future of interfaces"
+  - time: "22:24"
+    title: "What the next AI application looks like and the tension between ChatGPT and platform operators"
+  - time: "26:15"
+    title: "Vertical differentiation — customer data and tool combinations"
+  - time: "29:19"
+    title: "Playbooks taking root and value shifting"
+  - time: "32:24"
+    title: "Shifting to the AI-era talent topic and the fork in AI adoption"
+  - time: "35:53"
+    title: "Distinguishing AI Native vs AI Assisted"
+  - time: "38:02"
+    title: "Falling AX consulting rates and new standards for AI talent"
+  - time: "41:44"
+    title: "Lablup-level orchestration infrastructure and the control layer"
+  - time: "46:20"
+    title: "Benedict Evans on ChatGPT unbundling and the domain-expert vs meta-optimizer archetypes"
+  - time: "50:33"
+    title: "OMX and an experimentation culture across B2C and B2B"
+  - time: "53:14"
+    title: "The limits of meta-learning and domain internalization"
+  - time: "57:12"
+    title: "AI psychosis and the dopamine slot machine"
+  - time: "60:03"
+    title: "The talent profile Cat Wu described — someone who enjoys chaos"
+  - time: "63:01"
+    title: "Warnings from Mitchell Hashimoto and Mario Zechner, and tasks remaining after the elite sprint"
+  - time: "68:02"
+    title: "Dwarkesh's learning method and load-bearing work"
+  - time: "70:17"
+    title: "Slow AI, mind-sized bites and the post-I/O startup landscape"
+  - time: "73:28"
+    title: "Closing: Ahead of episode 100"
+lang: "en"
+alternateSlug: null
+notionUrl: "https://erucipe.notion.site/AI-362d5c9e7e5980819987d65a08861ab7"
+---
+
+## Opening: Google I/O's harness strategy    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is May 17th, 2026, a Sunday morning. 2026 is already nearly halfway through, and it really feels like the pace of change is getting even faster. Even at the start of the year, using Claude Code and Codex, AI coding and agent coding were becoming popular, and while it may be an exaggeration to say everyone uses them now, I think it is certainly true that everyone knows about them. So tips on how to move workflows forward are flying back and forth at a truly breathless pace, and the work people do with these tools is no longer just among engineers, as it used to be, but now among all knowledge workers. I can really feel that Claude Code and Codex practices are permeating that whole class of workers. Along with that, the models also keep getting better. We have always said that models advance, harnesses advance in line with those models, the characteristics those harnesses have then get folded back into the models, and then the harnesses get even better, creating this virtuous cycle of constant improvement. And as is only natural, it is really proceeding at a breathless pace.
+
+
+## Google I/O와 구글의 하네스 전략    *1:12*
+
+<span class="paragraph-timestamp" data-ts="1:12">1:12</span> **Chester Roh** I think Google I/O is happening this week, so a new model is coming out, right? Seungjoon? According to rumors on the timeline,
+
+<span class="paragraph-timestamp" data-ts="1:21">1:21</span> **Seungjoon Choi** I think I briefly saw that Gemini 3.5 Flash had appeared in the arena, and there is also speculation that Veo 4 might be coming out. Over the past six months or so,
+
+<span class="paragraph-timestamp" data-ts="1:34">1:34</span> **Chester Roh** Google has not really been participating that actively in the harness competition, the one Codex and Claude Code have been leading since Google Antigravity came out at the end of last year. But looking at what is coming out now,
+
+with Google AI Studio, Google seems to be thinking, "Hey, if you are going to go back and forth in words like that, shouldn't it be enough to roughly say what you want, and then it just finishes everything on its own and creates the output?" That is the sense I get.
+
+It feels like inside AI Studio, they want to release a workflow where you just say a few words and it drops the finished target right there. I do not know what Google is thinking,
+
+<span class="paragraph-timestamp" data-ts="2:16">2:16</span> **Seungjoon Choi** but Google certainly is not keeping pace with the run that Codex or Claude Code is making. According to some rumors,
+
+<span class="paragraph-timestamp" data-ts="2:24">2:24</span> **Chester Roh** Demis Hassabis is far more interested in solving biotechnology, science, aging, and disease, and thinks coding is very trivial. There are stories like that, but this is such a huge market that Google will of course enter the fray somehow. But because Google is, after all, a player that has continued to lead these trends from the very front, I think they may keep pursuing something like a game changer or showstopper, something that can settle it in one shot, rather than some kind of gradual improvement. In line with that, actually, OpenAI's GPT-5.6 is also said to be coming soon, and alongside that, Claude Mythos has also been teased for a while, with people saying, "This is really amazing," but some rumors say it is simply because Anthropic lacks computation that they cannot release it. At first glance, that also seems right. From the perspective of computation,
+
+
+## GPT-5.6, Anthropic's compute-constraint hypothesis and the model release cycle    *3:01*
+
+<span class="paragraph-timestamp" data-ts="3:27">3:27</span> **Seungjoon Choi** it is a bit hard to imagine Google falling behind.
+
+<span class="paragraph-timestamp" data-ts="3:29">3:29</span> **Chester Roh** I do not really know what the reality is. Rumors coming from inside Google say that because an enormous amount of computation is going into training and things like that, even in their internal environment, production environment, and so on, computing resources are not exactly abundantly available, I hear from time to time. DeepMind must be using a lot somewhere, whether developing new models or doing something else, and so on. But what is certain is that model performance keeps going up, and there is no longer any doubt about that.
+
+
+## 프론티어 모델의 두 달 출시 주기    *4:03*
+
+<span class="paragraph-timestamp" data-ts="4:03">4:03</span> **Chester Roh** And starting from around GPT-5.4 or 5.5, people now talk about AGI fairly often. Of course, they carefully use political language, saying it is uneven, jagged, that in some respects it shows intelligence beyond humans, while in other respects it seems dumb, but in fact, for most of the knowledge work tasks we talk about, it is true that the performance is extremely strong.
+
+<span class="paragraph-timestamp" data-ts="4:31">4:31</span> **Seungjoon Choi** In the Ryan Petersen episode, in the Dwarkesh Patel interview, in the latter half, they move on to Chinchilla, and after making one assumption about the cycle on which models are released, there is a part where they calculate the pretraining compute resources with arithmetic, and the premise there was two months.
+
+That model operates for two months. Because it is a frontier model.
+
+GPT-5.2 is also sunsetting soon. The current model is 5.5. So now the period of activity has a rhythm of about two months,
+
+which means something new comes out every two months. But now, moving up by 1 at a time
+
+<span class="paragraph-timestamp" data-ts="5:12">5:12</span> **Chester Roh** would actually have been a major update by last year's standards, so it is clear that the cycle of change keeps shrinking. In the end, to state only the conclusion, computation keeps expanding, so the quantity is increasing, but the efficiency of computation is also improving. There is engineering progress of that sort,
+
+
+## Moving away from NVIDIA, the inference chip ecosystem and T_brain bottlenecks    *5:34*
+
+<span class="paragraph-timestamp" data-ts="5:34">5:34</span> **Chester Roh** and as we saw with DeepSeek V4, there is also algorithmic progress, and as all of these things come together, actually, we will discuss hardware soon as well, but especially in inference, NPUs and dedicated inference chips are increasing a lot.
+
+DeepSeek V4 also mentioned the Huawei Ascend chip, and while I do not know what proportion they are using, in any case, it does seem clear that ecosystems moving away from NVIDIA, not depending on NVIDIA, are also rapidly expanding. Recently, the METR graph, at the Mythos level,
+
+<span class="paragraph-timestamp" data-ts="6:11">6:11</span> **Seungjoon Choi** came out to about 16.5 hours, something like that, What METR is measuring now, with their current method, seems like it will need quite a lot of revision, I think I saw a tweet carrying that kind of nuance. So the performance of models, within certain domains, continuing to rise, and being on this J-curve right now, is definitely the case. Because of that, these days fast modes are coming out too, aren't they? The ones where it gets faster if you pay more.
+
+
+## T_brain 병목과 급행료 시대    *6:35*
+
+<span class="paragraph-timestamp" data-ts="6:39">6:39</span> **Chester Roh** That's literally an express fee. In that case, when we did the Dwarkesh episode,
+
+<span class="paragraph-timestamp" data-ts="6:46">6:46</span> **Seungjoon Choi** we talked about T_compute, T_mem, things like that, and lately I find myself thinking about T_brain.
+
+<span class="paragraph-timestamp" data-ts="6:52">6:52</span> **Chester Roh** The human bottleneck.
+
+<span class="paragraph-timestamp" data-ts="6:53">6:53</span> **Seungjoon Choi** It could be a bottleneck, and it's about hitting break-even. We're talking about a situation where, when this becomes efficient, there are tradeoffs between the two, so that part, things like the time it takes there, are what I find myself thinking about these days.
+
+
+## 하네스 프랙티스의 대중화    *7:08*
+
+<span class="paragraph-timestamp" data-ts="7:08">7:08</span> **Chester Roh** So today, after a long time, we've returned a bit to this banter mode. We usually take a certain topic and do episodes in a learning format, but this time it's just banter mode. It may be a bit of a breather page, but even though it's a breather,
+
+<span class="paragraph-timestamp" data-ts="7:27">7:27</span> **Seungjoon Choi** this is also an issue that keeps nagging at the back of our minds.
+
+<span class="paragraph-timestamp" data-ts="7:30">7:30</span> **Chester Roh** And this is changing tremendously, and our workflow is changing too, but the workflows of people around us are also changing, and we've been lucky enough to get many opportunities to watch people who are ahead of us up close, so how they are creating changes, and how we learn from that and change our own workflow a lot as well. Now, the changes they are feeling, even as recently as the end of last year and then early this year, it was about who could use more tokens from Claude Code and Codex, and what we call the Ralph loop for those things, where you put on harsh hooks until the task is finished and keep running jobs like that. Those kinds of meta-harnesses were also very popular, and now they seem to have settled into a fairly stable form. Then, things like oh-my-claude, oh-my-claude-code, oh-my-opencode, oh-my-codex, the oh-my series, the good parts of those meta-harnesses, those are also, as we might call it, in the original product, in the basic items of Codex or Claude Code, slowly being included, and we've kept seeing that.
+
+
+## Claude's policy changes and the super app Codex    *8:45*
+
+<span class="paragraph-timestamp" data-ts="8:45">8:45</span> **Seungjoon Choi** But now, on the Claude side, it does feel like they're putting a bit of a penalty on those things. The recent news that they will change pricing from June is like that too, and they also seem to have started putting some penalties on Claude Pro mode. So for people who keep looping it or exploit this, looking at Claude, Anthropic, after all, may not have an extremely abundant amount of computing resources, even if they secured Colossus, so it could be because of that. In any case, policy changes
+
+seem to be coming out there quickly enough to be felt as well.
+
+<span class="paragraph-timestamp" data-ts="9:17">9:17</span> **Chester Roh** Claude Code led the first half of this year to the point that the buzzword AI coding was practically synonymous with Claude Code. Because of that, most people getting started with AI coding
+
+signed up for Anthropic, signed up for Claude, installed Claude Code, and subscribed to the Max plan, or at the smaller end, the $20 plan, as their starting point.
+
+That must have had a major impact on Anthropic's explosive growth in the first half of this year. But now we came to understand that Anthropic was short on computation resources. So there were also cases where the Opus model's quality kept degrading somewhat. And if you looked at most people doing AI coding,
+
+they had Claude Code open. Around me too.
+
+<span class="paragraph-timestamp" data-ts="10:03">10:03</span> **Seungjoon Choi** These days there's a lot of churn and movement. In the meantime, Codex caught up incredibly fast,
+
+<span class="paragraph-timestamp" data-ts="10:09">10:09</span> **Chester Roh** started to follow, and OpenAI also, relatively speaking, has invested quite a lot in computing resources since last year, and seems to have some room. Because of that, those computing resources, in fact Codex gives you much more token headroom. I have never really hit the weekly limit on Codex. Those are actually tokens that are quite hard to use up, but that's how things are going.
+
+<span class="paragraph-timestamp" data-ts="10:37">10:37</span> **Seungjoon Choi** In any case, the Codex desktop app is good, and the CLI is good too, and new binaries seem to go up there almost daily. That's right. The Codex desktop app's cycle has become very fast too. So to summarize the first half of the year,
+
+
+## 슈퍼 앱 Codex와 강조되는 AGI의 G    *10:51*
+
+<span class="paragraph-timestamp" data-ts="10:54">10:54</span> **Chester Roh** Codex or Claude Code are no longer just about coding. In fact, they can get involved in almost every kind of workflow that cuts across software. I think that kind of philosophy has started to take shape. In OpenAI's case, they're even calling Codex a super app now. If there is something with the most general ability for whatever work you do, then any kind of specific task can be handled by it, and they're now using that kind of language quite often. So it seems certain that the G in AGI is being emphasized more and more in this period. Because of this, as the performance of people and models,
+
+
+## Hwidong Bae's 120x and engineer burnout    *11:36*
+
+<span class="paragraph-timestamp" data-ts="11:40">11:40</span> **Seungjoon Choi** and the performance of harnesses, keeps rising, the more you use this, the more work you can process, so people have been complaining about burnout for, what, already half a year? Those complaints had been around since last year. Recently they've been surfacing even more. Recently on my timeline, I saw a post by Hwidong, who is the ace lead at Corca, and found it very striking.
+
+<span class="paragraph-timestamp" data-ts="12:02">12:02</span> **Chester Roh** Shall we take a look at what kind of post it was? So here, Hwidong mentioned us,
+
+<span class="paragraph-timestamp" data-ts="12:07">12:07</span> **Seungjoon Choi** and as we mention Hwidong in return and talk about it, it seems episode 67 was around September. So at that time, we talked about tech backend, that kind of engineer, the people who create compute multipliers, and so on. But at the time, you thought you needed to do a bit more, and as you kept going, it somehow became 120x, that was what you said. So even if it is not productized yet, at the level of dogfooding, at the level of internal use, it seems that very fast and efficient production pipelines and experiments are underway, that was the nuance of what you said. But people often say this feels like dopamine, like a slot machine.
+
+When this is flowing on the timeline, and the scroll keeps moving, probabilistically, the model does very well and things pop off, so people often say the dopamine hits. And then getting hooked on that and working all day creates another kind of exhaustion. Especially even if you let the agent run for a long time,
+
+the important coordination and decisions still have to be made by humans, and then it is hard to reduce working hours, because it feels wasteful, so you have to keep going. So there is this pressure of running like mad, at the speed of the background, the speed of imbalance, and there is also pressure from those expectations. So now, without doing any other hobbies, doing nothing but development makes your health worse, things like that, and in the comments here too, some people left comments saying they related to it. So I had meals a few times with engineers around me, and everyone was assigning work over SSH and so on while eating.
+
+<span class="paragraph-timestamp" data-ts="13:49">13:49</span> **Chester Roh** Either on mobile, or by taking out an iPad.
+
+<span class="paragraph-timestamp" data-ts="13:54">13:54</span> **Seungjoon Choi** So while looking at those tiny lines of code, they kept assigning work.
+
+<span class="paragraph-timestamp" data-ts="13:58">13:58</span> **Chester Roh** Most people have at least one agent like Hermes or OpenCode running, so they have those agents manage their own tasks as the main layer, and then underneath that, attach things like Codex or Claude Code and run them in that kind of structure. A lot of people were running things that way. But is this a good thing?
+
+<span class="paragraph-timestamp" data-ts="14:20">14:20</span> **Seungjoon Choi** It is not just Hwidong saying this; I have seen it in several recent posts. But if we think back to just last year,
+
+
+## The end of the privilege of building software    *14:25*
+
+<span class="paragraph-timestamp" data-ts="14:30">14:30</span> **Chester Roh** making software was quite a privilege. It was a good profession you could enter only after studying and practicing quite a lot, and we lived for a long time in an era where the act of creating it itself was added value. There were many cases where people could not expand a business because they could not build it, or could not even open the business at all because they could not build it. So when we said we were starting a company or doing something,
+
+in most of the IT industry, the number of engineers, and then how much of this we could build, were effectively equivalent to starting the business. When you raised investment, almost two-thirds of that investment naturally went into team labor costs on engineering and product, and the quality of that team ultimately connected to company value. That was the paradigm that dominated for well over 10 years, almost close to 20 years. So from the perspective of other people who did not have that, it was an extremely enviable resource. But now everyone has become able to build.
+
+As a result, now with Claude Code or Codex, people can build things that they could not build before, a kind of product, with users, UX, and workflows, and inside it, a DB and UX, things like that. The fact that they can now build those things is so fascinating that countless products are being mass-produced. Whether for personal purposes, or for some utility purpose, or for truly business purposes. So in the early days, people would build those things and say, "I made something like this.
+
+Please try it," and that was very fascinating, and we would go to someone else's GitHub repo, read the README.md, and try installing it. If that was just last fall and winter, now, at this point after finishing Q1 of this year, when someone says, "I made this," and uploads it to GitHub, have you ever tried using it? Seungjoon?
+
+<span class="paragraph-timestamp" data-ts="16:40">16:40</span> **Seungjoon Choi** I have not. I almost never do anymore either. When I hear, "Someone made something like this,"
+
+<span class="paragraph-timestamp" data-ts="16:45">16:45</span> **Chester Roh** if there is some extremely interesting point, I only wonder how it was made, just that differentiated point, that edge, is the only thing I am curious about. Then what do I do in that case? I download the GitHub repo, and then I ask my agent. When I tell it to analyze it, my agent, which knows what kind of codebase I operate, reads it and answers, "There is nothing special here," or something like that, or says, "This is a very interesting point." Then that point, in fact, with one click, becomes something I can use too. It feels like we are entering that kind of era.
+
+
+## The end of the infrastructure era and the dawn of the AI application era    *17:25*
+
+<span class="paragraph-timestamp" data-ts="17:25">17:25</span> **Chester Roh** So this is what I want to say here: in fact, we are now going through the era of models and harnesses. And the models and harnesses themselves might now be commodities. If we bring in an analogy from the internet era or the mobile era and think about it, back then too, after the infrastructure was laid down, the infrastructure stabilized, and prices dropped substantially, the era of applications began afterward. Mobile stabilized steadily, and at first we enjoyed things like Paper Toss and Angry Birds, but after that, in fact, major verticals like Uber and Airbnb all moved into mobile and became large industries, and the mobile era we knew came into full bloom. So now people seem to be bringing that analogy into the AI era quite a lot. Now, the models have stabilized enough, and of course the models are still advancing,
+
+but if further advances, from the perspective of ordinary people like us, no longer create any more marginal difference, right, it is like the law of diminishing marginal utility. Then, from the perspective of past analysis, infrastructure has become sufficiently stable and cheap, let's assume we've entered that kind of era. Now, then, the era of AI applications will open up, and the question of what shape AI applications will take is the question everyone is asking right now.
+
+
+## 워크플로우 자체가 된 AI 애플리케이션    *19:02*
+
+<span class="paragraph-timestamp" data-ts="19:02">19:02</span> **Chester Roh** And over the next 12 to 24 months, so one to two years, on our time axis, on my personal time axis, that has the intensity of 10 or 20 years, and tremendous things are going to happen during that period. Now, then, is that shape, are AI applications about making the mobile apps or web services that we had in the past really quickly? I don't think so. In the end, it's just workflow. In the past, for some task, people were given a UX, and then solving that problem had to be done by a person. Within that, people would find the flow, define the problems they wanted to solve, and ultimately solve the problem inside that tool. So if businesses used to provide tools, and users solved problems with those tools, now, in the agent era, the user actually gives only some intention, some intent, and what businesses need to sell is the solution to the problem. They need to sell task completion. Now, then, that phase probably will not be a matter of UX or things like that. Then is it a conversational interface? It may not be, but it is certainly a natural-language interface. So now OpenAI is also said to be releasing a phone, a new phone,
+
+
+## AI surface and the future of interfaces    *20:23*
+
+<span class="paragraph-timestamp" data-ts="20:26">20:26</span> **Chester Roh** a new UX phone, with Jony Ive, but that may not take the form of the mobile apps we know. It may just see and hear what we see and hear, watch the entire context in which we exist, and simply solve everything like an assistant, bringing only the solution to the user. People are saying that kind of form is now the new form of AI application, but in fact, that's not a product. So it's just the workflow itself.
+
+Last time, Jensen talked about the five layers of AI, earlier, from energy to chips to models, and then orchestration and things like that. The very top was applications, but those applications probably won't be the kind of applications we know. You download them from the App Store, every company has an app, and when you download it you can do something, that's probably not the concept. The application, nearly 80 to 90% of the application, will be the harness itself, and on top of that, between the user and that harness, the part called the interface UX, the term people use a lot these days is AI surface. Just the surface of AI, and as for the form of that AI surface, whether it becomes the conversational form like ChatGPT that we're familiar with now, or just natural-language conversation, a voice interface, or something else, or ultimately something like Neuralink, opinions still seem to be divided, but I think that may be the biggest topic right now. For now, if OpenAI and
+
+Google define the agenda by saying, "This is the new form of UX," everyone will rush to follow, but since it has not yet been clearly defined at this point, I think we're passing through a period of some confusion.
+
+
+## What the next AI application looks like and the tension between ChatGPT and platform operators    *22:24*
+
+<span class="paragraph-timestamp" data-ts="22:24">22:24</span> **Seungjoon Choi** But in this context, something I would add, and something I'm a little curious about, is that already, with Claude Code and things like that, the question of whether there has been a productivity improvement has been around for almost a year, about three months, and if we roughly round that to a year, during that year, among the products that came out in the AI field, aside from AI harnesses or AI services, are there any impressive products?
+
+You did say earlier that it's a period of confusion or transition, but is there anything that comes to mind? No. So far, most of them are still
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **Chester Roh** subsets of Codex and Claude Code.
+
+<span class="paragraph-timestamp" data-ts="23:02">23:02</span> **Seungjoon Choi** Meaning something you can do with that? Right. That also means the next application
+
+<span class="paragraph-timestamp" data-ts="23:08">23:08</span> **Chester Roh** could simply be something like Codex.
+
+<span class="paragraph-timestamp" data-ts="23:12">23:12</span> **Seungjoon Choi** Could you explain that a bit more? So right now, Codex
+
+
+## Codex가 못 막는 버티컬의 가능성    *23:14*
+
+<span class="paragraph-timestamp" data-ts="23:15">23:15</span> **Chester Roh** is basically GPT-5.5 plus computer use, and then tools and context management. But because it bundles those general things together, in fact, even if we say to Codex, "Hey, order Samdasoo from Coupang for me," it can do that. So that, in effect, seems to be the position of the super app that Codex is dreaming of. The idea is that whatever you ask it to do, as long as the development tool, the right tools, those things, and computation are put in, it can do everything.
+
+<span class="paragraph-timestamp" data-ts="23:49">23:49</span> **Seungjoon Choi** Then what is the vertical at that point? That's a very good question,
+
+<span class="paragraph-timestamp" data-ts="23:53">23:53</span> **Chester Roh** Seungjoon, and if I reframe the question this way, the answer comes out quickly. Things that, nevertheless, cannot be assigned to Codex. Is that some kind of tacit knowledge?
+
+<span class="paragraph-timestamp" data-ts="24:03">24:03</span> **Seungjoon Choi** Or is it just another layer at the business level? I think of it this way. Right now, for example, there are companies like Coupang
+
+
+## ChatGPT와 플랫폼 사업자의 긴장    *24:08*
+
+<span class="paragraph-timestamp" data-ts="24:12">24:12</span> **Chester Roh** and Kakao, and countless other companies. The way those companies provide something to customers is, they package up their own tools and things like that and release them as apps, then give them to customers. And for whatever reason, because they won in the market, they occupy a huge amount of customers' mindshare, and because of that, they have a market leader position through a virtuous cycle.
+
+But the important point now is that the touchpoint they have with users is mobile apps or the web. Then what does it mean that Codex can do computer use? It means you can just call that up and use it.
+
+<span class="paragraph-timestamp" data-ts="24:52">24:52</span> **Seungjoon Choi** A few days ago, Codex became usable on mobile, right? But that isn't perfect, of course.
+
+<span class="paragraph-timestamp" data-ts="24:58">24:58</span> **Chester Roh** What would actually have to happen for it to become perfect? To become perfect, in fact, Coupang would have to take everything that OpenAI ChatGPT can call, in some clean API form, unbundle everything neatly like this and give it to OpenAI, and then ChatGPT could call it incredibly well. But Coupang would absolutely never do that. The moment Coupang does that, its own thing gets taken away, right? Coupang puts ads in between, cross-sells other products in between, and runs the business that way, so it would basically be losing all of its media power. Then that space between the operator and ChatGPT is actually the point of tension. So from Coupang's perspective, Coupang will start thinking differently.
+
+Coupang will try to build something else that ChatGPT cannot do with that kind of general weapon. Coupang will make its own kind of agent, and then, tailored to that agent, run far more personalized context, and then create tools that are even more strengthened, so that even though it is something people can obviously do by going to OpenAI ChatGPT, if they come here, that task works better. That's the kind of thing Coupang will build. But that thing will take the formula of model plus harness that OpenAI provides through Codex, and then inside that environment only, it will add tools that provide some very high additional value, or the products I have purchased so far, the contexts I have created so far, so to speak, the data where I am held hostage by that company, and it will be a combination of the added value created by those things. So the sum of those things will compete against the convenience of just installing ChatGPT alone. But all of this is actually a perfect isomorphic repetition
+
+
+## Vertical differentiation — customer data and tool combinations    *26:15*
+
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **Chester Roh** of what happened in the search era between countless vertical web services, and then in the Apple and Android era between general app stores and countless vertical applications. Back then, the form was web services, and mobile apps, but this time, what Codex is showing right now is, I think, simply the AI application itself. The framework of this AI application itself, if you look at it, is almost 95% just a mass of harness.
+
+And if we insist on calling something the AI surface, the AI surface is the chat window. The chat window, and the UX is a kind of timeline that goes back and forth through conversation, and you either input into it with a keyboard or input into it by voice, one of the two. As long as humans have some kind of human hardware interface, the things that cannot change have not changed here either. For this to change, now we would really have to plug something into the brain, like Neuralink. So Codex, now,
+
+to me, looks like the future form of all AI applications. Then the question for other companies becomes: how will they create AI applications and block Codex or Claude from pushing in like this with generality, this super-intelligent generality, as their weapon? In the harness, there are two axes I work with.
+
+There are only two. In fact, the combination of tools that they can fully differentiate with, and the customer data they are holding hostage, how much can they control those things? So I think harness = control layer, and how much of that control they can hold will now become the new value of those companies. The companies Chester Roh mentioned are, after all, large companies domestically as well,
+
+<span class="paragraph-timestamp" data-ts="28:56">28:56</span> **Seungjoon Choi** and when we look at what has been happening last year and this year, there are many people trying somehow to use this AI to build businesses, holding meetups, getting funding for something, and these kinds of currents are forming. In that case, is what those people need to break through the same formula? Is the playbook the same?
+
+
+## Playbooks taking root and value shifting    *29:19*
+
+<span class="paragraph-timestamp" data-ts="29:19">29:19</span> **Chester Roh** The way I feel is that, for now, whether it is Anthropic or not, in the minds of entrepreneurs and investors, the image has not quite formed yet. And for someone to make decisions now, define something, and take action, there is still a bit of a lack of peer belief. To solve this, actually, at places like OpenAI or Google, if something gets stamped as "this is the UX of the future," and people are seen flocking there a little, I do think the world will flip quickly in that direction. But the playbook itself, I do think it may now be somewhat settled.
+
+<span class="paragraph-timestamp" data-ts="29:59">29:59</span> **Seungjoon Choi** What is it that has become settled? Now, the new added value,
+
+<span class="paragraph-timestamp" data-ts="30:04">30:04</span> **Chester Roh** the core added value of an application is obvious, but now a lump of UX, or the kind of traditional new form of mobile app or web application that we make now by clicking, clicking, clicking, having more of those come out is not the answer. Applications built for the users of the past are now all meaningless.
+
+Then what is the core of a new company now? In the end, it will just become a mass of harness, and then the question that comes next is: what differentiation and competitiveness does that mass of harness have against Codex? Once that question simply comes next, then this company has something only this company has, this person has something only this person has, data that gives exclusive rights of some kind over the user, plus toolsets that only this company has, and the combination of those things runs far more cleanly, incomparably more cleanly, than ChatGPT. That kind of form is once again vertical. If you can say it is a company that creates that kind of thing, then it becomes meaningful.
+
+Then, in terms of the traditional concept of IT services, in B2C and B2B applications as well Those things will happen one after another, and as we always say, in biology, materials engineering, chemistry, physics, and places like that, this will happen in the science domains too, and I feel like the starting gun has now gone off for the move into the era of applications.
+
+<span class="paragraph-timestamp" data-ts="31:36">31:36</span> **Seungjoon Choi** They are applications on a different layer. Right, applications on a different layer,
+
+<span class="paragraph-timestamp" data-ts="31:40">31:40</span> **Chester Roh** and this is no longer a matter of UX. In the end, it is about how to turn the user's intent into problem-solving, so our solution is no longer a bundle of tools like before. Problem-solving itself is the product. We have entered that kind of era.
+
+So accordingly, perspectives on business all need to change now. That is what I want to say now, and in that sense, while talking about this, we have come this far. These days, what many people are doing, clicking around existing applications, copying them, and releasing their own version, is now a practice exercise. It has become like solving the MNIST problem when deep learning first began.
+
+
+## Shifting to the AI-era talent topic and the fork in AI adoption    *32:24*
+
+<span class="paragraph-timestamp" data-ts="32:24">32:24</span> **Chester Roh** So now, from here, I think we need to return a bit to our original main agenda for today. I think we need to connect this well,
+
+<span class="paragraph-timestamp" data-ts="32:30">32:30</span> **Seungjoon Choi** but anyway, as we warm up by talking today about the kind of talent that can pull that off, we thought something might come to mind. Shall we try connecting it?
+
+<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **Chester Roh** I think it would be right to draw a picture of the people who pursue that now. But the layer here may be a little different. They are not people who will do this inside existing companies,
+
+<span class="paragraph-timestamp" data-ts="32:57">32:57</span> **Seungjoon Choi** but people who will do it outside companies, should I say. But anyway, the contexts we have been looking at so far are places that have been heavily reorganized. Contracts have been reorganized, teams have been reorganized, and wasn't there a direction toward becoming smaller in scale? In that case, we need to think about whether we are talking about talent, and what kind of talent we are talking about. What is clear is that, whether it is business owners
+
+
+## AI 도입의 갈림길: 데이터 정리와 DX    *33:16*
+
+<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **Chester Roh** or members working inside companies, the recognition that, ah, AI is now going to rewrite our workflows entirely has definitely taken hold. So the purpose is already set: how can we make the work we are doing faster and easier through AI? But when it comes to how to solve that, very few companies solve it cleanly. Because most companies, the companies where this works cleanly, as I have said many times, simply have their data neatly organized, and for companies where digital transformation itself had already been neatly completed, this works extremely cleanly. Because just attaching the Claude Code SDK to data that was already organized and writing the front end well solves most things. You can just hand it over to Codex. If you hand it over to Claude Code, most of the things you want actually happen.
+
+But for people who do not agree with this at all, there is a high probability that even digital transformation had not already been done in the company. There is no data pipeline to connect to, or even if there is one, it is scattered broadly across individual practitioners' Excel files and things like that. And even the members who are making those Excel documents have no thought about what meaning this has on a larger layer, or how this should be turned into a data pipeline. They have no thought about it. The fact that practitioners do not have that kind of thinking means there is a very high chance that the leadership above does not even know those things exist. Because from above, since work is getting done below, they say, we can just hire people and have them do it, and in a sense, they have hidden it away. They have encapsulated it. Everything gets tied together, and at the very top, just having a PowerPoint document come up saying, ah, our revenue is this much, has been enough to manage the business. Those companies are now facing very serious difficulties, and taking advantage of that opening, countless ace companies go in and say, we will solve this and that for you. But that is the same kind of problem as 10 or 20 years ago, when consulting firms like McKinsey or BCG would go in, and the company still would not be fundamentally transformed. It is not a problem that can be solved just because some ace talent comes in. This is often not really a problem of AI or anything like that, but simply a problem of management. Around this point, something I have been thinking about lately is that
+
+
+## Distinguishing AI Native vs AI Assisted    *35:53*
+
+<span class="paragraph-timestamp" data-ts="35:58">35:58</span> **Chester Roh** we need to distinguish between AI native and AI assisted. AI native means the entire workflow ends with almost no help or intervention from people. That is AI native. AI assisted means what people do does not change, but AI comes in and makes it a little better. That is AI assisted. What is happening in almost all companies now, when they say, ah, we also need to become an AI native company, is almost always about becoming an AI assisted company. If there are 100 units of work people were doing, as I always say, that was never one piece of work worth 100. It is really broken up into units of 5, 10, 20, 40, and 50 like this, and that becomes the person's work. What changes is just a few bits of manual labor within that work. But what I have seen a lot is that most people do not want AI to come in and take over their own work. Because then their sense of existence disappears. So as a result, even when an AI assisted, some kind of AI assisted tool is made for them, they do not use it, and because they do not use it, there is no further progress. So someone comes in, does the project, and leaves, but the company's productivity stays the same. I see many cases like this. That is something that happened all the time in the past with digital transformation, DX, or management strategy consulting, even in things like process consulting, things that always happened routinely are happening again.
+
+So rather than existing companies becoming AI native, I think using that process in an AI native way will be faster, and when founder candidates who are good at IT come to me and say, "I want to go into that company and help them make that work AI native," and tell me that, then when I ask, "So how much do you get paid for that?" these days, AX consulting rates, or what people call FDE, bringing in a Forward Deployed Engineer to solve some business problem, I see a lot of companies doing that, but the unit price is not high at all. Even the people giving out that work think, "AI does it all, so what exactly are you doing?" As a result, they say, "You're just going to click around in Claude Code anyway, so why are you asking for so much? Do it cheaply." And as more people start doing that AI click-work, those rates keep falling, so the rates for those people are falling too. Those people go into those companies and build some kind of AI assisted workflow, then leave. A sharp company sees that, learns from it, and someone inside will then use Claude Code, but others say, "We went to the academy, but nothing changed," and that is what happens. So in the end, when I meet people who say, "I'll build some AI assisted thing for a company," I just say, "Rewrite that workflow yourself and attack that company. Then you can take what that company has." When I tell them to shift their thinking that way, everyone tilts their head. But this is the next huge wave of startups. Someone else's margin is my opportunity. So I think things will move in this direction,
+
+
+## Falling AX consulting rates and new standards for AI talent    *38:02*
+
+
+## 새 AI 인재의 기준과 해석 능력    *39:30*
+
+<span class="paragraph-timestamp" data-ts="39:30">39:30</span> **Chester Roh** and to come back through this topic, AI talent also spans a very wide spectrum. If someone knows how to use Claude Code, is that AI talent? "I use Codex well. And inside Codex, I hook up OMX to our Hermes agent and work this way." Then is that AI talent? Just six months ago, it might have been, but now maybe not.
+
+<span class="paragraph-timestamp" data-ts="40:03">40:03</span> **Seungjoon Choi** Six months ago, that was definitely AI talent. Now, that alone is not enough.
+
+<span class="paragraph-timestamp" data-ts="40:09">40:09</span> **Chester Roh** There are becoming an enormous number of people like that. Then from here, again,
+
+we return to very human aspects. The biggest driver around the current AI environment is, after all, the competition over models and compute. Depending on how much the power of general models increases, and how efficiently those models can be run, this entire game keeps swinging back and forth. So the parts I think we need to watch closely are at least the ability to interpret where this whole game is flowing and what the core levers are, and then, on top of that, going into it and deciding to open a business is honestly not easy. It is not easy, and then there is the reading-through culture, which this also connects to. The mood gets set and valuations form, but will customers really use those things, or will they just choose the very best things?
+
+In fact, we have API candidates from much cheaper and good models like DeepSeek V4 and GLM, but even if it is expensive, we just go to places where we can put high or extra high tokens on Claude Opus and GPT-5.5. This is an area where rapid upward standardization is happening, so you need to be able to understand these environments. And then, on top of that, I think there is another very important part, something people are not aware of at all. In our last Dwarkesh session as well, we studied and debated for that purpose, but inference, and we talked about Coupang earlier too, even if you install a new harness like Codex and try to run it, the infrastructure you need underneath has to be at least at the level of the inference cloud that frontier labs are building, with infrastructure plus engineering capabilities. It is not as simple as
+
+
+## Lablup-level orchestration infrastructure and the control layer    *41:44*
+
+<span class="paragraph-timestamp" data-ts="42:16">42:16</span> **Chester Roh** installing vLLM or SGLang and saying, "Ah, done." How will you orchestrate the hardware? How will you run the tools that operate on top of it? And what is the optimal inference architecture for our workload? Because some workloads may generate a huge amount of prefill chunks, while others may have enormous decode dependency, and depending on those things, the context length may also differ completely. Based on that, the engineering infrastructure has to become completely different, but almost no companies have that readiness.
+
+But if you say, "I need to have my own service now, and I need to put my own traffic on it," then in reality, you have to be really good at that engineering. In Korea, I think a company like Lablup is at the peak of that kind of orchestration. Looking at the workloads that company handles has given me a lot of perspective on this. This may be like the early 2000s, when Google had BigTable, MapReduce, and these kinds of computation systems that made computation highly distributed and efficient. There were exactly two kinds of infrastructure like that, infrastructure for distributing and optimizing storage.
+
+They were compute and storage. Back then, those were MapReduce and BigTable, and then engineers who went inside and saw things like Borg running often thought, "This is insane." For the open domain outside to catch up to that kind of infrastructure with Hadoop and things like that took quite a bit of time.
+
+So this time as well, if there is a company dreaming of becoming at least an OpenAI- or Google-level company in some vertical, it makes me think that it really needs to have that kind of orchestration layer, and above that are the applications. Once you move up to that application layer, I think the key, in the end, is the control layer that only I can build. The two core elements of that control layer are what customer data you will have as leverage, multiplied by what tools you will have, and that, in turn, is related to what customer problem I am going to solve, you see. And at that point,
+
+
+## 컨트롤 레이어와 비즈니스 문제 정의    *44:07*
+
+<span class="paragraph-timestamp" data-ts="44:34">44:34</span> **Chester Roh** it actually starts connecting with other forms that go beyond the AI world. Whether you need to call a taxi, or manufacture something in a factory, or things like that, those are completely separate from the workflows we can talk about purely in IT right now.
+
+In that way, the lower and upper parts of this industry will gradually be formed, and a person who understands all of that, and who can align a specific business with the target customer's problem, and then with this business cycle that is changing at a crazy pace, with a good sense of timing, someone who has all of those things becomes AI talent. It has become incredibly harsh. Questions kept coming to mind just now.
+
+<span class="paragraph-timestamp" data-ts="45:22">45:22</span> **Seungjoon Choi** First, starting with whether there can be N companies capable of handling infrastructure at Lablup's level, this is not easy. Right. That part is a fairly big business,
+
+<span class="paragraph-timestamp" data-ts="45:33">45:33</span> **Chester Roh** but if you go up to the application layer above it, there can actually be a great many of them. There have to be many of them. Because customers will not install Codex just because Codex can do everything. Because customers know that if they put things on Codex and use coding commands for this and that, they can prepare my birthday party, but if some business operator has all the hotel reservations, birthday gift searches, and then finding joyful content related to the birthday all connected well, and has built that business on top of Codex, customers will go there. So what this connects to is,
+
+
+## Benedict Evans on ChatGPT unbundling and the domain-expert vs meta-optimizer archetypes    *46:20*
+
+<span class="paragraph-timestamp" data-ts="46:20">46:20</span> **Chester Roh** ultimately, one of the people I used to like was someone named Benedict Evans at a16z, and I really like the way Benedict Evans develops his thinking, and what he ultimately said was that the last 20 years, whether it was the web or mobile, were simply unbundling Oracle. It was all just information in a database being organized, and if you just had Oracle, you could actually do every business, and if you just had Oracle and some web interface, you could do everything, but we deliberately split that into countless B2B SaaS and B2C applications and developed them in that differentiated way. So the last 20 years were unbundling Oracle. But the era of ChatGPT will not be different either. ChatGPT and Codex can do everything, and yet, these services will emerge in countless numbers as individual areas that unbundle ChatGPT, that is the prediction.
+
+After going around and around, I think from calling a taxi, to preparing a birthday party, to deciding where to go this weekend, to making restaurant reservations, some business operator will come along and try to bundle all of that together and do the things people want to do, but if every front expands, you cannot defend all of those fronts. Then, again, for each individual area, companies that do it best will emerge, and then once that goes through one cycle, just as our app world today has found a balance among Naver and Coupang and countless sellers running on Cafe24, and influencer sellers selling things on Instagram, in that kind of way, that balance will also emerge in the AI era. So business opportunities will continue to emerge.
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **Seungjoon Choi** So you also mentioned that talent profile earlier, but having those capabilities, using AI a lot, and trying to build a harness can be a necessary condition, but it is not a sufficient condition, is it? That is also right.
+
+
+## 도메인 전문가와 메타 옵티마이저 두 인재상    *48:33*
+
+<span class="paragraph-timestamp" data-ts="48:33">48:33</span> **Chester Roh** These days, I divide people into two categories. If I unpack what Seungjoon just said slightly from my perspective, there is one form where someone says there is a certain goal to reach, a certain place to go, and with clear knowledge of a particular field, that person can pinpoint it and drive AI. Another is where they do not really know that purpose either, but they are doing meta optimization even on that purpose itself, simply delegating to the model and even discovering the goal itself, those kinds of people. I see it as divided into these two groups. For example, say there is a lawyer,
+
+or some talent from investment banking. They understand extremely well what problems need to be solved in that field, and then they also understand in what sense their colleagues are not suited to AI and cannot keep up, and they themselves are using AI to the extreme, so like the so-called 10x Lawyer or 10x Banker I introduced once before, they are simply rewriting that business in a fully AI native way, and the problem-solving that used to be provided by an organization packed with people is something they are trying to provide themselves together with agents. I see a lot of people like that. So there are people like that, and then, for example, if someone is doing a drug development pipeline, there is a lot of knowledge they need to have, so while already knowing those things well in advance, they can say, "Ah, there is this pipeline, and a ton of AI companies are emerging here, but timing-wise it is not too late, so targeting these customers, I should change just this part with AI and do it this way," and there are people who have that kind of perspective. I, for my part, like those entrepreneurs or I basically like those kinds of talents.
+
+
+## OMX and an experimentation culture across B2C and B2B    *50:33*
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> **Chester Roh** But the people I called those so-called young immortals, those strange people, people like that, a lot of people look down on them too. They say, what are you going to do by making something like OMX? But I think OMX itself is an extremely good product. I have been using it a lot again lately too. But what those people are doing beside them is, since they are obviously not at an age or experience level where they would have deep fields in biotechnology, law, and areas like that, most of the items they work on attack B2C applications. A representative example would be things like character chat. They say the character chat service Zeta now has over $3.6 million in monthly revenue. But doing it alone, there are companies doing a few hundred thousand dollars in monthly revenue with just two or three people, and there are companies making $357,000 in monthly revenue. Companies making hundreds of thousands of dollars are also popping up. But a lot of those kinds of B2C products will emerge, and then there are the traditional B2B SaaS applications that have long existed. In those areas too, even without accurately understanding the logic of B2B, a lot of people are emerging who just make them with click, click, click. Seungjoon probably sees a lot of them nearby too.
+
+Those people just put the target object there and run auto research. They combine the Ralph loop with auto research and run it, and even the parts they think of as tacit knowledge they just delegate to AI. So they bring even goal optimization down to the meta layer, rely on AI even for that, and find the goal, very quickly catching up on the field knowledge they had been lacking, and I am seeing that class of entrepreneurs, that class of talent. So right now, I am looking at talent by broadly dividing it into these two targets. But for both of these types of talent, Seungjoon, I am already assuming that both are using AI to an extreme degree. In Claude Code or whatever else, with things like OpenCode, when it comes to automating their entire workflow, I see them as people who have already graduated from that. On top of that, the question is what problem they will solve, and how they can equip themselves with that sense. Honestly, the readiness of AI tools is no longer, for me now, just something I see as a necessary condition they obviously have to bring. When that is the case, the part I also struggle with is,
+
+
+## The limits of meta-learning and domain internalization    *53:14*
+
+<span class="paragraph-timestamp" data-ts="53:18">53:18</span> **Seungjoon Choi** although I still have not formed a clear picture, in the latter case you just mentioned, people who have the talent to make things happen just by giving purpose at the meta level, even if they use AI to an extreme degree and do not internalize the learning, can that be sustainable without jumping in some domain to the level of the former case? I think it is possible.
+
+<span class="paragraph-timestamp" data-ts="53:46">53:46</span> **Chester Roh** In fact, these days while studying longevity and biotechnology, I am borrowing exactly that methodology. There is so much I do not know, and if I were to build it up one by one from the bottom, learning, for example, all the curricula in molecular biology courses at the current undergraduate and graduate level, and then move beyond that, it would take me a very long time. Instead of doing that, I look at companies already founded in those fields, papers that are already out there, and things like that, even though I often do not even know what they are.
+
+But even that, I give to OpenCode. I am using OpenCode. I take the loop in OpenCode and tie it together with an LLM, and I have been running work that way lately. When I ask it, it brings in tons and tons of things I do not know. Codex is probably doing that. The search engine built into Codex is probably bringing it in too, and I will not go all the way into that, but it just organizes everything and lays out what I should do to achieve what I want by the shortest path. One or two pages at a time. And if something there interests me, I go into that again, and it unpacks it, unpacks it, and unpacks it again, so it plays almost the role of an eternal tutor. So after doing that for a month, in the sense Seungjoon mentioned earlier,
+
+I originally had nothing in that field, but after a month passed, even when talking with people who had worked in that field for years, I reached a stage where the context roughly lined up. In just one or two months. There is circular logic here.
+
+<span class="paragraph-timestamp" data-ts="55:28">55:28</span> **Seungjoon Choi** Chester may not have been type B. Chester may not have been the latter case. The position itself may already have been one where Chester had domain knowledge in some field, which made it possible to internalize that. Actually, I was about to confess that.
+
+<span class="paragraph-timestamp" data-ts="55:43">55:43</span> **Chester Roh** Saying I only did it for one or two months is a lie. The truth is, because I had been interested in it and had been continuously reading related books and things like that for almost over ten years, I had roughly the basics laid down, and that is why it worked. Honestly, saying that I mastered a completely unfamiliar area in one or two months is clearly false. It makes no sense. So I do think what Seungjoon said is right.
+
+But in areas like B2C or B2B applications, could it not be possible? In terms of systems or work getting done, I also think it is possible.
+
+<span class="paragraph-timestamp" data-ts="56:19">56:19</span> **Seungjoon Choi** So it is possible to make the business sustainable, but the part that weighs on me is whether this can avoid being depleted in an individual’s growth and development too. Because when handling AI these days, as with Hwidong's example earlier,
+
+people do an enormous amount of work simultaneously, while context switching, so people talk a lot these days about consuming bio tokens. In that case, the human brain Until you internalize that through learning, I honestly think it would be difficult. You can get the work done,
+
+and because of that, building a business out of those things right away, actually generating revenue from it, may be sustainable. But will personal growth within that also be sustainable? In Chester's case, Chester spent enough time studying that, so Chester gains something from it, but if not, is it healthy to keep processing work without stopping? Those are the kinds of concerns I end up having. It may sound like a privileged complaint.
+
+
+## AI psychosis and the dopamine slot machine    *57:12*
+
+<span class="paragraph-timestamp" data-ts="57:14">57:14</span> **Chester Roh** That connects to the term AI psychosis. The term AI psychosis has been showing up a lot lately. Please explain this once. In that Sarah Guo episode, Karpathy said
+
+<span class="paragraph-timestamp" data-ts="57:29">57:29</span> **Seungjoon Choi** Karpathy was now in a state of psychosis. Even as recently as around last October, when Karpathy appeared on Dwarkesh's interview, Karpathy said things like using tab in Cursor, doing it carefully, in a way that used Karpathy's own brain. But after OpenClaw came out, FOMO hit, and now Karpathy is delegating everything to agents, saying Karpathy feels like Karpathy is constantly getting dopamine hits, in some kind of over-immersed state. That is why Karpathy talked about psychosis.
+
+But Karpathy has the background Karpathy already had, so Karpathy seems to be enduring it wisely and using it well. But in the context where psychosis is being mentioned recently, yes, it works, but it feels a bit like a symptom. Like a mental illness, like psychosis. It pulls people in too deeply and keeps them from getting out, and there is an exhausting side to it that makes people that way. This connects to the slot machine point from earlier. Exactly. I mean, I also feel those things a lot.
+
+<span class="paragraph-timestamp" data-ts="58:30">58:30</span> **Chester Roh** If I put something on a to-do list saying I need to do it, I get the illusion that it is already done. Because if I assign it to AI, the AI will do it. So for things that are too clearly defined,
+
+I end up putting them off. But when I look at the overall atmosphere from a bit of a distance, the incentives in this market or society are rewarding people who can use today's agents, as Chester said earlier, as basic physical strength. So inevitably, many people appear who keep themselves in that over-immersed state, and I wonder if this is a stage where they cannot help but complain of fatigue. I do not know how long this will continue, but that is what I think. This is not just about work. Actually, these days, in the past,
+
+people could simply live peacefully in their neighborhood. But now, if you just turn on your phone and open Twitter, from Elon Musk up there to the colleague right next to me, everyone's everyday life is exposed. Then someone supposedly earned some amount, and this is not just about stories like the engineer who moved from OpenAI to Meta supposedly receiving over $71 million. Apart from stories like that, even between the person next to me who bought Hynix stock and the people who did not buy it, people use expressions like, "The FOMO is insane," so the stress people feel among one another is really no joke.
+
+<span class="paragraph-timestamp" data-ts="59:54">59:54</span> **Seungjoon Choi** In Cat Wu's interview, which I briefly introduced recently, if you look at the latter part that Lenny summarized, there is a nuance of looking for talent who can withstand this state of chaos. A P0 issue came up yesterday, and that zero was one digit, but by the next afternoon it had become two digits, 00. Someone who can endure that kind of changing situation. But when Anthropic tries to hire, what really stayed with me was the idea that, assuming basic capability is there, they look for people who can enjoy chaos. But this is an uncomfortable truth.
+
+
+## The talent profile Cat Wu described — someone who enjoys chaos    *60:03*
+
+<span class="paragraph-timestamp" data-ts="60:33">60:33</span> **Chester Roh** In fact, what we call good jobs today are places where you have some stable title, and even if you just continuously repeat stable work without much effort, you earn a high income. And those good positions, if we summarize them simply, are doctors or lawyers. They are very hard jobs, but to obtain those positions, people put in tremendous effort, and once they get there, even if they run through routines, things are guaranteed to some extent, for life.
+
+Actually, ordinary companies are not different either. If I just say, I am an engineer, I am a PM, I am a designer, then as long as I process the obvious tasks that fall to me within a unit of time, that simply had meaning. In other words, those were things exchanged for my intelligence. And once you became used to that, more and more, as we learned the expression amortize, they were things where you could put in a little and keep extracting value for a long time, which from our standpoint were good jobs. But in fact, those jobs are now all disappearing.
+
+Those things. Then if we go back to what Cat Wu said earlier, the idea of enduring that uncertainty
+
+and being able to make decisions within it means, conversely, that in order to endure that uncertainty, you have to keep catching up with the uncertainty. That means you have to constantly take in information somehow, study, keep making decisions, and keep your brain working. You need thinking tokens to first be able to take that in. Only after you get past the stage of taking it in can you make decisions there. But when it comes to training people for those things,
+
+outside of so-called proper working manager tracks, entrepreneur tracks, startup tracks, and tracks like that, they do not really exist. So in the end, whether it is what Cat Wu is saying or anything else, or the things we're talking about today, after going around and around and around, the conclusion ultimately becomes that we now need people who can endure and manage uncertainty, make decisions there, and take action there. If I summarize it extremely strongly. There is that aspect.
+
+<span class="paragraph-timestamp" data-ts="62:58">62:58</span> **Seungjoon Choi** But on the other hand, people are also saying things like this. What this is about is, inside PyDev OpenClaw, Mario Zechner, who makes Py, said this in March this year, and it is about concerns over issues that cannot really be maintained. So there is a part where we need to go a bit more slowly.
+
+
+## Warnings from Mitchell Hashimoto and Mario Zechner, and tasks remaining after the elite sprint    *63:01*
+
+<span class="paragraph-timestamp" data-ts="63:17">63:17</span> **Seungjoon Choi** But Mitchell Hashimoto said something similar yesterday or so. So if you look here, because things are moving so incredibly fast, what people are saying now is, even if this ultimately gets done by AI, as long as test coverage verifies that it works, isn't there no problem? Mitchell Hashimoto also said that, comparing it again to psychosis. But there was a piece worrying that, in racing ahead while trusting AI like that, something may look like it works on the surface, but in fact, within the overall architecture, something broken may keep accumulating. Here it is a slightly different kind of psychosis. But Mitchell's view was
+
+that no matter how much Mitchell talks about this, people on this trajectory will not accept it. Right. Even that problem itself
+
+<span class="paragraph-timestamp" data-ts="64:15">64:15</span> **Chester Roh** is at the stage where it is all being delegated now. In the past, when I had AI handle our company's most critical business logic, things like ad management or tuning based on performance, I used to look at the resulting reports, like which things to turn off or on, what to create, and so on. But these days, I just run that through Ralph.
+
+Once it produces a result, I just run Ralph three times. If all three say it is right, I just press the button. I tell it to do that.
+
+In the end, it is really just an idealistic way of thinking that every problem can be reduced to compute and solved. And another assumption behind that is the assumption that the model is better than I am. So this is not that I think
+
+<span class="paragraph-timestamp" data-ts="65:12">65:12</span> **Seungjoon Choi** Hashimoto's point is 100% correct, and of course there have always been people raising those kinds of concerns before, but people like Hashimoto or Mario are people who are trying to use AI and use it well, and yet they are talking in this direction, so I brought it up. So we have only talked about the phenomenon itself, and when we talk about that phenomenon
+
+
+## 엘리트 질주 이후 남는 과제    *65:31*
+
+<span class="paragraph-timestamp" data-ts="65:39">65:39</span> **Chester Roh** using the people out in front as the image, unfortunately, those people out in front are, one way or another, mostly the elite class at the leading edge of society. Then fine, even if we do not worry about them, they will manage well on their own. Honestly, we can tell them to go ahead, and then from our standpoint, it would be nice if we could invest in those people's companies, and nice if we could get that kind of chance. Then after that, since today we talked about AI talent in relation to AI, what stage comes next? First of all, do you think it is necessary to get really good at using Claude Code or Codex? I think it is necessary. I agree with that part too.
+
+<span class="paragraph-timestamp" data-ts="66:26">66:26</span> **Seungjoon Choi** Having experience using AI well right now, though not unconditionally, and I am leaning toward thinking it is a bit problematic when someone is too young. After a certain degree of thinking ability has been developed, people should know what is currently possible.
+
+
+## 주니어 학습 박탈과 AI 가상 훈련장    *66:39*
+
+<span class="paragraph-timestamp" data-ts="66:46">66:46</span> **Seungjoon Choi** They also need to try it. I was listening to the Latent Space podcast before, and someone, Alessio, answered this, though I do not remember the context exactly, but people say juniors are now being deprived of all learning opportunities, and that this is a big problem. At that time, Alessio said something like this. Ah, then we can create that training ground for them with AI, have AI train the juniors harshly, and then graduate them back out. It would not be needed for doing the actual work, but we could just use AI to fake those virtual training tasks, have them do the work there, and once they have been trained to a certain extent there, then move them up. So I suddenly remember Alessio saying that education businesses should prepare in that direction. But, well, as we talk about this,
+
+it keeps moving in an uncomfortable direction.
+
+In fact, we rate Dwarkesh pretty highly, don't we? So through the Dwarkesh episode, and Dwarkesh is probably twenty, or twenty-six by Korean age this year, anyway, Dwarkesh is young. But if you skim what Dwarkesh has been saying lately, Dwarkesh did an episode with Michael Nielsen. Michael Nielsen was also at YC Research, and Michael Nielsen is someone Greg Brockman and Chris Olah mention like this. They say they studied from Michael Nielsen's book.
+
+
+## Dwarkesh's learning method and load-bearing work    *68:02*
+
+<span class="paragraph-timestamp" data-ts="68:14">68:14</span> **Seungjoon Choi** But in that Michael Nielsen episode, the advice Dwarkesh received from Michael Nielsen was to do work that puts a load on yourself. So Michael Nielsen said something like this. "Make some kind of demanding artifact, write something." Anyway, Michael Nielsen's nuance was that doing work that puts a load on your own thinking will lead your learning to the next level.
+
+So if you look at Dwarkesh's approach, Dwarkesh uses AI extremely well, and at the same time, Dwarkesh clearly shows an attitude of deliberately trying to learn this. And Dwarkesh holds the middle ground there. Ultimately, around this advice from Michael Nielsen, there was what Dwarkesh was already thinking, that Dwarkesh should set up a blackboard and do study sessions on it.
+
+Yesterday, Dwarkesh also posted about studying implementing AlphaGo from scratch. That has even appeared on Dwarkesh's site now. A flashcard list has been created. After this Lenny's Pod episode, yesterday's episode, the Eric Jang episode, also went up, and Dwarkesh made a deck for this, made a problem deck, and does things that make Dwarkesh solve them personally.
+
+So all of this is, in order to remember things well, when using something like Anki, spacing things out there are those kinds of learning techniques, right? Dwarkesh has also been interested in those things for a long time, and is actually doing this.
+
+And designing a route for studying within his own context, not just using AI well, but raising his own capabilities.
+
+But Dwarkesh is already becoming such a uniquely exceptional figure that it is hard to generalize too hastily. But for me, in this way, it is not just about using the agent well,
+
+but the work of improving one's own learning is something we probably should not neglect.
+
+<span class="paragraph-timestamp" data-ts="69:53">69:53</span> **Chester Roh** Right. It probably is not the definitive answer. Right. But in the past,
+
+even if someone said, I do not want to live this kind of life, there were many good career options, and the problem now is that those are disappearing. Now, in the end, aside from a few tasks like copying documents, unless it is somewhere truly bureaucratic, the trend at companies is to keep trying to eliminate those things.
+
+
+## Slow AI, mind-sized bites and the post-I/O startup landscape    *70:17*
+
+<span class="paragraph-timestamp" data-ts="70:17">70:17</span> **Seungjoon Choi** So the last thing I want to mention is, there are several schools of thought, and there is also a slow AI school. So, among the expressions that have existed for a long time, there was the phrase "mind-sized bites." A bite as large as my mind can digest. It was said by someone named Seymour Papert, and although through AI you can accomplish and learn a great deal, perform work and also learn, in the end, it has to be a piece that I can actually handle. That is why, instead of matching AI's pace, there is a growing side that talks about slow AI, saying it would be better to do it in a way that is fitted to me.
+
+But while that feels right, when I hear what Chester just said, the incentives of this era itself, in the short term, seem to demand people who can use AI, apply that as a basic capability, and quickly handle a lot of work with orchestration ability in many workplaces. But when you do that, burnout is inevitable. So I am also uncomfortable with it, but my thoughts keep going around in circles. What we are also feeling now is, things are very different from six months ago.
+
+
+## I/O 이후 스타트업 지형과 자본 분산    *71:25*
+
+<span class="paragraph-timestamp" data-ts="71:27">71:27</span> **Chester Roh** They are very different, and compared with last summer, things are completely different again now. Once we get past Google I/O, which is coming up in just a couple of days this year, another new form of startups will start emerging in large numbers. Even looking at recent Y Combinator batches, rather than the conventional kinds of businesses we know, I get the strong feeling that, ah, now everyone is running in their own direction, and that countless subcategories are suddenly being created. Then about that point, the last thing I want to ask is,
+
+<span class="paragraph-timestamp" data-ts="72:02">72:02</span> **Seungjoon Choi** earlier, you said there is some kind of new application, but we do not know specifically what it is yet, right? We do know that its form
+
+<span class="paragraph-timestamp" data-ts="72:12">72:12</span> **Chester Roh** will just be a harness-based AI service. Yes. But since we do not know specifically what it is,
+
+<span class="paragraph-timestamp" data-ts="72:19">72:19</span> **Seungjoon Choi** is this the stage where, in many markets where a lot is happening, funds are being spread around to discover the people who can pull that off? Wouldn't it all be mixed together?
+
+<span class="paragraph-timestamp" data-ts="72:34">72:34</span> **Chester Roh** Capital will be spread widely toward talent that can open something, some new thing, in that way, and there will be a desire to diversify and hedge around that. But the people creating those problems will want to receive that capital quickly and say that the future they dream of is the right future, and will want to change the future into that. In the past, if it took a ten-year cycle for one business to grow, now, seeing that things can happen even in cycles of just a few months, people now, instead of going off to the back and saying, I will shut up, cut myself off from the world, and walk my own path, have stronger incentives to quickly, so to speak, take off.
+
+
+## Closing: Ahead of episode 100    *73:28*
+
+<span class="paragraph-timestamp" data-ts="73:28">73:28</span> **Chester Roh** What gives me a similar sense of deja vu is that it resembles the entertainment industry.
+
+<span class="paragraph-timestamp" data-ts="73:33">73:33</span> **Seungjoon Choi** In what way is it similar?
+
+In what way is it similar? It is simply a hit-driven business.
+
+In the sense that you need some name value or brand value.
+
+<span class="paragraph-timestamp" data-ts="73:42">73:42</span> **Chester Roh** Right. So Jeongkyu once came on and said, maybe the age of brands is beginning again, and things like that, but from a business perspective, from a business perspective, I do think, wow, now brand and distribution are becoming a little more important than the ability to build something. Of course, it is best if I can create that brand myself.
+
+And the way to make that kind of brand my own also goes back to the very basics of marketing. It simply goes back to positioning. So if someone else's thing already exists, do not go there and do it; create my own thing and become number one there. Rather than always becoming the best, rather than becoming something better, the very best thing is to become the only one. It is becoming the only one, and when you become that only one, as long as the market size is meaningful, you can make a living. And those kinds of areas, to put it in reverse, using a phrase popular these days,
+
+
+## 서브 컬처와 AI 거부 시장    *74:42*
+
+<span class="paragraph-timestamp" data-ts="74:44">74:44</span> **Chester Roh** subculture. The things that young people place value on are very often not a good house or a good car from a traditional point of view. Yes, some kind of social status, a good house and a good car are not the criteria for success; people are increasingly forming their own communities and, within them, simply pursuing their own kinds of value. That itself used to be framed as, well, those are groups of people who could not become winners in the mainstream, and people casually labeled it subculture and things like that, That's not it. Just that in itself is becoming a world of its own, I think. So I think that's also a trend we should watch very closely.
+
+The number of people who decide not to do AI may increase, and if that grows, and those people form some new kind of force of their own, that's a market. That market will emerge too. So I see it as something alive and moving. Today, without much preparation,
+
+
+## 100회 기획과 커뮤니티 아이디어 요청    *75:45*
+
+<span class="paragraph-timestamp" data-ts="75:47">75:47</span> **Seungjoon Choi** we spent time just talking about this and that. Before we know it, we're also heading toward episode 100, and, yes, we have guests lined up as well. And next week there's Google I/O too, so.
+
+<span class="paragraph-timestamp" data-ts="76:01">76:01</span> **Chester Roh** That's right. It's hectic.
+
+<span class="paragraph-timestamp" data-ts="76:04">76:04</span> **Seungjoon Choi** The news never stops, but somehow we have to keep going. What should we do for episode 100? We need some ideas for episode 100.
+
+<span class="paragraph-timestamp" data-ts="76:11">76:11</span> **Chester Roh** To our subscribers who would like to suggest ideas for episode 100. We once held a Runaways' Alliance gathering before, and at that time Seungjoon and I put so much energy into it that, in fact, nearly half a year has passed since last winter, but we still haven't been able to bring ourselves to do it again.
+
+<span class="paragraph-timestamp" data-ts="76:31">76:31</span> **Seungjoon Choi** Since we're somewhat older. That's right.
+
+The kind of speed of younger people's meet-ups, we really couldn't keep up with that. That's right. In fact, we also can't keep carrying all of this just between the two of us,
+
+<span class="paragraph-timestamp" data-ts="76:43">76:43</span> **Chester Roh** so it is about time for us to try making some kind of change. Well, anyway, today too, on the weekend,
+
+<span class="paragraph-timestamp" data-ts="76:50">76:50</span> **Seungjoon Choi** we shared some learning like this again. Thank you.
+
+<span class="paragraph-timestamp" data-ts="76:55">76:55</span> **Chester Roh** Thanks to this, I was able to organize various thoughts again. Well then, Seungjoon, have a good rest of your Sunday. We'll see you next week.
