@@ -6,7 +6,7 @@ publishedAt: 2026-06-07
 duration: "50:37"
 youtubeId: "5CaOXPstq_8"
 thumbnail: "https://i.ytimg.com/vi/5CaOXPstq_8/maxresdefault.jpg"
-notionUrl: "https://www.notion.so/36fd5c9e7e5980048069cda9ec7a7bbc"
+notionUrl: "https://erucipe.notion.site/Opus-4-8-362d5c9e7e59802396b6f8a0cbfdf696?pvs=73"
 hosts:
   - Chester Roh
   - Seungjoon Choi
@@ -79,6 +79,12 @@ alternateSlug: null
 
 ## Opus 4.8’s 43-Day Release Cycle and Faster Model Replacement    *0:27*
 
+
+![A timeline or memo screen summarizing the trend of Opus model release intervals shrinking from about two months to about one and a half months](/episodes/ep99/ep99_0032_model_release_cadence.jpg)
+
+
+<ResourceLink url="https://www.anthropic.com/news/claude-opus-4-8" title="Introducing Claude Opus 4.8" domain="anthropic.com" />
+
 <span class="paragraph-timestamp" data-ts="0:32">0:32</span> **Seungjoon Choi** It was a few days ago, right? Was it two days ago, or early yesterday morning? Anyway, Opus 4.8 suddenly came out again. I haven't even had a chance to use it yet. Still, I did look a bit at the situation on the timeline, so let's start with that story. So there is a blog post now, and I checked the dates a bit. I wrote the title as a rhythm of less than two months, and Opus 4.7 came out on April 16th. So it has been exactly about a month and a half now. When Opus 4.7 came out, we probably recorded on the 19th, and back then, in this way, the recent Opus releases had been at roughly 70-day intervals. So that was an interval a little over two months. But now it has come out after 43 days. Right. We had expected it would run
 
 <span class="paragraph-timestamp" data-ts="1:22">1:22</span> **Chester Roh** at about one cycle every two months, but it's getting shorter.
@@ -105,7 +111,13 @@ a new family of models with higher intelligence. So Mythos Preview is being used
 
 <span class="paragraph-timestamp" data-ts="4:33">4:33</span> **Seungjoon Choi** it's hard to predict how the name will change, but higher weight-class models are scheduled to come out, and that will probably span the summer, from summer into early fall. But looking at the current pattern, I wonder if it will be around then. I thought something like Opus 4.8 would come out in June or July, but it came out at the end of May. So if we pull that estimate forward as well, it makes me think that something might happen around July. July or August. So then there will again be things we have to newly unlearn and learn, but I haven't even started yet.
 
+
+<ResourceLink url="https://www.youtube.com/watch?v=wYSncx9zLIU" title="Google I/O '26 Keynote" domain="youtube.com" />
+
 ## Gemini 3.5 Flash and Signs of the Summer Model Competition    *5:12*
+
+
+![A memo or comparison screen organizing the competitive timing of major AI model releases around the summer period](/episodes/ep99/ep99_0512_summer_model_race.jpg)
 
 <span class="paragraph-timestamp" data-ts="5:12">5:12</span> **Seungjoon Choi** But while we were just expecting it to be a big event, when we eventually opened the lid, there had also been Google I/O, which we hadn't been mentioning. Gemini 3.5 Flash was the star at Google I/O, right? So Pro was not ready. But if you listen to the keynote, they keep saying that. In a few weeks, we will be able to reveal the next thing. It seems like it will be around summer; they said things like that. So the timing is lining up, and the current direction is that, in the summer, Google too, in this situation, of course company-wide and across the board, is defending against this, but it felt like there wasn't one big shot. They are preparing those things, whatever they may be, and then Anthropic is coming out preemptively now. But still, when it comes to talk about performance, on the timeline, people are talking about GPT-5.5. They are talking about Codex, and so the timing for GPT-5.6 coming out is, when Opus 4.8 feels like it cannot beat GPT-5.5, it won't come out, but when the conversation roughly comes up like this, it probably will.
 
@@ -127,6 +139,12 @@ Because once you get a satisfying result, the next thing you naturally want is f
 
 <span class="paragraph-timestamp" data-ts="8:52">8:52</span> **Seungjoon Choi** Regarding Gemini 3.5 Flash, this one video stayed with me the most. It was something Varun Mohan showed. Yes, shall we take a look?
 
+
+![A demo screen showing Doom booting or running on a system built from the execution results of multiple sub-agents](/episodes/ep99/ep99_0853_doom_boot_demo.jpg)
+
+
+<ResourceLink url="https://x.com/antigravity/status/2060051630771286487" title="Google Antigravity: 93 Subagents Built an OS That Booted Doom" domain="x.com" />
+
 <span class="paragraph-timestamp" data-ts="8:53">8:53</span> **Seungjoon Choi** So when Varun Mohan demoed this, I think it would be good to look at it after reading this. By running 93 subagents and making around 15,000 model calls, it had them write a custom kernel, filesystem, and driver from scratch, and after 12 hours, Doom booted. That is what it is. So if we scroll through this,
 
 Antigravity did those things on its own, created an OS, and later ran Doom on it. It seems the part where Doom runs does not appear here, but this probably shows how the source is changing right now. In what Varun Mohan showed, Varun Mohan showed it all the way through to that appearing.
@@ -139,7 +157,12 @@ So in the end, carrying out this kind of long-horizon task with low token consum
 
 <span class="paragraph-timestamp" data-ts="10:09">10:09</span> **Chester Roh** about Dynamic Workflows, which came out yesterday.
 
+
+![A product introduction image showing multiple workflows or agent combinations under the title Dynamic Workflows](/episodes/ep99/ep99_1011_dynamic_workflows_intro.jpg)
+
 <span class="paragraph-timestamp" data-ts="10:11">10:11</span> **Seungjoon Choi** For example, if you use the expression ultracode, the UI changes in a flashy way, and something else interesting comes out. So I do not think that part appears here. Just take a quick look. And these days, Claude seems to have this cute concept. They make the videos really nicely. Since it just passes by quickly, it is hard to see in detail what the content is, but it seems like it is trying to build some kind of app. Since it is staged, it may not actually have run that quickly. It is saying it can just go through the checklist one by one, push, merge, and do things like that. Dynamic Workflows is not introduced here, but it works in that sort of way.
+
+![A diagram or capture screen showing a structure where tasks branch from a central agent to multiple sub-agents and then merge again](/episodes/ep99/ep99_1130_subagent_orchestration.jpg)
 
 So what Dynamic Workflows is, if you look at the tweet Cat Wu posted, there is Claude like this, and it gives tasks to several other Claudes, they pass things along, and then it synthesizes and synthesizes them. So this is actually a concept we have seen a lot before, but it differs somewhat from Anthropic's existing product, Agent Teams. The interesting point here, though, is that a large model is not continuously coordinating this. Instead, at the beginning, it writes deterministic code for how to orchestrate it, and then it keeps going until it works. That was the impression I got.
 
@@ -151,11 +174,23 @@ So instead, in subagents with entirely new contexts, In those kinds of situation
 
 <span class="paragraph-timestamp" data-ts="13:50">13:50</span> **Chester Roh** in places like our oh-my-open agent or OMX.
 
+
+<ResourceLink url="https://www.anthropic.com/engineering/managed-agents" title="Scaling Managed Agents: Decoupling the Brain from the Hands" domain="anthropic.com" />
+
 <span class="paragraph-timestamp" data-ts="13:54">13:54</span> **Seungjoon Choi** There was a bit of that kind of complaining or emptiness on the timeline.
 
 ## The Link Between Managed Agents and Recursive Language Models    *14:00*
 
+
+![A paper figure or tweet capture screen explaining a language model architecture that splits long inputs and processes them recursively](/episodes/ep99/ep99_1455_recursive_language_models.jpg)
+
+
+<ResourceLink url="https://arxiv.org/abs/2512.24601" title="Recursive Language Models" domain="arxiv.org" />
+
 <span class="paragraph-timestamp" data-ts="14:55">14:55</span> **Seungjoon Choi** But in this blog post here, it does not appear, but in the earlier post about Managed Agents, the one about decoupling the brain from the hands, an interesting study was cited. Here under prior work, if we look now, for example, context can become a kind of object, and where is it an object? In the REPL, so REPL. I mean, REPL is a coding tool. Is it read-eval-print loop with a feedback loop? I suddenly cannot remember, but anyway, we usually say we use a REPL quite often, and this feels like using some decisive tool that lets an LLM do that programmatically. But the paper cited here is a paper called Recursive Language Models. So this person named alex zhang said something like this. Read our paper. This is already a regime that has been done before. That was not the only person saying something like that. But this thing called RLM was in DSPy. So
+
+
+<ResourceLink url="https://dspy.ai/api/modules/RLM/" title="DSPy RLM Module Documentation" domain="dspy.ai" />
 
 <span class="paragraph-timestamp" data-ts="15:19">15:19</span> **Chester Roh** But Omar Khattab is one of the authors of that RLM paper, and Omar Khattab is the person who created DSPy at Stanford, so it makes sense that Omar Khattab would have included it. I did not know DSPy well, and I was only aware
 
@@ -175,6 +210,9 @@ But probably with Gemini 3.5 Flash, in the video earlier where it ran quickly, I
 
 <span class="paragraph-timestamp" data-ts="18:19">18:19</span> **Chester Roh** is ultimately different only in what it changed the objective for this model to, while the methodology being used is actually the same meta approach.
 
+
+<ResourceLink url="https://blog.cloudflare.com/ko-kr/project-think" title="Project Think: Building the Next Generation of AI Agents at Cloudflare" domain="blog.cloudflare.com" />
+
 ## Code as Harness and Cloudflare Dynamic Workflows    *18:27*
 
 <span class="paragraph-timestamp" data-ts="18:27">18:27</span> **Seungjoon Choi** Alan, who is the CTO of Corca, said something like that, and Alan used an interesting expression. Alan called it code as harness. When I heard it, it kind of stuck in my ear, and while saying that, Alan introduced Cloudflare's Dynamic Workflows and this Project Think, which I had not known about. But the name is the same here too. Dynamic Workflows. So here too, in building next-generation agents, it becomes code as harness. So they are building a kind of cloud platform that can take whatever you bring to it and get it done, and the same story comes up again. Long-running agents, actor model, Durable Objects. So even if not in detail, I was able to grasp, at least intuitively, that everyone is moving in this direction.
@@ -185,11 +223,20 @@ But probably with Gemini 3.5 Flash, in the video earlier where it ran quickly, I
 
 <span class="paragraph-timestamp" data-ts="19:55">19:55</span> **Seungjoon Choi** but the agent-building work with Minecraft that I was doing a year ago, I have been revisiting it lately, and the world has changed. Yesterday, before going to sleep, I set a 10-hour run going and went to bed, and in the morning it was showing some kind of progress. But looking at that process, for the latest version of Minecraft, attaching a bot called Mineflayer is still something the open-source project has not caught up with yet, so I tried building it once from the ground up, and when doing that, guessing the protocol, extracting block IDs, and building it up that way was really fun. I will introduce it sometime later.
 
+
+<ResourceLink url="https://openai.com/index/model-disproves-discrete-geometry-conjecture/" title="An OpenAI Model Has Disproved a Central Conjecture in Discrete Geometry" domain="openai.com" />
+
 <span class="paragraph-timestamp" data-ts="20:26">20:26</span> **Chester Roh** Now there is this feeling that you just have to think. But the regrettable thing is, when I woke up and checked,
 
 it reported that only 8% of my Codex weekly limit was left, so you end up using a lot of tokens.
 
 ## The Erdős Problem Solved by AI and Changes in Mathematical Research    *20:42*
+
+
+![A capture screen of a math post containing formulas or inequalities showing lower bounds on the size of unions and products of sets](/episodes/ep99/ep99_2138_sum_product_bound.jpg)
+
+
+<ResourceLink url="https://arxiv.org/pdf/2605.28781" title="Sum-Product Counterexample Paper (arXiv PDF)" domain="arxiv.org" />
 
 <span class="paragraph-timestamp" data-ts="21:38">21:38</span> **Chester Roh** So separately from those things, there were interesting developments in mathematics in May as well, and as I mentioned briefly earlier, it does feel related. I am not someone who goes deeply into mathematics either, so I only looked at it roughly, but one of the Erdős problems, and there are various Erdős problems, the model managed to solve one of them, so there was a period around mid-May when the world was somewhat surprised again. So OpenAI did that not with GPT-5.5, but I think this was probably an internal model. It seemed to have done it in an internal model with a special scaffolding, and then Sholto is at Anthropic now, right? So Sholto praised that once, and then posted that Mythos had done it too. I did not put the link here now, but there was also one saying Gemini had done it too, there was that. So they all accomplished similar things. But besides that, what I found interesting was this expression from Noam Brown. So if you follow this link, it keeps taking you to other people, and I translated that here. But even though I translated it, it is hard to read the meaning. Anyway, all the people in mathematics were saying that this was extremely interesting,
 
@@ -218,6 +265,9 @@ So the content here from just talking with the model is interesting, but I will 
 <span class="paragraph-timestamp" data-ts="27:20">27:20</span> **Seungjoon Choi** It connects to the human condition, because thinking was the work of humans. But that is moving elsewhere, so it is quite troubling.
 
 <span class="paragraph-timestamp" data-ts="27:29">27:29</span> **Seungjoon Choi** Personally. The idea that thinking is the work of humans is actually also a common assumption. Whether that is really true. Yes, yes. Then we can pose a challenging question.
+
+
+<ResourceLink url="https://simonwillison.net/2026/May/27/product-market-fit/" title="I Think Anthropic and OpenAI Have Found Product-Market Fit" domain="simonwillison.net" />
 
 ## Simon Willison’s View of OpenAI and Anthropic’s Product-Market Fit    *27:40*
 
