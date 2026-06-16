@@ -1,0 +1,330 @@
+---
+episodeNumber: 100
+title: "AI Frontier第100期：Claude Mythos、Fable 5，以及下一个阶段？"
+description: "AI Frontier第100期以Anthropic Fable 5和Mythos级模型为起点，讨论后训练、数据集工程、循环工程、RSI、主权AI，以及韩国独立基础模型的机会。"
+publishedAt: 2026-06-16
+duration: "54:19"
+youtubeId: "kh03_wOGvJ0"
+thumbnail: "https://i.ytimg.com/vi/kh03_wOGvJ0/maxresdefault.jpg"
+notionUrl: "https://erucipe.notion.site/37ed5c9e7e5980d6a6fce5160fd67448?pvs=73"
+hosts:
+  - 卢正石
+  - 崔胜准
+chapters:
+  - time: "0:00"
+    title: "AI Frontier第100期与三年的变化"
+  - time: "3:45"
+    title: "规模扩展与后训练的重要性"
+  - time: "6:08"
+    title: "打造前沿模型的数据集工程"
+  - time: "7:49"
+    title: "AI扩展到生物学和其他领域的方式"
+  - time: "12:07"
+    title: "创业梦想与资本相遇的速度"
+  - time: "14:27"
+    title: "前沿网络与信息共享的力量"
+  - time: "15:26"
+    title: "Mythos和Fable提出的安全问题"
+  - time: "16:38"
+    title: "Mythos和Fable这两个名字的含义"
+  - time: "18:08"
+    title: "Dario Amodei的文章与RSI时间线"
+  - time: "22:03"
+    title: "成为战略资产的AI与市场反应"
+  - time: "24:19"
+    title: "作为新语言的循环工程"
+  - time: "25:55"
+    title: "Fable 5定价与测试时计算"
+  - time: "30:06"
+    title: "Fable API成本与循环工程的商业性"
+  - time: "34:09"
+    title: "RSI与Anthropic的自我改进轨迹"
+  - time: "35:49"
+    title: "计算规模与主权AI竞争"
+  - time: "41:35"
+    title: "韩国的独立基础模型机会"
+  - time: "43:06"
+    title: "Fable 5 vibe check与人的反思"
+  - time: "48:31"
+    title: "Claude Code之后工程实践的变化"
+  - time: "51:02"
+    title: "AI Frontier社区的角色"
+  - time: "53:10"
+    title: "第100期之后的计划与新挑战"
+lang: "zh-Hans"
+alternateSlug: null
+---
+
+## AI Frontier第100期与三年的变化    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **卢正石** 我们正在录制的今天是2026年6月14日 星期日早上。 不过我现在人在旧金山， 所以这里已经是星期六下午4点了。 我们这次终于做到第100期了。 哇，我们自己也鼓个掌吧。 说起来，胜准和我一开始是抱着学习的心态， 说要不要试着做一次我们的漫谈， 从时间上看已经差不多三年了， 按期数算也到了100期。 这期间，多亏了我们的 AI Frontier 播客， 真的见到了很多原本见不到的优秀人士， 也成了一个能够最快接收到 Frontier 前沿消息的渠道。 胜准，这三年我们真是一路紧赶慢赶地跑过来了。
+
+<span class="paragraph-timestamp" data-ts="0:50">0:50</span> **崔胜准** 三年真的过得很快，而且也很有趣， 但另一方面回头看，又像是沧海桑田。
+
+<span class="paragraph-timestamp" data-ts="0:57">0:57</span> **卢正石** 即便是在三年前， ChatGPT 也才刚推出没多久。 那时候 GPT-4 也刚刚发布， 随后微软的 Sébastien Bubeck 把它称为 Sparks of AGI， 我们看着那些拆解 GPT-4 的论文， 里面不是有画图的内容嘛。 从画独角兽图， 到现在已经到了鹈鹕骑自行车这种程度， 大概三年时间里，那些曾经被说成不可能的东西， 全都被打破了。 而我感觉，从去年秋天之后开始就是这样。 从去年秋天之后开始， 我感觉这条图线的斜率 明显变得不一样了， 到今年冬天过去、进入春天之后， 现在大家已经很频繁地 开始谈起 AGI 这个话题了。 然后春天就到了。 4月时，Anthropic 稍微公开了 一个叫 Mythos 的模型， 然后， 大约过了两个月，也就是这周二左右， 它突然正式公开了。 他们把名字改成 Fable 公开了， 之后社区又一次 开始做各种 vibe check， 讨论这个到底会带来什么变化， 大家七嘴八舌讨论了才不过三天， 昨天就因为美国政府监管， 发布了一项政策，说非美国国籍的人 将完全无法访问 Fable。 可能也正因为这个，现在才这么吵。 而且 Fable 发布的时候也有很多争议。 我也问了一些和生物相关的查询， 它马上就会关掉，说这个无法回答， 然后模型就切换成 Opus 4.8，我就想，这是在干什么？ 当时就有这样的想法。 而且我这次来到旧金山， 也见了非常多的创业公司、做数据集的公司、 做 agent building 的公司、 说要开发新 world model 的公司， 还见了很多真正怀抱梦想的二十出头的创始人， 真的见了很多人， 也听了 xAI、Thinking Machines、Meta 以及 Frontier Lab 的人士讲述的情况， 当然关于内部那些非常具体的、 真正属于高度机密的事情， 我去问也有点不合适，对方说出来也不太合适， 但大致上 Frontier 正在朝哪里走， 现在最大的争议点在哪里， 我还是听到了很多内部人士的说法， 这点我觉得很好。
+
+<span class="paragraph-timestamp" data-ts="3:37">3:37</span> **崔胜准** 存在在哪里呢？
+
+<span class="paragraph-timestamp" data-ts="3:38">3:38</span> **卢正石** 首先，关于这场 AI 竞争， 当然不会有人说这个做不到。
+
+## 规模扩展与后训练的重要性    *3:45*
+
+<span class="paragraph-timestamp" data-ts="3:45">3:45</span> **卢正石** 大家当然都会说它能做到，那么核心争议点 会在哪里呢。 我觉得当然会在 scale 增长这部分。 所以当 scale 进一步增大时， 会发生什么事情， 关于那种 infrastructure 以及与之相关的东西， 这一点几乎不需要思考， 大家确实相信 scale 的增长 会把我们带到下一个地方。 当模型规模变大， 并配备相应的 infrastructure 去推进时， 自然而然就会需要更多数据集， 关于 pretraining 的数据集， 当然，即便是 pretraining 相关的部分， 也必须不断提升质量， 所以通过研究这方面的 Stanford 研究生， 或者 Percy Liang 教授实验室里的学生， 通过这些人， 可以看到如何用 比 billion 级规模更小的模型 大幅提升 pretraining 数据集的质量， 以及这在多大程度上带来模型性能提升， 这些都是可以看到的。 但这说到底更像是研究，或者说不是 Frontier， 而是在后方 research side 的这些工作中 正在抓住主题的部分。 而 Frontier side，虽然这太理所当然了， 但就是 post-training。 为了做 post-training， 还需要多少更多的数据集， 在 generate 这些数据集的部分， 关于供应这些数据集的公司有多么景气， 也有这样的说法。 而且 pretraining infrastructure 本身， 这和 pretraining 又有点不一样。 因为在那个过程的每一步，其实都要进行 inference， 然后给那个过程的结果打分， 这里面有极其巨大的工程挑战。 因为一边要跑 inference，一边还要跑这个 training loop， 而且各个过程也不会同时结束， 那么还没结束的那些要收集成 batch 来做 training，叫什么来着？ 重新计算 loss，再把更晚一点结束的收集起来， 继续计算 loss，和这些相关的 infrastructure 到底进展到了什么程度，我听到了很多细节。 但实际上关于这些部分，
+
+<span class="paragraph-timestamp" data-ts="6:03">6:03</span> **卢正石** 我不太能在这里说谁是怎么做的、 谁又是怎么做的。 不过核心在于 post-training 的工程 infrastructure，
+
+## 打造前沿模型的数据集工程    *6:08*
+
+<span class="paragraph-timestamp" data-ts="6:13">6:13</span> **卢正石** 然后是其中数据集的供应，以及数据集本身， 我觉得是这样的。 比如说即便金融领域有数据， 金融也包括 investment banking， 包括税务处理， 也包括只是单纯做我们个人层面的 金融事务， 有非常多不同的 task， 而这些 task 似乎也都在把数据集逐一细分， 并不断制作出来。 而随着模型的 scale 继续变大， 数据集的量自然也必须增加， 也就是说，我们真的在针对世上存在的 所有这些 domain 或职业专家等， 把 case-by-case 的数据集 全部 generate 出来， 然后直接让模型去学习它们， 我感觉这个过程正在不断循环。 可是越是这么做，benchmark 实际上就越会上升， 所以所有 Frontier Lab 都处在机械式地不断运行这些东西的过程中。 而 Meta 之类的地方， 毕竟现在相比 Anthropic 或 OpenAI， 多少有点落后，所以为了跨过这一步， 它们正在做哪些额外努力， 这些内容都非常有意思。 核心在于 post-training。 在于 scale 增长和 post-training， 也在于 post-training 的 infrastructure 以及与之相应的数据集 一个是，这一部分存在着竞争的一条大主轴
+
+## AI扩展到生物学和其他领域的方式    *7:49*
+
+<span class="paragraph-timestamp" data-ts="7:49">7:49</span> **卢正石** 然后这是关于 LLM， 也就是我们所知道的 large-scale language model 相关的话题 而除此之外的其他领域，我们其实也已经聊过很多了。 其他 domain，也就是不是 LLM 的 其他 domain 里的关注点， 以及关于那些事情该怎么做， 好像正在形成某种 playbook。 比如 biology， 我们也聊过很多 Periodic Labs， 还有 material science 这些部分， 尤其我对 bio 这一侧很感兴趣， 所以也听了很多那边正在发生什么、大家重点看什么 之类的内容。
+
+<span class="paragraph-timestamp" data-ts="8:34">8:34</span> **崔胜准** 到觉醒的时刻了吗？ 您去那里总是有原因的吧？
+
+<span class="paragraph-timestamp" data-ts="8:38">8:38</span> **卢正石** 是的。我有一个自己正在瞄准的 business， 而在引领这个 business 的几家 frontier startup 里， 我通过各种人脉去找、去见 那些 frontier startup 里的人， 发现他们比想象中都年轻。 非常非常年轻，而且我觉得是这样。 总结来说，在 LLM 里我们这三四年 已经看到了发生了什么，对吧。 看这三四年里我们做过的事情， 以及 Frontier Lab 们做过的事情， 它们把那些大家都说不可能的东西一个一个打破了。 能做这个，但那个不行；能做这个，但那个不行； 以前一直说能做这个，但那个不行的那些东西， 随着 reasoning model 出现，而 reasoning model 出现之后， 又有更多 post-training 之类的东西出来， model 性能一直在提升，不是吗。 所以现在事实上 已经有了堪比 AGI 的东西， 而在其他 domain，尤其是新药开发 或者 longevity 这一侧等等这些部分， 从原本就在这个行业里的人， 典型来说像 Genentech， 或者大制药公司里的人 的角度来看，会有一些他们说，哎那个不行，那个不行， 那个很难的部分。 而且有意思的是， 他们到现在仍然这么想。 相反，对于那些从完全 AI 的一侧 去接近这些既有产业的人来说， 他们会觉得现在大概是 GPT- 2 moment 左右， 而且是从完全相反的角度在思考。 为什么会这样，打个比方可能比较合适， 我们拿着 LLM 和 prompt， 在 Codex、Claude Code 出现之前， 想想以前的 machine learning， 每个单位问题都要先确定 dataset 的 form， 对应的 model，比如 convolutional neural network， 其中 CNN 的结构 也要根据它做一些调整， 然后还要有对应的训练方法， 所以那个单位问题才被解决，对吧。 但事实上进入 LLM、进入 multimodal 之后， 再加上 RL environment 或 RL 这些东西进来之后，
+
+<span class="paragraph-timestamp" data-ts="11:05">11:05</span> **卢正石** 它就被当成一个问题来解， 只要通过这种训练让大 model 能够 generalize， specific 的问题也都能解决， 现在就是按照这样的原则在运转，不是吗。 这些人也是这样想的。 所以在 DNA 这一侧 发生的 DNA 相关事物， 在 protein level 发生的事物， 以及超出 protein level，在 cell 部分发生的东西， 他们称之为 organ。 所以在那些部分发生的东西， 就把它先假定成另一种 modal。这个是声音， 这个是图像，那个是 Video，把它们规定为不同 modal， 事实上就是一次性全都放进去 train，不是吗。 他们也是以类似的观点在运转。 可是它就那样做， 居然能成，这些我亲眼看到了， 这是我这次最大的收获。 这个如果也那样做，问题可能就能解了。
+
+## 创业梦想与资本相遇的速度    *12:07*
+
+<span class="paragraph-timestamp" data-ts="12:07">12:07</span> **崔胜准** 您好像也在聊天里提过那样的话吧？ 年轻人的梦想规模是 Elon Musk 级别的，类似这种话。
+
+<span class="paragraph-timestamp" data-ts="12:14">12:14</span> **卢正石** 没错。这里的 valuation 其实非常高。 韩国现在如果创办公司， 到目前为止，research side 的公司 还是比 service 型公司少很多， 但在这里会有人说，现在的 transformer 有问题。 所以需要新的 world model， 我认为的 world model 是这样的， 而说这些话的人， 是 21 岁、17 岁就进大学的天才， 或者 14 岁就进大学的天才们在说这些话， 资本好像就会一波一波地响应。 另一方面，也存在另一种资本视角： 两年前也有很多说这种话的孩子， 结果现实中的问题一个都没解决， 孩子们全跑了，公司也倒了。 我觉得这里也存在这种并存的视角。 但目前仍然是希望占主导， 而且就算创办一家公司， 那家公司也不一定非得卖给 Frontier Lab。 因为这里有很多有钱的 enterprise， 也想做和 Frontier Lab 类似的事情， 所以到目前为止，资本也好，startup 也好， 即使不是大型 exit， 中间也有很多 能赚到相当多钱的 exit chance。 以 acquihire 的形式。所以大家期待着这些， valuation 基本上如果五六个人创办一家公司， 在假设他们有一定 track record 的情况下， 按韩元算，动辄会叫到约三千亿到五千亿韩元， 也就是折合人民币约十五亿到二十六亿元左右的 valuation， 他们拿到的投资金额也都是几百亿韩元级别，折合人民币也是数亿元。 现在汇率已经拉到 1,500 韩元左右， 所以那个差距感觉更大了， 这一部分的差距非常大， 所以我觉得韩国的创业者们 直接 access 美国市场， 或者能够做到这一点的某种连接通道， 应该要多创造一些。
+
+## 前沿网络与信息共享的力量    *14:27*
+
+<span class="paragraph-timestamp" data-ts="14:27">14:27</span> **崔胜准** 这是敏硕一直在说的话啊。
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **卢正石** 而且多亏了敏硕， 其实我在这里也见到了我本来见不到的年轻人， 还有不是韩国 network， 而是印度 network、中国 network 那样的， 其实中国 network 非常强。 所以 Frontier Lab 里也有很多中国人， 而且那些人意外地也告诉了我很多东西， 虽然不能介绍他们，但关于现在 frontier 大概在哪里， 以及各家公司状况如何这些， 我获得了很多信息。 这一部分，等我回韩国后，胜准， 私下我会一次性全都讲给您听。
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **崔胜准** 那么现在差不多，因为我们隔了两周才做， 在嘴也稍微说顺了的状态下，要不要来看看新闻？
+
+<span class="paragraph-timestamp" data-ts="15:21">15:21</span> **卢正石** 当然免不了要聊 Mythos、Fable 吧。
+
+## Mythos和Fable提出的安全问题    *15:26*
+
+<span class="paragraph-timestamp" data-ts="15:26">15:26</span> **崔胜准** 所以就像刚才正石开头给我们讲的那样， 这是突然发布的， Opus 4.8 好像是 5 月 28 日 左右出来的，我们聊完那个 issue 之后， 说它会在数周内出来， 结果不到两周，只过了 12 天就出来了， Fable 5 出来了， 出来的理由是，我们做出了 safeguard。 所以就像刚才正石说的那样， 它似乎会把广泛涉及安全相关 或生物学相关的内容， 在前端机械性地拦截掉。 因为它过不去，所以 是把 Mythos 包装成 Fable 来发布， 跳过这三天来看昨天的情况， 不过大概是 Amazon 那边的某位开发者 把有人 jailbreak 这件事通报给了国家， 具体故事我也不清楚， 但那件事似乎首先导向了 紧急决定实施出口管制。 Fable 5 出来了，我也稍微摸索了一些相关情况。 首先名字很有意思。 Mythos 是神话嘛。 但 Fable 是寓言。 对吧。这里面有它所暗含的东西。
+
+## Mythos和Fable这两个名字的含义    *16:38*
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> **崔胜准** 所以之前的命名体系是 Haiku、Sonnet、Opus， 如果说那是一种诗的规模逐渐变大， 从短诗走向更具作品性的感觉， 而且 Opus 不只在诗里，在音乐里也会用来表示作品， 那么现在就彻底变了。 转向了口述文化，不是文字，而是口述神话，虽然也会被文字化， 总之原本是在讲神话的东西， 现在变成面向大众表达的寓言， 像伊索寓言那样，作为发布用版本的东西， 最终就成了 Fable。 Mythos 仍然被关着，只有一部分人能访问，
+
+<span class="paragraph-timestamp" data-ts="17:15">17:15</span> **卢正石** 把那个包装成神界中的某种存在， 再把它下放给人类， 可以说那些东西就是用 Fable 来表达的。
+
+<span class="paragraph-timestamp" data-ts="17:25">17:25</span> **崔胜准** 不过这个还挺有意思的。 深挖这个名字之后， 当然这也是模型说的， 我因为好奇这个名字的根基是什么， 所以问了之后，它指出了这些部分， 我也挺有共鸣。 所以“受限的原版”和“安全公开的版本”这种 结构，也和名字本身咬合在一起。 但如果深入追问 Fable 被关闭的原因， 不是说 jailbreak 之后会很危险吗， 也就是说可以开启 与安全和生物学相关的功能。 所以那是一个紧急关闭的先发措施， 但那不只是为了安全， 也可能是非常复合性的。
+
+## Dario Amodei的文章与RSI时间线    *18:08*
+
+<span class="paragraph-timestamp" data-ts="18:08">18:08</span> **崔胜准** 所以我来大致梳理一下时间线。 所以这个是 我跟 GPT-5.5 聊过的内容， 问题是这样的。 我们来调查 Dario Amodei 的博客系列。 从 Machines of Loving Grace 到最近的一篇都请看一下。 深入阅读每一篇并引用核心部分， 然后告诉我你的坦率感想和想法，于是 我就把 Dario 的博客一路看了一遍。 Machines of Loving Grace 已经是 2024 年底左右的东西了。 已经过了相当一段时间，而在这期间， 比较近的是关于青春期的那篇， 还有说必须管制 DeepSeek。 也就是 export control， 当时也说过这些内容。 然后比较近的一篇是 关于青春期，关于技术的青春期的一篇有点微妙、 也值得细细品味的文章， 而最近的就是几天前这篇。 Policy on the AI Exponential，所以这些 和政策相关的内容，Dario 又展开讲了很多。 但这件事先放一边，如果把最后那段一路看下来， 5 月 28 日是 Opus 4.8 发布的时候。 当时公布的是 H 轮估值 9650 亿美元。 然后 6 月 1 日，6 月 1 日 大概是 RSI 公布的日子。 RSI 是 Recursive Self-Improvement 里的自我增强， Anthropic 把那个，SEC 是证券交易委员会嘛， 因为这是最开始要向证券交易委员会提交的上市材料， 所以带了个一，也就是提交了 S-1 注册声明， 通常提交这个之后， 竞争对手或公众会知道各种信息， 所以好像会有一种给一定期限、以 confidential 形式提交的草案。 6 月 1 日就是那个时间点。
+
+<span class="paragraph-timestamp" data-ts="20:04">20:04</span> **卢正石** 我还是第一次听说。
+
+<span class="paragraph-timestamp" data-ts="20:05">20:05</span> **崔胜准** RSI 公布的时间点，然后 6 月 9 日 就再次露面了。 Anthropic 似乎无论如何 都想把 Mythos 发布出去。 因为必须展示能力。 但它又是一直强调安全的公司，为了不陷入自相矛盾， 就必须把握好，所以无论如何要把它削到 可以发布的程度， 可结果三天之内就被政府，被美国政府 关掉了，情况就是这样。 所以我出于好玩问了一下。 这对 IPO 是不利还是有利？但非常理所当然的是 TAM， 也就是 total addressable market 嘛。
+
+<span class="paragraph-timestamp" data-ts="20:46">20:46</span> **卢正石** total addressable market，对。
+
+<span class="paragraph-timestamp" data-ts="20:48">20:48</span> **崔胜准** 所以如果把 TAM 看作整体市场， 那对整体市场当然是不利的。 所以短期来看，这既向市场释放了不稳定信号， 显示国家权力随时可以介入处理这个东西， 同时也等于反证了它确实有那种能力。 如果这件事大概能作为一个小插曲重新恢复过来， 而且现在 OpenAI 还没能推出 GPT-5.5， 但从时间点来看，这对应 RSI 的那种 既视感几乎就是那个嘛。 去年 10 月底，10 月 30 日， Jakub Pachocki 说过那件事。 Sam Altman 和我们 逃亡者联盟 的契机，也就是 2026 年
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **卢正石** 8 月时间线。
+
+<span class="paragraph-timestamp" data-ts="21:35">21:35</span> **崔胜准** 总之那前后发布了 AI 研究员实习生， 并且公开说到 2028 年会有 完全自动驾驶式的 AI 研究员， 那也是自我增强型的。 而现在这些事情正在对上， Andrej Karpathy 大约一个月前加入 Anthropic， 而且进的是 pretraining 团队。 所以虽然可能还很微弱， 但无论如何，做 Autoresearch 的人进了那里这件事， 和现在有些局面是对得上的，
+
+## 成为战略资产的AI与市场反应    *22:03*
+
+<span class="paragraph-timestamp" data-ts="22:03">22:03</span> **崔胜准** 而这些就像现在很多人说的那样， 这不全都是为了 IPO 最大化吗？ 不就是尽可能抬高 valuation 的策略吗？ 无论如何，我也认同的一点是， 现在这东西给人的感觉是被认证为战略资产级别了。 这不是 AGI 的问题， AGI 这个词最近有时会变得模糊， 因为它参差不齐，有些领域做得太好了， 但似乎也还有一些领域依然没有投入。 所以虽然有参差不齐之处，但在某些部分确实非常强， 这次 Fable 用了三天之后， 已经有人开始怀念它了。 我读到了两种反应， 一种是边际收益递减，搞不清这个到底哪里更好， 有人说比 Opus 强不到哪里去， 也有人说这个必须付钱来用。 已经有不少人开始说这个好像挺有意义， 时间线上也能看到不少这样的说法。
+
+<span class="paragraph-timestamp" data-ts="22:58">22:58</span> **卢正石** 在那里，收益，该怎么说呢？ 感受不到收益的人， 也可能是处在不需要越过 Opus 4.8 边界的那些领域里。
+
+<span class="paragraph-timestamp" data-ts="23:09">23:09</span> **崔胜准** 这不是说那样不好，而是如果在那个程度就可以， 他们可能正处在一个幸福的点上。 还能省钱。
+
+<span class="paragraph-timestamp" data-ts="23:17">23:17</span> **卢正石** 是。这个必然因人而异， 所以不能把某个人的视角 直接泛化来解读。 但要明确说这个模型本身性能到底好多少， 其实我们现在活在一个连 benchmark 都几乎没有意义的 这种时代里， 所以不能说它好了 2 倍、3 倍， 但对那些正在做某种 Frontier 研究的人来说， 尤其是 cyber security 或 biology 之类， 对于在这些方向上做最前沿研究的人来说， 确实有些部分让他们明显体感到变好了。 做到了以前做不到的事
+
+<span class="paragraph-timestamp" data-ts="23:56">23:56</span> **崔胜准** 所以总之，这首先就是一个启示点。 所以我也没有把 Fable 5 的模型系统卡 仔细看完。 又是几百页的东西，所以
+
+<span class="paragraph-timestamp" data-ts="24:07">24:07</span> **卢正石** 那也未必是人写的， 我们也不可能逐页全看。
+
+<span class="paragraph-timestamp" data-ts="24:11">24:11</span> **崔胜准** 所以只是做了一下 vibe check 的程度。 然后接下来想到要讲的是，
+
+## 作为新语言的循环工程    *24:19*
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **崔胜准** 最近销售营销领域又冒出一个术语。 Loop Engineering。
+
+<span class="paragraph-timestamp" data-ts="24:24">24:24</span> **卢正石** 对，是 Harness Engineering 之后出来的 Loop Engineering， 那又是什么呢？ 我也在各处听到一些说法。
+
+<span class="paragraph-timestamp" data-ts="24:31">24:31</span> **崔胜准** 单看 Twitter 的话，是 Boris 提到了这个。 Boris Cherny 是做 Claude Code 的那位嘛。 Boris 讲了这个， 然后 Peter Steinberger 做了 OpenClaw， OpenAI 的两个人在差不多同一时期 都发了关于 loop 的推文。 我们应该转变思路， 去设计 loop，然后把任务交给它自己跑。 不过 Ralph loop 出来已经超过一年了， 它和 Ralph loop 到底有什么不同， 我觉得这就是要抓住的点。 Ralph loop 是非常简单的， 而现在说的 Loop Engineering 则和稍微更复杂的那些东西 结合在一起，让我会联想到的是， 最近 Claude，也就是 Anthropic 那边发布的 Dynamic Workflows、ultracode 这类关键词， 本来就是强力施加编排的结构嘛。 所以说，不只是 OpenAI 或 Anthropic 在做这个， OpenAI 当然也在做， 所以那些作为主干的模型 负责展开、收拢、展开、收拢这些事情， 某种意义上已经被正式化了。 在这种情况下，当 token 成本可能大幅增加时， Fable 到底有多贵，以及 Loop Engineering 这个概念 如果看作一种营销修辞，那么用直接委托的方式 草率地跑起来会怎样，我试着测了一下。
+
+## Fable 5定价与测试时计算    *25:55*
+
+<span class="paragraph-timestamp" data-ts="25:55">25:55</span> **崔胜准** 首先，Fable 基本上比 Opus 贵 2 倍。 现在按输入、输出各 100 万 token 来看， 输出价格是 50 美元。 所以我们之前在讲 prefill 的时候， 也看过为什么输入便宜、输出贵这类问题。 回顾一下，那是什么原因来着？ 为什么，为什么输出会更贵？ 因为 decode。
+
+<span class="paragraph-timestamp" data-ts="26:19">26:19</span> **卢正石** 对。decode 必须一步一步地跑， 而输入这边可以通过 prefill 一次性把 batch 打进去， 所以其实理论上价格差 应该比 1 比 5 大得多， 只是大概被粗略抹平了。 大家彼此之间这样互相复制， 形成了价格体系。
+
+<span class="paragraph-timestamp" data-ts="26:38">26:38</span> **崔胜准** 而且这个价格反过来能成为倒推依据， 这就是 Dwarkesh 那期的 insight。 所以现在从 5 到 25，单纯想的话， 是不是也比 4.8 贵 2 倍。 如果说 4.8 是 5T 级模型， 那么可以隐约想象， 这就是 10T 级别。
+
+<span class="paragraph-timestamp" data-ts="26:57">26:57</span> **卢正石** 这个我也不太清楚。 关于 4.8 是多少 T、Mythos 是多少 T， 我们完全不知道。 我们在外部看开源模型， 如果从我们作为创业公司 现实中要做 training 的角度来看， 3 到 50B 左右大概就是上限了， 其实只要超过 100B， 这个单位就会明显跳一个档次。 500B 就跳得更厉害了。 不过前沿实验室用的 Opus 或 Pro 这一级别，大家会说 是 1T、2T 级别。 虽然谁都不确认，但大致就是这个程度， 大家会这么说。
+
+<span class="paragraph-timestamp" data-ts="27:36">27:36</span> **崔胜准** 从 GPT-4 开始就已经有 2T 左右的说法了嘛。
+
+<span class="paragraph-timestamp" data-ts="27:39">27:39</span> **卢正石** 对。不过现在问 Mythos 是不是 10T， 实际上这就是 大约 5 倍的差距，而如果是 5 倍差距， 价格差却只有那个程度， 那就会有很多含义。 我也不是掌握事实的人， 所以在那个假设之上去解读，
+
+<span class="paragraph-timestamp" data-ts="27:57">27:57</span> **崔胜准** 是没有意义的。 按照 Dwarkesh 的解释，就是接近成本价。 因为现在处在竞争状态， 所以他们不会在这里留下很大利润空间， 这是 Dwarkesh 的猜测。无论如何看价格分布， 4.8 是每 100 万输入 token 5 美元，输出 25 美元。 但现在是 2 倍，10 美元、50 美元。确实是目前最贵的。
+
+<span class="paragraph-timestamp" data-ts="28:22">28:22</span> **卢正石** 对。Anthropic 是最贵的。
+
+<span class="paragraph-timestamp" data-ts="28:26">28:26</span> **崔胜准** 现在差不多 3.5 Flash 的价格也涨上来不少， 但无论如何，只看输入几乎是 5 倍，输出也是 5 倍。 那就是大约 5 倍的价格。 和 Flash、3.5 Flash 相比是这样。所以拿这个来说， 我们虽然反复讲过，但可以思考的是， 为什么非得知道这些？为什么要知道呢？
+
+<span class="paragraph-timestamp" data-ts="28:45">28:45</span> **卢正石** 对。Anthropic 这样硬着头皮冒险， 也确实是很了不起的事。 其实 Google 基本统一在 TPU 或 NVIDIA 上， OpenAI 阵营大概也同样是以 NVIDIA GPU 系列 把基础设施全部统一起来了，但 Anthropic 的情况是， 真的既用 Google TPU，又去 Amazon 用 Trainium， 然后也用 NVIDIA。 但这种战线被拉宽，并不总是好事。 如果单独看 inference，可以说，嗯，也可以理解， 但从 training 过程来看，这在 training 过程中， 就像刚才也说过的， 大部分瓶颈或重大的差异化点 都存在于 post-training 里， 而平台如果能一下子统一成一个， 这里显然是有优势的。 OpenAI 相对来说 一直在 computation 上做了很多前期投资， 所以按这里听到的传闻， 仍然有优势。 Anthropic 看起来真的是在榨干资源追赶， 而为了补偿这一点，Mythos 之类的东西 就不得不不断率先向市场打出第一拳， 我觉得它可能也有这种痛苦。
+
+## Fable API成本与循环工程的商业性    *30:06*
+
+<span class="paragraph-timestamp" data-ts="30:07">30:07</span> **崔胜准** 我也有同感。然后这些数字 我还是想尽量内化，虽然我也不擅长数字， 但这么做之后，好像就不太会被吓到。 粗略估算一下，就会知道这里面是有原因的。 不是模糊地觉得某个巨大的模型出现了，要压倒我、 压倒我们，而是这里面都有某种根据， 在接近价格，或者和这类模型数字相关的地方， 有一些解释空间，所以才会去看。 所以做刚才那种 Loop Engineering 的时候， 首先，他们原本决定到 6 月 22 日为止 临时开放 Fable。 这也不是一直开放。 到 6 月 22 日之后，他们本来是想观察一下， 要把它纳入订阅模型，还是继续走按量计费， 结果受到了某种政府制裁。 在这种情况下，如果还是用 API 来用， 我大概算了一下会花多少钱。 如果按一个比较简单的单次运行场景来看， Dynamic Workflows 单次运行 最多可以跑 1,000 个 agent， 那么用 1,500 个 Sonnet 4.6 时， 原本接近 400 美元的事情， 现在要花 1,500 美元来做。 而最近 Fable 出来之后， 因为现在可以 flex，大家尝试的做法通常是， 给 Fable 一个 goal，然后让它跑一整夜，大家都是这样用的。 那到底是什么样的价格？ 如果走 API 的话，可不是开玩笑的。 和以前相比的话。
+
+<span class="paragraph-timestamp" data-ts="31:39">31:39</span> **卢正石** 是这样啊。 不过从这里看也是两倍呢。 相对于 Opus 4.8。
+
+<span class="paragraph-timestamp" data-ts="31:45">31:45</span> **崔胜准** 对。可是无论如何，loop engineering 是不会把那种东西放进去的。 让使用量变得很多，所以有这样的趋势。
+
+<span class="paragraph-timestamp" data-ts="31:55">31:55</span> **卢正石** 这不就是会持续下去的趋势吗？
+
+<span class="paragraph-timestamp" data-ts="31:58">31:58</span> **崔胜准** 会持续吧。因为否则就得一来一回地互动， 一直细致地盯着，性能才会上去。 也才能做出想要的东西。 所以 Mitchell Hashimoto 批评了这一点。 其实用低得多的价格，由人花点努力去做的话， 也可能把事情更快、更正确地完成，但现在却是花更贵的钱， 让模型长时间工作， 他就是从这个角度批评的。
+
+<span class="paragraph-timestamp" data-ts="32:23">32:23</span> **卢正石** 不过前不久见到郑亨源博士的时候， 郑亨源博士也说，在 test-time compute 里 还有很多可以继续榨取的果实。
+
+<span class="paragraph-timestamp" data-ts="32:35">32:35</span> **崔胜准** 原来你见到郑亨源博士了啊。
+
+<span class="paragraph-timestamp" data-ts="32:36">32:36</span> **卢正石** 所以更大的，归根结底还是规模；如果能做出更大的规模， 它能做的事情会多得多。 还有很多尚未开发的领域。
+
+<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **崔胜准** 这一点我也同意，同时也觉得贵。 至少短期内是这样。所以我先找了这些东西。
+
+<span class="paragraph-timestamp" data-ts="32:55">32:55</span> **卢正石** 商业上其实价格和性能的 trade-off， 每个人都会各自去计算。 有些人即使觉得它贵，也会因为它能在更短的 token 里 把事情处理掉，而获得更多收益； 反过来，也会有一些领域， 用小模型跑更多 test-time compute 反而更划算。 我觉得这是 trade-off 的问题。
+
+<span class="paragraph-timestamp" data-ts="33:20">33:20</span> **崔胜准** 还有，像刚才说的，就是这篇帖子。 不过图挺有意思的。 一开始出现的是这里的 Claude。 Claude 一开始自己工作，后来变成多个一起工作。 它做出了 Claude。 Claude 做出了 Claude。 然后递归地反复进行。 所以我觉得这已经把内容都说明白了。
+
+<span class="paragraph-timestamp" data-ts="33:43">33:43</span> **卢正石** 不过这个其实也是我们 一直非常清楚知道的东西， 不就是完美的同构吗？ 这和生命细胞的分裂完全一样， 现在展示的就是分形。 从一个开始看过去， 即使放到更大的区块来看，也仍然和它自身一样。
+
+<span class="paragraph-timestamp" data-ts="34:06">34:06</span> **崔胜准** 我们也说过好几次，
+
+## RSI与Anthropic的自我改进轨迹    *34:09*
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **崔胜准** 正如大家期待的那样，正在走向 RSI 的门槛。 所以这里虽然还没有说我们已经准确处在那条轨道上， 但已经宣告了正在走向 RSI 的轨道。 说这个是在 6 月初， 6 月初提交了 S-1 document。 所以现在 Anthropic 当然是在先锋位置上做得很好， 但这是有意为之的。 因为这一切都是生意。所以我看了这些东西。 所以最终方向就是在往这边走， 但从感觉上说，这完全不是 plateau， 而是处在斜率不断变高的轨道上。
+
+<span class="paragraph-timestamp" data-ts="34:54">34:54</span> **卢正石** 是啊。我们和成铉聊天的时候， 不是经常说这种话吗？ 对我们来说真正重要的是 和数据集及规模相关的部分， 但那部分从外面也很难看见， 也有很多我们无法接触到的信息， 所以只能看着外面公开的那些算法、 模型架构变化之类的东西， 稍微大惊小怪一番， 如果说这就是外部小民的生活， 那其实前沿实验室最关心的， algorithmic 的那些进展，现在已经 不再是什么很大的差异化因素了。 那些只是零零碎碎出来的东西，如果有好的， 直接塞进去就可以了。 更重要的是数据集的规模，量还能增加多少，
+
+## 计算规模与主权AI竞争    *35:49*
+
+<span class="paragraph-timestamp" data-ts="35:51">35:51</span> **卢正石** 还能变得多大， 以及那个数据集的 shape 应该是什么样， 这些部分，还有计算规模。 现在 Mythos 其实是 10T 模型， 训练那个 10T 模型所需的计算量都已经很难算了。 只看 Chinchilla optimal 或数据集大小这些东西也能看出来， 就算在我们以前，也就是三年前， 还经常听说某个前沿模型是在 3T、5T 上 训练出来的， 现在基本就是 30T。 token 数量会继续增加。
+
+<span class="paragraph-timestamp" data-ts="36:27">36:27</span> **崔胜准** 对。现在比 Chinchilla optimal 大概 overtrain 了 100 倍， 这是 Dwarkesh 那一期里说过的话。
+
+<span class="paragraph-timestamp" data-ts="36:34">36:34</span> **卢正石** 可是如果扩大规模，再做更多 overtraining， 从那里就会有源源不断可以榨取出来的额外收益， 也就是 gain，这正是我们现在看到的。
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **崔胜准** 正在看到。
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **卢正石** 对。前沿实验室现在会继续朝那个方向狂奔， 最终到达某种 AGI 状态。 这就像是谁先开发出原子弹， 开发出来之后能不能把后面追上来的人的梯子踢掉， 是这样的游戏。
+
+<span class="paragraph-timestamp" data-ts="37:03">37:03</span> **崔胜准** 不过另一方面，Dario 在 Machines of Loving Grace 那篇文章里 已经讲过数学上的边际效用递减。 在特定领域会谈到边际效用。 那是 2024 年末左右就已经做出的展望， 现在好像正在发生。 在这个水平线上，已经有足够多的事情了。
+
+<span class="paragraph-timestamp" data-ts="37:23">37:23</span> **卢正石** 对。不过即便在那时候， Sam Altman 或 Dario Amodei 出来讲话的时候， 我们也会一边解读那些话， 一边试着解读其中的 gradient。 但现在感觉是被一路拉升到 连那些人自己也不知道的未知领域， 他们好像也没有空隙整理之后再发表了。 就是在拼命往里倒东西。 而从中受益的， 仍然是半导体、电力和数据中心， 因为这些必须持续扩大，所以 NVIDIA 还是很好。
+
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **崔胜准** 对。那么这些现在如此惊险地向前奔跑的 大型科技公司之所以没有 collapse， 是因为整个市场在托着它们吗？
+
+<span class="paragraph-timestamp" data-ts="38:17">38:17</span> **卢正石** 到目前为止，那种期待还在继续增加。 而且也持续拿出了与不断增加的期待相匹配的 某种结果，也就是 outcome。 现在这个情况不就是这样吗？ 比如说，如果我们把某种投入增加 10 倍， 体感上与此对应的 gain 大概会上升两倍。 可是现在从 1T 提到 10T， 假设 Mythos 的性能变好了两倍。 但如果从这里还要再提升两倍， 其实也就是说，相对于仅仅 6 个月前我们熟悉的那些数字， 相对于 6 个月前我们熟悉的规模， 还要再提高 100 倍。 这就不一样了。 对。所谓变成 100 倍的规模， 意味着现在地球上现存的计算资源 几乎都要投入到 某一个模型的 training 里， 现实上确实很难。 现实上确实很难，但话说回来， 10T 左右的模型， 由好的数据集和好的 training recipe 做出来的结果，已经到了现在必须加以管控的程度， 变成了核武器级别的战略资产；那么在 10T 左右， 某种商业期待也可能会停下来。 会停相当长一段时间。然后接下来其实 就不是 NVIDIA GPU， 而是要到量子计算那种程度的范式转变， 我们才能维持下去的 也可能是那种程度， 关于这一点，就进入了科幻 电影级别的讨论了。 我们很难通过计算，像以前 Aschenbrenner 展示的那样， 提出那种层级的具体数字。
+
+<span class="paragraph-timestamp" data-ts="40:08">40:08</span> **崔胜准** 那就是 situational awareness 吧。
+
+<span class="paragraph-timestamp" data-ts="40:12">40:12</span> **卢正石** 拿 10T 模型来说， 现在美国政府已经在这么做了。 所以对 sovereign AI 的需求也在迅速增加，
+
+<span class="paragraph-timestamp" data-ts="40:20">40:20</span> **崔胜准** 没错。难道只有美国会这么做吗？ 既然学会了，中国不也可以做吗？
+
+<span class="paragraph-timestamp" data-ts="40:25">40:25</span> **卢正石** 中国也会做吧。一旦目标物出现， 那就是计算量和时间的函数， 这一点所有人都已经确认了。
+
+<span class="paragraph-timestamp" data-ts="40:36">40:36</span> **崔胜准** 我的意思是出口管制， 中国不也可以做吗？
+
+<span class="paragraph-timestamp" data-ts="40:41">40:41</span> **卢正石** 是有可能的。
+
+<span class="paragraph-timestamp" data-ts="40:42">40:42</span> **崔胜准** 说起来，Kimi 2.7 出来了。 代码方面。
+
+<span class="paragraph-timestamp" data-ts="40:45">40:45</span> **卢正石** Kimi 2.7 悄悄地出来了， Kimi 2.7 在代码方向上又推出了什么东西。
+
+<span class="paragraph-timestamp" data-ts="40:52">40:52</span> **崔胜准** 对，现在代码版出来了。 但有点被埋没了。 相对现在来说。
+
+<span class="paragraph-timestamp" data-ts="40:55">40:55</span> **卢正石** 不过美国和中国之间也是某种胆小鬼博弈， 而且有一点囚徒困境在起作用， 如果美国把它变成战略资产并加以控制， 中国就可以把那些东西放开， 然后把美国以外的其他国家都拉拢过来。 如果美国和中国都封锁的话， 其实韩国也会有机会。
+
+<span class="paragraph-timestamp" data-ts="41:20">41:20</span> **崔胜准** 机会就来了。
+
+<span class="paragraph-timestamp" data-ts="41:21">41:21</span> **卢正石** 是的。所有人都必须把火箭送上月球， 真的是整个国家都在朝着梦想奔跑， 可能会展开那样一场疯狂的生意。 这坏吗？不坏。挺好的。
+
+## 韩国的独立基础模型机会    *41:35*
+
+<span class="paragraph-timestamp" data-ts="41:35">41:35</span> **崔胜准** 现在在自主基础模型方面，我只是猜测， 这可能会是一个好议题。 8月初大概是第二轮评审。
+
+<span class="paragraph-timestamp" data-ts="41:44">41:44</span> **卢正石** 是的。关于这一点， 我们当然也会有机会再仔细看一次， Upstage 推出了 100B 模型， SK Telecom 推出了 500B 模型， 而且现在形势这样发展，国家层面也 准备继续投入资源， 所以不管从电信公司的立场， 还是从 Upstage 的立场，或者其他创业公司的立场来看， 奔向大大小小的前沿模型， 其实都有足够的激励。 现在比钱、比钱更重要的是机会，以及对某种未来的准备， 应该叫 future readiness 吗？ future readiness 现在已经成了比钱更珍贵的资产。 钱反而是更常见的时期。
+
+<span class="paragraph-timestamp" data-ts="42:35">42:35</span> **崔胜准** 所以总之，我们也要看看这些， 我在历史中想到一本叫《人有人的用处》的书， 是 Norbert Wiener 1950 年写的，后来又不断推出修订版， 是一本很有名的书。 也有译本，不过现在已经绝版了， 有些局面会让我想起这本书。 它是一部名著，讨论在自动化社会中，人的人的用处 究竟应该是什么，类似这样的内容。 与其现在详细说，不如说我先想到了这一点。
+
+## Fable 5 vibe check与人的反思    *43:06*
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> **崔胜准** 我提到这个的原因是，Fable 5 的 vibe check， 我自己也算是做过了。 虽然没用几天，也没用过几次， 但那时候我想分享一点感想。 我这些年来读过几次，因为内容很好， 所以摘抄下来的文章有几篇。 我把那些内容输入进去，是关于教育的文章， 然后和 Fable 聊了聊。 有意思的是，这其实是两个会话， 一个是对话会话，另一个是把那段对话 再回顾一遍的会话。 但是在对话的过程中， 我个人感觉模型有一些抬高我的部分。 可是在另一个会话里，它很好地指出了那一点。 也就是说，观察奉承和反思能力本身， Claude 系列原本就比较擅长这个，而它也做得很好。 Fable 是这样。所以那一点给我留下了印象， 我也整理了一些文字。 而与此同时，我在做 Dwarkesh 那一期时感受到的是， 虽然上一次会话也向大家介绍过， 这会导致生成式认知衰退。 所以我也试着做了 flash card， 为了制作那些让我无论如何都想捕捉到的东西， 我找了更多可以继续阅读的材料。 所以模型推荐给我一本书。 虽然它推荐了好几本， 但我不可能全部都讲， 所以我买了一本正好合我心意的， 然后和 Fable 5 一起读了那本书的序言， 那个体验相当有意思。 我没能详细分享的原因是， 这大概是现在正在发生的一种趋势， 因为讨论的是太狭窄的领域， 里面点缀着很多生僻术语， 所以越来越感觉很难分享给其他人。 如果想稍微学习一下，就会深入挖掘狭窄领域，不是吗？ 于是这就变成了 不太适合随便分享的内容。 但说到底，这也是模型 告诉我的一个有趣概念， The purpose of a system is what it does， 这是控制论里通用的说法， 我之前并不知道。 但这次在那段对话中，我知道了这个说法， 也真觉得它很对。 我和模型进行的那段对话本身， 原来就是我在做的事情。 不管我想做什么，和我的意图 或这些 goal 无关，实际正在做的事情 会显露出模型和我的关系。 所以我和 Fable 5 对话时想到的是， 我虽然也会做一些生产性的、实用性的事， 比如生成代码， 但也是一个会这样钻进某个让我着迷的东西里，
+
+<span class="paragraph-timestamp" data-ts="45:59">45:59</span> **崔胜准** 并享受这个过程的人，这成了我重新认识自己的契机。 所以我觉得这真的很对。 如果把这一点反过来转移过去看， 就是回顾一下和模型的对话。 这段时间以来，我和模型们聊了什么， 那当然就是那个人使用模型的方向性。 所以有些人会非常实用，生成代码， 专注于把它用于自己的某些工作， 有其实用的一面， 有些人可能会有探索好奇心的倾向， 而这些会通过自己与模型的关系显露出来。 能够稍微意识到这一点的契机， 是和 Fable 5 对话的时候， 而且它有些部分确实很出色。 在某些方面。
+
+<span class="paragraph-timestamp" data-ts="46:41">46:41</span> **卢正石** 没错。其实我现在在出差， 中间会议又实在太多， 所以这次 Fable 5 发布之后，我还没有时间坐下来 正式好好用一用。 所以完全没有感觉，现在看来也用不了了。
+
+<span class="paragraph-timestamp" data-ts="46:57">46:57</span> **崔胜准** 不过我模糊地觉得， 这大概只会是一场小插曲。 但 Fable 5 也不是所有方面都好，在 Opus 4.6 时期 我把那个写作效果很好的提示词拿来跑的时候， 也许是那个提示词本身的问题，但感觉有点平淡。 有一种收益递减的感觉。 不过在其他模式下， 我感觉确实有一些令人惊讶的部分。 虽然也只是印象而已，但说到底如果想弄清楚， 就只能从多个角度去实验。 找到适合自己的。而且时间线上， 压倒性地涌现出了和 3D 相关的东西， 以及和游戏相关的东西。
+
+<span class="paragraph-timestamp" data-ts="47:38">47:38</span> **卢正石** 原来如此。
+
+<span class="paragraph-timestamp" data-ts="47:39">47:39</span> **崔胜准** 感觉它很擅长做好那些事情。
+
+<span class="paragraph-timestamp" data-ts="47:41">47:41</span> **卢正石** 我们以后回头看这个时期， 会怎么记住它呢？
+
+<span class="paragraph-timestamp" data-ts="47:48">47:48</span> **崔胜准** 不好说。 到明年这个时候，差不多四周年的时候， 也许又得再想一想吧。未来很难知道。
+
+<span class="paragraph-timestamp" data-ts="47:56">47:56</span> **卢正石** 我们正忙得不可开交地往前跑，也许后人看来， 那时是 AI 革命的某个决定性时期， 也可能会这样记录吧。谁知道呢。 过个两三年之后，也许会出现更离谱的 那种变化，到时那个时候才又是真正的时刻。没错。
+
+<span class="paragraph-timestamp" data-ts="48:16">48:16</span> **崔胜准** 去年6月14日，也就是今天，准确说是昨天发生的事， 如果到那时候再倒回来讲，大家会相信吗？ 出口管制了。
+
+<span class="paragraph-timestamp" data-ts="48:27">48:27</span> **卢正石** 我完全不记得去年7月在做什么。
+
+## Claude Code之后工程实践的变化    *48:31*
+
+<span class="paragraph-timestamp" data-ts="48:31">48:31</span> **崔胜准** 5月是 Claude Code 的话题。 2月 Claude Code 出来，到了5月，社区正好开始明白 原来 Claude Code 是这样用的， 所以6月也在那条延长线上。 现在这中间的变化太惊人了。
+
+<span class="paragraph-timestamp" data-ts="48:45">48:45</span> **卢正石** 真是不知道该怎么说。 真的，没错。 我记得去年3、4月的时候， 正是 3.7 Sonnet、3.7 什么的陆续出来的时候， 因为 Claude Code 是2月出来的嘛。 5月、6月是社区刚开始在 YouTube 上一点点出现 “Claude Code 到底是什么”、 “这种东西该怎么用”的时候。是这样。然后过了一年， 哎呀，真是恍如隔世。 这期间 Sora 之类的也出来了， Codex 一度有些失手， Anthropic 从去年秋天开始，借着 Claude Code 的某种加成， 一路把公司估值抬了上去，
+
+<span class="paragraph-timestamp" data-ts="49:26">49:26</span> **崔胜准** 6月初的话，正好是 Google I/O 结束一个月后， 那时 2.5 还很火。 用 Gemini 2.5 可以做很多事情。 不过我说个很小的事， 最近开发 Minecraft 智能体的时候， 我开始用 Rust 了。 虽然不是我自己在用，
+
+<span class="paragraph-timestamp" data-ts="49:43">49:43</span> **卢正石** 是智能体在用吗？
+
+<span class="paragraph-timestamp" data-ts="49:45">49:45</span> **崔胜准** 结果效果非常好。 我吓了一跳。
+
+<span class="paragraph-timestamp" data-ts="49:47">49:47</span> **卢正石** 是啊。工程的概念其实已经变了， 现在虽然已经没有人在真正写代码了， 但即便如此，如果我们要做出某种可用的系统， 还是需要工程。 只是它不再像以前那样 一行一行地写代码而已， 我们仍然是在和智能体一起，站到更高一层， 解决工程问题、做架构设计。
+
+<span class="paragraph-timestamp" data-ts="50:17">50:17</span> **崔胜准** 是的。可是在几千行规模时 完全没有问题的东西，到了几万行，我大概三天之内 也突然膨胀到了六万行左右， 那样一来就会产生很多需要重构的重复， 为了重构这些东西， 就会需要能够抓出语义层面重复的工具， 也会开始带着这种方向去做。 Corca 的 圭英 CTO 又做了一个很有意思的东西，叫 Nose， 是一个闻代码味道的工具， 这些东西也一下子就做出来了。 总之，为了把这些事情做好， 工程还是会持续需要的。 但现在似乎也在发生一种自举， 也就是制作那些本身能帮助工程的工具。
+
+<span class="paragraph-timestamp" data-ts="50:59">50:59</span> **卢正石** 所以这真是一个决定性的时期，
+
+## AI Frontier社区的角色    *51:02*
+
+<span class="paragraph-timestamp" data-ts="51:02">51:02</span> **卢正石** 我们 AI Frontier 这边， 胜准、我，以及现在超出我们之外， 其实围绕 AI Frontier，有非常多的人 在给我们提供各种信息，也已经形成了社区。 所以我也觉得，我们应该去寻找 更多能够贡献的部分。 而且现在这个时期变化太快了， 已经不是我们单纯按一周为单位 总结内容、聊聊这些事情 就能应对的了。 我也感觉到，现在已经到了 不可能再用人的速度跟上的程度。 而且我也能看见，如果把周围社区里的人 彼此连接起来， 会诞生非常多很好的机会。 但我自己毕竟也活在人类的时间里， 有些事情做不到， 所以也觉得应该把它系统化。 再进一步说，这里硅谷 有非常多机会， 而在我看来，韩国各位的 水平完全不逊色。 那么在这里和首尔之间， 虽然很多人也都抱着同样的想法， 但我觉得还是需要更有力地连接起来。 韩国正在发生的事情， 反过来也应该更多地介绍到这里来。 我也觉得应该去做宣传。 这已经不是单纯以国家为单位 去做什么的事情了， 而是真正发生在地球尺度上的事情，所以我们也要 持续寻找自己该做的事。 同时，我在生物学那边 也看到了太多有意思的东西，一看那些， 每天时间就过得特别快。
+
+<span class="paragraph-timestamp" data-ts="52:52">52:52</span> **崔胜准** 应该不可能全都做吧？ 毕竟还得活在人类的时间里。
+
+<span class="paragraph-timestamp" data-ts="52:55">52:55</span> **卢正石** 不可能全都做。 所以既然没法全做，我也到了该抓住 最有价值的一件事、 影响最大的一件事的时候了， 也得再想想系统的问题。
+
+## 第100期之后的计划与新挑战    *53:10*
+
+<span class="paragraph-timestamp" data-ts="53:10">53:10</span> **崔胜准** 这就是带着这些苦恼走到的第100期。
+
+<span class="paragraph-timestamp" data-ts="53:13">53:13</span> **卢正石** 那我们就往下一个阶段走走看吧。 所以我想在这里多见一些有意思的朋友， 做几个这样的 session。 有一些 Palantir 的工程师， 是真正做过 FDE 的工程师。 所以可以把这些工程师请来， 直接问他们到底做过什么工作。 Palantir 是 AI 公司吗？ 也可以做一期深入了解 Palantir 的 这样的 session。 当然，去问 Frontier Lab 里正在发生什么， 多少是有点失礼的。 但 Palantir FDE 出身的人 创业的人也很多，所以可以向那些人问一问。 而且最近 FDE 这个词本身也非常流行。 我确实在想， 应该去 tap 一下那里。
+
+<span class="paragraph-timestamp" data-ts="54:01">54:01</span> **崔胜准** 小小地，就当是我们自己庆祝一下。
+
+<span class="paragraph-timestamp" data-ts="54:05">54:05</span> **卢正石** 等我回韩国之后， 我们也试着改一下 AI Frontier 的系统， 再考虑一下 能不能把规模进一步扩大。
+
+<span class="paragraph-timestamp" data-ts="54:14">54:14</span> **崔胜准** 好的。
+
+<span class="paragraph-timestamp" data-ts="54:15">54:15</span> **卢正石** 那么，胜准，今天就到这里收尾吧。
+
+<span class="paragraph-timestamp" data-ts="54:18">54:18</span> **崔胜准** 辛苦了。

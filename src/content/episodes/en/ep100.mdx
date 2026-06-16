@@ -1,0 +1,366 @@
+---
+episodeNumber: 100
+title: "AI Frontier Episode 100: Claude Mythos, Fable 5, and What Comes Next?"
+description: "AI Frontier reaches episode 100 with a discussion of Anthropic Fable 5, Mythos-class models, post-training, dataset engineering, loop engineering, RSI, sovereign AI, and Korea's foundation model opportunity."
+publishedAt: 2026-06-16
+duration: "54:19"
+youtubeId: "kh03_wOGvJ0"
+thumbnail: "https://i.ytimg.com/vi/kh03_wOGvJ0/maxresdefault.jpg"
+notionUrl: "https://erucipe.notion.site/37ed5c9e7e5980d6a6fce5160fd67448?pvs=73"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+chapters:
+  - time: "0:00"
+    title: "100 episodes of AI Frontier and three years of change"
+  - time: "3:45"
+    title: "Scaling and the new importance of post-training"
+  - time: "6:08"
+    title: "Dataset engineering behind frontier models"
+  - time: "7:49"
+    title: "How AI spreads into biology and other domains"
+  - time: "12:07"
+    title: "Startup ambition and capital at frontier speed"
+  - time: "14:27"
+    title: "Frontier networks and the power of information flow"
+  - time: "15:26"
+    title: "The security question behind Mythos and Fable"
+  - time: "16:38"
+    title: "What the names Mythos and Fable signal"
+  - time: "18:08"
+    title: "Dario Amodei's timeline and the road to RSI"
+  - time: "22:03"
+    title: "AI as a strategic asset and market signal"
+  - time: "24:19"
+    title: "Loop engineering as a new language for agents"
+  - time: "25:55"
+    title: "Fable 5 pricing and test-time compute"
+  - time: "30:06"
+    title: "Fable API costs and the commercial logic of loop engineering"
+  - time: "34:09"
+    title: "RSI and Anthropic's self-improvement trajectory"
+  - time: "35:49"
+    title: "Compute scale and the sovereign AI race"
+  - time: "41:35"
+    title: "Korea's foundation model opportunity"
+  - time: "43:06"
+    title: "Fable 5 vibe checks and human reflection"
+  - time: "48:31"
+    title: "Engineering after Claude Code and agent workflows"
+  - time: "51:02"
+    title: "The role of the AI Frontier community"
+  - time: "53:10"
+    title: "Plans after episode 100"
+lang: "en"
+alternateSlug: null
+---
+
+## 100 episodes of AI Frontier and three years of change    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is June 14th, 2026, a Sunday morning. But since I'm in San Francisco right now, it is 4 p.m. on Saturday here. We have finally reached our 100th episode. Wow, let's at least give ourselves a round of applause. Really, what began with Seungjoon and me thinking of it as studying, saying, let's try doing our own kind of banter, has now been about three years in terms of time, and 100 episodes in terms of count. In that time, thanks to our AI Frontier podcast, we have met so many wonderful people we otherwise never would have met, and it has also become a channel where we can receive frontier news faster than almost anyone. Seungjoon, we have been running breathlessly for three years.
+
+<span class="paragraph-timestamp" data-ts="0:50">0:50</span> **Seungjoon Choi** Three years really flew by, and it has been fun, but looking back, in another sense, it feels like the world has completely changed.
+
+<span class="paragraph-timestamp" data-ts="0:57">0:57</span> **Chester Roh** Even three years ago, ChatGPT had only just come out. That was when GPT-4 had just been announced, and then Sébastien Bubeck at Microsoft was calling this Sparks of AGI, and we were looking at those papers dissecting GPT-4, including the part about drawing pictures. From drawing a unicorn to now having a pelican riding a bicycle, over these roughly three years, all the things people said would be impossible have been broken through. And after last fall, this is how it felt to me. After last fall, I felt that the slope of the graph had definitely changed. And as this year's winter passed and spring began, I remember that everyone started talking about AGI quite openly and frequently. Then spring came. In April, Anthropic briefly revealed a model called Mythos, and then around this Tuesday, about two months later, it was suddenly released, wasn't it?
+
+<span class="paragraph-timestamp" data-ts="2:05">2:05</span> **Chester Roh** They released it under the new name Fable, and after that, once again, the community started doing vibe checks and talking about this and that, about what was changing, and only three days had passed, but yesterday, due to U.S. government regulations, a policy was announced that people who are not U.S. nationals would not be able to access Fable at all. That is probably why things are so noisy. And there was a lot of talk even when Fable was announced. When I asked some bio-related queries, it would immediately shut down a bit and say, I cannot answer this, and the model would switch to Opus 4.8, so I wondered, what is this? That was the kind of thought I had. And while I have been here in San Francisco, I have met a great many startups and companies building datasets, companies building agents, companies saying they will develop new world models,
+
+<span class="paragraph-timestamp" data-ts="3:03">3:03</span> **Chester Roh** and truly, founders in their early twenties who are dreaming big. I met a great many of them, and while also hearing from people at xAI, Thinking Machines, Meta, and frontier labs, it is a little difficult to ask about detailed internal matters, things that are truly top secret, and it is also difficult for them to tell me, but at a high level, I was able to hear many insider accounts about where the frontier is heading and where the biggest issues currently lie, so I think that was good.
+
+<span class="paragraph-timestamp" data-ts="3:37">3:37</span> **Seungjoon Choi** Where do they lie?
+
+<span class="paragraph-timestamp" data-ts="3:38">3:38</span> **Chester Roh** First, regarding this AI race, of course no one is saying this will not work.
+
+## Scaling and the new importance of post-training    *3:45*
+
+<span class="paragraph-timestamp" data-ts="3:45">3:45</span> **Chester Roh** Everyone says, of course it will work, but the key issue is where exactly that part will be. Naturally, it seems to be in the part where scale increases. So when scale is increased even further, what kinds of things happen? As for infrastructure and the things related to that, there seems to be no need to even think about it. There is definitely a belief that increasing scale will take us to the next place. As the model size grows and the corresponding infrastructure is built, naturally, more datasets become necessary. As for datasets related to pretraining, of course, even with pretraining, quality has to keep improving endlessly, so through Stanford graduate students doing research on that, or students in Professor Percy Liang's lab, and people like that, we can see how, using models smaller than billion-scale models,
+
+<span class="paragraph-timestamp" data-ts="4:42">4:42</span> **Chester Roh** the quality of pretraining datasets can be raised much higher, and how much that improves model performance to some extent. But that really seems to be an area where, behind the frontier, on the research side, people are taking up these topics, and on the frontier side, as obvious as it may be, it is post-training. For post-training, how many more datasets are needed, and in terms of generating those datasets, there are also stories about how booming the companies supplying them are. And the pretraining infrastructure itself, this is a bit different from pretraining, right? In each and every step of that process, inference is actually being run, and the results of that process are being evaluated, so there are enormous engineering challenges there. Inference has to run while the training loop is running too,
+
+<span class="paragraph-timestamp" data-ts="5:42">5:42</span> **Chester Roh** and the processes do not all finish at the same time, so then you gather the unfinished ones into batches and train, what is it? Recalculate the loss, then gather the ones that finish a bit later, calculate the loss, and the infrastructure related to that, I heard detailed stories about how far it has advanced, but actually, regarding those parts, I do not think I can say here how one group does it or how another group does it. But the core is the engineering infrastructure for post-training,
+
+## Dataset engineering behind frontier models    *6:08*
+
+<span class="paragraph-timestamp" data-ts="6:13">6:13</span> **Chester Roh** then the supply of datasets for it, and the datasets themselves, I think it is like this. For example, even if there is data in finance, finance ranges from investment banking to tax processing, to simply handling our own personal finance tasks, so there are many different tasks, and it seems they are making those datasets by breaking down each task one by one. And as model scale grows further, the amount of data naturally has to increase, so what that means is that for truly every domain, every professional expert role that exists in the world, those case-by-case datasets are all being generated, and those are simply being trained into the model. I get the sense that this process is continuously running. But the more they do that, the more the benchmarks improve, so all the frontier labs are in the process of mechanically running those things,
+
+<span class="paragraph-timestamp" data-ts="7:20">7:20</span> **Chester Roh** and at places like Meta, since they are probably a little behind Anthropic or OpenAI right now, what additional efforts they are making to leapfrog that was very interesting. The core lies in post-training. It lies in scaling up and post-training, and in the infrastructure for post-training and the corresponding datasets. One is that a major axis of competition exists in this area.
+
+## How AI spreads into biology and other domains    *7:49*
+
+<span class="paragraph-timestamp" data-ts="7:49">7:49</span> **Chester Roh** And then this is about LLMs, about the large-scale language models that we know, and we've already talked a lot about other areas beyond this. Other domains, domains that are not just LLMs, and the areas of interest in those other domains, and how to approach those things, it feels like a kind of playbook is being established. So biology, and we've talked a lot about Periodic Labs as well, areas like material science, and since I'm especially interested in the bio side, I heard a lot about what is happening there and what people are focusing on. I heard a lot of those kinds of stories.
+
+<span class="paragraph-timestamp" data-ts="8:34">8:34</span> **Seungjoon Choi** Has this become a time of awakening for Chester? There must have been a reason Chester went, right?
+
+<span class="paragraph-timestamp" data-ts="8:38">8:38</span> **Chester Roh** Right. There is a business I'm targeting, and there are several frontier startups leading this business. So I used my network to find and meet people at those frontier startups in different ways, and they were all younger than I expected. Very, very young, and I think that's how it is. To summarize, in LLMs, over the last three or four years, we've watched what happened. If you look at what we've been doing over those three or four years, and what the Frontier Labs have been doing, they broke through one by one the things everyone said would never work. You can do this, but not that. You can do this, but not that. Those things people kept saying you could do this but not that about, then reasoning models came out, and even after reasoning models came out, more post-training and things like that emerged, and model performance kept increasing.
+
+<span class="paragraph-timestamp" data-ts="9:37">9:37</span> **Chester Roh** So now, in fact, things are coming out that are comparable to AGI. And in other domains, especially drug development, or the longevity side and areas like that, from the perspective of people who were already in those industries, typically people at Genentech or at major pharmaceutical companies, there were things they would say, no, that won't work, that won't work, that's difficult. And it was also interesting that those people still think that way. On the other hand, the people approaching those existing industries completely from the AI side think that right now is about the GPT- 2 moment, and they think from the complete opposite perspective. Why that is, I think this analogy might be fitting. When we used LLMs with prompts, before Codex and Claude Code came out, if you think back to older machine learning,
+
+<span class="paragraph-timestamp" data-ts="10:40">10:40</span> **Chester Roh** the form of the dataset had to be defined for each individual problem, and for that, the model, whether a convolutional neural network or something else, even within CNNs, the architecture had to be changed somehow to fit that, and then there was a training method for it, and that individual problem would get solved. But in fact, as we moved to LLMs, and then to multimodal, and as RL environments and RL and things like that entered the picture, it all gets solved as one problem, and if a large model generalizes through training, then specific problems can all be solved too. That's the principle everything is running on. These people think exactly the same way. So on the DNA side, things related to DNA that arise there, things that arise at the protein level, and beyond the protein level, things that arise at the cell level, which are called organs.
+
+<span class="paragraph-timestamp" data-ts="11:33">11:33</span> **Chester Roh** So things that arise in those areas, let's just assume those are different modalities. This is sound, this is an image, and that is Video, defining them as different modalities, and in fact, you just put them all in together and train, right? They're running things from a similar perspective. But the biggest thing I gained this time was seeing that when they just do it that way, it actually works. This too could just be solved as a problem if done that way.
+
+## Startup ambition and capital at frontier speed    *12:07*
+
+<span class="paragraph-timestamp" data-ts="12:07">12:07</span> **Seungjoon Choi** Didn't Chester briefly mention something like that in the chat? That the young people have Elon Musk-level dreams, something like that.
+
+<span class="paragraph-timestamp" data-ts="12:14">12:14</span> **Chester Roh** That's right. Valuations here are actually extremely high. In Korea, when people start companies now, at least so far, there are still far more service companies than research-side companies. But here, people say the current transformer has problems. So we need a new world model, and the world model I have in mind is like this. And when the people saying things like that are geniuses who entered college at 17 and are now about 21, or geniuses who entered college at 14, capital seems to respond very quickly. On the other hand, another capital-side perspective is, two years ago there were also lots of kids saying things like that, but in the end, they couldn't solve a single real-world problem, they all ran away, and the companies failed. I think those perspectives coexist here too. But for now, hope still dominates, and when someone starts a company,
+
+<span class="paragraph-timestamp" data-ts="13:14">13:14</span> **Chester Roh** that company doesn't necessarily have to be sold to a Frontier Lab. There are also a great many cash-rich enterprises here that want to do things similar to Frontier Labs, so for now, both capital and startups still have many exit chances where they can make quite a lot of money along the way, even if it is not a major exit. In the form of acquihires. So with expectations for those things, when five or six people start a company, assuming they have some level of track record, it is extremely common for them to ask for valuations of roughly $214 million to $357 million, and the amounts they raise are also in the tens of millions of dollars. Since the exchange rate has now widened to 1,500 won, the difference feels much larger, and because the gap in this area is so large, I did think that Korean founders
+
+<span class="paragraph-timestamp" data-ts="14:18">14:18</span> **Chester Roh** need to have much more direct access to the U.S. market, or that we need to create more of those kinds of connection channels that allow them to do that.
+
+## Frontier networks and the power of information flow    *14:27*
+
+<span class="paragraph-timestamp" data-ts="14:27">14:27</span> **Seungjoon Choi** That's something Minseok always says.
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **Chester Roh** And thanks to Minseok, I was actually able to meet young people here whom I could not have met otherwise, and not through the Korean network, but through the Indian network, the Chinese network, and in fact the Chinese network is extremely strong. So there are many Chinese people at Frontier Labs, and they also unexpectedly shared a lot of things, so I can't introduce them, but I learned a lot of information about roughly where the frontier is now, and what the situations at each company are like. Seungjoon, when I return to Korea, I will tell Seungjoon all of that in private.
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **Seungjoon Choi** Then since this is the first time we're doing this in two weeks, shall we look through the news now that our tongues are loosened up a bit?
+
+<span class="paragraph-timestamp" data-ts="15:21">15:21</span> **Chester Roh** I suppose we have no choice but to talk about Mythos and Fable.
+
+## The security question behind Mythos and Fable    *15:26*
+
+<span class="paragraph-timestamp" data-ts="15:26">15:26</span> **Seungjoon Choi** So as Chester laid out at the start, this was announced suddenly, and Opus 4.8 came out on May 28, around then, I think, and after we talked about that issue, we said it would come out in the coming weeks, but it came out in 12 days, not even two weeks, and Fable 5 came out. The reason it came out was, we built safeguards. So as Chester said earlier, it seems like they are mechanically blocking a broad range of things related to security or biology at the front end. Because those things don't get through. was to package Mythos as Fable and distribute it, and if we skip ahead three days and look at yesterday's situation, apparently some developer on Amazon's side reported the jailbreak to the government, somehow. I don't know the exact story either, but it seems that, at least, it led urgently to a decision in the direction of export controls.
+
+<span class="paragraph-timestamp" data-ts="16:27">16:27</span> **Seungjoon Choi** Fable 5 came out, and I explored various things around it. First, the name is interesting. Mythos meant myth, right? But Fable means a fable. Right. There was something implied by that.
+
+## What the names Mythos and Fable signal    *16:38*
+
+<span class="paragraph-timestamp" data-ts="16:38">16:38</span> **Seungjoon Choi** So the naming system up to now had been Haiku, Sonnet, Opus, moving from short poems whose poetic scale grows toward something more like a completed work, and Opus is used not only in poetry but also in music to mean a work, but now it has changed completely. Into oral culture, not writing but oral myth, though it was also written down, anyway, what had been talking about myth became a fable expressed popularly for people, distributed like Aesop's Fables and so on, and that is ultimately what became Fable. Mythos is still locked away, accessible only to some,
+
+<span class="paragraph-timestamp" data-ts="17:15">17:15</span> **Chester Roh** packaged as some being in the divine realm, and what is handed down from it to humans, you could see those things as being expressed as Fable.
+
+<span class="paragraph-timestamp" data-ts="17:25">17:25</span> **Seungjoon Choi** But this was pretty interesting. When I dug into the name, this was, of course, something the model said, but when I asked because I was curious what the basis of this name was, it pointed out these parts, and I found them fairly convincing. So the structure of a restricted original and a safely released version is intertwined with the name itself. But if you go straight into why Fable was closed off, it means that with a jailbreak, the security- and biology-related functions that had been said to be dangerous could be turned on. So closing it urgently was a preemptive measure, but I think it may have been extremely complex, not only about safety.
+
+## Dario Amodei's timeline and the road to RSI    *18:08*
+
+<span class="paragraph-timestamp" data-ts="18:08">18:08</span> **Seungjoon Choi** So let me run through the timeline. This was something I discussed with GPT-5.5, and the question was this. Let's investigate Dario Amodei's blog series. Please cover everything from Machines of Loving Grace to the most recent one. Read each one deeply, quote the key parts, and tell me your candid impressions and thoughts. So I went through Dario's blog. Machines of Loving Grace was already around the end of 2024, I think. Quite a bit of time has passed, and in the meantime, the relatively recent one was about adolescence, and there was also a time when he said DeepSeek needs to be controlled, talking about export control and things like that. And then the relatively recent one was a rather subtle and thought-provoking piece about adolescence, the adolescence of technology, and the very recent one, just a few days ago, was this.
+
+<span class="paragraph-timestamp" data-ts="19:05">19:05</span> **Seungjoon Choi** Policy on the AI Exponential, so Dario also went on at length about things related to policy. But rather than this incident, when I went through the very end, May 28 was when Opus 4.8 came out. At that time, the Series H valuation was announced at $965 billion. And June 1, June 1 was probably the day RSI was announced. RSI refers to Recursive Self-Improvement, self-amplification, and Anthropic filed that with the SEC, the Securities and Exchange Commission, because it is what a company has to file first when saying it will go public, which is why it has the “1” attached: they submitted an S-1 registration statement. Usually, when this is submitted, competitors or the public can learn various information, so apparently there is a draft that is kept confidential for a certain period. June 1 was that timing.
+
+<span class="paragraph-timestamp" data-ts="20:04">20:04</span> **Chester Roh** That's the first I've heard of it.
+
+<span class="paragraph-timestamp" data-ts="20:05">20:05</span> **Seungjoon Choi** The timing of the RSI announcement, and then June 9 is when it shows up once. Anthropic seems to have wanted to distribute Mythos somehow. Because Anthropic needed to show its capabilities. But Anthropic is a company that has always talked about safety, and to avoid self-contradiction, Anthropic had to manage it well and somehow make it distributable, so Anthropic needed to pare it down. But in three days, it was shut down by the government, by the U.S. government. So I asked, just for fun. Would this be unfavorable or favorable for the IPO? But of course, TAM, I mean, this is total addressable market, right?
+
+<span class="paragraph-timestamp" data-ts="20:46">20:46</span> **Chester Roh** Total addressable market, yes.
+
+<span class="paragraph-timestamp" data-ts="20:48">20:48</span> **Seungjoon Choi** So if we think of TAM as the total market, this is obviously unfavorable for the total market. So in the short term, this is an unstable signal to the market, showing that state power can handle this at any time, while at the same time indirectly proving that it has enough capability to warrant that. So if this probably gets recovered from as a happening, and with OpenAI still unable to release GPT-5.5, then timing-wise, what corresponds to this RSI gives almost that same sense of deja vu, right? At the end of last October, on October 30, Jakub Pachocki said that, right. The 2026 point that became the occasion for Sam Altman and our Runaways' Alliance,
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **Chester Roh** The August timeline.
+
+<span class="paragraph-timestamp" data-ts="21:35">21:35</span> **Seungjoon Choi** Anyway, around then, he put out an AI researcher intern, and said that by 2028, there would be a fully autonomous AI researcher, and that was also self-amplifying. But now those things are lining up, and about a month ago, Andrej Karpathy joined Anthropic, and he joined the pretraining team. So it may be a weak signal, but in any case, the fact that someone who had been doing Autoresearch joined there fits together with this in certain phases,
+
+## AI as a strategic asset and market signal    *22:03*
+
+<span class="paragraph-timestamp" data-ts="22:03">22:03</span> **Seungjoon Choi** and, as many people are saying now, isn't all of this IPO maxing? Isn't it a strategy to raise the valuation as much as possible? In any case, the part I also agree with is that now this feels like it has been officially recognized as a strategic asset. It is not an AGI issue. The word AGI sometimes feels faint these days, because it is uneven: there are areas where it is incredibly good, and there still seem to be areas where investment is not being made. So there is unevenness, but in some areas it performs extremely well, and after using Fable for three days this time, there are already people missing it. I read two kinds of reactions. Diminishing returns, I don't know what's better about this, some people say, compared with Opus, while others say this is something you should pay money to use. I saw quite a few people on the timeline
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **Seungjoon Choi** already saying this seems meaningful.
+
+<span class="paragraph-timestamp" data-ts="22:58">22:58</span> **Chester Roh** Regarding the returns there, how should I put it? The people who don't feel the returns may be in sectors where they don't need to go beyond the boundaries of Opus 4.8.
+
+<span class="paragraph-timestamp" data-ts="23:09">23:09</span> **Seungjoon Choi** That is not a bad thing; at that level, they may be at a happy point. And they save money too.
+
+<span class="paragraph-timestamp" data-ts="23:17">23:17</span> **Chester Roh** Yes. This inevitably varies from person to person, so I don't think we can simply generalize from someone's point of view and read it that way. But as for exactly how good this model's performance itself is, honestly, we are living in an era where even benchmarks are almost meaningless, so we cannot say it is twice as good or three times as good. But for people who had been doing some kind of frontier research, especially in cybersecurity or biology, people who had been doing the best research in those areas, there were certainly parts where they felt it was noticeably better. it accomplished things it couldn't do before,
+
+<span class="paragraph-timestamp" data-ts="23:56">23:56</span> **Seungjoon Choi** so anyway, that is the first takeaway. So I also looked at Fable 5's model system card, but not in detail. It is hundreds of pages long, after all,
+
+<span class="paragraph-timestamp" data-ts="24:07">24:07</span> **Chester Roh** and it probably wasn't written by a human either, so we can't go through every line of it.
+
+<span class="paragraph-timestamp" data-ts="24:11">24:11</span> **Seungjoon Choi** So it was more like doing a vibe check. And the next thing I thought about was,
+
+## Loop engineering as a new language for agents    *24:19*
+
+<span class="paragraph-timestamp" data-ts="24:19">24:19</span> **Seungjoon Choi** these days another sales and marketing term has appeared. Loop engineering.
+
+<span class="paragraph-timestamp" data-ts="24:24">24:24</span> **Chester Roh** Right, loop engineering came after harness engineering, but what is that supposed to be? I have been hearing people talk about it here and there too.
+
+<span class="paragraph-timestamp" data-ts="24:31">24:31</span> **Seungjoon Choi** Just from what I saw on Twitter, Boris talked about it, and Boris Cherny is the person who makes Claude Code. Boris talked about it, and then Peter Steinberger, who made OpenClaw, and two people at OpenAI around the same time tweeted about that loop. We need to shift our thinking toward building loops, handing work off to them, and letting them run. But it has already been over a year since the Ralph loop came out, so the catch point seems to be how this is different from the Ralph loop. The Ralph loop was extremely simple, but the loop engineering people are talking about now involves somewhat more complex things, and what I end up connecting it with is the recent keywords announced by Claude, meaning Anthropic, such as Dynamic Workflows and ultracode, which are structures that apply heavy orchestration.
+
+<span class="paragraph-timestamp" data-ts="25:22">25:22</span> **Seungjoon Choi** And that is not something only OpenAI or Anthropic is doing; OpenAI is of course doing it as well. So the main models expanding and collapsing, expanding and collapsing things is, in a sense, already formalized. In that case, when token costs can increase enormously, how expensive is Fable? If we view this concept of loop engineering as marketing rhetoric, what happens if you just delegate to it and run it carelessly? I tried measuring that.
+
+## Fable 5 pricing and test-time compute    *25:55*
+
+<span class="paragraph-timestamp" data-ts="25:55">25:55</span> **Seungjoon Choi** First of all, Fable is basically twice as expensive as Opus. So right now, for 1M input and output tokens, the output price is $50. We previously looked at why input is cheap and output is expensive when we discussed the term prefill. To remind ourselves, what was it? Why is output more expensive? Because of decode.
+
+<span class="paragraph-timestamp" data-ts="26:19">26:19</span> **Chester Roh** Right. Decode has to run one step at a time, whereas for input, prefill can be done all at once by hitting it with a batch. So in theory, the difference should be much greater than that 1-to-5 price gap, but it seems like they just averaged it out. It feels like they are copying one another as they build these pricing structures.
+
+<span class="paragraph-timestamp" data-ts="26:38">26:38</span> **Seungjoon Choi** And the insight from the Dwarkesh episode was that the price becomes a basis for reverse-calculating it. So if we simply think about 5 and 25 right now, is it twice as much as 4.8? If 4.8 is a 5T-class model, then we can vaguely think of this as being 10T-class.
+
+<span class="paragraph-timestamp" data-ts="26:57">26:57</span> **Chester Roh** I'm not really sure about that. We have no idea at all how many T 4.8 is or how many T Mythos is. From the outside, with open-source models, if we think realistically from a startup's perspective about doing training ourselves, the max would probably be around 3 to 50B. In fact, even once you go beyond 100B, the unit scale jumps significantly. At 500B, it jumps much more. But people do say that the Opus or Pro-class models used by frontier labs are around the 1T or 2T level. Nobody confirms it, but people generally say it is roughly around that level.
+
+<span class="paragraph-timestamp" data-ts="27:36">27:36</span> **Seungjoon Choi** Starting with GPT-4, people were saying around 2T.
+
+<span class="paragraph-timestamp" data-ts="27:39">27:39</span> **Chester Roh** Right. But now, if you ask whether Mythos is 10T, that is actually about a fivefold difference, and if it is a fivefold difference but the price gap is only around that much, that would imply several things. I also do not know the facts, so interpreting it on the basis of that assumption
+
+<span class="paragraph-timestamp" data-ts="27:57">27:57</span> **Seungjoon Choi** is meaningless. According to Dwarkesh's interpretation, it is near cost. Because this is currently a competitive situation, his guess was that they probably are not taking a large margin here. In any case, if you look at the price distribution, 4.8 is $5 per million input tokens and $25 for output. But this is double: $10 and $50. It is the most expensive right now.
+
+<span class="paragraph-timestamp" data-ts="28:22">28:22</span> **Chester Roh** Right. Anthropic is the most expensive.
+
+<span class="paragraph-timestamp" data-ts="28:26">28:26</span> **Seungjoon Choi** Even 3.5 Flash has gotten fairly expensive now, but in any case, looking only at input, it is almost five times, and output is also five times. So it is about five times the price. Flash and 3.5 Flash, yes. So with this, one thing we can think about, as we have said repeatedly, is why we need to know this in the first place. Why do we need to know it?
+
+<span class="paragraph-timestamp" data-ts="28:45">28:45</span> **Chester Roh** Right. The fact that Anthropic is making this kind of risky move is quite remarkable too. Google is basically unified around TPU or NVIDIA, and the OpenAI camp is also probably unified around NVIDIA GPU infrastructure, but in Anthropic's case, they really use Google TPU, then go over to Amazon and use Trainium, and then they also use NVIDIA. Having the front spread out like that is not necessarily good. If you look only at inference separately, you could say, sure, that can happen, but in the training process, as I said earlier, when you look at that training process, most of the bottlenecks or major points of differentiation all exist in post-training. There is clearly a strength in having the platform unified as one. OpenAI, comparatively, has made a lot of upfront investment in computation, so the rumors we hear around here
+
+<span class="paragraph-timestamp" data-ts="29:47">29:47</span> **Chester Roh** still say it has an advantage, and Anthropic seems to be squeezing everything out as it follows behind. To compensate for that, maybe it has the pain of constantly having to strike the market first with things like Mythos.
+
+## Fable API costs and the commercial logic of loop engineering    *30:06*
+
+<span class="paragraph-timestamp" data-ts="30:07">30:07</span> **Seungjoon Choi** I agree with parts of that, and then with numbers like these, even though I am not comfortable with numbers either, trying to internalize them helps me feel less intimidated. If you roughly estimate it, you can see there is some reason behind it. It is not just that some enormous model has appeared and is overwhelming me or overwhelming us; rather, everything has some basis, and around the price or around the numbers related to these models, there is room for interpretation, so we end up looking at it. So when doing loop engineering like we mentioned earlier, first, until June 22nd, they had decided to open Fable temporarily. This was not permanent either. After running it until June 22nd, they were going to test the waters on whether to include it in the subscription model or keep it pay-as-you-go, but then they received some government restriction.
+
+<span class="paragraph-timestamp" data-ts="30:58">30:58</span> **Seungjoon Choi** In that situation, if you still use it through the API, I roughly calculated how much it would cost. In a simple one-book scenario, with a single Dynamic Workflows run, you can run up to 1,000 agents. Then what would cost around $400 with 1,500 on Sonnet 4.6 would have to be done for $1,500. And these days, even after Fable came out, since people can flex right now, what they have been trying is giving Fable a goal and letting it run overnight, things like that. How much that costs through the API is no joke. Compared with the old one.
+
+<span class="paragraph-timestamp" data-ts="31:39">31:39</span> **Chester Roh** Right. Still, even here, it's double. Compared with Opus 4.8.
+
+<span class="paragraph-timestamp" data-ts="31:45">31:45</span> **Seungjoon Choi** Right. But in any case, loop engineering is not putting that kind of thing in. It makes people use it a lot, so those kinds of trends exist.
+
+<span class="paragraph-timestamp" data-ts="31:55">31:55</span> **Chester Roh** Isn't this a trend that will continue?
+
+<span class="paragraph-timestamp" data-ts="31:58">31:58</span> **Seungjoon Choi** It will continue. Because otherwise, you have to keep going back and forth and stay closely attached to it for performance to improve. And to get what you want done. So Mitchell Hashimoto criticized it. In fact, with far less money, if a person puts in the effort, the work could be done properly and faster, but instead, more money is spent to make the model work for a long time. That was the criticism.
+
+<span class="paragraph-timestamp" data-ts="32:23">32:23</span> **Chester Roh** But when I met Dr. Hyung Won Chung recently, he was saying that there is still a lot of fruit left to extract from test-time compute.
+
+<span class="paragraph-timestamp" data-ts="32:35">32:35</span> **Seungjoon Choi** You met Dr. Hyung Won Chung.
+
+<span class="paragraph-timestamp" data-ts="32:36">32:36</span> **Chester Roh** So if we reach a larger, ultimately it is scale, a larger scale, it will be able to do far more things. There is still a lot of untapped territory left.
+
+<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **Seungjoon Choi** I agree with that, but it is expensive. For the time being. So I looked into that kind of thing first.
+
+<span class="paragraph-timestamp" data-ts="32:55">32:55</span> **Chester Roh** Commercially, in fact, the trade-off between price and performance is something everyone will calculate for themselves. For some people, even if it is expensive, because it handles the work within fewer tokens, they will gain much more from it. And conversely, there will also be sectors where running more test-time compute on a smaller model is more profitable. I think it is a matter of trade-offs.
+
+<span class="paragraph-timestamp" data-ts="33:20">33:20</span> **Seungjoon Choi** And as I mentioned earlier, it was this posting. But the image was interesting. What appears at first is Claude here. Claude works alone, and then several of them work. It has made Claude. Claude made Claude. And it is repeating that recursively. So I think this already explains all the content.
+
+<span class="paragraph-timestamp" data-ts="33:43">33:43</span> **Chester Roh** But this is also something we always know so well, and it is a perfect isomorphism, isn't it? It is exactly the same as the division of the cells of life, so it is showing a fractal right now. It just starts from one, and when you look at the whole thing, even in a large sector, it is still identical to itself.
+
+<span class="paragraph-timestamp" data-ts="34:06">34:06</span> **Seungjoon Choi** We have said this several times,
+
+## RSI and Anthropic's self-improvement trajectory    *34:09*
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **Seungjoon Choi** and as everyone expects, it is moving toward the threshold of RSI. So even here, they are not yet saying that we are exactly on that trajectory, but they declared that we are moving toward the trajectory of RSI, and they said this in early June. In early June, they submitted the S-1 document. So Anthropic is, of course, doing well at the spearhead right now, but they are doing it with intent. Because this is all business. So I looked into these things. So ultimately, this is the direction things are moving in, and intuitively, this does not feel like a plateau at all. It is on a trajectory where the slope keeps getting steeper.
+
+<span class="paragraph-timestamp" data-ts="34:54">34:54</span> **Chester Roh** Exactly. This is increasingly something we talk about a lot when we speak with Seonghyun. What is really important is the part related to datasets and scale, but that part is not very visible from the outside, and there is a lot of information we cannot access, so looking at the algorithms and changes in model architecture that come out publicly and making somewhat of a fuss about them is the life of ordinary people outside. In fact, what those at the frontier are most interested in is that algorithmic progress now no longer seems to be a major differentiating factor. That just comes out in small pieces, and if there is something good, they can simply insert it inside. What is more important is the scale of the dataset, how much more volume it can have
+
+## Compute scale and the sovereign AI race    *35:49*
+
+<span class="paragraph-timestamp" data-ts="35:51">35:51</span> **Chester Roh** and how much larger it can become, and what the shape of that dataset should be. Those parts, and also compute scale. Mythos is actually a 10T model, but we cannot even calculate the cost of training that 10T model. Even just looking at Chinchilla optimal or dataset size, even in our recent past, just three years ago, we often heard stories that some frontier model was trained on 3T or 5T. Now the baseline is 30T. The number of tokens will keep increasing.
+
+<span class="paragraph-timestamp" data-ts="36:27">36:27</span> **Seungjoon Choi** Right. The point made on Dwarkesh's episode was that it is overtrained by about 100 times compared with Chinchilla optimal.
+
+<span class="paragraph-timestamp" data-ts="36:34">36:34</span> **Chester Roh** But when you increase scale and do more overtraining, what we are seeing now is that there is additional benefit, gain, that you can keep extracting from it.
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **Seungjoon Choi** That is what we are seeing.
+
+<span class="paragraph-timestamp" data-ts="36:44">36:44</span> **Chester Roh** Right. Now the frontier labs will keep running in that direction and reach some AGI situation, and this is like a game of who develops the atomic bomb first, and whether, after developing it, they can kick away the ladder for the people following behind.
+
+<span class="paragraph-timestamp" data-ts="37:03">37:03</span> **Seungjoon Choi** But on the other hand, in Machines of Loving Grace, Dario had already talked about diminishing marginal utility in mathematics. In certain domains, people will talk about marginal utility. That was something he had already forecast around the end of 2024, and it seems to be happening. At this level, there are enough things to do.
+
+<span class="paragraph-timestamp" data-ts="37:23">37:23</span> **Chester Roh** Right. But even back then, when Sam Altman or Dario Amodei came out and spoke publicly, we would interpret those things and try to read some kind of gradient into them. Now it feels as though we are being pulled straight upward into an unknown territory that even those people do not know. It seems like even those people would not have time to organize and present it. They are just pouring things in, and the ones benefiting from that are still semiconductors, power, and data centers, because they have to keep getting bigger, so NVIDIA continues to look good.
+
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **Seungjoon Choi** Right. Then is the reason these Big Tech companies, which are now running in such a precarious way, still do not collapse that the entire market is propping them up?
+
+<span class="paragraph-timestamp" data-ts="38:17">38:17</span> **Chester Roh** So far, those expectations are continuing to rise. They are rising, and they keep producing some kind of result, an outcome, commensurate with those rising expectations. This is how it is for us right now, isn't it? For example, if we increase some input by ten times, just intuitively, the gain from that is roughly doubling. But now we are going from 1T to 10T. Suppose, for example, Mythos became twice as good in performance. But if, from here, we want to double it again, in fact, compared with the numbers we were used to just six months ago, the scale we were used to six months ago, it means we would have to increase it by another 100 times. That changes things. Right. Saying it becomes 100 times the scale means that the computation currently existing on Earth would have to go entirely into training a single model. Realistically, that is difficult.
+
+<span class="paragraph-timestamp" data-ts="39:18">39:18</span> **Chester Roh** It is realistically difficult, but bringing the discussion back, a model of about 10T produced with a good dataset and a good training recipe has already become something that needs to be controlled, a strategic asset at the level of a nuclear weapon, so at around 10T, commercial expectations could stop. For quite a while. And after that, in fact, it may not be something like NVIDIA GPUs, but the paradigm may have to shift to something like quantum computing for us to sustain it. It could be at that kind of level. As for that, we're getting into the realm of science fiction movies. It seems difficult for us to run the calculations and present numbers at the level Aschenbrenner showed before.
+
+<span class="paragraph-timestamp" data-ts="40:08">40:08</span> **Seungjoon Choi** That's situational awareness, right.
+
+<span class="paragraph-timestamp" data-ts="40:12">40:12</span> **Chester Roh** With a 10T model, the U.S. government is already doing this now. So interest in sovereign AI is also rising sharply.
+
+<span class="paragraph-timestamp" data-ts="40:20">40:20</span> **Seungjoon Choi** Right. Would only the U.S. do that? Since China has learned from it, couldn't China do it too?
+
+<span class="paragraph-timestamp" data-ts="40:25">40:25</span> **Chester Roh** China will do it too. Once the target is visible, everyone has already confirmed that it is now a function of computation and time,
+
+<span class="paragraph-timestamp" data-ts="40:36">40:36</span> **Seungjoon Choi** What I'm saying is, couldn't China also impose export controls?
+
+<span class="paragraph-timestamp" data-ts="40:41">40:41</span> **Chester Roh** That could happen.
+
+<span class="paragraph-timestamp" data-ts="40:42">40:42</span> **Seungjoon Choi** Come to think of it, Kimi 2.7 came out. The code did.
+
+<span class="paragraph-timestamp" data-ts="40:45">40:45</span> **Chester Roh** Kimi 2.7 quietly came out, and Kimi 2.7 also released something on the coding side.
+
+<span class="paragraph-timestamp" data-ts="40:52">40:52</span> **Seungjoon Choi** Right. The code is out now. But it got a bit buried. Relatively speaking, right now.
+
+<span class="paragraph-timestamp" data-ts="40:55">40:55</span> **Chester Roh** But the U.S. and China are in their own kind of chicken game, and a bit of a prisoner's dilemma is at work, so if the U.S. turns it into a strategic asset and controls it like that, China can open those things up and embrace all the other countries that are not the U.S. If both the U.S. and China block it, then in fact Korea has an opportunity too.
+
+<span class="paragraph-timestamp" data-ts="41:20">41:20</span> **Seungjoon Choi** The opportunity comes.
+
+<span class="paragraph-timestamp" data-ts="41:21">41:21</span> **Chester Roh** Right. It could turn into a truly crazy business where every country has to send a rocket to the moon, where literally the whole nation just runs toward a dream. Is that bad? It's not bad. It's good.
+
+## Korea's foundation model opportunity    *41:35*
+
+<span class="paragraph-timestamp" data-ts="41:35">41:35</span> **Seungjoon Choi** On the independent foundation model side, just guessing, I think this could be a good issue. Early August was probably the second round of evaluation.
+
+<span class="paragraph-timestamp" data-ts="41:44">41:44</span> **Chester Roh** Right. Of course, the time will come for us to take another look at that as well, and Upstage released a 100B model, SK Telecom released a 500B model, and now as the market is moving this way, even at the national level they are preparing to allocate resources again, so from the telecom's standpoint, or from Upstage's standpoint, or from other startups' standpoint, there is in fact enough incentive to run toward frontier models, large and small. Right now, more than money, more than money, opportunity and preparation for that kind of future, should we call it future readiness? Future readiness has become a more valuable asset than money right now. It's a time when money is actually more common.
+
+<span class="paragraph-timestamp" data-ts="42:35">42:35</span> **Seungjoon Choi** So anyway, looking at these things, I thought of The Human Use of Human Beings, the famous book Norbert Wiener wrote in 1950 and then kept releasing revised editions of. There is a translated edition too, though it is currently out of print, but there are phases where that comes to mind. It is a classic that talks about things like what the human use of human beings should be in an automated society, and rather than going into detail now, that was one thing that came to mind.
+
+## Fable 5 vibe checks and human reflection    *43:06*
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> **Seungjoon Choi** The reason I mention that is that I did my own kind of Fable 5 vibe check. I only used it a few times over a few days, but I'd like to share some impressions from that. There are a few pieces I had read several times and copied down because the content was good. I entered those, and they were pieces related to education, and I had a conversation with Fable about them. What was interesting was that there were two sessions: one was the session where we talked, and the other was a session where we looked back at that conversation. But during that conversation, I personally felt there were parts where the model was praising me. And in another session, it pointed out that part well. In other words, looking at flattery and the capacity for reflection itself, the Claude family was originally pretty good at that, and it did it well.
+
+<span class="paragraph-timestamp" data-ts="44:00">44:00</span> **Seungjoon Choi** Fable did. So that left an impression on me, and I organized some writing about it. And while doing that, what I felt while working on the Dwarkesh episode was, as I introduced in the previous session, that this becomes generative cognitive decline. So I made flashcards too, and in order to create things that would somehow help me catch it, I looked for more things to read. So there was a book the model recommended. It recommended several, but since I couldn't cover all of them, I bought one that I really liked, and I read the prologue, the book's prologue, with Fable 5, and that experience was quite interesting. The reason I couldn't share it in detail is that this seems to be a trend that is probably happening right now, but because we end up talking about such a narrow area, it is filled with unfamiliar terms,
+
+<span class="paragraph-timestamp" data-ts="44:58">44:58</span> **Seungjoon Choi** so it feels increasingly difficult to share this with other people. When you try to study something, you dig into a narrow area, don't you? As a result, this now becomes the kind of content that is a bit awkward to just share widely, but ultimately, this is another interesting concept the model told me about: "The purpose of a system is what it does," which is a term used in cybernetics, but I didn't know it. It is a term I learned through that conversation this time, and I really feel that it is true. The conversation I had with the model itself turned out to be what I was doing. Apart from what I want to do, apart from my intention or that kind of goal, what I am actually doing reveals the relationship between the model and me. So what I thought while talking with Fable 5 was, I do produce practical, productive things, including producing code,
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **Seungjoon Choi** but I also realized again that I am someone who enjoys digging into something that has caught my interest like this. So this really is right. And if you transfer that in reverse, you look back at your conversations with the model. What you have been talking about with models is, naturally, the direction in which that person uses the model. So some people are very focused on practical things, producing code and using it for their own work, with a practical aspect, while others may have a tendency to explore curiosity, and that is revealed through their relationship with the model. Noticing that while talking with Fable 5 was one thing, and there were some excellent parts. In certain respects.
+
+<span class="paragraph-timestamp" data-ts="46:41">46:41</span> **Chester Roh** Right. I am actually on a business trip, and I have so many meetings in between that since Fable 5 was announced this time, I haven't had time to sit down and really try it out. So I have no feel for it at all, and now I won't be able to try it.
+
+<span class="paragraph-timestamp" data-ts="46:57">46:57</span> **Seungjoon Choi** But I do vaguely think that it will turn out to be nothing more than an incident. But Fable 5 isn't good at everything, and when I ran the prompt that worked well for writing back in the Opus 4.6 days, maybe it was a problem with that prompt, but it felt a bit flat. I felt diminishing returns there. But in other modes, my impression was that there were some rather surprising parts, though it is only an impression. In the end, to find out, there is no choice but to experiment from multiple angles. What fits me. And on the timeline, things related overwhelmingly to 3D, and things related to games, came pouring out.
+
+<span class="paragraph-timestamp" data-ts="47:38">47:38</span> **Chester Roh** I see.
+
+<span class="paragraph-timestamp" data-ts="47:39">47:39</span> **Seungjoon Choi** It seems to handle those kinds of things well.
+
+<span class="paragraph-timestamp" data-ts="47:41">47:41</span> **Chester Roh** When we look back on this period later, how will we remember it?
+
+<span class="paragraph-timestamp" data-ts="47:48">47:48</span> **Seungjoon Choi** I don't know. Around this time next year, around the fourth anniversary, maybe we'll have to think about it again. It's hard to know the future.
+
+<span class="paragraph-timestamp" data-ts="47:56">47:56</span> **Chester Roh** We're racing along in a blur, and maybe future generations will record that moment as some decisive period in the AI revolution. Who knows. In another two or three years, even more absurd changes may happen, and that moment may be the real one. That's right.
+
+<span class="paragraph-timestamp" data-ts="48:16">48:16</span> **Seungjoon Choi** If we went back then and told people about what happened today, June 14th last year, or yesterday, would they have believed it? Export controls happened.
+
+<span class="paragraph-timestamp" data-ts="48:27">48:27</span> **Chester Roh** I have absolutely no memory of what I was doing last July.
+
+## Engineering after Claude Code and agent workflows    *48:31*
+
+<span class="paragraph-timestamp" data-ts="48:31">48:31</span> **Seungjoon Choi** May was the Claude Code issue. Claude Code came out in February, and May was when the community was figuring out, with Claude Code, "Oh, this is how you use it," so June was an extension of that. The gap since then is enormous.
+
+<span class="paragraph-timestamp" data-ts="48:45">48:45</span> **Chester Roh** I don't even know what to say. That's really true. What I remember from March and April last year was when 3.7 Sonnet, 3.7 something, all that was coming out, and Claude Code had come out in February. May and June were when the community was just beginning to see YouTube videos here and there about what Claude Code was and how to use it. And then a year passed, and wow, it feels like a whole different era. In the meantime, things like Sora also came out, Codex stumbled around, and Anthropic, from last fall, got some kind of boost from Claude Code and steadily raised the company's value.
+
+<span class="paragraph-timestamp" data-ts="49:26">49:26</span> **Seungjoon Choi** Early June was about a month after Google I/O ended, so 2.5 was still hot then. You could do a lot with Gemini 2.5. But this is just a small thing, recently, while developing a Minecraft agent, I started using Rust. I'm not the one using it, though.
+
+<span class="paragraph-timestamp" data-ts="49:43">49:43</span> **Chester Roh** The agent uses it?
+
+<span class="paragraph-timestamp" data-ts="49:45">49:45</span> **Seungjoon Choi** It works so well. I was really surprised.
+
+<span class="paragraph-timestamp" data-ts="49:47">49:47</span> **Chester Roh** Right. The concept of engineering has actually changed, because no one is really coding anymore now, but nevertheless, if we want to build some kind of usable system, we still need engineering. The only thing that's different is that it's no longer coding line by line the way it used to be. With agents, we're still moving up one layer and solving engineering problems and doing architecture.
+
+<span class="paragraph-timestamp" data-ts="50:17">50:17</span> **Seungjoon Choi** Right. But something that had no problem at the level of a few thousand lines, once it becomes tens of thousands of lines, I suddenly, in about three days, also jumped to around 60,000 lines, and then a lot of duplication appears that needs refactoring. To refactor that, you start wanting tools that can catch semantic-level duplication and things like that with some direction. Alan, the CTO of Corca, made something interesting called Nose, a tool that smells code, and he built that kind of thing in no time. Anyway, engineering for doing those things well is still needed. But it feels like another kind of bootstrapping is happening, where people are making the tools themselves that help with engineering.
+
+<span class="paragraph-timestamp" data-ts="50:59">50:59</span> **Chester Roh** So this really is a decisive period,
+
+## The role of the AI Frontier community    *51:02*
+
+<span class="paragraph-timestamp" data-ts="51:02">51:02</span> **Chester Roh** and when it comes to AI Frontier, beyond Seungjoon, myself, and now beyond just us, there are actually so many people around AI Frontier who give us information and have formed a community around us. So I feel like we need to find more areas where we can contribute. This has also become a period that is changing too quickly for us to simply summarize content and talk about things on a weekly basis, so I feel like something has to change. It now feels impossible for us to keep up at human speed. And among the people in the community around us, I can see so many great opportunities that would be created if they were connected with one another, but I, too, am living on human time, so there are things I can't do. That makes me think we need to systematize this. And further than that, here in Silicon Valley, there are so many opportunities,
+
+<span class="paragraph-timestamp" data-ts="52:07">52:07</span> **Chester Roh** and as I see it, the people in Korea are not behind in quality at all. Then between here and Seoul, although many people are thinking the same thing, I feel we need to connect them more powerfully. We also need to make more of what is happening in Korea known here in the other direction. And I felt that we need to promote it more. This doesn't feel like something to do on the scale of countries, but something different, truly on a planetary scale, seems to be happening, so we should also keep looking for the things we need to do. Meanwhile, on the biology side, there are so many fascinating things that when I look at them, each day just flies by.
+
+<span class="paragraph-timestamp" data-ts="52:52">52:52</span> **Seungjoon Choi** We probably can't do everything, can we? Since we have to live on human time.
+
+<span class="paragraph-timestamp" data-ts="52:55">52:55</span> **Chester Roh** We can't do everything. So because we can't do all of it, it's also time for me to pick one thing that is the most nourishing, the one with the biggest impact. So I need to think about the system again.
+
+## Plans after episode 100    *53:10*
+
+<span class="paragraph-timestamp" data-ts="53:10">53:10</span> **Seungjoon Choi** So episode 100 was one where we had those concerns.
+
+<span class="paragraph-timestamp" data-ts="53:13">53:13</span> **Chester Roh** Let's try moving into the next phase now. So I'm meeting a lot of interesting people here, and I'm thinking of doing a few sessions like this. Palantir engineers, engineers who really worked as FDEs, are around. So we could bring those engineers in and ask, "Then what kind of work did you do?" "Is Palantir an AI company?" We could do a session that takes a deep look at Palantir as well. Of course, asking about what happens inside Frontier Labs is a little rude. But since so many Palantir FDEs have gone on to found companies, we could ask those people. And these days, the term FDE itself is all the rage. So I am thinking that we should tap into that a bit.
+
+<span class="paragraph-timestamp" data-ts="54:01">54:01</span> **Seungjoon Choi** In a small way, just as a bit of a celebration for ourselves.
+
+<span class="paragraph-timestamp" data-ts="54:05">54:05</span> **Chester Roh** Once I go back to Korea, let's try changing the AI Frontier system a bit, and think about ways we can scale it up further.
+
+<span class="paragraph-timestamp" data-ts="54:14">54:14</span> **Seungjoon Choi** Understood.
+
+<span class="paragraph-timestamp" data-ts="54:15">54:15</span> **Chester Roh** All right, then, Seungjoon, we'll wrap it up here for today.
+
+<span class="paragraph-timestamp" data-ts="54:18">54:18</span> **Seungjoon Choi** Thank you for your hard work.
