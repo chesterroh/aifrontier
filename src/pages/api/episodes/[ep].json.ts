@@ -27,6 +27,7 @@ export async function GET(context: APIContext) {
   } catch { /* ok */ }
 
   const chapters = parseChapters(episode.body ?? '');
+  const resourcesUrl = d.resourcesUrl ?? d.notionUrl;
 
   const body = {
     number: d.episodeNumber,
@@ -41,7 +42,7 @@ export async function GET(context: APIContext) {
       transcript_ko: `${site}/ko/episodes/ep${d.episodeNumber}`,
       ...(hasEn ? { transcript_en: `${site}/en/episodes/ep${d.episodeNumber}` } : {}),
       youtube: `https://www.youtube.com/watch?v=${d.youtubeId}`,
-      ...(d.notionUrl ? { resources: d.notionUrl } : {}),
+      ...(resourcesUrl ? { resources: resourcesUrl } : {}),
     },
     chapters,
   };

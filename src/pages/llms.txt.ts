@@ -36,6 +36,7 @@ export async function GET(context: APIContext) {
     const url = `${site}/${d.lang}/episodes/ep${d.episodeNumber}`;
     const ytInfo = ytMeta[d.youtubeId] ?? {};
     const titleEn = ytInfo.title_en || '';
+    const resourcesUrl = d.resourcesUrl ?? d.notionUrl;
 
     lines.push(`### EP ${d.episodeNumber}: ${d.title}`);
     if (titleEn && titleEn !== d.title) {
@@ -46,8 +47,8 @@ export async function GET(context: APIContext) {
     lines.push(`- Duration: ${d.duration}`);
     lines.push(`- Hosts: ${d.hosts.join(', ')}`);
     lines.push(`- ${d.description}`);
-    if (d.notionUrl) {
-      lines.push(`- Resources: ${d.notionUrl}`);
+    if (resourcesUrl) {
+      lines.push(`- Resources: ${resourcesUrl}`);
     }
     if (d.chapters.length > 0) {
       lines.push(`- Topics: ${d.chapters.map((c) => c.title).join(' | ')}`);

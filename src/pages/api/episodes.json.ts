@@ -21,6 +21,7 @@ export async function GET(context: APIContext) {
     const d = ep.data;
     const hasEn = enMap.has(d.episodeNumber);
     const ytInfo = ytMeta[d.youtubeId] ?? {};
+    const resourcesUrl = d.resourcesUrl ?? d.notionUrl;
     return {
       number: d.episodeNumber,
       title: d.title,
@@ -36,7 +37,7 @@ export async function GET(context: APIContext) {
         ...(hasEn ? { transcript_en: `${site}/en/episodes/ep${d.episodeNumber}` } : {}),
         detail_api: `${site}/api/episodes/ep${d.episodeNumber}.json`,
         youtube: `https://www.youtube.com/watch?v=${d.youtubeId}`,
-        ...(d.notionUrl ? { resources: d.notionUrl } : {}),
+        ...(resourcesUrl ? { resources: resourcesUrl } : {}),
       },
     };
   });

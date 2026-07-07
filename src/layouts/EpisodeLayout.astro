@@ -23,6 +23,7 @@ interface Props {
   chapters: Chapter[];
   lang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug?: string | null;
+  resourcesUrl?: string;
   notionUrl?: string;
 }
 
@@ -39,8 +40,10 @@ const {
   chapters,
   lang,
   alternateSlug,
+  resourcesUrl,
   notionUrl,
 } = Astro.props;
+const episodeResourcesUrl = resourcesUrl ?? notionUrl;
 
 const localeMap: Record<string, string> = { ko: 'ko-KR', en: 'en-US', ja: 'ja-JP', 'zh-Hans': 'zh-CN' };
 const formattedDate = publishedAt.toLocaleDateString(localeMap[lang] ?? 'en-US', {
@@ -185,12 +188,12 @@ const homeLabel = ui.home;
         <!-- YouTube Player -->
         <section class="mb-8">
           <YouTubeEmbed videoId={youtubeId} title={title} />
-          {notionUrl && (
+          {episodeResourcesUrl && (
             <a
-              href={notionUrl}
+              href={episodeResourcesUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="notion-resource-link"
+              class="episode-resource-link"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
               <span>{ui.resources}</span>
@@ -345,8 +348,8 @@ const homeLabel = ui.home;
     }
   }
 
-  /* Notion resource link */
-  .notion-resource-link {
+  /* Episode resource link */
+  .episode-resource-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -362,29 +365,29 @@ const homeLabel = ui.home;
     transition: all 0.15s ease;
   }
 
-  .notion-resource-link:hover {
+  .episode-resource-link:hover {
     border-color: var(--color-primary-300);
     background: var(--color-primary-50);
     color: var(--color-primary-700);
   }
 
-  .notion-resource-link svg:last-child {
+  .episode-resource-link svg:last-child {
     margin-left: auto;
     opacity: 0.4;
   }
 
-  .notion-resource-link:hover svg:last-child {
+  .episode-resource-link:hover svg:last-child {
     opacity: 0.7;
   }
 
   @media (prefers-color-scheme: dark) {
-    .notion-resource-link {
+    .episode-resource-link {
       border-color: #374151;
       background: #1f2937;
       color: #d1d5db;
     }
 
-    .notion-resource-link:hover {
+    .episode-resource-link:hover {
       border-color: var(--color-primary-600);
       background: rgba(14, 165, 233, 0.1);
       color: var(--color-primary-400);

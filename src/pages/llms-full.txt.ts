@@ -43,6 +43,7 @@ export async function GET(context: APIContext) {
     const ytInfo = ytMeta[d.youtubeId] ?? {};
     const titleEn = ytInfo.title_en || '';
     const descEn = ytInfo.description_en || '';
+    const resourcesUrl = d.resourcesUrl ?? d.notionUrl;
 
     lines.push(`## EP ${d.episodeNumber}: ${d.title}`);
     if (titleEn && titleEn !== d.title) {
@@ -51,8 +52,8 @@ export async function GET(context: APIContext) {
     lines.push('');
     lines.push(`- Transcript: ${url}`);
     lines.push(`- YouTube: ${ytUrl}`);
-    if (d.notionUrl) {
-      lines.push(`- Resources: ${d.notionUrl}`);
+    if (resourcesUrl) {
+      lines.push(`- Resources: ${resourcesUrl}`);
     }
     lines.push(`- Published: ${d.publishedAt.toISOString().slice(0, 10)}`);
     lines.push(`- Duration: ${d.duration}`);

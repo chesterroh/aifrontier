@@ -65,7 +65,7 @@ ${names}
 3. FRONTMATTER:
    - Change lang: "ko" to lang: "${lang}"
    - Translate: title, description, chapter titles
-   - Keep UNCHANGED: episodeNumber, publishedAt, duration, youtubeId, thumbnail, alternateSlug, notionUrl values
+   - Keep UNCHANGED: episodeNumber, publishedAt, duration, youtubeId, thumbnail, alternateSlug, resourcesUrl, notionUrl values
    - Chapters must be 1:1 with the original — same count, same times, translated titles
 
 4. TECHNICAL TERMS: Keep in English: AI, RL, RLVR, MoE, GPT, LLM, API, GPU, SFT, RLHF, Transformer, etc.
