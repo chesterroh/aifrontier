@@ -1,0 +1,404 @@
+---
+episodeNumber: 102
+title: "EP 102. Lessons from San Francisco: \"Everyone's Gone Crazy\""
+description: "Chester Roh's three-week Silicon Valley field report on frontier labs, startups, VC, AI x Bio, post-train data, test-time compute, and a startup scene where 20-something founders and 400 billion KRW valuations have become routine."
+publishedAt: 2026-07-05
+duration: "1:10:01"
+youtubeId: "SSIGI9mm0DU"
+thumbnail: "https://i.ytimg.com/vi/SSIGI9mm0DU/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "Opening — Back from three weeks in Silicon Valley"
+  - time: "1:36"
+    title: "New host Jonghyun Park (sudoremove) joins"
+  - time: "3:48"
+    title: "Three goals of the trip: frontier labs, the startup scene, AI x Bio"
+  - time: "8:20"
+    title: "Meeting swyx and preparing AI Engineer Summit Seoul"
+  - time: "10:56"
+    title: "Time Gap × Domain Gap: a market condensing into frontier labs"
+  - time: "14:02"
+    title: "The domains OpenAI will do itself: coding, legal, bio"
+  - time: "15:10"
+    title: "The selection criterion: where RLVR can run"
+  - time: "18:07"
+    title: "Markets 1, 2, and 3 — three lenses on the AI market"
+  - time: "19:55"
+    title: "The post-training data boom: buying up expert tacit knowledge"
+  - time: "21:11"
+    title: "Training-infra optimization and the reality of benchmark maxing"
+  - time: "24:04"
+    title: "RL keeps getting deeper — and the \"is RLVR AGI?\" debate"
+  - time: "26:20"
+    title: "\"2025 saw almost no research progress\" — algorithm skepticism"
+  - time: "27:54"
+    title: "Noam Brown on test-time compute and a new benchmark standard"
+  - time: "31:27"
+    title: "AI x Bio: Doudna's skepticism and two opposing approaches"
+  - time: "33:37"
+    title: "Biology's CNN era — the foundational approach arrives"
+  - time: "34:57"
+    title: "OpenCRISPR: AI has already innovated in her own domain"
+  - time: "36:59"
+    title: "Persuade the domain experts, or beat them?"
+  - time: "39:20"
+    title: "Dogfooding: a personal genome pipeline built by Codex in three days"
+  - time: "42:01"
+    title: "\"Everyone's gone crazy\" — early-20s founders in the new Wild West"
+  - time: "45:45"
+    title: "$300M valuations on ~$3M ARR"
+  - time: "46:50"
+    title: "Two kinds of founders: dreamers vs. AI agent businesses"
+  - time: "49:41"
+    title: "What a $5M salary actually means — Silicon Valley pay structure"
+  - time: "51:40"
+    title: "How these valuations get recouped: acqui-hires"
+  - time: "54:42"
+    title: "200 teams per YC batch, one-minute demo days, pivot culture"
+  - time: "57:36"
+    title: "Younger VCs, capital rushing to data centers and chips — and Korea's chip ecosystem"
+  - time: "62:00"
+    title: "ICML Seoul week: meetups, parties, and keeping your socials alive"
+  - time: "64:13"
+    title: "AI Frontier reorganizes: lighter and faster"
+  - time: "66:26"
+    title: "Monthly AI Demo Day — introducing Korean startups to the world"
+  - time: "68:47"
+    title: "First three-host recording: closing thoughts"
+lang: "en"
+alternateSlug: null
+---
+
+## Opening — Back from three weeks in Silicon Valley    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is June 28th, 2026, a Sunday night. We're recording after quite a long time. For almost over three weeks, I was in the U.S., so the time difference with Seungjoon didn't line up, and there were a lot of meetings in between, so the recording was delayed. Also, while going to the U.S. and meeting so many people, I came back with a lot of thoughts about what we're doing well, what we're lacking, and what we need to focus on more, things like that. So as part of some action on that, I also think AI Frontier, which we're doing, needs to expand its reach further, and I have ideas for restructuring it. As for how we will restructure it, I will explain in a little more detail in the latter part of this episode, but to briefly state the conclusion, rather than doing it too heavily, we should aim more for things that are light, frequent, maybe a little wrong, but fast. And I think there is some contribution that only AI Frontier can make. Beyond simply neatly organizing news from outside and giving business opinions, there was a sense of obligation about something we should do, about how to connect Korea to the global stage, a sense of debt, and I thought we should unpack that. Ideas about those things, in that way. Our main episodes are recorded once a week.
+
+## New host Jonghyun Park (sudoremove) joins    *01:36*
+
+<span class="paragraph-timestamp" data-ts="01:36">01:36</span> **Chester Roh** We have brought on one more host for our main episodes. Many of you have probably seen Jonghyun. Jonghyun runs the sudoremove channel, and thankfully, Jonghyun has joined AI Frontier as a host, so from now on, I think you'll be seeing Jonghyun's face often on our main episodes. Jonghyun, welcome.
+
+<span class="paragraph-timestamp" data-ts="01:59">01:59</span> **Seungjoon Choi** Hello.
+
+<span class="paragraph-timestamp" data-ts="02:00">02:00</span> **Jonghyun Park** I'm Jonghyun. Publicly, as Chester introduced, I run the sudoremove channel. I'm the host there, and thank you for inviting me. I'll do my best so I don't become a burden. I think I'll probably mainly be in the position of asking questions, and play that kind of role a lot.
+
+<span class="paragraph-timestamp" data-ts="02:16">02:16</span> **Chester Roh** Jonghyun will be taking on the role of being in charge of youth on our channel. And also, Jonghyun digs deep into the areas where we're technically weak. One session of Jonghyun's that I really like is the live session where Jonghyun does something alone. I'm also an avid viewer. So just as Jonghyun has joined us as a main host, I also look forward to occasionally going on Jonghyun's sudoremove live channel, learning together, and doing sessions like that. Then today, in the last episode, while covering Seungjoon's news, I briefly talked about the people I was meeting in the U.S. and what kinds of things were happening, and today I've organized my impressions of that. So I'll divide that segment a bit and talk about what kinds of things are happening, what sections I'm seeing the market in, and these kinds of points, and let's start with that first. During the three weeks I was there this time, I stayed in a neighborhood called Hayes Valley, where founders are said to cluster and live. So together with CEO Matthew Kim, I spent an intense three weeks there. The good thing was that there was a park right next to the lodging. If you go up to that park, you can look down over downtown San Francisco, and I went to that park in the mornings and evenings, watched the sunset and saw the sun rise, and those things left quite an impression on me.
+
+## Three goals of the trip: frontier labs, the startup scene, AI x Bio    *03:48*
+
+<span class="paragraph-timestamp" data-ts="03:48">03:48</span> **Chester Roh** The purpose of my business trip this time was, first, that Frontier Labs, and also many extremely talented people who came out of Frontier Labs, are starting so-called NeoLabs. So I wanted to meet those people and hear overall what kind of vibe the market is flowing with. That was one thing. And second, unlike Korea's startup scene, in the U.S., although we're seeing from Y Combinator portfolio companies what companies are emerging and what companies are announcing, I wanted to go there in person and look at the startup scene. That was another thing. So through both Korean people and foreign people, I met a great many entrepreneurs, and within that, there were some things where I felt, so this is how the market is being formed. And I also met venture capitalists to see what kinds of things they're interested in, and what kinds of things they're not particularly interested in, and what market timing they are feeling. It was a time when I could get a bit of a sense of those things. And third, this was actually my biggest purpose, at the boundary between AI and biology, what approaches large companies are taking, what approaches schools are taking, and while there are no such companies at all in Korea, in the U.S. there are a great many companies approaching biology with AI practices. So I met those companies through connections and asked what they were doing. Of course, they don't tell you highly confidential things inside, but they do talk about roughly what they're doing, what direction they're taking, what is difficult, and what the interesting points are. That really is one of the good things about Silicon Valley: you meet people and ask, and if I lay out as many gifts as I can give, they also try to give me something, and exchanging things to learn from one another like that is very natural. So within that culture, I was able to achieve my intended purpose as well.
+
+<span class="paragraph-timestamp" data-ts="05:51">05:51</span> **Seungjoon Choi** What I'm curious about is, what gifts did Chester give?
+
+<span class="paragraph-timestamp" data-ts="05:53">05:53</span> **Chester Roh** There are things they're curious about that only I know. What the situation in Korea is like, the fact that this is being talked about in Korea, and what they're most interested in is Korea's chip ecosystem. Because right now, where investment is most concentrated, and where venture capitalists are also diligently looking for companies, is, surprisingly, not companies that use Codex well, or companies on the service side like that, but almost entirely in AI data centers These are companies that sit right up to just before the model. So real estate, power, then transmission, cooling, and of course, if you go up from there, chips, then on top of those chips, training those chips or orchestration software that runs inference efficiently. Interest is really incredibly hot up to exactly that point. The things that go on top of that, actually, whether they become AI or do not become AI, they just make sense as businesses, and since everyone uses AI these days, there we just look at the market through the lens we originally had for businesses. So how much revenue there was, how big the market is, and also how well they are developing the market, what we call growth in performance. How quickly the performance metrics are moving. So there too, I saw companies that had already established themselves and were doing well, and I also saw people who were just beginning to dream, and of course I met many companies where I thought, they still have a long way to go. There too, the layers are naturally diverse.
+
+<span class="paragraph-timestamp" data-ts="07:29">07:29</span> **Seungjoon Choi** But anyway, what Chester Roh said between the lines was that information about Korea was information with exchangeable value, and I picked up on that nuance a bit.
+
+<span class="paragraph-timestamp" data-ts="07:39">07:39</span> **Chester Roh** Of course. Other than that, I do not really have anything special to offer. Of course, there was another question too. Your skin is so good for your age, Korea really is the country of beauty, what do you use, what should I do, questions like that come up quite often. So in reverse, I also thought that these kinds of things really are Korean strengths. Before getting into it, in any case, during the roughly three weeks I stayed there, to the people who generously gave their time and also generously shared a lot of information, although I will not name each person individually, I would like to take this opportunity to sincerely thank them.
+
+<span class="paragraph-timestamp" data-ts="08:18">08:18</span> **Seungjoon Choi** I am curious. What kind of story it is.
+
+## Meeting swyx and preparing AI Engineer Summit Seoul    *08:20*
+
+<span class="paragraph-timestamp" data-ts="08:20">08:20</span> **Chester Roh** If there was one wish of mine that came true among the meetings, it was meeting swyx, whom I really, really like, and hearing what kind of philosophy swyx has, and what direction AI is headed in. And at AI Frontier, we are preparing the Seoul edition of AI Engineer Summit. So discussing that with swyx, talking over rough schedules and things like that, was also a gain from the trip.
+
+<span class="paragraph-timestamp" data-ts="08:47">08:47</span> **Seungjoon Choi** Some people might not know swyx, right?
+
+<span class="paragraph-timestamp" data-ts="08:49">08:49</span> **Chester Roh** That could be. But swyx is the main host of Latent Space. And for those of us who are AI engineers, swyx is also the person who created AI Engineer Summit, which many of us watch, and swyx brings in one after another the extremely well-connected insiders of Silicon Valley whom we are so curious about, and creates a very in-depth podcast channel. Latent Space podcast has also often been a topic of ours.
+
+<span class="paragraph-timestamp" data-ts="09:17">09:17</span> **Seungjoon Choi** Right. There were a few times, weren't there?
+
+<span class="paragraph-timestamp" data-ts="09:18">09:18</span> **Chester Roh** So regarding that, I said, "I really like you, I respect you. How do you make so much content like that?" We had various conversations about those kinds of things. And the person next to me is CEO Matthew Kim, please go ahead.
+
+<span class="paragraph-timestamp" data-ts="09:34">09:34</span> **Jonghyun Park** Recently, Latent Space also has a new format, kind of like how you are trying a new format here. Who was it? The person who is currently CRO at OpenAI, doing something with Mark Chen while cooking, like a variety show.
+
+<span class="paragraph-timestamp" data-ts="09:49">09:49</span> **Seungjoon Choi** They do it while cooking?
+
+<span class="paragraph-timestamp" data-ts="09:51">09:51</span> **Jonghyun Park** They do interviews while cooking, and I thought, now they are even trying things like that. And for swyx, among the services swyx runs, there is one that aggregates Twitter and sorts news Twitter in that order. I really enjoy reading that. This is what people are genuinely interested in as news. I think it was good for following up on things like that.
+
+<span class="paragraph-timestamp" data-ts="10:13">10:13</span> **Chester Roh** Right. swyx started an AI newsletter very early on, and most of us are reading it. And the person next to me is CEO Matthew Kim, who also appeared on our channel, and this time, with me, in almost every meeting, Matthew Kim accompanied me. But thanks to CEO Matthew Kim, I was able to meet a great many founders in their early twenties whom I could not access. Indians, Chinese, Japanese people in their early twenties, and entrepreneurs who are there locally, I was able to meet a great many of them. I would like to take this opportunity to once again express my thanks to CEO Matthew Kim as well. Then, since the opening story has gone on for a while, let me move a bit into the main part.
+
+## Time Gap × Domain Gap: a market condensing into frontier labs    *10:56*
+
+<span class="paragraph-timestamp" data-ts="10:56">10:56</span> **Chester Roh** We have shown this graph a lot. Around the second half of 2025, roughly, the Time Gap and Domain Gap seemed to be spread out across the market like this, with the most cutting-edge Frontier Labs, and people following them, which we had defined as Runaways' Alliance, and then those who had just started, and even those left behind, the spectrum stretched all the way out, and by domain as well, I said that there still seemed to be some gaps. Around March 2026, we said that this Domain Gap too, and the Time Gap that had been spread out, seemed to just shrink all at once, but the feeling now in June is this. This Domain Gap also does not feel like it is spread far apart, but rather that everything is being absorbed into the frontier models at the Frontier Labs. As if finding domains that frontier models cannot handle becomes some new major business opportunity, almost everything we know, coding, legal, finance, very general science, robotics, and then even the consumer space, feels like it is being compressed into the Frontier Labs. And then we started talking a little less about models, but GPT-5.6 is about to come out soon, right? Starting with GPT-5.5 and GPT-5.6, and also with Claude moving to Opus 4.8 and Mythos 5, There is a sense that the models are making another jump. And nuances along the lines of "what can't they do?" seem to be emerging a lot. So if I divide up this market a bit, I think Frontier Labs are at the very front line of that timing, and behind them are companies we know, like Cursor and Cognition, which are not Frontier Labs, but have some models that feel a bit like Quasi Frontier Labs, and are doing well in coding, and I think there are several companies like that. But these companies are also being absorbed. Cursor was sold to xAI, and Cognition, right now Cognition has about the fourth-largest market share. Even so, its revenue appears to be close to a billion dollars. It is a very small market share, but that means the coding market is that large, so I deliberately named that Quasi Frontier Lab. Behind that, from Claude Code and Codex, there are a huge number of agent startups being created, and I think they are in the area behind that. Things that are not based on these LLMs are now places like Periodic Labs, NewLimit, bio, then robotics, and Material Science, where Frontier Labs are emerging by domain, and I think these areas exist.
+
+## The domains OpenAI will do itself: coding, legal, bio    *13:56*
+
+<span class="paragraph-timestamp" data-ts="13:56">13:56</span> **Chester Roh** So if we really break it down, from a reliable source I have in the industry, what I heard from that source is that OpenAI said coding, legal, and bio are areas we will do ourselves, and the rest are areas we do not intend to do. They said they intend to collaborate with startups, and that they divided up this front line a bit. But if OpenAI is doing that, it probably means Anthropic is roughly doing the same, and Google still does not seem to have that kind of sharp strategy yet. It still seems to be going with an aircraft carrier strategy, so coding, legal, bio, these are domains that Frontier Labs are trying to do directly, and I wanted to convey that nuance. Other domains that are not that, robotics, which we call Physical AI, and then a great deal of bio and healthcare, and recently longevity startups are also appearing in very large numbers, longevity, and then AI-based companies doing cancer therapy are also emerging a lot. Those companies, companies like that, seem to have a somewhat different way of moving. So the Quasi Frontier Labs that came before feel like they may be absorbed into Frontier Labs.
+
+## The selection criterion: where RLVR can run    *15:10*
+
+<span class="paragraph-timestamp" data-ts="15:10">15:10</span> **Jonghyun Park** If among the domains there are domains they are trying to do directly like that, and domains they are putting off a bit, what criteria do you think they use to choose them?
+
+<span class="paragraph-timestamp" data-ts="15:18">15:18</span> **Chester Roh** Wouldn't it be two things? Areas that these frontier models can absorb, the places where Frontier Labs are putting the most effort right now are actually post-train, and in post-train, for areas we know such as finance, legal, computer use agents, and QA, areas like these, they are creating enormous datasets. Coding goes without saying, and I heard today from another source that Frontier Labs are buying dormant, high-quality human-written source code that has not yet been uploaded to GitHub. They are buying that with money, and then, for example, in the finance sector, it is not just general finance; there is IB accounting, and once you get into IB, there are parts that deal with equities, parts that deal with bonds, parts that deal with futures, and depending on those things, there are so many other branching paths. They are creating enormous datasets in those parts. By spending money and hiring experts at very high prices, they create datasets there, and can internally run some kind of RLVR. Those areas, where the market is also sufficiently large, and where they can do the data work and post-train work well themselves, making frontier models gain an overwhelming performance advantage, are probably the areas they are trying to do directly. Then naturally, coding, legal, bio, and areas like that are very large markets, and they are areas where the models already seem likely to be doing fairly well, so I think they may have chosen them based on criteria like that.
+
+<span class="paragraph-timestamp" data-ts="17:00">17:00</span> **Jonghyun Park** What you said resonates with me, because in our case, in my case, I do not know other fields very well, but robotics is something we have still been following up on closely. In robotics as well, the market is so large that we wondered whether Frontier Labs would want to do it, and in the case of Gemini, they are in fact working hard on it publicly as well. But according to the criteria you mentioned, robotics is somewhat distant from LLMs after all, so it seems difficult to do with post-train alone, and from the pretraining stage, there seem to be many things that need to be done again, so I agree that it is a bit farther away than legal or healthcare. I agree.
+
+<span class="paragraph-timestamp" data-ts="17:39">17:39</span> **Chester Roh** Right. If you look at the domains that Frontier Labs say they will do directly, the areas that are verifiable, the areas where you verify, are mostly areas where everything is completed within digital content. But if you go just slightly beyond the digital domain, when it comes to making some kind of verifier, you immediately run into a scale problem. So for those parts, I think they may be thinking that they do not want to get their own hands dirty directly.
+
+## Markets 1, 2, and 3 — three lenses on the AI market    *18:07*
+
+<span class="paragraph-timestamp" data-ts="18:07">18:07</span> **Chester Roh** So I am looking at this by dividing it into Market 1, Market 2, and Market 3. I think Frontier Labs need to be viewed as Frontier Labs, and then parts that have the same sort of logic as Frontier Labs but are in completely different domains, I called those Market 2, and the rest is Market 3. Market 3 will be the largest. So the frontier players in Market 1 are too obvious, but as we have been discussing until now, after simply creating AGI, making that AGI solve all problems, I think every place where that rough intuition is circulating is just going there. With the idea that the most general thing is the most specific thing, it seems like they are going into all domains, all domains that can be fully handled digitally. And compute, data, algorithms, those are the axes through which I view Frontier Labs from my perspective, and compute and data are still meaningful. But when it comes to algorithms, of course they are working hard on research, but the view that this is the game changer seems relatively very small. So on the compute side, of course, in pretraining as well, they are obviously putting in a lot of effort and all that, but talk about pretraining almost never comes up. When I met Frontier Labs, almost all of them said they are putting the most effort into it. That's the most important thing, that's the core area, the parts they talk about that way are almost all post-train pipelines. So one of the two axes of the post-train pipeline is actually the training infrastructure for post-train itself.
+
+## The post-training data boom: buying up expert tacit knowledge    *19:55*
+
+<span class="paragraph-timestamp" data-ts="19:55">19:55</span> **Chester Roh** And the other is data for post-train, and as I said just now, inside Frontier Labs, there are divisions that create data directly, and they also buy an enormous amount of data from outside. So companies that generate datasets are still doing extremely well. And looking a little at how they create those kinds of datasets, as I mentioned earlier, when one sector emerges, they take the specialized areas of that sector, the tacit knowledge that only so-called experts used to have, and extract all of that into practice problems for RLVR. That's the kind of work they are doing. So once a certain amount of dataset is created, the Frontier Labs sort of buy it by weighing it lightly. Of course, they do buy it at a very expensive price, but that itself, it's not about this being good or this being bad, but if it is a post-train set for that sector that we haven't had until now to some extent, it feels like they just buy it. And I get the sense that business is extremely strong.
+
+## Training-infra optimization and the reality of benchmark maxing    *21:11*
+
+<span class="paragraph-timestamp" data-ts="21:11">21:11</span> **Chester Roh** As you know, on the pipeline side for post-train, reinforcement learning is a bit different from pretraining. Inference has to run once and produce a result before you can use that result to give a reward again. But even in that process, some inference ends quickly, some takes really long, and there are questions of how long it needs to run or how short it needs to be, and around those things there are a great many considerations. How do you manage all of those with what they call MFO? How can we run the training loop while consuming our amount of computation optimally? A great deal of effort is going into this part. Then if you ask, what specifically are those efforts? the answer to that is everything. They also say that inference systems like vLLM are effectively modified almost down to the lowest level and optimized before being run. It seems benchmark maxing is something they actually do. So while running benchmarks, when they move from a point where the benchmark is good to a point where it comes out bad, they roll the checkpoint back forward again, discard that run, and restart from a good checkpoint. This kind of optimization loop seems to run in a very messy engineering form, and the nuance was that a very large number of engineers are being ground down there, so to speak. Across labs, without exception.
+
+<span class="paragraph-timestamp" data-ts="22:53">22:53</span> **Jonghyun Park** Let me try to interpret what you said again as I understood it. When we talk here about top-tier datasets for post-train, if we think about exactly what that data is, shall we take math problems as an example? Then math problems and answers, that is the top-tier dataset. Good math problems, difficult math problems, and answers. Then if they have a huge number of those, if they have a good benchmark, they run RL to make the model solve it until it solves it well. So having a lot of difficult problems and answers is what Frontier Labs want to do now. Is that the right way to understand it?
+
+<span class="paragraph-timestamp" data-ts="23:33">23:33</span> **Chester Roh** Yes, that's what they are doing. And there seems to be a lot of competition around that. So I think dataset companies also believe that if they sell it once to one place, they can sell it to all the labs. Because they can say, they trained on this data over there. Wouldn't you like to use this too? Of course, I have not confirmed by asking, "Are you selling it like that?" but inferring from the conversations, I think all these things must be working.
+
+## RL keeps getting deeper — and the "is RLVR AGI?" debate    *24:04*
+
+<span class="paragraph-timestamp" data-ts="24:04">24:04</span> **Chester Roh** So it has already been well over two years since we started talking about RL, and if we look back a bit at what happened during those two years, it has kept moving toward RL getting deeper. I still don't know how much deeper this will get. But what is clear is that there doesn't seem to be an end to it yet. The fact that the more you make the model do this, its performance keeps improving is something we have continued to see over the past six months while watching the models released by Frontier Labs.
+
+<span class="paragraph-timestamp" data-ts="24:32">24:32</span> **Seungjoon Choi** But listening to this, my impression is that lately, they seem to be talking a little less about general. Google DeepMind still talks about AGI, but what you just said, and as Jonghyun also said earlier, that the breakthrough through pretraining seems to be in robotics, the current regime is a regime that works with RLVR, and I suddenly thought that it may not be general. Just a personal thought.
+
+<span class="paragraph-timestamp" data-ts="24:58">24:58</span> **Chester Roh** I didn't quite understand what you mean.
+
+<span class="paragraph-timestamp" data-ts="24:59">24:59</span> **Seungjoon Choi** I mean performance is improving only in areas where breakthroughs can be made with RLVR, and that may not necessarily be general.
+
+<span class="paragraph-timestamp" data-ts="25:07">25:07</span> **Chester Roh** That's obvious. These are areas where RLVR is running, and among those areas, areas like coding, or for example legal, finance, or bio, each in their own way. I'm not sure about bio. But at least in legal and areas like that, you can produce an answer, you can say this is right or wrong, so it feels like a lot of advanced practice problems are emerging in those kinds of areas.
+
+<span class="paragraph-timestamp" data-ts="25:37">25:37</span> **Seungjoon Choi** So this may be nitpicking, but my impression is that it is hard to call something like that AGI. That's my impression.
+
+<span class="paragraph-timestamp" data-ts="25:44">25:44</span> **Chester Roh** As for the definition of AGI, honestly, who can define it? From the perspective of the person receiving it, someone could say, this much is AGI, or someone could say, this is nowhere near good enough. I don't know. So on the data side and this post-train infrastructure side, I think I can say that there still seems to be an enormous amount of investment going in, and of course, efficiency per unit operation inside, the compute efficiency part, is also being treated as extremely important, I heard that a lot from many places.
+
+## "2025 saw almost no research progress" — algorithm skepticism    *26:20*
+
+<span class="paragraph-timestamp" data-ts="26:20">26:20</span> **Chester Roh** Algorithms are still being researched very actively, but even people who work on algorithms don't really talk much about this kind of thing. Even Dr. Chung Hyung-won at Meta said that in 2025, on the research side, maybe there had been almost no progress, that it was a year with no progress, that is how Dr. Chung personally judges it.
+
+<span class="paragraph-timestamp" data-ts="26:49">26:49</span> **Jonghyun Park** By algorithms here, you mean things like, for example, doing MLA for attention inside the transformer, or doing some kind of attention, things like that, right?
+
+<span class="paragraph-timestamp" data-ts="26:59">26:59</span> **Chester Roh** Right. I actually asked Dr. Chung Hyung-won that question too. Regarding DeepSeek, reducing memory in these kinds of areas, and things like that, there is a lot of algorithmic innovation happening, so I asked for Dr. Chung's assessment of those parts, but Dr. Chung said everyone does those things, so I did not ask any further.
+
+<span class="paragraph-timestamp" data-ts="27:23">27:23</span> **Jonghyun Park** It is not a breakthrough for increasing some kind of intelligence, it is just increasing efficiency, so it feels like Dr. Chung treats it as a different kind of work.
+
+<span class="paragraph-timestamp" data-ts="27:30">27:30</span> **Chester Roh** But rather than those parts, more than saying which algorithm is good, which is bad, or which one did what, it seemed like Dr. Chung's perspective on the problem was completely different. That feeling of the Bitter Lesson. It seems Dr. Chung still thinks there are things that can be done in terms of taking scale even higher.
+
+## Noam Brown on test-time compute and a new benchmark standard    *27:54*
+
+<span class="paragraph-timestamp" data-ts="27:54">27:54</span> **Chester Roh** And then recently Noam Brown has also been appearing and talking a great deal about test-time compute. So when evaluating a model's performance, right now people just use some single scalar score and say the benchmark barely went up by 3 points, or it went up by 3 percentage points, things like that, but that is wrong. Even just comparing GPT-5.4 and GPT-5.5, it reaches the optimum point on the same benchmark with far fewer inference tokens. Therefore, going forward, the standard for benchmarks should be to fix the budget of inference tokens and fix it at an early point, and look at the benchmark that way, that is what Noam Brown said. And what that implies is that this model's test-time compute, if you keep increasing it, still has the possibility that the performance the model can produce will keep increasing without a known limit. So this compute scale part, there is the size of the model, and the amount of compute that goes into training, but there is also the possibility of finding a solution by increasing inference compute more, and I got the nuance that this part is somewhat separate.
+
+<span class="paragraph-timestamp" data-ts="29:15">29:15</span> **Seungjoon Choi** That suddenly reminds me of something. Recently, when GPT-5.6 was announced, it was not in the system card, and it was probably in the blog, but it said it gets 750 TPS. GPT-5.6 gets 750 TPS on Cerebras, so it can run that very quickly at test time. I vaguely remember that being mentioned.
+
+<span class="paragraph-timestamp" data-ts="29:30">29:30</span> **Chester Roh** Yes, and as we also talked about last week, there was the model that solved the Erd흷s problem. At OpenAI. But even that model that solved it was not some rare, much more outstanding model running inside the lab, but just the GPT-5.5 we use, with a massive amount of test-time compute put into it, producing those results, a researcher told us that.
+
+<span class="paragraph-timestamp" data-ts="29:57">29:57</span> **Seungjoon Choi** If it immediately becomes 20 times faster at the GPT-5.5 level, that alone would probably bring enormous benefits.
+
+<span class="paragraph-timestamp" data-ts="30:03">30:03</span> **Chester Roh** I think this is an area where, from a business perspective, we will have a lot to talk about going forward.
+
+<span class="paragraph-timestamp" data-ts="30:08">30:08</span> **Jonghyun Park** If I add one thing here, just from the perspective of intelligence, if, for example, we solve a combinatorics math problem, we could solve it by really doing what people call brute-force work and counting all the cases, but if we solve it intelligently, we can solve it much more efficiently, intuitively and logically, so the fact that it solves it using fewer tokens could itself be seen as higher intelligence.
+
+<span class="paragraph-timestamp" data-ts="30:34">30:34</span> **Chester Roh** That is exactly what Noam Brown said. With a much lower test-time compute budget, high performance is maintained more quickly.
+
+<span class="paragraph-timestamp" data-ts="30:43">30:43</span> **Seungjoon Choi** That is why people are missing Fable 5.
+
+<span class="paragraph-timestamp" data-ts="30:45">30:45</span> **Chester Roh** So this is a severe summary, and there were also unique stories from each lab, and a lot of stories about their joys and sorrows. At xAI, Elon Musk joins every meeting, every team meeting, so instead of asking the manager, Elon Musk always asks the working-level person in charge of that work. Directly. For people who like that, it is a great challenge and also fun, but for others it comes across as very stressful, and because of things like that, there are also many people who leave xAI, I heard that too.
+
+## AI x Bio: Doudna's skepticism and two opposing approaches    *31:27*
+
+<span class="paragraph-timestamp" data-ts="31:27">31:27</span> **Chester Roh** And after that, these are actually the companies I looked at with the most interest, there are many companies doing bio with AI. So yesterday too, Professor Doudna, who won the Nobel Prize, was doing a Bloomberg interview with Emily Chang, and said that chatbots can only summarize documents, and cannot do the innovation that humans do. That is what Professor Doudna said. But as I looked at the domains in this Market #2, let me take bio as an example. Like Professor Doudna, people who are at universities, or people who have traditionally been at very large research institutes, their approach and then, on the complete opposite side, the approach taken by software engineers who have AI practice and traditionally had not been doing biology felt completely different to me. What Professor Doudna said was, biology is such a vast field, so can you really find new substances and do research just because a chatbot gives answers this way and that? She was saying things like, this is impossible. And because of that, if you look at the pipelines that big pharmaceutical companies and places like that are building, it is as if, between 2015 and 2017, before our BERT, Transformer, and GPT came out, most applications back then were convolutional neural network applications, right? And for each problem, the network architecture was completely different, the datasets were all different, and the training for them and things like that were all different too. There was a time like that, but as things moved to BERT, Transformer, and language models, what people call a foundational approach emerged, right? I do not know about that, just gather a ton of general data, train it on a Transformer, and if the loss goes down, those general things solve specific problems. The paradigm changed in that kind of way.
+
+## Biology's CNN era — the foundational approach arrives    *33:37*
+
+<span class="paragraph-timestamp" data-ts="33:37">33:37</span> **Chester Roh** But this time, I felt exactly that in biology. In this large domain, the pipelines are just all different for each problem. And they say, this is a problem that can only be solved this way. But when you look at the software people over there, they just use a Transformer base, build a foundational model approach, increase the amount of the dataset, then design the model's eval well, and structure the unit problems they want. But the methodology of those second labs seems to be something that the traditional labs in front of them, first of all, do not recognize at all. No, even if they try that, it will not work. This is not a problem that can be solved that way. They seem to have that kind of perception. And secondly, my judgment is that they do not know exactly what those people are doing. They did not know what they were doing, exactly.
+
+<span class="paragraph-timestamp" data-ts="34:33">34:33</span> **Seungjoon Choi** Then you met the labs on the front side too?
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **Chester Roh** Yes, I met the labs on the front side too. So I had that impression, that there is a gap between these two.
+
+## OpenCRISPR: AI has already innovated in her own domain    *34:43*
+
+<span class="paragraph-timestamp" data-ts="34:43">34:43</span> **Chester Roh** And I came back thinking that exploiting this gap well would be a big business opportunity, and now that I am back, the day before yesterday, with jet lag and all, I watched Professor Doudna's interview with Emily Chang just skipping through it, and seeing Professor Doudna say AI cannot innovate, that is just a summarizing chatbot, it is still far away, I thought, even that professor who won the Nobel Prize still does not really know how the world is changing. That is what I thought. Right away, she is the person who won the Nobel Prize for CRISPR-Cas9, and with CRISPR-Cas9,
+
+<span class="paragraph-timestamp" data-ts="35:19">35:19</span> **Seungjoon Choi** You mean the scissors? Gene-editing scissors.
+
+<span class="paragraph-timestamp" data-ts="35:20">35:20</span> **Chester Roh** She is the person who made the gene-editing scissors, and AI found other proteins that play the same role as the Cas9 protein she discovered, called OpenCRISPR, and last year it found several more candidate substances. So the AI found them. Right inside her own domain, it has been doing innovation. But that side was a completely foundational approach. They absorbed a ton of proteins and, with that model, looked for things that seemed similar just in silico, and that approach works. And now, on the biology side, I met some engineers at companies that are taking this kind of foundation approach. So I just explained what kind of approach they are taking, and the results are quite good. It may look like child's play right now, from the perspective of mainstream scholars. But I felt that this part is around the stage of going from GPT-1 to GPT-2.
+
+<span class="paragraph-timestamp" data-ts="36:19">36:19</span> **Seungjoon Choi** There was another symbolic event recently, right? Nobel laureate John Jumper left DeepMind and went to Anthropic, did he not?
+
+<span class="paragraph-timestamp" data-ts="36:26">36:26</span> **Chester Roh** Right. I am not sure how to interpret that.
+
+<span class="paragraph-timestamp" data-ts="36:29">36:29</span> **Seungjoon Choi** Anyway, it is that kind of thing, that someone who worked on AlphaFold went to Anthropic.
+
+<span class="paragraph-timestamp" data-ts="36:35">36:35</span> **Chester Roh** But I hear a lot of people are going to Anthropic these days. Anthropic's stock price is good, and the stock price is now on a rising trend, so if you go now, you get a lot of so-called stock options,
+
+<span class="paragraph-timestamp" data-ts="36:53">36:53</span> **Seungjoon Choi** Is it kind of that?
+
+<span class="paragraph-timestamp" data-ts="36:54">36:54</span> **Chester Roh** Yes, because those commercial factors are significant, the incentives seem quite large.
+
+## Persuade the domain experts, or beat them?    *36:59*
+
+<span class="paragraph-timestamp" data-ts="36:59">36:59</span> **Jonghyun Park** Anyway, listening carefully to what Chester is saying, and thinking about how we should play this, all of us, and everyone listening to this AI Frontier podcast, are people who believe in AI's potential, but from the perspective of people on this side, there are domain experts who still think AI has no potential, and by exploiting something with those people, there seems to be a business opportunity. That is what you said. Then do you think the best scenario is to persuade those domain experts well and co-work together with them? Or, if we argue a bit more extremely in the opposite direction, one could also think that maybe we could beat the domain experts.
+
+<span class="paragraph-timestamp" data-ts="37:40">37:40</span> **Chester Roh** That is a really good question. But honestly, my view is, I also tend to generalize too much from just a few phenomena, but unless domain experts learn AI intensely and understand what this scale means in the space that is happening now, I think it would be hard for them to think that AI will do all of that. And the people we call domain experts are older, too. They are older, and they know a lot, and because of that, based on the feedback from many people I met in the U.S. whose business cards alone were dazzling, I got the sense that these people would not believe it even if AI showed them, right in front of their eyes, that it had done that. So rather than persuading domain experts and doing something together with them, I think it may be faster for an AI software engineer to just learn that domain. Then, in the past, just a small industry, this is an analogy I used a lot while running a cosmetics business, not a cosmetics business like this, but therapeutics, treatment or pharmaceuticals, even areas like longevity drugs and so on, I think a company that starts from a non-expert starting point could win.
+
+## Dogfooding: a personal genome pipeline built by Codex in three days    *39:20*
+
+<span class="paragraph-timestamp" data-ts="39:20">39:20</span> **Chester Roh** So actually, in this bio area as well, because that was the main purpose of our business trip, and in the meantime, before I left on the trip, I had my blood drawn and sent to Macrogen, and my long-read genome sequence all arrived, so with my genes and my health records and everything all combined, I built what you might call the entire pipeline. There are so many things I do not understand, but it also creates better study materials for learning those things in terms I can understand, and with that, something that in the past would have formed a company by itself, Codex generated the whole pipeline in about three days.
+
+<span class="paragraph-timestamp" data-ts="40:03">40:03</span> **Seungjoon Choi** You are trying to do a kind of dogfooding.
+
+<span class="paragraph-timestamp" data-ts="40:05">40:05</span> **Chester Roh** Just dogfooding. I tried making everything. So I gained a deep understanding of why that is the case.
+
+<span class="paragraph-timestamp" data-ts="40:13">40:13</span> **Seungjoon Choi** Before we move on, when I asked earlier about the significance of John Jumper, it had not occurred to me and I just let it pass, but now that I think about it, Google DeepMind does specialized models like AlphaFold, but Anthropic does not. They only do LLMs. Only coding models. So through that, I briefly thought that perhaps the nuance is that they want to do science.
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **Chester Roh** That could be. But those Frontier Labs seem to be racing toward a leveling-up at the top. And also, I of course cannot say who said this, but already among the labs, the technology for making these frontier models is not that difficult. Once someone has seen it, if they go outside and have the same resources and the same things, it is just a matter of time; it is reproducible. They say that is an uncomfortable truth that everyone is quietly talking about among themselves. This is the domain side, and I talked a little about this Market 2 domain, but these areas are things we have discussed countless times in earlier episodes, and this also connects to Jonghyun's question from earlier. In this digital world, for domains where a verifier cannot be made easily right away, where a verifier can verify only when a real robot runs, or an experiment is done, or some action happens at least once in the real world, those domains seem to make up almost all of Market 2. And Market 2, again, as I have said many times in other episodes as well, is an area where I have a lot of expectations, and where I myself am also placing many business points.
+
+## "Everyone's gone crazy" — early-20s founders in the new Wild West    *42:01*
+
+<span class="paragraph-timestamp" data-ts="42:01">42:01</span> **Chester Roh** If we go back to talking about startups, this is actually where the most interesting stories are, but everyone has gone crazy.
+
+<span class="paragraph-timestamp" data-ts="42:07">42:07</span> **Seungjoon Choi** People in Silicon Valley?
+
+<span class="paragraph-timestamp" data-ts="42:09">42:09</span> **Chester Roh** Yes, they have gone crazy. They have gone crazy. So I thought, this really is the Wild West. People come here chasing dreams, and the talented people, in their own way, have formed their own rounds of racing forward, while the people who are simply dreaming really come here even on tourist visas, going from hackathon to hackathon, thinking something will come of it. I saw young people like that, too. So I thought there really are all kinds of people, and about that, about why I used the expression "gone crazy," I will explain in order. First, the companies doing startups, the founders are in their early twenties. Once they are in their late twenties or early thirties, that is considered quite old. Early thirties is.
+
+<span class="paragraph-timestamp" data-ts="43:02">43:02</span> **Seungjoon Choi** If they are in their early twenties, that means they dropped out of college. Then most of them
+
+<span class="paragraph-timestamp" data-ts="43:05">43:05</span> **Chester Roh** College, since they do not have to go to the military there, they graduate from college, do a one-year internship somewhere, and then if they get into Y Combinator, they are about twenty-two or twenty-three. But now, the companies Y Combinator selects are very young these days. And I think I mentioned this once before, but these days, many college students' dream is to get into a place like Y Combinator and legally quit school, or else they treat school as just something for grades, only to get a diploma, and many attend for that purpose. And at Jordan's company, which we recorded with last time, there are quite a few people who got jobs after only graduating from high school. So young people these days are AI-native, and they also seem to be coldly comparing the limits of the knowledge that universities can teach them with the utility of paying money for four years to get a diploma. So there are quite a lot of cases where people finish only high school, go to a company, and start their careers right away. And building a good career at a good company is increasingly being seen by many people as equivalent to an undergraduate degree, which was one of the interesting things I saw. Things like that exist somewhat in Korea now, too. I understand there are already high school students working with CEO Kim Seojun.
+
+<span class="paragraph-timestamp" data-ts="44:34">44:34</span> **Jonghyun Park** But after graduating from high school, they were doing exactly those kinds of things. So probably at places like InstructKR, you may have seen their IDs a lot on Discord, and it seemed like they were very active. Watching that, I felt a bit envious. Truly, in their early twenties, for their dreams watching people who are taking action, running straight toward it, I learned a lot, and even though I now belong on the older side,
+
+<span class="paragraph-timestamp" data-ts="45:00">45:00</span> **Seungjoon Choi** Didn't you write something like that, some post or episode? Something like, "I should've done this instead" midway through. If you could go back, rather than school,
+
+<span class="paragraph-timestamp" data-ts="45:07">45:07</span> **Jonghyun Park** I'm thinking that now. Back then, I couldn't think that way, but if I could go back to my 20s with the thoughts I have now, I think, if I were at that age, I would want to run like that too, that's what I'm thinking.
+
+<span class="paragraph-timestamp" data-ts="45:17">45:17</span> **Chester Roh** So what I feel watching those young people is the relativity of time. The axis of time those people feel and the axis of time we feel are relatively very different right now. And the things they want and the things we want are also very different, and thanks to that, I feel like I went and soaked myself completely among those young people, so I felt very refreshed.
+
+## $300M valuations on ~$3M ARR    *45:43*
+
+<span class="paragraph-timestamp" data-ts="45:43">45:43</span> **Chester Roh** One more thing is, I think I need to raise the valuation discussion a bit and talk about it. The valuations these companies have are very high. First, they get into a Y Combinator batch, and then once they get in there, they receive investment from Y Combinator, and then they receive something like pre-seed or seed funding, and those valuations are much higher than in Korea. When revenue is about $2.1 million to $2.9 million in Korean money, converted to ARR, not as annual revenue, but just as annualized average revenue, once it reaches that level, the company's valuation is simply treated as around $300 million. A $300 million valuation is about $286 million. On an ARR basis, around $2.1 million to $2.9 million. If you compare it against Korean standards, it's not two or three times higher, it's like there is one more zero at the end.
+
+## Two kinds of founders: dreamers vs. AI agent businesses    *46:42*
+
+<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **Chester Roh** Honestly, I think valuations with one more zero at the end are being formed, and I think those founders fall into exactly two categories. There are founders who dream in a grand, heavy-industry-scale way. For example, it's like this. The current Transformer model is wrong. The world model Yann LeCun talks about has these problems too. A new model should be like this, those kinds of dreaming dreamers. But when you look at those dreamers, even their backgrounds already give off a genius vibe. They got into one of those famous schools we all know at about seventeen, and now they're twenty, and what is it? They have already worked at Google DeepMind, and so what they say is, about half of the Google DeepMind researchers are smart, but I'm not sure the other half are that smart. They say things like that, and they have six employees, they are the CEO, and they hired the professor who used to teach them, and all the famous investment firms we know are lined up because they can't all get money into this company. Yes, starting with Sequoia and a16z, everyone is lined up because they all want to put money in, and the starting seed valuation seems to be almost around $357 million. And then the amount they say they will invest seems to be close to about $71 million, and so at seed, meaning the company hasn't been founded for long, the company valuation right at founding is just at that level. So here too, for those very young and genius-like kids, if they give off the vibe that they might change the world, I think a very expensive valuation, almost at the level of NeoLab, just appears from the very beginning. And then second, for those doing AI agent businesses, the spectrum here is truly enormously wide. First, this market hasn't fully opened yet. There are a lot of companies that are turning mostly B2B SaaS-like things into AI native applications, and even if these companies have no revenue yet, expectations for valuation are very high. Why? Because they themselves were already receiving $5 million at Meta, which is about $5.7 million in Korean money. They were receiving $5 million as salary, my friend came from Anthropic after receiving about $5.7 million, and my friend came from ByteDance after receiving about $5.7 million. Since three friends like that founded a company together, even just our three salaries combined are about $17.1 million, so doesn't a company valuation of about $71.4 million make sense? That's the logic, and for those things, there is a group that acknowledges it to some extent. Mainly people from famous companies we know. I'll talk a little about wages.
+
+## What a $5M salary actually means — Silicon Valley pay structure    *49:41*
+
+<span class="paragraph-timestamp" data-ts="49:41">49:41</span> **Chester Roh** It's true that Silicon Valley wage levels are much higher than Korea's, but even within that, the salary levels at so-called Frontier Labs and well-funded AI companies are very high. If you're a somewhat decent engineer at an ordinary startup, you receive about 200K to 300K, meaning $200,000 to $300,000 as salary. Of course, considering their extremely high cost of living and taxes, even if you cut about half off in Korean terms, it's at a level similar to Korea, but their salary, even if simply calculated in Korean won, comes out to around $214,000 to $321,000, and at a very well-funded startup, or, as I mentioned just now, if they were a founding member of a dreaming company like that, or if they were a good engineer at places like Google or Meta, or Thinking Machines, including NeoLab and places like that, their salaries are, of course, around $5 million. Of course, that salary is not all base salary. The base salary, for example, is about $571,000 to $714,000, and that is the actual salary we receive, while the remaining $4.3 million to $5 million is converted based on the high valuation of that highly valued company as stock options. Since it is an amount mixed between stock options and stock grants, for example, if someone working at Google in Silicon Valley had total compensation of $5 million, then the taxes they have to pay on stock options, then the taxes they have to pay on stock grants, and the taxes they have to pay on salary, probably mean that a max of 50% to 60% will just go out as taxes. Even so, about $2.1 million to $2.9 million is still their actual take-home annual compensation.
+
+## How these valuations get recouped: acqui-hires    *51:40*
+
+<span class="paragraph-timestamp" data-ts="51:40">51:40</span> **Jonghyun Park** The flow of money you're describing, the scale doesn't quite feel tangible to me. If I try putting myself in an investor's shoes and think about it, the employees who used to work at Big Tech over there now are receiving compensation in amounts over about $700,000, including stock, so when those people start a company, the new business they open somehow gets a valuation of around $71.4 million, and investors can invest only if they can actually recover that much, right? Then I guess investors are assuming that just because they were recognized for that much value there and worked there, they can pull all of that off.
+
+<span class="paragraph-timestamp" data-ts="52:18">52:18</span> **Chester Roh** I was curious about that part too, so I just asked. I asked that founder, "What is your exit plan, and if it doesn't work out, among the companies that didn't work out, are there companies among your friends' companies that got sold?" and Chester Roh nodded and said that they just don't come out publicly, but all those large corporations, enterprises, also have to do something with AI, so in quite a few cases, they take the entire company in an acqui-hire form, and at the valuation formed then, investors also make a profit. So for that level of valuation, I think there is a bit of a current consensus. Of course, as for whether this is a bubble and whether it will continue going forward, I also have questions, but the valuations of deals currently happening in San Francisco seem to be about that level.
+
+<span class="paragraph-timestamp" data-ts="53:12">53:12</span> **Jonghyun Park** I understand that VCs giving that level of valuation, valuations that seem unbelievably high from our perspective, is reasonably rational in its own way.
+
+<span class="paragraph-timestamp" data-ts="53:23">53:23</span> **Seungjoon Choi** One thought I have, on the other hand, is that it would be nice to know roughly what the base population is and how much of that is at that level.
+
+<span class="paragraph-timestamp" data-ts="53:31">53:31</span> **Chester Roh** That is actually what I had set up as named and newbie, and even for newbies, it seems there are quite a few cases where they obtain seed financing on much better terms than in Korea.
+
+<span class="paragraph-timestamp" data-ts="53:46">53:46</span> **Seungjoon Choi** But what I'm curious about is, even if we don't know the exact number gathered there now, how much talent has gathered there for things like this to happen when you pick the top among them? That's what I was wondering.
+
+<span class="paragraph-timestamp" data-ts="53:58">53:58</span> **Chester Roh** I don't really know the numbers either. I was just at coffee shops near South Park, and then above Salesforce Tower there is Salesforce Park, and when I'm there, everyone is startup people, and then the Big Tech companies there, and then engineers from extremely well-funded companies, all gathered in that block. But from the atmosphere you feel in that block, it's just packed here. So there is definitely a difference between an entry market of dreamers and a market where a certain number of named people come and go like that.
+
+## 200 teams per YC batch, one-minute demo days, pivot culture    *54:37*
+
+<span class="paragraph-timestamp" data-ts="54:37">54:37</span> **Chester Roh** But if I had to draw that boundary, there are so many Y Combinator alumni that you practically trip over them. Y Combinator selects nearly 200 teams in one batch, so at Demo Day, they say the presentation time is one minute. They say it all ends in a day. What can those companies talk about for one minute? That's why they have to create results in advance, and investors also study everything in advance before going and choose the companies they will invest in. In any case, now, unlike before, when someone gets into Y Combinator, it doesn't mean, "Ah, this is a really good company," but when someone gets into Y Combinator, it's like, "Okay, this place has a college diploma," something like that.
+
+<span class="paragraph-timestamp" data-ts="55:24">55:24</span> **Jonghyun Park** Recently, I had a chance to interview someone one connection away who got into a Y Combinator batch, so I talked with them, and they were also college students. So they are participating in the current batch now, and they pivot a lot. And Y Combinator also doesn't think badly of pivoting, so they quickly iterate through different items, look at some user evaluation metrics, and I got the sense that what matters is not the item, but that they are buying the person.
+
+<span class="paragraph-timestamp" data-ts="55:55">55:55</span> **Chester Roh** If someone is a reasonably decent person, it feels like Y Combinator just kind of marks them first. And there seem to be South Park Commons and a few other groups trying to play the kind of play Y Combinator plays.
+
+<span class="paragraph-timestamp" data-ts="56:14">56:14</span> **Seungjoon Choi** Then is the whole playbook here a kind of investing in early sprouts? Like, who is a promising sprout?
+
+<span class="paragraph-timestamp" data-ts="56:20">56:20</span> **Chester Roh** I'm not sure. It's a bit difficult to generalize that way, but this is just the uncomfortable truth of the venture capital industry. In the end, because it is always more a game of choosing people than choosing items, if the person is much younger, much smarter, and someone with decent execution ability, there must have been metrics showing that the odds of winning are much higher than with other things, so the overall trend must have shifted that way. So I can't say it's because of Y Combinator, but the overall age of founders has become incredibly young, so these days, if someone is a startup founder in the Bay, most are in their early 20s, or at most mid-to-late 20s, and even early 30s feels slightly old; if they go beyond that, they are operating at a different speed of time from them, bringing somewhat different domain expertise and a particular problem with them, but I haven't met many people there, so I can't really say. So I met a lot of people doing startups, and I think I can summarize it to that extent.
+
+## Younger VCs, capital rushing to data centers and chips — and Korea's chip ecosystem    *57:36*
+
+<span class="paragraph-timestamp" data-ts="57:36">57:36</span> **Chester Roh** And venture capital firms don't yet seem to have that much interest in startups doing something at the application level or doing B2B-ish things like that.
+
+<span class="paragraph-timestamp" data-ts="57:52">57:52</span> **Seungjoon Choi** But speaking of venture capital, what comes to mind is that when we interviewed people before, including CEO Seojoon, and CEO Wonjoon in the past as well, they said the path for VCs to survive is now unclear, so they are moving toward taking action themselves. Is the mood like that here too?
+
+<span class="paragraph-timestamp" data-ts="58:04">58:04</span> **Chester Roh** And I think I should mention this too, venture capitalists are also very young.
+
+<span class="paragraph-timestamp" data-ts="58:11">58:11</span> **Seungjoon Choi** How young are they?
+
+<span class="paragraph-timestamp" data-ts="58:12">58:12</span> **Chester Roh** There are many in their early 20s, and many in their 30s, And there are more and more venture capitalists with very unique backgrounds, so conversely, even toward people who say they want to do VC, it feels like a tremendous amount of capital is being poured in, and here, too, people who left DeepMind are starting countless startups. So former DeepMind people, former Anthropic people, people from this place and that place, are creating a lot of startups, and in venture capital as well, people who experienced something at the so-called named firms we know, like Sequoia and others, seem to be coming out and founding young venture capital firms quite actively, and I felt that they are at the same stage of dreaming, just like people dreaming of startups. There are so many VCs, and I did not meet all of them, only sampled a few, but the venture capital firms I met as a sample were mostly focused on data centers or chips, and then on infrastructure software that orchestrates models and orchestrates inference or training, areas like that. It seems they still judge that those areas have much higher growth potential, that more data centers need to be built going forward, and that chips will be in short supply for a while, so people who can propose alternatives to that, people who can make that possible, they seem to think there are far more opportunities for those companies.
+
+<span class="paragraph-timestamp" data-ts="59:46">59:46</span> **Seungjoon Choi** What do you mean by chips here? Is it memory, or compute?
+
+<span class="paragraph-timestamp" data-ts="59:49">59:49</span> **Chester Roh** All of it.
+
+<span class="paragraph-timestamp" data-ts="59:52">59:52</span> **Seungjoon Choi** So there are startups innovating around that?
+
+<span class="paragraph-timestamp" data-ts="59:54">59:54</span> **Chester Roh** So in that area, there was a lot of interest in Korea. So I introduced Jinwon's company and Jeongkyu's company quite a lot, and because Korea has Samsung Electronics and Hynix after all, they asked whether people from those companies were coming out and starting companies, whether there were any good companies among the chip companies, and I remember getting quite a few questions like that.
+
+<span class="paragraph-timestamp" data-ts="1:00:20">1:00:20</span> **Seungjoon Choi** But we do not really have data centers, right? We have infrastructure software orchestration and chips, but are there places in Korea doing data centers?
+
+<span class="paragraph-timestamp" data-ts="1:00:26">1:00:26</span> **Chester Roh** There are. The large corporations, and SK seems to be working the hardest on it.
+
+<span class="paragraph-timestamp" data-ts="1:00:34">1:00:34</span> **Jonghyun Park** To share my thoughts following your answer, the idea that VCs are interested in things like data centers or chips feels a little odd, because as you said, large corporations do a lot of that, and VCs do not invest in those large corporations. Then among smaller companies, are there many companies trying to solve those kinds of problems? I thought the pool of candidates for VCs to invest in such companies might be quite small.
+
+<span class="paragraph-timestamp" data-ts="1:00:59">1:00:59</span> **Chester Roh** In Korea?
+
+<span class="paragraph-timestamp" data-ts="1:01:00">1:01:00</span> **Jonghyun Park** In Korea or the U.S., overall.
+
+<span class="paragraph-timestamp" data-ts="1:01:03">1:01:03</span> **Chester Roh** Yes, as for whether the numbers are large or small, I do not have an exact sample either, so I cannot say, but of course compared with agent startups or things like that, it does seem likely to be significantly smaller. But in that area, there could normally be a perception like this. Isn't that a market NVIDIA has already finished? Isn't that a market Samsung or Hynix has already finished? There could be that kind of perception, but the reality was not like that at all. There is much more room for growth here, and the view that this is only just beginning felt much more dominant to me. It was the exact opposite of the idea that because this is now over, we should look at it very conservatively. Valuations there are enormous, too. They do seem to be working most actively with OpenAI. So I have roughly summarized what I heard from the meetings.
+
+## ICML Seoul week: meetups, parties, and keeping your socials alive    *1:02:00*
+
+<span class="paragraph-timestamp" data-ts="1:02:00">1:02:00</span> **Chester Roh** And interestingly, ICML is being held at COEX starting July 4.
+
+<span class="paragraph-timestamp" data-ts="1:02:07">1:02:07</span> **Seungjoon Choi** I think it runs until around the 11th.
+
+<span class="paragraph-timestamp" data-ts="1:02:09">1:02:09</span> **Chester Roh** Yes, actually the 4th and 5th are the preceding weekend, and the main conference starts on the 6th, with the main conference during that week on Monday, Tuesday, and Wednesday, and then some workshops after that, I think. Monday, Tuesday, and Wednesday will probably be the peak. But since ICML is still a fairly large conference in the machine learning space, a lot of researchers from Frontier Labs are coming, and then venture capitalists and startups are also coming in fairly large numbers. So during that period, a lot of parties are being held. There are meetups, and some meetups are invitation-only, so even if you register, there may be places you cannot attend, while there are also areas you can go to freely. Anyway, if you are interested, the ones I am showing you here now, the Instructor KR event at Scionic on July 4 and the event at Hashed on July 5, I plan to go to those two. You can go there and talk with people at the frontier from not only Korea but from all around the world, and it is also a place where you can introduce your company or business to investors, so I think it would be good to take advantage of this opportunity and not miss it. If you go to Luma and search for ICML Seoul, a lot of events come up between July 4 and around the 10th. So I think it would be good to register for a worthwhile one. And a lot of registrations require your LinkedIn or Twitter handle or some kind of social log. So if there is not much history there, in many cases you may not even receive the invitation itself, so I think keeping things like LinkedIn or Twitter maintained a bit in your normal routine is good if you want to operate at a global level.
+
+## AI Frontier reorganizes: lighter and faster    *1:04:13*
+
+<span class="paragraph-timestamp" data-ts="1:04:13">1:04:13</span> **Chester Roh** So now, the things we wanted to talk about today have mostly been covered, and to briefly talk about how we will reorganize AI Frontier, as I said at the beginning, we want to avoid making it heavy and instead make something lighter and faster, that is what we are trying to create. That direction is something Seungjoon and I had been doing, where the main episodes, numbered once a week, now have Jonghyun joining us as another host, so we will rotate with about one guest, or the three of us, in the format we had been using, and continue running the main episodes. But we are also planning to create a very large number of sub-channels in a lighter way. So as I wrapped up this business trip, when I thought about what role we should play as an AI Frontier channel, I thought about Korea's strengths. I believe that the most Korean thing is the most global thing. As I mentioned earlier, there are areas like chips and infrastructure, but I still think consumer services created by AI are a market that has not even opened yet. And if some major service emerges in that area, I think the seed of it will be seen first in Korea. But even if that seed appears in Korea, if it only grows within Korea and competes only in Korea, Korean people are smart, so if there is a good service, an enormous amount of copying happens among us too. And while fighting it out among ourselves, everyone just gets wiped out. In the process, the timing is lost, and during that lost timing, an identical company comes out in the U.S. and succeeds on a much larger scale. I have seen so many cases like that, so since I am not a founder in Chester's early twenties, and I am now in a position where I should help those founders more, I think I need to introduce good startups in Korea much more to the global market.
+
+## Monthly AI Demo Day — introducing Korean startups to the world    *1:06:26*
+
+<span class="paragraph-timestamp" data-ts="1:06:26">1:06:26</span> **Chester Roh** About once a month, I think we should hold something like a demo day to introduce businesses and technologies in Korea to the global market. So although Monthly AI Demo Day will be difficult, I want to create a demo day held only in English and introduce it globally. And by connecting these demo days over time, I am thinking of making them a bit of a primer for the Seoul edition of next year's AI Engineer Summit and AI Engineer Conference.
+
+<span class="paragraph-timestamp" data-ts="1:07:04">1:07:04</span> **Seungjoon Choi** It is a format where companies introduce the products they are developing during that time, right?
+
+<span class="paragraph-timestamp" data-ts="1:07:07">1:07:07</span> **Chester Roh** It will not be one per minute. We will do one every 10 minutes.
+
+<span class="paragraph-timestamp" data-ts="1:07:13">1:07:13</span> **Seungjoon Choi** Then several get introduced in a single day?
+
+<span class="paragraph-timestamp" data-ts="1:07:14">1:07:14</span> **Chester Roh** We should do several. If we only do 10 minutes and end it, gathering offline is quite burdensome, so first we will start lightly and see how it goes.
+
+<span class="paragraph-timestamp" data-ts="1:07:26">1:07:26</span> **Seungjoon Choi** Is the demo day an offline event?
+
+<span class="paragraph-timestamp" data-ts="1:07:27">1:07:27</span> **Chester Roh** Yes, that is the plan. Even in Korean, coordinating with each other online and managing presentations like this is almost impossible, so this has to be done offline.
+
+<span class="paragraph-timestamp" data-ts="1:07:39">1:07:39</span> **Seungjoon Choi** And there will be no broadcast, just offline only?
+
+<span class="paragraph-timestamp" data-ts="1:07:41">1:07:41</span> **Chester Roh** And for the AI and bio session as well, the things I come to learn while preparing the business, I am thinking of doing that just as a way to study. CEO Minseok will also be going to the U.S., and Minseok said Minseok would serve as our Silicon Valley correspondent, so the very interesting Y Combinator alums I mentioned, and people like that, often turned out to be friends of Minseok. In fact, thanks to Minseok, I was able to access many networks beyond my Korean network this time. And Seungjoon could also try sessions in areas Seungjoon is doing together with Seungjoon's fellow practitioners, so we are trying to make many things a bit lighter and more fun.
+
+<span class="paragraph-timestamp" data-ts="1:08:25">1:08:25</span> **Seungjoon Choi** Looking over the overall storyline, in the end, there is a very big opportunity in Silicon Valley, and the flow of connecting with it also has a connection to the AI Frontier restructuring.
+
+<span class="paragraph-timestamp" data-ts="1:08:36">1:08:36</span> **Chester Roh** We need to open some kind of channel to that high valuation and that high market accessibility. That is what I came back thinking.
+
+## First three-host recording: closing thoughts    *1:08:47*
+
+<span class="paragraph-timestamp" data-ts="1:08:47">1:08:47</span> **Chester Roh** Today was our first recording together with Jonghyun.
+
+<span class="paragraph-timestamp" data-ts="1:08:53">1:08:53</span> **Seungjoon Choi** I am curious about Jonghyun's thoughts.
+
+<span class="paragraph-timestamp" data-ts="1:08:56">1:08:56</span> **Jonghyun Park** My thoughts are that, in any case, I always listen, and I have appeared once as a guest, so I feel like I heard some really interesting stories today. In particular, what you are planning to do as a Silicon Valley correspondent is what I am looking forward to the most, and since I also admire San Francisco, today made me think that I should go there.
+
+<span class="paragraph-timestamp" data-ts="1:09:17">1:09:17</span> **Chester Roh** Yes, for someone like Jonghyun, I do think it would be good to go. That is what I think.
+
+<span class="paragraph-timestamp" data-ts="1:09:22">1:09:22</span> **Jonghyun Park** I will try taking on the challenge.
+
+<span class="paragraph-timestamp" data-ts="1:09:23">1:09:23</span> **Chester Roh** Yes, not to go just for fun, but because even going there, Jonghyun would be competitive enough. Conversely, I came back thinking that the so-called sages in Korea who are called AI native have very high value. I also came back thinking that there are many people here who are truly excellent.
+
+<span class="paragraph-timestamp" data-ts="1:09:43">1:09:43</span> **Seungjoon Choi** In any case, thank you for all the hard work.
+
+<span class="paragraph-timestamp" data-ts="1:09:44">1:09:44</span> **Chester Roh** Let us wrap up around here, return to our daily routine now, and with this restructured format, try doing a lot of interesting things.
+
+<span class="paragraph-timestamp" data-ts="1:09:55">1:09:55</span> **Seungjoon Choi** Understood.
+
+<span class="paragraph-timestamp" data-ts="1:09:56">1:09:56</span> **Chester Roh** All right, then we will leave it here for today. Thank you for your hard work.
