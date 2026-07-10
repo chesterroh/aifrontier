@@ -9,6 +9,7 @@ import {
   buildSitemapEntries,
   buildPodcastEpisodeJsonLd,
   buildPodcastSeriesJsonLd,
+  buildArticleJsonLd,
   resolveEpisodeThumbnail,
 } from '../src/lib/seo';
 
@@ -76,6 +77,56 @@ test('buildSitemapEntries includes ko/en roots and episode entries', () => {
   assert.ok(locs.includes('https://aifrontier.kr/en/episodes/ep12'));
   const koEpisode = entries.find((entry) => entry.loc.endsWith('/ko/episodes/ep83'));
   assert.equal(koEpisode?.lastmod, '2026-01-26');
+});
+
+test('buildSitemapEntries includes article entries and index pages when articles exist', () => {
+  const entries = buildSitemapEntries({
+    site: 'https://aifrontier.kr',
+    episodes: [{ lang: 'ko', episodeNumber: 102, publishedAt: new Date('2026-07-05') }],
+    articles: [
+      {
+        lang: 'ko',
+        slug: 'ep102-ai-business-perspective',
+        publishedAt: new Date('2026-07-05'),
+        updatedAt: new Date('2026-07-10'),
+      },
+    ],
+  });
+
+  const locs = entries.map((entry) => entry.loc);
+  assert.ok(locs.includes('https://aifrontier.kr/ko/articles'));
+  assert.ok(locs.includes('https://aifrontier.kr/ko/articles/ep102-ai-business-perspective'));
+  const article = entries.find((entry) => entry.loc.endsWith('/articles/ep102-ai-business-perspective'));
+  assert.equal(article?.lastmod, '2026-07-10');
+});
+
+test('buildSitemapEntries omits article index pages without articles', () => {
+  const entries = buildSitemapEntries({
+    site: 'https://aifrontier.kr',
+    episodes: [{ lang: 'ko', episodeNumber: 102, publishedAt: new Date('2026-07-05') }],
+  });
+  assert.ok(!entries.some((entry) => entry.loc.includes('/articles')));
+});
+
+test('buildArticleJsonLd builds an Article payload linked to its episode', () => {
+  const jsonLd = buildArticleJsonLd({
+    site: 'https://aifrontier.kr',
+    lang: 'ko',
+    slug: 'ep102-ai-business-perspective',
+    title: '테스트 아티클',
+    description: '설명',
+    publishedAt: '2026-07-05',
+    image: 'https://aifrontier.kr/articles/ep102-ai-business-perspective/sf-skyline.jpg',
+    authors: ['노정석'],
+    episodeNumber: 102,
+  });
+
+  assert.equal(jsonLd['@type'], 'Article');
+  assert.equal(jsonLd.headline, '테스트 아티클');
+  assert.equal(jsonLd.url, 'https://aifrontier.kr/ko/articles/ep102-ai-business-perspective');
+  assert.equal(jsonLd.dateModified, '2026-07-05');
+  assert.deepEqual(jsonLd.author, [{ '@type': 'Person', name: '노정석' }]);
+  assert.equal(jsonLd.isPartOf?.url, 'https://aifrontier.kr/ko/episodes/ep102');
 });
 
 test('buildPodcastEpisodeJsonLd builds a PodcastEpisode payload', () => {

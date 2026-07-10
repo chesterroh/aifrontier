@@ -1,0 +1,78 @@
+---
+interface Props {
+  youtubeId?: string;
+  src?: string;
+  title?: string;
+  start?: number;
+  poster?: string;
+  caption?: string;
+}
+const { youtubeId, src, title = 'Video', start, poster, caption } = Astro.props;
+const youtubeSrc = youtubeId
+  ? `https://www.youtube-nocookie.com/embed/${youtubeId}${start ? `?start=${start}` : ''}`
+  : null;
+---
+
+{(youtubeSrc || src) && (
+  <figure class="video-embed">
+    {youtubeSrc ? (
+      <div class="video-embed-frame">
+        <iframe
+          src={youtubeSrc}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    ) : (
+      <video controls preload="metadata" src={src} poster={poster} title={title}></video>
+    )}
+    {caption && <figcaption>{caption}</figcaption>}
+  </figure>
+)}
+
+<style>
+  .video-embed {
+    margin: 1.75rem 0;
+  }
+
+  .video-embed-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #111827;
+  }
+
+  .video-embed-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .video-embed video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    background: #111827;
+  }
+
+  .video-embed figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #6b7280;
+    text-align: center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .video-embed figcaption {
+      color: #9ca3af;
+    }
+  }
+</style>

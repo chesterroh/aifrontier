@@ -32,7 +32,21 @@ export type HreflangInput = {
 
 export type SitemapEntry = { loc: string; lastmod?: string };
 export type SitemapEpisode = { lang: Lang; episodeNumber: number; publishedAt: Date };
-export type SitemapEntriesInput = { site: string; episodes: SitemapEpisode[] };
+export type SitemapArticle = { lang: Lang; slug: string; publishedAt: Date; updatedAt?: Date | null };
+export type SitemapEntriesInput = { site: string; episodes: SitemapEpisode[]; articles?: SitemapArticle[] };
+
+export type ArticleJsonLdInput = {
+  site: string;
+  lang: Lang;
+  slug: string;
+  title: string;
+  description: string;
+  publishedAt: string; // YYYY-MM-DD
+  updatedAt?: string | null; // YYYY-MM-DD
+  image?: string | null;
+  authors?: string[];
+  episodeNumber?: number | null;
+};
 
 const DEFAULT_THUMBNAIL_CACHE_BUSTER = new Date().toISOString();
 
@@ -94,7 +108,7 @@ export function buildSitemapXml(entries: SitemapEntry[]): string {
   );
 }
 
-export function buildSitemapEntries({ site, episodes }: SitemapEntriesInput): SitemapEntry[] {
+export function buildSitemapEntries({ site, episodes, articles = [] }: SitemapEntriesInput): SitemapEntry[] {
   const normalize = (path: string) => new URL(path, site).toString();
   // Build home entries with lastmod from latest episode per language
   const homeEntries = ALL_LANGS.map((lang) => {
@@ -106,13 +120,60 @@ export function buildSitemapEntries({ site, episodes }: SitemapEntriesInput): Si
       ...(latest && { lastmod: latest.publishedAt.toISOString().slice(0, 10) }),
     };
   });
+  // Article index pages become part of the sitemap once the section has content
+  const articleIndexEntries = articles.length
+    ? ALL_LANGS.map((lang) => {
+        const latest = articles
+          .filter((a) => a.lang === lang)
+          .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
+        return {
+          loc: normalize(`/${lang}/articles`),
+          ...(latest && { lastmod: (latest.updatedAt ?? latest.publishedAt).toISOString().slice(0, 10) }),
+        };
+      })
+    : [];
   return [
     ...homeEntries,
+    ...articleIndexEntries,
     ...episodes.map((episode) => ({
       loc: normalize(`/${episode.lang}/episodes/ep${episode.episodeNumber}`),
       lastmod: episode.publishedAt.toISOString().slice(0, 10),
     })),
+    ...articles.map((article) => ({
+      loc: normalize(`/${article.lang}/articles/${article.slug}`),
+      lastmod: (article.updatedAt ?? article.publishedAt).toISOString().slice(0, 10),
+    })),
   ];
+}
+
+export function buildArticleJsonLd(input: ArticleJsonLdInput) {
+  const url = new URL(`/${input.lang}/articles/${input.slug}`, input.site).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: input.title,
+    description: input.description,
+    datePublished: input.publishedAt,
+    dateModified: input.updatedAt ?? input.publishedAt,
+    url,
+    inLanguage: input.lang,
+    image: input.image ?? undefined,
+    author: input.authors?.length
+      ? input.authors.map((name) => ({ '@type': 'Person', name }))
+      : undefined,
+    publisher: {
+      '@type': 'Organization',
+      name: 'AI Frontier',
+      url: input.site,
+    },
+    ...(input.episodeNumber != null && {
+      isPartOf: {
+        '@type': 'PodcastEpisode',
+        name: `EP ${input.episodeNumber}`,
+        url: new URL(`/${input.lang}/episodes/ep${input.episodeNumber}`, input.site).toString(),
+      },
+    }),
+  };
 }
 
 export function buildPodcastEpisodeJsonLd(input: EpisodeJsonLdInput) {

@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import ResourceLink from '../../../components/ResourceLink.astro';
+import Figure from '../../../components/Figure.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { articleSlug } from '../../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => data.lang === 'ko' && !data.draft);
+  return articles.map((article) => ({
+    params: { slug: articleSlug(article) },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<ArticleLayout article={article}>
+  <Content components={{ ResourceLink, Figure, VideoEmbed }} />
+</ArticleLayout>

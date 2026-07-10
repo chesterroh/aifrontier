@@ -24,4 +24,21 @@ const episodes = defineCollection({
   }),
 });
 
-export const collections = { episodes };
+const articles = defineCollection({
+  // [^_]* : _template.mdx 같은 언더스코어 파일은 빌드에서 제외
+  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    episodeNumber: z.number().optional(),
+    heroImage: z.string().optional(),
+    authors: z.array(z.string()).default([]),
+    tags: z.array(z.string()).default([]),
+    lang: z.enum(['ko', 'en', 'ja', 'zh-Hans']),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { episodes, articles };

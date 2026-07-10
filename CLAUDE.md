@@ -28,19 +28,27 @@ blog/
 │   │   ├── ja/             # 일본어 페이지
 │   │   └── zh-Hans/        # 중국어 간체 페이지
 │   ├── components/         # 재사용 컴포넌트
-│   │   ├── YouTubeEmbed.astro  # 플레이어 + 미니/모달
+│   │   ├── YouTubeEmbed.astro  # 플레이어 + 미니/모달 (에피소드 페이지 전용)
 │   │   ├── ChapterNav.astro    # 챕터 네비게이션
 │   │   ├── LanguageSwitcher.astro
-│   │   └── Search.astro        # Pagefind 검색
+│   │   ├── Search.astro        # Pagefind 검색
+│   │   ├── ArticleCard.astro   # 아티클 목록 카드
+│   │   ├── Figure.astro        # 아티클용 이미지+캡션
+│   │   ├── VideoEmbed.astro    # 아티클용 YouTube/로컬 영상 임베드
+│   │   └── ResourceLink.astro  # 파일/외부 링크 카드
 │   ├── layouts/
 │   │   ├── BaseLayout.astro    # 공통 레이아웃 (헤더/푸터)
-│   │   └── EpisodeLayout.astro # 에피소드 페이지 레이아웃
+│   │   ├── EpisodeLayout.astro # 에피소드 페이지 레이아웃
+│   │   └── ArticleLayout.astro # 아티클 페이지 레이아웃
 │   ├── content/
-│   │   └── episodes/
-│   │       ├── ko/         # 한국어 에피소드 (.mdx)
-│   │       ├── en/         # 영어 에피소드 (.mdx)
-│   │       ├── ja/         # 일본어 에피소드 (.mdx)
-│   │       └── zh-Hans/    # 중국어 간체 에피소드 (.mdx)
+│   │   ├── episodes/
+│   │   │   ├── ko/         # 한국어 에피소드 (.mdx)
+│   │   │   ├── en/         # 영어 에피소드 (.mdx)
+│   │   │   ├── ja/         # 일본어 에피소드 (.mdx)
+│   │   │   └── zh-Hans/    # 중국어 간체 에피소드 (.mdx)
+│   │   └── articles/
+│   │       ├── _template.mdx   # 아티클 템플릿 (빌드 제외)
+│   │       └── {ko,en,ja,zh-Hans}/  # 언어별 아티클 (.mdx)
 │   └── styles/global.css   # 글로벌 스타일
 ├── scripts/
 │   └── sync-episodes.ts    # srt2md → 블로그 동기화
@@ -191,6 +199,53 @@ npx tsx scripts/sync-episodes.ts --ep 84
    # ko/ep83.mdx
    alternateSlug: "ep83"
    ```
+
+---
+
+## 아티클(자료) 섹션
+
+에피소드에서 사용한 발표 자료·슬라이드·아티클을 올리는 섹션입니다.
+URL: `/{lang}/articles` (목록), `/{lang}/articles/{slug}` (상세). 헤더 내비게이션의 "자료" 링크로 연결됩니다.
+
+### 새 아티클 추가 방법
+
+1. 템플릿 복사: `cp src/content/articles/_template.mdx src/content/articles/ko/my-article.mdx`
+   - 파일명이 URL slug가 됩니다 (`/ko/articles/my-article`)
+   - 언더스코어(`_`)로 시작하는 파일은 빌드에서 제외됩니다
+2. 이미지·영상 등 에셋은 `public/articles/my-article/`에 넣습니다
+3. 번역본은 같은 파일명으로 `en/`, `ja/`, `zh-Hans/`에 만듭니다 (ko↔en은 hreflang으로 자동 연결)
+
+### 아티클 Frontmatter
+
+| 필드 | 타입 | 필수 | 설명 |
+|------|------|------|------|
+| `title` | string | O | 아티클 제목 |
+| `description` | string | O | 요약 (카드/검색/SEO에 사용) |
+| `publishedAt` | date | O | 발행일 (YYYY-MM-DD) |
+| `updatedAt` | date | - | 갱신일 |
+| `episodeNumber` | number | - | 연결할 에피소드 번호. 지정하면 에피소드 페이지 플레이어 아래에 아티클 링크가 생기고, 아티클 하단에 에피소드 카드가 붙음 |
+| `heroImage` | string | - | 대표 이미지 (16:9 권장, 카드·페이지 상단·og:image에 사용) |
+| `authors` | string[] | - | 작성자 목록 |
+| `tags` | string[] | - | 태그 |
+| `lang` | enum | O | ko \| en \| ja \| zh-Hans |
+| `draft` | boolean | - | true면 목록/사이트맵/빌드에서 제외 (기본 false) |
+
+### 본문에서 쓸 수 있는 컴포넌트 (import 불필요)
+
+```mdx
+<Figure src="/articles/my-article/img.jpg" alt="설명" caption="캡션" />
+
+<VideoEmbed youtubeId="SSIGI9mm0DU" title="영상 제목" start={656} caption="캡션" />
+<VideoEmbed src="/articles/my-article/demo.mp4" title="데모" poster="/articles/my-article/poster.jpg" />
+
+<ResourceLink url="/resources/ep102/slides.pptx" title="발표 자료" domain="aifrontier.kr" description="설명" />
+```
+
+- `Figure`: 이미지+캡션. 클릭 시 원본이 새 탭에서 열림. 캡션이 없으면 마크다운 `![]()` 문법도 가능
+- `VideoEmbed`: `youtubeId`(+선택 `start` 초) 또는 `src`(로컬 파일) 중 하나 사용
+- `ResourceLink`: 파일 다운로드/외부 링크 카드
+
+샘플 아티클: `src/content/articles/ko/icml-2026-sponsor-booths.mdx` (ICML 2026 현장 스케치)
 
 ---
 
