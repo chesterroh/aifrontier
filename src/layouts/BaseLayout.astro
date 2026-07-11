@@ -38,6 +38,7 @@ const hreflangLinks = buildHreflangLinks({
   canonicalPath: resolvedCanonicalPath,
 });
 const twitterCard = ogImage ? 'summary_large_image' : 'summary';
+const articlesLabel = { ko: '자료', en: 'Articles', ja: '資料', 'zh-Hans': '资料' }[lang];
 ---
 
 <!doctype html>
@@ -101,9 +102,19 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary';
   <body class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
       <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href={`/${lang}`} class="text-xl font-bold tracking-tight hover:text-primary-600 transition-colors">
-          AI Frontier
-        </a>
+        <div class="flex items-center gap-5 min-w-0">
+          <a href={`/${lang}`} class="text-xl font-bold tracking-tight hover:text-primary-600 transition-colors whitespace-nowrap">
+            AI Frontier
+          </a>
+          <nav class="flex items-center">
+            <a
+              href={`/${lang}/articles`}
+              class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              {articlesLabel}
+            </a>
+          </nav>
+        </div>
         <div class="flex items-center gap-2">
           <Search lang={lang} />
           <LanguageSwitcher currentLang={lang} alternateSlug={alternateSlug} />

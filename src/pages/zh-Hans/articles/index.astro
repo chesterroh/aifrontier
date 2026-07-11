@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles', ({ data }) => data.lang === 'zh-Hans' && !data.draft);
+const sortedArticles = articles.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+---
+
+<BaseLayout
+  title="资料"
+  description="AI Frontier节目中使用的演示资料与文章合集"
+  lang="zh-Hans"
+  canonicalPath="/zh-Hans/articles"
+  alternatePath="/ko/articles"
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+      <h1 class="text-2xl font-bold tracking-tight">资料</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">
+        这里汇集了节目中使用的演示资料与文章。
+      </p>
+    </header>
+
+    {sortedArticles.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {sortedArticles.map((article) => (
+          <ArticleCard article={article} lang="zh-Hans" />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16 text-gray-500 dark:text-gray-400">
+        <p>暂无资料。</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

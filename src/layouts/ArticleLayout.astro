@@ -1,0 +1,311 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { buildArticleJsonLd, resolveEpisodeThumbnail } from '../lib/seo';
+import { articleSlug } from '../lib/articles';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+}
+
+const { article } = Astro.props;
+const { data } = article;
+const lang = data.lang;
+const slug = articleSlug(article);
+
+const localeMap: Record<string, string> = { ko: 'ko-KR', en: 'en-US', ja: 'ja-JP', 'zh-Hans': 'zh-CN' };
+const formattedDate = data.publishedAt.toLocaleDateString(localeMap[lang] ?? 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const formattedUpdatedAt = data.updatedAt?.toLocaleDateString(localeMap[lang] ?? 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const site = Astro.site?.toString() ?? 'https://aifrontier.kr';
+const canonicalPath = `/${lang}/articles/${slug}`;
+
+// ko<->en 번역본이 같은 slug로 존재하면 hreflang alternate로 연결
+const alternateLang = lang === 'ko' ? 'en' : 'ko';
+const hasAlternate = (lang === 'ko' || lang === 'en') && (
+  await getCollection('articles', (entry) =>
+    entry.data.lang === alternateLang && !entry.data.draft && articleSlug(entry) === slug
+  )
+).length > 0;
+const alternatePath = hasAlternate ? `/${alternateLang}/articles/${slug}` : null;
+
+// 연결된 에피소드 (같은 언어 우선, 없으면 ko, 그 다음 아무 언어)
+let relatedEpisode: CollectionEntry<'episodes'> | null = null;
+if (data.episodeNumber != null) {
+  const candidates = await getCollection('episodes', (entry) => entry.data.episodeNumber === data.episodeNumber);
+  relatedEpisode =
+    candidates.find((entry) => entry.data.lang === lang) ??
+    candidates.find((entry) => entry.data.lang === 'ko') ??
+    candidates[0] ??
+    null;
+}
+const relatedEpisodePath = relatedEpisode
+  ? `/${relatedEpisode.data.lang}/episodes/ep${relatedEpisode.data.episodeNumber}`
+  : null;
+const relatedEpisodeThumbnail = relatedEpisode
+  ? resolveEpisodeThumbnail({
+      thumbnail: relatedEpisode.data.thumbnail ?? null,
+      youtubeId: relatedEpisode.data.youtubeId,
+    })
+  : null;
+
+const ogImage = data.heroImage ? new URL(data.heroImage, site).toString() : null;
+const jsonLd = buildArticleJsonLd({
+  site,
+  lang,
+  slug,
+  title: data.title,
+  description: data.description,
+  publishedAt: data.publishedAt.toISOString().slice(0, 10),
+  updatedAt: data.updatedAt?.toISOString().slice(0, 10) ?? null,
+  image: ogImage,
+  authors: data.authors,
+  episodeNumber: data.episodeNumber ?? null,
+});
+
+const uiStrings: Record<string, { home: string; articles: string; relatedEpisode: string; backToArticles: string; updated: string }> = {
+  ko: { home: '홈', articles: '자료', relatedEpisode: '관련 에피소드', backToArticles: '자료 목록으로', updated: '업데이트' },
+  en: { home: 'Home', articles: 'Articles', relatedEpisode: 'Related episode', backToArticles: 'All articles', updated: 'Updated' },
+  ja: { home: 'ホーム', articles: '資料', relatedEpisode: '関連エピソード', backToArticles: '資料一覧へ', updated: '更新' },
+  'zh-Hans': { home: '首页', articles: '资料', relatedEpisode: '相关节目', backToArticles: '返回资料列表', updated: '更新' },
+};
+const ui = uiStrings[lang] ?? uiStrings.en;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  lang={lang}
+  canonicalPath={canonicalPath}
+  alternatePath={alternatePath}
+  ogImage={ogImage}
+  jsonLd={jsonLd}
+>
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+        <li>
+          <a href={`/${lang}`} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {ui.home}
+          </a>
+        </li>
+        <li class="text-gray-300 dark:text-gray-600">/</li>
+        <li>
+          <a href={`/${lang}/articles`} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {ui.articles}
+          </a>
+        </li>
+        <li class="text-gray-300 dark:text-gray-600">/</li>
+        <li class="text-gray-900 dark:text-gray-100 font-medium line-clamp-1">
+          {data.title}
+        </li>
+      </ol>
+    </nav>
+
+    <article>
+      <!-- Article Header -->
+      <header class="mb-8">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          {data.episodeNumber != null && (
+            <a
+              href={relatedEpisodePath ?? `/${lang}/episodes/ep${data.episodeNumber}`}
+              class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+            >
+              EP {data.episodeNumber}
+            </a>
+          )}
+          {data.tags.map((tag) => (
+            <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+          {data.title}
+        </h1>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 dark:text-gray-400">
+          <time datetime={data.publishedAt.toISOString()}>{formattedDate}</time>
+          {formattedUpdatedAt && (
+            <>
+              <span>·</span>
+              <span>{ui.updated}: {formattedUpdatedAt}</span>
+            </>
+          )}
+          {data.authors.length > 0 && (
+            <>
+              <span>·</span>
+              <span>{data.authors.join(', ')}</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      {data.heroImage && (
+        <div class="mb-8 aspect-video bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800">
+          <img src={data.heroImage} alt={data.title} class="w-full h-full object-cover" loading="eager" />
+        </div>
+      )}
+
+      <!-- Article body -->
+      <section class="prose prose-article max-w-none">
+        <slot />
+      </section>
+
+      <!-- Related episode -->
+      {relatedEpisode && relatedEpisodePath && (
+        <aside class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <h2 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
+            {ui.relatedEpisode}
+          </h2>
+          <a href={relatedEpisodePath} class="flex gap-4 group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+            {relatedEpisodeThumbnail && (
+              <div class="hidden sm:block w-40 flex-shrink-0 aspect-video rounded-md overflow-hidden bg-gray-100 dark:bg-gray-900">
+                <img src={relatedEpisodeThumbnail} alt={relatedEpisode.data.title} class="w-full h-full object-cover" loading="lazy" />
+              </div>
+            )}
+            <div class="min-w-0">
+              <p class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-1">
+                EP {relatedEpisode.data.episodeNumber}
+              </p>
+              <p class="font-medium text-gray-900 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 line-clamp-2">
+                {relatedEpisode.data.title}
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {relatedEpisode.data.publishedAt.toLocaleDateString(localeMap[lang] ?? 'en-US')} · {relatedEpisode.data.duration}
+              </p>
+            </div>
+          </a>
+        </aside>
+      )}
+
+      <nav class="mt-8">
+        <a href={`/${lang}/articles`} class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          ← {ui.backToArticles}
+        </a>
+      </nav>
+    </article>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Article body typography (extends .prose from global.css) */
+  .prose-article {
+    font-size: 1.0625rem;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  :lang(ja) .prose-article,
+  :lang(zh-Hans) .prose-article {
+    word-break: normal;
+    line-break: strict;
+  }
+
+  .prose-article h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose-article ul,
+  .prose-article ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-article ul {
+    list-style: disc;
+  }
+
+  .prose-article ol {
+    list-style: decimal;
+  }
+
+  .prose-article li {
+    margin-bottom: 0.375rem;
+    line-height: 1.7;
+  }
+
+  .prose-article li::marker {
+    color: #9ca3af;
+  }
+
+  .prose-article a {
+    color: var(--color-primary-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-article a:hover {
+    color: var(--color-primary-700);
+  }
+
+  .prose-article blockquote {
+    margin: 1.25rem 0;
+    padding: 0.25rem 0 0.25rem 1rem;
+    border-left: 3px solid var(--color-primary-400);
+    color: #4b5563;
+  }
+
+  .prose-article code {
+    font-size: 0.875em;
+    background: #f3f4f6;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+
+  .prose-article pre {
+    margin: 1.25rem 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+
+  .prose-article pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Plain markdown images (outside <Figure>) */
+  .prose-article > img,
+  .prose-article p > img {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    margin: 1.75rem auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose-article blockquote {
+      color: #9ca3af;
+    }
+
+    .prose-article code {
+      background: #1f2937;
+    }
+
+    .prose-article > img,
+    .prose-article p > img {
+      border-color: #374151;
+    }
+
+    .prose-article a {
+      color: var(--color-primary-400);
+    }
+
+    .prose-article a:hover {
+      color: var(--color-primary-500);
+    }
+  }
+</style>

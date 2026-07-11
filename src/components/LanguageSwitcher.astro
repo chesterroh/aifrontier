@@ -65,6 +65,7 @@ function getAlternateUrl(langCode: string): string {
 
       // Check if we're on an episode page
       const episodeMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/episodes\/([^\/]+)/);
+      const articlesMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/articles(?:\/|$)/);
 
       if (episodeMatch && alternateSlug && ((currentLang === 'ko' && newLang === 'en') || (currentLang === 'en' && newLang === 'ko'))) {
         // Navigate to alternate episode (ko<->en only)
@@ -72,6 +73,9 @@ function getAlternateUrl(langCode: string): string {
       } else if (episodeMatch) {
         // Same episode slug for ja/zh-Hans
         window.location.href = `/${newLang}/episodes/${episodeMatch[1]}`;
+      } else if (articlesMatch) {
+        // Articles: translations aren't guaranteed, so land on the target-language list
+        window.location.href = `/${newLang}/articles`;
       } else {
         // Navigate to language home
         window.location.href = `/${newLang}`;

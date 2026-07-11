@@ -1,5 +1,6 @@
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
+import { articleSlug } from '../lib/articles';
 
 export async function GET(context: APIContext) {
   const site = (context.site?.toString() ?? 'https://aifrontier.kr').replace(/\/$/, '');
@@ -54,6 +55,26 @@ export async function GET(context: APIContext) {
       lines.push(`- Topics: ${d.chapters.map((c) => c.title).join(' | ')}`);
     }
     lines.push('');
+  }
+
+  const articles = await getCollection('articles', ({ data }) => data.lang === 'ko' && !data.draft);
+  if (articles.length > 0) {
+    const sortedArticles = articles.sort(
+      (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+    );
+    lines.push('## Articles');
+    lines.push('');
+    for (const article of sortedArticles) {
+      const d = article.data;
+      lines.push(`### ${d.title}`);
+      lines.push(`- URL: ${site}/ko/articles/${articleSlug(article)}`);
+      lines.push(`- Date: ${d.publishedAt.toISOString().slice(0, 10)}`);
+      if (d.episodeNumber != null) {
+        lines.push(`- Episode: EP ${d.episodeNumber} — ${site}/ko/episodes/ep${d.episodeNumber}`);
+      }
+      lines.push(`- ${d.description}`);
+      lines.push('');
+    }
   }
 
   lines.push('## Optional');
