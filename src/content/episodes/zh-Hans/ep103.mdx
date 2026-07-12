@@ -1,0 +1,350 @@
+---
+episodeNumber: 103
+title: "EP 103. 当理解成为瓶颈时"
+description: "从 Fable 的问题解决能力和用量快速耗尽谈起，讨论如何按任务选择模型、分配子代理角色，并减少认知债务。我们也通过 Artificial Analysis 和 LMArena 探讨模型评估与人类偏好的局限。"
+publishedAt: 2026-07-12
+duration: "46:40"
+youtubeId: "PYpRfmwo92E"
+thumbnail: "https://i.ytimg.com/vi/PYpRfmwo92E/maxresdefault.jpg"
+hosts:
+  - 卢正石
+  - 崔胜准
+  - 朴钟贤
+chapters:
+  - time: "00:00"
+    title: "Fable 回归与初次使用体验"
+  - time: "02:02"
+    title: "前沿模型的发布节奏"
+  - time: "03:20"
+    title: "棘手的 Bug 与用量快速耗尽"
+  - time: "04:16"
+    title: "让子代理负责选择模型"
+  - time: "05:50"
+    title: "判断与实现的角色分工"
+  - time: "06:45"
+    title: "Anthropic 与 OpenAI 的不同路径"
+  - time: "08:49"
+    title: "认知债务与新的瓶颈"
+  - time: "09:29"
+    title: "地图与疆域之间的未知"
+  - time: "12:37"
+    title: "实现前后的理解工具"
+  - time: "14:20"
+    title: "通过报告和测验学习"
+  - time: "16:45"
+    title: "内容压缩与被遗漏的理解"
+  - time: "18:00"
+    title: "帮助人类理解的工具"
+  - time: "21:34"
+    title: "反复出现的工作框架"
+  - time: "24:47"
+    title: "供 AI 阅读的 README 与新一代"
+  - time: "26:48"
+    title: "结束深入探索的判断标准"
+  - time: "30:00"
+    title: "Claude、Codex 与人的讨论"
+  - time: "31:13"
+    title: "Fable 的实际体验与评估指标"
+  - time: "33:04"
+    title: "LMArena 的人类偏好评估"
+  - time: "36:25"
+    title: "Llama 4 与评估优化"
+  - time: "37:50"
+    title: "参差不齐的智能与评估旗标"
+  - time: "41:21"
+    title: "领域模型与边界设计"
+  - time: "43:36"
+    title: "音频与机器人领域的评估机会"
+  - time: "45:17"
+    title: "本周总结与下期话题"
+lang: "zh-Hans"
+alternateSlug: null
+---
+
+## Fable 回归与初次使用体验    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **卢正石** 今天录制的日期是2026年7月4日，星期六早上。这次Fable回归了。所以大家都忙着用Fable，忙得不可开交。
+
+<span class="paragraph-timestamp" data-ts="0:10">0:10</span> **崔胜准** 用过了吗？感觉怎么样？
+
+<span class="paragraph-timestamp" data-ts="0:14">0:14</span> **卢正石** 我使用的领域全都会触发护栏。只要稍微提到一点生物学相关的话题，就一定会全部切换到Opus 4.8。因为包含这些话题的内容正好是我最近的主要内容，几乎无一例外，差不多全都会触发。我最近正在搭建一个项目，
+
+<span class="paragraph-timestamp" data-ts="0:35">0:35</span> **朴钟贤** 所以让它跑了一些代码，但token消耗得实在太快了，我就让它从头到尾做了一次review。我原本想，它真能找出错误吗，会不会有我不知道的错误，结果它真的在30分钟内一下子派出了所有agent，耗尽了整个5小时的quota。
+
+<span class="paragraph-timestamp" data-ts="0:52">0:52</span> **卢正石** 您的意思是，Max的5小时quota在30分钟内就耗尽了，对吧？
+
+<span class="paragraph-timestamp" data-ts="0:56">0:56</span> **朴钟贤** 虽然运行时用的是Ultra，但因为同时开启了很多agent，好像30分钟就全部用完了。
+
+<span class="paragraph-timestamp" data-ts="1:02">1:02</span> **崔胜准** agent也是Fable agent吗？还是较低级模型的agent？那个我没有指定，
+
+<span class="paragraph-timestamp" data-ts="1:07">1:07</span> **朴钟贤** 不过看起来好像全都用Fable开启了。我没有特意确认。确实很好用吗？用下来感觉如何？目前我真的不太清楚。肯定是好用的，但要准确跟上它review的所有内容，反而很慢，所以目前我先尽可能多地让它们跑起来。因为已经出现我的认知跟不上的情况了。
+
+<span class="paragraph-timestamp" data-ts="1:31">1:31</span> **卢正石** 并没有那种“哇，这个好用两倍、好用三倍”的感觉。不过昨天，它确实解决了几个Opus 4.8
+
+<span class="paragraph-timestamp" data-ts="1:40">1:40</span> **崔胜准** 和GPT-5.5都没能解决的问题。而且时间线上那些被刻意筛选出来的精彩案例，依然有很多。所以今天与其介绍那些精彩案例，我想先谈谈方向性，于是查看了各种各样的时间线。在此之前的节奏有多么紧凑呢，Opus 4.5于2025年11月24日发布，正如我们一直追踪的那样，它们按照这样的节奏发布，而这次是在有了一些值得讨论的话题后重新登场的情况。这期间Sonnet 5也发布了。归根结底，资源充足的人一直都会选择最好的模型，
+
+
+## 前沿模型的发布节奏    *2:02*
+
+<span class="paragraph-timestamp" data-ts="2:26">2:26</span> **卢正石** 所以理所当然会愿意支付更多费用选择最佳模型；而对于其他人来说，现实中的许多问题用Opus或GPT-5.5左右的水平也足以解决，所以我想，公司或许也在借此进行一次实验。我们上次也谈过边际收益递减，
+
+<span class="paragraph-timestamp" data-ts="2:44">2:44</span> **崔胜准** 如果能感觉到边际收益递减，就没必要特意使用更昂贵的模型，我想，公司或许也在借此进行实验。大家应该用适当水平的模型解决适合自己的问题，而现在似乎已经进入了一个需要更谨慎选择的价格区间。我也有切身体会，
+
+<span class="paragraph-timestamp" data-ts="3:05">3:05</span> **朴钟贤** 无论我怎么说，它显然都能理解得好得多。所以工作似乎也进展得很顺利。确实有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="3:13">3:13</span> **卢正石** 与此同时，我们的期待也在不断提高。以前做得好的事情，现在只要稍微做差一点，就会让人烦躁。所以我最近一直在尝试的
+
+
+## 棘手的 Bug 与用量快速耗尽    *3:20*
+
+<span class="paragraph-timestamp" data-ts="3:24">3:24</span> **崔胜准** 在Minecraft中创建agent这件事，似乎也能迁移到创建其他agent上，因此我持续钻研了大约一个月。那些Opus 4.8和Codex都解决不了的问题，昨晚交给Fable后，让我吃惊的是，它转眼间就用了20%。是整个Fable用量的20%，而且只解决了一两个问题。
+
+<span class="paragraph-timestamp" data-ts="3:50">3:50</span> **卢正石** 它具体解决了什么任务？是非常困难的问题吗？因为用其他模型无法解决，有些bug让我连续几个小时都毫无头绪，
+
+<span class="paragraph-timestamp" data-ts="4:01">4:01</span> **崔胜准** 其他模型此前甚至都没能意识到这些bug，但Fable review出了这些bug，并解决了其中几个。因为它一下用掉了总用量的20%，就在我开始觉得不能再这样下去的时候，Simon Willison发了一篇帖子。在AI Engineer上，Claude Code团队的Cat Wu和Thariq Shihipar，后者最近也经常活跃在X上，据说两人进行了一场fireside chat。据说他们在其中谈到了以下内容。这是给Fable的prompt。对所有编码任务，自行判断并选择合适的低性能模型，然后在subagent中执行。这样要求之后，它用Sonnet 5处理了一些工作，把更小的任务交给Haiku，并顺利完成了。
+
+
+## 让子代理负责选择模型    *4:16*
+
+<span class="paragraph-timestamp" data-ts="4:57">4:57</span> **崔胜准** 而且Fable还在自己的memory中记录了用户曾这样说。原因在于成本和效率。实现任务很少需要最好的模型。将判断、review和综合留在main loop中。据说，与其细致地指示Fable应该如何工作，不如让Fable自行判断。这是最近Anthropic技术人员的说法中反复出现的共同内容。以前，我们会把prompt和specification，当然，specification本身也是让AI来编写，精心制定好，然后检查它是否准确执行，这就是harness，对吧？要求它照做，不得偏离。但现在到了Fable这个级别，就应该让它自行判断，不要再细致地发号施令。这其实不就意味着，AI比你更擅长设计和规划吗？胜准刚才读的内容，与几个月前，
+
+
+## 判断与实现的角色分工    *5:50*
+
+<span class="paragraph-timestamp" data-ts="5:54">5:54</span> **卢正石** 也就是大约六七个月前讨论过的内容，在结构上完全相同：在那个大家认为Opus非常昂贵的时期，人们会让Opus负责判断，让Sonnet负责编码，与当时的做法完全一样。后来，这期间出现了Max套餐之类的产品，让Opus在体感上变得稍微便宜了一些，于是现在变成了所有工作都用Opus完成的世界。从这个角度来看，未来Fable的价格是否会一直维持在令用户感到负担的水平，还是会由于前沿实验室之间的竞争或其他技术进步，也走上token价格不断下降的曲线，将是值得关注的一点。
+
+
+## Anthropic 与 OpenAI 的不同路径    *6:45*
+
+<span class="paragraph-timestamp" data-ts="6:45">6:45</span> **卢正石** 不过，这种进步发生的周期倒是差不多。我目前的印象是，Anthropic和OpenAI的理念似乎略有不同。Anthropic似乎不会特别重视或深入研究thinking tokens，即使在服务中调整thinking tokens，无论调到High还是Medium，相较于让人感觉会因此发生某种戏剧性变化，它似乎更注重如何让模型本身实现一次出手、直接命中，给人的感觉是他们更看重这一部分，ChatGPT似乎依然对test-time compute抱有非常高的期待。
+
+<span class="paragraph-timestamp" data-ts="7:29">7:29</span> GPT-5.5也好，GPT-5.6也好，我们通过实验或验证已经知道，即使是下面这种小型模型，只要投入足够长的test-time compute，性能也会变得非常出色。那么，当它投入test-time compute时，那条缓慢上升曲线所呈现的单位成本效益，与Fable这样的大型模型在少量token内一击即中所取得的成果，最终在两者之间的权衡中，我们在商业上感觉可能会站在一个岔路口。
+
+<span class="paragraph-timestamp" data-ts="8:06">8:06</span> 我觉得，反正无论是等待10T模型的token缓慢返回，还是让另一边使用大量thinking tokens，后者也可能更好。如果把它类比成公司，有些工作可以由一位天才一挥而就，也有些工作需要十个能力适中的人才能做好。这本来就是老板需要根据工作特点随机应变的领域。我觉得这个问题似乎也正在变得与此有些相似。从用户的角度来看，选择变多不是好事吗？
+
+<span class="paragraph-timestamp" data-ts="8:41">8:41</span> **崔胜准** 因为这件事可以用这个模型，那件事可以用另一个模型。
+
+<span class="paragraph-timestamp" data-ts="8:45">8:45</span> **卢正石** 而且现在又多了中国模型这个选项。
+
+
+## 认知债务与新的瓶颈    *8:49*
+
+<span class="paragraph-timestamp" data-ts="8:49">8:49</span> **崔胜准** 钟贤刚才提到，在review生成的代码时，好像会产生认知债务。不过最近时间线上出现的一些方法中，有几个与此相关的内容还挺有意思。这是一个刚出炉的话题，模型性能终究在提升，事情也在推进，产出顺利，问题也得到了解决，但问题是，我是否在理解这一切的情况下做这些事。现在也出现了不少与人类认知相关的问题。
+
+<span class="paragraph-timestamp" data-ts="9:20">9:20</span> 所以，刚才也提到过的Thariq Shihipar，这张图好像是今天凌晨或昨天发布的。他以“寻找我的未知之物”为题，引用了Alfred Korzybski的“地图不是领土”这句话，并围绕我是如何理解这件事并完成工作的，做了一番很有意思的阐述。我把地图与领土之间的差异称为未知之物。当Claude遇到未知之物时，必须基于对我想要什么的最佳猜测来作出决定。要做的事情越多，Claude可能弄错的未知之物也就越多。所以刚才我只从人的角度进行了说明，
+
+
+## 地图与疆域之间的未知    *9:29*
+
+<span class="paragraph-timestamp" data-ts="10:06">10:06</span> **崔胜准** 但现在看来，这同样也适用于AI。因此，Fable是第一个其工作质量会受限于我能把这些未知之物澄清得有多好的模型。“理解成为了新的瓶颈”，似乎是一句与此一脉相承的话。这个也很有意思。这些内容是为了培养关于应该在何时使用它们的直觉。
+
+<span class="paragraph-timestamp" data-ts="10:32">10:32</span> 所以，要了解我的未知之物。这就是广为人知的四象限。早在20世纪50年代，NASA或国家安全领域就已经提到过它，到了21世纪初，一位名叫Donald Rumsfeld的人使用后使它广为人知，不过Donald Rumsfeld本人谈到的是known knowns, known unknowns,unknown unknowns，据说并没有提到unknown knowns。但后来哲学家又补上了这一项，总共变成四项，四象限也因此引起了广泛讨论。以此为背景，如果Claude处于这样的状态，就可以用帮助它揭示冰山下方部分的方式，介绍用于finding your unknowns的方法之类的内容。上面写着，从Fable出现以后，
+
+<span class="paragraph-timestamp" data-ts="11:25">11:25</span> **朴钟贤** 如何妥善处理这些未知之物就成了瓶颈，但我觉得在Fable出现之前也是一样的。我很好奇为什么在Fable出现以后，这些未知之物反而更加成为瓶颈。我觉得他想表达的是，思考变得更深入了。
+
+<span class="paragraph-timestamp" data-ts="11:46">11:46</span> **卢正石** 虽然我们现在正对Fable如此大惊小怪，但也许再过6个月，Claude Fable^2就会问世。也可能会出现下一代20T模型，到那时，我们大概又会讨论这种高度同构的话题。从某种角度看，这番话也是因为现在有了Fable，context才再次与之契合，但即使回到7至8个月前或6个月前的Opus与Sonnet之间的讨论，当时这番话也同样成立。
+
+<span class="paragraph-timestamp" data-ts="12:12">12:12</span> **崔胜准** 那么现在已经出现两次了，这说明其中存在某种模式。前面的context中也有一种模式，刚才钟贤一针见血指出的部分也有一种模式，虽然不知道它每次的保质期会有多长，但也可以认为这是一种能够持续下去的模式。最终，这也许是一个会标上反复记号，再次回到原点的部分。这里把过程分为实现前、实现中、实现后三个阶段，后面也围绕这些阶段展开了讨论，其中我觉得有意思的是实现后进行quiz的部分。我们依次看一下吧。对盲区的觉察，
+
+
+## 实现前后的理解工具    *12:37*
+
+<span class="paragraph-timestamp" data-ts="12:53">12:53</span> **崔胜准** 要如何意识到自己当前尚未察觉的事物。无论使用Fable还是其他模型，一起构思创意并制作原型，以及用于此目的的具体prompt。不过，如果即便如此仍有未知之物，那就接受采访。让Claude针对未知之物或模糊之处采访我，把它用于向我提问，最终，这就像专家访谈或CTA等场景中使用的Cognitive Task Analysis这个领域，只是把其中使用的方法拿来与模型一起做。然后制订计划、创建笔记，接下来就是实现中的阶段。实现笔记。所以归根结底，最近我们，
+
+<span class="paragraph-timestamp" data-ts="13:39">13:39</span> 其他人可能也一样，都是一边无限压缩一边使用吧。不断压缩，压缩context，然后一直在同一个session中使用。用着用着，会发现interface本身就在引导这种做法。因此，无论是采用LLM wiki格式还是HTML格式，都让模型像扩展大脑一样进行记录，并介绍了这样的模式。实现后，因为还需要以此说服其他人，或者也需要说服其他模型，所以还会制作说服材料。
+
+
+## 通过报告和测验学习    *14:20*
+
+<span class="paragraph-timestamp" data-ts="14:20">14:20</span> **崔胜准** 我最后看到的是Dwarkesh Podcast那一期，我们在5月初讨论时，对制作flashcard这件事印象很深，对吧。把学过的内容做成flashcard，让自己接受提问，其中有像Anki一样使用的部分，在这里，Thariq Shihipar据说也进行了这样的prompting。“我想确认自己是否正确理解了这次变更中发生的一切。请为这些变更制作一份HTML报告。请包含context、直觉、已执行的工作等内容，以便我阅读和理解，并在最下方加入一项我必须通过的quiz。”
+
+<span class="paragraph-timestamp" data-ts="14:58">14:58</span> 我把这一部分视为整个内容中我感兴趣的部分。现在正是一个重要的节点。因为归根结底，人类是在 steering这些事物，并承担orchestration最终责任的情况下，虽然产出了成果，但对于成果是如何产生的，我们真的可以一无所知吗？我一直对此抱有疑问。不过，关于这一点似乎存在争论。即使不了解，只要运作良好不就可以了吗？但也有一派认为，到了那种地步，这里就会不断积累债务，例如Mitchell Hashimoto这样的人就属于这一派。这篇文章也从提升人类认知能力的工作这一角度探讨了这个问题。
+
+<span class="paragraph-timestamp" data-ts="15:45">15:45</span> 那么Thariq Shihipar是如何亲自实践这件事的呢？据说在发布Fable时，发布视频就是通过这种思考方式制作的。有一段Thariq Shihipar出镜的视频。在不了解FFmpeg之类工具的情况下，他是如何完成这段视频剪辑的？所以这些内容大概也都是使用AI制作幻灯片，并使用ElevenLabs之类的工具完成的。接下来甚至包括调色方面的内容，让Claude教我不懂的东西，使我能够理解它们。他请Claude教授调色知识，从而发现并解决了自己未知的部分。
+
+<span class="paragraph-timestamp" data-ts="16:30">16:30</span> 所谓“地图并非疆域”，意思是地图上抽象呈现的内容虽然在一定程度上反映了实际疆域，但并不是疆域本身。所以这里似乎是在逐渐让二者更加精密地契合这一语境下介绍的。听您这么说，我想到了一件事，
+
+
+## 内容压缩与被遗漏的理解    *16:45*
+
+<span class="paragraph-timestamp" data-ts="16:48">16:48</span> **朴钟贤** 最近您在YouTube上传视频时，知道可以同时发布测验吧？现在有这个功能。
+
+<span class="paragraph-timestamp" data-ts="16:54">16:54</span> **崔胜准** 是吗？这个我不知道。
+
+<span class="paragraph-timestamp" data-ts="16:55">16:55</span> 是吗？这个我不知道。上传到YouTube时，可以同时发布测验。不过，当我作为观众观看YouTube时，最近YouTube接入了Gemini，如果内容太长，我会按下那个按钮先看摘要，然后再看YouTube视频。不仅仅是与AI对话，我们还经常把自己消费的内容本身压缩后，再塞进自己的脑子里。但这样一来，虽然看了非常多视频，却会遗漏细节。所以从这个角度来看，
+
+<span class="paragraph-timestamp" data-ts="17:23">17:23</span> **朴钟贤** YouTube似乎也因此提供了测验之类的功能。这些功能正在被加入实际服务，让我们一边做测验一边看YouTube，而为了防止我们没能学到所有想学的东西并有所遗漏，这些辅助机制也随之出现，这是否正通过“理解是新的瓶颈”这段文字中的表述，展现了我们所处的时代呢？我突然想起YouTube新增的测验功能。没错。也就是说，施加一些阻力对人脑来说确实非常必要。
+
+<span class="paragraph-timestamp" data-ts="17:57">17:57</span> **崔胜准** 如果没有阻力，就学不到东西。最近7月又有人发布了一条题为“理解是新的瓶颈”的推文，原来这位作者是Notion的人。这是一篇相当长的文章。或许可以说，这是刚才Thariq Shihipar所讲内容的扩展版？所以问题在于，现在人类应该如何学会这些东西。现在这么多代码都产生了diff，我该如何理解这些内容并开展工作？因此，纵观教育中所学的内容、过去的编程教育以及各种尝试，其中会看到Seymour Papert提出的“微型世界”这种古老概念，原来这位作者也是MIT CSAIL出身。所以我认为他应该很了解那一领域的历史，他围绕个人计算机制作并公开了一个名为Explain Diff的用于解释diff的skill。
+
+
+## 帮助人类理解的工具    *18:00*
+
+<span class="paragraph-timestamp" data-ts="18:58">18:58</span> **崔胜准** 使用这个skill既可以制作成Notion页面，也可以制作成HTML，而他会把它打印出来随身携带。他会一直带在身边，方便随时查看。这是运用人的时间和大脑的好方法。同时还会做笔记。当然，他不只是做这些，还会在其中加入交互式操作，为了创造出能够帮助理解该概念的东西，他一边亲自开发一边推进。Andy Matuschak和Michael Nielsen在介绍与量子计算有关的内容时，会采用助记法，在文章中穿插测验。测验就在这里登场了。让人在理解这些内容的状态下工作，
+
+<span class="paragraph-timestamp" data-ts="19:45">19:45</span> 这里也是把测验解释为AI loop速度调节装置的幻灯片部分。产出成果后，我应该能够凭借自己原有的感觉判断它是否在正确推进，但如今发生的事情实在太多，导致认知债务不断积累，因此现在正处于一边亲自使用消除认知债务的工具，一边打造这些工具的阶段。我对此有了这样的认识。这是一个很有意思的话题。随着个人计算机和编程教育相关历史等内容的展开，甚至还制作了这样的仪表盘，相关讨论也一路铺陈开来。
+
+<span class="paragraph-timestamp" data-ts="20:25">20:25</span> 所以标题是“It’s mportant for Humansto Understand How Things Work”。这是最后的收尾部分。核心始终是增强。文章还谈到了Alan Kay，并以此结束。再读一下最后一部分，“正因如此，我对未来非常乐观。如果我们打造出正确的工具，我们就能比以往任何时候都更深入地理解世界。我们并非只需要退出循环。相反，我们也可以更深入地进入循环。这取决于我们。”这其实是对常见说法的一种转化。
+
+<span class="paragraph-timestamp" data-ts="21:04">21:04</span> 也就是最近常说的loop engineering，先搭建一个构成循环的harness，然后让模型自行利落地完成任务即可。并不是说人只需待在循环之外，而是说人在循环之内深入理解底层发生的事情，并且当前这些方法论也适用于提升自身能力，我得到了这样的印象。那么我们先一路讲到这里，这是我的个人经历，我们要不要先聊聊这个话题再继续？不过，或许可以说，我们需要对这个时代稍加拆解？
+
+
+## 反复出现的工作框架    *21:34*
+
+<span class="paragraph-timestamp" data-ts="21:41">21:41</span> **卢正石** 拆解这个时代，并尝试建立一套解读它的框架，似乎会成为永远持续的趋势。我们刚进入社会、初次学习如何工作的时候，只完成了学校教育就走入社会，面对工作时，会觉得自己有很多东西都不懂，于是去找某家咨询公司制作的框架、某某框架，或者某本书教授的内容，就这样学习无数种框架，并认为把那些模板井然有序地整理在自己的PC里，就是为工作做好了准备。
+
+<span class="paragraph-timestamp" data-ts="22:16">22:16</span> 但到了某个时刻，在经历过几次现实问题之后，就会开始摆脱那种形式主义。我们现在该如何与AI良好协作，谈论AI有什么特点，我已经很久没看Harvard Business Review之类的书了，好像直到10年前我还看过，当时讨论的是“该如何培养企业人才，该如何提高组织结构的效率？”之类的话题，几乎大部分都是同构的。所以我们静下心来观察这些问题时，
+
+<span class="paragraph-timestamp" data-ts="22:52">22:52</span> 会发现随着这些工具不断积累，我们现在谈论的这些形式有可能整体下沉为更底层的形式知识。所以从某种角度看，高中生和大学低年级学生可能已经不再用这种方式学习了。他们究竟是如何学习的，我觉得我们确实有必要再去了解一下。所以我并不是说这些内容有问题或是错误的，只是想谈谈我感受到的这种既视感。我明白您想表达什么。
+
+<span class="paragraph-timestamp" data-ts="23:30">23:30</span> **崔胜准** 那些一直宣扬所谓正统方法的AI大神，也在使用这种方法吗？所以现在从设置安全措施的角度来说，过去广为人知的观点，包括刚才提到的“理解是新的瓶颈”等，其中揭示的都是人类长期积累下来的学习方法论，而这些方法就是为了应对它们能否继续有效而设置的安全措施。也就是说，我们可能是这样一个被教育的世代：
+
+<span class="paragraph-timestamp" data-ts="23:55">23:55</span> **卢正石** 应该轻松理解某件事，把问题拆解开来并一直理解到底层，而且被教导说这样才是好的，但下面的新世代可能会直接把这些推到下层layer，就像我们不会去问CPU assembler是否经过优化一样，直接全部推到底下，一边说“帮我做，帮我做，帮我做。”一边直接在下一个layer形成他们的生产力，或者形成新的知识体系，我觉得这种可能性相当高。
+
+<span class="paragraph-timestamp" data-ts="24:28">24:28</span> 所以现在引领社交媒体讨论的人，几乎都是我们这一代，对吧？年纪都稍微大一些，对吧？但二十岁出头的年轻人和十几岁的青少年可能不一样。这一点也有必要思考。看二十岁出头的人做出的作品，
+
+
+## 供 AI 阅读的 README 与新一代    *24:47*
+
+<span class="paragraph-timestamp" data-ts="24:51">24:51</span> **朴钟贤** 比如我记得是永奎的Oh My OpenCode。据我所知，README上好像写着“人类请勿阅读。”好像写着这样一句话。README从头到尾都写好了，反正是给AI读的，你又何必去读呢？他们的基本假设本身就不同。我们原本认为，README就是为了让人在首页快速理解而写给人读的，但现在这就只是AI该做的事了。他们似乎是这样看待的，我也面临着类似的困惑，恐怕很多人都是一样的。总之，AI这个新事物出现后，
+
+<span class="paragraph-timestamp" data-ts="25:24">25:24</span> 正在大幅改变我们的工作方式，我也有一种自己仿佛刚成为职场新人的感觉。我的想法是，如果一直这样和AI一起工作，我的理解能力就是瓶颈，就像那句话说的，我经常觉得自己的大脑不太够用。是因为我跟不上，才没能更快地使用它。所以我们和朋友之间总会用这样一种说法，在『Cyberpunk 2077』这款游戏及其相关内容中，有一种设定是大脑被烧坏后会变成cyberpsycho。所以在使用AI时，游戏里也会对身体进行机械增强。不断增强，进行化学增强时，就会出现大脑被烧坏的设定，而我觉得自己现在似乎也有点这样。怎样才能妥善利用这个东西，
+
+<span class="paragraph-timestamp" data-ts="26:11">26:11</span> 怎样才能在不变成cyberpsycho的情况下尽可能增强自己。正在观看这个视频的各位，这大概也会成为我们做YouTube的最大原因之一，希望各位观众能分享一些这方面的技巧。我也一直在到处请教别人。总之YouTube能传播给非常多的人，所以如果大家留言的话，
+
+<span class="paragraph-timestamp" data-ts="26:28">26:28</span> **崔胜准** 对，对。
+
+<span class="paragraph-timestamp" data-ts="26:29">26:29</span> **朴钟贤** 我也想认真参考一下这些建议并尝试实践。
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> **崔胜准** 去年的评论中，有人推荐了Neil Gaiman的『数学家们』里SF作品中出现的AI，我还记得自己连续熬夜读完了三本。确实有些时候能从评论中学到东西。
+
+
+## 结束深入探索的判断标准    *26:48*
+
+<span class="paragraph-timestamp" data-ts="26:48">26:48</span> **卢正石** 我最近就像Fable会说“这是恶意内容。我要用Opus 4.8来运行。”一样，可能是因为我逐渐判断出，自己无法解决脑中的这种认知过载，所以形成了一道兔子洞gate。“就算弄明白这个，也无助于我的结果。”那样的话，我就直接把它盖起来，用‘帮我做，帮我做’模式运行loop。把它盖起来，说‘帮我做，帮我做，帮我做’，至于在下层为什么会变成这样，我现在会判断那已经是结束了的layer。
+
+<span class="paragraph-timestamp" data-ts="27:26">27:26</span> **崔胜准** 也就是说，有些东西想知道，有些东西不想知道，对吗？不是，想知道的……我们不是经常谈论这种事吗？
+
+<span class="paragraph-timestamp" data-ts="27:32">27:32</span> **卢正石** 我们已经进入了没有任何人coding的时代，过了6个月左右，大家说什么“software engineer已经完了”，虽然我们说过这种话，但从6个月后的现在我们正在做的事情来看，这显然就是engineering。只不过不再coding而已，我们上升到高一个layer，仍然同样决定logic、作出决策，决定如何分散配置某个问题，并准确地分辨哪些是好问题、哪些是坏问题。
+
+<span class="paragraph-timestamp" data-ts="28:00">28:00</span> 在这种背景下，既然还会继续向下一个layer发生不连续的jump，而我们的基础位于最底层，所以我们属于那种接受过这种教育的人：必须从那里开始一直到上层全部了解，才算真正了解。比如，就像刚才所说的那样，正如我们已经不再关心assembler以及其中的CPU opcode是如何运行的一样，对于下层的framework如何运行，以及什么东西是如何发挥作用的这些部分，我就只是设置三道gate。
+
+<span class="paragraph-timestamp" data-ts="28:34">28:34</span> 有人给出结果后，我不会说“帮我复盘一下这个结果。”，而是把“你确定这真的对吗？”向同一个model问三遍。这也算是用auto research解决的，如果三次都回答“是对的。是对的。是对的。”我就直接盖起来。应该是对的吧。而且我还用我们公司的会计账簿test过，运行三次左右来计算数字，结果几乎能精确到1韩元。我又突然想起，
+
+<span class="paragraph-timestamp" data-ts="29:05">29:05</span> **崔胜准** 有部漫画里有一段给我留下了深刻印象，魔族说过这样的话。“人类在航海术出现之前就已经出海了。即使不懂也照样去做。即使将其视为black box，在不了解飞行原理的情况下，也曾从悬崖上一跃而下。为了尝试飞翔。”我刚才突然想起了这段话。没错。所以在我身边，
+
+<span class="paragraph-timestamp" data-ts="29:29">29:29</span> **卢正石** 最近那些创业点子不错、拥有良好感觉的人，如果静下心来追问，为什么会觉得这种感觉很好，应该在那些 layer 之间划定一定界限的都是很善于把握平衡感的人。“那个没必要做。”因为也亲自做过，所以才知道。说实话，正因为各种弯路都走过、各种尝试都做过，所以有些人已经懂得“做到那个程度就可以收尾了”，我觉得这一点很有意思，一直在关注。
+
+
+## Claude、Codex 与人的讨论    *30:00*
+
+<span class="paragraph-timestamp" data-ts="30:00">30:00</span> **崔胜准** 最近用其他方法当然也完全可以这样做，但像这样做的时候，如果感觉遇到了阻碍，这个是 Claude Code 那边的，这个是 Codex 那边的。这是 desktop app，它会 polling 文件，让双方各自创建用于讨论的文件，然后发布 agenda，如果对方针对我的讨论意见提出不同意见，就确认后再对此作出回应。
+
+<span class="paragraph-timestamp" data-ts="30:23">30:23</span> 文档分别归各自所有，并行推进，同时又能达成共识，我尝试了这种方式，而我出于自己的性格，即使在这里做这件事，也会想了解这些，所以会对讨论内容发表意见，并参与 design decision 之类的工作，目前正以三位一体的形式进行尝试。
+
+<span class="paragraph-timestamp" data-ts="30:44">30:44</span> 不过，在这个过程中确实也学到了一些东西。
+
+<span class="paragraph-timestamp" data-ts="30:46">30:46</span> **卢正石** 原来是 Claude、Codex、胜准组成的三人 system。
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **崔胜准** 所以我们就这样一边交流一边讨论，但如果这些讨论全都由我主持，就很困难。主要由 model们主持，我只是偶尔参与一下。好，到这里我已经分享了我所了解的内容。钟贤也说过，您从另一个角度进行了一些研究，对吧？
+
+<span class="paragraph-timestamp" data-ts="31:10">31:10</span> **卢正石** 那要不要请您讲一讲？好，我接着说。
+
+
+## Fable 的实际体验与评估指标    *31:13*
+
+<span class="paragraph-timestamp" data-ts="31:15">31:15</span> **朴钟贤** 今天我们谈到了 Fable、GPT-5.6，刚开始时我们也聊过，可能今天来参加的人也是如此，包括我在内，所有人最好奇的问题应该就是“所以 Fable 好用吗？有多好用？”价格是一方面，但实际使用后，并不会明确地感受到它恰好好到了这种程度。实际感受会因 task 而有很大差异，反而价格方面的感受非常明显。
+
+<span class="paragraph-timestamp" data-ts="31:44">31:44</span> 首先，我们来看一下 evaluation 指标。大家看得最多的应该就是这个 Artificial Analysis 指标，它有时也会因为“这里的表格里有几个韩国 model。”之类的话题而引起热议，所以大多数人应该都看过。果然，Fable 在这里也升到了第一名。Opus 4.8 和 GPT-5.5 目前得出的数值几乎相同。
+
+<span class="paragraph-timestamp" data-ts="32:08">32:08</span> 顺带一提，这项指标是把 benchmark 全部跑一遍后打出的分数。也就是解答某种标准化考试，然后根据答案评分，而且这种考试相当多样，还会持续更新，因此质量足够不错，大家可以把它理解为一项受到这种程度信赖的指标。如果拿人来比，就相当于做了类似韩国高考那样的标准化考试，然后根据答案评分，而且难度也足够高。可以这样理解，但如果问这是不是一项好的指标，我对此还是有些怀疑。
+
+<span class="paragraph-timestamp" data-ts="32:43">32:43</span> 因为 benchmark 的题目和答案都是公开的。当然也有尚未公开的情况，所以为了让 benchmark 的题目不断变化，有时也会采用 rolling benchmark 的方式运营。但不管怎样，类似题目或往年试题基本都已经公开，所以并没有那么难。被 hacking 的空间相当大。
+
+
+## LMArena 的人类偏好评估    *33:04*
+
+<span class="paragraph-timestamp" data-ts="33:04">33:04</span> **朴钟贤** 那么，我们还可以看一个叫作 LMArena 的东西。总之，进行 A/B test 时，它会收集“喜欢”“不喜欢”“这个更好”之类的反馈，再像国际象棋的 Elo 那样计算，是一种这样的 system，它原本叫作 LMArena，最近开始了商业化。原本是非营利团体，后来转为了营利团体，不仅获得了巨额投资，也已经开始赚到很多钱。从这里可以看到，新出现了一个叫 agent 的功能。
+
+<span class="paragraph-timestamp" data-ts="33:39">33:39</span> 进入 agent mode 后，只要下达任务，它就会自行 tool call，完成各种操作并给出回答，最后还会让人评价 agent 给出的结果是好还是坏。顺带一提，它并不会告诉你使用的是什么 model。所以我同样让这个 LMArena调查了 Artificial Analysis 的 evaluation，并让它尝试制作 PPT。
+
+<span class="paragraph-timestamp" data-ts="34:04">34:04</span> 这样制作出来的 PPT 现在就显示在这里，而且可以直接以 PPT 格式下载。顺带一提，这个完全相同的 prompt，我也原样交给 Fable 做过。结果设计虽然略有不同，但无论内容、调查结果，还是 PPT 中所包含的信息本身，似乎都没有太大差别。这里有目录，而且它最近以17亿美元的 valuation获得了投资。所以它已经成为一家拥有这种 valuation 的公司。它还会绘制时间线和表格，这里有趣的是，大家可以看到这里使用了中文。根据 PPT 中的这些内容推测，
+
+<span class="paragraph-timestamp" data-ts="34:42">34:42</span> 虽然我只用英文输入 prompt 并与它对话，但现在可能在后台运行的这个测试 agent mode 中接受测试的 model，应该是一个中国的 model。如果我在这里点击喜欢，就意味着“中国 model 也获得了不错的好评。”它应该收集了这样的 evaluation 指标。我们可以推断出这些情况。我之前在 YouTube 上看到消息说，它的营收在8个月内达到了1亿美元，
+
+<span class="paragraph-timestamp" data-ts="35:06">35:06</span> 我很好奇它们究竟靠什么做生意，才能以这样的 valuation 获得如此巨额的投资，所以让它调查了一下。结果发现各大科技公司都在购买这项服务。人们让它完成工作，然后表示对此满意或不满意，这件事本身原来就是一项非常昂贵的服务。我们先略过商业方面，继续往下看。继续往下看，可以看到哪些 lab 在支付费用。那么，我们最初的问题是
+
+<span class="paragraph-timestamp" data-ts="35:41">35:41</span> “所以 Fable 好用吗？”此时应该看什么，或者它实际表现究竟如何？那么，LMArena因为是一项包含人类偏好等因素的指标，所以它并不是某种考试的分数结果，对于现实中需要众多人类偏好的 task，比如设计，可以评价这个设计好看或不好看。或者以 slide deck 为例，可以评价这个 slide deck 作为演示资料是否合适。这类内容很难标准化后按照正确或错误来评分。所以在安排这类 task 时，参考 LMArena 的分数会比较好，我产生了这样的想法。不过，这里曾经发生过一次事件。那件事大概是一年前发生的。
+
+
+## Llama 4 与评估优化    *36:25*
+
+<span class="paragraph-timestamp" data-ts="36:32">36:32</span> **朴钟贤** 以前我真的非常迷信 LMArena 的分数，认为“既然这个 model 在这里表现好，那它就是好 model。”但后来发生了一件事，让我不再看这个分数，那是在 Llama 4 发布的时候。Llama 4 发布时，通常在 model 正式推出之前，会先把非公开 model 上传到 LMArena，没错。提前完成所有测试。用一周左右积累分数，
+
+<span class="paragraph-timestamp" data-ts="36:53">36:53</span> 然后在 model 公开的同时，那个分数对应的名字会突然一下子变掉，同时宣布：“当当，其实这就是 Llama 4。”当时 Llama 4 是第一名。好像是第一名，或者第二名。但大家实际用过 Llama 4 后，发现它实在太差了。“这么差，怎么可能拿第一名？”后来才知道，他们把 Llama 4以各种方式进行 tuning 后，全部放到 LMArena 上进行了测试。最后只留下了其中获得第一名的那个。那么据此我们可以推断，人类偏好本身也是一种 benchmark，而且它的难度低到只要对 LLM 进行 tuning 就能破解。
+
+<span class="paragraph-timestamp" data-ts="37:39">37:39</span> 我好像是在当时第一次意识到这些事情，所以据说 LMArena加强了 policy，防止再出现这种操作。比如不允许同时上传太多个 model。仔细想想，先不谈现在的 LLM 到底哪个更好，如果思考一下这个 valuation，现在的 LLM 通常会锁定一个 evaluation benchmark。也就是锁定一个 task。如果是 coding，就锁定某个特定的 coding benchmark，然后为了攻克它，LLM 会朝着攻克 SWE-bench 之类的目标不断发展。那么它就会成为擅长处理符合 SWE-bench data 分布的coding task 的 LLM。就这样，先插下一面名为 evaluation 目标的旗帜，再逐一攻克这些目标，但这似乎和我们通常认为的工作能力强的人有些差距。因为这只是在攻克特定的旗帜，
+
+
+## 参差不齐的智能与评估旗标    *37:50*
+
+<span class="paragraph-timestamp" data-ts="38:33">38:33</span> **朴钟贤** 等到真的把这些旗帜插遍现实世界的每个角落后，或许就能实现所谓的 AGI，也可以称为 general intelligence，但现在我们将其称为 jagged intelligence。有些事情擅长，有些事情却不擅长，“这个都能做得这么好，为什么那个却不会？”比如数学方面，连 IMO 的高难度数学题都能全部解出来，为什么却做不好我交代的这种简单 task？就会出现这样的情况，有一件事尤其让我一直觉得很遗憾。我很喜欢读小说。但让它写小说，却一点都不好看。小说前后矛盾，结构也会崩掉，或者让它写段子，写出来的幽默也一点都不好笑。LLM 讲的段子之类的东西，我认为归根结底都是因为 evaluation 很困难。
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> 那么，如果人们在 LMArena 这样的平台上让它完成各种 task，并收集无数喜欢、不喜欢之类的 data，LLM 是否也能变得擅长这些事情？这些正是我觉得有趣并持续关注的地方，归根结底，很多公司都在试图攻克那些经济价值很高、需要人类偏好的 task，所以我想，LMArena 这家公司或许正因此赚了很多钱。我认为这类领域似乎也存在 evaluation 的商业机会，我是这么想的。
+
+<span class="paragraph-timestamp" data-ts="39:59">39:59</span> **崔胜准** 刚才您说看了对 Grant Sanderson 的采访，对吧？我还没看，觉得有意思吗？我隐约听说里面也谈到了这类话题。
+
+<span class="paragraph-timestamp" data-ts="40:10">40:10</span> **朴钟贤** 对，没错。Dwarkesh Podcast 最近一期的嘉宾是 3Blue1Brown，可能很多人都看过。看视频应该马上就知道是谁了，看到那种画风就会明白。他在节目中谈到攻克数学，但这与 LLM 真正取代需要高智力的白领岗位仍然存在差距，他们就此交流了各自的看法。
+
+<span class="paragraph-timestamp" data-ts="40:32">40:32</span> 我昨晚完整看了一遍，但没怎么理解。不过确实很有意思。里面大量谈到黎曼猜想之类的话题，我觉得还得再看几遍。我自己也很喜欢 3Blue1Brown 频道，而且看过很多视频，所以光是看这期节目本身，甚至只听声音都觉得很有趣。强烈推荐大家看看。
+
+<span class="paragraph-timestamp" data-ts="40:57">40:57</span> **崔胜准** 那么，这种 evaluation无论如何都是一门大生意，对吧？无论是 gold diff，还是偏好，都是为 frontier lab 提供养分的一门大生意。刚才提到的 Irregular 虽然情况稍有不同，但无论如何，提供测试正在成为一门大生意。我感觉它们之间似乎存在这种亲缘性。愿意花钱购买的是大型科技公司。
+
+
+## 领域模型与边界设计    *41:21*
+
+<span class="paragraph-timestamp" data-ts="41:23">41:23</span> **卢正石** 现在无论是 dataset 还是 evaluation，花钱最多的几乎都是大型科技公司。它们现在仍然会花钱购买代码，据我所知，邀请专家制作高度专业的 dataset也是非常活跃的做法。如今这些会成为差异化因素，也会造成 model 的能力差异。
+
+<span class="paragraph-timestamp" data-ts="41:47">41:47</span> **崔胜准** 想做到和大型科技公司一样，就必须照着做同样的事情吧。但如果目标并不是覆盖所有领域的
+
+<span class="paragraph-timestamp" data-ts="41:53">41:53</span> **卢正石** general intelligence，而只需要在各个 domain 覆盖自身业务，那就可以用少得多的精力实现。30B，这一点我好像上次也提到过，大多数人的 consensus 似乎是，至少要达到 30B 以上，无论给它喂什么内容，才会达到实用水平。所以如果再把自家公司的 logic 好好喂给它，应该能做出相当不错的东西吧？不是还有 Engram 这种从一开始就宣称要专门做这件事的公司吗？
+
+<span class="paragraph-timestamp" data-ts="42:26">42:26</span> **崔胜准** 啊，原来还有这样的公司。即使将整体 orchestration 或判断交给大 model，或许也需要一种让小 model 能覆盖大量事务的策略。
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> **卢正石** 大家对 model 本身就是服务这一点似乎没有异议。但究竟是要把后端的 tool 和 memory也全部训练进 model，还是继续对 context 进行管理，这些直到两三年前都还是相当庞大的产业领域。但随着 model 的价格变得非常便宜，这股趋势逐渐消退，而最近似乎到了这股趋势再次兴起的时候。
+
+<span class="paragraph-timestamp" data-ts="43:07">43:07</span> **崔胜准** 因为价格又变贵了。此外，为了让 model 能够开发静态工具，可以先消耗 token 开发出静态工具，再让它使用该工具的策略，与对小model进行orchestration的策略，这两者的共同点好像在于划定边界。在哪条界线上，由谁、以何种方式做什么，似乎逐渐产生了关于构建边界的engineering。
+
+<span class="paragraph-timestamp" data-ts="43:26">43:26</span> **卢正石** 是啊。我把它称为平衡感，至于要以什么方式实现，到那里又全都是engineering问题。
+
+<span class="paragraph-timestamp" data-ts="43:35">43:35</span> **崔胜准** 归根结底还是engineering啊。
+
+
+## 音频与机器人领域的评估机会    *43:36*
+
+<span class="paragraph-timestamp" data-ts="43:36">43:36</span> **朴钟贤** 最后再回到dataset和evaluation的话题，稍微再展开谈一谈，今天我们只讨论了LLM，但我们对LLM之外的其他modality也很感兴趣，最近对audio很感兴趣，之前也对robotics很感兴趣，所以看VLA之类的东西时，evaluation要困难得多。
+
+<span class="paragraph-timestamp" data-ts="44:00">44:00</span> 而且data也非常匮乏，data本身也非常昂贵。我认为其中存在非常多的商业机会。看YC batch之类的项目，也能看到很多公司收集物理环境中的data，并试图利用这些data来做些什么，或者似乎也有很多公司想把evaluation本身做成model。
+
+<span class="paragraph-timestamp" data-ts="44:24">44:24</span> 以前GPT通过human feedback进行RLHF时，会构建用于PPO的、判断“人类应该会喜欢这种东西”的model，据我所知，当时做了很多这样的model，
+
+<span class="paragraph-timestamp" data-ts="44:35">44:35</span> **崔胜准** 就是构建类似surrogate model的东西。以前有过这样的东西，
+
+<span class="paragraph-timestamp" data-ts="44:38">44:38</span> **朴钟贤** 尤其是在audio或物理环境中，要以什么视角观看这段视频，判断现在做得好不好，比如让它冲咖啡的话，就要把任务拆分成是否把咖啡豆磨好等subtask，再判断在该subtask的画面中，当前动作做得好还是不好，必须准确地给出这种分数，而这最终也是evaluation。所以对于能够用通用reward评分的model，大家似乎都非常感兴趣。
+
+<span class="paragraph-timestamp" data-ts="45:09">45:09</span> **崔胜准** 是啊。无论如何，必须得产生一个scalar，才会有目标。
+
+<span class="paragraph-timestamp" data-ts="45:13">45:13</span> **卢正石** 一旦有了目标，就会朝着那个目标创造出各种东西。那么，我们今天从Fable的话题开始，分享了各种各样的话题，由于新闻等渠道涌现出太多消息，现在确实是一个难以确立视角并着手做些什么的时期，如果各位观众也能给我们提供各种feedback，我们会认真参考。感谢钟贤新加入我们，
+
+
+## 本周总结与下期话题    *45:17*
+
+<span class="paragraph-timestamp" data-ts="45:46">45:46</span> **崔胜准** 让我们能够从新的视角探讨平时没有涉及过的话题，今天聊得很有意思。从米托斯出发，经过Fable，
+
+<span class="paragraph-timestamp" data-ts="45:54">45:54</span> **卢正石** 再一路飞奔到GPT-5.6，在这个令人目不暇接的周期中，美国政府介入了，感觉故事线也因此变得有些错综复杂。不过，发展的方向和这种趋势似乎仍然不可逆转。与此相关，过去出现过的东西，我们似乎也会再次逐一回顾，以前讨论过的话题再次出现，也让人频频产生这种既视感。本周首尔应该会举办ICML，
+
+<span class="paragraph-timestamp" data-ts="46:21">46:21</span> 感觉我们会在首尔遇到很多非常有意思的人，如果能在下一期节目中把那些消息也传达给大家就好了，今天我们再次请来钟贤，录制了第二期节目，今后也请继续为我们带来更多精彩内容。那么今天就到这里吧。
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> 那么今天就到这里吧。
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> 那么今天就到这里吧。

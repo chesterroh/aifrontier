@@ -1,0 +1,350 @@
+---
+episodeNumber: 103
+title: "EP 103. When Understanding Becomes the Bottleneck"
+description: "Starting with Fable’s problem-solving ability and rapid usage burn, we discuss model selection, subagent roles, and ways to reduce cognitive debt. We also examine the limits of model evaluation and human preference through Artificial Analysis and LMArena."
+publishedAt: 2026-07-12
+duration: "46:40"
+youtubeId: "PYpRfmwo92E"
+thumbnail: "https://i.ytimg.com/vi/PYpRfmwo92E/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "00:00"
+    title: "Fable Returns and First Impressions"
+  - time: "02:02"
+    title: "The Release Rhythm of Frontier Models"
+  - time: "03:20"
+    title: "Hard Bugs and Rapid Usage Consumption"
+  - time: "04:16"
+    title: "Letting Subagents Choose Models"
+  - time: "05:50"
+    title: "Dividing Judgment and Implementation"
+  - time: "06:45"
+    title: "Anthropic and OpenAI’s Different Approaches"
+  - time: "08:49"
+    title: "Cognitive Debt and the New Bottleneck"
+  - time: "09:29"
+    title: "Unknowns Between the Map and the Territory"
+  - time: "12:37"
+    title: "Tools for Understanding Before and After Implementation"
+  - time: "14:20"
+    title: "Learning Through Reports and Quizzes"
+  - time: "16:45"
+    title: "Content Compression and Lost Understanding"
+  - time: "18:00"
+    title: "Tools That Help Humans Understand"
+  - time: "21:34"
+    title: "Recurring Work Frameworks"
+  - time: "24:47"
+    title: "AI-Readable READMEs and a New Generation"
+  - time: "26:48"
+    title: "Criteria for Closing the Rabbit Hole"
+  - time: "30:00"
+    title: "A Claude–Codex–Human Debate"
+  - time: "31:13"
+    title: "The Experience of Using Fable and Evaluation Metrics"
+  - time: "33:04"
+    title: "Human Preference Evaluation in LMArena"
+  - time: "36:25"
+    title: "Llama 4 and Evaluation Optimization"
+  - time: "37:50"
+    title: "Jagged Intelligence and Evaluation Flags"
+  - time: "41:21"
+    title: "Domain Models and Boundary Design"
+  - time: "43:36"
+    title: "Evaluation Opportunities in Audio and Robotics"
+  - time: "45:17"
+    title: "This Week’s Recap and What’s Next"
+lang: "en"
+alternateSlug: null
+---
+
+## Fable Returns and First Impressions    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is July 4th, 2026, a Saturday morning. Fable is back this time. So everyone is completely preoccupied with using Fable.
+
+<span class="paragraph-timestamp" data-ts="0:10">0:10</span> **Seungjoon Choi** Have you tried using it? What do you think?
+
+<span class="paragraph-timestamp" data-ts="0:14">0:14</span> **Chester Roh** Everything I use it for runs into the guardrails. If I bring up anything related to biology, even briefly, it automatically switches everything to Opus 4.8. Since that subject has become a major part of my content lately, nearly everything gets flagged, to the point where practically nothing gets through. I have a project I've been building recently,
+
+<span class="paragraph-timestamp" data-ts="0:35">0:35</span> **Jonghyun Park** so I had it do some coding, but it burned through tokens incredibly quickly. I had it conduct a full review. I wondered whether it could find any errors—whether there were mistakes I hadn't noticed— and within just 30 minutes, it unleashed a whole swarm of agents and used up the entire 5-hour quota.
+
+<span class="paragraph-timestamp" data-ts="0:52">0:52</span> **Chester Roh** You mean it used up the Max plan's 5-hour quota in just 30 minutes, right?
+
+<span class="paragraph-timestamp" data-ts="0:56">0:56</span> **Jonghyun Park** I did run it on Ultra, and I had a lot of agents running simultaneously, so I think that's why it used everything up in 30 minutes.
+
+<span class="paragraph-timestamp" data-ts="1:02">1:02</span> **Seungjoon Choi** Were those agents Fable agents too? Or were they agents running lower-tier models? I didn't specify that,
+
+<span class="paragraph-timestamp" data-ts="1:07">1:07</span> **Jonghyun Park** but it seemed to have launched all of them with Fable. I didn't look into it. Is it definitely good, now that you've tried it? Honestly, I'm really not sure yet. I'm sure it's good, but accurately following everything it identified in the review is actually slower, so for now, I'm just running as many tasks as possible. I've reached a point where my comprehension can't keep up.
+
+<span class="paragraph-timestamp" data-ts="1:31">1:31</span> **Chester Roh** It doesn't feel like, “Wow, this is twice as good,” or “This is three times as good.” Yesterday, it did solve several problems that Opus 4.8
+
+<span class="paragraph-timestamp" data-ts="1:40">1:40</span> **Seungjoon Choi** and GPT-5.5 had been unable to solve. And there were still plenty of impressive examples that had been deliberately curated for the timeline. So today, rather than introducing those impressive examples, I looked through various timelines because I wanted to discuss the overall direction first. This shows just how relentless the pace has been: Opus 4.5 came out on November 24th, 2025, and as we've continued to track, releases followed this cadence, and now it has reappeared after being out of the conversation for a while. Sonnet 5 also came out in the meantime. Ultimately, people with abundant resources have always chosen the best models,
+
+
+## The Release Rhythm of Frontier Models    *2:02*
+
+<span class="paragraph-timestamp" data-ts="2:26">2:26</span> **Chester Roh** so naturally, they'll choose the best model even if it means paying more. For everyone else, many real-world problems can be solved even with models at the level of Opus or GPT-5.5, so perhaps the company is experimenting with that distinction as well. We discussed diminishing returns last time too,
+
+<span class="paragraph-timestamp" data-ts="2:44">2:44</span> **Seungjoon Choi** and once you start feeling those diminishing returns, there's no real need to use a more expensive model. Perhaps the company is experimenting with that as well. People need to solve the problems relevant to them with an appropriately capable model, but I think we've now reached a price point where we need to choose more carefully. What I notice as well
+
+<span class="paragraph-timestamp" data-ts="3:05">3:05</span> **Jonghyun Park** is that no matter how I phrase something, it definitely understands me much better. So it feels like the work goes more smoothly. I do get that impression.
+
+<span class="paragraph-timestamp" data-ts="3:13">3:13</span> **Chester Roh** Our expectations keep rising along with it. Now, if it performs even slightly worse at something it used to do well, we get annoyed. I've recently been working on
+
+
+## Hard Bugs and Rapid Usage Consumption    *3:20*
+
+<span class="paragraph-timestamp" data-ts="3:24">3:24</span> **Seungjoon Choi** creating an agent inside Minecraft, and I thought the lessons would carry over to creating all sorts of other agents, so I've been at it continuously for about a month. Last night, I gave Fable something that neither Opus 4.8 nor Codex could do, and what surprised me was that it used 20% of my quota in the blink of an eye. That was 20% of my total Fable usage just to solve one or two problems.
+
+<span class="paragraph-timestamp" data-ts="3:50">3:50</span> **Chester Roh** What exactly did it solve? Was it an extremely difficult problem? I had some bugs that nothing else could solve, and I'd been struggling with them for hours at a time.
+
+<span class="paragraph-timestamp" data-ts="4:01">4:01</span> **Seungjoon Choi** The other models hadn't even recognized those bugs, but Fable identified them during its review and fixed several of them. It used up 20% of my total quota, and just as I was starting to think this couldn't continue, Simon Willison published a post. Apparently, Cat Wu and Thariq Shihipar from the Claude Code team held a fireside chat at AI Engineer. Thariq Shihipar has also been very active on X lately. And apparently, they said the following there. This is the prompt that was given to Fable: “For every coding task, determine and select an appropriate lower-capability model yourself, and execute it through a subagent.” When they did that, it used Sonnet 5 for certain tasks and assigned smaller tasks to Haiku, which handled them well.
+
+
+## Letting Subagents Choose Models    *4:16*
+
+<span class="paragraph-timestamp" data-ts="4:57">4:57</span> **Seungjoon Choi** Fable then wrote in its own memory that the user had instructed it to work this way. The reason was cost and efficiency. Implementation work rarely requires the best model. Judgment, review, and synthesis should remain in the main loop. Rather than giving Fable detailed instructions on how to work, the idea was to let Fable make its own judgments. This is a recurring theme in what Anthropic's technical staff have been saying lately. In the past, we would meticulously prepare prompts and specifications— though, of course, we would have AI draft the specifications themselves— and the harness would verify whether they had been followed precisely. “Do this, and don't deviate from it.” But now, with models at Fable's level, the advice is to let them make their own judgments and not give them detailed instructions. Doesn't that essentially mean AI can design and plan better than you can? Seungjoon, what you just read is structurally identical
+
+
+## Dividing Judgment and Implementation    *5:50*
+
+<span class="paragraph-timestamp" data-ts="5:54">5:54</span> **Chester Roh** to what people were saying six or seven months ago. Back when Opus was considered extremely expensive, people said to let Opus make the decisions and have Sonnet do the coding. It's exactly the same approach as back then. Then, plans like Max came out in the meantime, making Opus feel somewhat cheaper in practical terms, and now we live in a world where we use Opus for everything. From that perspective, what we'll need to watch is whether Fable's price continues to remain burdensome for people, or whether competition among frontier labs or other technological advances will put it on the downward curve of token prices as well. That will be something worth watching closely.
+
+
+## Anthropic and OpenAI’s Different Approaches    *6:45*
+
+<span class="paragraph-timestamp" data-ts="6:45">6:45</span> **Chester Roh** But the cycle of that progress seems similar. One impression I have is that Anthropic and OpenAI seem to have slightly different philosophies. Anthropic doesn't seem to place such heavy emphasis on or conduct extensive research into thinking tokens, and even in its services, changing the thinking tokens to High or Medium doesn't seem to produce a dramatic change. Instead, it seems to focus on how to make the model itself get things right in one shot. ChatGPT still seems to have very high expectations for test-time compute.
+
+<span class="paragraph-timestamp" data-ts="7:29">7:29</span> With both GPT-5.5 and GPT-5.6, we know through experiments or validation that even the smaller models below can perform extremely well if given sufficiently long test-time compute. Then, as that model invests test-time compute, there is the performance per unit cost on a gradually rising curve, versus the performance of a large model like Fable, produced in one shot within a small number of tokens. Ultimately, I feel that commercially, we will come to a crossroads over the trade-off between the two.
+
+<span class="paragraph-timestamp" data-ts="8:06">8:06</span> I think that whether it takes a long time for the tokens of a 10T model to come back, or whether the other model uses a lot of thinking tokens, the latter might actually be better. If we translate this into the context of a company, some tasks can be finished by a single genius in one masterful stroke, while other tasks turn out better with ten reasonably capable people. That is an area where the boss needs to exercise ingenuity based on the nature of the work. I think this issue is starting to feel somewhat similar. From the user's perspective, isn't more variety a good thing?
+
+<span class="paragraph-timestamp" data-ts="8:41">8:41</span> **Seungjoon Choi** We can use this model for one task and that model for another.
+
+<span class="paragraph-timestamp" data-ts="8:45">8:45</span> **Chester Roh** Especially now that Chinese models are becoming another option.
+
+
+## Cognitive Debt and the New Bottleneck    *8:49*
+
+<span class="paragraph-timestamp" data-ts="8:49">8:49</span> **Seungjoon Choi** Jonghyun, you mentioned that when reviewing generated code, there seems to be cognitive debt. But among the approaches appearing on my timeline lately, I found some quite interesting ones related to that. This is a very recent development, but ultimately, model performance is improving, things are getting done, and work is being produced and resolved well, but the question is whether I know what is happening while I do it. Quite a few issues related to human cognition are also emerging now.
+
+<span class="paragraph-timestamp" data-ts="9:20">9:20</span> So, Thariq Shihipar, whom we mentioned earlier, seems to have posted this diagram early this morning or yesterday. Under the heading “Finding My Unknowns,” Thariq Shihipar quoted Alfred Korzybski's phrase, “The map is not the territory,” and gave an interesting explanation of how he came to understand things and get the work done. I call the gap between the map and the territory the unknowns. When Claude encounters an unknown, Claude must make a decision based on its best guess about what I want. The more work there is to do, the more unknowns there are that Claude can get wrong. I had only been discussing this in terms of people,
+
+
+## Unknowns Between the Map and the Territory    *9:29*
+
+<span class="paragraph-timestamp" data-ts="10:06">10:06</span> **Seungjoon Choi** but looking at it now, the same thing also applies to AI. So Fable is the first model whose quality of work is bottlenecked by how well I clarify those unknowns. The idea that understanding is the new bottleneck seems to express the same idea. This is interesting too. It is meant to help develop an intuition for when to use them.
+
+<span class="paragraph-timestamp" data-ts="10:32">10:32</span> So, knowing my unknowns. This is the well-known four-quadrant framework. It was already being discussed by NASA and in national security circles in the 1950s, and then, in the early 2000s, someone named Donald Rumsfeld used it and made it famous, although Donald Rumsfeld himself talked about known knowns, known unknowns, and unknown unknowns, but apparently did not mention unknown knowns. That was later added by a philosopher, making four categories in total, and the four quadrants became a widely discussed topic. Applying that context, if Claude were in this kind of state, you would help Claude reveal what lies beneath the surface of the iceberg, and Thariq Shihipar discussed methods for finding your unknowns. It says that since Fable came out,
+
+<span class="paragraph-timestamp" data-ts="11:25">11:25</span> **Jonghyun Park** handling these unknowns well has become the bottleneck, but I felt the same way even before Fable. I wonder why, since Fable came out, these unknowns have become more of a bottleneck. I think Thariq Shihipar is trying to say that the thinking has become deeper.
+
+<span class="paragraph-timestamp" data-ts="11:46">11:46</span> **Chester Roh** We're making all this fuss about Fable, but Claude Fable^2 could come out in another six months. A next-generation 20T model could emerge, and at that point, we'll probably be having another remarkably isomorphic version of this conversation. In a sense, Fable has made this discussion relevant again in the current context, but if we went back to the discussion between Opus and Sonnet seven or eight months ago, or six months ago, it was also true then.
+
+<span class="paragraph-timestamp" data-ts="12:12">12:12</span> **Seungjoon Choi** Then this has already happened twice, which means there is a pattern. There was a pattern in the earlier context, and the point Jonghyun just pinpointed also follows a pattern, so although we never know how long its shelf life will be, perhaps we can view it as a pattern that may continue. Ultimately, I came to think that it may be something that repeats itself and brings us back to the same point. This divides the process into three stages—before, during, and after implementation— and develops the discussion from there, but what I found interesting was the quiz after implementation. Let's go through it. Awareness of blind spots:
+
+
+## Tools for Understanding Before and After Implementation    *12:37*
+
+<span class="paragraph-timestamp" data-ts="12:53">12:53</span> **Seungjoon Choi** how do I become aware of what I am currently failing to recognize? Whether with Fable or another model, brainstorm ideas together and build a prototype, using a specific prompt for that. But if unknowns still remain, you get interviewed. You ask Claude to interview you about unknowns or ambiguous areas and use it to receive questions. There is also a domain called Cognitive Task Analysis, which is used in settings such as expert interviews or CTA, and it feels like doing with a model the kinds of things used in that field. Then you make a plan and create notes, and now you're in the implementation stage. Implementation notes. Ultimately, these days, we—
+
+<span class="paragraph-timestamp" data-ts="13:39">13:39</span> and I imagine others do the same—keep using infinite compaction. We keep compacting, compacting the context, and continuing within a single session. As we do that, the interface itself encourages it. So Thariq Shihipar introduces patterns for having the model record notes as a kind of extended brain, whether in the form of an LLM wiki or HTML. After implementation, you also need to persuade other people, or persuade another model, so you create persuasive materials as well.
+
+
+## Learning Through Reports and Quizzes    *14:20*
+
+<span class="paragraph-timestamp" data-ts="14:20">14:20</span> **Seungjoon Choi** The last thing I looked at reminded me of the Dwarkesh Podcast episode we covered in early May, where we were impressed by the creation of flashcards. There was a part where the material studied was turned into flashcards and used like Anki to quiz oneself, and Thariq Shihipar apparently used a prompt like this here: “I want to make sure I properly understand everything that happened in this change. Please create an HTML report on the changes. Include the context, intuition, work performed, and so on, so I can read and understand it, and put a quiz at the bottom that I must pass.”
+
+<span class="paragraph-timestamp" data-ts="14:58">14:58</span> I saw this part as the point that interested me in the overall piece. This is an important moment right now. Because in a situation where a person is ultimately steering and orchestration is their final responsibility, outputs are produced, but the question has persisted as to whether it is really okay not to know how they were produced. But there seems to be a lot of debate about that. Isn't it fine not to know, as long as it works well? But there is also a camp that believes debt will be accumulating here if that happens, and people like Mitchell Hashimoto belong to that camp. This article also addresses that aspect in relation to the work of enhancing human cognitive abilities.
+
+<span class="paragraph-timestamp" data-ts="15:45">15:45</span> But as for how Thariq Shihipar dogfooded this, when Fable was launched, the launch video was created through this way of thinking. There's a video featuring Thariq Shihipar. How was this video edited without knowing things like FFmpeg? So AI was probably used to create all these slides, and something like ElevenLabs was used for the work. Then even for things like color grading, Claude can teach me what I don't know and help me understand it. I asked Claude to teach me about color grading and discovered and resolved the things I didn't know.
+
+<span class="paragraph-timestamp" data-ts="16:30">16:30</span> So the saying “the map is not the territory” means that what is abstractly represented on a map reflects the actual territory to some extent, but is not the territory itself. So I think it was introduced in the context of making the two align more closely. What you said reminds me of something:
+
+
+## Content Compression and Lost Understanding    *16:45*
+
+<span class="paragraph-timestamp" data-ts="16:48">16:48</span> **Jonghyun Park** you know that these days, when uploading a video to YouTube, you can upload a quiz along with it, right? That feature exists.
+
+<span class="paragraph-timestamp" data-ts="16:54">16:54</span> **Seungjoon Choi** Really? I didn't know that.
+
+<span class="paragraph-timestamp" data-ts="16:55">16:55</span> Really? I didn't know that. When uploading to YouTube, you can include a quiz. But when I watch YouTube as a viewer, these days, YouTube has Gemini integrated, so if the content is too long, I press that button, read the summary first, and then watch the YouTube video. Beyond just talking with AI, I often compress the content we consume and put it into my head. But even though I watch a huge number of videos, I end up missing the details. So in that context as well,
+
+<span class="paragraph-timestamp" data-ts="17:23">17:23</span> **Jonghyun Park** that may be why YouTube provides features like quizzes. These features are also being added to actual services, and the very emergence of mechanisms that let us watch YouTube while taking quizzes and prevent us from missing and failing to learn everything we want to learn may show the nature of our era through the phrase in this text, “comprehension is the new bottleneck.” I suddenly remembered that YouTube had introduced a quiz feature. Right. I mean, introducing friction is truly necessary for the human brain.
+
+<span class="paragraph-timestamp" data-ts="17:57">17:57</span> **Seungjoon Choi** If there is no friction, we don't learn. There was another recent tweet in July saying, ‘comprehension is the new bottleneck,’ and it turns out this person works at Notion. It's quite a long document. Could we call it an expanded version of what Thariq Shihipar said earlier? So how should people learn all of this now? So now there are diffs across all this code, but how am I supposed to understand them and continue working? Looking at various attempts and what we learn in education and used to learn in coding education, this person brings up old concepts like Seymour Papert's microworlds. It turns out this person also came from MIT CSAIL. So I assume this person is well acquainted with that history, and this person created and released a skill called Explain Diff, which explains diffs in relation to personal computing.
+
+
+## Tools That Help Humans Understand    *18:00*
+
+<span class="paragraph-timestamp" data-ts="18:58">18:58</span> **Seungjoon Choi** You can use that skill to create a Notion page or HTML, but this person actually prints it out and carries it around. This person keeps it on hand at all times to look at it. That's a good way to use human time and brainpower. This person also takes notes while doing so. Of course, that's not all; this person also adds interactive work to it and creates things that make it possible to understand the concepts by developing them firsthand. When Andy Matuschak and Michael Nielsen introduce material related to quantum computing, they use mnemonic techniques and insert quizzes throughout the text. This is where quizzes come in. They allow people to work while retaining that knowledge.
+
+<span class="paragraph-timestamp" data-ts="19:45">19:45</span> This is also part of a slide explaining quizzes as a speed-control mechanism for the AI loop: when an output is produced, I should be able to determine whether it is proceeding properly even using my existing intuition, but so much is happening now that cognitive debt is accumulating. It struck me that we are at a point where people are dogfooding tools that resolve that cognitive debt as they build them. It's an interesting story. It discusses the history of personal computing and coding education and goes on to cover things like building a dashboard.
+
+<span class="paragraph-timestamp" data-ts="20:25">20:25</span> So the title is “It’s mportant for Humans to Understand How Things Work.” This is from the concluding section. The core idea was always augmentation. The piece concluded by also discussing Alan Kay. And if you read the final section, “This is why I am highly optimistic about the future. If we build the right tools, we can understand the world more deeply than ever before. We do not simply need to step out of the loop. Instead, we can step even deeper into the loop. It is up to us.” This is a bit of a twist, isn't it?
+
+<span class="paragraph-timestamp" data-ts="21:04">21:04</span> The loop engineering people talk about these days: building a harness that structures the loop and letting the model handle everything on its own. The point is not that people can remain outside the loop, but that today's methodologies can also be used to deeply understand what is happening at the ground level within the loop and improve my own capabilities. That was the impression I got. So having covered everything up to this point, this is from my personal experience, but should we discuss this topic before moving on? But should we say that we are breaking down this era?
+
+
+## Recurring Work Frameworks    *21:34*
+
+<span class="paragraph-timestamp" data-ts="21:41">21:41</span> **Chester Roh** The effort to break it down and build frameworks for interpreting it seems like a trend that will continue forever. When we are young professionals just beginning to learn how to work, we enter the world having completed only our school education, and because we feel that we know very little when we encounter actual work, we turn to one framework created by some consulting firm, then another framework, and lessons taught by various books, learning countless frameworks and coming to believe that having those templates neatly organized on my PC means being prepared to work.
+
+<span class="paragraph-timestamp" data-ts="22:16">22:16</span> Then, at some point, after experiencing real-world problems several times, we begin to break free from that formalism. As for how we can work effectively with AI now, Talking about what characteristics AI has reminds me that it has been quite a while since I read publications like Harvard Business Review. I think I read them until about 10 years ago, and the discussions back then about “how to train a company's talent and how to make its organizational structure more efficient” are almost entirely isomorphic to this. So when we take a close look at these issues as well,
+
+<span class="paragraph-timestamp" data-ts="22:52">22:52</span> we see a possibility that, as these tools accumulate, the forms we're discussing now could be relegated wholesale to tacit knowledge in a lower layer. So in a sense, high school students and first-year college students may not be learning this way. I do think we need to take another look at how they learn. So I'm not saying that this is wrong or incorrect, but I wanted to mention the sense of déjà vu that I feel. I understand what you're trying to say.
+
+<span class="paragraph-timestamp" data-ts="23:30">23:30</span> **Seungjoon Choi** Would the so-called AI immortals Chester has talked about also be using methods like these? So, as a safeguard for now, the findings from well-known works, including the one mentioned earlier, “Understanding Is the New Bottleneck,” are learning methodologies that humanity has accumulated over time, and this is a safeguard in case those methodologies continue to remain relevant. In other words, we may be a generation that was taught
+
+<span class="paragraph-timestamp" data-ts="23:55">23:55</span> **Chester Roh** that we must understand things readily and break problems down until we understand everything at the lowest level, and that doing so is a good thing, but the new generation below us may simply push all of that down to a lower layer, just as we don't ask whether the CPU assembler is optimized, push it all down below, and say, “Do it, do it, do it,” with a fairly high possibility that their productivity or a new system of knowledge will simply emerge at the next layer.
+
+<span class="paragraph-timestamp" data-ts="24:28">24:28</span> The people currently leading the discourse on social media are almost all from our generation, after all. We're a little older. But people in their early twenties and teenagers may be different. We need to think about that as well. If you look at the work being done by people in their early twenties,
+
+
+## AI-Readable READMEs and a New Generation    *24:47*
+
+<span class="paragraph-timestamp" data-ts="24:51">24:51</span> **Jonghyun Park** for example, I think it was Younggyu's Oh My OpenCode. As I recall, the README said, “Humans, do not read this.” I think it said something like that. The whole README is written out, and AI is going to read it anyway, so the underlying assumption is different: why would you bother reading it? We used to think that a README was something you wrote for people to read and quickly understand on the front page, but now that's simply AI's job. That seems to be how people treat it, and I'm grappling with a similar issue, as I imagine many people are. In any case, this thing called AI has newly emerged,
+
+<span class="paragraph-timestamp" data-ts="25:24">25:24</span> and it's substantially changing the way we work, and I also feel as though we've just entered the workforce. One thought I have is that, as I keep working with AI like this, my understanding is the bottleneck. Like that statement says, I often feel that my brain is somewhat inadequate. I can't keep up, which is why I can't use this faster. So my friends and I always use this expression: in the game 『Cyberpunk 2077』 and its related content, there's a concept where your brain burns out and you become a cyberpsycho. In that world, people also augment their bodies with machinery. As they undergo augmentation, including chemical augmentation, their brains burn out and break down, and I feel like I'm doing something similar to myself. How can we make good use of this?
+
+<span class="paragraph-timestamp" data-ts="26:11">26:11</span> How can we augment ourselves as much as possible without becoming a cyberpsycho? For those of you watching, and I think this may become one of the biggest reasons we do YouTube, I hope viewers will share tips like that. I also go around asking people about it all the time. In any case, YouTube reaches a huge number of people, so if you leave comments—
+
+<span class="paragraph-timestamp" data-ts="26:28">26:28</span> **Seungjoon Choi** Right, right.
+
+<span class="paragraph-timestamp" data-ts="26:29">26:29</span> **Jonghyun Park** I'd also like to study those suggestions closely and try them out.
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> **Seungjoon Choi** Among the comments posted last year, someone recommended the AI featured in Neil Gaiman's science fiction work 『Mathematicians』, and I remember staying up all night to read all three volumes in a row. There are definitely times when we learn from the comments.
+
+
+## Criteria for Closing the Rabbit Hole    *26:48*
+
+<span class="paragraph-timestamp" data-ts="26:48">26:48</span> **Chester Roh** These days, much like Fable says, “This contains malicious content. I'll run it with Opus 4.8,” perhaps because I've come to the conclusion that I can't resolve this cognitive overload in my head, I've developed a gate for rabbit holes. “Learning about this won't help improve my results.” Then I just close it and run the loop in ‘do it, do it’ mode. I close it and say, ‘Do it, do it, do it,’ and as for questions about why something turned out the way it did underneath, I've decided that layer is now finished.
+
+<span class="paragraph-timestamp" data-ts="27:26">27:26</span> **Seungjoon Choi** So there are some things you want to know and others you don't? No, things I want to know—we talk about this a lot.
+
+<span class="paragraph-timestamp" data-ts="27:32">27:32</span> **Chester Roh** We've entered an era when none of us does coding, and after about six months, we said things like, “software engineering is over,” but if we look at what we're doing now that six months have passed, it's clearly engineering. We just aren't doing coding. We've moved up one layer, where we still determine the logic and make decisions, decide how and where to distribute problems, and precisely distinguish good problems from bad ones.
+
+<span class="paragraph-timestamp" data-ts="28:00">28:00</span> In that context, since discontinuous jumps keep occurring to the next layer, we're people whose foundations lie far below and who were educated to believe that we can only truly know something if we understand everything from there all the way to the top. For example, just as I mentioned earlier, we no longer concern ourselves with the assembler or how the CPU opcode operates within it. Likewise, when it comes to how the framework underneath operates and what works in what way, I simply create three gates.
+
+<span class="paragraph-timestamp" data-ts="28:34">28:34</span> After someone produces a result, instead of saying, “Retrospect on this result,” I ask, “Are you sure this is actually right?” three times to the same model. It's my own form of auto research, and if it says, “That's correct. That's correct. That's correct,” all three times, I simply close it. It's probably right. And we tested that with our company's accounting ledger as well. If we run it about three times to calculate the figures, they're almost accurate down to the last cent. Something else suddenly comes to mind,
+
+<span class="paragraph-timestamp" data-ts="29:05">29:05</span> **Seungjoon Choi** a part of a comic that left a strong impression on me. A demon said this: “Humanity ventured out to sea even before the art of navigation. They did it without understanding. Even while treating it as a black box and not knowing the principles of flight, they would leap from cliffs. To try to fly.” That passage just came to mind. That's right. So when I look at people around me
+
+<span class="paragraph-timestamp" data-ts="29:29">29:29</span> **Chester Roh** who have good business ideas and good instincts these days, and quietly ask myself why their instincts feel so good, They know where to draw the line between those layers and have a good sense of balance. “You don't need to do that.” They know because they've tried that too. Honestly, they've gone through all that trial and error, so some of them have developed a sense that “You can wrap it up at that point,” and I find that interesting to watch.
+
+
+## A Claude–Codex–Human Debate    *30:00*
+
+<span class="paragraph-timestamp" data-ts="30:00">30:00</span> **Seungjoon Choi** These days, there are plenty of other ways to do this, but whenever I feel stuck while doing something, this side is Claude Code, and this side is Codex. It's a desktop app, where each one creates its own file for discussion by polling the files, and after an agenda is posted, if the other party adds a different opinion to my discussion comments, it checks that and responds.
+
+<span class="paragraph-timestamp" data-ts="30:23">30:23</span> Each one owns its document and works in parallel, but I tried structuring it so they could still reach a consensus. Even while doing this, given my disposition, I want to understand it, so I share my thoughts on the discussion and participate in things like design decision, making it a sort of three-in-one arrangement.
+
+<span class="paragraph-timestamp" data-ts="30:44">30:44</span> And I've been learning some things from it too.
+
+<span class="paragraph-timestamp" data-ts="30:46">30:46</span> **Chester Roh** So it's a three-person system consisting of Claude, Codex, and Seungjoon.
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **Seungjoon Choi** So we talk and debate like that, but it would be difficult for me to moderate the entire discussion. The models moderate it, and I just chime in. All right, that's everything I've looked into and wanted to share. Jonghyun, you said you'd also looked into this from another perspective.
+
+<span class="paragraph-timestamp" data-ts="31:10">31:10</span> **Chester Roh** Would you like to tell us about it? Yes, I'll continue.
+
+
+## The Experience of Using Fable and Evaluation Metrics    *31:13*
+
+<span class="paragraph-timestamp" data-ts="31:15">31:15</span> **Jonghyun Park** We talked about Fable and GPT-5.6 today, and as we discussed at the beginning, the thing those who joined us, and probably everyone, including me, would be most curious about is probably, “So, is Fable good? How good is it?” Price aside, even when you actually use it, you don't clearly feel that it's exactly this much better. The perceived difference varies tremendously by task, whereas the price is something you definitely notice.
+
+<span class="paragraph-timestamp" data-ts="31:44">31:44</span> First, I'd like to look at the evaluation metrics. The one most people probably look at is this Artificial Analysis metric, and it often becomes a hot topic when people say, “There are several Korean models in this table.” So most of you have probably seen it. As expected, Fable is ranked first here as well. Opus 4.8 and GPT-5.5 currently have nearly identical scores.
+
+<span class="paragraph-timestamp" data-ts="32:08">32:08</span> For reference, this metric is calculated by running a series of benchmarks and scoring the results. It has them take tests—standardized tests—and scores the answers. The tests are quite varied and continually updated, so they're considered sufficiently robust. You can think of this as a metric that people trust to that extent. To compare it to people, it's like taking a standardized test such as the CSAT and scoring the answers, with the test being sufficiently difficult. That's one way to look at it, but if you ask whether this is a good metric, I'm somewhat skeptical.
+
+<span class="paragraph-timestamp" data-ts="32:43">32:43</span> That's because benchmarks have known questions and answers. There are some cases where they aren't disclosed, and benchmarks are sometimes run as rolling benchmarks so that the questions keep changing. In any case, similar questions and past test questions are all available, so it isn't actually that difficult. There's considerable room for it to be hacked.
+
+
+## Human Preference Evaluation in LMArena    *33:04*
+
+<span class="paragraph-timestamp" data-ts="33:04">33:04</span> **Jonghyun Park** Another thing we can look at is LMArena. When it conducts an A/B test, it collects responses such as “I like it,” “I don't like it,” or “This one is better,” and calculates a score like the Elo rating in chess. It was called LMArena, and it recently began commercializing. It was originally a nonprofit group, but after becoming a for-profit organization, it received a huge amount of investment and has already started making a lot of money. As you can see here, it now has something called agent.
+
+<span class="paragraph-timestamp" data-ts="33:39">33:39</span> In agent mode, when you give it a task, it makes tool calls on its own, does various things, and produces an answer. At the end, you're asked to indicate whether the result produced by the agent was good or bad. For reference, it doesn't tell you which model it is. So I likewise asked it to research the evaluations by LMArena and Artificial Analysis and create a PPT.
+
+<span class="paragraph-timestamp" data-ts="34:04">34:04</span> The resulting PPT is displayed right here, and you can download it directly as a PPT. For reference, I used this exact same prompt with Fable as well. The design was slightly different, but the content, the research results, and the information included in the PPT itself didn't seem substantially different. It has a table of contents, and the company recently raised funding at a valuation of $1.7 billion. So it has become a company with a valuation of that magnitude. It also creates a timeline and tables, but what's interesting here is that you can see Chinese text. Judging from details like this in the PPT,
+
+<span class="paragraph-timestamp" data-ts="34:42">34:42</span> even though I interacted with it using prompts written only in English, the model currently running behind the scenes and being tested in this test agent mode was probably a China-based model. If I click “Like” here, they could conclude, ‘A Chinese model received a favorable response too,’ and collect an evaluation metric like that. These are the kinds of things we can infer. I saw on YouTube that it had generated $100 million in revenue in just eight months,
+
+<span class="paragraph-timestamp" data-ts="35:06">35:06</span> and I was curious what kind of business they were running to raise so much money at this valuation, so I asked it to investigate. It turned out that all the big tech companies were buying this. People assign tasks and report whether they were satisfied or dissatisfied, and that data itself is an extremely expensive service. Moving beyond the business side, I'll scroll down. If we keep scrolling, we can see which labs are paying for it. So when our first question
+
+<span class="paragraph-timestamp" data-ts="35:41">35:41</span> was, ‘Is Fable good?’ what should we look at, and what is it actually like? Well, LMArena is a metric that incorporates things like human preferences, so rather than looking at test scores, for tasks requiring the real-world preferences of many people, such as whether a design looks good or bad, or, if we consider a slide deck, whether the slide deck works well as presentation material, it's difficult to standardize and score these things as right or wrong. So I thought it would make sense to refer to LMArena scores for these kinds of tasks. That was my takeaway. But there was an incident involving this. I think it happened about a year ago.
+
+
+## Llama 4 and Evaluation Optimization    *36:25*
+
+<span class="paragraph-timestamp" data-ts="36:32">36:32</span> **Jonghyun Park** I used to place absolute faith in LMArena scores, thinking, ‘If a model scores well here, it must be a good model.’ But something happened that made me stop looking at them altogether, That was when Llama 4 came out. When Llama 4 came out, before models are usually released, they upload a private model to LMArena Right. and run all the tests in advance. They accumulate scores for about a week,
+
+<span class="paragraph-timestamp" data-ts="36:53">36:53</span> and then, at the same time the model is released, its name suddenly changes, and it comes out with, “Ta-da, this was actually Llama 4.” At the time, Llama 4 was ranked first. It was either first or second. But when people actually tried Llama 4, it was really bad. “How can this be ranked first when it’s this bad?” Then it turned out that they had taken Llama 4, tuned it in various ways, and put all the variants on LMArena for testing. They kept only the one that ranked first. What we can infer from this is that human preference is also a benchmark, and one that is easy enough to hack by tuning an LLM.
+
+<span class="paragraph-timestamp" data-ts="37:39">37:39</span> I think that was when I first realized these things, and apparently, in LMArena’s case, they strengthened their policy to prevent that. For example, they might limit how many variants can be uploaded simultaneously. If you think about it, setting aside the question of which LLM is better right now, and consider this valuation, LLMs today usually target a single evaluation benchmark. They target a single task. For coding, that means a specific coding benchmark, and then, to conquer it, the LLM keeps improving to conquer something like SWE-bench. That produces an LLM that is good at coding tasks corresponding to the data distribution of SWE-bench. In this way, they plant a flag as an evaluation target and conquer each target one by one, but that seems somewhat removed from what we normally consider a person who is good at their job. This is just conquering specific flags,
+
+
+## Jagged Intelligence and Evaluation Flags    *37:50*
+
+<span class="paragraph-timestamp" data-ts="38:33">38:33</span> **Jonghyun Park** and once we have planted those flags in every corner of our world, perhaps we could achieve so-called AGI and call it general intelligence, but for now, that is why we call it jagged intelligence. It is good at some things and bad at others: “How can it be so good at this but unable to do that?” In mathematics, for instance, it can solve all the difficult IMO math problems, so why can’t it do this simple task I gave it? Situations like this arise, and there is one example I always find particularly disappointing. I like reading novels. But if you ask it to write a novel, it is not interesting. The beginning and end do not fit together, and the story falls apart, or if you ask it to write jokes, none of the humor is funny. I think things like LLM-generated comedy all ultimately fall short because evaluation is difficult. That is what I believe.
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> Then, if people ask it to perform all those tasks on platforms like LMArena and provide countless data points indicating whether they like or dislike the results, could LLMs become good at those things too? That is something I have been watching with interest, and ultimately, because many companies are trying to conquer tasks with significant economic value that require human preferences, I think that may be why a company like LMArena is making so much money. It seems there could also be business opportunities in evaluation, which is something I have been thinking about.
+
+<span class="paragraph-timestamp" data-ts="39:59">39:59</span> **Seungjoon Choi** You said earlier that you watched the interview with Grant Sanderson, right? I haven’t seen it yet. Was it interesting? I heard in passing that they discussed something like that there as well.
+
+<span class="paragraph-timestamp" data-ts="40:10">40:10</span> **Jonghyun Park** Yes, that’s right. The latest episode of the Dwarkesh Podcast features 3Blue1Brown, which many people have probably seen. You will know exactly who I mean when you watch the video and see the visual style. Grant Sanderson appears and discusses conquering mathematics, but there is a gap between that and LLMs actually replacing all intelligent white-collar jobs, and they discuss what Grant Sanderson thinks about that.
+
+<span class="paragraph-timestamp" data-ts="40:32">40:32</span> I watched the whole thing last night, but I did not understand it very well. First of all, it is entertaining. They talk extensively about the Riemann hypothesis and so on, and I thought I would need to watch it several more times. I also like the 3Blue1Brown channel and have watched it a lot, so simply watching it is enjoyable even just for the voice. I highly recommend watching it.
+
+<span class="paragraph-timestamp" data-ts="40:57">40:57</span> **Seungjoon Choi** So evaluation like this is, in any case, a major business opportunity. Whether it is a gold diff or preference data, it is a major business that feeds the frontier labs. Irregular’s case is a little different, as we mentioned earlier, but providing testing is becoming a major business either way. I did get the sense that there is some affinity between them. The buyers are Big Tech companies.
+
+
+## Domain Models and Boundary Design    *41:21*
+
+<span class="paragraph-timestamp" data-ts="41:23">41:23</span> **Chester Roh** Whether it is datasets or evaluation, Big Tech companies are spending the most money on almost all of it. They are still paying to acquire code, and as far as I know, they are also actively bringing in experts to create highly specialized datasets. We live in a world where that becomes a differentiator and creates differences in model capabilities.
+
+<span class="paragraph-timestamp" data-ts="41:47">41:47</span> **Seungjoon Choi** To operate like Big Tech, you have to do the same thing. But if the goal is not general intelligence
+
+<span class="paragraph-timestamp" data-ts="41:53">41:53</span> **Chester Roh** that encompasses every field, but simply to cover a business within each domain, you can do it with far less effort. 30B—as I think I mentioned last time— the general consensus seems to be that it has to be at least 30B for it to be useful once you feed it something. So if you effectively feed it your company’s logic, couldn’t it become quite good? There are even companies like Engram that were founded specifically to specialize in that.
+
+<span class="paragraph-timestamp" data-ts="42:26">42:26</span> **Seungjoon Choi** Oh, so there is a company like that. Even if overall orchestration and judgment are left to a large model, you may need a strategy that enables a small model to cover many things.
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> **Chester Roh** I don’t think there is any disagreement that the model is the service itself. But whether to fully train the model on the tools and memory behind it, or continue managing the context for it— until just two or three years ago, these things constituted a fairly large segment of the industry. But that trend subsided as model prices became so cheap, and I think it may now be time for that trend to return.
+
+<span class="paragraph-timestamp" data-ts="43:07">43:07</span> **Seungjoon Choi** Because they are becoming expensive. And there is the strategy of using tokens to first develop a static tool that the model can use, and then enable it to use that tool. The commonality between this and the strategy of orchestrating small models seems to be setting boundaries. Who will do what, how, and up to what point— it seems that engineering around creating those boundaries is emerging.
+
+<span class="paragraph-timestamp" data-ts="43:26">43:26</span> **Chester Roh** Exactly. I describe it as a sense of balance, but how to achieve that is, once again, entirely an engineering problem.
+
+<span class="paragraph-timestamp" data-ts="43:35">43:35</span> **Seungjoon Choi** It all comes down to engineering.
+
+
+## Evaluation Opportunities in Audio and Robotics    *43:36*
+
+<span class="paragraph-timestamp" data-ts="43:36">43:36</span> **Jonghyun Park** Finally, returning to the topic of datasets and evaluation and expanding on it just a little, we only talked about LLMs today, but beyond LLMs, we are also very interested in other modalities, so recently, we have been very interested in audio, and we have also been interested in robotics, and when you look at things like VLAs, evaluation is much more difficult.
+
+<span class="paragraph-timestamp" data-ts="44:00">44:00</span> There is also a severe lack of data, and the data itself is extremely expensive. I believe there are tremendous business opportunities there. Looking at YC batches, there seem to be many emerging companies that collect data from physical environments and propose doing something with it, while many others seem to be trying to turn evaluation itself into a model.
+
+<span class="paragraph-timestamp" data-ts="44:24">44:24</span> Back when GPT used human feedback for RLHF, models used in PPO that predicted, “Humans will like this,” were created in large numbers, as I understand it.
+
+<span class="paragraph-timestamp" data-ts="44:35">44:35</span> **Seungjoon Choi** They were creating things like surrogate models. Those existed,
+
+<span class="paragraph-timestamp" data-ts="44:38">44:38</span> **Jonghyun Park** but especially with audio or physical environments, you need a way to watch the video and determine whether the task is being performed well—for example, if it was told to make coffee, you need to break it down into subtasks, such as whether it ground the coffee properly, and assess whether it is currently performing the action in each subtask correctly, assigning accurate scores like that, which ultimately is also evaluation. So people seem very interested in models that can assign scores using a general-purpose reward.
+
+<span class="paragraph-timestamp" data-ts="45:09">45:09</span> **Seungjoon Choi** Right. In any case, you need to end up with a single scalar That gives you an objective.
+
+<span class="paragraph-timestamp" data-ts="45:13">45:13</span> **Chester Roh** Once you have an objective, you can build anything toward it. So we began today with Fable and discussed a wide variety of topics. With so much news coming out, this is admittedly a time when it can feel somewhat daunting to establish a perspective and act on it, but if our viewers give us a wide range of feedback, we will take it closely into consideration. Jonghyun, thank you for joining us.
+
+
+## This Week’s Recap and What’s Next    *45:17*
+
+<span class="paragraph-timestamp" data-ts="45:46">45:46</span> **Seungjoon Choi** It was interesting to explore, from a new perspective, topics we do not usually cover. Starting with Mythos, then Fable,
+
+<span class="paragraph-timestamp" data-ts="45:54">45:54</span> **Chester Roh** and all the way to GPT-5.6, the US government intervened amid this whirlwind cycle, and the storyline seems to be getting a little tangled. Even so, the trajectory of progress seems impossible to resist. In that context, we also seem to find ourselves revisiting things that came out in the past, and we often get a strong sense of déjà vu as topics we discussed before resurface. ICML will probably be held in Seoul this week,
+
+<span class="paragraph-timestamp" data-ts="46:21">46:21</span> so we expect to meet many fascinating people in Seoul. Hopefully, we will also be able to share that news in the next episode. This was our second episode with Jonghyun, and we look forward to hearing much more great insight from Jonghyun going forward. With that, we will wrap up for today.
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> With that, we will wrap up for today.
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> With that, we will wrap up for today.
