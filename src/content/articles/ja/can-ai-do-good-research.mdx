@@ -1,0 +1,247 @@
+---
+title: "AIは良い研究ができるのか — 再現チャレンジ、ラルフソン、そして2本のポッドキャスト"
+description: "良い研究とは何か、そこに報酬を与えられるのか。エージェントがICML論文を再現するHugging Faceチャレンジ、AIが論文を書きAIが査読したラルフソン、そしてDwarkeshポッドキャストのGrant Sanderson回・Adam Brown回まで — AI時代に研究がどう変わるかについての考えをまとめました。"
+publishedAt: 2026-07-17
+heroImage: "/articles/can-ai-do-good-research/schulman-tweet.png"
+tags:
+  - AIと研究
+  - ICML
+  - Dwarkeshポッドキャスト
+lang: "ja"
+---
+
+
+
+### 事例1. シュルマンの5単語
+
+<Figure
+  src="/articles/can-ai-do-good-research/schulman-tweet.png"
+  alt="John SchulmanのXポスト: PPO: rejected from NIPS 2017"
+  caption="閲覧数52万超。PPOは査読を一度も通過していないarXivのみの論文ですが、引用は約2.9万回 — RLHFを経てChatGPTを生んだ標準アルゴリズムになりました。（原文: x.com/johnschulman2）"
+/>
+
+<Figure
+  src="/articles/can-ai-do-good-research/schulman-tweet-2.png"
+  alt="John Schulmanの続報ポスト: PPO had a second wave in the LLM era for reasons unanticipated by the original paper"
+  caption="翌日の補足 — PPOがLLM時代に第二の全盛期を迎えた理由は「原論文の著者たちも当時は知らなかったこと」。査読者も、著者自身も、その価値を評価できませんでした。"
+/>
+
+### 事例2. arXiv、レビュー論文の門を閉じる
+
+[2025年10月、arXiv](https://blog.arxiv.org/2025/10/31/attention-authors-updated-practice-for-review-articles-and-position-papers-in-arxiv-cs-category/)：
+CSカテゴリの**サーベイ・ポジション論文は査読通過後のみ受け付け**。LLMで量産
+されたサーベイが毎月数百本押し寄せたためです。
+
+> "…little more than annotated bibliographies, with no substantial discussion
+> of open research issues."
+>
+> — arXiv公式ブログ、LLM生成サーベイについて
+
+[HNスレッド](https://news.ycombinator.com/item?id=45782136)の構図：「生成は
+タダなのに検収は高くつく」vs「査読の*前に*上げる場所がarXivではなかったのか」。
+
+### 事例3. 物量に押しつぶされる学会
+
+- ICML 2026：史上最多の**23,918本**投稿、**6,352本**採録（26.6%）
+- ICLR 2026：レビュー75,800件のうち[**21%が完全にAI生成**と推定](https://www.pangram.com/blog/pangram-predicts-21-of-iclr-reviews-are-ai-generated)（Pangram Labs）
+- ICML 2026：論文PDFに仕込んだ「ウォーターマークの罠」で[LLMレビュー795件を摘発、論文497本をデスクリジェクト](https://blog.icml.cc/2026/03/18/on-violations-of-llm-review-policies/)
+
+## 良い研究とは？
+
+> 研究の本質は、人類の知識と思考を少しでも拡張すること。
+> その拡張が人間社会に大きな影響を与えるとき、私たちはそれを良い研究と呼ぶ。
+
+問題は**報酬**（reward）です。
+
+## 良い研究にrewardを与えられるか
+
+- RLVRは数学（正解採点）・コード（ユニットテスト）のような*検証可能な*報酬で
+  のみ機能 — それで[IMO金メダル](https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/)まで到達しましたが
+- 「良い研究」にはそのような検証器がない
+- 人類の方法は**ピアレビュー** — 数百年間これ以上のものを作れず、いま亀裂が
+  目立ち始めている
+
+ここからは、この2週間で見た2つの試みです。
+
+## 試み1：ICMLを丸ごと再現する
+
+<Figure
+  src="/articles/can-ai-do-good-research/hf-repro-challenge.png"
+  alt="Reproducing ICML 2026チャレンジのホーム画面。Let's reproduce ICML 2026, together. 論文6,341本、再現671件"
+  caption="Reproducing ICML 2026（Hugging Face × alphaXiv、7/15–8/2）。採録論文すべてが再現対象 — 7月17日現在、再現671件が公開されています。"
+/>
+
+- 自分のコーディングエージェント（Claude Code、Codex、Cursor…）を論文に
+  つけて**主要な主張（claim）を再現または反証**、全過程をlogbookとして公開
+- LLM審判がclaim単位で採点：**完全再現2点、反証も同じく2点**、toyスケール1点
+- 審判はエージェントの自己申告を信用せず、実行ログと数値のみを見る。最終的な
+  受賞は人間が再検証
+
+**反証 = 再現と同じ得点。** 再現の失敗を事実上罰してきた学界のインセンティブ
+とは正反対に、結果ではなく検証という行為に報酬を与える設計です。
+「再現性」という検証可能な断片で研究をrewardに変える実験 — OpenAIの
+[PaperBench](https://openai.com/index/paperbench/)と同じ方向であり、再現性
+チャレンジMLRCは[NeurIPS 2026の公式トラック](https://blog.neurips.cc/2026/05/04/mlrc-2026-reproducibility-as-an-official-track-at-neurips/)に
+なりました。
+
+<ResourceLink
+  url="https://huggingface.co/spaces/ICML-2026-agent-repro/challenge"
+  title="Reproducing ICML 2026 — Open Reproductions"
+  domain="huggingface.co"
+  description="ICML 2026論文の主要claimをコーディングエージェントで再現/反証するコミュニティチャレンジ（7/15–8/2）"
+/>
+
+## 試み2：AIが論文を書き、AIが査読する — ラルフソン
+
+<Figure
+  src="/articles/can-ai-do-good-research/ralphthon-poster.png"
+  alt="Ralphthon @ICML 2026 'Auto Research' ポスター — 頭にロブスターを載せたラルフ・ウィガム"
+  caption="ラルフソン @ICML 'Auto Research'（7/12、NAVER D2SF江南、Team Attention主催・Codex後援）。'Ralph'はエージェントを無限ループで回すRalph loop技法から来た名前です。"
+/>
+
+- **Track 1 — AI Scientist**：エージェントが実験を回し、論文まで執筆
+- **Track 2 — Review Agent**：その論文を**別のエージェントがICMLスタイルで査読**
+
+> "Once the Ralph Loop starts, you cannot touch your coding agent directly. If
+> you want to touch your laptop, you have to wear the **lobster costume**
+> first."
+>
+> — [イベントルール](https://luma.com/hjuo7auc)より
+
+<Figure
+  src="/articles/can-ai-do-good-research/ralphthon-live.jpg"
+  alt="ラルフソン現地ライブ — ロブスター帽をかぶった参加者たちの前でのインタビュー"
+  caption="現地で行ったライブ配信。後ろにロブスター帽をかぶった — つまりエージェントに手を出した — 参加者たちが見えます。（全編: YouTube @sudoremove）"
+/>
+
+いちばん面白かったのはTrack 2の優勝の決まり方です。主催者チョン・グボン
+（Goobong Jeong）さんの振り返りから：
+
+> 「レビューエージェントにはTrack 1の論文を必須で10本ずつレビューさせました。
+> そのスコアが、同じ論文を審査した人間の審査員のスコアと**最も相関の高い
+> チーム**をワイルドカードで引き上げたのですが — そのワイルドカードが
+> Track 2で優勝しました」
+>
+> — チョン・グボン（Team Attention、ラルフソン主催者）振り返りより（訳）
+
+レビューの品質を直接採点する方法はありません。そこで**人間の審査員との
+整合（correlation）**をスコアにし、アプローチだけを見た書類選考で通った
+チームたちの中から、実測で上がってきたワイルドカード — 優勝チーム
+「MAC n CHEESE」、論文に隠されたプロンプトインジェクションや計算ミスを検出し
+複数のAIレビュアーを統合する方式 — が実際に勝ちました。検証不可能に見えた
+「良い評価」さえ、人間との整合でrewardに変えてみせたわけです。
+
+学会も同じ方向です。AAAI-26は[論文22,977本すべてにAIレビューを
+提供](https://arxiv.org/abs/2604.13940)し、著者たちは技術的正確性の面でAI
+レビューを人間のレビューより好みました（[ゲーミング脆弱性への
+警告](https://arxiv.org/abs/2605.28897)も同時に出ていますが）。
+
+**研究の評価をAIで試みること自体が「rewardをうまく与えよう」という方向で
+あり、いまみんながこの方向に努力している** — と整理しておきます。
+
+## Dwarkesh ① Grant Sanderson：数学、そしてtaste
+
+<VideoEmbed
+  youtubeId="TfyPshgMbug"
+  title="Grant Sanderson – AI and the future of math"
+  caption="'Math is where we'll see superintelligence first.' — 6月30日公開"
+/>
+
+3年前、Dwarkeshは尋ねました — AIがIMOで金メダルを取ったら、それはAGIでは
+ないのか？
+
+> "You said **it'll be another benchmark**, like all these other benchmarks
+> that AI are passing."
+>
+> — Dwarkesh Patel、3年前のサンダーソンの答えを振り返って
+
+> "The dirty secret with the IMO is that you really can train for a lot of
+> them."
+>
+> — Grant Sanderson
+
+金メダルは実際に出ましたが、破られたのはベンチマークひとつに過ぎないという
+論調は変わりません。AIのフロンティアはスパイク状で、そのスパイクは
+フラクタル — 数学の中でも幾何は19秒で解けるのに、組合せ論はまだ持ち
+こたえています。
+
+> "If you wanted to do a verification loop on whether group theory is an
+> interesting concept… potentially that verification loop is **a hundred years
+> long**."
+>
+> — Dwarkesh Patel
+
+ガロアの群論が暗号学・物理学を経てゲルマンのクォーク予測につながるまで
+100年。RLVRの即時採点とは正反対の時間スケールです。
+
+> "Good mathematicians prove theorems, great mathematicians come up with
+> conjectures, and **the greatest mathematicians come up with definitions**."
+>
+> — サンダーソンが再引用した数学界のアフォリズム
+
+いまのベンチマークが採点するのは最初のものだけ。「この方向に何かある」という
+ガロアの直感をベンチマークにする方法は、自分にも分からないと言います。
+
+## 良い研究をAIは成し遂げられるか？
+
+人類全体の知識の内側で学習したLLMは、その外側に出られるのか？
+
+できそうに見えます。他分野の同型（isomorphic）な構造からインスピレーションを
+得て、既存の発見の間の矛盾に着目して新しい説明を試みる営みだからです。
+
+この「他分野の同型」— サンダーソンの言葉では**稲妻**です。
+
+> "You have this very small idea that has the form of expertise in one field
+> and expertise in another, drawing a little **lightning bolt** between them."
+>
+> — Grant Sanderson
+
+数論学者モンゴメリー（Montgomery）がリーマンゼータ零点の相関公式を語ると、
+物理学者ダイソン（Dyson）が答えます — 「その式、知っていますよ。ランダム
+エルミート行列の固有値の研究に出てくる式です」。数論と核物理の間に隠れて
+いた稲妻でした。AIの発見がこの稲妻型なら人間にも消化しやすく、文献の中に
+すでにあるアイデアをつなぐだけでも掘り出せるものは多い、という話が続きます。
+
+## Dwarkesh ② Adam Brown：実験なしでどこまで行けるか
+
+<VideoEmbed
+  youtubeId="QbdbAhaJoCQ"
+  title="General relativity from first principles – Adam Brown"
+  start={5373}
+  caption="最終チャプター 'How far can AI get without experimental evidence?'（1:29:33〜）。BrownはGoogle DeepMindの科学・推論チームBlueshiftのリードです。"
+/>
+
+- 一般相対性理論は光速＋等価原理（説明されていなかった「偶然」）だけで到達
+  した**例外的事例** — 「既存の発見の矛盾に着目した研究」の原型
+- **branching fraction**：理論の枝を刈り込むのに必要な実験の量は分野ごとに
+  違う — 物性物理は実験なしにはどの理論が正しいか分からない
+
+> "If you just had **lots and lots of Einsteins** and you gave each of them
+> various options, you could presumably see them in parallel."
+>
+> — Adam Brown
+
+> "They just have **extreme patience**, even for doing things that perhaps
+> look like a low probability of success."
+>
+> — Adam Brown
+
+人間は真だと信じる予想の反証に時間を使いませんが、LLMはその「無駄遣い」を
+喜んでやります。再現チャレンジが反証に2点を与えるのと同じ話です。
+
+## まとめ：研究はどう変わるか
+
+- **分野ごとに速度が違う** — 検証が機械的な数学・MLが先、実験がボトルネックの
+  分野は実験自動化の速度が全体を決める
+- **評価は検証可能なところから変わる** — まず再現性がrewardになり、AIレビューが
+  次第に一次フィルターに
+- ただし人間の評価ももともと間違いだらけだった — PPOの価値は査読者ではなく
+  9年後のLLM時代が評価した
+- **最後まで残るのはtaste** — 定理を証明するAIは来て、予想を作るAIは来つつ
+  ある。では**定義（definition）を作るの**は誰の仕事か
+
+次のエピソードでこの話を続けます。
+
+---
+
+*パク・ジョンヒョン（Park Jong Hyun）*
