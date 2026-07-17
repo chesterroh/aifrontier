@@ -1,0 +1,210 @@
+---
+title: "AI는 좋은 연구를 할 수 있을까 — 재현 챌린지, 랄프톤, 그리고 두 편의 팟캐스트"
+description: "좋은 연구란 무엇이고, 거기에 보상을 줄 수 있을까요? ICML 논문을 에이전트로 재현하는 Hugging Face 챌린지, AI가 논문을 쓰고 AI가 심사한 랄프톤, 그리고 Dwarkesh 팟캐스트의 Grant Sanderson·Adam Brown 편까지 — AI 시대에 연구가 어떻게 변할지 생각을 정리했습니다."
+publishedAt: 2026-07-17
+heroImage: "/articles/can-ai-do-good-research/hf-repro-challenge.png"
+tags:
+  - AI와 연구
+  - ICML
+  - Dwarkesh 팟캐스트
+lang: "ko"
+draft: true
+---
+
+[지난 글](/ko/articles/icml-2026-sponsor-booths)에 이어, ICML 주간 내내
+머릿속에 맴돌던 질문입니다. **연구란 무엇이고, AI는 좋은 연구를 할 수
+있을까.** 발단이 된 팟캐스트 두 편은 글 마지막에 있습니다.
+
+## 좋은 연구란?
+
+> 연구의 본질은 인류의 지식과 생각을 조금이라도 확장하는 것.
+> 그 확장이 인간 사회에 큰 영향을 미칠 때, 우리는 좋은 연구라고 부른다.
+
+AI도 할 수 있어 보입니다. 다른 분야의 동형(isomorphic)인 구조에서 영감을
+받고, 기존 발견들 사이의 모순에 착안해 새로운 설명을 시도하는 일이니까요.
+
+문제는 **보상**(reward)입니다.
+
+## 좋은 연구에 reward를 줄 수 있을까
+
+- RLVR은 수학(정답 채점)·코드(유닛테스트)처럼 *검증 가능한* 보상에서만 작동
+  → [2025년 IMO 금메달](https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/)까지 도달
+- "좋은 연구"에는 그런 검증기가 없음 → 현재 방법론으로 마법처럼 되긴 어려움
+- 인간 사회의 방법은 **peer review** — 수백 년간 이보다 나은 것을 만들지 못함
+- 그런데 그 peer review에 지금 균열이 많이 보임
+
+### 사례 1. 슐만의 다섯 단어
+
+<Figure
+  src="/articles/can-ai-do-good-research/schulman-tweet.png"
+  alt="John Schulman의 X 포스트: PPO: rejected from NIPS 2017"
+  caption="조회수 52만. PPO는 피어리뷰를 통과한 적 없는 arXiv-only 논문인데, 인용 약 2.9만 회 — RLHF를 거쳐 ChatGPT를 만든 표준 알고리즘이 됐습니다. (원문: x.com/johnschulman2)"
+/>
+
+<Figure
+  src="/articles/can-ai-do-good-research/schulman-tweet-2.png"
+  alt="John Schulman의 후속 포스트: PPO had a second wave in the LLM era for reasons unanticipated by the original paper"
+  caption="다음 날의 부연 — PPO가 LLM 시대에 2차 전성기를 맞은 이유는 '원논문 저자들도 당시엔 몰랐던 것'. 리뷰어도, 저자 자신도 그 시점엔 이 연구의 가치를 평가하지 못했습니다."
+/>
+
+### 사례 2. arXiv, 리뷰 논문의 문을 닫다
+
+[2025년 10월 arXiv 공지](https://blog.arxiv.org/2025/10/31/attention-authors-updated-practice-for-review-articles-and-position-papers-in-arxiv-cs-category/):
+CS 카테고리의 **서베이·포지션 논문은 피어리뷰 통과 후에만 접수**
+(일반 연구 논문은 종전대로). LLM으로 양산된 서베이가 매달 수백 편씩 쏟아진
+탓입니다.
+
+> "…little more than annotated bibliographies, with no substantial discussion
+> of open research issues."
+>
+> — arXiv 공식 블로그, LLM 생성 서베이에 대해
+
+[HN 스레드](https://news.ycombinator.com/item?id=45782136)(댓글 236개)의 구도:
+"생성은 공짜인데 검수는 비싸다" vs "피어리뷰 *전에* 올리는 곳이 arXiv
+아니었나".
+
+### 사례 3. 물량에 무너지는 학회
+
+- ICML 2026: 역대 최다 **23,918편** 투고
+- ICLR 2026: 리뷰 75,800개 중 [**21%가 완전히 AI 생성**으로 추정](https://www.pangram.com/blog/pangram-predicts-21-of-iclr-reviews-are-ai-generated) (Pangram Labs)
+- ICML 2026: 논문 PDF에 숨긴 '워터마크 함정'으로 [LLM 리뷰 795개 적발, 논문 497편 데스크 리젝](https://blog.icml.cc/2026/03/18/on-violations-of-llm-review-policies/)
+
+여기까지가 문제라면, 아래는 최근 2주 사이에 본 두 가지 시도입니다.
+
+## 시도 1: ICML을 통째로 재현하기
+
+<Figure
+  src="/articles/can-ai-do-good-research/hf-repro-challenge.png"
+  alt="Reproducing ICML 2026 챌린지 홈. Let's reproduce ICML 2026, together. 논문 6,341편, 재현 671건"
+  caption="Reproducing ICML 2026 (Hugging Face × alphaXiv, 7/15–8/2). 7월 17일 현재 논문 6,341편을 대상으로 재현 671건이 올라와 있습니다."
+/>
+
+- 자기 코딩 에이전트(Claude Code, Codex, Cursor…)를 논문에 붙여 **주요
+  주장(claim)을 재현 또는 반증**, 전 과정을 logbook으로 공개
+- 채점은 LLM 심판이 claim 단위로: **완전 재현 2점, 반증도 똑같이 2점**, toy
+  스케일 1점
+- 심판은 에이전트의 자기 보고를 불신하고 실행 로그·수치만 봄 (리워드 해킹
+  방지), 최종 수상은 인간이 재검증
+
+**반증 = 재현과 같은 점수.** 재현 실패를 사실상 처벌해온 학계 인센티브와
+정반대로, 결과가 아니라 검증이라는 행위에 보상을 주는 설계입니다.
+'재현성'이라는 검증 가능한 조각을 떼어내 연구를 reward로 바꾸는 실험이고,
+OpenAI [PaperBench](https://openai.com/index/paperbench/)와 같은 방향,
+재현성 챌린지 MLRC는 [NeurIPS 2026 공식 트랙](https://blog.neurips.cc/2026/05/04/mlrc-2026-reproducibility-as-an-official-track-at-neurips/)이
+됐습니다.
+
+<ResourceLink
+  url="https://huggingface.co/spaces/ICML-2026-agent-repro/challenge"
+  title="Reproducing ICML 2026 — Open Reproductions"
+  domain="huggingface.co"
+  description="ICML 2026 논문의 주요 claim을 코딩 에이전트로 재현/반증하는 커뮤니티 챌린지 (7/15–8/2)"
+/>
+
+## 시도 2: AI가 논문을 쓰고, AI가 심사한다 — 랄프톤
+
+<Figure
+  src="/articles/can-ai-do-good-research/ralphthon-poster.png"
+  alt="Ralphthon @ICML 2026 'Auto Research' 포스터 — 랍스터를 머리에 얹은 랄프 위검"
+  caption="랄프톤 @ICML 'Auto Research' (7/12, 네이버 D2SF 강남, 팀어텐션 주최·Codex 후원). 'Ralph'는 에이전트를 무한 루프로 돌리는 Ralph loop 기법에서 온 이름입니다."
+/>
+
+- **Track 1 — AI Scientist**: 에이전트가 실험을 돌리고 논문 형태의 결과물까지 작성
+- **Track 2 — Review Agent**: 그 논문을 **다른 에이전트가 ICML 스타일로 심사**
+- 결과: 포스터 진출 [13팀 = 연구 12팀 + "실제 심사 결과에 가장 근접한 평가"를
+  낸 리뷰 에이전트 1팀](https://www.venturesquare.net/1099291)
+- Track 2 우승 '맥 앤 치즈': 논문 속 숨은 프롬프트 인젝션·계산 오류·인용
+  불일치를 탐지하고 복수의 AI 리뷰어를 종합 — 공격과 방어가 하루짜리 해커톤에
+  다 들어 있었습니다
+
+> "Once the Ralph Loop starts, you cannot touch your coding agent directly. If
+> you want to touch your laptop, you have to wear the **lobster costume**
+> first."
+>
+> — [행사 규칙](https://luma.com/hjuo7auc) 중
+
+{/* TODO: 현장에 다녀왔다면 직접 찍은 사진/소감으로 교체 */}
+
+학회도 같은 방향입니다. AAAI-26은 [논문 22,977편 전부에 AI 리뷰를
+제공](https://arxiv.org/abs/2604.13940)했고, 설문에서 저자들은 기술적 정확성
+면에서 AI 리뷰를 인간 리뷰보다 선호했습니다. 물론 [조작(gaming)에 취약하다는
+경고](https://arxiv.org/abs/2605.28897)도 함께 나옵니다.
+
+**연구의 평가를 AI로 시도한다는 것 자체가 "reward를 잘 줘보겠다"는
+방향이고, 지금 다들 이 방향으로 노력하고 있다** — 정도로 정리해보겠습니다.
+
+## Dwarkesh ① Grant Sanderson: 수학, 그리고 taste
+
+<VideoEmbed
+  youtubeId="TfyPshgMbug"
+  title="Grant Sanderson – AI and the future of math"
+  caption="'Math is where we'll see superintelligence first.' — 6월 30일 공개"
+/>
+
+> "If you wanted to do a verification loop on whether group theory is an
+> interesting concept… potentially that verification loop is **a hundred years
+> long**."
+>
+> — Dwarkesh Patel
+
+갈루아의 군론이 암호학·물리학을 거쳐 겔만의 쿼크 예측으로 이어지기까지
+100년. RLVR의 즉시 채점과는 정반대의 시간 스케일입니다.
+
+> "Good mathematicians prove theorems, great mathematicians come up with
+> conjectures, and **the greatest mathematicians come up with definitions**."
+>
+> — 샌더슨이 재인용한 수학계의 아포리즘
+
+지금의 벤치마크가 채점하는 것은 첫 번째뿐입니다. "이 방향에 뭔가 있다"던
+갈루아의 직감을 벤치마크로 만드는 방법은 자기도 모르겠다고 하고, 유일한
+후보로 꼽은 것이 압축(compression) 기반 보상이었습니다.
+
+'다른 분야의 동형' 사례도 이 편에 나옵니다. 수론자 몽고메리(Montgomery)가
+리만 제타 영점의 상관 공식을 이야기하자 물리학자 다이슨(Dyson)이 답합니다 —
+"그 식 알아요. 랜덤 에르미트 행렬의 고유값에서 나오는 식인데요." 수론과
+핵물리 사이에 숨어 있던 다리였죠.
+
+## Dwarkesh ② Adam Brown: 실험 없이 어디까지 갈 수 있나
+
+<VideoEmbed
+  youtubeId="QbdbAhaJoCQ"
+  title="General relativity from first principles – Adam Brown"
+  start={5373}
+  caption="마지막 챕터 'How far can AI get without experimental evidence?' (1:29:33~). Brown은 Google DeepMind의 과학·추론 팀 Blueshift 리드입니다."
+/>
+
+- 일반상대성이론은 광속 + 등가원리(설명되지 않던 '우연')라는 극소량의 경험적
+  입력만으로 도달한 **예외적 사례** — '기존 발견의 모순에 착안한 연구'의 원형
+- **branching fraction**: 분야마다 이론의 가지를 쳐내는 데 필요한 실험의 양이
+  다름 — 응집물질물리는 실험 없이는 어느 이론이 맞는지 알 수 없음
+
+> "If you just had **lots and lots of Einsteins** and you gave each of them
+> various options, you could presumably see them in parallel."
+>
+> — Adam Brown
+
+> "They just have **extreme patience**, even for doing things that perhaps
+> look like a low probability of success."
+>
+> — Adam Brown
+
+인간은 참이라고 믿는 추측을 반증하는 데 시간을 쓰지 않지만, LLM은 그
+'낭비'를 기꺼이 합니다. 재현 챌린지가 반증에 2점을 주는 것과 같은
+이야기입니다.
+
+## 정리: 연구는 어떻게 변할까
+
+- **분야마다 속도가 다르다** — 검증이 기계적인 수학·ML이 먼저, 실험이 병목인
+  분야는 실험 자동화 속도가 전체 속도를 결정
+- **평가는 검증 가능한 것부터 바뀐다** — 재현성이 먼저 reward가 되고, AI
+  리뷰가 점점 1차 필터로
+- 단, 인간의 평가도 원래 오류투성이였다 — PPO의 가치는 리뷰어가 아니라 9년
+  뒤의 LLM 시대가 평가했다
+- **마지막까지 남는 것은 taste** — 무엇이 추구할 가치가 있는가. 정리를
+  증명하는 AI는 왔고, 추측을 만드는 AI는 오는 중. 그럼 **정의(definition)를
+  만드는 것**은 누구의 몫일까
+
+다음 에피소드에서 이 이야기를 이어갑니다.
+
+---
+
+*박종현 (Park Jong Hyun)*
