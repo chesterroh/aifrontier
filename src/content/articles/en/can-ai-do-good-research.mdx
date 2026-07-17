@@ -1,0 +1,257 @@
+---
+title: "Can AI Do Good Research? — A Reproducibility Challenge, Ralphthon, and Two Podcasts"
+description: "What makes research good, and can we reward it? The Hugging Face challenge where agents reproduce ICML papers, Ralphthon where AI wrote papers and AI reviewed them, and the Grant Sanderson and Adam Brown episodes of the Dwarkesh Podcast — thoughts on how research changes in the age of AI."
+publishedAt: 2026-07-17
+heroImage: "/articles/can-ai-do-good-research/schulman-tweet-hero.png"
+tags:
+  - AI and Research
+  - ICML
+  - Dwarkesh Podcast
+lang: "en"
+---
+
+
+
+### Case 1. Schulman's five words
+
+The post above is where this piece starts: five words, over 520K views
+([original](https://x.com/johnschulman2/status/2067263769110360522)).
+PPO is an arXiv-only paper that never passed peer review — yet with ~29K
+citations, it became the standard algorithm behind RLHF and ChatGPT.
+
+<Figure
+  src="/articles/can-ai-do-good-research/schulman-tweet-2.png"
+  alt="John Schulman's follow-up post: PPO had a second wave in the LLM era for reasons unanticipated by the original paper"
+  caption="The next day's follow-up — PPO's second wave in the LLM era came for reasons 'we didn't know about at the time of publication.' Neither the reviewers nor the author could evaluate its worth back then."
+/>
+
+### Case 2. arXiv closes the door on review papers
+
+[October 2025, arXiv](https://blog.arxiv.org/2025/10/31/attention-authors-updated-practice-for-review-articles-and-position-papers-in-arxiv-cs-category/):
+**survey and position papers in the CS category are now accepted only after
+passing peer review.** The cause: hundreds of LLM-generated surveys flooding in
+every month.
+
+> "…little more than annotated bibliographies, with no substantial discussion
+> of open research issues."
+>
+> — arXiv official blog, on LLM-generated surveys
+
+The [HN thread](https://news.ycombinator.com/item?id=45782136) in one line:
+"generation is free, review is expensive" vs "isn't arXiv where you upload
+things *before* peer review?"
+
+### Case 3. Conferences drowning in volume
+
+- ICML 2026: a record **23,918** submissions, **6,352** accepted (26.6%)
+- ICLR 2026: of 75,800 reviews, [**21% estimated to be fully AI-generated**](https://www.pangram.com/blog/pangram-predicts-21-of-iclr-reviews-are-ai-generated) (Pangram Labs)
+- ICML 2026: hidden 'watermark traps' in paper PDFs [caught 795 LLM-written reviews; 497 papers desk-rejected](https://blog.icml.cc/2026/03/18/on-violations-of-llm-review-policies/)
+
+## What makes research good?
+
+> The essence of research is expanding human knowledge and thought, even a
+> little. When that expansion deeply affects human society, we call it good
+> research.
+
+The problem is **reward**.
+
+## Can we reward good research?
+
+- RLVR only works on *verifiable* rewards — math (answer checking), code (unit
+  tests) — and that took us all the way to an [IMO gold medal](https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/)
+- "Good research" has no such verifier
+- Humanity's mechanism is **peer review** — centuries without inventing
+  anything better, and now it's cracking
+
+Here are two attempts I saw in the past two weeks.
+
+## Attempt 1: Reproducing all of ICML
+
+<Figure
+  src="/articles/can-ai-do-good-research/hf-repro-challenge.png"
+  alt="Reproducing ICML 2026 challenge homepage. Let's reproduce ICML 2026, together. 6,341 papers, 671 reproductions"
+  caption="Reproducing ICML 2026 (Hugging Face × alphaXiv, July 15 – August 2). Every accepted paper is a target — 671 reproductions as of July 17."
+/>
+
+- Point your own coding agent (Claude Code, Codex, Cursor…) at a paper to
+  **reproduce or falsify its major claims**, publishing the whole process as a
+  logbook
+- An LLM judge scores per claim: **2 points for full reproduction, 2 points for
+  falsification too**, 1 for toy scale
+- The judge distrusts the agent's self-reports and looks only at executed runs
+  and numbers; final winners are re-verified by humans
+
+**Falsification = same score as reproduction.** The exact opposite of academic
+incentives that effectively punish failed replications — rewarding the act of
+verification, not the result. It's an experiment in turning research into a
+reward via its one verifiable slice, reproducibility — the same direction as
+OpenAI's [PaperBench](https://openai.com/index/paperbench/), and the
+reproducibility challenge MLRC just became an [official NeurIPS 2026
+track](https://blog.neurips.cc/2026/05/04/mlrc-2026-reproducibility-as-an-official-track-at-neurips/).
+
+<ResourceLink
+  url="https://huggingface.co/spaces/ICML-2026-agent-repro/challenge"
+  title="Reproducing ICML 2026 — Open Reproductions"
+  domain="huggingface.co"
+  description="A community challenge to reproduce or falsify the major claims of ICML 2026 papers with coding agents (July 15 – August 2)"
+/>
+
+## Attempt 2: AI writes the papers, AI reviews them — Ralphthon
+
+<Figure
+  src="/articles/can-ai-do-good-research/ralphthon-poster.png"
+  alt="Ralphthon @ICML 2026 'Auto Research' poster — Ralph Wiggum with a lobster on his head"
+  caption="Ralphthon @ICML 'Auto Research' (July 12, NAVER D2SF Gangnam, hosted by Team Attention, supported by Codex). 'Ralph' comes from the Ralph loop — running an agent in an infinite loop."
+/>
+
+- **Track 1 — AI Scientist**: agents run the experiments and write the papers
+- **Track 2 — Review Agent**: **another agent reviews those papers, ICML-style**
+
+> "Once the Ralph Loop starts, you cannot touch your coding agent directly. If
+> you want to touch your laptop, you have to wear the **lobster costume**
+> first."
+>
+> — from the [event rules](https://luma.com/hjuo7auc)
+
+<Figure
+  src="/articles/can-ai-do-good-research/ralphthon-live.jpg"
+  alt="Ralphthon live stream — an interview in front of participants wearing lobster hats"
+  caption="The on-site live stream. Behind us: participants in lobster hats — the ones who touched their agents. (Full video: YouTube @sudoremove)"
+/>
+
+The best part was how Track 2 was won. From organizer Goobong Jeong's recap:
+
+> "Each review agent had to review 10 of the Track 1 papers. The team whose
+> scores had the **highest correlation with the human judges'** scores on those
+> same papers got a wildcard slot — and that wildcard won Track 2."
+>
+> — Goobong Jeong (Team Attention, Ralphthon organizer), translated from his recap
+
+There is no way to grade the quality of a review directly. So they scored
+**alignment with the human judges**, and among teams screened on paper by their
+approach, the wildcard that got in on measured performance — winning team 'MAC
+n CHEESE', which detected hidden prompt injections and calculation errors in
+papers and ensembled multiple AI reviewers — actually won. Even "good
+evaluation," seemingly unverifiable, was turned into a reward via alignment
+with humans.
+
+Conferences are heading the same way. AAAI-26 [gave all 22,977 papers an AI
+review](https://arxiv.org/abs/2604.13940), and authors preferred the AI reviews
+to human ones on technical accuracy (with [gameability
+warnings](https://arxiv.org/abs/2605.28897) alongside).
+
+**Trying to evaluate research with AI is itself the "let's build a better
+reward" direction — and right now, everyone is pushing that way.**
+
+## Dwarkesh ① Grant Sanderson: math, and taste
+
+<VideoEmbed
+  youtubeId="TfyPshgMbug"
+  title="Grant Sanderson – AI and the future of math"
+  caption="'Math is where we'll see superintelligence first.' — published June 30"
+/>
+
+Three years ago, Dwarkesh asked: if AI wins IMO gold, isn't that just AGI?
+
+> "You said **it'll be another benchmark**, like all these other benchmarks
+> that AI are passing."
+>
+> — Dwarkesh Patel, recalling Sanderson's answer from three years ago
+
+> "The dirty secret with the IMO is that you really can train for a lot of
+> them."
+>
+> — Grant Sanderson
+
+The gold medal did arrive, and the take stands: one more benchmark fell. The
+AI frontier is spiky, and the spikiness is fractal — even within math, geometry
+falls in nineteen seconds while combinatorics still holds out.
+
+> "If you wanted to do a verification loop on whether group theory is an
+> interesting concept… potentially that verification loop is **a hundred years
+> long**."
+>
+> — Dwarkesh Patel
+
+From Galois's group theory through cryptography and physics to Gell-Mann
+predicting quarks: a hundred years. The exact opposite time scale from RLVR's
+instant grading.
+
+> "Good mathematicians prove theorems, great mathematicians come up with
+> conjectures, and **the greatest mathematicians come up with definitions**."
+>
+> — an aphorism Sanderson re-quoted
+
+Today's benchmarks grade only the first. As for the instinct behind Galois's
+"I think there's something here" — Sanderson says he doesn't know how to make
+that a benchmark either.
+
+## Can AI actually do good research?
+
+Can an LLM trained inside the whole of human knowledge step outside of it?
+
+It looks possible to me. Research is drawing inspiration from isomorphic
+structures in other fields, and building new explanations out of contradictions
+between existing findings.
+
+That 'isomorphism across fields' — in Sanderson's words, a **lightning bolt**.
+
+> "You have this very small idea that has the form of expertise in one field
+> and expertise in another, drawing a little **lightning bolt** between them."
+>
+> — Grant Sanderson
+
+Number theorist Montgomery describes the correlation formula for the zeros of
+the Riemann zeta function, and physicist Dyson replies — "I know that
+expression. That expression comes up in studying the eigenvalues for random
+Hermitian matrices." A lightning bolt hiding between number theory and nuclear
+physics. If AI's discoveries take this form, humans can digest them easily —
+and there is plenty to mine just by connecting ideas already in the literature.
+
+## Dwarkesh ② Adam Brown: how far without experiments?
+
+<VideoEmbed
+  youtubeId="QbdbAhaJoCQ"
+  title="General relativity from first principles – Adam Brown"
+  start={5373}
+  caption="The final chapter, 'How far can AI get without experimental evidence?' (1:29:33–). Brown leads Blueshift, Google DeepMind's science and reasoning team."
+/>
+
+- General relativity was reached from almost nothing — the speed of light plus
+  the equivalence principle (an unexplained 'coincidence') — an **extreme
+  outlier**, and the archetype of research built on a contradiction in existing
+  findings
+- **Branching fraction**: fields differ in how much experiment it takes to
+  prune the tree of theories — in condensed matter physics, you simply have to
+  run the experiment
+
+> "If you just had **lots and lots of Einsteins** and you gave each of them
+> various options, you could presumably see them in parallel."
+>
+> — Adam Brown
+
+> "They just have **extreme patience**, even for doing things that perhaps
+> look like a low probability of success."
+>
+> — Adam Brown
+
+Humans don't spend time refuting conjectures they believe to be true; LLMs
+happily 'waste' that time. The same idea as the reproducibility challenge
+giving falsification 2 points.
+
+## Wrap-up: how will research change?
+
+- **Speed differs by field** — math and ML, where verification is mechanical,
+  move first; where experiments are the bottleneck, lab automation sets the pace
+- **Evaluation changes from the verifiable end** — reproducibility becomes a
+  reward first, and AI reviews become the first-pass filter
+- But human evaluation was always error-prone — PPO's worth was judged not by
+  reviewers but by the LLM era, nine years later
+- **What remains until the end is taste** — theorem-proving AI is here,
+  conjecture-making AI is coming. So whose job is **making definitions**?
+
+We continue this conversation in the next episode.
+
+---
+
+*Jong Hyun Park* — [LinkedIn](https://www.linkedin.com/in/jonhpark7966/) · [X](https://x.com/_jong_hyun_park) · [YouTube](https://youtube.com/@sudoremove)
