@@ -199,6 +199,27 @@ npx tsx scripts/sync-episodes.ts --ep 84
    # ko/ep83.mdx
    alternateSlug: "ep83"
    ```
+   인터뷰(`series: interview`)는 `alternateSlug`에 숫자 문자열("1")과 "ep" 접두 없는 시리즈 번호를 권장한다.
+   `interview1`처럼 접두사가 붙어도 EpisodeLayout·LanguageSwitcher가 숫자만 추출해 `/{lang}/interviews/{n}`으로
+   정규화하므로 깨지지 않지만, 새로 작성할 때는 숫자만 쓴다.
+
+---
+
+## 인터뷰 섹션
+
+일반 에피소드(EP 1..N)와 별도 번호 체계를 쓰는 인터뷰 시리즈. 같은 `episodes` 컬렉션 안에서
+frontmatter `series: 'interview'`로 구분하며, `episodeNumber`는 시리즈 내 표시 번호를 뜻한다(인터뷰 1 = `episodeNumber: 1`).
+
+- **경로**: 파일 `src/content/episodes/{lang}/interview{n}.mdx`, URL `/{lang}/interviews/{n}`(상세), `/{lang}/interviews`(목록)
+- **frontmatter**: main 에피소드와 동일한 필드 + `series: "interview"`. 생략 시 기본값은 `"main"`.
+- **공통 헬퍼**: `src/lib/episodes.ts`의 `episodePath`/`episodeLabel`이 시리즈별 URL·라벨(EP {n} vs 인터뷰/Interview/インタビュー/访谈 {n})을 계산한다. 새 페이지·피드·JSON-LD를 만들 때는 하드코딩 대신 이 헬퍼를 쓴다.
+- **아티클 연계 계약**: `articles` 컬렉션의 `episodeNumber`는 **메인 에피소드만** 참조한다. 인터뷰와 연결되는 아티클은 없으며, `EpisodeLayout`의 관련 아티클 블록은 `series === 'main'`일 때만 조회하고 `ArticleLayout`의 관련 에피소드 후보도 `isMainSeries` 필터를 거친다. 인터뷰를 아티클에 연결하려는 요구가 생기면 스키마 확장이 먼저 필요하다.
+- **JSON-LD**: 인터뷰는 별도 `PodcastSeries`(`@id: {site}#podcast-interviews`, name "AI Frontier Interviews")를 `partOfSeries`로 사용해 메인 팟캐스트 시리즈와 분리한다.
+- **sync-episodes.ts로 생성**:
+  ```bash
+  npx tsx scripts/sync-episodes.ts --ep 9001 --series interview --series-number 1 --lang ko
+  ```
+  `--ep`는 소스 디렉터리(`examples/ep{N}`) 식별자이고, `--series-number`가 실제 출력 파일명(`interview{n}.mdx`)과 `episodeNumber` 프런트매터를 결정한다. `--series`는 `main|interview`만 허용하며, `interview`일 때 `--series-number`(양의 정수) 없이는 에러로 종료한다. `--all`은 main 시리즈 일괄 동기화 전용이며 `--series interview`와 함께 쓸 수 없다.
 
 ---
 
@@ -223,7 +244,7 @@ URL: `/{lang}/articles` (목록), `/{lang}/articles/{slug}` (상세). 헤더 내
 | `description` | string | O | 요약 (카드/검색/SEO에 사용) |
 | `publishedAt` | date | O | 발행일 (YYYY-MM-DD) |
 | `updatedAt` | date | - | 갱신일 |
-| `episodeNumber` | number | - | 연결할 에피소드 번호. 지정하면 에피소드 페이지 플레이어 아래에 아티클 링크가 생기고, 아티클 하단에 에피소드 카드가 붙음 |
+| `episodeNumber` | number | - | 연결할 **메인** 에피소드 번호(인터뷰는 참조 불가). 지정하면 에피소드 페이지 플레이어 아래에 아티클 링크가 생기고, 아티클 하단에 에피소드 카드가 붙음 |
 | `heroImage` | string | - | 대표 이미지 (16:9 권장, 카드·페이지 상단·og:image에 사용) |
 | `authors` | string[] | - | 작성자 목록 |
 | `tags` | string[] | - | 태그 |

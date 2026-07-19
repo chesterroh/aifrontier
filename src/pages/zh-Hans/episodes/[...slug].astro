@@ -2,9 +2,10 @@
 import { getCollection, render } from 'astro:content';
 import EpisodeLayout from '../../../layouts/EpisodeLayout.astro';
 import ResourceLink from '../../../components/ResourceLink.astro';
+import { isMainSeries } from '../../../lib/episodes';
 
 export async function getStaticPaths() {
-  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'zh-Hans');
+  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'zh-Hans' && isMainSeries(data));
   return episodes.map((episode) => ({
     params: { slug: `ep${episode.data.episodeNumber}` },
     props: { episode },

@@ -67,6 +67,7 @@ interface EpisodeMetadata {
   chapters: Chapter[];
   lang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug: string | null;
+  series: 'main' | 'interview';
 }
 
 function parseChaptersFile(filePath: string): Chapter[] {
@@ -308,6 +309,7 @@ chapters:
 ${chaptersYaml || '  []'}
 lang: "${meta.lang}"
 alternateSlug: ${meta.alternateSlug ? `"${meta.alternateSlug}"` : 'null'}
+series: "${meta.series}"
 ---
 
 `;
@@ -378,7 +380,15 @@ function sortHosts(hosts: string[]): string[] {
   return [...hosts].sort((a, b) => (rank.get(a) ?? 999) - (rank.get(b) ?? 999));
 }
 
-function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko'): boolean {
+function syncEpisode(
+  epNum: number,
+  lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko',
+  series: 'main' | 'interview' = 'main',
+  seriesNumber: number | null = null
+): boolean {
+  // epNum = 소스 디렉터리 식별자(examples/ep{N}). interview일 때는 시리즈 내 표시 번호(seriesNumber)를
+  // 별도로 가지며, 출력 파일명/episodeNumber 프런트매터는 이 표시 번호를 따른다.
+  const outputNumber = series === 'interview' ? (seriesNumber ?? epNum) : epNum;
   const epDir = path.join(EXAMPLES_DIR, `ep${epNum}`);
   if (!fs.existsSync(epDir)) {
     console.error(`Episode directory not found: ${epDir}`);
@@ -428,7 +438,7 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko')
 
   // Create metadata
   const meta: EpisodeMetadata = {
-    episodeNumber: epNum,
+    episodeNumber: outputNumber,
     title: title,
     description: ytMeta?.description?.slice(0, 200) || `AI Frontier EP${epNum}`,
     publishedAt: new Date().toISOString().split('T')[0],
@@ -439,6 +449,7 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko')
     chapters,
     lang,
     alternateSlug: null,
+    series,
   };
 
   if (!ytMeta) {
@@ -454,7 +465,8 @@ function syncEpisode(epNum: number, lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko')
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  const outputFile = path.join(outputDir, `ep${epNum}.mdx`);
+  const outputBasename = series === 'interview' ? `interview${outputNumber}` : `ep${outputNumber}`;
+  const outputFile = path.join(outputDir, `${outputBasename}.mdx`);
   fs.writeFileSync(outputFile, mdxContent, 'utf-8');
   console.log(`  Output: ${path.relative(BLOG_ROOT, outputFile)}`);
   if (meta.youtubeId === 'REPLACE_ME') {
@@ -483,6 +495,16 @@ const args = process.argv.slice(2);
 let epNum: number | null = null;
 let syncAll = false;
 let lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko';
+let series: 'main' | 'interview' = 'main';
+let seriesNumber: number | null = null;
+
+function printUsage(): void {
+  console.log('Usage:');
+  console.log('  npx tsx scripts/sync-episodes.ts --ep 83');
+  console.log('  npx tsx scripts/sync-episodes.ts --ep 83 --lang en');
+  console.log('  npx tsx scripts/sync-episodes.ts --all');
+  console.log('  npx tsx scripts/sync-episodes.ts --ep 9001 --series interview --series-number 1');
+}
 
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--ep' && args[i + 1]) {
@@ -493,21 +515,47 @@ for (let i = 0; i < args.length; i++) {
   } else if (args[i] === '--lang' && args[i + 1]) {
     lang = args[i + 1] as 'ko' | 'en' | 'ja' | 'zh-Hans';
     i++;
+  } else if (args[i] === '--series' && args[i + 1]) {
+    const value = args[i + 1];
+    if (value !== 'main' && value !== 'interview') {
+      console.error(`--series must be "main" or "interview" (got "${value}")`);
+      process.exit(1);
+    }
+    series = value;
+    i++;
+  } else if (args[i] === '--series-number' && args[i + 1]) {
+    const raw = args[i + 1];
+    const parsed = Number(raw);
+    if (!Number.isInteger(parsed) || parsed <= 0) {
+      console.error(`--series-number must be a positive integer (got "${raw}")`);
+      process.exit(1);
+    }
+    seriesNumber = parsed;
+    i++;
   }
 }
 
+if (series === 'interview' && seriesNumber == null) {
+  console.error('--series interview requires --series-number <n> (인터뷰 시리즈 내 번호)');
+  process.exit(1);
+}
+
+if (syncAll && series === 'interview') {
+  console.error('--all cannot be combined with --series interview (인터뷰는 --ep + --series-number로 1건씩 동기화)');
+  process.exit(1);
+}
+
 if (syncAll) {
+  // --all은 기존 main 시리즈 일괄 동기화 전용(소스 디렉터리 = 시리즈 번호 그대로).
+  // 인터뷰는 --ep와 --series-number를 1건씩 명시해 동기화한다.
   const episodes = findAllEpisodes();
   console.log(`Found ${episodes.length} episodes: ${episodes.join(', ')}`);
   for (const ep of episodes) {
     syncEpisode(ep, lang);
   }
 } else if (epNum) {
-  syncEpisode(epNum, lang);
+  syncEpisode(epNum, lang, series, seriesNumber);
 } else {
-  console.log('Usage:');
-  console.log('  npx ts-node scripts/sync-episodes.ts --ep 83');
-  console.log('  npx ts-node scripts/sync-episodes.ts --ep 83 --lang en');
-  console.log('  npx ts-node scripts/sync-episodes.ts --all');
+  printUsage();
   process.exit(1);
 }

@@ -1,11 +1,15 @@
 ---
+import { extractSeriesNumber, type Series } from '../lib/episodes';
+
 interface Props {
   currentLang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug?: string | null;
   currentSlug?: string;
+  series?: Series;
 }
 
-const { currentLang, alternateSlug, currentSlug } = Astro.props;
+const { currentLang, alternateSlug, currentSlug, series = 'main' } = Astro.props;
+const seriesSection = series === 'interview' ? 'interviews' : 'episodes';
 
 const languages = [
   { code: 'ko', label: '한국어' },
@@ -20,8 +24,10 @@ function getAlternateUrl(langCode: string): string {
   }
 
   // If alternate version exists and target is ko/en pair, link to it
-  if (alternateSlug && ((currentLang === 'ko' && langCode === 'en') || (currentLang === 'en' && langCode === 'ko'))) {
-    return `/${langCode}/episodes/${alternateSlug}`;
+  const alternateNumber = alternateSlug ? extractSeriesNumber(alternateSlug) : null;
+  if (alternateNumber != null && ((currentLang === 'ko' && langCode === 'en') || (currentLang === 'en' && langCode === 'ko'))) {
+    const segment = seriesSection === 'episodes' ? `ep${alternateNumber}` : String(alternateNumber);
+    return `/${langCode}/${seriesSection}/${segment}`;
   }
 
   // Otherwise, go to language home
@@ -35,6 +41,7 @@ function getAlternateUrl(langCode: string): string {
     class="appearance-none bg-transparent border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1.5 pr-8 text-sm cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500"
     data-current-lang={currentLang}
     data-alternate-slug={alternateSlug || ''}
+    data-series-section={seriesSection}
   >
     {languages.map((lang) => (
       <option value={lang.code} selected={lang.code === currentLang}>
@@ -50,6 +57,8 @@ function getAlternateUrl(langCode: string): string {
 </div>
 
 <script>
+  import { extractSeriesNumber } from '../lib/episodes';
+
   const switcher = document.getElementById('lang-switcher') as HTMLSelectElement;
   if (switcher) {
     switcher.addEventListener('change', (e) => {
@@ -57,22 +66,33 @@ function getAlternateUrl(langCode: string): string {
       const newLang = target.value;
       const currentLang = switcher.dataset.currentLang;
       const alternateSlug = switcher.dataset.alternateSlug;
+      const seriesSection = switcher.dataset.seriesSection || 'episodes';
+      // alternateSlug는 "ep83"/"interview1"/"1" 등 접두사 유무가 섞여 올 수 있으므로 숫자만 뽑아
+      // 대상 섹션(episodes -> ep{n}, interviews -> {n})에 맞는 URL 세그먼트로 재구성한다.
+      const alternateNumber = alternateSlug ? extractSeriesNumber(alternateSlug) : null;
+      const alternateSegment = alternateNumber != null
+        ? (seriesSection === 'episodes' ? `ep${alternateNumber}` : String(alternateNumber))
+        : null;
 
       if (newLang === currentLang) return;
 
       // Get current path
       const path = window.location.pathname;
 
-      // Check if we're on an episode page
-      const episodeMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/episodes\/([^\/]+)/);
+      // Check if we're on an episode or interview detail page
+      const episodeMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/(episodes|interviews)\/([^\/]+)/);
       const articlesMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/articles(?:\/|$)/);
+      const interviewsListMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/interviews\/?$/);
 
-      if (episodeMatch && alternateSlug && ((currentLang === 'ko' && newLang === 'en') || (currentLang === 'en' && newLang === 'ko'))) {
-        // Navigate to alternate episode (ko<->en only)
-        window.location.href = `/${newLang}/episodes/${alternateSlug}`;
+      if (episodeMatch && alternateSegment && ((currentLang === 'ko' && newLang === 'en') || (currentLang === 'en' && newLang === 'ko'))) {
+        // Navigate to alternate episode/interview (ko<->en only)
+        window.location.href = `/${newLang}/${seriesSection}/${alternateSegment}`;
       } else if (episodeMatch) {
-        // Same episode slug for ja/zh-Hans
-        window.location.href = `/${newLang}/episodes/${episodeMatch[1]}`;
+        // Same slug for ja/zh-Hans
+        window.location.href = `/${newLang}/${episodeMatch[1]}/${episodeMatch[2]}`;
+      } else if (interviewsListMatch) {
+        // Interview list page: go to same list in the target language
+        window.location.href = `/${newLang}/interviews`;
       } else if (articlesMatch) {
         // Articles: translations aren't guaranteed, so land on the target-language list
         window.location.href = `/${newLang}/articles`;

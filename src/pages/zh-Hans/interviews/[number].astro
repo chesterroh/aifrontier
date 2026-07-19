@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import EpisodeLayout from '../../../layouts/EpisodeLayout.astro';
+import ResourceLink from '../../../components/ResourceLink.astro';
+import { isInterview } from '../../../lib/episodes';
+
+export async function getStaticPaths() {
+  const interviews = await getCollection('episodes', ({ data }) => data.lang === 'zh-Hans' && isInterview(data));
+  return interviews.map((interview) => ({
+    params: { number: String(interview.data.episodeNumber) },
+    props: { interview },
+  }));
+}
+
+const { interview } = Astro.props;
+const { Content } = await render(interview);
+const { data } = interview;
+---
+
+<EpisodeLayout
+  episodeNumber={data.episodeNumber}
+  title={data.title}
+  description={data.description}
+  publishedAt={data.publishedAt}
+  duration={data.duration}
+  youtubeId={data.youtubeId}
+  thumbnail={data.thumbnail}
+  hosts={data.hosts}
+  guests={data.guests}
+  chapters={data.chapters}
+  lang="zh-Hans"
+  alternateSlug={data.alternateSlug}
+  resourcesUrl={data.resourcesUrl}
+  notionUrl={data.notionUrl}
+  series="interview"
+>
+  <Content components={{ ResourceLink }} />
+</EpisodeLayout>

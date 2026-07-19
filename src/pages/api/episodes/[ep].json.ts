@@ -1,9 +1,10 @@
 import type { APIContext, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { parseChapters } from '../../../lib/transcript';
+import { isMainSeries } from '../../../lib/episodes';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
+  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko' && isMainSeries(data));
   return episodes.map((ep) => ({
     params: { ep: `ep${ep.data.episodeNumber}` },
     props: { episode: ep },
@@ -15,7 +16,7 @@ export async function GET(context: APIContext) {
   const d = episode.data;
   const site = (context.site?.toString() ?? 'https://aifrontier.kr').replace(/\/$/, '');
 
-  const enEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'en' && data.episodeNumber === d.episodeNumber);
+  const enEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'en' && isMainSeries(data) && data.episodeNumber === d.episodeNumber);
   const hasEn = enEpisodes.length > 0;
 
   let titleEn: string | null = null;

@@ -21,6 +21,8 @@ const episodes = defineCollection({
     alternateSlug: z.string().nullable().default(null),
     resourcesUrl: z.string().optional(),
     notionUrl: z.string().optional(),
+    // 'main' = 일반 에피소드(EP 1..N), 'interview' = 인터뷰 시리즈(별도 번호 체계)
+    series: z.enum(['main', 'interview']).default('main'),
   }),
 });
 

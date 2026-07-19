@@ -1,10 +1,11 @@
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
+import { isMainSeries } from '../../lib/episodes';
 
 export async function GET(context: APIContext) {
   const site = (context.site?.toString() ?? 'https://aifrontier.kr').replace(/\/$/, '');
-  const koEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
-  const enEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'en');
+  const koEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'ko' && isMainSeries(data));
+  const enEpisodes = await getCollection('episodes', ({ data }) => data.lang === 'en' && isMainSeries(data));
   const sorted = koEpisodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
   const enMap = new Map(enEpisodes.map((ep) => [ep.data.episodeNumber, ep]));
 

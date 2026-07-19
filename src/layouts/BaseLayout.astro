@@ -3,6 +3,7 @@ import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import Search from '../components/Search.astro';
 import { buildCanonicalUrl, buildHreflangLinks } from '../lib/seo';
+import { INTERVIEW_NAV_LABEL, type Series } from '../lib/episodes';
 
 interface Props {
   title: string;
@@ -13,6 +14,7 @@ interface Props {
   alternatePath?: string | null;
   ogImage?: string | null;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>> | null;
+  series?: Series;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   alternatePath = null,
   ogImage = null,
   jsonLd = null,
+  series = 'main',
 } = Astro.props;
 
 const siteTitle = 'AI Frontier';
@@ -39,6 +42,7 @@ const hreflangLinks = buildHreflangLinks({
 });
 const twitterCard = ogImage ? 'summary_large_image' : 'summary';
 const articlesLabel = { ko: '자료', en: 'Articles', ja: '資料', 'zh-Hans': '资料' }[lang];
+const interviewsLabel = INTERVIEW_NAV_LABEL[lang];
 ---
 
 <!doctype html>
@@ -106,7 +110,13 @@ const articlesLabel = { ko: '자료', en: 'Articles', ja: '資料', 'zh-Hans': '
           <a href={`/${lang}`} class="text-xl font-bold tracking-tight hover:text-primary-600 transition-colors whitespace-nowrap">
             AI Frontier
           </a>
-          <nav class="flex items-center">
+          <nav class="flex items-center gap-4">
+            <a
+              href={`/${lang}/interviews`}
+              class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              {interviewsLabel}
+            </a>
             <a
               href={`/${lang}/articles`}
               class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
@@ -117,7 +127,7 @@ const articlesLabel = { ko: '자료', en: 'Articles', ja: '資料', 'zh-Hans': '
         </div>
         <div class="flex items-center gap-2">
           <Search lang={lang} />
-          <LanguageSwitcher currentLang={lang} alternateSlug={alternateSlug} />
+          <LanguageSwitcher currentLang={lang} alternateSlug={alternateSlug} series={series} />
         </div>
       </div>
     </header>

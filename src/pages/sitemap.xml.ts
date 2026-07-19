@@ -13,6 +13,7 @@ export async function GET(context: APIContext) {
       lang: episode.data.lang,
       episodeNumber: episode.data.episodeNumber,
       publishedAt: episode.data.publishedAt,
+      series: episode.data.series,
     })),
     articles: articles.map((article) => ({
       lang: article.data.lang,

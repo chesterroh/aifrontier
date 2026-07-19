@@ -2,8 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { buildPodcastSeriesJsonLd, buildPodcastEpisodeJsonLd, resolveEpisodeThumbnail } from '../../lib/seo';
+import { isMainSeries } from '../../lib/episodes';
 
-const episodes = await getCollection('episodes', ({ data }) => data.lang === 'en');
+const episodes = await getCollection('episodes', ({ data }) => data.lang === 'en' && isMainSeries(data));
 const sortedEpisodes = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
 
 const [featured, ...rest] = sortedEpisodes;

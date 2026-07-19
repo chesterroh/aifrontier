@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Command } from 'cmdk';
+import { episodeLabel as computeSeriesLabel } from '../lib/episodes';
 
 type Lang = 'ko' | 'en' | 'ja' | 'zh-Hans';
 
@@ -150,9 +151,14 @@ function stripHtml(value?: string) {
   return (value ?? '').replace(/<[^>]*>/g, '').trim();
 }
 
-function extractEpisodeLabel(value?: string) {
-  if (!value) return undefined;
-  const match = value.match(/\bEP?\s*-?\s*(\d+)\b/i);
+function extractEpisodeLabel(title: string | undefined, url: string | undefined, lang: Lang) {
+  // /interviews/{n} URL은 언어별 인터뷰 라벨("인터뷰 1" 등)을 배지로 단다.
+  const interviewMatch = url?.match(/\/interviews\/(\d+)(?:[/?#]|$)/);
+  if (interviewMatch) {
+    return computeSeriesLabel(lang, { series: 'interview', episodeNumber: Number(interviewMatch[1]) });
+  }
+  if (!title) return undefined;
+  const match = title.match(/\bEP?\s*-?\s*(\d+)\b/i);
   return match ? `EP${match[1]}` : undefined;
 }
 
@@ -183,12 +189,12 @@ function clearRecentSearches() {
   window.localStorage.removeItem(RECENT_SEARCHES_KEY);
 }
 
-function getGroupLabel(meta: Record<string, string | undefined> | undefined, title: string) {
+function getGroupLabel(meta: Record<string, string | undefined> | undefined, title: string, url: string | undefined, lang: Lang) {
   return (
     meta?.episode ||
     meta?.series ||
     meta?.category ||
-    extractEpisodeLabel(title) ||
+    extractEpisodeLabel(title, url, lang) ||
     title
   );
 }
@@ -215,14 +221,14 @@ function removeSearchHighlights() {
   document.getElementById('match-nav')?.remove();
 }
 
-async function flattenResults(entries: PagefindSearchResult[], labels: SearchLabels): Promise<SearchItem[]> {
+async function flattenResults(entries: PagefindSearchResult[], labels: SearchLabels, lang: Lang): Promise<SearchItem[]> {
   const groups = await Promise.all(
     entries.map(async (entry, index) => {
       const data = await entry.data();
       const title = data.meta?.title?.trim() || stripHtml(data.excerpt) || labels.untitled;
       const url = data.url || '#';
-      const group = getGroupLabel(data.meta, title);
-      const episodeLabel = data.meta?.episode || extractEpisodeLabel(title);
+      const group = getGroupLabel(data.meta, title, url, lang);
+      const episodeLabel = data.meta?.episode || extractEpisodeLabel(title, url, lang);
 
       const items: SearchItem[] = [
         {
@@ -324,7 +330,7 @@ export default function SearchCommand({ lang = 'ko' }: SearchCommandProps) {
       try {
         const loaded = await loadPagefind();
         const response = await loaded.search(normalized);
-        const nextResults = await flattenResults(response.results ?? [], labels);
+        const nextResults = await flattenResults(response.results ?? [], labels, lang);
         if (!cancelled) {
           setResults(nextResults);
         }
@@ -345,7 +351,7 @@ export default function SearchCommand({ lang = 'ko' }: SearchCommandProps) {
     return () => {
       cancelled = true;
     };
-  }, [debouncedQuery, labels, open]);
+  }, [debouncedQuery, labels, open, lang]);
 
   const groupedResults = React.useMemo(() => {
     const visible = results.slice(0, visibleCount);

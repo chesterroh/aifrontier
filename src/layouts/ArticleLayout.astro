@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import { buildArticleJsonLd, resolveEpisodeThumbnail } from '../lib/seo';
 import { articleSlug } from '../lib/articles';
+import { isMainSeries } from '../lib/episodes';
 
 interface Props {
   article: CollectionEntry<'articles'>;
@@ -39,9 +40,10 @@ const hasAlternate = (lang === 'ko' || lang === 'en') && (
 const alternatePath = hasAlternate ? `/${alternateLang}/articles/${slug}` : null;
 
 // 연결된 에피소드 (같은 언어 우선, 없으면 ko, 그 다음 아무 언어)
+// articles.episodeNumber는 메인 에피소드만 참조하는 계약이므로 인터뷰는 후보에서 제외한다.
 let relatedEpisode: CollectionEntry<'episodes'> | null = null;
 if (data.episodeNumber != null) {
-  const candidates = await getCollection('episodes', (entry) => entry.data.episodeNumber === data.episodeNumber);
+  const candidates = await getCollection('episodes', (entry) => entry.data.episodeNumber === data.episodeNumber && isMainSeries(entry.data));
   relatedEpisode =
     candidates.find((entry) => entry.data.lang === lang) ??
     candidates.find((entry) => entry.data.lang === 'ko') ??

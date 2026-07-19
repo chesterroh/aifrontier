@@ -1,4 +1,6 @@
-export type Lang = 'ko' | 'en' | 'ja' | 'zh-Hans';
+import { episodeLabel, episodePath, type Lang, type Series } from './episodes';
+
+export type { Lang };
 export const ALL_LANGS: Lang[] = ['ko', 'en', 'ja', 'zh-Hans'];
 
 export type HreflangLink = { hreflang: string; href: string };
@@ -13,6 +15,7 @@ export type EpisodeJsonLdInput = {
   duration: string; // MM:SS or H:MM:SS
   youtubeId: string;
   thumbnail?: string | null;
+  series?: Series; // 기본값 'main'
 };
 
 export type PodcastSeriesJsonLdInput = {
@@ -31,7 +34,7 @@ export type HreflangInput = {
 };
 
 export type SitemapEntry = { loc: string; lastmod?: string };
-export type SitemapEpisode = { lang: Lang; episodeNumber: number; publishedAt: Date };
+export type SitemapEpisode = { lang: Lang; episodeNumber: number; publishedAt: Date; series?: Series };
 export type SitemapArticle = { lang: Lang; slug: string; publishedAt: Date; updatedAt?: Date | null };
 export type SitemapEntriesInput = { site: string; episodes: SitemapEpisode[]; articles?: SitemapArticle[] };
 
@@ -132,11 +135,25 @@ export function buildSitemapEntries({ site, episodes, articles = [] }: SitemapEn
         };
       })
     : [];
+  // Interview index pages: 아티클 목록과 대칭으로, 인터뷰가 하나라도 있으면 4개 언어 목록 페이지를 포함한다.
+  const interviews = episodes.filter((e) => e.series === 'interview');
+  const interviewIndexEntries = interviews.length
+    ? ALL_LANGS.map((lang) => {
+        const latest = interviews
+          .filter((e) => e.lang === lang)
+          .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())[0];
+        return {
+          loc: normalize(`/${lang}/interviews`),
+          ...(latest && { lastmod: latest.publishedAt.toISOString().slice(0, 10) }),
+        };
+      })
+    : [];
   return [
     ...homeEntries,
     ...articleIndexEntries,
+    ...interviewIndexEntries,
     ...episodes.map((episode) => ({
-      loc: normalize(`/${episode.lang}/episodes/ep${episode.episodeNumber}`),
+      loc: normalize(episodePath(episode.lang, episode)),
       lastmod: episode.publishedAt.toISOString().slice(0, 10),
     })),
     ...articles.map((article) => ({
@@ -177,26 +194,27 @@ export function buildArticleJsonLd(input: ArticleJsonLdInput) {
 }
 
 export function buildPodcastEpisodeJsonLd(input: EpisodeJsonLdInput) {
-  const url = new URL(`/${input.lang}/episodes/ep${input.episodeNumber}`, input.site).toString();
+  const url = new URL(episodePath(input.lang, input), input.site).toString();
   const thumbnail = input.thumbnail ?? null;
+  const label = episodeLabel(input.lang, input);
+  // 인터뷰는 메인 팟캐스트와 별도 PodcastSeries로 분리해 JSON-LD 상에서도 시리즈가 섞이지 않게 한다.
+  const partOfSeries = input.series === 'interview'
+    ? { '@type': 'PodcastSeries', '@id': `${input.site}#podcast-interviews`, name: 'AI Frontier Interviews' }
+    : { '@type': 'PodcastSeries', '@id': `${input.site}#podcast`, name: 'AI Frontier' };
   return {
     '@context': 'https://schema.org',
     '@type': 'PodcastEpisode',
-    name: `EP ${input.episodeNumber}: ${input.title}`,
+    name: `${label}: ${input.title}`,
     description: input.description,
     datePublished: input.publishedAt,
     duration: durationToIso(input.duration),
     episodeNumber: input.episodeNumber,
     url,
     image: thumbnail || undefined,
-    partOfSeries: {
-      '@type': 'PodcastSeries',
-      '@id': `${input.site}#podcast`,
-      name: 'AI Frontier',
-    },
+    partOfSeries,
     associatedMedia: {
       '@type': 'VideoObject',
-      name: `EP ${input.episodeNumber}: ${input.title}`,
+      name: `${label}: ${input.title}`,
       embedUrl: `https://www.youtube.com/embed/${input.youtubeId}`,
       thumbnailUrl: thumbnail || undefined,
     },

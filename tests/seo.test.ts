@@ -146,6 +146,64 @@ test('buildPodcastEpisodeJsonLd builds a PodcastEpisode payload', () => {
   assert.ok(jsonLd.associatedMedia.embedUrl.includes('youtube.com'));
 });
 
+test('buildPodcastEpisodeJsonLd separates interview series JSON-LD from the main podcast', () => {
+  const mainJsonLd = buildPodcastEpisodeJsonLd({
+    site: 'https://aifrontier.kr',
+    lang: 'ko',
+    episodeNumber: 83,
+    title: '테스트 에피소드',
+    description: '설명',
+    publishedAt: '2026-01-26',
+    duration: '53:55',
+    youtubeId: 'AuF7V7bqsrQ',
+  });
+  const interviewJsonLd = buildPodcastEpisodeJsonLd({
+    site: 'https://aifrontier.kr',
+    lang: 'ko',
+    episodeNumber: 1,
+    title: '테스트 인터뷰',
+    description: '설명',
+    publishedAt: '2026-07-19',
+    duration: '10:00',
+    youtubeId: 'dQw4w9WgXcQ',
+    series: 'interview',
+  });
+
+  assert.equal(mainJsonLd.partOfSeries['@id'], 'https://aifrontier.kr#podcast');
+  assert.equal(mainJsonLd.partOfSeries.name, 'AI Frontier');
+  assert.equal(mainJsonLd.name, 'EP 83: 테스트 에피소드');
+  assert.equal(mainJsonLd.url, 'https://aifrontier.kr/ko/episodes/ep83');
+
+  assert.equal(interviewJsonLd.partOfSeries['@id'], 'https://aifrontier.kr#podcast-interviews');
+  assert.equal(interviewJsonLd.partOfSeries.name, 'AI Frontier Interviews');
+  assert.equal(interviewJsonLd.name, '인터뷰 1: 테스트 인터뷰');
+  assert.equal(interviewJsonLd.url, 'https://aifrontier.kr/ko/interviews/1');
+  assert.equal(interviewJsonLd.associatedMedia.name, '인터뷰 1: 테스트 인터뷰');
+  assert.notEqual(interviewJsonLd.partOfSeries['@id'], mainJsonLd.partOfSeries['@id']);
+});
+
+test('buildSitemapEntries includes interview list pages once an interview exists', () => {
+  const entries = buildSitemapEntries({
+    site: 'https://aifrontier.kr',
+    episodes: [
+      { lang: 'ko', episodeNumber: 102, publishedAt: new Date('2026-07-05') },
+      { lang: 'ko', episodeNumber: 1, publishedAt: new Date('2026-07-19'), series: 'interview' },
+    ],
+  });
+  const locs = entries.map((entry) => entry.loc);
+  assert.ok(locs.includes('https://aifrontier.kr/ko/interviews'));
+  assert.ok(locs.includes('https://aifrontier.kr/en/interviews'));
+  assert.ok(locs.includes('https://aifrontier.kr/ko/interviews/1'));
+});
+
+test('buildSitemapEntries omits interview list pages without interviews', () => {
+  const entries = buildSitemapEntries({
+    site: 'https://aifrontier.kr',
+    episodes: [{ lang: 'ko', episodeNumber: 102, publishedAt: new Date('2026-07-05') }],
+  });
+  assert.ok(!entries.some((entry) => entry.loc.includes('/interviews')));
+});
+
 test('resolveEpisodeThumbnail prefers explicit thumbnail', () => {
   assert.equal(
     resolveEpisodeThumbnail({ thumbnail: 'https://cdn.example.com/img.jpg', youtubeId: 'abc' }),

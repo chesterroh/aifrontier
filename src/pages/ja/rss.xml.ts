@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { episodeLabel, episodePath } from '../../lib/episodes';
 
 export async function GET(context: APIContext) {
   const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ja');
@@ -13,10 +14,10 @@ export async function GET(context: APIContext) {
     description: 'AI深層対話ポッドキャスト - ノ・ジョンソク、チェ・スンジュン',
     site: context.site || 'https://aifrontier.kr',
     items: sortedEpisodes.map((episode) => ({
-      title: `EP ${episode.data.episodeNumber}: ${episode.data.title}`,
+      title: `${episodeLabel('ja', episode.data)}: ${episode.data.title}`,
       pubDate: episode.data.publishedAt,
       description: episode.data.description,
-      link: `/ja/episodes/ep${episode.data.episodeNumber}`,
+      link: episodePath('ja', episode.data),
     })),
     customData: `<language>ja</language>`,
   });

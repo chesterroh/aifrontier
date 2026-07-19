@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { isInterview, episodePath, episodeLabel } from '../../../lib/episodes';
+import { resolveEpisodeThumbnail } from '../../../lib/seo';
+
+const interviews = await getCollection('episodes', ({ data }) => data.lang === 'en' && isInterview(data));
+const sorted = interviews.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
+---
+
+<BaseLayout
+  title="Interviews"
+  description="AI Frontier interview series - in-depth conversations with people in AI"
+  lang="en"
+  canonicalPath="/en/interviews"
+  alternatePath="/ko/interviews"
+  series="interview"
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-2">Interviews</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      A separate interview series alongside the regular episodes.
+    </p>
+
+    {sorted.length > 0 ? (
+      <section>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {sorted.map((interview) => (
+            <a href={episodePath('en', interview.data)} class="block group">
+              <article class="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:border-primary-500 transition-colors h-full">
+                {interview.data.thumbnail && (
+                  <div class="aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                    <img
+                      src={resolveEpisodeThumbnail({ thumbnail: interview.data.thumbnail, youtubeId: interview.data.youtubeId }) ?? interview.data.thumbnail}
+                      alt={interview.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-4">
+                  <p class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-1">
+                    {episodeLabel('en', interview.data)}
+                  </p>
+                  <h3 class="font-semibold text-sm line-clamp-2 group-hover:text-primary-600 transition-colors">
+                    {interview.data.title}
+                  </h3>
+                  <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 line-clamp-2">
+                    {interview.data.description}
+                  </p>
+                  <p class="text-gray-500 dark:text-gray-400 text-xs mt-2">
+                    {interview.data.publishedAt.toLocaleDateString('en-US')}
+                  </p>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <div class="text-center py-16 text-gray-500 dark:text-gray-400">
+        <p>No interviews available yet.</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

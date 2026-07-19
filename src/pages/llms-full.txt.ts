@@ -1,10 +1,13 @@
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
+import { episodeLabel, episodePath, isInterview, isMainSeries } from '../lib/episodes';
 
 export async function GET(context: APIContext) {
   const site = (context.site?.toString() ?? 'https://aifrontier.kr').replace(/\/$/, '');
-  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko');
+  const episodes = await getCollection('episodes', ({ data }) => data.lang === 'ko' && isMainSeries(data));
   const sorted = episodes.sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
+  const interviews = (await getCollection('episodes', ({ data }) => data.lang === 'ko' && isInterview(data)))
+    .sort((a, b) => b.data.episodeNumber - a.data.episodeNumber);
 
   let ytMeta: Record<string, { title_en?: string; description_en?: string }> = {};
   try {
@@ -38,7 +41,7 @@ export async function GET(context: APIContext) {
 
   for (const ep of sorted) {
     const d = ep.data;
-    const url = `${site}/${d.lang}/episodes/ep${d.episodeNumber}`;
+    const url = `${site}${episodePath(d.lang, d)}`;
     const ytUrl = `https://www.youtube.com/watch?v=${d.youtubeId}`;
     const ytInfo = ytMeta[d.youtubeId] ?? {};
     const titleEn = ytInfo.title_en || '';
@@ -76,6 +79,32 @@ export async function GET(context: APIContext) {
     }
     lines.push('---');
     lines.push('');
+  }
+
+  if (interviews.length > 0) {
+    lines.push('## Interviews');
+    lines.push('');
+    for (const interview of interviews) {
+      const d = interview.data;
+      const url = `${site}${episodePath(d.lang, d)}`;
+      const ytUrl = `https://www.youtube.com/watch?v=${d.youtubeId}`;
+      const resourcesUrl = d.resourcesUrl ?? d.notionUrl;
+
+      lines.push(`### ${episodeLabel(d.lang, d)}: ${d.title}`);
+      lines.push('');
+      lines.push(`- Transcript: ${url}`);
+      lines.push(`- YouTube: ${ytUrl}`);
+      if (resourcesUrl) {
+        lines.push(`- Resources: ${resourcesUrl}`);
+      }
+      lines.push(`- Published: ${d.publishedAt.toISOString().slice(0, 10)}`);
+      lines.push(`- Duration: ${d.duration}`);
+      lines.push('');
+      lines.push(d.description);
+      lines.push('');
+      lines.push('---');
+      lines.push('');
+    }
   }
 
   return new Response(lines.join('\n'), {
