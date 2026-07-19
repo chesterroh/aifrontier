@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "policy_version": "2026-07-17.1",
+  "active_profiles": {
+    "subtitle_translation": "subtitle_translation",
+    "subtitle_correction": "subtitle_correction",
+    "semantic_verification": "semantic_verification"
+  },
+  "rollback_profiles": {
+    "subtitle_translation": {
+      "model": "gpt-5.6-terra",
+      "effort": "medium"
+    },
+    "subtitle_correction": {
+      "model": "gpt-5.6-terra",
+      "effort": "medium"
+    },
+    "semantic_verification": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium"
+    }
+  },
+  "profiles": {
+    "general_automation": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium"
+    },
+    "structured_transform": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium"
+    },
+    "subtitle_translation": {
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "status": "active"
+    },
+    "subtitle_correction": {
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "status": "active"
+    },
+    "semantic_verification": {
+      "model": "gpt-5.6-terra",
+      "effort": "medium",
+      "status": "active_candidate"
+    },
+    "deep_editorial_review": {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    "pre_push_review": {
+      "model": "gpt-5.6-terra",
+      "effort": "low"
+    },
+    "fast_subtitle_split": {
+      "model": "gpt-5.3-codex-spark",
+      "effort": "high",
+      "status": "allowlisted"
+    }
+  },
+  "legacy": {
+    "allow_generic_env_overrides": false,
+    "note": "Set MODEL_POLICY_LEGACY_OVERRIDES=1 only for temporary migration compatibility."
+  }
+}

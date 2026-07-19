@@ -7,6 +7,8 @@ CONTENT_DIR="$BLOG_ROOT/src/content/episodes"
 PROMPT_DIR="/tmp/mdx_proofread"
 RESULT_DIR="$BLOG_ROOT/scripts/proofread_results"
 export CODEX_HOME="$HOME/.codex-paragraphize"
+CODEX_MODEL="${CODEX_MODEL:-gpt-5.6-luna}"
+CODEX_REASONING_EFFORT="${CODEX_REASONING_EFFORT:-medium}"
 
 mkdir -p "$PROMPT_DIR" "$RESULT_DIR"
 
@@ -61,8 +63,8 @@ $(cat "$tr_file")
 PROMPT
 
   codex exec \
-    --model gpt-5.3-codex \
-    -c 'reasoning.effort="high"' \
+    --model "$CODEX_MODEL" \
+    -c "reasoning.effort=\"$CODEX_REASONING_EFFORT\"" \
     --full-auto \
     --ephemeral \
     -o "$result_file" \
