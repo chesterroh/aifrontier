@@ -44,6 +44,29 @@ test('buildHreflangLinks uses canonicalPath for self', () => {
   assert.equal(self?.href, 'https://aifrontier.kr/ko/episodes/ep83');
 });
 
+test('buildHreflangLinks includes every available article translation', () => {
+  const links = buildHreflangLinks({
+    site: 'https://aifrontier.kr',
+    lang: 'ja',
+    canonicalPath: '/ja/articles/model-race',
+    alternatePaths: {
+      ko: '/ko/articles/model-race',
+      en: '/en/articles/model-race',
+      ja: '/ja/articles/model-race',
+      'zh-Hans': '/zh-Hans/articles/model-race',
+    },
+  });
+
+  assert.deepEqual(
+    links.map((link) => link.hreflang),
+    ['ja', 'ko', 'en', 'zh-Hans', 'x-default'],
+  );
+  assert.equal(
+    links.find((link) => link.hreflang === 'x-default')?.href,
+    'https://aifrontier.kr/ko/articles/model-race',
+  );
+});
+
 test('buildCanonicalUrl joins site and path', () => {
   assert.equal(
     buildCanonicalUrl({ site: 'https://aifrontier.kr', path: '/ko/episodes/ep83' }),

@@ -1,0 +1,213 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+  description?: string;
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+}
+
+const labels = {
+  ko: { title: 'X에서 게시물 보기', action: '게시물 열기 ↗' },
+  en: { title: 'View post on X', action: 'Open post ↗' },
+  ja: { title: 'Xで投稿を見る', action: '投稿を開く ↗' },
+  'zh-Hans': { title: '在 X 上查看帖子', action: '打开帖子 ↗' },
+} as const;
+
+const {
+  url,
+  lang = 'ko',
+  title = labels[lang].title,
+  description,
+} = Astro.props;
+const actionLabel = labels[lang].action;
+---
+
+<div class="x-post-embed">
+  <blockquote
+    class="twitter-tweet"
+    data-align="center"
+    data-conversation="none"
+    data-dnt="true"
+  >
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="x-post-fallback"
+    >
+      <span class="x-post-mark" aria-hidden="true">𝕏</span>
+      <span class="x-post-copy">
+        <span class="x-post-title">{title}</span>
+        {description && <span class="x-post-description">{description}</span>}
+      </span>
+      <span class="x-post-action">{actionLabel}</span>
+    </a>
+  </blockquote>
+</div>
+
+<script>
+  const widgetSrc = 'https://platform.twitter.com/widgets.js';
+  const xWindow = window as Window & {
+    twttr?: {
+      widgets?: {
+        load: (element?: HTMLElement) => void;
+      };
+    };
+  };
+
+  const prepareXPosts = () => {
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+
+    document
+      .querySelectorAll<HTMLElement>('.x-post-embed .twitter-tweet')
+      .forEach((post) => {
+        post.dataset.theme = theme;
+      });
+  };
+
+  prepareXPosts();
+
+  if (xWindow.twttr?.widgets) {
+    xWindow.twttr.widgets.load(document.body);
+  } else if (!document.querySelector(`script[src="${widgetSrc}"]`)) {
+    const widgetScript = document.createElement('script');
+    widgetScript.src = widgetSrc;
+    widgetScript.async = true;
+    widgetScript.charset = 'utf-8';
+    widgetScript.addEventListener('load', () => {
+      xWindow.twttr?.widgets?.load(document.body);
+    });
+    document.head.appendChild(widgetScript);
+  }
+</script>
+
+<style>
+  .x-post-embed {
+    width: 100%;
+    min-height: 5.25rem;
+    margin: 1.5rem auto;
+  }
+
+  .x-post-embed blockquote.twitter-tweet {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    color: inherit;
+  }
+
+  .x-post-fallback {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 5.25rem;
+    padding: 0.875rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #f8fafc;
+    color: #1e293b;
+    text-decoration: none;
+    transition:
+      border-color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .x-post-fallback:hover {
+    border-color: var(--color-primary-400, #38bdf8);
+    background: var(--color-primary-50, #f0f9ff);
+  }
+
+  .x-post-mark {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 2rem;
+    place-items: center;
+    border-radius: 999px;
+    background: #0f172a;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .x-post-copy {
+    display: block;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .x-post-title,
+  .x-post-description {
+    display: block;
+  }
+
+  .x-post-title {
+    color: #0f172a;
+    font-size: 0.875rem;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .x-post-description {
+    margin-top: 0.125rem;
+    overflow: hidden;
+    color: #64748b;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .x-post-action {
+    flex: 0 0 auto;
+    color: #64748b;
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+
+  :global(.x-post-embed iframe) {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  @media (max-width: 640px) {
+    .x-post-embed {
+      margin: 1.25rem auto;
+    }
+
+    .x-post-description,
+    .x-post-action {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .x-post-fallback {
+      border-color: #334155;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .x-post-fallback:hover {
+      border-color: var(--color-primary-500, #0ea5e9);
+      background: #172033;
+    }
+
+    .x-post-mark {
+      background: white;
+      color: #0f172a;
+    }
+
+    .x-post-title {
+      color: #f1f5f9;
+    }
+
+    .x-post-description,
+    .x-post-action {
+      color: #94a3b8;
+    }
+  }
+</style>

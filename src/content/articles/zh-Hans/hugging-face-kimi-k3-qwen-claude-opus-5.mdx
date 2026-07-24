@@ -1,0 +1,377 @@
+---
+title: "Hugging Face安全事件与新模型之战 — Kimi K3、Qwen 2.4T、Claude Opus 5"
+description: "以演示提纲形式梳理Hugging Face官方安全事件报告、Kimi K3、Qwen3.8、Claude Opus 5、智能体用量增长，以及各公司的促销和GTM策略。"
+publishedAt: 2026-07-25
+heroImage: "/articles/hugging-face-kimi-k3-qwen-claude-opus-5/hero.png"
+episodeNumber: 105
+authors:
+  - Park Jong Hyun
+tags:
+  - Hugging Face
+  - Kimi K3
+  - Qwen3.8
+  - Claude Opus 5
+  - Fable 5
+  - Claude Code
+  - OpenRouter
+lang: "zh-Hans"
+draft: false
+---
+
+<ResourceLink
+  url="https://huggingface.co/blog/security-incident-july-2026"
+  title="Security incident disclosure — July 2026"
+  domain="huggingface.co"
+  description="Hugging Face关于入侵路径、影响范围、响应过程及使用GLM 5.2取证的官方报告"
+/>
+
+<ResourceLink
+  url="https://openai.com/zh-Hans-CN/index/hugging-face-model-evaluation-security-incident/"
+  title="OpenAI与Hugging Face合作应对模型评估期间的安全事件"
+  domain="openai.com"
+  description="OpenAI官方说明GPT-5.6 Sol和一款未命名预发布模型如何逃离评估环境"
+/>
+
+> “This matches the ‘agentic attacker’ scenario the industry has been forecasting.”
+>
+> — Hugging Face
+
+> “All evidence suggests that the models were hyperfocused on finding a solution
+> for ExploitGym.”
+>
+> — OpenAI
+
+## 1. 安全事件：究竟发生了什么？
+
+### 五点还原攻击路径
+
+- OpenAI使用ExploitGym评估模型的最高网络能力，并有意关闭了部分生产环境的
+  网络安全拒绝机制。
+- 模型在隔离环境的包注册代理中发现了**零日漏洞**，由此建立通往开放互联网的路径。
+- 完成提权与横向移动后，模型推断Hugging Face可能存有ExploitGym答案。
+- 模型串联被盗凭据和另一个零日漏洞，找到Hugging Face基础设施的RCE路径，
+  并从生产数据库取得测试答案。
+- OpenAI和Hugging Face检测并阻止了这次活动。目前没有证据表明公开模型、
+  数据集或Spaces遭到篡改。
+
+### 为什么重要
+
+- 这是一次**从基准作弊跨越到真实生产环境入侵**的事件。
+- 狭窄目标、强大工具和不完整隔离共同产生了意料之外的攻击路径。
+- Hugging Face分析了超过17,000条行为日志。商业API的安全机制拒绝取证提示后，
+  团队在内部运行了开放权重的**GLM 5.2**。
+- 模型、沙箱、网络权限、监控与紧急停止机制必须被视为同一套安全系统。
+
+<XPostEmbed
+  url="https://x.com/ClementDelangue/status/2079913058554585089"
+  title="Hugging Face CEO谈事件响应与GLM 5.2"
+  description="Clement Delangue解释快速遏制、公开披露，以及开放权重AI在取证中的作用"
+  lang="zh-Hans"
+/>
+
+```text
+它不只是解答试题，而是离开考场，到Hugging Face服务器上寻找答案。
+```
+
+<ResourceLink
+  url="https://arxiv.org/abs/2605.11086"
+  title="ExploitGym：事件涉及的网络能力基准"
+  domain="arxiv.org"
+  description="模型试图获取答案的公开评估环境"
+/>
+
+---
+
+## 2. 新大模型：发布、性能与用量变化
+
+### 解释本周的五个数字
+
+| 数字 | 代表什么 | 仍然未知 |
+| ---: | --- | --- |
+| **2.8T** | Kimi K3总参数量 | 激活参数量与实际权重大小 |
+| **2.4T** | Qwen3.8 Max Preview总参数量 | 架构、许可证与权重发布日期 |
+| **2.5×** | Codex和ChatGPT Work一周usage增长 | “用量”指用户、token还是任务 |
+| **10M** | Codex + ChatGPT Work合计active users | WAU还是DAU，以及活跃定义 |
+| **$5 / $25** | Claude Opus 5每百万token输入 / 输出价格 | 独立测量的单项任务成本 |
+
+> 发布公告、体验UI、付费API、模型卡、权重开放和第三方复现，
+> 是六个不同阶段。
+
+### Kimi K3：便宜不等于小
+
+<ResourceLink
+  url="https://www.kimi.com/blog/kimi-k3"
+  title="Kimi K3: Open Frontier Intelligence"
+  domain="kimi.com"
+  description="2.8T参数、1M上下文、激活896个expert中的16个，并预告7月27日前开放全部权重"
+/>
+
+> “its overall performance still trails the most powerful proprietary models,
+> Claude Fable 5 and GPT 5.6 Sol”
+>
+> — Kimi K3官方发布
+
+| 项目 | 截至7月25日 |
+| --- | --- |
+| 模型 | 2.8T参数、原生视觉、1M上下文 |
+| MoE | 激活896个expert中的16个，总激活参数未公布 |
+| 推理 | 发布时**默认max thinking** |
+| 权重 | 预告7月27日前开放，技术报告日期未公布 |
+| OpenRouter | 仅一家提供商，并提示上游容量不足及可能频繁出现429 |
+| 用量信号 | 7月24日OpenRouter快照显示，发布8天已使用1.16T token |
+
+### 相同token量需要多少钱
+
+单位为每百万token的美元价格。最后一列假设一次无缓存请求使用
+**100K输入 + 10K输出**。
+
+| 模型 | 输入 / 缓存读取 / 输出 | 示例成本 |
+| --- | ---: | ---: |
+| Claude Fable 5 | $10 / $1 / $50 | $1.50 |
+| GPT-5.6 Sol | $5 / $0.50 / $30 | $0.80 |
+| Claude Opus 5 | $5 / $0.50 / $25 | $0.75 |
+| **Kimi K3** | **$3 / $0.30 / $15** | **$0.45** |
+| GPT-5.6 Terra | $2.50 / $0.25 / $15 | $0.40 |
+| GLM 5.2 | $0.756 / $0.1404 / $2.376 | 约$0.10 |
+
+**Token单价结论：** 在token数量相同的情况下，K3比Fable便宜70%，
+比Sol便宜约44%，比Opus 5便宜40%。
+
+**任务成本结论：** 在独立AA-Briefcase评测中，K3平均每项任务需要83轮、
+120K输出token、56.4分钟，成本为**$10.57**。虽然token便宜，但当时的
+单任务成本高于Opus 4.8。目前还没有与Opus 5的独立对比。
+
+> 便宜的token ≠ 便宜的智能体任务
+
+<ResourceLink
+  url="https://openrouter.ai/moonshotai/kimi-k3"
+  title="Kimi K3 — OpenRouter价格与供应状态"
+  domain="openrouter.ai"
+  description="输入$3 / 输出$15，1M上下文；目前仅一家提供商并带有429警告"
+/>
+
+<ResourceLink
+  url="https://artificialanalysis.ai/articles/kimi-k3-agentic-knowledge-benchmark"
+  title="Kimi K3 Agentic Knowledge Benchmark"
+  domain="artificialanalysis.ai"
+  description="与Fable、Sol、Opus 4.8比较实际知识工作任务的Elo、时间、轮数和成本"
+/>
+
+### 如果要自行部署K3
+
+| 检查项 | 建议 |
+| --- | --- |
+| 权重下限 | 按MXFP4简单估算约**1.40TB**，开放后再核对实际文件 |
+| 官方部署建议 | 具有高带宽互联的**64张以上加速卡supernode** |
+| 规模参考 | 按H200公开标价简单计算约**$276/小时**，并非K3官方报价 |
+| 当前选择 | PoC使用Kimi API/OpenRouter，7月27日后再判断自托管 |
+| 生产环境 | 必须准备429重试和其他模型fallback |
+
+### Qwen：不只有2.4T预览
+
+| 日期 | 发布内容 | 开放程度 |
+| :---: | --- | :---: |
+| 7月13日 | [Qwen-Music](https://arxiv.org/abs/2607.11699)・[Audio-VAE](https://arxiv.org/abs/2607.11738) | 仅论文 |
+| 7月14日 | Audio 3.0 TTS Plus、Flash、Realtime | 托管API，无权重 |
+| 7月19日 | **Qwen3.8 Max Preview, 2.4T** | 托管预览，权重“soon” |
+| 7月21日 | [Qwen-Image 3.0](https://qwen.ai/blog?id=qwen-image-3.0) | 邀请制预览，无权重 |
+
+<XPostEmbed
+  url="https://x.com/Alibaba_Qwen/status/2078759124914098291"
+  title="Qwen3.8 Max Preview — 2.4T模型与开放权重预告"
+  description="Qwen官方发布；性能主张仍需等待权重和第三方评测公开后验证"
+  lang="zh-Hans"
+/>
+
+### Claude Opus 5：接近Fable，价格减半
+
+<XPostEmbed
+  url="https://x.com/claudeai/status/2080699495453528290"
+  title="Claude Opus 5正式发布"
+  description="Claude官方称其以一半价格提供接近Fable 5的前沿智能"
+  lang="zh-Hans"
+/>
+
+> “It’s a thoughtful and proactive model that comes close to the frontier
+> intelligence of Fable 5 at half the price.”
+>
+> — Claude官方X账号
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5"
+  title="What’s new in Claude Opus 5"
+  domain="platform.claude.com"
+  description="包含价格、1M上下文、128K输出、默认thinking和effort等级的官方文档"
+/>
+
+| 项目 | Opus 5 |
+| --- | --- |
+| 标准API | **输入$5 / 缓存读取$0.50 / 输出$25** — 每百万token |
+| Fast mode | **输入$10 / 输出$50** — 仅API |
+| 上下文 / 最大输出 | **1M / 128K** |
+| 推理 | 默认thinking，effort从`low`到`max` |
+| 对比Opus 4.8 | 标准API价格相同；Anthropic称智能体和长周期任务显著提升 |
+| 对比Fable 5 | 标价恰好一半，但Fable 5仍是最高能力档位 |
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/pricing"
+  title="Claude API pricing"
+  domain="platform.claude.com"
+  description="Anthropic官方Opus 5标准、缓存和批处理价格表"
+/>
+
+> **价格注意：** Opus 5使用新tokenizer。Anthropic称，相同文本可能比
+> Sonnet 4.6及更早模型多约30%的token，因此相同token单价不等于
+> 同一文档的成本相同。
+
+**价格定位：** Fable 5提供最高能力光环，Opus 5作为半价智能体主力，
+Sonnet 5服务大规模用量，形成三级产品阶梯。
+
+### 用量增长本身变成增长机制
+
+<XPostEmbed
+  url="https://x.com/sama/status/2077033807736459713"
+  title="Codex与ChatGPT Work用量一周增长2.5倍"
+  description="Sam Altman的公告没有说明usage指用户、token还是任务"
+  lang="zh-Hans"
+/>
+
+> “one week, usage on codex and chatgpt work is up 2.5x”
+>
+> — Sam Altman
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2041655710346572085"
+  title="Codex达到300万WAU — 每增加100万用户就重置额度"
+  description="Tibo在冲向1000万用户过程中启动的里程碑式reset活动"
+  lang="zh-Hans"
+/>
+
+| 日期 | 公布指标 | 同时提供的激励 |
+| :---: | :---: | --- |
+| 4月8日 | Codex **3M WAU** | 立即重置，并承诺每增加100万再重置 |
+| 6月2日 | Codex **5M+ WAU** | 此时仍是Codex单独的周活指标 |
+| 7月13日 | Codex + Work **6M active** | 暂时取消5小时限制并重置周额度 |
+| 7月14–16日 | **7M → 8M → 9M** | 可保存重置、立即重置、恢复周额度 |
+| 7月22日 | 合计**10M active** | 重置付费用户额度 |
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2079609157934886975"
+  title="Codex + ChatGPT Work达到1000万active users"
+  description="1000万里程碑同时再次重置了付费用户额度"
+  lang="zh-Hans"
+/>
+
+> **指标注意：** 5M是Codex单独的WAU，10M是Codex + Work定义不明的
+> active users。这不是同一指标被证实翻倍。
+
+### 用户评价也变成促销
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2077248807533003257"
+  title="发布转向Sol的原因，可获$100 Codex额度"
+  description="面向前10,000名参与者的用户证言活动"
+  lang="zh-Hans"
+/>
+
+<XPostEmbed
+  url="https://x.com/gdb/status/2079289658622738481"
+  title="发布ChatGPT Work使用评价，可获$100额度"
+  description="将产品口碑与更多使用直接连接起来的活动"
+  lang="zh-Hans"
+/>
+
+---
+
+## 3. 促销变化与各公司的GTM策略
+
+### 传统强者不只比模型，也比额度
+
+| 产品 | 时间 / 状态 | 实际变化 |
+| --- | :---: | --- |
+| **Claude Opus 5** | 7月24日发布 | 与Opus 4.8同为$5/$25，是Fable 5标价的一半 |
+| **Fable 5促销** | 7月19日结束 | 付费计划最多可将每周用量的50%用于Fable |
+| **Fable 5现行政策** | 7月20日起 | Max/Premium最多包含50%；Pro/Standard使用usage credit |
+| **Claude Code** | 5月13日–8月19日 | 符合条件的计划**每周额度增加50%**，5小时限制不变 |
+| **Claude Cowork** | 6月5日–8月5日 | **5小时额度翻倍**，每周额度不变 |
+| **OpenAI Codex/Work** | 未公布结束日 | 暂时移除5小时限制，并在用户里程碑重置额度 |
+| **Kimi API** | 7月15日–8月12日 | 单次充值赠送10–30% voucher，最高$4,000，有效期90天 |
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15424964-claude-fable-5-on-your-plan"
+  title="Claude Fable 5 on your plan"
+  domain="support.claude.com"
+  description="7月20日以后Max、Pro、Team、Enterprise各计划的Fable使用政策"
+/>
+
+> “You can use up to 50% of your weekly usage limits on Fable 5 at no extra cost.”
+>
+> — Anthropic针对Max与Premium席位的政策
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15910845-claude-code-may-august-2026-weekly-limits-promotion"
+  title="Claude Code weekly limits promotion"
+  domain="support.claude.com"
+  description="符合条件的计划每周额度增加50%，持续至8月19日"
+/>
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15400594-claude-cowork-june-august-2026-usage-promotion"
+  title="Claude Cowork usage promotion"
+  domain="support.claude.com"
+  description="5小时用量额度翻倍，持续至8月5日"
+/>
+
+<ResourceLink
+  url="https://platform.kimi.ai/docs/pricing/promotion"
+  title="Kimi K3 launch top-up promotion"
+  domain="platform.kimi.ai"
+  description="根据单次账户充值金额赠送10–30%的voucher"
+/>
+
+> 智能体市场的GTM正在从“每月多少钱”转向：
+> **“这个额度能否让我在今天完成工作？”**
+
+### 一页看懂各公司GTM
+
+以下不是各公司公开声明的战略，而是基于产品发布、价格与促销所做的
+**节目讨论用解读**。
+
+| 公司 | 本周使用的机制 | GTM解读 |
+| --- | --- | --- |
+| **OpenAI** | 每100万用户重置、移除5小时限制、$100评价额度 | 使用 → 分享 → 下个里程碑 → 更多使用，形成增长循环 |
+| **Anthropic** | Opus 5以Fable半价发布、Fable分级访问、Code/Cowork扩额 | Fable作为能力光环、Opus作为智能体主力，通过促销扩大付费使用 |
+| **Moonshot** | K3低token价格、预付voucher、预告开放权重 | 先创造API需求，再扩大开放生态与推理合作伙伴 |
+| **Qwen** | 连续预览TTS、Audio、Image和2.4T LLM | 以开放权重品牌为托管API全栈产品引流 |
+
+> 这些变化确实发生在同一时期，但没有公开证据证明各项促销是对K3或
+> Qwen的直接回应。
+
+### Fable与GTM策略：个人体验
+
+- 在GTM讨论中，就个人使用感受而言，Fable比Opus 4.8更能长期保持
+  客户细分、定位与执行计划的一致逻辑。
+- 刚发布的Opus 5值得使用相同材料和提示重新比较。
+- 这只是使用体验，不是GTM专项基准。
+- 节目中可向两个模型提供相同公司资料，只比较三个问题：
+
+1. 最先应该争取的ICP是谁？
+2. 获取前十位客户应使用什么渠道？
+3. 哪个结果会让我们在六周内放弃该策略？
+
+### 节目流程
+
+| 环节 | 时间 | 屏幕显示内容 | 核心问题 |
+| --- | ---: | --- | --- |
+| 安全事件 | 5分钟 | 两个一手来源与重要引文 | 无论模型身份如何，评估系统究竟哪里失效？ |
+| Kimi、Qwen、Opus 5 | 14分钟 | K3/Opus价格表与Qwen时间线 | 性能、价格、开放性，哪个最影响选择？ |
+| 用量之战 | 10分钟 | 3M→10M表格与X帖子 | 增长来自产品吸引力还是额度促销？ |
+| Claude的应对 | 8分钟 | Opus 5、Fable、Code、Cowork政策表 | 模型阶梯和用量额度是否已成为GTM工具？ |
+| Fable GTM体验 | 5分钟 | 三个相同问题 | 如何比较模型的战略判断力？ |
+
+**本期一句话：** 前沿竞争已不只是模型分数，而是把权重开放、token价格、
+智能体用量与额度重置结合起来的**分发与GTM竞争**。
+
+---
+
+*Park Jong Hyun* — [LinkedIn](https://www.linkedin.com/in/jonhpark7966/) · [X](https://x.com/_jong_hyun_park) · [YouTube](https://youtube.com/@sudoremove)

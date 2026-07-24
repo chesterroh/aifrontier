@@ -2,16 +2,19 @@
 import '../styles/global.css';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import Search from '../components/Search.astro';
-import { buildCanonicalUrl, buildHreflangLinks } from '../lib/seo';
+import { buildCanonicalUrl, buildHreflangLinks, type Lang } from '../lib/seo';
 import { INTERVIEW_NAV_LABEL, type Series } from '../lib/episodes';
 
 interface Props {
   title: string;
   description?: string;
-  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+  lang?: Lang;
   alternateSlug?: string | null;
+  currentSlug?: string;
+  articleTranslations?: Lang[];
   canonicalPath?: string;
   alternatePath?: string | null;
+  alternatePaths?: Partial<Record<Lang, string>>;
   ogImage?: string | null;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>> | null;
   series?: Series;
@@ -22,8 +25,11 @@ const {
   description = 'AI Frontier - AI 심층 대화 팟캐스트',
   lang = 'ko',
   alternateSlug = null,
+  currentSlug,
+  articleTranslations = [],
   canonicalPath,
   alternatePath = null,
+  alternatePaths,
   ogImage = null,
   jsonLd = null,
   series = 'main',
@@ -38,6 +44,7 @@ const hreflangLinks = buildHreflangLinks({
   site,
   lang,
   alternatePath,
+  alternatePaths,
   canonicalPath: resolvedCanonicalPath,
 });
 const twitterCard = ogImage ? 'summary_large_image' : 'summary';
@@ -127,7 +134,13 @@ const interviewsLabel = INTERVIEW_NAV_LABEL[lang];
         </div>
         <div class="flex items-center gap-2">
           <Search lang={lang} />
-          <LanguageSwitcher currentLang={lang} alternateSlug={alternateSlug} series={series} />
+          <LanguageSwitcher
+            currentLang={lang}
+            alternateSlug={alternateSlug}
+            currentSlug={currentSlug}
+            articleTranslations={articleTranslations}
+            series={series}
+          />
         </div>
       </div>
     </header>

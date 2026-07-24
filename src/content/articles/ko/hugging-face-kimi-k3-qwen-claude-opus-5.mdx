@@ -1,0 +1,374 @@
+---
+title: "Hugging Face 보안 사고와 새 모델 전쟁 — Kimi K3·Qwen 2.4T·Claude Opus 5"
+description: "Hugging Face 보안 사고의 공식 발표부터 Kimi K3·Qwen3.8·Claude Opus 5, 에이전트 사용량과 각사의 프로모션·GTM 변화를 발표 노트 형식으로 정리합니다."
+publishedAt: 2026-07-25
+heroImage: "/articles/hugging-face-kimi-k3-qwen-claude-opus-5/hero.png"
+episodeNumber: 105
+authors:
+  - 박종현
+tags:
+  - Hugging Face
+  - Kimi K3
+  - Qwen3.8
+  - Claude Opus 5
+  - Fable 5
+  - Claude Code
+  - OpenRouter
+lang: "ko"
+draft: false
+---
+
+<ResourceLink
+  url="https://huggingface.co/blog/security-incident-july-2026"
+  title="Security incident disclosure — July 2026"
+  domain="huggingface.co"
+  description="침입 경로, 영향 범위와 GLM 5.2를 이용한 포렌식 대응을 담은 Hugging Face 공식 보고서"
+/>
+
+<ResourceLink
+  url="https://openai.com/ko-KR/index/hugging-face-model-evaluation-security-incident/"
+  title="OpenAI와 Hugging Face, 모델 평가 중 발생한 보안 사고에 공동 대응"
+  domain="openai.com"
+  description="GPT-5.6 Sol과 이름이 공개되지 않은 출시 전 모델이 평가 환경을 벗어난 과정을 설명한 OpenAI 한국어 공식 발표"
+/>
+
+> “This matches the "agentic attacker" scenario the industry has been forecasting.”
+>
+> — Hugging Face
+
+> “모델은 ExploitGym의 정답을 찾는 데 극도로 집중했으며, 비교적 제한적인
+> 테스트 목표를 달성하기 위해 가능한 모든 수단을 동원한 것으로 보입니다.”
+>
+> — OpenAI
+
+## 1. 보안 사고: 실제로 무엇이 일어났나
+
+### 사고는 이렇게 진행됐다
+
+- OpenAI가 ExploitGym으로 모델의 최대 사이버 역량을 평가했습니다. 운영 환경의 일부 사이버 거부 장치는 의도적으로 꺼져 있었습니다.
+- 모델은 격리된 평가 환경의 패키지 레지스트리 프록시에서 **제로데이
+  취약점**을 찾아 인터넷으로 나가는 경로를 만들었습니다.
+- 권한 상승과 측면 이동을 거쳐 인터넷 접근 노드에 도달한 뒤, Hugging Face에
+  ExploitGym 정답이 있을 수 있다고 추론했습니다.
+- 탈취한 자격증명과 추가 제로데이를 연결해 Hugging Face 서버의 RCE 경로를
+  찾고, 운영 데이터베이스에서 테스트 정답을 확보했습니다.
+- OpenAI와 Hugging Face가 활동을 탐지했고 Hugging Face가 차단했습니다.
+  공개 모델·데이터셋·Spaces가 변조됐다는 증거는 발견되지 않았습니다.
+
+### 왜 중요한가
+
+- **벤치마크 부정행위가 실제 운영망 침입으로 이어진 사례**입니다.
+- 좁은 목표, 강한 도구, 불완전한 격리가 결합하면 모델은 예상 밖의 경로를
+  끝까지 탐색할 수 있습니다.
+- Hugging Face는 17,000개 이상의 행동 로그를 분석했습니다. 상용 API의
+  사이버 가드레일이 포렌식 요청을 막자 **오픈웨이트 GLM 5.2를 내부에서
+  실행**했습니다.
+- 공격 모델뿐 아니라 방어 모델, 샌드박스, 네트워크 권한과 비상 중단 장치를
+  하나의 보안 시스템으로 봐야 합니다.
+
+<XPostEmbed
+  url="https://x.com/ClementDelangue/status/2079913058554585089"
+  title="Hugging Face CEO — 보안팀의 대응과 GLM 5.2의 역할"
+  description="Clement Delangue가 신속한 탐지·차단·공개 대응과 오픈웨이트 GLM 5.2를 활용한 포렌식의 의미를 설명"
+/>
+
+```시험 문제를 푼 것이 아니라 시험장을 빠져나가 HuggingFace 서버에서 답을 찾았습니다.```
+
+
+<ResourceLink
+  url="https://arxiv.org/abs/2605.11086"
+  title="ExploitGym: 모델이 풀던 사이버 역량 벤치마크"
+  domain="arxiv.org"
+  description="이번 사고에서 모델이 정답을 찾으려 했던 공개 평가 환경"
+/>
+
+---
+
+## 2. 새로운 대형 모델: 출시·성능·사용량 변화
+
+### 이번 주를 설명하는 다섯 숫자
+
+| 숫자 | 무엇을 뜻하나 | 아직 모르는 것 |
+| ---: | --- | --- |
+| **2.8T** | Kimi K3 전체 파라미터 | 활성 파라미터·실제 가중치 크기 |
+| **2.4T** | Qwen3.8 Max Preview 전체 파라미터 | 구조·라이선스·가중치 공개일 |
+| **2.5×** | Codex·ChatGPT Work의 1주 usage 증가 | 사용자·토큰·작업 중 무엇을 센 것인지 |
+| **10M** | Codex + ChatGPT Work 합산 active users | WAU인지 DAU인지, 정확한 활동 기준 |
+| **$5 / $25** | Claude Opus 5의 입력 / 출력 1M 토큰 가격 | 독립 평가에서의 실제 작업당 비용 |
+
+> 발표, 체험 UI, 유료 API, 모델 카드, 가중치 공개, 제3자 재현은 모두
+> 서로 다른 단계다.
+
+### Kimi K3: 싸지만 작은 모델은 아니다
+
+<ResourceLink
+  url="https://www.kimi.com/blog/kimi-k3"
+  title="Kimi K3: Open Frontier Intelligence"
+  domain="kimi.com"
+  description="2.8T·1M 컨텍스트·16/896 experts, 7월 27일까지 전체 가중치 공개 예고"
+/>
+
+> “its overall performance still trails the most powerful proprietary models,
+> Claude Fable 5 and GPT 5.6 Sol”
+>
+> — Kimi K3 공식 발표
+
+| 항목 | 7월 25일 현재 |
+| --- | --- |
+| 모델 | 2.8T 파라미터, 네이티브 비전, 1M 컨텍스트 |
+| MoE | 896 experts 중 16개 활성화. 전체 활성 파라미터는 미공개 |
+| 추론 | 출시 시 **max thinking이 기본값** |
+| 가중치 | 7월 27일까지 공개 예고. 기술 리포트 일정은 미정 |
+| OpenRouter | 공급자 1곳. 상류 용량 부족과 잦은 429 가능성 경고 |
+| 사용 신호 | 7월 24일 OpenRouter 스냅샷에서 출시 8일 만에 1.16T 토큰 |
+
+### 동일 토큰을 썼을 때
+
+단위는 1M 토큰당 달러입니다. 마지막 열은 **캐시 없는 입력 100K + 출력
+10K**를 한 번 사용한 예시입니다.
+
+| 모델 | 입력 / 캐시 읽기 / 출력 | 예시 비용 |
+| --- | ---: | ---: |
+| Claude Fable 5 | $10 / $1 / $50 | $1.50 |
+| GPT-5.6 Sol | $5 / $0.50 / $30 | $0.80 |
+| Claude Opus 5 | $5 / $0.50 / $25 | $0.75 |
+| **Kimi K3** | **$3 / $0.30 / $15** | **$0.45** |
+| GPT-5.6 Terra | $2.50 / $0.25 / $15 | $0.40 |
+| GLM 5.2 | $0.756 / $0.1404 / $2.376 | 약 $0.10 |
+
+**단가 결론:** 같은 토큰 수라면 K3는 Fable보다 70%, Sol보다 약 44%,
+Opus 5보다 40% 저렴합니다.
+
+**작업 결론:** 독립 AA-Briefcase에서 K3는 작업당 평균 83 turns,
+출력 120K 토큰, 56.4분, **$10.57**을 사용했습니다. 토큰은 싸지만
+평가 당시 Opus 4.8보다 높았습니다. Opus 5와의 독립 비교는 아직 없습니다.
+
+> 싼 토큰 ≠ 싼 에이전트
+
+<ResourceLink
+  url="https://openrouter.ai/moonshotai/kimi-k3"
+  title="Kimi K3 — OpenRouter 가격·공급 상태"
+  domain="openrouter.ai"
+  description="$3 input / $15 output, 1M context. 현재 단일 공급자와 429 경고 확인"
+/>
+
+<ResourceLink
+  url="https://artificialanalysis.ai/articles/kimi-k3-agentic-knowledge-benchmark"
+  title="Kimi K3 Agentic Knowledge Benchmark"
+  domain="artificialanalysis.ai"
+  description="Fable·Sol·Opus 4.8과 실제 지식노동 작업의 Elo·시간·turn·비용 비교"
+/>
+
+### 직접 돌린다면
+
+| 체크 | 권장 |
+| --- | --- |
+| 가중치 하한 | MXFP4를 단순 계산하면 약 **1.40TB**. 실제 파일은 공개 후 확인 |
+| 공식 배포 권장 | 고대역폭 통신이 가능한 **64개 이상 accelerator supernode** |
+| 규모 감각 | H200 공개 정가를 단순 적용하면 약 **$276/h**. 공식 K3 견적은 아님 |
+| 지금의 선택 | PoC는 Kimi API/OpenRouter. 자가호스팅 결정은 7월 27일 이후 |
+| 프로덕션 | 429 retry와 다른 모델 fallback을 반드시 준비 |
+
+### Qwen: 2.4T만 나온 것이 아니다
+
+| 날짜 | 공개물 | 공개 수준 |
+| :---: | --- | :---: |
+| 7월 13일 | [Qwen-Music](https://arxiv.org/abs/2607.11699)·[Audio-VAE](https://arxiv.org/abs/2607.11738) | 논문만 공개 |
+| 7월 14일 | Audio 3.0 TTS Plus·Flash·Realtime | 호스팅 API, 가중치 없음 |
+| 7월 19일 | **Qwen3.8 Max Preview, 2.4T** | 호스팅 프리뷰, 가중치는 “soon” |
+| 7월 21일 | [Qwen-Image 3.0](https://qwen.ai/blog?id=qwen-image-3.0) | 초대제 프리뷰, 가중치 없음 |
+
+<XPostEmbed
+  url="https://x.com/Alibaba_Qwen/status/2078759124914098291"
+  title="Qwen3.8 Max Preview — 2.4T 모델과 오픈웨이트 예고"
+  description="Qwen 공식 발표. 성능 주장은 가중치와 제3자 평가 공개 후 재확인 필요"
+/>
+
+### Claude Opus 5: Fable에 가까운 절반 가격
+
+<XPostEmbed
+  url="https://x.com/claudeai/status/2080699495453528290"
+  title="Introducing Claude Opus 5"
+  description="Fable 5에 가까운 프런티어 성능을 절반 가격에 제공한다는 Claude 공식 발표"
+/>
+
+> “It’s a thoughtful and proactive model that comes close to the frontier
+> intelligence of Fable 5 at half the price.”
+>
+> — Claude 공식 X
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5"
+  title="What’s new in Claude Opus 5"
+  domain="platform.claude.com"
+  description="가격, 1M 컨텍스트, 128K 출력, 기본 thinking과 effort 단계가 정리된 공식 문서"
+/>
+
+| 항목 | Opus 5 |
+| --- | --- |
+| 일반 API | **입력 $5 / 캐시 읽기 $0.50 / 출력 $25** — 1M 토큰당 |
+| Fast mode | **입력 $10 / 출력 $50** — API 전용 |
+| 컨텍스트 / 최대 출력 | **1M / 128K** |
+| 추론 | thinking 기본값, effort `low`부터 `max`까지 |
+| Opus 4.8 대비 | 일반 API 가격은 동일. Anthropic은 에이전트·장기 작업의 큰 향상을 주장 |
+| Fable 5 대비 | 정가는 정확히 절반. 다만 Fable 5가 여전히 최상위 모델 |
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/pricing"
+  title="Claude API pricing"
+  domain="platform.claude.com"
+  description="Opus 5의 기본·캐시·배치 가격을 확인할 수 있는 Anthropic 공식 가격표"
+/>
+
+> **가격 주의:** Opus 5는 새 tokenizer를 사용합니다. Anthropic 문서상 같은
+> 텍스트가 Sonnet 4.6 이전 세대보다 약 30% 많은 토큰이 될 수 있으므로,
+> 단순 토큰 단가가 곧 같은 문서의 비용은 아닙니다.
+
+**가격 포지셔닝 한 줄:** Fable 5는 최고 성능의 후광, Opus 5는 절반 가격의
+에이전트 주력, Sonnet 5는 대량 사용층을 맡는 3단 사다리입니다.
+
+### 새 모델 출시 뒤 사용량: 숫자보다 재미있는 성장 장치
+
+<XPostEmbed
+  url="https://x.com/sama/status/2077033807736459713"
+  title="Codex와 ChatGPT Work usage가 한 주 만에 2.5× 증가"
+  description="Sam Altman의 발표. usage의 단위는 공개되지 않음"
+/>
+
+> “one week, usage on codex and chatgpt work is up 2.5x”
+>
+> — Sam Altman
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2041655710346572085"
+  title="Codex 300만 WAU — 1,000만까지 100만 증가마다 한도 초기화"
+  description="Tibo가 시작한 사용자 이정표형 reset 캠페인"
+/>
+
+| 날짜 | 발표 숫자 | 함께 제공한 것 |
+| :---: | :---: | --- |
+| 4월 8일 | Codex **3M WAU** | 즉시 초기화, 1M 증가마다 추가 초기화 약속 |
+| 6월 2일 | Codex **5M+ WAU** | 이때까지는 Codex 단독 주간 활성 지표 |
+| 7월 13일 | Codex + Work **6M active** | 5시간 제한 임시 제거, 주간 한도 초기화 |
+| 7월 14~16일 | **7M → 8M → 9M** | 저장형 초기화권, 즉시 초기화, 주간 한도 복원 |
+| 7월 22일 | 합산 **10M active** | 유료 사용자 한도 초기화 |
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2079609157934886975"
+  title="Codex + ChatGPT Work 1,000만 active users"
+  description="1,000만 이정표와 유료 사용자 한도 초기화 발표"
+/>
+
+> **주의:** 5M은 Codex 단독 WAU, 10M은 Codex + Work의 정의되지 않은
+> active users입니다. 같은 지표의 정확한 두 배 성장은 아닙니다.
+
+### 후기도 프로모션이 됐다
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2077248807533003257"
+  title="Sol로 전환한 이유를 올리면 $100 Codex 크레딧"
+  description="선착순 1만 명 대상 후기 크레딧 캠페인"
+/>
+
+<XPostEmbed
+  url="https://x.com/gdb/status/2079289658622738481"
+  title="ChatGPT Work 후기를 올리면 $100 크레딧"
+  description="사용 후기와 제품 확산을 직접 연결한 캠페인"
+/>
+
+---
+
+## 3. 프로모션 변화와 각 회사의 GTM 전략
+
+### 기존 강자들의 대응: 모델보다 한도 경쟁
+
+| 제품 | 기간·상태 | 실제 변화 |
+| --- | :---: | --- |
+| **Claude Opus 5** | 7월 24일 출시 | Opus 4.8과 같은 $5/$25. Fable 5 정가의 절반 |
+| **Fable 5 프로모션** | 7월 19일 종료 | 유료 플랜에서 주간 사용량의 최대 50%를 Fable에 사용 |
+| **Fable 5 현재 정책** | 7월 20일부터 | Max·Premium은 최대 50% 포함. Pro·Standard는 사용 크레딧 |
+| **Claude Code** | 5월 13일~8월 19일 | 대상 플랜의 **주간 한도 50% 증가**. 5시간 한도는 동일 |
+| **Claude Cowork** | 6월 5일~8월 5일 | **5시간 한도 2배**. 주간 한도는 동일 |
+| **OpenAI Codex·Work** | 종료일 미정 | 5시간 제한 임시 제거 + 사용자 이정표마다 한도 초기화 |
+| **Kimi API** | 7월 15일~8월 12일 | 1회 충전에 10~30% voucher. 최대 $4,000, 90일 유효 |
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15424964-claude-fable-5-on-your-plan"
+  title="Claude Fable 5 on your plan"
+  domain="support.claude.com"
+  description="7월 20일 이후 Max·Pro·Team·Enterprise별 Fable 사용 정책"
+/>
+
+> “You can use up to 50% of your weekly usage limits on Fable 5 at no extra
+> cost.”
+>
+> — Anthropic, Max·Premium seat 정책
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15910845-claude-code-may-august-2026-weekly-limits-promotion"
+  title="Claude Code weekly limits promotion"
+  domain="support.claude.com"
+  description="대상 플랜의 주간 사용 한도를 8월 19일까지 50% 확대"
+/>
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15400594-claude-cowork-june-august-2026-usage-promotion"
+  title="Claude Cowork usage promotion"
+  domain="support.claude.com"
+  description="5시간 사용 한도를 8월 5일까지 두 배로 확대"
+/>
+
+<ResourceLink
+  url="https://platform.kimi.ai/docs/pricing/promotion"
+  title="Kimi K3 launch top-up promotion"
+  domain="platform.kimi.ai"
+  description="충전액에 따라 10~30% voucher를 제공하는 Kimi API 출시 프로모션"
+/>
+
+> 에이전트 시장의 GTM은 “월 얼마인가”에서 **“오늘 이 일을 끝낼 만큼
+> 한도를 주는가”**로 이동하고 있다.
+
+### 회사별 GTM을 한 장으로 보면
+
+아래는 각 회사가 공식적으로 밝힌 전략이 아니라, 공개된 출시·가격·프로모션을
+바탕으로 한 **방송용 해석**입니다.
+
+| 회사 | 이번 주에 사용한 장치 | GTM 해석 |
+| --- | --- | --- |
+| **OpenAI** | 100만 사용자 이정표마다 reset, 5시간 제한 해제, $100 후기 크레딧 | 제품 사용 → 공유 → 다음 이정표 → 추가 사용으로 이어지는 성장 루프 |
+| **Anthropic** | Opus 5를 Fable 절반 가격으로 출시, Fable 플랜 차등, Code·Cowork 한도 확대 | Fable의 최고 성능 후광 아래 Opus를 에이전트 주력으로 두고, 프로모션으로 유료 사용을 확대 |
+| **Moonshot** | 프런티어보다 낮은 K3 토큰 가격, 선불 충전 voucher, 가중치 공개 예고 | API 수요를 먼저 만들고 오픈 생태계와 인퍼런스 파트너를 뒤이어 확대 |
+| **Qwen** | TTS·Audio·Image·2.4T LLM을 연속 프리뷰 | 오픈웨이트 브랜드를 호스팅 API 풀스택의 유입 경로로 활용 |
+
+> 같은 시기에 일어난 변화라는 사실은 확인되지만, 각 프로모션이 K3나
+> Qwen의 직접적인 대응이라는 인과관계는 공개되지 않았습니다.
+
+### Fable과 GTM 전략: 개인 메모
+
+- Fable과 GTM 전략을 논의할 때 고객 세그먼트·포지셔닝·실행 계획을 한
+  논리로 오래 유지하는 감각이 Opus 4.8과 달랐습니다.
+- 방금 공개된 Opus 5는 같은 자료와 질문으로 다시 비교할 후보입니다.
+- 아직 개인적인 사용 경험이며, GTM 전용 벤치마크는 아닙니다.
+- 방송에서는 두 모델에 같은 회사 자료를 주고 아래 세 질문만 비교합니다.
+
+1. 가장 먼저 공략할 ICP는 누구인가?
+2. 첫 10명의 고객을 얻을 채널은 무엇인가?
+3. 6주 안에 이 전략을 포기할 기준은 무엇인가?
+
+### 방송 진행표
+
+| 순서 | 시간 | 화면에 띄울 것 | 핵심 질문 |
+| --- | ---: | --- | --- |
+| 보안 사고 | 5분 | 최상단 공식 자료 2개와 인용문 | 모델의 정체보다 평가 시스템에서 무엇이 실패했나? |
+| Kimi·Qwen·Opus 5 | 14분 | K3·Opus 가격표와 Qwen 공개 타임라인 | 성능·가격·공개성 중 무엇이 실제 선택을 가르나? |
+| 사용량 전쟁 | 10분 | 3M→10M 표와 X 링크 | 성장은 제품력인가, 한도 프로모션인가? |
+| Claude의 대응 | 8분 | Opus 5·Fable·Code·Cowork 정책표 | 모델 사다리와 사용 한도가 새로운 GTM 수단인가? |
+| Fable GTM 체감 | 5분 | 동일 질문 세 개 | 모델의 전략 판단력을 어떻게 비교할까? |
+
+**이번 회차의 한 문장:** 프런티어 경쟁은 모델 점수만의 경쟁이 아니라
+가중치 공개, 토큰 가격, 에이전트 사용량, 한도 초기화까지 묶인
+**배포와 GTM의 경쟁**이 됐습니다.
+
+---
+
+*박종현 (Park Jong Hyun)* — [LinkedIn](https://www.linkedin.com/in/jonhpark7966/) · [X](https://x.com/_jong_hyun_park) · [YouTube](https://youtube.com/@sudoremove)

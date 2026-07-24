@@ -5,10 +5,17 @@ interface Props {
   currentLang: 'ko' | 'en' | 'ja' | 'zh-Hans';
   alternateSlug?: string | null;
   currentSlug?: string;
+  articleTranslations?: Array<'ko' | 'en' | 'ja' | 'zh-Hans'>;
   series?: Series;
 }
 
-const { currentLang, alternateSlug, currentSlug, series = 'main' } = Astro.props;
+const {
+  currentLang,
+  alternateSlug,
+  currentSlug,
+  articleTranslations = [],
+  series = 'main',
+} = Astro.props;
 const seriesSection = series === 'interview' ? 'interviews' : 'episodes';
 
 const languages = [
@@ -41,6 +48,8 @@ function getAlternateUrl(langCode: string): string {
     class="appearance-none bg-transparent border border-gray-300 dark:border-gray-700 rounded-md px-3 py-1.5 pr-8 text-sm cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500"
     data-current-lang={currentLang}
     data-alternate-slug={alternateSlug || ''}
+    data-current-slug={currentSlug || ''}
+    data-article-translations={articleTranslations.join(',')}
     data-series-section={seriesSection}
   >
     {languages.map((lang) => (
@@ -66,6 +75,10 @@ function getAlternateUrl(langCode: string): string {
       const newLang = target.value;
       const currentLang = switcher.dataset.currentLang;
       const alternateSlug = switcher.dataset.alternateSlug;
+      const currentSlug = switcher.dataset.currentSlug;
+      const articleTranslations = new Set(
+        (switcher.dataset.articleTranslations || '').split(',').filter(Boolean),
+      );
       const seriesSection = switcher.dataset.seriesSection || 'episodes';
       // alternateSlug는 "ep83"/"interview1"/"1" 등 접두사 유무가 섞여 올 수 있으므로 숫자만 뽑아
       // 대상 섹션(episodes -> ep{n}, interviews -> {n})에 맞는 URL 세그먼트로 재구성한다.
@@ -81,6 +94,7 @@ function getAlternateUrl(langCode: string): string {
 
       // Check if we're on an episode or interview detail page
       const episodeMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/(episodes|interviews)\/([^\/]+)/);
+      const articleDetailMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/articles\/(.+?)\/?$/);
       const articlesMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/articles(?:\/|$)/);
       const interviewsListMatch = path.match(/\/(?:ko|en|ja|zh-Hans)\/interviews\/?$/);
 
@@ -93,6 +107,9 @@ function getAlternateUrl(langCode: string): string {
       } else if (interviewsListMatch) {
         // Interview list page: go to same list in the target language
         window.location.href = `/${newLang}/interviews`;
+      } else if (articleDetailMatch && currentSlug && articleTranslations.has(newLang)) {
+        // Same-slug article translation exists
+        window.location.href = `/${newLang}/articles/${currentSlug}`;
       } else if (articlesMatch) {
         // Articles: translations aren't guaranteed, so land on the target-language list
         window.location.href = `/${newLang}/articles`;
