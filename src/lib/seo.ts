@@ -30,6 +30,7 @@ export type HreflangInput = {
   site: string;
   lang: Lang;
   alternatePath?: string | null;
+  alternatePaths?: Partial<Record<Lang, string>>;
   canonicalPath?: string | null;
 };
 
@@ -78,6 +79,7 @@ export function buildHreflangLinks({
   site,
   lang,
   alternatePath,
+  alternatePaths,
   canonicalPath,
 }: HreflangInput): HreflangLink[] {
   const normalize = (path: string) => new URL(path, site).toString();
@@ -85,7 +87,21 @@ export function buildHreflangLinks({
   const links: HreflangLink[] = [
     { hreflang: lang, href: normalize(selfPath) },
   ];
-  if (alternatePath) {
+
+  if (alternatePaths) {
+    for (const alternateLang of ALL_LANGS) {
+      const path = alternatePaths[alternateLang];
+      if (alternateLang !== lang && path) {
+        links.push({ hreflang: alternateLang, href: normalize(path) });
+      }
+    }
+    if (links.length > 1) {
+      links.push({
+        hreflang: 'x-default',
+        href: normalize(alternatePaths.ko ?? (lang === 'ko' ? selfPath : '/')),
+      });
+    }
+  } else if (alternatePath) {
     const altLang = lang === 'ko' ? 'en' : 'ko';
     const altHref = normalize(alternatePath);
     links.push({ hreflang: altLang, href: altHref });

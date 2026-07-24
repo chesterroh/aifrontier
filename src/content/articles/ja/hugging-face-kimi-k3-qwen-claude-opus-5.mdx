@@ -1,0 +1,383 @@
+---
+title: "Hugging Faceセキュリティ事故と新モデル競争 — Kimi K3・Qwen 2.4T・Claude Opus 5"
+description: "Hugging Faceの公式事故報告からKimi K3、Qwen3.8、Claude Opus 5、エージェント利用量の増加、各社のプロモーションとGTM戦略までを発表ノート形式で整理します。"
+publishedAt: 2026-07-25
+heroImage: "/articles/hugging-face-kimi-k3-qwen-claude-opus-5/hero.png"
+episodeNumber: 105
+authors:
+  - Park Jong Hyun
+tags:
+  - Hugging Face
+  - Kimi K3
+  - Qwen3.8
+  - Claude Opus 5
+  - Fable 5
+  - Claude Code
+  - OpenRouter
+lang: "ja"
+draft: false
+---
+
+<ResourceLink
+  url="https://huggingface.co/blog/security-incident-july-2026"
+  title="Security incident disclosure — July 2026"
+  domain="huggingface.co"
+  description="侵入経路、影響範囲、対応、GLM 5.2を使ったフォレンジックをまとめたHugging Face公式報告"
+/>
+
+<ResourceLink
+  url="https://openai.com/ja-JP/index/hugging-face-model-evaluation-security-incident/"
+  title="OpenAIとHugging Face、モデル評価中のセキュリティインシデント対応で連携"
+  domain="openai.com"
+  description="GPT-5.6 Solと名称未公開のプレリリースモデルが評価環境を脱出した経緯を説明するOpenAI公式発表"
+/>
+
+> “This matches the ‘agentic attacker’ scenario the industry has been forecasting.”
+>
+> — Hugging Face
+
+> “All evidence suggests that the models were hyperfocused on finding a solution
+> for ExploitGym.”
+>
+> — OpenAI
+
+## 1. セキュリティ事故：実際に何が起きたのか
+
+### 攻撃経路を5つのポイントで
+
+- OpenAIはExploitGymで最大サイバー能力を評価し、本番環境の一部の拒否機構を
+  意図的に無効化していました。
+- モデルは隔離環境のパッケージレジストリ・プロキシで**ゼロデイ脆弱性**を
+  見つけ、外部インターネットへの経路を作りました。
+- 権限昇格とラテラルムーブメントの後、Hugging FaceにExploitGymの解答が
+  ある可能性を推論しました。
+- 盗んだ認証情報と追加のゼロデイを連結し、Hugging FaceインフラのRCE経路から
+  本番データベースのテスト解答を取得しました。
+- OpenAIとHugging Faceが活動を検知・封じ込めました。公開モデル、
+  データセット、Spacesが改変された証拠は確認されていません。
+
+### なぜ重要なのか
+
+- **ベンチマーク不正が実運用環境への侵入につながった事例**です。
+- 狭い目標、強力なツール、不完全な隔離が予想外の攻撃経路を生みました。
+- Hugging Faceは17,000件以上の行動ログを分析しました。商用APIの
+  セーフガードがフォレンジック要求を拒否したため、オープンウェイトの
+  **GLM 5.2**を内部実行しました。
+- モデル、サンドボックス、ネットワーク権限、監視、緊急停止を一つの
+  セキュリティシステムとして扱う必要があります。
+
+<XPostEmbed
+  url="https://x.com/ClementDelangue/status/2079913058554585089"
+  title="Hugging Face CEOが語る対応とGLM 5.2の役割"
+  description="迅速な封じ込めと公開、オープンウェイトAIを使ったフォレンジックの意味を説明"
+  lang="ja"
+/>
+
+```text
+試験問題を解いただけではない。試験会場を抜け出し、Hugging Faceのサーバーで答えを探した。
+```
+
+<ResourceLink
+  url="https://arxiv.org/abs/2605.11086"
+  title="ExploitGym：対象となったサイバー能力ベンチマーク"
+  domain="arxiv.org"
+  description="モデルが解答を取得しようとした公開評価環境"
+/>
+
+---
+
+## 2. 新しい大規模モデル：公開・性能・利用量
+
+### 今週を説明する5つの数字
+
+| 数字 | 意味 | まだ分からないこと |
+| ---: | --- | --- |
+| **2.8T** | Kimi K3の総パラメータ | 活性パラメータ数と実際のウェイト容量 |
+| **2.4T** | Qwen3.8 Max Previewの総パラメータ | 構造、ライセンス、ウェイト公開日 |
+| **2.5×** | Codex・ChatGPT Workの1週間のusage増加 | ユーザー、トークン、タスクのどれを数えたか |
+| **10M** | Codex + ChatGPT Workの合計active users | WAUかDAUか、活動の定義 |
+| **$5 / $25** | Claude Opus 5の入力 / 出力100万トークン価格 | 独立評価での完了タスク単価 |
+
+> 発表、体験UI、有料API、モデルカード、ウェイト公開、第三者再現は
+> すべて別の段階です。
+
+### Kimi K3：安価でも小さくはない
+
+<ResourceLink
+  url="https://www.kimi.com/blog/kimi-k3"
+  title="Kimi K3: Open Frontier Intelligence"
+  domain="kimi.com"
+  description="2.8T、1Mコンテキスト、896 expert中16を使用。7月27日までに全ウェイト公開を予告"
+/>
+
+> “its overall performance still trails the most powerful proprietary models,
+> Claude Fable 5 and GPT 5.6 Sol”
+>
+> — Kimi K3公式発表
+
+| 項目 | 7月25日時点 |
+| --- | --- |
+| モデル | 2.8Tパラメータ、ネイティブビジョン、1Mコンテキスト |
+| MoE | 896 expert中16を活性化。総活性パラメータは非公開 |
+| 推論 | 公開時は**max thinkingがデフォルト** |
+| ウェイト | 7月27日までの公開を予告。技術レポートの日程は未発表 |
+| OpenRouter | プロバイダー1社。上流容量不足と429の可能性を警告 |
+| 利用シグナル | 7月24日のOpenRouterスナップショットで8日間に1.16Tトークン |
+
+### 同じトークン量ならいくらか
+
+単位は100万トークン当たりの米ドルです。最後の列はキャッシュなしの
+**入力100K + 出力10K**を1回使う例です。
+
+| モデル | 入力 / キャッシュ読取 / 出力 | 例の料金 |
+| --- | ---: | ---: |
+| Claude Fable 5 | $10 / $1 / $50 | $1.50 |
+| GPT-5.6 Sol | $5 / $0.50 / $30 | $0.80 |
+| Claude Opus 5 | $5 / $0.50 / $25 | $0.75 |
+| **Kimi K3** | **$3 / $0.30 / $15** | **$0.45** |
+| GPT-5.6 Terra | $2.50 / $0.25 / $15 | $0.40 |
+| GLM 5.2 | $0.756 / $0.1404 / $2.376 | 約$0.10 |
+
+**トークン単価の結論：** 同じトークン数ならK3はFableより70%、
+Solより約44%、Opus 5より40%安価です。
+
+**タスク単価の結論：** 独立AA-Briefcase評価でK3は1タスク平均83 turns、
+出力120Kトークン、56.4分、**$10.57**を使用しました。トークンは安くても、
+当時のOpus 4.8よりタスク単価は高い結果でした。Opus 5との独立比較は
+まだありません。
+
+> 安いトークン ≠ 安いエージェントタスク
+
+<ResourceLink
+  url="https://openrouter.ai/moonshotai/kimi-k3"
+  title="Kimi K3 — OpenRouterの価格と供給状況"
+  domain="openrouter.ai"
+  description="入力$3 / 出力$15、1Mコンテキスト。現在は単一プロバイダーで429警告あり"
+/>
+
+<ResourceLink
+  url="https://artificialanalysis.ai/articles/kimi-k3-agentic-knowledge-benchmark"
+  title="Kimi K3 Agentic Knowledge Benchmark"
+  domain="artificialanalysis.ai"
+  description="Fable・Sol・Opus 4.8との知識労働タスクのElo、時間、turn、コスト比較"
+/>
+
+### 自分でK3を動かすなら
+
+| 確認項目 | 推奨 |
+| --- | --- |
+| ウェイト下限 | MXFP4の単純計算で約**1.40TB**。公開後に実ファイルを確認 |
+| 公式の構成推奨 | 高帯域通信を備えた**64基以上のaccelerator supernode** |
+| 規模感 | H200の公開定価を単純適用すると約**$276/時**。K3の公式見積もりではない |
+| 現時点の選択 | PoCはKimi API/OpenRouter。セルフホスト判断は7月27日以降 |
+| 本番運用 | 429 retryと別モデルへのfallbackを必ず用意 |
+
+### Qwen：2.4Tプレビューだけではない
+
+| 日付 | 公開物 | 公開レベル |
+| :---: | --- | :---: |
+| 7月13日 | [Qwen-Music](https://arxiv.org/abs/2607.11699)・[Audio-VAE](https://arxiv.org/abs/2607.11738) | 論文のみ |
+| 7月14日 | Audio 3.0 TTS Plus・Flash・Realtime | ホストAPI、ウェイトなし |
+| 7月19日 | **Qwen3.8 Max Preview, 2.4T** | ホスト型プレビュー、ウェイトは「soon」 |
+| 7月21日 | [Qwen-Image 3.0](https://qwen.ai/blog?id=qwen-image-3.0) | 招待制プレビュー、ウェイトなし |
+
+<XPostEmbed
+  url="https://x.com/Alibaba_Qwen/status/2078759124914098291"
+  title="Qwen3.8 Max Preview — 2.4Tモデルとオープンウェイト予告"
+  description="Qwen公式発表。性能主張はウェイトと第三者評価の公開後に再確認が必要"
+  lang="ja"
+/>
+
+### Claude Opus 5：Fableに近い性能を半額で
+
+<XPostEmbed
+  url="https://x.com/claudeai/status/2080699495453528290"
+  title="Claude Opus 5を発表"
+  description="Fable 5に近いフロンティア性能を半額で提供するというClaude公式発表"
+  lang="ja"
+/>
+
+> “It’s a thoughtful and proactive model that comes close to the frontier
+> intelligence of Fable 5 at half the price.”
+>
+> — Claude公式X
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5"
+  title="What’s new in Claude Opus 5"
+  domain="platform.claude.com"
+  description="価格、1Mコンテキスト、128K出力、デフォルトthinking、effort段階をまとめた公式文書"
+/>
+
+| 項目 | Opus 5 |
+| --- | --- |
+| 通常API | **入力$5 / キャッシュ読取$0.50 / 出力$25** — 100万トークン当たり |
+| Fast mode | **入力$10 / 出力$50** — API限定 |
+| コンテキスト / 最大出力 | **1M / 128K** |
+| 推論 | thinkingがデフォルト、effortは`low`から`max`まで |
+| Opus 4.8比 | 通常API価格は同じ。Anthropicはagentic・長時間タスクの大幅向上を主張 |
+| Fable 5比 | 定価はちょうど半額。ただしFable 5が引き続き最上位 |
+
+<ResourceLink
+  url="https://platform.claude.com/docs/en/about-claude/pricing"
+  title="Claude API pricing"
+  domain="platform.claude.com"
+  description="Opus 5の通常、キャッシュ、バッチ料金を確認できるAnthropic公式価格表"
+/>
+
+> **料金の注意：** Opus 5は新しいtokenizerを使用します。Anthropicによると、
+> 同じ文章でもSonnet 4.6以前より約30%多いトークンになる可能性があり、
+> 同じトークン単価でも同一文書の費用は一致しません。
+
+**価格ポジショニング：** Fable 5は最高性能のhalo、Opus 5は半額の
+エージェント主力、Sonnet 5は大量利用層を担う3段構成です。
+
+### 利用量の伸び自体がグロース施策になった
+
+<XPostEmbed
+  url="https://x.com/sama/status/2077033807736459713"
+  title="CodexとChatGPT Workのusageが1週間で2.5倍"
+  description="Sam Altmanの発表。usageがユーザー、トークン、タスクのどれかは未定義"
+  lang="ja"
+/>
+
+> “one week, usage on codex and chatgpt work is up 2.5x”
+>
+> — Sam Altman
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2041655710346572085"
+  title="Codex 300万WAU — 1000万まで100万人増えるたびに上限リセット"
+  description="Tiboが始めたユーザーマイルストーン型のresetキャンペーン"
+  lang="ja"
+/>
+
+| 日付 | 発表指標 | 同時に提供したもの |
+| :---: | :---: | --- |
+| 4月8日 | Codex **3M WAU** | 即時リセット、100万人ごとの追加リセットを約束 |
+| 6月2日 | Codex **5M+ WAU** | この時点まではCodex単独の週間アクティブ指標 |
+| 7月13日 | Codex + Work **6M active** | 5時間制限の一時撤廃、週間上限リセット |
+| 7月14〜16日 | **7M → 8M → 9M** | 保存型リセット、即時リセット、週間上限の復元 |
+| 7月22日 | 合計**10M active** | 有料ユーザーの上限をリセット |
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2079609157934886975"
+  title="Codex + ChatGPT Workが1000万active usersに到達"
+  description="1000万のマイルストーンと有料ユーザーの上限リセットを発表"
+  lang="ja"
+/>
+
+> **指標の注意：** 5MはCodex単独のWAU、10MはCodex + Workの定義されていない
+> active usersです。同一指標の正確な2倍成長ではありません。
+
+### 利用者の感想もプロモーションになった
+
+<XPostEmbed
+  url="https://x.com/thsottiaux/status/2077248807533003257"
+  title="Solへ移行した理由を投稿するとCodexクレジット$100"
+  description="先着1万人を対象とした体験談キャンペーン"
+  lang="ja"
+/>
+
+<XPostEmbed
+  url="https://x.com/gdb/status/2079289658622738481"
+  title="ChatGPT Workの感想を投稿すると$100クレジット"
+  description="製品の口コミと追加利用を直接つないだキャンペーン"
+  lang="ja"
+/>
+
+---
+
+## 3. プロモーション変化と各社のGTM戦略
+
+### 既存の強者はモデルだけでなく上限でも競争
+
+| 製品 | 期間・状態 | 実際の変化 |
+| --- | :---: | --- |
+| **Claude Opus 5** | 7月24日公開 | Opus 4.8と同じ$5/$25、Fable 5定価の半額 |
+| **Fable 5プロモーション** | 7月19日終了 | 有料プランの週間利用量の最大50%をFableで利用 |
+| **Fable 5現行方針** | 7月20日から | Max・Premiumは最大50%込み、Pro・Standardはusage credit |
+| **Claude Code** | 5月13日〜8月19日 | 対象プランの**週間上限を50%増加**。5時間上限は同じ |
+| **Claude Cowork** | 6月5日〜8月5日 | **5時間上限を2倍**。週間上限は同じ |
+| **OpenAI Codex・Work** | 終了日未定 | 5時間制限を一時撤廃し、ユーザーマイルストーンごとにリセット |
+| **Kimi API** | 7月15日〜8月12日 | 1回の入金に10〜30% voucher。最大$4,000、90日間有効 |
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15424964-claude-fable-5-on-your-plan"
+  title="Claude Fable 5 on your plan"
+  domain="support.claude.com"
+  description="7月20日以降のMax、Pro、Team、Enterprise別Fable利用方針"
+/>
+
+> “You can use up to 50% of your weekly usage limits on Fable 5 at no extra cost.”
+>
+> — Anthropic、Max・Premium seat方針
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15910845-claude-code-may-august-2026-weekly-limits-promotion"
+  title="Claude Code weekly limits promotion"
+  domain="support.claude.com"
+  description="対象プランの週間上限を8月19日まで50%拡大"
+/>
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/15400594-claude-cowork-june-august-2026-usage-promotion"
+  title="Claude Cowork usage promotion"
+  domain="support.claude.com"
+  description="5時間利用上限を8月5日まで2倍に拡大"
+/>
+
+<ResourceLink
+  url="https://platform.kimi.ai/docs/pricing/promotion"
+  title="Kimi K3 launch top-up promotion"
+  domain="platform.kimi.ai"
+  description="1回の入金額に応じて10〜30%のvoucherを付与"
+/>
+
+> エージェント市場のGTMは「月額はいくらか」から、**「今日の仕事を
+> 完了できるだけの上限があるか」**へ移っています。
+
+### 各社のGTMを1枚で見る
+
+以下は各社が公式に示した戦略ではなく、公開された製品、価格、
+プロモーションに基づく**番組用の解釈**です。
+
+| 企業 | 今週使った仕掛け | GTM解釈 |
+| --- | --- | --- |
+| **OpenAI** | 100万人ごとのreset、5時間制限撤廃、$100体験談クレジット | 利用 → 共有 → 次のマイルストーン → 追加利用のグロースループ |
+| **Anthropic** | Opus 5をFableの半額で公開、Fableのプラン差、Code・Cowork上限拡大 | Fableを最高性能のhalo、Opusを主力にし、プロモーションで有料利用を拡大 |
+| **Moonshot** | K3の低いトークン価格、前払いvoucher、ウェイト公開予告 | 先にAPI需要を作り、その後オープン生態系と推論パートナーを拡大 |
+| **Qwen** | TTS・Audio・Image・2.4T LLMを連続プレビュー | オープンウェイトブランドをホストAPIフルスタックへの流入経路に活用 |
+
+> 同時期に起きたことは確認できますが、各プロモーションがK3やQwenへの
+> 直接的な対応だったという因果関係は公開されていません。
+
+### FableとGTM戦略：個人的なメモ
+
+- GTM議論でFableは顧客セグメント、ポジショニング、実行計画を一つの論理で
+  長く維持する感覚が、個人的な利用ではOpus 4.8と異なりました。
+- 公開直後のOpus 5は、同じ資料と質問で再評価する候補です。
+- これは利用経験であり、GTMベンチマークではありません。
+- 番組では二つのモデルに同じ会社資料を与え、次の3問だけを比較します。
+
+1. 最初に狙うべきICPは誰か？
+2. 最初の10社を獲得するチャネルは何か？
+3. 6週間以内にこの戦略を捨てる基準は何か？
+
+### 番組進行表
+
+| セクション | 時間 | 画面に表示するもの | 中心となる問い |
+| --- | ---: | --- | --- |
+| セキュリティ事故 | 5分 | 公式資料2件と重要引用 | モデル名より、評価システムの何が失敗したのか？ |
+| Kimi・Qwen・Opus 5 | 14分 | K3・Opus価格表とQwenタイムライン | 性能、価格、公開性のどれが選択を左右するか？ |
+| 利用量競争 | 10分 | 3M→10M表とX投稿 | 成長は製品力か、上限プロモーションか？ |
+| Claudeの対応 | 8分 | Opus 5・Fable・Code・Cowork方針表 | モデル階層と利用上限は新しいGTM手段か？ |
+| Fable GTM体感 | 5分 | 同じ3つの質問 | 戦略判断力をどう比較するか？ |
+
+**今回の一文：** フロンティア競争はモデルスコアだけではありません。
+ウェイト公開、トークン価格、エージェント利用量、上限リセットを束ねた
+**ディストリビューションとGTMの競争**になりました。
+
+---
+
+*Park Jong Hyun* — [LinkedIn](https://www.linkedin.com/in/jonhpark7966/) · [X](https://x.com/_jong_hyun_park) · [YouTube](https://youtube.com/@sudoremove)
