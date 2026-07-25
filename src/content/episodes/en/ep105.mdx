@@ -1,0 +1,458 @@
+---
+episodeNumber: 105
+title: "Can AI Do Research?"
+description: "Can AI conduct research? We examine cracks in academia’s evaluation system—from a rejected PPO paper to the explosion of papers and reviews at ICML, and the debate over peer review on arXiv."
+publishedAt: 2026-07-25
+duration: "1:10:21"
+youtubeId: "ZwjWj6aw2BY"
+notionUrl: "https://erucipe.notion.site/Inkling-Kimi-K3-3a0d5c9e7e5980d4a921febf9343e74b"
+thumbnail: "https://i.ytimg.com/vi/ZwjWj6aw2BY/maxresdefault.jpg"
+hosts:
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "Opening and Today’s Topic"
+  - time: "0:30"
+    title: "The Rejected PPO Paper and the Limits of Peer Review"
+  - time: "2:54"
+    title: "arXiv and Conferences in the Age of AI Slop"
+  - time: "10:04"
+    title: "Reproducibility: The Hugging Face Reproduce Challenge"
+  - time: "12:27"
+    title: "Inside Research Ralphthon"
+  - time: "16:40"
+    title: "Review Agents and the Problem of Reward Design"
+  - time: "18:38"
+    title: "Dwarkesh × Grant Sanderson: Math and AI"
+  - time: "20:13"
+    title: "An IMO Gold Medal Is Not AGI"
+  - time: "24:27"
+    title: "Galois Theory and a 100-Year Verification Timescale"
+  - time: "30:51"
+    title: "Adam Brown: The View That Compression Is Intelligence"
+  - time: "33:44"
+    title: "Theory Without Experiments: Physics and LLM Exploration"
+  - time: "39:17"
+    title: "What Remains for Humans in an Age of Intellectual Automation"
+  - time: "47:28"
+    title: "The Lineage of Compression and Intelligence, and Vintage LMs"
+  - time: "52:49"
+    title: "RLVR and Models That Fine-Tune Themselves"
+  - time: "65:26"
+    title: "In Practice: GPT-5.6 and Minecraft Agents"
+  - time: "69:51"
+    title: "Closing"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## Opening and Today’s Topic    *0:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Seungjoon Choi** Hello. Today, as we're recording, is July 18th, 2026. Let's get started. Jonghyun, what have you prepared for us?
+
+<span class="paragraph-timestamp" data-ts="00:09">00:09</span> **Jonghyun Park** First, on the subject of AI and research, that's what I'd like to discuss. After going through the major conference season, meeting researchers, and seeing a lot of related research, a question came to mind. It's one of the defining questions of our time. Can AI do research? We'll look at some major examples, how things are currently unfolding, and then share our thoughts. The first thing I'd like to introduce
+
+
+## The Rejected PPO Paper and the Limits of Peer Review    *0:30*
+
+<span class="paragraph-timestamp" data-ts="00:32">00:32</span> **Jonghyun Park** is John Schulman, a co-founder of OpenAI, who is now at Thinking Machines Lab. In reinforcement learning, there's an algorithm called PPO, which was especially prominent when ChatGPT was at its peak, and was applied to RLHF, the technique of doing RL with human feedback. It's the most commonly used algorithm, but apparently the paper on this algorithm was actually rejected in 2017.
+
+<span class="paragraph-timestamp" data-ts="00:54">00:54</span> **Seungjoon Choi** So that happened.
+
+<span class="paragraph-timestamp" data-ts="00:55">00:55</span> **Jonghyun Park** I didn't know either. This tweet was posted a month ago, and it got an enormous number of views. Everyone does recognize this issue. Just because a study is good doesn't necessarily mean it will be accepted by a prestigious conference. It can get rejected. I think a lot of people related to that, and for reference, thinking about another paper by Tony Zhao that I reposted in response to this tweet, apparently that one was nearly rejected as well. It's now a very popular study in the action space, but the reviewers themselves didn't view it favorably.
+
+<span class="paragraph-timestamp" data-ts="01:33">01:33</span> **Seungjoon Choi** They just don't know.
+
+<span class="paragraph-timestamp" data-ts="01:33">01:33</span> They just don't know.
+
+<span class="paragraph-timestamp" data-ts="01:40">01:40</span> Was PPO related to Policy Optimization?
+
+<span class="paragraph-timestamp" data-ts="01:43">01:43</span> **Jonghyun Park** I think it stood for Proximal Policy Optimization. Anyway, to give just a brief overview, this is how it was used in ChatGPT. When we have a conversation, a person rates the conversation as good or bad, and the model is improved based on that feedback. They initially used people, but because people have limitations, they also created models that imitate people, and it evolved in that direction, but that's basically what it was used for.
+
+<span class="paragraph-timestamp" data-ts="02:12">02:12</span> But what I wanted to discuss here goes beyond the rejection itself. Even the authors themselves didn't anticipate that PPO would later be used so extensively in GPT—that is, in LLMs— and have such a major impact. Until it was later used in LLMs,
+
+<span class="paragraph-timestamp" data-ts="02:32">02:32</span> neither the reviewers nor even the authors themselves could be certain that it would eventually have a major impact.
+
+<span class="paragraph-timestamp" data-ts="02:41">02:41</span> In other words, evaluating good research is itself extremely difficult. It's difficult to assign it a score. Those are some points worth considering.
+
+<span class="paragraph-timestamp" data-ts="02:49">02:49</span> **Seungjoon Choi** It sounds like the difficulty of evaluation will be today's main topic. It's difficult to develop good judgment. Looking at a few similar incidents
+
+
+## arXiv and Conferences in the Age of AI Slop    *2:54*
+
+<span class="paragraph-timestamp" data-ts="02:58">02:58</span> **Jonghyun Park** that have recently occurred in academia, one interesting case involves arXiv. The PPO paper was ultimately just uploaded to arXiv, where everyone read it and it received an enormous number of citations, but it wasn't published in any journal or conference and simply remained that way.
+
+<span class="paragraph-timestamp" data-ts="03:12">03:12</span> Last year, arXiv said that certain papers in the CS category would only be accepted if they had passed peer review. There was an announcement along those lines. The reason is very simple. As everyone can probably guess, there are simply too many AI-written papers flooding in, making quality control impossible and causing various other issues. So they would no longer make everything public as they had before, except on a limited basis. There was also a lot of heated debate about this on Hacker News. There were plenty of keyboard battles.
+
+<span class="paragraph-timestamp" data-ts="03:44">03:44</span> Those in favor argued that generating papers with an LLM is extremely cheap, whereas determining whether they are actually good and reviewing and evaluating them is expensive and difficult. So on arXiv—though it may be harsh to put it this way— among papers written using LLMs, there are probably many that offer no meaningful contribution to research, the so-called garbage research. If arXiv becomes flooded with that kind of slop,
+
+<span class="paragraph-timestamp" data-ts="04:07">04:07</span> people will leave it. So even though it was created to make all good research readily available, this restriction is necessary. Others argue that arXiv was originally meant for uploading and distributing papers before peer review.
+
+<span class="paragraph-timestamp" data-ts="04:19">04:19</span> It can uncover work like PPO, so how can they shut that down? Those seem to be the opposing views. It was for preprints.
+
+<span class="paragraph-timestamp" data-ts="04:27">04:27</span> **Seungjoon Choi** It was a place where papers could be released in advance, before being submitted to a journal. The barrier to entry was low. I'm not entirely sure
+
+<span class="paragraph-timestamp" data-ts="04:34">04:34</span> **Jonghyun Park** why it was originally created, but as I understand it, it had existed since before the LLM era.
+
+<span class="paragraph-timestamp" data-ts="04:40">04:40</span> **Seungjoon Choi** Right. It existed in physics and mathematics. It may have also been intended as a place to upload work that went undiscovered because of rejection,
+
+<span class="paragraph-timestamp" data-ts="04:45">04:45</span> **Jonghyun Park** but that wasn't the main reason. It was more because journals and conferences were simply too slow.
+
+<span class="paragraph-timestamp" data-ts="04:49">04:49</span> **Seungjoon Choi** It could take six months or even longer. In rapidly evolving academic fields, by the time a paper was published,
+
+<span class="paragraph-timestamp" data-ts="04:55">04:55</span> **Jonghyun Park** it was already a little late, so people also appreciated it as a tool for sharing knowledge more quickly.
+
+<span class="paragraph-timestamp" data-ts="05:01">05:01</span> **Seungjoon Choi** But now the world has rolled back. Looking at recent conferences,
+
+<span class="paragraph-timestamp" data-ts="05:06">05:06</span> **Jonghyun Park** we're seeing the same kind of thing. This year's ICML received 23,000 submissions, and reportedly accepted 6,000 papers. I was in graduate school ten years ago, and back when I was a graduate student, the scale wasn't in the thousands, but I think it was around 100 papers. We used to say that 100 published papers was a lot, things like that, but things have really changed.
+
+<span class="paragraph-timestamp" data-ts="05:33">05:33</span> **Seungjoon Choi** There are a lot of published papers themselves, too. 6,352 papers. Indeed.
+
+<span class="paragraph-timestamp" data-ts="05:37">05:37</span> **Jonghyun Park** I was a little surprised that there were this many published papers as well. And similarly, at a conference called ICLR, there were an enormous number of reviews, and I heard that a significant portion of those reviews were written entirely by AI. So not only has the average quality of papers declined because writing papers has become easier, but because the volume of reviews is unmanageable, people are also using AI to do the reviews, which causes the quality of reviews to decline as well.
+
+<span class="paragraph-timestamp" data-ts="06:03">06:03</span> There was similar talk at this year’s ICML. It seems they divided the review track policies into reviewing with AI and having actual humans review without AI, and proceeded with the tracks divided that way. But I heard there were cases where people had agreed to review the papers themselves but were caught using AI to review them. So they were excluded from reviewing, and in any case, it seems academia is now also undergoing changes to the system for evaluating and reviewing papers, this entire system. Though I don’t know where the right answer will lead.
+
+<span class="paragraph-timestamp" data-ts="06:37">06:37</span> **Seungjoon Choi** Those problems arise because production is overwhelming the system.
+
+<span class="paragraph-timestamp" data-ts="06:40">06:40</span> **Jonghyun Park** Then let’s return to a more fundamental question: What is good research? Ultimately, the conference acceptance and rejection system and all these other things are systems designed to find good research. As for what I consider good research, the fundamental meaning of research, first of all, is that if we take the entirety of human knowledge, it means expanding it, even by a little. That is what I personally consider research. And if the area where that knowledge has been expanded actually has a significant impact on our world and changes the world for the better, then that is good research. That is what I think. Seungjoon, do you happen to have a definition of good research? That’s a good question. I haven’t really thought about it,
+
+<span class="paragraph-timestamp" data-ts="07:25">07:25</span> **Seungjoon Choi** but I do agree that expanding and pioneering the frontier of human knowledge or wisdom is clearly one aspect of it. This is something I pondered long ago, when I was a graduate student doing research,
+
+<span class="paragraph-timestamp" data-ts="07:36">07:36</span> **Jonghyun Park** and I recently started thinking about it again. For now, let’s assume from this perspective that this is what constitutes good research and proceed from there.
+
+<span class="paragraph-timestamp" data-ts="07:44">07:44</span> **Seungjoon Choi** One thing I’d like to add is that research ethics are also important. When it comes to affecting humanity, there can be many different kinds of impact.
+
+<span class="paragraph-timestamp" data-ts="07:53">07:53</span> **Jonghyun Park** That’s true. Because research can be conducted without regard for ethics. Those kinds of things occurred particularly often during wartime. In any case, we need to successfully produce, evaluate, and discover this kind of good research, finding it among countless studies, but the problem is the reward. This is a problem that exists beyond LLMs and applies equally to human society. The method currently used in human society to identify good research is peer review, in which fellow researchers judge one another’s work to determine whether it is good research. This, ultimately, is the current academic system. It is an academic system that has continued for several hundred years. Don’t they do it without getting paid? Aren’t scholars reviewing papers
+
+<span class="paragraph-timestamp" data-ts="08:36">08:36</span> **Seungjoon Choi** simply as a contribution? I’m not sure. Perhaps even if money does not explicitly change hands,
+
+<span class="paragraph-timestamp" data-ts="08:44">08:44</span> **Jonghyun Park** reviewing, being part of that society, and organizing conferences would be major incentives, so I think there is inevitably an indirect cost. And although I’m not certain, I understand that reviewers are also paid for many reviews.
+
+<span class="paragraph-timestamp" data-ts="08:59">08:59</span> **Seungjoon Choi** Is that so? As I understand it, that varies considerably by conference or journal. In any case, it seems we have not found a system better than peer review. At least in human society. But now, because of LLMs, cracks are beginning to appear, and this is one of the problems
+
+<span class="paragraph-timestamp" data-ts="09:17">09:17</span> **Jonghyun Park** facing our generation. As we have discussed several times regarding LLMs, using RLVR to develop intelligence based on good rewards is the most important way to improve the intelligence of existing LLMs. So, in the case of mathematics, which we will discuss in more detail later, they have already reached the level of an IMO gold medal, a Mathematical Olympiad gold medal, over the past two years.
+
+<span class="paragraph-timestamp" data-ts="09:45">09:45</span> **Seungjoon Choi** I think it was a silver medal the year before last and a gold medal last year. But in the case of research,
+
+<span class="paragraph-timestamp" data-ts="09:50">09:50</span> **Jonghyun Park** because it is currently difficult to provide a verifiable reward, it also seems somewhat difficult for LLMs to advance toward conducting good research. And similarly, in human society, it also seems difficult to effectively identify good research.
+
+
+## Reproducibility: The Hugging Face Reproduce Challenge    *10:04*
+
+<span class="paragraph-timestamp" data-ts="10:04">10:04</span> **Jonghyun Park** I’ve brought some interesting attempts I’ve seen to solve this problem of our time to discuss. The first one is currently underway. Hugging Face is running something called the ICML Reproduce Challenge. In this challenge, agents actually reimplement the methods presented in papers and verify whether they work properly.
+
+<span class="paragraph-timestamp" data-ts="10:27">10:27</span> This is one of the issues that has always been highly controversial in academia. A paper says, “We experimented using this method, and achieved these improvements.” Then it is unveiled with a flourish, but when I actually try to reimplement it myself, it very often doesn’t work. That means it cannot be reproduced. Then it is difficult to trust. So how do we verify it? We could require them to release everything as open source, but in many cases, actual hardware experiments are involved, or the work was done using a closed-source simulator that is a critical asset, and often it cannot be made public, so there are quite a few practical difficulties. Anyway, based solely on the reasoning presented in the papers, they are running this reproduce challenge. So, among the many studies written by AI, some slop may contain mistakes in the experiments, be incorrect, or, in extreme cases, may not involve any experiments at all and may even use fabricated data. They could just say, "According to my reasoning, the experimental results would probably look like this," and put that out there.
+
+<span class="paragraph-timestamp" data-ts="11:31">11:31</span> **Seungjoon Choi** So, were quite a few of them reproduced? I'm not sure about that either.
+
+<span class="paragraph-timestamp" data-ts="11:35">11:35</span> **Jonghyun Park** This is still the submission period, and it will probably end on August 2, so I think we'll have to take a look after that. But this is just my personal prediction: out of those 6,000 papers, if you ask how many were actually reproduced, it looks like around 800 have been reproduced so far.
+
+<span class="paragraph-timestamp" data-ts="11:54">11:54</span> **Seungjoon Choi** But in any case, that means around 800 have been verified as reproducible. That's still quite a lot out of 6,000. Yes, I think so.
+
+<span class="paragraph-timestamp" data-ts="12:03">12:03</span> **Jonghyun Park** But I believe that may include refutations as well. So, in any case, this reproduce challenge goes beyond peer review based solely on the text of a paper by actually running the work and verifying whether the data really comes out correctly, so it could be seen as a kind of intermediate-stage reward. So it could be viewed as an intermediate stage of filtering for good research.
+
+
+## Inside Research Ralphthon    *12:27*
+
+<span class="paragraph-timestamp" data-ts="12:28">12:28</span> **Jonghyun Park** And then there's one more thing, which is particularly popular here in Korea right now: Ralphthon has become a popular meme, and a huge number of participants are having a great time with it. I went to the event myself, and it's a hackathon challenge where you run Ralph. Because the concept itself is fun, everyone can leave Ralph running and have fun talking among themselves, and it's also good for networking. This time, to coincide with ICML, the Ralphthon was a research Ralphthon. So there were two hackathons. The first was writing a paper with an LLM. Writing a paper all the way through actual research and experimentation until a paper is produced. And the second was reviewing those papers. So Ralphthon was held with those two tracks, and I interviewed the people at the event. But to digress for just a moment,
+
+<span class="paragraph-timestamp" data-ts="13:23">13:23</span> professors came, doctors came, researchers came, and even high school students came. We uploaded a video about it to our channel. Since we were live at the event, I saw someone who looked very young and asked how old they were, and they said they were 15. Curious, I asked what they were working on, and they said they used LLMs extensively, but once they filled the context with data through prompts, the performance seemed to deteriorate at some point. They wanted to know when and how it deteriorated. Should important data come at the beginning or the end? Performance would vary depending on things like that, and they wanted to understand how. This student was in high school and probably had never conducted research at school or anywhere like that, but their own questions were truly close to research, and they were independently working to answer those questions. I was really impressed to see that. As a high school student, they may have taken AP courses—I don't know how it works in the US or Canada—
+
+<span class="paragraph-timestamp" data-ts="14:20">14:20</span> **Seungjoon Choi** or encountered something early through an advanced program. Anyway, so that happened.
+
+<span class="paragraph-timestamp" data-ts="14:26">14:26</span> **Jonghyun Park** Yes, I found it quite impressive too.
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **Seungjoon Choi** But haven't you interviewed Gubong several times? Yes, when I first interviewed Gubong, Ralphthon hadn't been created yet.
+
+<span class="paragraph-timestamp" data-ts="14:38">14:38</span> **Jonghyun Park** The idea was wanting to give a Ralphthon a try.
+
+<span class="paragraph-timestamp" data-ts="14:41">14:41</span> **Seungjoon Choi** It was something where people stayed up all night, right? Yes, that was the wish, so during the first interview,
+
+<span class="paragraph-timestamp" data-ts="14:47">14:47</span> **Jonghyun Park** I heard about that idea. Then Ralphthons were actually held, including one in San Francisco and one in Singapore, and people overseas enjoyed them too. That young student also thought Ralphthon was unique and fun and wanted to attend, so they said they came while they were visiting Korea.
+
+<span class="paragraph-timestamp" data-ts="15:05">15:05</span> **Seungjoon Choi** I'll have to watch the video too. Anyway, what I found most encouraging was that, whether it's research or coding,
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **Jonghyun Park** building itself can be painful, but Gubong seems to have transformed it into something all the participants could enjoy, which I think is really wonderful. If I may take this opportunity to promote Gubong, the person shown here is Gubong, who organizes this Ralphthon through Team Attention, and I have been thoroughly enjoying attending the events Gubong organizes. I go whenever I have time, and there are always some fun elements there, so I always have a great time. Anyway, getting back to the topic,
+
+<span class="paragraph-timestamp" data-ts="15:48">15:48</span> they wrote papers with AI and reviewed them with AI, then ranked them by score and even held a poster session. And of course, they also invited actual researchers to serve as judges. They explained how they judged the creation of a good review agent. They selected all the good reviews based on how the judges themselves would review the papers. And they actually selected one more, comparing the scores from the judges' reviews of the AI papers
+
+<span class="paragraph-timestamp" data-ts="16:24">16:24</span> with the scores from the agents' reviews, and regardless of methodology, when they selected the one with the most similar scores, that review agent ended up winning. So when I asked what the most interesting aspect of this was, Gubong highlighted this. What we can take away from this is that the quality of a review is difficult to assess, just as we are currently struggling to evaluate papers.
+
+
+## Review Agents and the Problem of Reward Design    *16:40*
+
+<span class="paragraph-timestamp" data-ts="16:53">16:53</span> **Jonghyun Park** Then defining what makes a good review is also difficult. Simply looking at the correlation with human reviewers may be better than various review methodologies, which seems to be what this implies. The same applies to RLVR: if there is one good reward, you do not impose a particular method for reaching it and instead let it figure out how to solve the problem. This methodology worked well in this case too. That gave us a few things to think about. In any case, if we consider what these attempts themselves imply, the question is: how can we provide good rewards for research too? Having humans provide each reward properly is extremely difficult, and the sheer volume is unmanageable, so the idea is to somehow use AI to do it well. Efforts to provide rewards are also moving in this direction, but ultimately, this is not RLVR— that is, the rewards are not verifiable. Nevertheless, the goal is to specify the rewards as precisely as possible somehow. Attempts in this direction also seem to be active in academia.
+
+<span class="paragraph-timestamp" data-ts="18:01">18:01</span> **Seungjoon Choi** It does seem that methods involving giving an LLM a rubric are being widely used these days, and this might fall into that category.
+
+<span class="paragraph-timestamp" data-ts="18:09">18:09</span> **Jonghyun Park** That's true. Now that you mention giving an LLM a rubric, something else suddenly comes to mind. Kimi K3 has been released, and back in the days of Kimi K2, they successfully improved agent performance by giving an LLM a rubric and having it evaluate things in as much detail as possible, which, as I understand it, is why Kimi K2 performed so well. You could say this follows the same direction. It also seems quite promising.
+
+<span class="paragraph-timestamp" data-ts="18:32">18:32</span> **Seungjoon Choi** It feels like we are gradually moving into today's difficult part. Seungjoon was also very interested in this,
+
+
+## Dwarkesh × Grant Sanderson: Math and AI    *18:38*
+
+<span class="paragraph-timestamp" data-ts="18:41">18:41</span> **Jonghyun Park** so we decided to look at it together, and this is what we found. Two recent episodes of the Dwarkesh podcast were released. The first featured Grant Sanderson, who is known for the channel 3Blue1Brown, a famous mathematics educator— described as the best explainer there is. It is an interview with someone who runs an excellent mathematics education channel on YouTube. So that episode discussed mathematics, and the one after it featured
+
+<span class="paragraph-timestamp" data-ts="19:06">19:06</span> **Seungjoon Choi** Adam Brown. Adam Brown, yes. Adam Brown is at DeepMind now.
+
+<span class="paragraph-timestamp" data-ts="19:10">19:10</span> **Jonghyun Park** and is probably conducting research on superintelligence there, and originally came from physics. Physics at Stanford. So two episodes were released, one about physics and one about mathematics, and we would like to discuss what we saw and took away from them.
+
+<span class="paragraph-timestamp" data-ts="19:27">19:27</span> **Seungjoon Choi** Didn't you design a connecting thread to link this to the preceding discussion?
+
+<span class="paragraph-timestamp" data-ts="19:30">19:30</span> **Jonghyun Park** Ultimately, when we think about sciences like mathematics and physics, or fields of pure research, the question is whether AI can achieve a breakthrough in them— in other words, whether AI can conduct research. I selected only the parts that focused on that question. Ultimately, it is about progress in mathematics. Yes, exactly. In mathematics, we have been hearing a lot of news lately. Cases of OpenAI proving certain hypotheses or conjectures are beginning to emerge one after another, and I think we perceive such cases as breakthroughs. This seems to reflect those expectations and the question of how far this can go. What surprised me while watching this video
+
+
+## An IMO Gold Medal Is Not AGI    *20:13*
+
+<span class="paragraph-timestamp" data-ts="20:13">20:13</span> **Jonghyun Park** was that it begins with the following story. They had also done an interview three years earlier, back when there was a great deal of discussion about AGI. Would AGI happen, and when would it happen? Starting with the question of what AGI even is, they asked, “If AI wins an IMO gold medal, wouldn't that make it AGI?” In other words, if it is exceptionally good at mathematics, doesn't that mean it is truly intelligent? Apparently, even then, Grant Sanderson said that it did not. It is simply one benchmark. It would merely be succeeding at one benchmark, something that today's LLMs are extremely good at. As was already the case three years ago, it would just be cracking that one benchmark. It probably would not constitute general intelligence.
+
+<span class="paragraph-timestamp" data-ts="20:56">20:56</span> But from where we are today, AI has won an IMO gold medal, and we do not call it AGI on that basis. So Grant Sanderson was prescient. That seems to have made us pay even closer attention to those words.
+
+<span class="paragraph-timestamp" data-ts="21:09">21:09</span> **Seungjoon Choi** The IMO is, after all, a competition where exceptional high school students solve problems. Models can now do mathematics of the kind that mathematicians would need to tackle, so the progress over the past year has been tremendous. I also saw a lot of discussion along these lines when AI won the IMO gold medal.
+
+<span class="paragraph-timestamp" data-ts="21:27">21:27</span> **Jonghyun Park** There is a company in the GPU cluster business whose founder is an IMO gold medalist, and the founder said something along these lines on Latent Space. An IMO gold medal is essentially the entry threshold for becoming a mathematician. At the IMO, contestants solve six problems in about nine hours. It takes place over two days, so at most it is a ten-hour task. But actually conducting mathematical research is a task that takes ten thousand or tens of thousands of hours, so whether AI can advance to that level is the next challenge. That is what the founder said. So although these are problems
+
+<span class="paragraph-timestamp" data-ts="22:07">22:07</span> that only exceptionally intelligent humans can solve, you could also say that their scale is not very large.
+
+<span class="paragraph-timestamp" data-ts="22:13">22:13</span> So Grant Sanderson says that the hidden truth about the IMO is that you can train for it extensively. In other words, you can keep practicing problems.
+
+<span class="paragraph-timestamp" data-ts="22:22">22:22</span> **Seungjoon Choi** Even when a problem has novelty, it is still something you can train for.
+
+<span class="paragraph-timestamp" data-ts="22:26">22:26</span> **Jonghyun Park** Humans can. Yes, that seems to be what Grant Sanderson is saying. To use a simple analogy from my own world, if we were preparing for the mathematics section of the CSAT, we could train by solving numerous past questions and many similar problems. that it feels like you could do well on the CSAT, and I think the point is that the IMO is no different in that respect. But what they say here is that current AI—this is probably based on last year. Last year's IMO gold-medal models were probably all similar, but mathematics itself is divided into different fields. I mean, just as we say that being good only at math does not make something AGI, because it sometimes cannot do other things that seem so obvious, the same structure exists within mathematics—it's isomorphic, in other words. Within mathematics, there are algebra, geometry, number theory, and combinatorics. Of those, it cannot solve combinatorics problems,
+
+<span class="paragraph-timestamp" data-ts="23:19">23:19</span> while it solves the others very easily. So even within this domain, there are distinct kinds of spiky intelligence. For reference, combinatorics means problems about counting the number of possible cases. I also vaguely remember watching the video,
+
+<span class="paragraph-timestamp" data-ts="23:31">23:31</span> **Seungjoon Choi** and I think Grant Sanderson said that if there had been two geometry problems in 2024, it would have won a gold medal that year.
+
+<span class="paragraph-timestamp" data-ts="23:40">23:40</span> **Jonghyun Park** Right. The IMO has six problems, but there are four subjects, so the distribution varies each time. So because there was one combinatorics problem, it got one problem wrong and got all the others right, earning a silver medal, if I remember correctly. The year before last. Right. I'm not exactly a great expert on mathematics, but I asked about this to some friends who had studied math very seriously. They told me that even among people, combinatorics experts are a distinct group. I guess there are effectively different specialties even within mathematics. They say combinatorics is typically the kind of thing that geniuses excel at. They described it as a field that relies somewhat on innate ability.
+
+<span class="paragraph-timestamp" data-ts="24:21">24:21</span> To wrap up the discussion of the IMO here for a moment, the question is whether AI can actually conduct good research, and what good research is. If we think about these questions a little more from a mathematical perspective, examples from the past come to mind. Both here and on Dwarkesh, they discuss group theory, which was created by this person named Galois, and that is how it is translated here. Apparently, this is called group theory. It seems Galois came up with this idea of group theory, and that things like this emerged from it. But it later truly came into the spotlight and even influenced things like the prediction of quarks. They say that took 100 years. In other words, from the time a theory emerges until it actually has an impact on human society, and until it is validated as genuinely good research, the timescale is enormously long. That means the process cannot be repeated iteratively. Because of difficulties like these, RLVR, which is currently improving the intelligence of LLMs by providing immediate rewards and developing intelligence in the direction those rewards indicate, operates on a completely different timescale, so this method would not apply here. That is one of the difficulties. Another thing that struck me
+
+
+## Galois Theory and a 100-Year Verification Timescale    *24:27*
+
+<span class="paragraph-timestamp" data-ts="25:36">25:36</span> **Jonghyun Park** was something Grant Sanderson quoted. A good mathematician proves theorems, a great mathematician makes good conjectures,
+
+<span class="paragraph-timestamp" data-ts="25:46">25:46</span> **Seungjoon Choi** There are those famous conjectures named after various people.
+
+<span class="paragraph-timestamp" data-ts="25:48">25:48</span> **Jonghyun Park** Yes, things like the Poincaré conjecture. And then the very greatest mathematician comes up with definitions— good definitions. That is what Grant Sanderson said. So the perspective on research that we have today is still focused on proving theorems, or skillfully proving theories and hypotheses. So whether AI can go beyond that is ultimately what we need to consider. What do you think? I would like to hear your opinion.
+
+<span class="paragraph-timestamp" data-ts="26:22">26:22</span> **Seungjoon Choi** The reason I suggested that Jonghyun and I watch this Dwarkesh episode together was actually because Dwarkesh is planning a series around this question. Dwarkesh keeps persistently digging into why there are areas where these systems perform well, yet other areas where they still do not, and particularly why, in science, there is a possibility that they may fail to make dramatic progress. Perhaps I was influenced by watching that, but I also still have questions about it. I'm curious. I'll introduce this during my turn as well, but these systems perform extremely well in the areas where they work, while in the areas where they do not, they continue not to work. This spiky characteristic keeps repeating like a fractal, as Grant Sanderson said earlier, and I think that is exactly right. They will keep picking the low-hanging fruit. Nevertheless, within the immediate, near-term timeframe, I hope that the direction in which humans still need to remain involved will continue for at least another five years.
+
+<span class="paragraph-timestamp" data-ts="27:16">27:16</span> **Jonghyun Park** In any case, with the current method of improving intelligence based on RLVR, it does not seem easy to reach those lofty heights. That seems to be what you think. I think similarly.
+
+<span class="paragraph-timestamp" data-ts="27:29">27:29</span> **Seungjoon Choi** But Chester has a somewhat different perspective. Chester isn't feeling well today, so although we'd surely have heard a comment, I think we'll probably hear it next time.
+
+<span class="paragraph-timestamp" data-ts="27:39">27:39</span> **Jonghyun Park** The people watching this video are probably grappling with similar questions in their respective fields, and today, we are going to discuss them in relation to research, particularly science. As for whether AI can conduct good research, I think it absolutely can. I'm not sure whether it can come up with definitions like those very greatest mathematicians, but I think it can conduct good research because one example also comes up in this Grant Sanderson episode. The number theorist Montgomery and the physicist Dyson were apparently discussing something like the Riemann zeta function. As they were talking about some kind of formula, they said, "That is the same as this thing in mathematics and that thing in physics," and discovered some commonality between them. At the Institute for Advanced Study in Princeton, they arrange occasions
+
+<span class="paragraph-timestamp" data-ts="28:31">28:31</span> **Seungjoon Choi** where highly distinguished people can meet by chance, and I think this may have been an anecdote from one of those lunches. Whether it was lunchtime or time for tea,
+
+<span class="paragraph-timestamp" data-ts="28:40">28:40</span> **Jonghyun Park** I heard it just came up while they were talking at one of those gatherings. Things that we think of as very different fields can actually have a tremendous number of things in common. That they’re isomorphic, that we have the same structure, that’s what we’ve been talking about, and if you think of research as expanding humanity’s knowledge, every person knows their own domain well, but doesn’t know every other domain well. But from a knowledge perspective alone, an LLM can instantly know all of them well. So when you take some element from this field and apply it directly to that field, when you apply it isomorphically, progress can occur. If you think about it sufficiently from this perspective, knowledge that humanity has yet to discover can be expanded by taking things from other fields and applying them. That is entirely possible.
+
+<span class="paragraph-timestamp" data-ts="29:29">29:29</span> **Seungjoon Choi** Right. But personally, because of the curse of context, the model only does that when you prompt it to. Because if you just tell it to do something, the distribution tends toward the average, so it only says what would normally be said in that field and doesn’t bring anything in from elsewhere. It only brings things in when you ask it to. So personally, I think that’s still
+
+<span class="paragraph-timestamp" data-ts="29:50">29:50</span> something humans can do. Now that you mention it, a lot of methods come to mind. The easiest would be to simply tell it in the prompt to look at other fields. You could also deliberately bring in material from other fields and feed it to the model, or, thinking a little more from an RLVR perspective, among the output tokens generated by the LLM, you could deliberately select low-entropy tokens and tell it to explore in other directions as well. That’s why, last year,
+
+<span class="paragraph-timestamp" data-ts="30:15">30:15</span> Gwern discussed something called LLM Daydreaming, a concept where it connects various things while sleeping, but in any case, I suppose this could be overcome to some extent with a harness or something similar. In any case, when it comes to an LLM,
+
+<span class="paragraph-timestamp" data-ts="30:28">30:28</span> **Jonghyun Park** if you ultimately think about it, it isn’t impossible. When I think about these points, it’s because this was true for me in the past, and it’s still true when I’m building things these days. It was also true when I was doing research: I would read other papers, draw inspiration from them, and think, “I should try applying this over here.” Naturally, I had those kinds of thoughts a lot. I think those things are entirely possible. That’s roughly where I stand. Going one step further, there’s the recent episode, which is about physics. I think the video is about an hour and 40 minutes long. For an hour and 10 or 20 minutes of it—almost the entire thing—it really is just
+
+
+## Adam Brown: The View That Compression Is Intelligence    *30:51*
+
+<span class="paragraph-timestamp" data-ts="31:04">31:04</span> **Seungjoon Choi** A physics lecture. It just explains the theory of relativity. That in itself is incredibly impressive, of course, but what comes next is ultimately,
+
+<span class="paragraph-timestamp" data-ts="31:13">31:13</span> **Jonghyun Park** “Then how can AI do something like this?” That’s what they discuss. But because the discussion of the theory of relativity in physics is naturally so difficult in theoretical terms, I personally don’t think I understood all of it either. But what I’d like you to do is give it a watch, because even if you don’t understand all of it, there are many parts you can understand. On Grant Sanderson’s 3Blue1Brown channel, there’s a video series currently being released called Compression is Intelligence, I think, meaning “compression itself is intelligence.” That’s what it discusses.
+
+<span class="paragraph-timestamp" data-ts="31:45">31:45</span> **Seungjoon Choi** Grant Sanderson talked a bit about entropy, and it seems that’s becoming a series. I think it’s probably a three-part series. That’s what it discusses, that compression is intelligence,
+
+<span class="paragraph-timestamp" data-ts="31:53">31:53</span> **Jonghyun Park** and that is its main theme. It felt similar to me. In other words, they talk extensively about how Einstein developed the theory of relativity, whether it took 10 or 20 years, and which idea it began with. They go into all of that in great detail. But we’re hearing all of it now in the span of an hour. So during the time the research was being conducted, people explored one idea after another, formed hypotheses, conducted thought experiments, and even performed actual physical experiments. The vast body of knowledge built upon those efforts was ultimately compressed and compressed again, and explaining it as simply as possible at a level all of us can understand is itself intelligence. That’s ultimately the kind of point the 3Blue1Brown channel is making, and I recommend watching it from that perspective. It makes you think, “Something that difficult can be explained like this,”
+
+<span class="paragraph-timestamp" data-ts="32:50">32:50</span> at least that’s how it made me feel. But honestly, no matter how visually Grant Sanderson explains things, difficult things are still difficult. I enjoy watching the videos, but I don’t understand all of them. But we briefly passed over this earlier: there are fascinating stories about geniuses who died young, such as Galois and Abel, and Grant Sanderson also seems to be preparing a documentary about them. It seems to be some kind of documentary about mathematicians that connects their stories to the AI era, and I’m really looking forward to that as well. I always recommend the 3Blue1Brown channel to people around me.
+
+<span class="paragraph-timestamp" data-ts="33:22">33:22</span> It has personally helped me tremendously. When it came to doing practical work, although I learned a lot about things like Fourier transforms in school, when I actually needed to use them for work or research, I didn’t understand them. But after watching that video once, I understood immediately. Visuals really are powerful. That’s what I thought. Let me continue for now. They discuss theoretical physics, and ultimately, one of the difficult things about theoretical physics is that experiments are extremely difficult. You have to make certain particles move at nearly the speed of light. You have to conduct experiments like these to observe each hypothesis one by one, but ultimately, what you have to do is simply conduct thought experiments. In the absence of actual experiments, how far can we go without experimentation? The idea is to entrust this to AI. Then, without experiments, how far could AI actually take the research? Adam Brown explains it this way: Suppose we had intelligence at Einstein’s level, and assume that an LLM had intelligence at that level. Throughout human history, there has only been one such person at a time, and even if exceptionally brilliant people at that level had continued to exist, there still would not have been very many of them. If those people were LLMs, we could create LLMs in vast numbers and have them conduct a great many different experiments in their minds, so we would undoubtedly be able to discover far more. We could simply think of the problem as exploration and invest the vast resource of computation into that exploration. There is an enormous amount that could be discovered. That is what Adam Brown is saying. Also, I provided all the source materials for this article, and Fable 5 wrote it.
+
+
+## Theory Without Experiments: Physics and LLM Exploration    *33:44*
+
+<span class="paragraph-timestamp" data-ts="35:07">35:07</span> **Jonghyun Park** As I reviewed what Fable 5 had written, I deliberately left this part in. It described it as being willing to waste resources. Of the things we currently believe are all true, a great many have actually turned out not to be true. Even in the case of Einstein’s theory of relativity, there are many examples of that. Newton’s universal gravitation, gravity, and things like that were all considered true, but they actually contained many contradictions. The video also provides many accessible explanations of such contradictory cases. Once we identify those contradictions, we need new explanations to resolve them, and because LLMs do not mind wasting resources on proving again the assumptions we believe to be true, as they do those things, they can uncover things that were previously overlooked. That is the Hugging Face Reproduce Challenge I mentioned at the beginning. Because the papers passed peer review, we naturally assume that they are all correct, but deliberately reproducing them to demonstrate that they may have been wrong is something that, for an LLM, might seem wasteful from a human perspective, but is not actually wasteful. So I think we can conclude that even today, there are areas where LLMs can provide substantial assistance with our research. Then, when we ask what will happen going forward,
+
+<span class="paragraph-timestamp" data-ts="36:28">36:28</span> the pace will naturally vary significantly by field. Fields where everything can be worked out mentally, such as mathematics and theory, will naturally advance first, while fields that require actual experiments, such as biology or chemistry, where substances must be synthesized or reactions observed, will naturally have to move a little more slowly. Those are some of the thoughts that come to mind. And for now, fields where rewards can easily be provided will naturally advance first, while fields where they cannot will progress more slowly, and I think that is what Dwarkesh is trying to say through this podcast. This has limitations. Might we need an approach other than RLVR? Or, in the preceding series, there were limitations to pretraining. Continual learning does not work at all either. What do we need to do about these things to reach a higher level of intelligence? Dwarkesh seems to have continued conducting interviews in this context, and this appears to be following a similar line of thought. Then, if we consider the ultimate goal,
+
+<span class="paragraph-timestamp" data-ts="37:30">37:30</span> could AI formulate the definitions associated with the greatest mathematician that I mentioned earlier? Will that remain the domain of humans until the end, or will it become the domain of AI? This seems to be an area where everyone may have a different opinion. Personally, I think AI might be able to do it. That is what I think. A definition is also something that can simply be created, but whether it is a good definition ultimately depends on how accurately it reflects reality and how well it explains physical phenomena and natural phenomena. Ultimately, it might be no different from the search problem of exploration. If evaluation is possible, if verification is possible, might AI be able to accomplish this as well? But I do not think this will happen on a timescale of the next two years or so. It does seem to be a long way off, but looking 10 or 20 years ahead, might it be possible? Personally, that is what I think. By around 2040, I suppose anything could happen.
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **Seungjoon Choi** So we have heard from Jonghyun, and shall I continue from here? I will skip over some of the overlapping parts and share my thoughts as well. I mentioned this once in the previous episode too, but Periodic Labs was founded by people who had been at OpenAI and worked in fields such as materials science and physics, and co-CEO Liam Fedus has been working on this lately. They are building a factory because they need to conduct experiments. I remembered this tweet and brought it up again. There clearly seem to be areas where the loop must be closed through experimentation.
+
+<span class="paragraph-timestamp" data-ts="39:07">39:07</span> So after watching the video, I had a conversation with the model and generated a short piece titled “What Remains in the Age of Intellectual Automation.” I highlighted several points, and revisited Grant Sanderson’s argument that intellectual breakthroughs take at least three forms. First, there is the lightning bolt mentioned earlier, where two different fields can be placed side by side. But this is relatively easy. These days.
+
+
+## What Remains for Humans in an Age of Intellectual Automation    *39:17*
+
+<span class="paragraph-timestamp" data-ts="39:38">39:38</span> **Jonghyun Park** Yes, that's right. Right. But building a new mountain is extremely difficult, takes a lot of time, and you can't know early on whether it's right or wrong, and it's difficult to evaluate. So this kind of achievement is hard to evaluate immediately as simply having gotten the right answer. Whether it was truly a productive idea may not become apparent until decades later. That's one of the three forms of intellectual breakthrough, and I found another one rather interesting. It is reaching an answer by pushing through an enormous amount of reasoning even without any new concepts. In fields like formal proofs, using systems such as Mathematica or Lean, it was already possible to run automated theorem provers and explore things resembling alien mathematics that humans find difficult to understand. That reminded me of what Grant Sanderson said: proving that something is true and determining whether it is really what we want and an idea capable of changing how we think are different things.
+
+<span class="paragraph-timestamp" data-ts="40:40">40:40</span> **Seungjoon Choi** So making it digestible for humans is still important, but the point was also that machines could be good at explaining such things. So this part also gives me something to think about, and there is a part related to the back-and-forth that Chester, Jonghyun, and I have on our channel: the role of choosing what to explain, which ideas are worth wrestling with, in what order to present them to people, and why they are interesting will remain important for the foreseeable future. So I also found Grant Sanderson's remarks
+
+<span class="paragraph-timestamp" data-ts="41:15">41:15</span> on how to frame the value of one's own existence quite striking. So for now, this still holds true, and Dwarkesh said something along these lines: when studying something difficult, you do read the original text, but having a model explain it dramatically lowers the difficulty. I strongly relate to that as well. But while AI writes explanatory prose well, it isn't particularly good at creative writing. It writes well, but hasn't been able to surpass a certain level.
+
+<span class="paragraph-timestamp" data-ts="41:45">41:45</span> **Jonghyun Park** What kind of writing do you mean by creative writing here? For example, things like novels.
+
+<span class="paragraph-timestamp" data-ts="41:51">41:51</span> **Seungjoon Choi** Jonghyun mentioned this once before too. Things like comedy or novels don't work very well.
+
+<span class="paragraph-timestamp" data-ts="41:55">41:55</span> **Jonghyun Park** Right. Comedy really doesn't work. Right. It's not funny at all. For RLVR to work,
+
+<span class="paragraph-timestamp" data-ts="42:02">42:02</span> **Seungjoon Choi** you need to be able to provide a scalar reward based on whether the final result is right or wrong. Since that rewards the entire path, including which tokens should be included, it does make AI better at coding, but there is no way to know whether each token is valuable enough. But in writing, every individual token is part of the final product, so I don't think that can be solved with RLVR. That point Dwarkesh made has stayed with me.
+
+<span class="paragraph-timestamp" data-ts="42:30">42:30</span> Good writing considers where readers might hesitate, what they might misunderstand, and in what order they need to think to accept the next sentence. Each sentence and word is not mere packaging, but the content itself. The point that writing is not like code, where it can look messy as long as the result works well, really resonated with me. So there needs to be a layer that judges importance. Even in automated knowledge production, the human question of what is valuable
+
+<span class="paragraph-timestamp" data-ts="43:01">43:01</span> may be somewhat ambiguous, but it will not easily disappear. Since models are also steadily becoming better at reviewing and making judgments, this may not last forever, but the view that it will not easily disappear seems to be something Dwarkesh and Grant Sanderson agree on. This also gives the sense that the teacher's role is shifting somewhat. That's because what is still needed is a social relationship, not merely an explanation. The point was that because teaching is fundamentally a social and relational activity, some part of the teacher's role will remain. Ultimately, to read this once more,
+
+<span class="paragraph-timestamp" data-ts="43:44">43:44</span> what matters is the instinct for recognizing which problems are worth asking, the ability to see connections between distant ideas, and the patience to judge whether a new concept is truly productive. I think that patience is important. The skill of compressing complex results into a form humans can understand, and guiding people toward what is worth seeing amid an overabundance of knowledge—these were all extracted from discussions of complex mathematics, stripped down with the help of Fable 5, leaving only the framework. So these are the points I noticed. If I try connecting writing and mathematics and think about them together,
+
+<span class="paragraph-timestamp" data-ts="44:25">44:25</span> **Jonghyun Park** I personally love novels. But then, what makes a good novel? If I ask, "Why do I find this interesting?" it's hard to explain. And if we think about mathematics,
+
+<span class="paragraph-timestamp" data-ts="44:37">44:37</span> Seungjoon mentioned Lean earlier, and I came across something about that. With Lean, though I don't know much about it myself, when DeepMind won a medal at the IMO the year before last—it was a silver medal— DeepMind wrote the code in Lean. Lean just looks like mathematical notation. It's text, but it looks like code, like mathematical code, and I heard it's a language that can determine whether something is true or false when you run it. So people say that if you learn Lean well, you can more or less turn mathematics into something verifiable. Right. You do have to translate all of it into Lean.
+
+<span class="paragraph-timestamp" data-ts="45:12">45:12</span> **Seungjoon Choi** But starting this year, I believe, DeepMind no longer uses Lean. Right. And that brings us to the Adam Brown episode
+
+<span class="paragraph-timestamp" data-ts="45:20">45:20</span> **Jonghyun Park** that frightened everyone at the time. As time has passed, whether you're using Lean, writing mathematical code, or writing a novel, both are simply writing. Assuming that an LLM spits out tokens, suppose it did good mathematical research and the output proved a theorem, but the output is millions of lines of Lean code. Then it would be far too difficult for humans to look at it and understand it. That is one of the things I worry about. In other words, it would be a boring novel. It would be true, but impossible to explain. I worried about this a lot, but at this point,
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> judging from some recent announcements by OpenAI, apparently their content is easy to understand. When Adam Brown said something along those lines, Dwarkesh responded, “Could it be that it’s only easy for you?” That was the response, but anyway, by the standards of an exceptionally intelligent human, it is not at an inexplicable level. In other words, it is not couched in extremely difficult language. Seeing Adam Brown assess it as an explanation that humans can comprehend makes me wonder whether, in a sense, it is closer to a good novel. Because when humans read it, they can understand it. So it is fine. You could put it that way. So in a sense, the boring novel
+
+<span class="paragraph-timestamp" data-ts="46:38">46:38</span> is a proof consisting of millions of lines of Lean code, while the interesting novel is an explanation for humans, that is, an explanation at a level they can read and understand. That is precisely Compression is Intelligence. This idea is also connected to that: a piece of writing that compresses things well and makes the explanation easy is intelligent writing. And in a sense, that might also be a good novel. Could these ideas be connected in that way? That is something I have been thinking about recently.
+
+<span class="paragraph-timestamp" data-ts="47:04">47:04</span> But an interesting novel and an easy-to-understand novel also seem to be different things. So even when I think about these things myself, the categories are not clear, and because of that, it seems only natural that this does not work well right now, but I am not sure whether that will still be the case in the future. Of course, this probably will not work for the time being either. But since you mentioned compression, this is quite fascinating.
+
+
+## The Lineage of Compression and Intelligence, and Vintage LMs    *47:28*
+
+<span class="paragraph-timestamp" data-ts="47:32">47:32</span> **Seungjoon Choi** The person who became famous for talking about AGI, that is, the person who widely popularized AGI, is Shane Legg, the co-founder of DeepMind. And Shane Legg’s advisor was Marcus Hutter. Where does Marcus Hutter come in? Wikipedia compression— Marcus Hutter was the person who put up the prize. It was about how efficiently Wikipedia could be compressed. So compression was a central research topic for Shane Legg and Marcus Hutter. One that led to AGI. And the foundational idea behind it is a concept called Solomonoff induction. Shane Legg’s doctoral dissertation discusses how Solomonoff induction feeds into all these ideas. And Ilya Sutskever once touched on a related topic
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> while explaining Kolmogorov complexity. I remember hearing that once. So I am saying this without fully understanding it myself, but these foundational ideas involving compression and intelligence are extremely important within the field of algorithmic information theory, and it suddenly occurred to me that these ideas form the foundation of today’s AI. Yes, I have been thinking about that a lot lately as well.
+
+<span class="paragraph-timestamp" data-ts="48:39">48:39</span> **Jonghyun Park** Watching AI develop, especially when I imagine that I had been born a thousand years ago, I do not think there would be that much difference in mental ability between someone from a thousand years ago and me. But there is an enormous difference between the output someone from a thousand years ago could produce and the output I can produce now, and that is because humanity’s knowledge has accumulated. And because that knowledge has been compressed so effectively, we absorb all of it through formal schooling extraordinarily quickly as we grow up, so by the time we turn twenty, we become capable of doing many things.
+
+<span class="paragraph-timestamp" data-ts="49:13">49:13</span> **Seungjoon Choi** Right. Because our minds are already filled with so much scaffolding, there are many ways we can use it instrumentally, as tools for thought.
+
+<span class="paragraph-timestamp" data-ts="49:21">49:21</span> **Jonghyun Park** Right. The brain’s hardware probably is not all that different, so perhaps compressing knowledge and putting it into the brain effectively is the essence of intelligence. That is what I find myself thinking. From a macroscopic perspective. But Ted Chiang once described this
+
+<span class="paragraph-timestamp" data-ts="49:36">49:36</span> **Seungjoon Choi** by saying that LLMs are blurry JPG compressions of the web, which became a subject of controversy. Anyway, let us keep moving along for now. I majored in applied physics as an undergraduate, but I am actually far removed from physics. So I do not know it very well. The material was not easy for me either, but what I did was provide Adam Brown’s transcript and try turning it into a mnemonic book. It presents a conversation, then things like simulations in the middle that readers can use for tinkering, and then toward the end, there are quizzes that ask about the earlier material, so I tried structuring it in a way that allows readers to use mnemonic techniques. And as I listened to these discussions,
+
+<span class="paragraph-timestamp" data-ts="50:22">50:22</span> I was reminded of Ted Chiang, whom we just mentioned. In 2000, Ted Chiang wrote a story whose translated Korean title is probably “The Evolution of Human Science,” in which, after metahumans emerge, humanity has to practice archaeology. People strive to understand the research conducted by the metahumans, and it is a story that is both funny and sad. It is a short piece, and it is interesting. That was one thing that came to mind, and what I would like to spend the latter half of today discussing is something I mentioned earlier: I believe Dwarkesh has meticulously planned how to approach this process. The idea is that RLVR may be particularly weak in science. This was a blog post published in May, and after putting forward that idea in advance, Dwarkesh found suitable interviewees and conducted interviews with people such as Michael Nielsen, as well as people working in science, and Grant Sanderson, who explains mathematics. The way Dwarkesh shapes all of this around that plan is a very interesting point. So what alternatives might there be when RLVR does not work? I have imagined things like that before. But just a moment ago, Jonghyun, you mentioned people from a thousand years ago.
+
+<span class="paragraph-timestamp" data-ts="51:33">51:33</span> But there was an interesting experiment this April. Alec Radford called it Vintage LM— the person who created GPT, you know. Using only data from before the 1930s, meaning only texts published before then, to create a trained language model, and is experimenting to see whether, using things like pretraining and RL, it can imagine developments that occurred after the 1930s—that is the general idea behind the experiment. So a family of models called Vintage LMs is emerging, and I personally find it fascinating. This is the first time I have heard of Vintage LMs,
+
+<span class="paragraph-timestamp" data-ts="52:13">52:13</span> **Jonghyun Park** but ultimately, if the data here is really well constructed and the model can achieve technological advances through the 2000s, then we can naturally project from that and imagine that it should be able to do the same going forward from the present day. In a way, I think it could even be seen as proof. So simply observing this experiment could be very helpful in predicting the future, and depending on the results, people's thinking could change, and their actual behavior could change as well. Right. So I just wanted to introduce
+
+<span class="paragraph-timestamp" data-ts="52:43">52:43</span> **Seungjoon Choi** the idea that there seems to be an interesting connection here, and next, the ideas underlying the RLVR work happening these days are actually very old, going all the way back to Ronald Fisher's score function idea. That is a very old idea. But I believe the REINFORCE algorithm itself emerged in the early 1990s. The score function in statistics emerged in the early 1900s, in the 1920s, and then the policy gradient work by Williams and others appeared in the early 1990s. That gave us the idea that reinforcement learning could be performed using rewards, and the idea underlying the RLVR used in LLMs today actually emerged very early. So, to explain this very briefly
+
+
+## RLVR and Models That Fine-Tune Themselves    *52:49*
+
+<span class="paragraph-timestamp" data-ts="53:40">53:40</span> **Seungjoon Choi** to the extent that I understand it, this x represents a conditional probability, and given a condition or input x, there are parameters theta for a model that can produce y, and the model outputs a probability. A score function ultimately calculates the gradient of the logarithm of that probability. So to help the model do that well, if a reward is provided from outside the system—that is, from outside the model— then even if the computational graph is not connected, because it only involves multiplying this by a scalar, it can alter the distribution.
+
+<span class="paragraph-timestamp" data-ts="54:14">54:14</span> So this provides a way to optimize the objective function, and it works with LLMs because LLMs output probabilities. When a model outputs a token's probability logit, that gives you a probability, and what comes out of those probabilities is the vocabulary. Each token has a certain percentage probability, and we take some of the highest-probability tokens and use them for next-token prediction. The set of tokens ultimately serves as the action space, so it is possible to reinforce what the LLM outputs probabilistically. In RLVR, after the model writes out a piece of code, an external verifier runs tests and tells the model whether it worked, and that result can be supplied as reward R. If the entire trajectory of tokens works, all of it is assigned a high probability, and if it does not, it is assigned a low probability. But methods such as GRPO, introduced by DeepSeek, establish the average of those results as a baseline and then evaluate them relative to it, assigning a positive value to those that outperform the average and a negative value to those that underperform, thereby reinforcing the trajectory itself. Once I had a rough understanding of this,
+
+<span class="paragraph-timestamp" data-ts="55:28">55:28</span> I understood what Dwarkesh had said: ultimately, which particular tokens are making it work better is something recent studies are investigating as well, of course, but it is not guaranteed; all that matters is whether it works. That is why it does not work for writing, and another thing it does not work for is anything without a single correct answer— things where this could be right and that could also be right, as well as things that carry implications. Those things still cannot be handled with RLVR, and those kinds of problems tend to arise in design and art.
+
+<span class="paragraph-timestamp" data-ts="56:01">56:01</span> **Jonghyun Park** Yes, just to clarify this a little, x is the input text, or the prompt, and y is the output token. Then pi is the LLM, which produces that probability.
+
+<span class="paragraph-timestamp" data-ts="56:13">56:13</span> **Seungjoon Choi** Theta is the LLM's parameters.
+
+<span class="paragraph-timestamp" data-ts="56:15">56:15</span> **Jonghyun Park** Theta is the LLM's parameters. So y is actually not just one token; it is a sequence of N tokens, and once those N tokens have been generated, if we suppose the model is solving a math problem, no matter how it wrote the solution, if the final answer is correct, we assume that the entire solution must have been correct and reinforce all of it, which makes it difficult to apply RL properly to things like how concise the solution is, or how elegantly it is written. That could result in the million-line Lean code we discussed earlier, and I think this relates to the context in which those concerns arose.
+
+<span class="paragraph-timestamp" data-ts="56:50">56:50</span> **Seungjoon Choi** Right. Recent studies are trying to address all those specific issues by using various regularizers and hacking around them with various techniques, but fundamentally, it still feels like we remain in this regime.
+
+<span class="paragraph-timestamp" data-ts="57:06">57:06</span> **Jonghyun Park** You add those kinds of factors to the reward. For example, how concisely the model wrote the solution to reach the answer. Those kinds of criteria are also used, and I have recently been trying my hand at design. Since I am personally an engineer, naturally, I do not know how to design well. So what I have been doing is looking at something from YC that shows how YC uses AI to create designs. These days, when we browse websites or look at PowerPoint presentations, we can immediately think, “That design was made by Claude.” It really stands out. But when I looked at what YC made, none of that was visible at all. I wondered how they managed to create designs that didn't just have a similar feel, but had a completely different feel and were done so well, so I've been working hard to emulate it. But when you get down to how they actually do it, it's a little complicated.
+
+<span class="paragraph-timestamp" data-ts="57:55">57:55</span> They create a soul, make a mood board, and do all sorts of other things, but ultimately, a human makes the selection. They perform all the actions that correspond to taste. They do that and feed it in as input. The taste. Then, when N different output designs are generated, they make another selection from them. So, for things that can have multiple correct answers,
+
+<span class="paragraph-timestamp" data-ts="58:19">58:19</span> what they do is put a human in the loop, and have the human quickly pick them like this. So when it comes to taste, to personal preference, they still seem to make sure to do that. Ultimately, it's a person's taste, the creator's taste, so it's not easy for it to just magically appear.
+
+<span class="paragraph-timestamp" data-ts="58:36">58:36</span> **Seungjoon Choi** They're definitely not doing it by building a model; they're just doing it at the text level.
+
+<span class="paragraph-timestamp" data-ts="58:41">58:41</span> **Jonghyun Park** It is at the image level, but it's at the image or text level, so either way, it's at the token level. Because images also go in as tokens.
+
+<span class="paragraph-timestamp" data-ts="58:47">58:47</span> **Seungjoon Choi** There are, of course, ways to overcome that, but they're not very elegant yet. Right. And that was one thing I wanted to introduce today,
+
+<span class="paragraph-timestamp" data-ts="58:57">58:57</span> but despite that, there are still many areas where it works well. So I also found this fun to read: Anthropic acquired Bun, you know. So on July 8th, there was a post that was practically a success story about converting a large project with around one million lines of code to Rust, and that was interesting too. What was interesting was that to run this, an expert still had to spend about three hours compressing everything they knew, creating a proper spec, and then running it—it didn't just work automatically. Even with an agent swarm. So that part stuck with me, and the full story is much more detailed, longer, and more interesting. Open-weight models have come out, you know.
+
+<span class="paragraph-timestamp" data-ts="59:41">59:41</span> So TML—the one John Schulman is involved with, as mentioned earlier— released a model called Inkling, and then Kimi K3—the Kimi K3 you mentioned earlier—came out as well. What was interesting about Inkling was that, in English, Inkling—the main image here also shows a trace of ink— when I looked up the meaning, I found that its core nuance is a faint clue or a premonition. So this is only the beginning. It seems that they also released a model with nearly 1T parameters as open weights, and it felt like a teaser signaling that they were starting to show what they could do with it.
+
+<span class="paragraph-timestamp" data-ts="1:00:21">1:00:21</span> The most interesting part was nicely summarized on a blog by Jaewoong Park: self-finetuning. Lilian Weng had published “Harness Engineering for Self-Improvement,” and they introduced what they were doing as a practical implementation of that, which I think is the key part. Broadly speaking, they perform a finetuning task,
+
+<span class="paragraph-timestamp" data-ts="1:00:45">1:00:45</span> upload it to their infrastructure, Tinker, and finetune the model itself. An interesting example comes up here: they finetune it to speak without the letter e. Creating works without the letter e is something found in literature. It's an experiment that was often done by groups such as Oulipo, using something called a lipogram to create works without lowercase e or uppercase E. That's what they make it create. But they're finetuning the model to do it.
+
+<span class="paragraph-timestamp" data-ts="1:01:14">1:01:14</span> **Jonghyun Park** So they've connected the model called Inkling and are running OpenCode,
+
+<span class="paragraph-timestamp" data-ts="1:01:20">1:01:20</span> **Seungjoon Choi** Right. It's finetuning itself.
+
+<span class="paragraph-timestamp" data-ts="1:01:22">1:01:22</span> **Jonghyun Park** So the output tokens gradually change.
+
+<span class="paragraph-timestamp" data-ts="1:01:27">1:01:27</span> **Seungjoon Choi** I found the part where it performs RSI, finetuning itself for a specific purpose, quite interesting. For one thing, Thinking Machines Lab, TML,
+
+<span class="paragraph-timestamp" data-ts="1:01:36">1:01:36</span> **Jonghyun Park** which created that Inkling model, was founded by a group of extremely famous people from the outset, including former OpenAI CTO Mira Murati, who left OpenAI, as well as John Schulman, whom we mentioned earlier, and Lilian Weng, along with many other famous people. So I'd been extremely excited about them, but they didn't release a model for quite a while.
+
+<span class="paragraph-timestamp" data-ts="1:01:56">1:01:56</span> **Seungjoon Choi** No model came out—just infrastructure and a few papers. Right. They released things like a finetuning service,
+
+<span class="paragraph-timestamp" data-ts="1:02:02">1:02:02</span> **Jonghyun Park** and recently they released an omnimodality model, which was also quite impressive.
+
+<span class="paragraph-timestamp" data-ts="1:02:06">1:02:06</span> **Seungjoon Choi** Then they kept publishing articles in the context of self-improvement. So this is another organization I'd never heard of, besides TML, called AIDE², and rather than doing self-improvement through model weights, this seems to be on the harness side. But those two approaches are currently mixed together. There are ways for the harness to improve itself, and if that harness is an Autoresearch-type harness that updates the model weights, then it feels like model updates are happening from both sides. As for the Kimi K3 in question,
+
+<span class="paragraph-timestamp" data-ts="1:02:39">1:02:39</span> I haven't used it yet, but judging solely from what I've read, it's remarkable. The blog also covered the technical details quite well. I did translate this, and although it probably won't be easy to run, it's a milestone nonetheless.
+
+<span class="paragraph-timestamp" data-ts="1:02:58">1:02:58</span> **Jonghyun Park** First of all, it's too large for an individual to run easily, but the mere fact that a model of that size was released as open weights seems tremendously encouraging. Naturally, numerous GPU cloud and neocloud providers will run it, serve it, and offer it through OpenRouter,
+
+<span class="paragraph-timestamp" data-ts="1:03:14">1:03:14</span> **Seungjoon Choi** so it's hard to tell what kind of technological breakthrough there is just from looking at this, but Kimi K3 is, of course, also based on MoE, and Inkling, which we mentioned earlier, is also disclosing everything about its MoE architecture. They seem to be doing well, and they even say that they design their own chips. China has been constrained when it comes to chips, but they are designing chips as well. I think we're also seeing some of that kind of talk around Kimi K3. Every single piece of content seems to have been carefully crafted—
+
+<span class="paragraph-timestamp" data-ts="1:03:44">1:03:44</span> or rather, you can see signs that they had it crafted with great care. And even the video editing— a teaser video came out a day earlier. And they even told us that the teaser video itself was edited by Kimi K3.
+
+<span class="paragraph-timestamp" data-ts="1:03:58">1:03:58</span> The tweets from Satya Nadella and Demis Hassabis were also rather interesting, but more than what Demis Hassabis said, Satya Nadella's counterintelligence paradox seemed to raise some points worth thinking about. In the age of intelligence, how should companies protect their core knowledge assets? Big Tech companies promise that they won't use them for learning or training, but usage patterns themselves still become data. And that in itself is extremely powerful information. So that discussion of the counterintelligence paradox became a major issue, and I think it offered some interesting points to consider. Google, where Demis Hassabis works, seems to be in a somewhat difficult position right now.
+
+<span class="paragraph-timestamp" data-ts="1:04:41">1:04:41</span> **Jonghyun Park** And these days, models are emerging so quickly from all over the place that we sometimes get overly excited or disappointed by each one, but even if we extend the time frame to just a year, on a yearly scale, a lot of companies really do catch up very well. When Gemini came out last time, it received favorable reviews for quite a long period, so even if there are some problems, perhaps if we wait a little, they'll resolve them all and come back with something good. Especially since it has a lot of data and is a company with all the hardware resources it needs,
+
+<span class="paragraph-timestamp" data-ts="1:05:17">1:05:17</span> it's difficult to imagine that Google won't be able to catch up, though I do hope they'll step it up. I think if we're patient and wait just a little, something will come out. So, after using GPT-5.6 for a week, how was it? When I tried using it,
+
+
+## In Practice: GPT-5.6 and Minecraft Agents    *65:26*
+
+<span class="paragraph-timestamp" data-ts="1:05:35">1:05:35</span> **Jonghyun Park** something I started last night still hadn't finished after more than ten hours, so I just stopped it. There were issues like that. I think the fact that it's focusing so heavily on test-time compute, which Chester mentioned, also manifests itself in that way. But what I found interesting was that,
+
+<span class="paragraph-timestamp" data-ts="1:05:55">1:05:55</span> **Seungjoon Choi** for something I'm building these days related to Minecraft, when working on something like this, I had been working under the assumption that Fable 5 was good at it. So when I give instructions here like this, the model moves the bot, and the model created that bot. Usually, the bot would do the task, but I wanted to understand why it was getting stuck at certain points, so I created an interface that lets me play using the commands the bot uses when I play. And it did that remarkably well.
+
+<span class="paragraph-timestamp" data-ts="1:06:36">1:06:36</span> But as I kept working on it—building it with Fable 5— I had been using Sol to review it. But Sol kept reviewing it very harshly, saying this was wrong and that was wrong, and Fable 5 ended up yielding to it. So I tried putting Sol in the driver's seat. I gave it to Sol, and since I tend to work through constant back-and-forth in HITL, I talked things through with it, but when reviewing Fable 5, it wasn't as adversarial as Sol had been. It accepted everything. So I got the sense that Sol is also good at working in this kind of rhythm.
+
+<span class="paragraph-timestamp" data-ts="1:07:18">1:07:18</span> **Jonghyun Park** So just now in Minecraft, when you said, "Go here," the bot walked around and seems to have gotten somewhere, and Sol and Fable 5 are building all of that as you go, right? Right. But the more difficult problem they solved was when loading chunks at scale,
+
+<span class="paragraph-timestamp" data-ts="1:07:37">1:07:37</span> **Seungjoon Choi** how to stream them. That was fairly difficult, and Fable 5's attempt at it went awry, but Sol solved it. So that's how I've been using them lately, but honestly, I just don't have enough time. How about you? To prepare something like a YouTube video, you need to keep up with the news and have a lot to read,
+
+<span class="paragraph-timestamp" data-ts="1:08:02">1:08:02</span> while also living your everyday life. Right. Since I have my regular job.
+
+<span class="paragraph-timestamp" data-ts="1:08:05">1:08:05</span> Exactly. Even just getting it to code, I found that there simply wasn't enough time.
+
+<span class="paragraph-timestamp" data-ts="1:08:09">1:08:09</span> **Jonghyun Park** It's the same for me. So now I do everything remotely, and even though I can do it from my mobile phone,
+
+<span class="paragraph-timestamp" data-ts="1:08:16">1:08:16</span> **Seungjoon Choi** I still had the problem of simply not having much time. To wrap up today, this is a bit of an advertisement, but as I've mentioned several times, I teach an AI class at Pi Design School, which is known as the design school created by Toss.
+
+<span class="paragraph-timestamp" data-ts="1:08:30">1:08:30</span> So even when building a Minecraft agent, there is work where you create a spec and run it from outside the loop, but there is also a mode where you enter the loop and, even if you don't know Rust, engage with it while understanding things like the core parts of the algorithm currently being developed. I believe you need to move back and forth and experience both sides.
+
+<span class="paragraph-timestamp" data-ts="1:08:51">1:08:51</span> So I'm working to teach those things to people who want to do design and people who want to learn design, and there are also some interesting classes besides the one I teach, so I thought I'd give it a mention.
+
+<span class="paragraph-timestamp" data-ts="1:09:06">1:09:06</span> **Jonghyun Park** I also took a look after you mentioned it, and although I know nothing at all about design, if I wanted to become good at design, it did make me want to go.
+
+<span class="paragraph-timestamp" data-ts="1:09:16">1:09:16</span> **Seungjoon Choi** Right. Developers were applying too. I'm not sure whether they're considering it as an extension of their current role, or considering it because they want to pivot, but even among people without a design background, for the pre-course, people applied to the first and second cohorts, though the tuition was nearly as expensive as university tuition. Right. It seems like it does require a substantial investment. But it seems that some very prominent figures and top professionals in the design field are participating as well. I was thinking of offering a course that addresses these kinds of questions. How was today? We finally went through what we'd been putting off for so long, covering the Dwarkesh episodes with Grant Sanderson and Adam Brown as well.
+
+
+## Closing    *69:51*
+
+<span class="paragraph-timestamp" data-ts="1:09:59">1:09:59</span> **Jonghyun Park** First of all, I don't think today's discussion was really about business, but rather a time to explore and share visionary ideas that stretch our thinking far into the future. Personally, I've always liked this kind of thing, so I enjoy doing it.
+
+<span class="paragraph-timestamp" data-ts="1:10:14">1:10:14</span> **Seungjoon Choi** Shall we wrap up here for today?
+
+<span class="paragraph-timestamp" data-ts="1:10:17">1:10:17</span> **Jonghyun Park** Yes, great work.
+
+<span class="paragraph-timestamp" data-ts="1:10:18">1:10:18</span> **Seungjoon Choi** It was fun.
+
+<span class="paragraph-timestamp" data-ts="1:10:19">1:10:19</span> **Jonghyun Park** Thank you.
