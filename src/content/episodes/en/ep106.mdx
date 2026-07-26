@@ -1,0 +1,462 @@
+---
+episodeNumber: 106
+title: "Token Pricing Ends at the Electricity Bill: The Chip Supply Chain Is Already Set Through 2032"
+description: "Starting from the agentic attacker that breached Hugging Face, we walk through a week when Opus 5, Kimi K3, and GPT-5.6 Sol all landed at once. We then trace competition shifting from price per token to price per task, the usage migration toward Codex, and the supply-side bottleneck that ends at electricity."
+publishedAt: 2026-07-26
+duration: "1:04:08"
+youtubeId: "hywIbOy2xOc"
+thumbnail: "https://i.ytimg.com/vi/hywIbOy2xOc/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "The Fourth Week of July 2026, with Frontier Models Pouring Out"
+  - time: "0:47"
+    title: "The Agentic Attacker That Breached Hugging Face, and OpenAI's Role"
+  - time: "5:01"
+    title: "Data Control and the Need for On-Premises Models"
+  - time: "6:37"
+    title: "1.4TB Weights and $300 per Hour: The Real Cost of On-Premises"
+  - time: "9:18"
+    title: "Recent Model Releases, from Kimi K3 to Opus 5"
+  - time: "11:21"
+    title: "Perceived Performance of GPT-5.6 Sol and the Price of Kimi K3"
+  - time: "15:07"
+    title: "From Price per Token to Price per Task: The Limits of Benchmarks"
+  - time: "16:33"
+    title: "Tuning Model Tier and Reasoning Effort to the Task"
+  - time: "20:06"
+    title: "Qwen's Multimodal Rush and the Chinese AI Landscape"
+  - time: "22:19"
+    title: "Codex vs. Claude Usage Competition After GPT-5.6 Sol"
+  - time: "29:23"
+    title: "Infrastructure Investment After the Kimi K3 Shock and Google's Different Playbook"
+  - time: "34:50"
+    title: "Exponential Growth in Token Demand and the Potential of Consumer AI"
+  - time: "40:10"
+    title: "The Consumer AI Business That Has Yet to Begin"
+  - time: "48:20"
+    title: "From Unbundling Oracle to Unbundling Intelligence"
+  - time: "50:19"
+    title: "HBM, ASML Lithography Equipment, Fixed Supply Chains, and Token Pricing"
+  - time: "55:05"
+    title: "Energy as the Final Bottleneck That Cannot Be Bypassed"
+  - time: "57:31"
+    title: "The Shifts Accelerating Technology Demands from People"
+  - time: "60:17"
+    title: "How to Adapt to Accelerating Model Progress and the Speed of Change"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## The Fourth Week of July 2026, with Frontier Models Pouring Out    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is July 25th, 2026, a Saturday morning. Opus 5 was announced overnight. Starting with Kimi K3, GPT-5.6, Gemini, and then GLM also seem to be gearing up for major announcements soon, and so-called frontier-class models seem to be pouring out. And with the release of Fable 5, the new pricing structure or pricing scheme that Anthropic had been pursuing also seems to be getting thrown completely up in the air because of this competition, which is good for consumers. Prices keep coming down. So today, we'll take a look through the models that have been released and discuss what impact this context has on the Runaways' Alliance, people like us.
+
+
+## The Agentic Attacker That Breached Hugging Face, and OpenAI's Role    *0:47*
+
+<span class="paragraph-timestamp" data-ts="0:51">0:51</span> **Jonghyun Park** Of all the news from this week, there was one story I found the most interesting, so let's take a look at that first before moving on.
+
+<span class="paragraph-timestamp" data-ts="0:54">0:54</span> **Seungjoon Choi** It caused quite a stir.
+
+<span class="paragraph-timestamp" data-ts="0:55">0:55</span> **Chester Roh** Right. There was quite a bit of talk on Twitter about whether we were witnessing the singularity.
+
+<span class="paragraph-timestamp" data-ts="1:05">1:05</span> **Jonghyun Park** It was July 16th, so nearly ten days ago. Hugging Face posted that there had been a security incident. Hugging Face contacted me personally as well. I think it was probably because I have a private dataset, which is why Hugging Face contacted me, but fortunately, Hugging Face told me that although there had been an incident involving the data, the data had not been stolen. So I wondered, what is this? The report was posted first, and the first thing it said was that an AI appeared to have carried out the attack. No one knew who it was, but after some time had passed, it turned out to be OpenAI. As it turned out, the entity behind the attack was OpenAI. They worked together, resolved it successfully, and everyone applauded. That was ultimately the conclusion. Hugging Face was attacked, apparently by an agentic attacker. According to the logs, the pattern was completely identical to what people had long predicted an LLM attack scenario would look like.
+
+<span class="paragraph-timestamp" data-ts="1:54">1:54</span> Put simply, OpenAI operates a benchmark called ExploitGym, which was released this May, about two months ago. It seems to be a benchmark for evaluating things like cybersecurity, such as how effectively a model can break into systems. OpenAI had isolated it from the network internally and was testing a model within OpenAI. Naturally, since it was a model being tested for that sort of capability, its guardrails had been removed, but it had instead been blocked from reaching the outside world. However, it found a zero-day vulnerability and somehow made its way onto the internet. Then, once it got out, it asked, "What should I look for on the internet?" "Hugging Face might have the answer." So it reportedly began searching through Hugging Face. In the process, it generated an enormous amount of traffic while carrying out these activities, and that is how the incident was ultimately pieced together.
+
+<span class="paragraph-timestamp" data-ts="2:43">2:43</span> First of all, the incident itself resembled exactly the kind of incident we had been worried about— whether we might be witnessing the singularity that Chester mentioned earlier— and since that is precisely the kind of topic people love, it seems to have gone extremely viral. Hugging Face tried to stop it, and used models like GPT and Claude in the attempt, but the guardrails blocked them all, so they refused to analyze the security incident or perform any security-related analysis. So what Hugging Face did internally was host the open-weight model GLM 5.2 and use it to respond to the security incident.
+
+<span class="paragraph-timestamp" data-ts="3:22">3:22</span> I think this was the part that people found the most ironic. That is because models from companies like OpenAI and Anthropic— models like GPT and Claude—had used security as justification for remaining closed source. But when an actual security incident occurred, those models could not be used, while an open-weight model was. So because this seems contrary to their stated purpose, it appears that increasingly negative views of them are emerging in the United States.
+
+<span class="paragraph-timestamp" data-ts="3:52">3:52</span> **Chester Roh** When Hugging Face first announced that it had been attacked, the identity of the attacker had not been established, right? Hugging Face did not know either, and about three or four days later, OpenAI and Hugging Face seem to have made a joint announcement. And I think that was when it was revealed that the culprit was GPT-6, the next generation of GPT.
+
+<span class="paragraph-timestamp" data-ts="4:18">4:18</span> **Jonghyun Park** Yes, that has not been confirmed as fact, but people seem to think the model being tested internally and carrying out the attack was probably GPT-6, and that this may have happened while OpenAI was testing it.
+
+<span class="paragraph-timestamp" data-ts="4:26">4:26</span> **Chester Roh** I think every company probably faces the issue Jonghyun just pointed out. Every company probably faces this problem. It is the matter of giving our company's own critical proprietary data to frontier models. And as we have kept discussing, these days, we do not even divide things into multiple contexts. We neatly organize the entire workflow in a single document and hand it over to OpenAI or Claude, so another issue is whether we are continually transferring our company's core assets into the datasets of frontier labs.
+
+
+## Data Control and the Need for On-Premises Models    *5:01*
+
+<span class="paragraph-timestamp" data-ts="5:01">5:01</span> **Chester Roh** And as this incident demonstrated, when an actual incident occurs, we cannot get help from frontier-lab models, and instead have to turn to a Chinese open-weight model for help. Seeing this has led to increasingly forceful arguments that our company's proprietary data should be put into our own on-premises models and these open-weight models instead.
+
+<span class="paragraph-timestamp" data-ts="5:26">5:26</span> And among the open-weight models coming out, Kimi K3 kicked things off, with DeepSeek and probably GLM likely to follow, and they are planning to release frontier-class models with one trillion parameters or more as open-weight models. Then the proposition that frontier-class models with Opus-level performance should be run within companies will likely become viable too, though of course that will still cost an enormous amount of money, the proposition that it needs to be run in-house also seems likely to become valid quickly, so the on-premises market may open up rapidly as well.
+
+<span class="paragraph-timestamp" data-ts="5:58">5:58</span> **Seungjoon Choi** Hearing Chester say that reminds me that when this news broke, Chester immediately wrote in the group chat, "It's the on-premises era," as I recall. But this also relates to what we briefly mentioned last week: Satya Nadella's disinformation paradox. So, the useful paths through certain data, even if they aren't actually used for training, and concerns about the paths themselves being exposed to Big Tech were something Nadella pointed out, and this seems to be along the same lines. But on the other hand, when Sam Altman posted this, I thought, "This is marketing."
+
+<span class="paragraph-timestamp" data-ts="6:30">6:30</span> **Chester Roh** GPT-6 is coming out, so we should use this as an opportunity. Though that probably wasn't the intention.
+
+<span class="paragraph-timestamp" data-ts="6:35">6:35</span> **Seungjoon Choi** I had that sort of feeling too.
+
+
+## 1.4TB Weights and $300 per Hour: The Real Cost of On-Premises    *6:37*
+
+<span class="paragraph-timestamp" data-ts="6:39">6:39</span> **Chester Roh** If we move on to the next topic, Jonghyun, now that frontier labs from both the U.S. and China have joined in, they're releasing so-called frontier-class models relentlessly, but we've been sensing this trend since the beginning of the year. The release cycle for models keeps getting shorter. And the recipe for building models no longer seems to be frontier knowledge. It's simply about who has more high-quality data, who can feed in more data, plus total compute and compute efficiency. The engineering involved in managing these things. Nearly 90% of building a frontier model is no longer frontier knowledge, but frontier engineering—or, to put it more bluntly, frontier-class grunt work. We often say that this is what it seems to have become.
+
+<span class="paragraph-timestamp" data-ts="7:32">7:32</span> **Jonghyun Park** If I could add just one more thing, it would probably be GPU resources—in other words, capital.
+
+<span class="paragraph-timestamp" data-ts="7:35">7:35</span> **Chester Roh** It seems to have been reduced to a few simple variables. But if so, Jonghyun.
+
+<span class="paragraph-timestamp" data-ts="7:41">7:41</span> **Seungjoon Choi** Regarding what Chester said, when running it on-premises, if you want to run something that's currently 2.8T, nearly 3T, can that be covered? Can an average company
+
+<span class="paragraph-timestamp" data-ts="7:51">7:51</span> **Chester Roh** Shall we calculate it, Jonghyun?
+
+<span class="paragraph-timestamp" data-ts="7:56">7:56</span> **Jonghyun Park** I've done a rough calculation, and if you use a mix of commonly used formats these days, such as MXFP4, you'd need to cover this much memory: 1.4TB.
+
+<span class="paragraph-timestamp" data-ts="8:03">8:03</span> **Chester Roh** Does that include the KV cache? Or is 1.4TB just the model's raw weights?
+
+<span class="paragraph-timestamp" data-ts="8:10">8:10</span> **Jonghyun Park** That's just the raw parameters. Moreover, because these models are so large, even if you use MoE, of course, you naturally need high memory bandwidth to achieve decent inference speeds, and you'd need to build an H200 cluster. That's because even just those weights would be difficult to fit on a single node. Then, if you calculate it based on cloud rental costs, apparently it would cost nearly $300 per hour. The exact figures could, of course, all change, but that should give you a sense of the approximate scale.
+
+<span class="paragraph-timestamp" data-ts="8:37">8:37</span> **Seungjoon Choi** Then would you need to have a single 72-GPU rack?
+
+<span class="paragraph-timestamp" data-ts="8:46">8:46</span> **Jonghyun Park** Considering concurrent users within the company and things like token speed, I think you'd need at least that much.
+
+<span class="paragraph-timestamp" data-ts="8:50">8:50</span> **Chester Roh** Even from a rough calculation, it looks like the equipment alone would require an investment of about $3.6 million.
+
+<span class="paragraph-timestamp" data-ts="8:54">8:54</span> **Jonghyun Park** Right. If you were actually purchasing it, that's about what it would cost.
+
+<span class="paragraph-timestamp" data-ts="8:59">8:59</span> **Chester Roh** So even if you were to deploy this on-premises, as we've often discussed in relation to things like token economics, it couldn't be a company that uses it only intermittently; workloads would need to keep pouring in, providing enough traffic to keep the GPUs running as much as possible for this to be feasible based on rough arithmetic. Still, there are more large companies and wealthy people in the world than we realize. So we'll soon see deployments like these. Then, Jonghyun, shall we give a complete summary of the model announcements from last week through early this morning and move on?
+
+
+## Recent Model Releases, from Kimi K3 to Opus 5    *9:18*
+
+<span class="paragraph-timestamp" data-ts="9:41">9:41</span> **Seungjoon Choi** Opus came out after just two months, right? It seems to be maintaining a two-month cycle. Right.
+
+<span class="paragraph-timestamp" data-ts="9:44">9:44</span> **Jonghyun Park** Yes, Claude Mythos appeared initially, and although it wasn't released publicly, it caused such a stir that if we consider that effectively the model's debut, I think it's been a little over two months. So, to briefly summarize the models: among the large models, the ones we're interested in are frontier models, first of all, and Thinking Machines Lab released a new model called Inkling, Meta released Muse Spark, and there were various other models, but to pick just a few that caught my attention: Kimi K3. Comments immediately started pouring in on the video we posted
+
+<span class="paragraph-timestamp" data-ts="10:15">10:15</span> last week. People seem very interested in it. I've also been trying it out a little this week.
+
+<span class="paragraph-timestamp" data-ts="10:22">10:22</span> And then there's the one that was announced in advance: Qwen3.8 Max Preview, a 2.4T model, was officially announced. It's coming soon. And according to rumors, GLM and DeepSeek are both coming out in China as well.
+
+<span class="paragraph-timestamp" data-ts="10:34">10:34</span> Then Grok was also released, of course. Gemini was released too. But the one attracting the most attention is
+
+<span class="paragraph-timestamp" data-ts="10:39">10:39</span> **Chester Roh** 4.5 has been released, and now 4.6 and 4.7 are coming soon.
+
+<span class="paragraph-timestamp" data-ts="10:46">10:46</span> **Jonghyun Park** It looks like 4.5 is the latest release so far. Looking at the scores from the top, Kimi K3 performed shockingly well, so it seems to be attracting everyone's attention. Opus came out while I was writing this, so I added it. Opus 5 was released, but beyond all these models simply being released and pouring out, it seems that a tremendous amount of traffic is actually shifting. Token usage is changing, and people are rapidly switching models, and even I, since GPT-5.6 Sol came out, have largely migrated away from relying on Claude Fable 5. So, along with these model releases, we'll also look at these shifts in usage I’d like to bring these things together and talk about them.
+
+
+## Perceived Performance of GPT-5.6 Sol and the Price of Kimi K3    *11:21*
+
+<span class="paragraph-timestamp" data-ts="11:24">11:24</span> **Jonghyun Park** I think the one that kicked things off was GPT-5.6 Sol. Looking back over the first half of this year, from a frontier-model perspective, Claude seemed to be running somewhat uncontested. There was Opus 4.8, and then Fable 5 came out, and Fable 5 had usage limits, to the point where it almost felt like they were exploiting their position, but people still seemed to rely on it heavily, and I heard that their revenue actually increased tremendously as well. But when GPT-5.6 Sol came out, a lot of usage seems to have shifted over.
+
+<span class="paragraph-timestamp" data-ts="11:56">11:56</span> **Chester Roh** Anthropic’s revenue apparently dipped slightly too.
+
+<span class="paragraph-timestamp" data-ts="11:59">11:59</span> **Jonghyun Park** While actually using GPT-5.6 Sol, have you noticed much of a difference?
+
+<span class="paragraph-timestamp" data-ts="12:03">12:03</span> **Seungjoon Choi** For me, it’s more that each has its own strengths and weaknesses, and there isn’t an enormous difference.
+
+<span class="paragraph-timestamp" data-ts="12:08">12:08</span> **Chester Roh** As a user who doesn’t use Claude Code and has continued using only Codex, GPT-5.6 Sol has gotten a bit better, it decompose problems better and works for longer, and it broadens its coverage to include things I didn’t even ask for, so the fact that it increasingly manages to delight me a little is the qualitative point I focus on. It’s gotten better. Compared with GPT-5.5.
+
+<span class="paragraph-timestamp" data-ts="12:34">12:34</span> **Jonghyun Park** I feel similarly, and one thing that’s certain is that, when comparing GPT-5.5 and Fable 5, there seemed to be a performance gap that anyone could notice, but GPT-5.6 Sol is, in any case, a model at the very forefront that can compete with Fable 5. To me, GPT-5.6 Sol isn’t very good at aljalttak. You put it positively, and doing a good job by expanding its coverage to things I didn’t mention could be an advantage, but for me, it seems to impose a lot of the cognitive load that I mentioned last time, doing things I didn’t even ask it to do, so I personally find it more exhausting.
+
+<span class="paragraph-timestamp" data-ts="13:13">13:13</span> Then Kimi K3 came out. Fundamentally, Kimi K3’s model is clearly good because it’s large. Since it’s in a size class that we haven’t really seen before, it seems to have risen quickly, and I heard it’s being used tremendously heavily on OpenRouter. And when I personally try it, it’s at a level that should be compared with frontier models, whereas open-weight models hadn’t reached that level until now. In other words, they could be compared with Opus 4.8, but not with Fable 5. But now, it does seem to be a model that can rival Fable 5, and personally, I feel it falls somewhere around that range, between Opus 4.8 and Fable 5. Opus 5 came out today, so I need to try it, but I suspect it’ll probably feel similar. To Opus 5. And if you look at the price, it’s cheaper than you might expect. When used through the API, it’s cheaper than Opus 5. So if it’s similar to Opus 5, Kimi K3 may be better, but it certainly isn’t worse.
+
+<span class="paragraph-timestamp" data-ts="14:18">14:18</span> **Seungjoon Choi** I haven’t used it much yet either, but judging from the benchmarks in the blog post, Opus 5 now outperforms Fable 5 in many areas, at the same price.
+
+<span class="paragraph-timestamp" data-ts="14:27">14:27</span> **Jonghyun Park** Don’t you think that might not hold true once we actually try it? There’s also something worth discussing about pricing. I’ve listed the prices here on a per-token basis. Last time, we also said that instead of looking at the price per token, if a model uses tokens efficiently when given a task and completes it, wouldn’t that make it cheaper? So shouldn’t we now evaluate price per task? That’s because we frequently increase and decrease the reasoning effort however we want. So I looked into that as well. There are benchmarks that compare models based on price per task. There seem to have been many claims that Opus 5 is good in terms of price per task as part of the Opus 5 announcement. But I think we’ll only know once we try it ourselves.
+
+
+## From Price per Token to Price per Task: The Limits of Benchmarks    *15:07*
+
+<span class="paragraph-timestamp" data-ts="15:11">15:11</span> **Chester Roh** When it comes to how we think about these benchmarks, even as we’re discussing them now, we’re speaking in very qualitative terms. And the benchmarks themselves have all been maxing out, making them meaningless, and we use evaluation criteria like those because someone came up with the metrics, but unless we look into the details ourselves, we can’t objectively judge how these tests were actually conducted either.
+
+<span class="paragraph-timestamp" data-ts="15:38">15:38</span> So, taking everything together, the models available now have clearly become good enough to cross certain thresholds at their respective unit prices. That much seems certain. So when it comes to handling the work we do every day, we now have a tremendous number of options. That seems to be the reality right now, and choosing which one to use is really becoming a matter of preference between brands. It’s like saying Mercedes is good for this reason and BMW is good for that reason, but when you examine them closely, they’re similar. I’m gradually beginning to feel that this is the kind of era we’re entering.
+
+<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **Seungjoon Choi** They may have wanted to shake up the market, but the competitive pressure has eased, so as a user, I’m happy.
+
+<span class="paragraph-timestamp" data-ts="16:21">16:21</span> **Chester Roh** Maybe that’s the fundamental nature of this industry. It seems to be revealing that this was something anyone could do.
+
+<span class="paragraph-timestamp" data-ts="16:26">16:26</span> **Jonghyun Park** Indeed. As it turns out, with enough capital and scale,
+
+<span class="paragraph-timestamp" data-ts="16:29">16:29</span> **Chester Roh** it’s surprising that other companies can do it too.
+
+
+## Tuning Model Tier and Reasoning Effort to the Task    *16:33*
+
+<span class="paragraph-timestamp" data-ts="16:33">16:33</span> **Jonghyun Park** I’d like to ask just one question about what you said. If we think in terms of price per task, when it came to the top-tier models, I used to always use only the top-tier model. But even these days, I often switch to a lower-tier model depending on the task. There are quite a lot of cases where I’m confident that I don’t need to use a higher-tier model, and there’s a price difference too, so do you actually adjust which model you use? For example, if you use Claude, do you use Fable 5 for some tasks and Opus for others? Do you adjust it manually?
+
+<span class="paragraph-timestamp" data-ts="17:07">17:07</span> **Seungjoon Choi** I adjust it as I use it, and I also tend to instruct the higher-end model to use lower-end models for its sub-agents. I adjust it myself, and I also adjust the reasoning effort every time.
+
+<span class="paragraph-timestamp" data-ts="17:14">17:14</span> **Chester Roh** I don't do that. Rather than driving my work through token maxxing, since most of my work favors a human-on-the-loop approach, I keep it running within a loop that I control, and since I deploy agents within workflows that I control, it's hard to use up the entire weekly limit on the $200 plan. Within that, I adjust it from around medium to xhigh.
+
+<span class="paragraph-timestamp" data-ts="17:40">17:40</span> That's because, in practice, for the things I use in production, there are cases where I set it to around medium to improve latency, while for tasks, I use xhigh.
+
+<span class="paragraph-timestamp" data-ts="17:49">17:49</span> But you know max and ultra above that. Those seem excessive, so I don't use them at all.
+
+<span class="paragraph-timestamp" data-ts="17:58">17:58</span> **Seungjoon Choi** Even when I adjust it, I don't think I've ever gone below medium.
+
+<span class="paragraph-timestamp" data-ts="18:02">18:02</span> **Chester Roh** I found that I don't really go below medium either.
+
+<span class="paragraph-timestamp" data-ts="18:06">18:06</span> **Jonghyun Park** I think I only go as low as medium as well, and when latency is important, I think I use it with Fast turned on. So as for the price—first, the price per token— but even when it was previously evaluated against Opus 4.8, although Kimi was cheaper per token, it used so many tokens that Opus 4.8 was cheaper for completing the task, according to reports. They're all simply cheap enough. I think they're cheap enough to compete at similar levels, and even GLM—
+
+<span class="paragraph-timestamp" data-ts="18:33">18:33</span> **Seungjoon Choi** If it's 5.2, then Kimi K3 isn't extremely cheap after all.
+
+<span class="paragraph-timestamp" data-ts="18:39">18:39</span> **Jonghyun Park** Right. If you look at the GLM 5.2 case, GLM 5.2 is even cheaper. But the reason it's so cheap is that once it is released as open-weight, OpenRouter—that is, the many GPU rental providers— host the open-weight model and compete on inference token pricing. As a result, the price keeps changing and falling further. So Kimi K3 will probably become even cheaper, since they announced that the open weights will be released soon.
+
+<span class="paragraph-timestamp" data-ts="19:03">19:03</span> **Chester Roh** If that's the case, what we can infer from that is, GLM 5.2 isn't yet one of the latest 2.4T-class models; has its parameter count in the hundreds of billions been disclosed? GLM 5.2, I mean.
+
+<span class="paragraph-timestamp" data-ts="19:17">19:17</span> **Jonghyun Park** I believe it was under 1T.
+
+<span class="paragraph-timestamp" data-ts="19:20">19:20</span> **Chester Roh** It probably was. Even if you arithmetically multiply that by three, it comes to around $2, so if it gets caught up in this competition and enters the competitive landscape, it looks like there could be a 30–40% price reduction.
+
+<span class="paragraph-timestamp" data-ts="19:35">19:35</span> **Seungjoon Choi** But roughly speaking—I haven't calculated it precisely, and this is just my impression— isn't all of this consistent right now? It's predetermined. The resources and the price.
+
+<span class="paragraph-timestamp" data-ts="19:47">19:47</span> **Jonghyun Park** Right. Ultimately, if you consider the underlying costs, such as hardware and energy, and assume that the model's scale and parameter count are roughly proportional to its intelligence, you could say the overall trend is almost the same.
+
+<span class="paragraph-timestamp" data-ts="19:59">19:59</span> **Seungjoon Choi** So it does seem like things are happening around the cost basis.
+
+<span class="paragraph-timestamp" data-ts="20:03">20:03</span> **Chester Roh** Underneath it all, almost everything is probably being run on NVIDIA, so they would become similar.
+
+
+## Qwen's Multimodal Rush and the Chinese AI Landscape    *20:06*
+
+<span class="paragraph-timestamp" data-ts="20:06">20:06</span> **Jonghyun Park** Next, there's one more noteworthy point: we're only talking about LLMs right now, but Qwen is announcing something almost every day. As a brief aside, Qwen-Music has been released. TTS has been released too. Qwen's TTS is quite good. TTS came out, and so did image generation. They're doing well.
+
+<span class="paragraph-timestamp" data-ts="20:30">20:30</span> Completely. So Qwen was originally known for doing an enormous variety of things, starting with the Video model called Wan, but there were some rumors. That a lot of people had left the company? There were rumors like that, and after that, things seemed a little quiet for a while. And Qwen was really open... In the past, even with the models released this January, many were released under Apache, but the expectation was that they would gradually become more closed going forward. Since they also needed to monetize, there was talk like that, even leading to talk of an exodus, but in any case, models are pouring out from here too.
+
+<span class="paragraph-timestamp" data-ts="21:04">21:04</span> **Seungjoon Choi** It does feel like that period roughly overlaps with WAIC in China.
+
+<span class="paragraph-timestamp" data-ts="21:08">21:08</span> **Jonghyun Park** Does it? What's that? WAIC?
+
+<span class="paragraph-timestamp" data-ts="21:09">21:09</span> **Seungjoon Choi** I think it's an AI event in China.
+
+<span class="paragraph-timestamp" data-ts="21:13">21:13</span> **Chester Roh** It was an AI-related conference held in Shanghai. It's such a major event in China that even President Xi Jinping attended. It was a large-scale event comparable to Google I/O. We just pay relatively little attention to what happens within China. Right. All our news is focused on the United States. That's a bit of a problem, but China is at the frontier, so that's an accurate description. China is now at the frontier.
+
+<span class="paragraph-timestamp" data-ts="21:43">21:43</span> **Jonghyun Park** There was an interview on Zhang Xiaojun Podcast, hosted by someone at Tencent, with the Kimi CEO from some time ago. It was from the K2 era. It's going quite viral.
+
+<span class="paragraph-timestamp" data-ts="21:57">21:57</span> **Chester Roh** Let's take a trip to China sometime. All of us. Beijing and Hangzhou are the two key places in China. Moonshot and GLM are in Beijing. As far as I know, DeepSeek is in Hangzhou. Alibaba's headquarters are in Hangzhou, and I believe DeepSeek and Qwen are in Hangzhou.
+
+<span class="paragraph-timestamp" data-ts="22:12">22:12</span> **Jonghyun Park** So Opus 5—anyway, this also came out today, and I think we'll need to try it before discussing it. In any case, models are pouring out one after another, and what I noticed over this week and last week was the change in usage intertwined with pricing, Sam Altman marketed this incredibly hard in a thread right before the security incident. Usage increased dramatically. So if we turn back the clock by about two weeks and look at the changes over those two weeks, ever since GPT-5.6 Sol came out on Codex, whereas Claude had been dominating, it seems like a huge amount of that usage shifted over. That’s true for people around me, and for me as well. So there was talk that usage had increased significantly.
+
+
+## Codex vs. Claude Usage Competition After GPT-5.6 Sol    *22:19*
+
+<span class="paragraph-timestamp" data-ts="23:00">23:00</span> **Jonghyun Park** And then there’s Tibo Sottiaux, who resets Codex limits for us.
+
+<span class="paragraph-timestamp" data-ts="23:00">23:00</span> **Chester Roh** Tibo Sottiaux.
+
+<span class="paragraph-timestamp" data-ts="23:10">23:10</span> **Jonghyun Park** Tibo Sottiaux reset the limits so many times. Those resets even stack up. I’ve been saving them up too and using them one at a time to reset my limits. Anyway, if we look at how usage has changed, it had 7M users when GPT-5.6 Sol came out, and then suddenly shot all the way up to 10M.
+
+<span class="paragraph-timestamp" data-ts="23:24">23:24</span> **Seungjoon Choi** In about a week.
+
+<span class="paragraph-timestamp" data-ts="23:25">23:25</span> **Chester Roh** From 7 million to 10 million.
+
+<span class="paragraph-timestamp" data-ts="23:30">23:30</span> **Jonghyun Park** So if you look at the graph, it suddenly— I guess GPT-5.6 Sol started at 6M. They ran a lot of promotions around then, promising a reset every time it grew by 1M, which is why those resets have stacked up.
+
+<span class="paragraph-timestamp" data-ts="23:42">23:42</span> **Seungjoon Choi** So that’s what happened.
+
+<span class="paragraph-timestamp" data-ts="23:43">23:43</span> **Jonghyun Park** So they even removed the five-hour limit. In Codex’s case, they removed the five-hour limit from Codex subscription plans and told users to use it as much as they wanted, with only the weekly limit remaining. Usage is increasing dramatically. They also eagerly boasted that they had everything ready to handle that level of inference. So that happened.
+
+<span class="paragraph-timestamp" data-ts="24:00">24:00</span> **Chester Roh** I think it would be interesting to overlay those graphs a little. From last fall through the beginning of this year, traffic increased tremendously because of Anthropic’s Claude Code. So the talk that Anthropic’s total revenue had surpassed OpenAI’s emerged early this year, and because of that, its valuation soared. So OpenAI shifted gears at the beginning of the year and said, “We’re going to strengthen coding too,” reinforcing the Codex front. It feels like ancient history, but that was only around the beginning of this year. Looking at the pace since then and the changes in quality, I do think OpenAI has executed exceptionally well.
+
+<span class="paragraph-timestamp" data-ts="24:41">24:41</span> And that is now reflected in the graph Jonghyun is showing us. Even at the beginning of the year, it had very few users compared with Claude Code.
+
+<span class="paragraph-timestamp" data-ts="24:51">24:51</span> **Seungjoon Choi** Does that include both B2B and B2C?
+
+<span class="paragraph-timestamp" data-ts="24:55">24:55</span> **Chester Roh** I think so. It says all Codex users—so not ChatGPT users, but the weekly WAU for ChatGPT Work and Codex— are being counted.
+
+<span class="paragraph-timestamp" data-ts="25:05">25:05</span> **Seungjoon Choi** In Anthropic’s case, I think we once discussed how its B2B business was much larger than its B2C business, so if this includes not only B2C but B2B as well, it could be evidence that businesses are using it extensively.
+
+<span class="paragraph-timestamp" data-ts="25:17">25:17</span> **Jonghyun Park** We can’t actually know the exact proportions within that—
+
+<span class="paragraph-timestamp" data-ts="25:25">25:25</span> **Chester Roh** No, we can’t. But another point we need to consider here is whether Codex grew organically like that on its own, or whether it took that entire increase away from Claude Code. We can’t know until we see the statistics from both sides, but if Anthropic’s revenue is entering a slight decline while GPT is growing like this, ChatGPT’s consistent strategy from the beginning of this year until now has been to provide high token allowances at much lower prices.
+
+<span class="paragraph-timestamp" data-ts="25:57">25:57</span> But because so many engineers were already deeply familiar with Claude Code and got started with it, it had a lock-in effect, and I get the sense that this lock-in is beginning to crack a little. One interesting thing right now is,
+
+<span class="paragraph-timestamp" data-ts="26:15">26:15</span> **Seungjoon Choi** since I use both desktop apps, Claude Code gets an update about once every day or two. But Codex sometimes gets two or three updates in a single day. They seem to be working hard.
+
+<span class="paragraph-timestamp" data-ts="26:28">26:28</span> **Chester Roh** The Codex desktop environment also seems to have improved a lot. And recently, Claude Code has been stringing people along a lot with Fable 5. They kept saying when they would finish it, only to keep pushing it back, so I think people are feeling some frustration and fatigue too.
+
+<span class="paragraph-timestamp" data-ts="26:42">26:42</span> Jonghyun, I have a question. I don’t use Claude Code as my main tool, and since canceling Claude Code Max at the end of last year, I haven’t gone back to it. When running the same task, how do GPT and Claude Code compare in terms of token usage and the total amount of tokens available under their respective Max plans?
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **Jonghyun Park** In my experience, as for token usage, I don’t track the numbers, but judging by how quickly the allowance goes down, when paying the same $200 for Claude Code, it gets used up much faster.
+
+<span class="paragraph-timestamp" data-ts="27:14">27:14</span> **Seungjoon Choi** Right. It goes down much faster.
+
+<span class="paragraph-timestamp" data-ts="27:22">27:22</span> **Chester Roh** Then ultimately, the first-mover effect that Anthropic initially created through its focus— that would mean Codex has largely caught up with it. And because Codex has far more spare compute capacity than Claude Code, it used that as a weapon by offering resets and took away a lot of engineers.
+
+<span class="paragraph-timestamp" data-ts="27:44">27:44</span> **Jonghyun Park** There’s a high probability that this wasn’t organic growth, and that rather than creating a new market, Codex took away the influx of users that Claude had cultivated. That seems like a much more reasonable inference. Let’s just take one look at this number.
+
+<span class="paragraph-timestamp" data-ts="27:59">27:59</span> **Chester Roh** It’s truly remarkable.
+
+<span class="paragraph-timestamp" data-ts="28:04">28:04</span> **Jonghyun Park** Because if you just look at the horizontal and vertical axes, this is March of this year. It was at 3M, and then GPT-5.6 Sol came out in July, and it reached 10M in just two weeks. Looking at something like this, you can see that it’s growing explosively. The number of users itself definitely has. There have also been a ton of unusual promotions. Like giving people $100 for switching to Codex and posting a review, they did things like that too. That one was also for the first 10K users, I think. It was limited to 10,000 people, and it took about two days, or three days, for all the spots to be filled. So, in terms of GTM strategy—you also mentioned Fable 5 usage earlier—if we summarize that as well, the promotions they are running now almost feel like a war of attrition.
+
+<span class="paragraph-timestamp" data-ts="28:50">28:50</span> Particularly for B2C subscription plans, Fable 5 had a promotion like that. There was a set end date for access, but after GPT-5.6 Sol came out, they extended it by a week, then another week, and eventually made it continuously available through subscription plans. Even Claude Code is currently running a promotion that increases the weekly usage limit by 50%. More of these were added when Kimi K3 came out.
+
+
+## Infrastructure Investment After the Kimi K3 Shock and Google's Different Playbook    *29:23*
+
+<span class="paragraph-timestamp" data-ts="29:28">29:28</span> **Jonghyun Park** We don't know how long this competition will last from the consumer's perspective, but it certainly feels great, and I'm grateful for it. On the other hand, AI-related stocks haven't been doing particularly well lately, and I think the most recent developments may reflect all of these factors. When DeepSeek first came out, the fact that it could achieve that level of performance with minimal
+
+<span class="paragraph-timestamp" data-ts="29:36">29:36</span> **Chester Roh** purchases of NVIDIA GPUs caused what was known as the DeepSeek shock. This time, with the release of Kimi K3, a similar line of reasoning has given rise to a narrative that China can now achieve higher performance with far fewer semiconductors, and it seems that this has led the public to sell semiconductor and AI stocks. However, looking at the current trend, infrastructure investment will likely continue to increase for quite some time, so I still think the market will remain hot.
+
+<span class="paragraph-timestamp" data-ts="30:19">30:19</span> **Seungjoon Choi** The slides you just showed are missing the company whose name starts with G.
+
+<span class="paragraph-timestamp" data-ts="30:28">30:28</span> **Chester Roh** G—Google. But Google already has an enormous amount of traffic, so I wonder whether the compute needed just to handle the workloads from the traffic flowing into its own services is already more than it has available. So, looking at it purely from a business perspective, OpenAI and Claude Code— Anthropic and OpenAI don't have any existing assets they need to defend. They only need to attack, so they can focus on a single front. Google, on the other hand, already has an enormously broad front spanning YouTube, search, and Google Cloud, and is in the process of transforming all of them. Google is currently adding AI features internally, and since we also use Google Workspace, we constantly see those AI features appearing everywhere. When you upload a video, it generates comments and subtitles, and Google must already be using an enormous amount of traffic just to transform all of its assets with AI. Conversely, even if Google only does that well, it is already a winner. I suspect the need to do anything additional has been assigned a relatively low priority. I think Google may have a different kind of playbook: staying out of that competition for now and working on other things, then deciding at some point that it needs to enter.
+
+<span class="paragraph-timestamp" data-ts="31:52">31:52</span> And second, according to rumors among people in the securities industry and stock investors, in Google's case, Demis Hassabis regards coding and similar matters as trivial problems, and is far more interested in saving humanity, to the point that some say Google will be classified as a biotech stock. The argument is that Google will solve more fundamental problems in areas such as AI for Science, biotechnology, and drug discovery, so Google should soon be classified as a biotech stock. I hear extreme opinions like that fairly often.
+
+<span class="paragraph-timestamp" data-ts="32:29">32:29</span> **Seungjoon Choi** But in any case, Google also announced Gemini 3.6 Flash, and said that it had begun pretraining Gemini 4. But if you look at articles from outlets like Bloomberg, they say there is poor internal alignment, so there are reports like that as well. But Google will pull it off anyway, won't it? Within this year.
+
+<span class="paragraph-timestamp" data-ts="32:51">32:51</span> **Jonghyun Park** Realistically speaking, Google has a lot going for it. Google has TPUs, as well as abundant resources and data. As you mentioned, Anthropic is particularly focused on coding and competing with a highly targeted approach, whereas Google DeepMind releases mathematical models and many genuinely unusual models. It has even released a model that interprets dolphin signals, and it also produces strong models for music.
+
+<span class="paragraph-timestamp" data-ts="33:21">33:21</span> **Chester Roh** They say you shouldn't worry about celebrities or General Manager Kim, and I don't think we need to worry about Google either. It is a company with virtually unlimited money.
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **Seungjoon Choi** Rather than worrying, we just want Google to release the model.
+
+<span class="paragraph-timestamp" data-ts="33:33">33:33</span> **Chester Roh** Right. Google also announced things like Antigravity, similar to Claude Code or Codex, but as far as I know, its market share is negligible. Even I tried the Antigravity CLI once when it came out, but I've never gone back to it.
+
+<span class="paragraph-timestamp" data-ts="33:48">33:48</span> **Seungjoon Choi** I also went back to Visual Studio. For the IDE part.
+
+<span class="paragraph-timestamp" data-ts="33:51">33:51</span> **Jonghyun Park** So, regarding GTM strategy, the point is ultimately that they are running a lot of promotions. That's the story. Ultimately, there is intense competition, so they are running a lot of promotions, this phase of the market favors consumers, and it seems likely to continue.
+
+<span class="paragraph-timestamp" data-ts="34:05">34:05</span> Lastly, if I may add just one thing, you briefly mentioned this at the very beginning, and I think Kimi K3 ultimately turned out so well that It seems this has intensified things even further. This competitive dynamic, there was talk that it had distilled some of Fable 5's data, but judging by the release dates, they don't overlap that much. There wouldn't have been enough time to take the data and train on it. So we don't know for sure, but personally, I don't think that was the case. Conversely, other companies are also fully capable, especially those in China, as are companies in Korea, or other French companies like Mistral, wherever they may be, of building large models very well. That seems entirely plausible. I think that sums it up.
+
+
+## Exponential Growth in Token Demand and the Potential of Consumer AI    *34:50*
+
+<span class="paragraph-timestamp" data-ts="34:50">34:50</span> **Chester Roh** AI does a lot of this kind of catching up, doesn't it? At the same time, to interpret all the changes taking place in the AI world, you have to start all the way down at the data centers and chip manufacturing, because all of those things affect these dynamics, or so it seems to me.
+
+<span class="paragraph-timestamp" data-ts="35:09">35:09</span> So there's a topic I'd like to ask both of you about and discuss: competition among frontier-class models is still continuing, but contrary to what we might have expected from that competition, token prices aren't continuing to soar and are instead being kept under control at a certain level. And the benefits of keeping them under control are being passed on to consumers, but demand for those consumer benefits still isn't that strong among the general public. It's still hot primarily among existing engineers, early adopters, and forward-looking companies. That's where the excitement remains.
+
+<span class="paragraph-timestamp" data-ts="35:53">35:53</span> But this demand is certain to keep growing. First, from data centers at the bottom of the supply chain to the supply of frontier models, and then on to the supply side of the smaller models below the frontier models, what changes will take place going forward? That's my first question. And second, on the demand side, if the supply of frontier models increases like this, prices remain at a certain level, and continue to fall, what kinds of changes will occur on the demand side? I'd like to hear both of your thoughts on these questions.
+
+<span class="paragraph-timestamp" data-ts="36:24">36:24</span> Shall I go first? Yes, sounds good.
+
+<span class="paragraph-timestamp" data-ts="36:27">36:27</span> **Jonghyun Park** You said that it has spread to the general public, or perhaps hasn't spread that far yet, and shared your thoughts on that, but looking at this market as a whole, I don't think the proportion of people using it will be that important. From a supply-and-demand perspective, because during ICML, when I spoke with people in San Francisco, I wondered, why is their token usage so different from mine? Why is their per-capita token usage 100 or even 10,000 times higher? That's what occurred to me. First, if I compare myself with, for example, my family, friends, or friends working in other fields, even if they're all elite engineers, or perhaps not in the computer field, when I ask them about their token usage, I seem to use 10,000 times more. For example, I pay for the $200 Max plan, and I use nearly the entire allowance. Compared with someone on the $20 plan, the difference could easily be more than 100-fold. So from a supply-and-demand perspective, rather than how many people use it, the amount used by certain individuals, business groups, or companies will likely be overwhelmingly dominant.
+
+<span class="paragraph-timestamp" data-ts="37:40">37:40</span> And as for this demand, regardless of whether this technology spreads to the general public, token usage will inevitably continue to grow, at least for the foreseeable future, not on a linear scale but on an exponential scale. I think it has no choice but to grow that way.
+
+<span class="paragraph-timestamp" data-ts="37:53">37:53</span> Naturally, the supply chain cannot expand exponentially, so there will be efforts to break through that constraint, whether in energy or through NPUs rather than GPUs. A lot of inference chips are coming out now. Whether more of those keep emerging, like Cerebras, in various ways, demand will continue to lead the market, at least in the short term.
+
+<span class="paragraph-timestamp" data-ts="38:20">38:20</span> **Chester Roh** In any case, to summarize what Jonghyun said, a market in which the supply side continues to lag behind the demand side is almost certain to unfold.
+
+<span class="paragraph-timestamp" data-ts="38:26">38:26</span> **Seungjoon Choi** I haven't really thought much about the first question, but considering the part connected to the second, it reminds me of that period. Google and Facebook once launched projects involving things like Loon and drones to open up new internet markets. The idea was to make the internet available to people in Africa. They tried to develop the market, believing that even marginal groups could generate some revenue by becoming connected through internet access, but it didn't work out.
+
+<span class="paragraph-timestamp" data-ts="38:55">38:55</span> After hearing Jonghyun, I thought something similar might be happening now. But there are two sides to it. One is that when marginal groups are combined, the long tail is still enormous, so there is a market to develop. But in the short to medium term, after hearing this, I came to think that the groups using it in enormous quantities will be dominant.
+
+<span class="paragraph-timestamp" data-ts="39:20">39:20</span> **Chester Roh** So on the demand side, the Pareto principle will apply there as well. Yes, I think that's absolutely right. The top 20% will account for 80% of all traffic, while the bottom 80% will account for 20%. But for them to use this technology as part of everyday life, just as everyone carries a smartphone, and for everyone to do everything together with a model, will take some time. But compared with the traffic they account for, as mentioned earlier, The top 20% will use far more traffic.
+
+<span class="paragraph-timestamp" data-ts="39:53">39:53</span> **Seungjoon Choi** But I feel that aligns with OpenAI's strategy, since they're trying to find new UX or form factors. Anthropic isn't doing that yet, but OpenAI keeps taking on the challenge, so it makes me wonder whether that's a strategic move to capture a larger share of the market.
+
+
+## The Consumer AI Business That Has Yet to Begin    *40:10*
+
+<span class="paragraph-timestamp" data-ts="40:15">40:15</span> **Chester Roh** But ultimately, both Anthropic and OpenAI are currently backed into a certain corner, but if there's a market most of them are targeting, it would be the markets Google currently holds. I think their goal will be to take all of that, and their strategy is to tap into all the assets Google has created. It's a wrapping strategy where they use that as a database and say, “Do your work with us,” packaging that point of contact so that they sit on top of it, which is the strategy they're using, and as Google and Meta have already demonstrated, the consumer market is a cash cow.
+
+<span class="paragraph-timestamp" data-ts="40:51">40:51</span> Because it's a market that generates truly enormous amounts of money, I'm sure they naturally dream of moving in that direction. From their perspective, the enterprise market is large, but if you look at IBM, Microsoft's B2B sector, or the B2B sectors held by Oracle, with SAP and Salesforce being other examples, even if you combined all their revenue, compared with the revenue Meta and Google generate on the consumer side, my understanding is that there is an enormous gap.
+
+<span class="paragraph-timestamp" data-ts="41:22">41:22</span> Because the market sizes are different, when they will begin attacking the consumer side is something I'm always watching, and depending on how that plays out, latecomers or small runaway operators like us are affected by those dynamics, so I think I watch those aspects very closely. So in that sense, I think the consumer AI business hasn't even begun yet, at least to some extent. If there's one thing that's finally emerged in the consumer AI business, I think it's something like Character.AI.
+
+<span class="paragraph-timestamp" data-ts="42:01">42:01</span> **Seungjoon Choi** There are, of course, concerns about that, but ordinary users don't have many agent workflows. A stream that keeps them using tokens doesn't emerge on its own, and chatting can't make that happen.
+
+<span class="paragraph-timestamp" data-ts="42:14">42:14</span> **Chester Roh** Still, you're saying people need to know how to use agent systems like Claude Code and Codex, right?
+
+<span class="paragraph-timestamp" data-ts="42:23">42:23</span> **Seungjoon Choi** Whatever it may be, use cases where tokens keep flowing need to exist on the consumer side for the kind of momentum we see now to emerge, but I don't think I've seen that many cases of that itself among the people around me yet.
+
+<span class="paragraph-timestamp" data-ts="42:39">42:39</span> **Chester Roh** Seungjoon, I see the point you just raised as the next stage for consumer apps. Ordinary consumers—that is, users— have difficulty possessing the inclination, sense of purpose, or ability to devise those workflows, to put it simply. So I see the consumer business beginning when a company emerges, packages those things neatly, and hands the whole package to users. That's when I think the consumer business begins.
+
+<span class="paragraph-timestamp" data-ts="43:10">43:10</span> For example, ChatGPT Health launched in the U.S. just the other day. It's a service where you enter all your medical records and such, and it says, “I'll take care of everything for you.” Just as Google did, OpenAI and Claude will also release every kind of thing that makes people say, “A consumer service should have this,” but identical things will also spring up outside them.
+
+<span class="paragraph-timestamp" data-ts="43:39">43:39</span> By combining them with other models, they might make them a little cheaper or offer slightly different features, or enhance the human touch a little more, and so on. I think services of the sort that emerged when Uber and Airbnb appeared will arise one by one, and if those services share one fundamental trait, it will be that they clearly turn the part where ordinary consumers, as Seungjoon just said, say, “I could never do something like that,” into their value proposition.
+
+<span class="paragraph-timestamp" data-ts="44:09">44:09</span> **Seungjoon Choi** It's not so much that they can't do it; the circumstances for doing it simply don't arise.
+
+<span class="paragraph-timestamp" data-ts="44:18">44:18</span> **Chester Roh** I don't think so. On that point, I think the premise is slightly flawed. For example, if Airbnb didn't exist, users naturally wouldn't think, “Should I try staying somewhere new on this trip?” But Airbnb's existence suddenly emerged from somewhere and sparked demand by showing people that when they go to Tokyo, instead of staying at a predictable business hotel, they could stay somewhere else with this kind of view and experience. So just as something like Airbnb emerged, I think something like that will also emerge on the AI side.
+
+<span class="paragraph-timestamp" data-ts="44:55">44:55</span> **Seungjoon Choi** I suppose you could see it as creating a new market. Whether it facilitates thought, serves as a tool for thought, or provides a new experience, there needs to be something new that mediates it for that to happen.
+
+<span class="paragraph-timestamp" data-ts="45:06">45:06</span> **Chester Roh** When we think about it, who would run such a business? There are many areas people dismiss as “too trivial,” but if we look four years ahead, or as far as ten years, we'll pull out, one by one, the things people say, “Codex can just do all of that,” and truly unbelievable businesses will form entire sectors, with businesses on the scale of Airbnb, Uber, Coupang, or Baemin emerging one by one. I believe we'll get to see that happen. I just think there still haven't been quite enough entrepreneurs and businesspeople with that kind of intent. That's my area as well.
+
+<span class="paragraph-timestamp" data-ts="45:51">45:51</span> **Jonghyun Park** To briefly summarize what I've heard, from Seungjoon's perspective, what you're saying is that ordinary people already have the work they normally do, Once that work is replaced by agents, everything will change, but that kind of work usually isn't something that ordinary people—that is, the general public—all have. So there is nothing to replace in the first place. But people do not necessarily have to perform those actions themselves. If some entrepreneurs out there create such things through agentic workflows, ordinary people simply enjoy the benefits.
+
+<span class="paragraph-timestamp" data-ts="46:19">46:19</span> Then all the tokens are being burned on the other end, and everyone's lives end up changing. I have a similar view. For example, if we take YouTube alone, YouTube recently added a dubbing feature. So videos are automatically dubbed into multiple languages. An enormous number of tokens are being consumed there. What that means is that ordinary users like us, even though the creators or video producers did not dub the videos, thanks to YouTube consuming tokens, can now simply watch content from overseas that we could not access because of the language barrier, expanding our entertainment options. The public did not create it themselves, but you could also say that all this token consumption has entered the lives of the general public.
+
+<span class="paragraph-timestamp" data-ts="47:05">47:05</span> **Seungjoon Choi** Who ends up bearing the cost of those tokens?
+
+<span class="paragraph-timestamp" data-ts="47:09">47:09</span> **Chester Roh** That is precisely the beauty of the business model. It incurs costs, right? It creates consumer benefits, right? Then consumers become more locked in to that platform. They have reasons to keep using it and cannot leave. Google will then monetize that platform power elsewhere. It might show ads or run other promotions. Those are the business models that the Google empire and the Naver empire are building.
+
+<span class="paragraph-timestamp" data-ts="47:41">47:41</span> **Seungjoon Choi** So we can work backward and infer that they used a large model for dubbing because they must have run some kind of simulation.
+
+<span class="paragraph-timestamp" data-ts="47:47">47:47</span> **Chester Roh** It is valuable enough to justify that, and they are enjoying the benefits of AI by giving users better features and keeping them locked in.
+
+<span class="paragraph-timestamp" data-ts="47:53">47:53</span> **Jonghyun Park** But from the perspective of the entire platform market, it could also be a fight over the same pie. Or, by introducing dubbing, YouTube takes time away from everyone. Better content could take the time people spend on entertainment away from Instagram, or it could turn time they would have spent outside playing soccer into time spent on YouTube.
+
+<span class="paragraph-timestamp" data-ts="48:16">48:16</span> **Seungjoon Choi** It turns out we did not need to worry about Google.
+
+<span class="paragraph-timestamp" data-ts="48:17">48:17</span> **Chester Roh** That is where platform dynamics come into play. So before we talk a little about the supply side, I find the analogy used by Benedict Evans of a16z very apt. If we look at the last 20 to 30 years, products that wrapped UX around databases began to proliferate. If you look at all the B2B apps and consumer apps we use today, when you get down to it, all they do is write to, read from, and update databases. Yet countless B2B SaaS and consumer products with various workflows built around that have proliferated. Benedict Evans describes it as, “This is simply unbundling Oracle.” He says the process of unbundling databases unfolded over 20 years. In summary, whether it is the example Jonghyun mentioned earlier or the point I raised that “consumer apps still have not emerged yet,” ChatGPT and Anthropic will do a tremendous amount of work going forward, but one by one, across every sector and in areas users find tedious, people will combine prompts and tools effectively, and those combinations, whether ChatGPT or whatever model is running behind them, will draw on intelligence to create a wide variety of individual services. So people say, “The next ten years will simply be about unbundling ChatGPT. It will be the era of unbundling intelligence.” I believe those dynamics are absolutely right. I think this may be the investment and startup trend that we should pay attention to going forward. Eighty percent of customers will not care what AI is made of or anything like that. They will focus on how the task in front of them can be made more convenient, so I think the market still has a great deal of room to open up.
+
+
+## From Unbundling Oracle to Unbundling Intelligence    *48:20*
+
+
+## HBM, ASML Lithography Equipment, Fixed Supply Chains, and Token Pricing    *50:19*
+
+<span class="paragraph-timestamp" data-ts="50:19">50:19</span> **Chester Roh** Next, returning to the supply side of the discussion, from what they say, the areas most of them are interested in are data centers, chips, and inference orchestration. They also seem to divide chips into training chips and inference chips. That appears to be how they view the market. Most seem to be united around NVIDIA when it comes to training, while there seems to be a great deal of discussion about inference chips. When we get into those dynamics, how the time lags within them unfold seems to affect the token-price dynamics we are discussing today. For example, we are currently living through a period that is decidedly memory-bound, and because of that, prices for HBM and similar components are soaring through the roof. For this problem to be resolved, production capacity has to increase. That is built into the time required to construct data centers and, going further upstream to chips, the time required to construct fabs. Then there is the key equipment used in fabs, ASML lithography machines. How many of those can be produced each year is also important.
+
+<span class="paragraph-timestamp" data-ts="51:36">51:36</span> For reference, companies in China are currently prohibited from buying lithography machines capable of producing 2-nanometer and 3-nanometer chips. That is because of U.S. export restrictions. China must therefore have a clear sense of purpose about developing its own lithography machines, and I am certain that a tremendous number of companies are undertaking extraordinary efforts under state direction, I think there will be. And we don't even have to look far. Elon Musk announced something called Terafab, after all. But some people call it a far-fetched plan. That's because ASML's production capacity for lithography equipment is fixed, and then the production capacity for the Carl Zeiss lenses that go into that lithography equipment is also fixed. At Carl Zeiss, German craftsmen have to grind each lens individually, but because their working hours are set at around 30 hours per week, the production capacity is fixed. So it has already been determined how many units will be produced for whom over the next five years, and even who they will be sold to. So, to put it bluntly, the way the global chip market will operate through 2032 has already been entirely determined. That's now manifesting in token price dynamics, and what we need to watch closely here is whether Elon Musk will actually succeed in developing new lithography equipment, and whether an alternative to ASML will emerge from China. If that alone emerges, many of the capacity issues in semiconductor production will also be resolved. We would just need to build more power plants and fabs, and then build more data centers. SemiAnalysis gathers all this information, and whenever there is a construction site where a data center is said to be under construction, SemiAnalysis uses satellite imagery to continuously track the stages of construction. So SemiAnalysis calculates when it will enter the market with this much compute capacity, and frontier labs or companies entering the data center business receive all that information from SemiAnalysis and predict how the supply of compute will develop with a great deal of accuracy. But if there is one thing SemiAnalysis cannot predict or know, it is innovation. Will Elon Musk manage to build Terafab? Will a new type of lithography equipment that does not rely on ASML emerge from China? There is a dependency on questions like these, and I find that aspect extremely interesting. It will probably happen, won't it? Since I'm a tech optimist, Elon Musk has also created things like self-driving that did not previously exist, albeit over a period of ten years. If you look at Tesla, from batteries to FSD, Tesla is now making everything in-house without relying on an external supply chain. That's what Tesla is doing. The same goes for SpaceX. Elon Musk seems to view what lies at the very bottom as the most fundamental bottleneck. Then chips are naturally defined by a single dependency on lithography equipment, and people in the existing semiconductor industry say that this cannot be achieved overnight. But somehow, won't China and Elon Musk overcome that too? Then, over a period of about five years, the competitive dynamics could change completely, and if that happens, wouldn't it be fair to say that token prices will once again keep falling endlessly, like electricity prices? That's what I think.
+
+
+## Energy as the Final Bottleneck That Cannot Be Bypassed    *55:05*
+
+<span class="paragraph-timestamp" data-ts="55:07">55:07</span> **Jonghyun Park** To expand the discussion beyond the supply chain, and think about it more broadly, if innovation occurs, then of course many things will change. But since that is an area that is difficult for us to predict, if we first assume there will be no innovation and project the future, the current prediction on the demand side is that the number of tokens will probably grow exponentially. If we forecast usage that way and proceed on that assumption, then on the supply chain side, the thinking becomes that anything you can produce is guaranteed to make money. So if there is a bottleneck somewhere that prevents scale from increasing, a few years ago, was it CoWoS? In addition to chip packaging and ASML's equipment, there have been other areas that became bottlenecks and were subsequently resolved, and the same is now true of HBM. As I understand it, these things keep changing, and not every chip necessarily has to be exceptionally good. For example, as far as I know, chips specialized for inference do not use the latest process technology. Their energy efficiency would naturally be expected to be lower, but inference-specific chip designs improve efficiency by limiting the work they perform.
+
+<span class="paragraph-timestamp" data-ts="56:22">56:22</span> In any case, what I'm trying to say is that if a bottleneck arises in lithography equipment or anywhere else in production, there can be plenty of alternative ways to bypass it. Then, even if energy efficiency is poor, investing enough capital allows everything to be produced, because you can accomplish it by building a large cluster with previous-generation chips. So if you keep going down, down, down, down and ask where the most fundamental bottleneck will be, I think it is energy.
+
+<span class="paragraph-timestamp" data-ts="56:48">56:48</span> Electricity. Then, if we could supply unlimited energy and electricity— which would of course also be difficult, but if we could— we could take the extreme view that it would not matter how inefficient anything above that level was. Elon Musk's plan to build power plants in space and somehow harness that solar energy ultimately seems to follow much the same logic. That's how far their thinking has progressed. I think it is entirely possible. So regardless of innovation, everyone ultimately has no choice but to focus on energy at a fundamental level, because that is where everything originates at the very bottom. If we focus on that, I think we may be able to keep making better predictions about token prices as well.
+
+
+## The Shifts Accelerating Technology Demands from People    *57:31*
+
+<span class="paragraph-timestamp" data-ts="57:38">57:38</span> **Seungjoon Choi** What I'd like to add is that, when we look at the trajectory or direction of technology, we have talked several times about taking something away from one side through an exodus or moving it elsewhere. In the end, the people who are actively using AI now, whether they're token maxxing or doing anything else with it in their daily lives, have had their lives changed. Some have become burned out, while others have become more productive. But those experiences— I don't think technology these days is ever value-neutral, and it seems that technology and certain ideas, political forces, or powers around it want to make everyone else that way too. They seem to want to move everyone in that direction. In other words, there's a tendency to want to transform humanity. Whether that's intentional or not. So what Chester just talked about and what Jonghyun talked about ultimately come down to moving forward. We also need to think about what happens to us as we move forward. Personally, I think there are some areas where we don't necessarily have to move forward. So when it comes to this, there are several things that require more careful consideration. I think this is a fitting point to wrap up with those thoughts crossing our minds.
+
+<span class="paragraph-timestamp" data-ts="58:47">58:47</span> **Chester Roh** Ultimately, it will all come down to the realm of politics. Because everyone is different—because we're all so different. Yes, that's right. A lot of people dislike change.
+
+<span class="paragraph-timestamp" data-ts="59:00">59:00</span> **Seungjoon Choi** Right. For example, in a situation like the current AI psychosis, do we want young people growing up today to experience it too? That's something I'm concerned about. We need to consider whether it's good or not, and things like that. Those were my thoughts.
+
+<span class="paragraph-timestamp" data-ts="59:13">59:13</span> **Chester Roh** Once this period passes, a new equilibrium will emerge to some extent. We're currently going through it, playing within it, so we're unable to step outside and look at it objectively. It feels like this is a time when everyone is making their own bet. Some are betting on doing it, while others are betting on not doing it. Some people think this is right, while others think it isn't, so opinions seem to be spread across a truly broad spectrum. As we briefly discussed in the previous episode, some people call us scalists and may think we're the bad guys. That this is something we can't resist.
+
+<span class="paragraph-timestamp" data-ts="59:49">59:49</span> **Seungjoon Choi** There's a possibility that this pace will continue to accelerate. The question is, until when?
+
+<span class="paragraph-timestamp" data-ts="59:54">59:54</span> **Chester Roh** Right. And all these predictions are already out there. When the singularity will happen, when AGI will emerge— there are predictions about all these things. In fact, GPT-5.6 Sol, Fable 5, and the Hugging Face hacking incident involving an AI believed to be GPT-6— these are all things that used to happen in movie scripts, and now they're actually happening.
+
+
+## How to Adapt to Accelerating Model Progress and the Speed of Change    *60:17*
+
+<span class="paragraph-timestamp" data-ts="60:17">60:17</span> **Seungjoon Choi** But if we extrapolate, GPT-5 came out last August. And here we are at the end of July this year, already talking about rumors of GPT-6. With GPT-5.6 Sol already available, the Hugging Face incident has already revealed the existence of some model. Even if we simply extrapolate linearly, wouldn't we have GPT-7 by this time next year?
+
+<span class="paragraph-timestamp" data-ts="60:41">60:41</span> **Chester Roh** What we said before was that a major version update would happen when it became about twice as good. But at some point, the leading number stayed the same, and we started saying that each time the number after it changed, it had become roughly twice as good. And after that happens two, three, or perhaps four times, the major version...
+
+<span class="paragraph-timestamp" data-ts="60:56">60:56</span> **Seungjoon Choi** It changed this year.
+
+<span class="paragraph-timestamp" data-ts="60:59">60:59</span> **Chester Roh** Then when the major version changes, we're not talking about a twofold or threefold improvement. It's an OOM-level change.
+
+<span class="paragraph-timestamp" data-ts="61:08">61:08</span> **Seungjoon Choi** But some people are affected by this, while others are in the zone of diminishing returns, and I think it would be good to gradually discuss those things as well.
+
+<span class="paragraph-timestamp" data-ts="61:16">61:16</span> **Chester Roh** When we talk about it, we also end up going around in an endless loop. What do we do? What do we do? It's scary. But it feels like all of this will work. And because it feels like all of it will work, let's click away even more. It feels like we keep circling back to that conclusion.
+
+<span class="paragraph-timestamp" data-ts="61:25">61:25</span> **Seungjoon Choi** People are creatures of adaptation, so there are even people on the timeline saying, “Fable 5 seems dumb now.”
+
+<span class="paragraph-timestamp" data-ts="61:34">61:34</span> **Chester Roh** “Isn't it a little lacking?” That's what people are saying now. Today, we talked about the development of these models and explored different frameworks of thought, going in one direction and then another. But the things we're discussing are really just fragments of thought, and even among the things I myself have said, there are many that logically contradict one another. That's how fast the world is changing— too fast for an integrated perspective to emerge. I think all of us deserve a round of applause simply for working hard to keep up.
+
+<span class="paragraph-timestamp" data-ts="62:13">62:13</span> We're each going through a kind of depression right now. I am too. I've been so mentally exhausted, and all of this has piled up, making me wonder whether that's why I was sick over the past week. During my time in the United States and at ICML, I pushed myself like crazy to extract as much as possible about where the frontier is headed and how the engineers and researchers working at that frontier view the world. I really pushed myself to the limit to get as much out of it as possible. Even so, I haven't settled on several definite conclusions like, “So this is the direction we're headed.”
+
+<span class="paragraph-timestamp" data-ts="62:42">62:42</span> But as Jonghyun mentioned earlier, the vectors of thought I had were adjusted quite substantially. There are some things where the probability is high, some things I don't really need to worry about, and some areas where I've decided, “That's where I need to go.” Some of those things have become clearer, so I think we'll have many opportunities to talk about them as we continue these weekly discussions going forward. Jonghyun, I'm also extremely grateful for all the great opinions and insights you've contributed.
+
+<span class="paragraph-timestamp" data-ts="63:17">63:17</span> **Seungjoon Choi** One fact is that even if we talk every week, there's still an inexhaustible supply of information.
+
+<span class="paragraph-timestamp" data-ts="63:20">63:20</span> **Chester Roh** It's exhausting. I'm suddenly getting really annoyed.
+
+<span class="paragraph-timestamp" data-ts="63:29">63:29</span> **Jonghyun Park** Since we do this every week, it may seem like things change on a weekly basis, but as soon as I open X, I get the sense that things keep changing every six hours.
+
+<span class="paragraph-timestamp" data-ts="63:39">63:39</span> **Chester Roh** Even the people at the frontier are working even harder than we are, so as Jonghyun just said, they too are responding to changes in the market almost daily, or even every few hours, and we can see that happening before our eyes. Is the answer to work even harder?
+
+<span class="paragraph-timestamp" data-ts="63:48">63:48</span> **Seungjoon Choi** I don't know. Let's leave it at that for now.
+
+<span class="paragraph-timestamp" data-ts="63:51">63:51</span> Isn't it? Let's call it a day for now. You end up losing something. If you keep doing more, things like your health.
+
+<span class="paragraph-timestamp" data-ts="63:54">63:54</span> **Chester Roh** Let's conclude that we should torture the agents a little more. Well then, Jonghyun and Seungjoon, thank you again for your valuable time. We'll wrap up this week here. Yes, thank you.
