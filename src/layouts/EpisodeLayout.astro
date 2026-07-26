@@ -520,14 +520,27 @@ const homeLabel = ui.home;
     font-size: 0.75rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     color: #9ca3af;
+    opacity: 0;
     cursor: pointer;
     padding: 0.125rem 0.25rem;
     border-radius: 0.25rem;
-    transition: all 0.15s ease;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
 
     /* Mobile: inline timestamp */
     display: none;
     margin-right: 0.25rem;
+  }
+
+  .prose .paragraph-timestamp.is-visible,
+  .prose p:hover .paragraph-timestamp,
+  .prose .paragraph-timestamp:focus-visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prose .paragraph-timestamp {
+      transition: none;
+    }
   }
 
   /* Desktop: hanging indent */
