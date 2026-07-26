@@ -108,7 +108,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## NVIDIA GPU와 HBM 중심의 서빙 인프라 개요    *02:53*
 
-<span class="paragraph-timestamp" data-ts="02:53">02:53</span> 모델 이야기를 하면서 사실 NVIDIA 얘기를 하면 대부분 사람들이 못 알아들어요. 그렇죠. 그런데 GPU라는 게 있고 GPU가 있어야 모델이 돌아간다고 얘기를 하지만, 젠슨 황이 항상 이 행사에 나와서 하드웨어 다 보여주는데
+<span class="paragraph-timestamp" data-ts="02:53">02:53</span> **노정석** 모델 이야기를 하면서 사실 NVIDIA 얘기를 하면 대부분 사람들이 못 알아들어요. 그렇죠. 그런데 GPU라는 게 있고 GPU가 있어야 모델이 돌아간다고 얘기를 하지만, 젠슨 황이 항상 이 행사에 나와서 하드웨어 다 보여주는데
 
 <span class="paragraph-timestamp" data-ts="03:10">03:10</span> **최승준** 막 들고 다니면서 보여주고.
 
@@ -121,7 +121,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <ResourceLink url="https://www.nvidia.com/en-us/data-center/gb200-nvl72/" title="NVIDIA GB200 NVL72 official page" domain="nvidia.com" />
 
-<span class="paragraph-timestamp" data-ts="03:56">03:56</span> 사실은 저희가 오늘 이야기할 내용의 결론을 먼저 좀 깔고 가면, 이 Blackwell NVL72 GPU 간 통신이 예전에는 기존에는 8개까지만 됐는데 지금은 72개가 됐고, 그리고 개별 GPU의 용량도 사실 일론 머스크가 Colossus에 깔았던 H100이나 H200만 하더라도 GPU당 메모리가 80GB, 100GB 정도에 불과했잖아요.
+<span class="paragraph-timestamp" data-ts="03:56">03:56</span> **노정석** 사실은 저희가 오늘 이야기할 내용의 결론을 먼저 좀 깔고 가면, 이 Blackwell NVL72 GPU 간 통신이 예전에는 기존에는 8개까지만 됐는데 지금은 72개가 됐고, 그리고 개별 GPU의 용량도 사실 일론 머스크가 Colossus에 깔았던 H100이나 H200만 하더라도 GPU당 메모리가 80GB, 100GB 정도에 불과했잖아요.
 
 <span class="paragraph-timestamp" data-ts="04:16">04:16</span> 그런데 지금 나오고 있는, 작년부터 올해 막 출하되고 있는 GB200이나 GB300은 메모리가 192GB에 막 288GB짜리도 있고 이러거든요.
 
@@ -159,7 +159,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## 토큰 가격표와 캐시 가격의 의미    *07:22*
 
-<span class="paragraph-timestamp" data-ts="07:22">07:22</span> 그래서 왜 저희가 Claude Code 쓰고 여러분들 캐시 최적화에 이런 얘기를 하다 보면 이런 얘기들을 그냥 아무렇지 않게 사용하거든요.
+<span class="paragraph-timestamp" data-ts="07:22">07:22</span> **노정석** 그래서 왜 저희가 Claude Code 쓰고 여러분들 캐시 최적화에 이런 얘기를 하다 보면 이런 얘기들을 그냥 아무렇지 않게 사용하거든요.
 
 <span class="paragraph-timestamp" data-ts="07:32">07:32</span> input token과 output token은 가격 차이가 있고, 심지어 이 가격 차이도 어떤 데는 얼마 안 나고 어떤 데는 많이 나요.
 
@@ -184,7 +184,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## 추론 기초 용어 정리 KV cache prefill decode    *09:19*
 
-<span class="paragraph-timestamp" data-ts="09:24">09:24</span> 그래서 AI 모델은 이 하드웨어의 그림자다. 이렇게 발전하고 모델이 그렇게 발전하기 때문에 하드웨어가 그런 방향으로 틀기도 하고, 하드웨어가 그렇게 되어 있기 때문에 모델이 그걸 fully utilize하기 위해서 바뀌기도 하죠.
+<span class="paragraph-timestamp" data-ts="09:24">09:24</span> **노정석** 그래서 AI 모델은 이 하드웨어의 그림자다. 이렇게 발전하고 모델이 그렇게 발전하기 때문에 하드웨어가 그런 방향으로 틀기도 하고, 하드웨어가 그렇게 되어 있기 때문에 모델이 그걸 fully utilize하기 위해서 바뀌기도 하죠.
 
 <span class="paragraph-timestamp" data-ts="09:37">09:37</span> 오늘 내용이 좀 어렵지 않습니까? 승준님, 저희가 사실 에피소드를 하면서 transformer를 어떻게 하면 쉽게 설명할 수 있을까를 굉장히 여러 번 try를 했었어요. 그런데 이게 참 잘 안 돼요.
 
@@ -272,7 +272,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## Attention causal mask와 KV 압축 기법    *18:29*
 
-<span class="paragraph-timestamp" data-ts="18:42">18:42</span> 그래서 쿼리는 이 프롬프트들로부터, 토큰으로부터 만들어진 질의 같은 느낌이라면 키하고 밸류는 실제로 지식에서 이거를 soft search라는 개념으로 설명할 때가 많이 있거든요. 정확하게 key-value를 찾는 게 아니라 soft하게 정보를 찾는 느낌적인 느낌인 거죠.
+<span class="paragraph-timestamp" data-ts="18:42">18:42</span> **노정석** 그래서 쿼리는 이 프롬프트들로부터, 토큰으로부터 만들어진 질의 같은 느낌이라면 키하고 밸류는 실제로 지식에서 이거를 soft search라는 개념으로 설명할 때가 많이 있거든요. 정확하게 key-value를 찾는 게 아니라 soft하게 정보를 찾는 느낌적인 느낌인 거죠.
 
 <span class="paragraph-timestamp" data-ts="19:02">19:02</span> **노정석** 그러니까 여러분들이 이거 보시면서 QKV의 어떠한 의미에 대해서 이해하시려고 하면 어려워져요. 이거는 트랜스포머의 저자가 "이거 토큰들이 들어오는 것들을 그 안에서 서로의 연관성을 계산하게 하려면 어떻게 해야지?"라고 하면서 그냥 자신들이 구조적으로 만든 일종의 bias입니다.
 
@@ -375,7 +375,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 <ResourceLink url="https://nvidia.github.io/TensorRT-LLM/advanced/expert-parallelism.html" title="TensorRT-LLM expert parallelism" domain="nvidia.github.io" />
 
-<span class="paragraph-timestamp" data-ts="28:46">28:46</span> 그래서 마지막으로는 그런 것들이 어떻게 serving이 되는가의 하드웨어 구조인데 보통 하나의 데이터 서버 랙이라고 하죠. 랙이라는 형태가 어떻게 생긴 건지 좀 이따 영상으로 한번 볼 건데요.
+<span class="paragraph-timestamp" data-ts="28:46">28:46</span> **최승준** 그래서 마지막으로는 그런 것들이 어떻게 serving이 되는가의 하드웨어 구조인데 보통 하나의 데이터 서버 랙이라고 하죠. 랙이라는 형태가 어떻게 생긴 건지 좀 이따 영상으로 한번 볼 건데요.
 
 
 <ResourceLink url="https://www.nvidia.com/en-us/data-center/nvlink/" title="NVIDIA NVLink" domain="nvidia.com" />
@@ -451,7 +451,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## roofline analysis로 보는 LLM 서빙 시간 분해    *33:31*
 
-<span class="paragraph-timestamp" data-ts="33:39">33:39</span> 어떻게 이 GPU들이 serving이 되는지를 간단한 수식을 가지고 저희가 몇 개의 숫자들에 감추어진 그런 의미들을 읽을 수 있도록 만들어 주신 세션인데요. 이 세션 한번 저희가 따라가면서 의미들을 짚어보도록 하겠습니다.
+<span class="paragraph-timestamp" data-ts="33:39">33:39</span> **노정석** 어떻게 이 GPU들이 serving이 되는지를 간단한 수식을 가지고 저희가 몇 개의 숫자들에 감추어진 그런 의미들을 읽을 수 있도록 만들어 주신 세션인데요. 이 세션 한번 저희가 따라가면서 의미들을 짚어보도록 하겠습니다.
 
 <span class="paragraph-timestamp" data-ts="34:08">34:08</span> roofline analysis를 해주겠다는 얘기를 하면서 이야기를 진행하는데요. 이 아저씨가 얘기를 하는 게 저희가 결국은 그냥 Codex나 Claude Code나 아니면 ChatGPT에다 뭘 글을 쓰고 엔터를 딱 누르면 그게 돌아오는 결과가 나오는 시간이 있잖아요.
 
@@ -735,7 +735,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## batch에 따른 latency 그래프와 amortize 개념    *59:07*
 
-<span class="paragraph-timestamp" data-ts="59:20">59:20</span> compute는 이해를 했고, 메모리는 total memory를 loading하는 그런 시간, 그다음에 여기는 이제 context를 loading하는 데 걸리는 시간, 이것들을 더한 것을 메모리 대역폭으로 나눈 거죠. 결국은 메모리도 이 전체를 꺼내오는 데 시간이 걸리니까.
+<span class="paragraph-timestamp" data-ts="59:20">59:20</span> **노정석** compute는 이해를 했고, 메모리는 total memory를 loading하는 그런 시간, 그다음에 여기는 이제 context를 loading하는 데 걸리는 시간, 이것들을 더한 것을 메모리 대역폭으로 나눈 거죠. 결국은 메모리도 이 전체를 꺼내오는 데 시간이 걸리니까.
 
 <span class="paragraph-timestamp" data-ts="59:41">59:41</span> **최승준** 분모가 약간 다 시간 term이 있는 게, 이게 t를 계산하는 거기 때문이죠. 아까 FLOPs도 floating point 부동소수점을 per second에 얼마큼 계산하느냐고, 지금도 대역폭을 byte per second로 한 거기 때문에 결국에는
 
@@ -801,7 +801,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ![칠판에 세로축 t와 가로축 B가 표시된 그래프가 그려져 있고, 지연 시간 하한과 여러 곡선이 함께 보이는 강의 화면이다.](/episodes/ep96/ep96_6648_token_cost_curve.jpg)
 
-<span class="paragraph-timestamp" data-ts="1:06:48">1:06:48</span> cost, 토큰당 cost인 거예요. 근데 이거죠.
+<span class="paragraph-timestamp" data-ts="1:06:48">1:06:48</span> **노정석** cost, 토큰당 cost인 거예요. 근데 이거죠.
 
 <span class="paragraph-timestamp" data-ts="1:06:53">1:06:53</span> **최승준** 얘가 나누기로 들어갔네요.
 
@@ -839,7 +839,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## FLOPs 대역폭 비율과 sparsity로 추정한 최적 배치    *1:12:07*
 
-<span class="paragraph-timestamp" data-ts="1:12:14">1:12:14</span> 얘 어디 갔냐, 여기서. 이 메모리 대역폭과 N_total은 이 t_mem에서 attention 부분 싹 떼내버리고 그냥 이것만 가져온 거예요. attention 부분이 사실 굉장히 중요하고 큰 부분인데 그냥 계산할 편의를 위해서 얘 떼버려요.
+<span class="paragraph-timestamp" data-ts="1:12:14">1:12:14</span> **노정석** 얘 어디 갔냐, 여기서. 이 메모리 대역폭과 N_total은 이 t_mem에서 attention 부분 싹 떼내버리고 그냥 이것만 가져온 거예요. attention 부분이 사실 굉장히 중요하고 큰 부분인데 그냥 계산할 편의를 위해서 얘 떼버려요.
 
 <span class="paragraph-timestamp" data-ts="1:12:25">1:12:25</span> **최승준** 지금 뭔가 equal로 놨는데요. 등식으로.
 
@@ -909,7 +909,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## 20ms 연산 열차와 drain time 직관    *1:17:56*
 
-<span class="paragraph-timestamp" data-ts="1:18:19">1:18:19</span> 이게 한 배치를 채워서 그 배치를 연산을 시켜가지고 그러면 저 위에 prefill이면 LM head가 없을 거고 decode한 거면 LM head가 있을 거고 해가지고 값들이 나올 거잖아요. 이 앞에 승강장에서 토큰들이 탔으면 걔가 한 번 쫙 다 연산을 하고 저 위에 승강장에서 내리는데 그때까지 걸리는 시간이 한 20ms가 되도록 조정한다고 얘기를 하고 있거든요.
+<span class="paragraph-timestamp" data-ts="1:18:19">1:18:19</span> **노정석** 이게 한 배치를 채워서 그 배치를 연산을 시켜가지고 그러면 저 위에 prefill이면 LM head가 없을 거고 decode한 거면 LM head가 있을 거고 해가지고 값들이 나올 거잖아요. 이 앞에 승강장에서 토큰들이 탔으면 걔가 한 번 쫙 다 연산을 하고 저 위에 승강장에서 내리는데 그때까지 걸리는 시간이 한 20ms가 되도록 조정한다고 얘기를 하고 있거든요.
 
 <span class="paragraph-timestamp" data-ts="1:18:45">1:18:45</span> **최승준** tensor 계산만 하는 게 아니라 여러 가지 합쳐서 20ms인 거죠.
 
@@ -953,7 +953,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## vLLM SGLang의 핵심 목표 배치 채우기와 chunked prefill    *1:22:04*
 
-<span class="paragraph-timestamp" data-ts="1:22:38">1:22:38</span> 근데 핵심만 놓고 보면 결국은 20ms에 한 번씩 어떤 연산을 수행하는데 그 연산에 얼마만큼의 배치를 채워 넣는 게 좋을까라고 하는 거는 여기서 한 2400에서 한 3000. 심하게 요약을 하면 결국은 20ms에 한 번씩 출발하는 연산 열차에 배치의 최적치는 얼마다라고 얘기를 해 주는데 저 배치를 어떻게 놓치지 않고 꽉꽉 채워서 보낼 것이냐.
+<span class="paragraph-timestamp" data-ts="1:22:38">1:22:38</span> **노정석** 근데 핵심만 놓고 보면 결국은 20ms에 한 번씩 어떤 연산을 수행하는데 그 연산에 얼마만큼의 배치를 채워 넣는 게 좋을까라고 하는 거는 여기서 한 2400에서 한 3000. 심하게 요약을 하면 결국은 20ms에 한 번씩 출발하는 연산 열차에 배치의 최적치는 얼마다라고 얘기를 해 주는데 저 배치를 어떻게 놓치지 않고 꽉꽉 채워서 보낼 것이냐.
 
 <span class="paragraph-timestamp" data-ts="1:23:09">1:23:09</span> 그럼 유저들이 막 몇만 명, 몇천 명씩이 동시에 접속을 하고 그들이 Claude에 거는 워크로드는 정말 다양하잖아요. 누구는 Claude Code를 갖고 오고 누구는 안녕하세요 가져오고 누구는 뭐 가져오고. 이렇게 해서 굉장히 다양한 워크로드가 오는데 걔를 어떤 식으로 orchestration을 해야 이 각각의 rack에 있는 열차들이 매일 20밀리세컨드 토큰을 꽉꽉 채운 상태로 돌 수 있냐라는 거죠.
 
@@ -995,7 +995,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## 200K 컨텍스트 임계점과 가격 티어의 경제학    *1:28:06*
 
-<span class="paragraph-timestamp" data-ts="1:28:09">1:28:09</span> 근데 long-context가 됐을 때 사실 이 그래프에서 얘기하는 거를 심하게 요약해 보면 compute와 KV cache가 균형을 이루는 그런 지점이 있잖아요. 근데 그 지점을 넘어서고 나면 사실 이 그래프에서 보이죠. computation이 남아도는 시점이 되는 거죠.
+<span class="paragraph-timestamp" data-ts="1:28:09">1:28:09</span> **노정석** 근데 long-context가 됐을 때 사실 이 그래프에서 얘기하는 거를 심하게 요약해 보면 compute와 KV cache가 균형을 이루는 그런 지점이 있잖아요. 근데 그 지점을 넘어서고 나면 사실 이 그래프에서 보이죠. computation이 남아도는 시점이 되는 거죠.
 
 <span class="paragraph-timestamp" data-ts="1:28:29">1:28:29</span> computation은 아무리 빨라지더라도 메모리가 거기에 따라가지 못하기 때문에 전반적인 속도가 다 memory-bound로 떨어지는 그런 시점이 생기는데, KV cache의 길이 때문에 그게 이분들이 추정하건대 그 optimal point가 200k 정도 되는 것 같다.
 
@@ -1013,7 +1013,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## 캐시 계층과 TTL에 따른 비용 구조    *1:30:32*
 
-<span class="paragraph-timestamp" data-ts="1:30:32">1:30:32</span> 그리고 그 cache의 가격 얘기를 하면서 저희가 뭔가 이렇게 생각하면 좋을 것 같은데, 제가 Claude Code로 작업을 하고 있어요. 그럼 그 작업을 계속하고 있을 때는 사실상 KV cache가 어떤 기계의 HBM에 올라가 있을 거잖아요. 그러면 내가 하는 작업들은 계속 그 기계로 보내는 게 무조건 유리하잖아요. 근데 제가 잠깐 물 마시러 온 사이에도 얘가 1분 내에 올지, 30초 내에 올지, 10분 내에 올지 사실 그 AI는, 그 GPU 팜은 알 수가 없는 상황이고, 그러니 어떠한 기간 동안 예를 들어 1분은 HBM에서 그걸 잡고 있는 거죠. 메모리에서 그냥 기다리는 게 얘를 없애고 다른 유저의 워크로드를 받아버리는 것보다는 더 이익인 상황이 있으니까, 그게 cache 전략인데 그래서 HBM에 있으면 바로 hit가 되는 거고.
+<span class="paragraph-timestamp" data-ts="1:30:32">1:30:32</span> **노정석** 그리고 그 cache의 가격 얘기를 하면서 저희가 뭔가 이렇게 생각하면 좋을 것 같은데, 제가 Claude Code로 작업을 하고 있어요. 그럼 그 작업을 계속하고 있을 때는 사실상 KV cache가 어떤 기계의 HBM에 올라가 있을 거잖아요. 그러면 내가 하는 작업들은 계속 그 기계로 보내는 게 무조건 유리하잖아요. 근데 제가 잠깐 물 마시러 온 사이에도 얘가 1분 내에 올지, 30초 내에 올지, 10분 내에 올지 사실 그 AI는, 그 GPU 팜은 알 수가 없는 상황이고, 그러니 어떠한 기간 동안 예를 들어 1분은 HBM에서 그걸 잡고 있는 거죠. 메모리에서 그냥 기다리는 게 얘를 없애고 다른 유저의 워크로드를 받아버리는 것보다는 더 이익인 상황이 있으니까, 그게 cache 전략인데 그래서 HBM에 있으면 바로 hit가 되는 거고.
 
 <span class="paragraph-timestamp" data-ts="1:31:28">1:31:28</span> 근데 제가 한 10분 놀다 왔어요. 그러면 얘를 10분 동안 HBM에 잡고 있는 거는 또 그들에게 손해니까 내려버리는 거고, 내려버리는 단계가 CPU 옆에 있는 DRAM으로 내리는 거, 한 1단계. 다음 flash drive에 올리는 게 2단계. 아니면 진짜 전통적인 HDD에 내려버리는 게 4단계. 이런 식으로 하고, 그마저도 다 시간이 expire돼 버리고 나면 싹 없애버리고. 그런 식으로 해서 cache 가격들이 쭉 다 달라지는 형태도 사실 이런 dynamics에 있는 거고.
 
@@ -1023,7 +1023,7 @@ notionUrl: "https://erucipe.notion.site/LLM-354d5c9e7e598017a2b8fd3ee3316197?pvs
 
 ## Dwarkesh 학습법 flashcard와 복습 루틴    *1:33:22*
 
-<span class="paragraph-timestamp" data-ts="1:33:22">1:33:22</span> 그래서 저희가 사실 이 2시간 강연 중에 앞에 30분 본 거거든요. 30분 본 얘기를 이렇게 길게 했는데, 뒤에가 사실은 여기에 대한 이해를 가지고 더 재미난 내용들이 쭉 있는데, 한번 그거는 숙제로 남겨 드리겠습니다.
+<span class="paragraph-timestamp" data-ts="1:33:22">1:33:22</span> **노정석** 그래서 저희가 사실 이 2시간 강연 중에 앞에 30분 본 거거든요. 30분 본 얘기를 이렇게 길게 했는데, 뒤에가 사실은 여기에 대한 이해를 가지고 더 재미난 내용들이 쭉 있는데, 한번 그거는 숙제로 남겨 드리겠습니다.
 
 <span class="paragraph-timestamp" data-ts="1:33:41">1:33:41</span> **최승준** 그래서 Dwarkesh가 참 대단한 것 같습니다.
 

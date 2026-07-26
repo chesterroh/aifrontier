@@ -68,7 +68,7 @@ alternateSlug: null
 
 ## 1.6T로 커진 DeepSeek-V4의 모델 확장과 아키텍처 변화    *03:34*
 
-<span class="paragraph-timestamp" data-ts="03:34">03:34</span> DeepSeek-V4는 일단 모델 크기가 커졌습니다. DeepSeek-V3는 작은 모델이 없었죠. 600B 정도의 모델이었는데 1.6T 모델로 커졌고요. activated parameter도 약간 더 커졌습니다. 제 기억으로 V3는 37B 정도였을 겁니다. 그리고 작은 모델이 같이 나왔고요. 작은 모델을 꼭 같이 내더라고요. 선후 관계가 있는 건 아니고 동시에 학습시켰을 수도 있습니다. 작은 모델도 나왔고, 그다음에 아키텍처 변화가 굉장히 크게 있었는데, 한 큰 축은 sparse attention입니다. 다른 한 큰 축은 mHC라고 불리는 아키텍처 개선이고, Muon optimizer는 요즘 중국 모델들이 다 쓰고 있는 optimizer이고요. 그 측면에서 모델의 결과적·성능적 변화는 이 세 개의 그래프가 가장 잘 보여주고 있는 것 같은데, base model의 성능과 post-training 된 모델의 성능이 크게 올랐고 동시에 long-context 측면에서의 비용이 굉장히 크게 감소했습니다. 연산 소모량 자체가 감소했고, 메모리 부담과 관련된 KV cache의 크기 자체도 굉장히 크게 감소했습니다. 여기에 가장 크게 관련된 건 역시 sparse attention이고요. 그리고 이 sparse attention 때문에 아마 DeepSeek 팀은 굉장히 큰 고생을 했을 겁니다.
+<span class="paragraph-timestamp" data-ts="03:34">03:34</span> **김성현** DeepSeek-V4는 일단 모델 크기가 커졌습니다. DeepSeek-V3는 작은 모델이 없었죠. 600B 정도의 모델이었는데 1.6T 모델로 커졌고요. activated parameter도 약간 더 커졌습니다. 제 기억으로 V3는 37B 정도였을 겁니다. 그리고 작은 모델이 같이 나왔고요. 작은 모델을 꼭 같이 내더라고요. 선후 관계가 있는 건 아니고 동시에 학습시켰을 수도 있습니다. 작은 모델도 나왔고, 그다음에 아키텍처 변화가 굉장히 크게 있었는데, 한 큰 축은 sparse attention입니다. 다른 한 큰 축은 mHC라고 불리는 아키텍처 개선이고, Muon optimizer는 요즘 중국 모델들이 다 쓰고 있는 optimizer이고요. 그 측면에서 모델의 결과적·성능적 변화는 이 세 개의 그래프가 가장 잘 보여주고 있는 것 같은데, base model의 성능과 post-training 된 모델의 성능이 크게 올랐고 동시에 long-context 측면에서의 비용이 굉장히 크게 감소했습니다. 연산 소모량 자체가 감소했고, 메모리 부담과 관련된 KV cache의 크기 자체도 굉장히 크게 감소했습니다. 여기에 가장 크게 관련된 건 역시 sparse attention이고요. 그리고 이 sparse attention 때문에 아마 DeepSeek 팀은 굉장히 큰 고생을 했을 겁니다.
 
 ## 연산량과 KV cache를 줄이는 Sparse Attention    *04:03*
 
@@ -88,7 +88,7 @@ alternateSlug: null
 
 ## from-scratch 학습으로 보는 Sparse Attention의 의미    *08:16*
 
-<span class="paragraph-timestamp" data-ts="09:36">09:36</span> 그것들을 사실 DeepSeek이 작년 초에 이미 들고 나왔었습니다. 굉장히 성공적이고 잘 되는 것 같다는 얘기를 했었죠. 그런데 그게 잘 되지 않았다는 교훈으로 보는 게 맞을 것 같습니다. 왜냐하면 DeepSeek 자신도 그 이후 DeepSeek-V3.2 같은 모델이 되면서 그 구조를 포기했었거든요. 사실 그 sparse attention에서 굉장히 중요한 부분 중 하나는 처음부터 sparse attention을 학습해서 from scratch로 pre-training 된 모델을 만들겠다는 것에 있었습니다. 그런데 그 구조를 약간 포기하는 듯한 행보를 보였어요. 그냥 dense attention, 즉 이전의 모든 토큰을 참조하는 attention으로 pre-training 학습을 한 다음, 이후에 post-training 개념으로 sparse attention을 얹자, 그래서 DeepSeek Sparse Attention이라는 얹는 구조를 들고 나왔거든요.
+<span class="paragraph-timestamp" data-ts="09:36">09:36</span> **김성현** 그것들을 사실 DeepSeek이 작년 초에 이미 들고 나왔었습니다. 굉장히 성공적이고 잘 되는 것 같다는 얘기를 했었죠. 그런데 그게 잘 되지 않았다는 교훈으로 보는 게 맞을 것 같습니다. 왜냐하면 DeepSeek 자신도 그 이후 DeepSeek-V3.2 같은 모델이 되면서 그 구조를 포기했었거든요. 사실 그 sparse attention에서 굉장히 중요한 부분 중 하나는 처음부터 sparse attention을 학습해서 from scratch로 pre-training 된 모델을 만들겠다는 것에 있었습니다. 그런데 그 구조를 약간 포기하는 듯한 행보를 보였어요. 그냥 dense attention, 즉 이전의 모든 토큰을 참조하는 attention으로 pre-training 학습을 한 다음, 이후에 post-training 개념으로 sparse attention을 얹자, 그래서 DeepSeek Sparse Attention이라는 얹는 구조를 들고 나왔거든요.
 
 <span class="paragraph-timestamp" data-ts="10:30">10:30</span> 그게 왜 그런가 하면 아마 from scratch로 sparse attention을 학습하는 게 굉장히 어려웠기 때문일 겁니다.
 
@@ -102,7 +102,7 @@ sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적�
 
 ## Sparse Attention을 구성하는 세 가지 핵심 컴포넌트    *12:10*
 
-<span class="paragraph-timestamp" data-ts="12:49">12:49</span> 그래서 이 attention은 sliding window attention하고 full dense attention을 결합한 구조가 지금은 default로 기본값으로 많이 사용되고 있는 구조라고 보시면 될 것 같아요. 다른 한 가지가 들어가는데 다른 한 가지 attention은 예를 들어서 1만 토큰이 있다고 하면 그 1만 토큰을 100분의 1로 줄여버리는 attention이 하나 들어갑니다. 그래서 1만 토큰을 100분의 1로 요약한 다음에 그러니까 예를 들어서 각 100토큰을 한 개의 토큰으로 압축한다고 보시면 될 것 같아요. 압축한 토큰, 1만 토큰은 100분의 1로 압축하니까 100토큰이 나오겠죠. 그 100토큰에 대해서 full attention을 하는 attention 구조가 하나 들어갑니다.
+<span class="paragraph-timestamp" data-ts="12:49">12:49</span> **김성현** 그래서 이 attention은 sliding window attention하고 full dense attention을 결합한 구조가 지금은 default로 기본값으로 많이 사용되고 있는 구조라고 보시면 될 것 같아요. 다른 한 가지가 들어가는데 다른 한 가지 attention은 예를 들어서 1만 토큰이 있다고 하면 그 1만 토큰을 100분의 1로 줄여버리는 attention이 하나 들어갑니다. 그래서 1만 토큰을 100분의 1로 요약한 다음에 그러니까 예를 들어서 각 100토큰을 한 개의 토큰으로 압축한다고 보시면 될 것 같아요. 압축한 토큰, 1만 토큰은 100분의 1로 압축하니까 100토큰이 나오겠죠. 그 100토큰에 대해서 full attention을 하는 attention 구조가 하나 들어갑니다.
 
 <span class="paragraph-timestamp" data-ts="13:33">13:33</span> 가장 복잡한 구조가 Compressed Attention, Compressed Sparse Attention일 텐데요. Compressed Sparse Attention은 이 context를 약간 압축합니다. DeepSeek에서는 4분의 1로 압축을 하거든요. 4분의 1로 압축을 한 다음에 4분의 1에서 상위의 일부만 상위 top-k에만 attention을 하는 sparse attention이 들어갑니다. 이 3개의 attention의 결합을 통해서 DeepSeek의 long-context 지원을 위한 attention이 구성된다고 보시면 될 것 같고요. 각각의 구조와 구조가 야기하는 구조적인 변화나 이걸 다시 또 이렇게 만들더라도 이걸 효율적으로 추론하기 위해서 필요한 infrastructure가 또 필요하게 되거든요. 그 구조들 자체도 굉장히 복잡합니다.
 
@@ -128,7 +128,7 @@ sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적�
 
 ## KV cache를 다루는 Lightning Indexer와 top-k 선택    *17:10*
 
-<span class="paragraph-timestamp" data-ts="18:20">18:20</span> 1단계로 KV cache를 압축합니다. 4분의 1로 압축을 합니다. 크게 4분의 1로 줄이고요. 이 4분의 1로 압축한 다음에 4분의 1 중에서 일부만 뽑아냅니다. 일부만 뽑아내는 역할을 하는 게 Lightning Indexer라고 하는 부분이에요.
+<span class="paragraph-timestamp" data-ts="18:20">18:20</span> **김성현** 1단계로 KV cache를 압축합니다. 4분의 1로 압축을 합니다. 크게 4분의 1로 줄이고요. 이 4분의 1로 압축한 다음에 4분의 1 중에서 일부만 뽑아냅니다. 일부만 뽑아내는 역할을 하는 게 Lightning Indexer라고 하는 부분이에요.
 
 <span class="paragraph-timestamp" data-ts="18:36">18:36</span> **노정석** 중요한 거죠.
 
@@ -150,7 +150,7 @@ sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적�
 
 ## Top-k 선택의 미분 불가능성과 학습 불안정성을 짚는다    *21:36*
 
-<span class="paragraph-timestamp" data-ts="21:36">21:36</span> 그렇기 때문에 전체를 봐야 하기 때문에 이 부분은 상당히 경량이어야 합니다. 이 k개를 찾는 과정이 어떻게 생각하면 sparse attention을 굉장히 어렵게 만드는 부분입니다. sparse하다고 하는 것이 딥러닝에서 굉장히 늘 매력적이지만, sparse하다는 건 연산의 양을 줄여줄 수 있다는 의미이기 때문에 대부분에 대해서는 계산하지 않고 일부분만 계산을 하면 된다는 것이기 때문에 딥러닝에서 늘 매력적인 구조입니다. 그런데 동시에 딥러닝에서 sparse하다고 하면 늘 문제를 발생시킵니다. 왜냐하면 예를 들어서 MoE 같은 구조도 정확하게 그런 측면에서 sparse한 구조거든요. 왜냐하면 sparse하다고 할 때 굉장히 흔히 쓰이는 연산이 top-k 연산입니다. 그 전체에서 k개만 뽑아주는 연산. 그런데 문제는 top-k는 미분 불가능한 현상입니다. 기본적으로. 물론 선택되고 엄밀하게 말하면 선택된 것들에 대해서는 gradient가 발생하지만 이 선택하는 과정 자체에 대해서는 미분이 불가능합니다. 선택이 제일 중요한 부분인데 선택할 수 있는 이 선택을 학습할 수가 없는 거죠. 기본적으로는. 그렇기 때문에 이 부분에서 불안정하고 학습하기 어려운 부분이 발생합니다.
+<span class="paragraph-timestamp" data-ts="21:36">21:36</span> **김성현** 그렇기 때문에 전체를 봐야 하기 때문에 이 부분은 상당히 경량이어야 합니다. 이 k개를 찾는 과정이 어떻게 생각하면 sparse attention을 굉장히 어렵게 만드는 부분입니다. sparse하다고 하는 것이 딥러닝에서 굉장히 늘 매력적이지만, sparse하다는 건 연산의 양을 줄여줄 수 있다는 의미이기 때문에 대부분에 대해서는 계산하지 않고 일부분만 계산을 하면 된다는 것이기 때문에 딥러닝에서 늘 매력적인 구조입니다. 그런데 동시에 딥러닝에서 sparse하다고 하면 늘 문제를 발생시킵니다. 왜냐하면 예를 들어서 MoE 같은 구조도 정확하게 그런 측면에서 sparse한 구조거든요. 왜냐하면 sparse하다고 할 때 굉장히 흔히 쓰이는 연산이 top-k 연산입니다. 그 전체에서 k개만 뽑아주는 연산. 그런데 문제는 top-k는 미분 불가능한 현상입니다. 기본적으로. 물론 선택되고 엄밀하게 말하면 선택된 것들에 대해서는 gradient가 발생하지만 이 선택하는 과정 자체에 대해서는 미분이 불가능합니다. 선택이 제일 중요한 부분인데 선택할 수 있는 이 선택을 학습할 수가 없는 거죠. 기본적으로는. 그렇기 때문에 이 부분에서 불안정하고 학습하기 어려운 부분이 발생합니다.
 
 <span class="paragraph-timestamp" data-ts="22:51">22:51</span> **노정석** DeepSeek은 그런 부분을 어떻게 넘어섰나요?
 
@@ -212,7 +212,7 @@ sparse attention을 그냥 from scratch로 학습하기는 어렵고 역설적�
 
 ## 학습 인프라를 끌어올린 MoE pipeline 최적화    *31:18*
 
-<span class="paragraph-timestamp" data-ts="31:18">31:18</span> 그리고 infrastructure가 나옵니다. infrastructure도 이제 만만치 않은 부분인데요. 한 가지는 MoE 부분에서의 최적화입니다. 이것도 어디까지 설명을 드려야 될지 잘 모르겠네요.
+<span class="paragraph-timestamp" data-ts="31:18">31:18</span> **김성현** 그리고 infrastructure가 나옵니다. infrastructure도 이제 만만치 않은 부분인데요. 한 가지는 MoE 부분에서의 최적화입니다. 이것도 어디까지 설명을 드려야 될지 잘 모르겠네요.
 
 <span class="paragraph-timestamp" data-ts="31:30">31:30</span> 분산 학습이라고 하면 통신이 있고 연산이 있습니다. 그러니까 분산 학습을 하다 보니까 정보를 나누고 합치고 하는 과정에서 다른 어떤 worker들하고 통신을 해야 되죠. 통신이 있고 그다음에 실제 계산을 해야 되죠. 연산이 있습니다. 간단하게 생각하면 통신하고 연산을 동시에 할 수 있습니다. 그렇죠. 엄밀하게 말하면 완전히 그렇게 다 되진 않지만 기본적으로 겹칠 수 있습니다. 겹쳐야 합니다. 그런데 그냥 겹치는 게 보통은 겹치기 힘든 형태로 되어 있는 경우가 많이 있거든요. 알고리즘 자체는 겹칠 수가 없습니다. 통신하고 연산하고, 통신하고 연산하고 이런 구조가 됩니다. 그런데 이걸 겹치고 싶은 겁니다.
 
@@ -416,7 +416,7 @@ DeepSeek은 여기서 On-Policy Distillation 방법을 썼어요. 그래서 각�
 
 ## Cat Wu 인터뷰로 본 가속된 개발과 번아웃    *1:00:00*
 
-<span class="paragraph-timestamp" data-ts="1:00:11">1:00:11</span> 그래서 이거에 요약된 내용을 제가 앞에다가 좀 뽑아놨는데요. 개발 속도의 극적인 가속. 그래서 이게 인터뷰어가 이제 짚은 거는 리소스가 좀 도움이 되지 않았느냐 했는데 Cat Wu가 그거를 완전히 인정을 하지 않고 살짝만 인정을 했고 이미 어떤 flywheel이 돌고 있다. 그다음에 PM의 역할, 그런 얘기 쭉 하다가 저는 맨 마지막 부분이 재미있었는데 그거를 본문 그대로 가져온 부분이 이거거든요. 토네이도 한가운데에서 제정신을 유지하는 법. 이런 변화 속에서 인간으로 어떻게 버티냐. 그래서 지금 그 Anthropic의 공동 창립자 중에 한 명이죠. Ben Mann이 한 얘기가 지금이 앞으로 세상이 가질 수 있는 가장 정상적인 모습이다라고 하면서 굉장히 높은 frequency에서 회복 탄력성을 가지는 인재상에 대해서 좀 얘기를 했습니다. 그래서 세상의 모든 것이 미쳐 들어가고 있어가 아니라 이 와중에서도 정신을 차릴 수 있는, burnout 되지 않는 사람에 대한 이야기를 한 거 정도를 이번 주 뉴스로 좀 꼽아봤습니다.
+<span class="paragraph-timestamp" data-ts="1:00:11">1:00:11</span> **최승준** 그래서 이거에 요약된 내용을 제가 앞에다가 좀 뽑아놨는데요. 개발 속도의 극적인 가속. 그래서 이게 인터뷰어가 이제 짚은 거는 리소스가 좀 도움이 되지 않았느냐 했는데 Cat Wu가 그거를 완전히 인정을 하지 않고 살짝만 인정을 했고 이미 어떤 flywheel이 돌고 있다. 그다음에 PM의 역할, 그런 얘기 쭉 하다가 저는 맨 마지막 부분이 재미있었는데 그거를 본문 그대로 가져온 부분이 이거거든요. 토네이도 한가운데에서 제정신을 유지하는 법. 이런 변화 속에서 인간으로 어떻게 버티냐. 그래서 지금 그 Anthropic의 공동 창립자 중에 한 명이죠. Ben Mann이 한 얘기가 지금이 앞으로 세상이 가질 수 있는 가장 정상적인 모습이다라고 하면서 굉장히 높은 frequency에서 회복 탄력성을 가지는 인재상에 대해서 좀 얘기를 했습니다. 그래서 세상의 모든 것이 미쳐 들어가고 있어가 아니라 이 와중에서도 정신을 차릴 수 있는, burnout 되지 않는 사람에 대한 이야기를 한 거 정도를 이번 주 뉴스로 좀 꼽아봤습니다.
 
 <span class="paragraph-timestamp" data-ts="1:01:16">1:01:16</span> **노정석** 저 능력을 갖추는 게 참 어렵죠. 네.
 
@@ -428,7 +428,7 @@ DeepSeek은 여기서 On-Policy Distillation 방법을 썼어요. 그래서 각�
 
 ## 모델 성능에서 사업 가치로 넘어가는 경쟁 구도    *1:02:08*
 
-<span class="paragraph-timestamp" data-ts="1:02:32">1:02:32</span> 그래서 시장이 아까 승준님 방금 말씀하셨지만 이젠 더 이상 이 모델이 얼마나 성능이 좋아졌고 뭐가 어떻대라고 하는 게 Chrome의 업데이트만큼 그냥 일상적인 그런 상황이 돼버릴 수도 있고 어차피 AGI야라고 하는 그런 세상이 돼버릴 수도 있고. 그런데 이걸 가지고 그럼 어떻게 우리는 사업을 할 건데, 어떠한 가치를 만들어 낼 건데, 그런 부분으로 급격하게 이동할 것 같습니다. 그런 시그널이 느껴져요. 또 앞서가시는 분들은 이제 더 이상 Harness를 어떻게 구축해야 되네, Claude Code가 어떤데, Codex 어떻게 하네, 이런 얘기가 아니라 이거 가지고 그럼 돈은 어떻게 벌 건데, 고객은 뭘 원하는데, 그들 사이의 gap은 어떻게 메꿀 수 있는데, 이런 이야기들로 담담하게 전진하시는 것들을 요새 좀 많이 목격하고 있습니다.
+<span class="paragraph-timestamp" data-ts="1:02:32">1:02:32</span> **노정석** 그래서 시장이 아까 승준님 방금 말씀하셨지만 이젠 더 이상 이 모델이 얼마나 성능이 좋아졌고 뭐가 어떻대라고 하는 게 Chrome의 업데이트만큼 그냥 일상적인 그런 상황이 돼버릴 수도 있고 어차피 AGI야라고 하는 그런 세상이 돼버릴 수도 있고. 그런데 이걸 가지고 그럼 어떻게 우리는 사업을 할 건데, 어떠한 가치를 만들어 낼 건데, 그런 부분으로 급격하게 이동할 것 같습니다. 그런 시그널이 느껴져요. 또 앞서가시는 분들은 이제 더 이상 Harness를 어떻게 구축해야 되네, Claude Code가 어떤데, Codex 어떻게 하네, 이런 얘기가 아니라 이거 가지고 그럼 돈은 어떻게 벌 건데, 고객은 뭘 원하는데, 그들 사이의 gap은 어떻게 메꿀 수 있는데, 이런 이야기들로 담담하게 전진하시는 것들을 요새 좀 많이 목격하고 있습니다.
 
 <span class="paragraph-timestamp" data-ts="1:03:26">1:03:26</span> **최승준** 그래서 아까 성현님도 짚어주셨지만 그 base model이 지금 한 번 다 바뀌는 거잖아요. Anthropic도 4.7은 아닐 수 있지만 Mythos는 확실히 base가 달라졌고 Spud는 base model 달라졌고 DeepSeek도 base model 달라졌고 해서 이 이후에는 incremental하게 계속 계속 이 주파수로 모델들이 업데이트되고 이게 GPT-5.5도 사람들이 얘기하기로는 early checkpoint인 것 같다는 얘기들이 있거든요. 그렇다는 거는 계속 나온다는 거겠죠.
 
@@ -444,6 +444,6 @@ DeepSeek은 여기서 On-Policy Distillation 방법을 썼어요. 그래서 각�
 
 ## 오늘 논의 마무리와 다음 편 예고    *1:04:37*
 
-<span class="paragraph-timestamp" data-ts="1:04:41">1:04:41</span> 그러면 오늘 또 조금 길고 어떻게 보면 굉장히 어려운 세션일 수도 있는데 DeepSeek-V4 그리고 GPT-5.5 이야기 한 번 나눠봤습니다. 승준님, 성현님 감사합니다.
+<span class="paragraph-timestamp" data-ts="1:04:41">1:04:41</span> **노정석** 그러면 오늘 또 조금 길고 어떻게 보면 굉장히 어려운 세션일 수도 있는데 DeepSeek-V4 그리고 GPT-5.5 이야기 한 번 나눠봤습니다. 승준님, 성현님 감사합니다.
 
 <span class="paragraph-timestamp" data-ts="1:04:51">1:04:51</span> **최승준** 수고하셨습니다. 재밌었습니다.
