@@ -228,6 +228,13 @@ frontmatter `series: 'interview'`로 구분하며, `episodeNumber`는 시리즈 
 에피소드에서 사용한 발표 자료·슬라이드·아티클을 올리는 섹션입니다.
 URL: `/{lang}/articles` (목록), `/{lang}/articles/{slug}` (상세). 헤더 내비게이션의 "자료" 링크로 연결됩니다.
 
+### 글쓰기 스타일
+
+- 모든 글은 간단·명료하게. 섹션당 산문은 1~3문단으로 압축한다.
+- 관점 나열·요약·결론부는 한 줄짜리 불릿으로 쓴다.
+- 임베드(표·트윗·이미지)를 적극 활용하고 주변 설명은 최소화한다.
+- 사실은 1차 자료(원문 PDF·공식 블로그·X 포스트)를 대조해 쓰고 본문에 출처를 링크한다.
+
 ### 새 아티클 추가 방법
 
 1. 템플릿 복사: `cp src/content/articles/_template.mdx src/content/articles/ko/my-article.mdx`
@@ -260,13 +267,23 @@ URL: `/{lang}/articles` (목록), `/{lang}/articles/{slug}` (상세). 헤더 내
 <VideoEmbed src="/articles/my-article/demo.mp4" title="데모" poster="/articles/my-article/poster.jpg" />
 
 <ResourceLink url="/resources/ep102/slides.pptx" title="발표 자료" domain="aifrontier.kr" description="설명" />
+
+<XPostEmbed url="https://x.com/user/status/123" lang="ko" description="설명(선택)" />
+
+<XEmbed url="https://x.com/user/status/123" author="이름" handle="user" date="2026년 7월 24일" translation="한국어 번역(선택)" linkLabel="X에서 원문 보기">
+포스트 원문 텍스트 (마크다운 가능)
+</XEmbed>
 ```
 
 - `Figure`: 이미지+캡션. 클릭 시 원본이 새 탭에서 열림. 캡션이 없으면 마크다운 `![]()` 문법도 가능
 - `VideoEmbed`: `youtubeId`(+선택 `start` 초) 또는 `src`(로컬 파일) 중 하나 사용
 - `ResourceLink`: 파일 다운로드/외부 링크 카드
+- **X 포스트 임베드는 용도에 따라 둘 중 하나를 쓴다:**
+  - `XPostEmbed`: X 공식 위젯(`platform.twitter.com` 스크립트)으로 실제 포스트를 렌더링. 원문 그대로 보여주면 될 때 사용. `lang`으로 링크 라벨만 현지화된다
+  - `XEmbed`: 외부 스크립트 없이 직접 렌더링하는 정적 인용 카드. 원문은 슬롯에, `translation`에 번역문을 병기할 수 있어 **다국어 아티클에서 원문+번역을 같이 보여줄 때** 사용. `linkLabel` 기본값이 한국어이므로 en/ja/zh-Hans에서는 해당 언어로 넘긴다
 
-샘플 아티클: `src/content/articles/ko/icml-2026-sponsor-booths.mdx` (ICML 2026 현장 스케치)
+샘플 아티클: `src/content/articles/ko/icml-2026-sponsor-booths.mdx` (ICML 2026 현장 스케치),
+`src/content/articles/ko/open-weights-letter-2026.mdx` (XEmbed·테이블·다국어 활용 예)
 
 ---
 
