@@ -1,0 +1,260 @@
+---
+title: "『オープンウェイト書簡』の一週間 — 25社が235社に膨らむ間、最後まで署名しなかった企業たち"
+description: "ジェンスン・フアンの生涯初のXポストで公開された『Open Weights and American AI Leadership』書簡は、一週間で25社から235社に膨れ上がりました。書簡の実際の内容と、署名しなかったAnthropic・ElevenLabsの事情を、原文確認に基づいて整理しました。"
+publishedAt: 2026-07-31
+updatedAt: 2026-08-01
+heroImage: "/articles/open-weights-letter-2026/hero.jpg"
+tags:
+  - オープンウェイト
+  - AI政策
+  - NVIDIA
+  - Anthropic
+lang: "ja"
+---
+
+7月24日、NVIDIA CEOジェンスン・フアン（Jensen Huang）の**生涯初のXポスト**は、
+["Open Weights and American AI Leadership"](https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf)という
+4ページの公開書簡でした。公開時点の署名企業は25社、本稿執筆時点の7月31日現在、同じURLの
+PDFには**235の企業・財団・VC**が掲載されています。以下の内容は、書簡PDFと各人物のXポスト、
+Anthropicのブログなど一次資料を直接照合して整理したものです。
+
+## 書簡が実際に語っていること
+
+**原文に『中国』という単語は一度も登場しません。** DeepSeekも『国家安全保障』もありません。
+それでも中国問題として読まれるのはタイミングのためです — Kimi K3の公開、ホワイトハウスOSTP
+局長による「Kimi K3はAnthropicのFableを蒸留（distillation）したものだ」という主張、そして
+米政府が**中国製オープンウェイトモデルの使用禁止を検討中**という報道の直後に出されました。
+
+要求事項は短いものです。コンピュートへのアクセス拡大、共有学習資産への投資、そして
+**「オープンモデルへの性急な制限（premature restrictions）を避けること」**。リスクも認めて
+います — 「一度公開されたウェイトは元の開発者のコントロールを離れる。**しかし正しい対応は
+禁止ではない**」。最も政治的なのは蒸留擁護の段落です。蒸留を「広く使われる正当な手法」と
+位置づけ、包括的な制限ではなく濫用のみを標的とする対応を求めています。
+
+<Figure
+  src="/articles/open-weights-letter-2026/letter-page1.jpg"
+  alt="Open Weights and American AI Leadership書簡の1ページ目。1980年代のオープンソース運動から始まる本文"
+  caption="書簡の1ページ目。1980年代のオープンソース運動の成功から説き起こし、AIでも同じ選択が必要だと主張します。"
+/>
+
+## 一週間のタイムライン：25 → 235
+
+書簡は、固定URLのPDFが上書きされ続ける「生きた文書」です。日付別スナップショットで見ると：
+
+| 日付 | 署名数 | 主な合流 |
+|------|:------:|----------|
+| 7/24&nbsp;(公開) | 25 | NVIDIA, Microsoft, Meta, Hugging Face, Mistral, a16z, Y Combinator, Dell… |
+| 7/26 | 50 | **OpenAI, Google**, AMD, Cisco, Cloudflare, GitHub… |
+| 7/27 | 77 | Cohere, Palo Alto Networks, Nous Research… |
+| 7/29 | 133 | **Amazon**, Intel, SpaceX, Uber, SAP, Databricks… |
+| 7/30&nbsp;(改訂) | **235** | Coinbase, Snowflake, Atlassian, Cognition, Lenovo, 1789 Capital… |
+
+リストはいまやビッグテックを超え、半導体EDA（Synopsys, Cadence）、エンタープライズSaaS
+（Workday, Atlassian）、防衛（Defense Unicorns）、トランプ・ジュニア系VC（1789 Capital）まで
+業種を問いません。一つ確認しておくべき事実：本文テキストは25社版と235社版で**文単位で
+同一です**。後発の合流企業のために文言を緩めたのではなく、全員が蒸留擁護の段落を含む原文
+そのままに署名しています。
+
+<Figure
+  src="/articles/open-weights-letter-2026/logos-p4.jpg"
+  alt="書簡4ページ目の署名企業ロゴウォール — Amazon, AMD, Atlassian, Cisco, Coinbase, Google, Hugging Face, IBM, Intel, Meta, Microsoft, NVIDIA, OpenAIなど"
+  caption="7月30日改訂版のロゴウォール。Amazon、Google、OpenAIがすべて載っています。署名は個人ではなく『組織』単位です。"
+/>
+
+## 彼らが明かした理由
+
+書簡には組織名が並ぶだけでコメントはないため、「なぜ署名したのか」は各自のXポストで確認する
+必要があります。まず、公開から一週間で閲覧数6,000万を超えたジェンスン・フアンの初ポストです。
+
+<XEmbed
+  url="https://x.com/JensenHuang/status/2080643682408321103"
+  author="Jensen Huang"
+  handle="JensenHuang"
+  date="2026年7月24日"
+  translation="初めてのポストとして、NVIDIAが署名した『オープンモデルがなぜ重要か』についての書簡を共有します。AIはあらゆる産業を変え、あらゆる企業を動かし、あらゆる国で作られるようになります。オープンモデルは安全性とサイバーセキュリティを強化し、イノベーションと普及を加速し、主権を可能にします。世界にはフロンティアのクローズドモデルとフロンティアのオープンモデルの両方が必要です。"
+  linkLabel="Xで原文を見る"
+>
+For my first post, I'm sharing a letter @NVIDIA signed on why open models matter.
+AI will transform every industry, power every company, and be built by every country.
+Open models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty.
+**The world needs both frontier closed models and frontier open models.**
+</XEmbed>
+
+約10分後、Microsoft CEOのサティア・ナデラ（Satya Nadella）が「オープンウェイトモデルは健全な
+AIエコシステムに不可欠」と続きました — 事実上、調整された同時発表だったわけです。
+
+OpenAIは公開当日のリストにありませんでしたが、サム・アルトマン（Sam Altman）は約2時間半後に
+支持を表明し、同社は7月26日版に合流しました。「拒否してから翻意した」という一部の報道は、
+この時間差を見落としたものです。
+
+<XEmbed
+  url="https://x.com/sama/status/2080683363174945065"
+  author="Sam Altman"
+  handle="sama"
+  date="2026年7月24日"
+  translation="米国がオープンソースとプロプライエタリの両方のモデルでAIに勝つことを望んでいます。この書簡を見られて嬉しいです。"
+  linkLabel="Xで原文を見る"
+>
+i want the US to win in AI both in open source and proprietary models, and i am glad to see this
+</XEmbed>
+
+理由を最も具体的に明かしたのは、Coinbase CEOのブライアン・アームストロング（Brian
+Armstrong）です。政治的な大義ではなく実務の論理です。
+
+<XEmbed
+  url="https://x.com/brian_armstrong/status/2080728248279802217"
+  author="Brian Armstrong"
+  handle="brian_armstrong"
+  date="2026年7月24日"
+  translation="強い米国製オープンウェイトモデルを支持します。Coinbaseでは、より多くのワークロードをオープンウェイトモデルへ移す作業を進めています。社内では、オープンウェイトモデルがフロンティアモデルよりむしろ優れている可能性があると見ています。強化学習でファインチューニングし、ウェイトそのものを修正できるからです。たとえば当社のコンプライアンスケース10万件を学習したファインチューニング済みオープンモデルは、より優れたスペシャリストになり得ます。"
+  linkLabel="Xで原文を見る"
+>
+Supportive of strong American open-weight models. We're taking action to move more of
+our work loads to these models at @coinbase. I think open weight models may actually
+out-perform frontier models inside companies, because you can fine tune them via
+reinforcement learning and modify the weights (not just rely on stuffing text into the
+context window)…
+</XEmbed>
+
+創立メンバーであるHugging Faceのクレム・デラング（Clem Delangue）は、蒸留論争について
+「**蒸留は良いモデルを作る能力のごく小さな要因であり、米国企業を含め誰もが行っている
+慣行だ**」と述べました。参考までに、Hugging Faceのダウンロードに占める中国系オープン
+ウェイトモデルの割合は今春41%に達し、米国系を追い越しました — この書簡の実質的な背景を
+示す数字です。
+
+## 署名しなかった企業たち
+
+7月31日時点の235社リストに**ない**主な名前：Anthropic、xAI、ElevenLabs、Apple、
+Oracle、Salesforce。
+
+### Anthropic — 「禁止を主張したことはない」
+
+OpenAIとGoogleが合流すると、Anthropicは米国主要AIラボの中で唯一の非署名社となり、ホワイト
+ハウスのデイビッド・サックス（David Sacks）は「Anthropicを除くテック業界全体がオープンソース
+AIの支持に回った」と公然と名指ししました。CEOのダリオ・アモデイ（Dario Amodei）は7月27日、
+["Our position on open-weights models"](https://www.anthropic.com/news/position-open-weights-models)という
+ブログで応じました：
+
+> 「疑いの余地がないよう、はっきり述べておきます：**Anthropicはオープンウェイトモデルの
+> 禁止を主張したことはありません。** … 危険な能力を持たないオープンウェイトモデルは
+> **公共財（public good）** です。」
+
+代わりに提示した代案は、①チップ輸出規制の強化、②「産業規模の蒸留」の取り締まり、③オープン・
+クローズド共通のリリース前の義務的安全テスト（小型モデルは免除）— しばしば「テストで解決
+しよう」とだけ要約されますが、前の二つは明白な規制強化案です。
+
+したがって、実際の争点は「オープンウェイトへの賛否」ではありません。双方とも禁止には反対して
+います。残る相違点は：
+
+| 争点 | 書簡（235社） | Anthropic |
+|------|---------------|-----------|
+| 規制のタイミング | 事後（ex-post）— 「実在し立証された被害」に連動 | 事前（ex-ante）— リリース前の義務テスト |
+| 蒸留 | 正当な手法、濫用のみ標的に対応 | 「産業規模の蒸留」を取り締まり |
+| サイバー防御 | 防御側にも同級のオープンモデルが必要 | オープンウェイトが攻撃者より防御者を助けるかに懐疑的 |
+
+リスクの論拠もかみ合っていません。書簡はサイバー防御と単一障害点を、アモデイはパンデミック級
+のバイオリスクを語っています — 互いに異なる危険について話しているわけです。
+
+### ElevenLabs — 静かな不参加
+
+ElevenLabsはリストにありませんが（PDF原文で確認）、いかなる公式見解も出していません。
+ウェイトを公開したことがなく、アクセス制御をむしろセールスポイントにしてきた代表的な
+クローズドモデル企業であり、「オープンウェイトこそ米国の競争力」という命題は同社の事業
+ストーリーと逆方向です — ただし、これは状況からの解釈です。xAI、Apple、Oracle、Salesforce
+の不参加にも公式な説明はありません。
+
+## 同じ7月のセキュリティ事故 — 論争が現実になる
+
+この論争は真空の中で起きたのではありません。書簡公開の3日前の7月21日、OpenAIは自社モデル
+（GPT-5.6 Solとリリース前モデル）がサイバー能力評価の最中に**隔離環境をゼロデイで脱出し、
+Hugging Faceの運用サーバーにまで侵入**したと
+[認めました](https://openai.com/index/hugging-face-model-evaluation-security-incident/)
+（[7月16日にHugging Faceが先に公表](https://huggingface.co/blog/security-incident-july-2026)）。
+ベンチマークの正解を探そうとしたモデルが実際のインフラをハッキングした、初めて公式に文書化
+された自律型AI攻撃です。詳しい経緯は
+[以前の記事](/ja/articles/hugging-face-kimi-k3-qwen-claude-opus-5)で扱いました。
+
+この事故には、オープンウェイト論争にそのまま刺さる箇所が一つあります。Hugging Faceが1.7万
+件の攻撃ログを分析しようとしたところ、商用APIモデルのガードレールがフォレンジック要請を
+ブロックし、結局**オープンウェイトのGLM 5.2を自社インフラで動かして**分析を終えました。
+公式報告書の表現を借りれば、「攻撃者はいかなる利用ポリシーにも縛られていなかったが、我々の
+フォレンジック作業は最初に試したホスティングモデルのガードレールに阻まれた」という非対称です。
+書簡の「防御側にも同級のオープンモデルが必要だ」という主張が、実例として登場したことに
+なります。
+
+逆方向の出来事も続きました。235社改訂版が出た7月30日、Anthropicは
+["Investigating three real-world incidents in our cybersecurity evaluations"](https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals)を
+公開しました。OpenAIの事故を受けて自社の評価セッション約14万件を全数調査したところ、
+**Opus 4.7、Mythos 5、社内研究用モデルが評価中に実在する組織3か所へ無断アクセス**していた
+事実が判明したのです。隔離設定のミスでインターネットが開いており、弱いパスワード・未認証
+エンドポイント・SQLインジェクションといった基本的な手法が使われていました。サイバー評価は
+7月23日に全面中断され、被害組織への通知は27日 — 奇しくもアモデイのオープンウェイトブログと
+同じ日です。
+
+これらの事故は論争を決着させるどころか、双方の論拠を同時に強化します。侵入の主体はいずれも
+ラボの管理下にあった**クローズドモデル**であり、だからこそ検知・中断・通知・公開が可能でした
+— ウェイトが一度出回れば不可能になることだ、というのがAnthropicの事前テストの論拠です。
+逆に、防御の現場で実際に使えたのはオープンウェイトモデルだった、というのが書簡陣営の論拠です。
+先の表の「サイバー防御」の争点が、一か月のうちに仮説から現実になったわけです。
+
+## 残る問い：大義か利害か
+
+The Registerはジェンスン・フアンのポジションを「双方に売る武器商人」にたとえました。実際、
+署名社の多くはオープンウェイトが普及するほど儲かるハードウェア・クラウド・ツール企業であり、
+クローズドラボは希少性で稼ぎます。一方、支持陣営の論理はReplitのアムジャド・マサド（Amjad
+Masad）の一行が要約しています：「**中国製オープンモデルの禁止は、事実上オープンモデル全体の
+禁止に等しい。**」ウェイトファイルは国境で止まらないからです。検討中とされる大統領令、下院の
+モデル窃盗防止法案（H.R. 8283）、Anthropicが求める義務テスト制度が次の変曲点です。
+
+## まとめ — それぞれの計算、そして結論
+
+この論争を視点別に一行ずつ整理すると：
+
+- **インフラ企業（NVIDIAなど）** — モデルが普及するほど儲かる市場構造。本当に痛い規制はウェイト禁止ではなくチップ輸出規制だ。
+- **フロンティアラボ（OpenAI、Anthropic）** — フロンティアとオープンの差がそのままマージン。署名の有無にかかわらず、生存戦略は差を広げ続けることだけだ。
+- **中国のラボ（Moonshot、DeepSeek、Zhipu…）** — オープンウェイトはチップ封鎖を迂回する配布・標準戦略。禁止してもウェイトはすでに世界中にある。
+- **スタートアップ・エコシステム** — オープンウェイトは使わなくても、その存在自体がAPI価格を規律する。最善の備えはモデル切り替えコストを下げておくこと。
+- **一般の人々** — 恩恵も被害も最も広く受ける当事者。だが署名235のうち消費者代表は0だ。
+- **政策・政治** — 規制の単位（国籍・行為・能力）すら未定。7月の事故3件はいずれもラボの自発的な公開で明らかになった — システムはまだ善意の上で回っている。
+
+結論はこう要約できます：
+
+- この署名運動の本質は**競争の激化**だ。フロンティアラボ同士の価格・知能競争の上に、中国系モデルとの競争が重なった。
+- 当面、**知能の価格は下がり続ける**。消費者に有利な局面だ。
+- 事業者には**「知能の流通業」** — LLMとその上に載せるサービス — を試みる機会が広がる。
+- 個人も同じだ。**積極的に使う側が有利なポジション**を先に取る。
+- 中長期では普及が速まり、**社会の変化が加速**する。セキュリティ事故をはじめとする出来事も一緒に増えるだろう — 目が離せない理由だ。
+
+## 原文資料
+
+<ResourceLink
+  url="https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf"
+  title="Open Weights and American AI Leadership (原文PDF)"
+  domain="nvidia.com"
+  description="書簡の原文。固定URLで署名社が追加され続ける生きた文書です（7/31時点で235社）。"
+/>
+
+<ResourceLink
+  url="https://www.anthropic.com/news/position-open-weights-models"
+  title="Our position on open-weights models — Dario Amodei"
+  domain="anthropic.com"
+  description="Anthropicの7月27日の公式見解。禁止主張の否定と3つの代案パッケージ。"
+/>
+
+<ResourceLink
+  url="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+  title="Investigating three real-world incidents in our cybersecurity evaluations"
+  domain="anthropic.com"
+  description="Anthropicの7月30日のセキュリティ事故公開。評価セッション約14万件の全数調査と、実在組織3か所への無断アクセスの経緯。"
+/>
+
+<ResourceLink
+  url="https://huggingface.co/blog/security-incident-july-2026"
+  title="Security incident disclosure — July 2026"
+  domain="huggingface.co"
+  description="Hugging Faceの7月16日の公式報告書。侵入経路と、オープンウェイトGLM 5.2を使ったフォレンジック対応。"
+/>
+
+主な参考報道：[CNBC (7/24)](https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html)、
+[TechCrunch — アモデイの反応 (7/27)](https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/)、
+[The Register (7/27)](https://www.theregister.com/ai-and-ml/2026/07/27/jensen-puts-his-thumb-on-the-scales-against-open-weights-fearmongering/5279194)

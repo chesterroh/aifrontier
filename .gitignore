@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # claude skills (managed in subtitle_agent repo)
 .claude/skills/
+.gstack/

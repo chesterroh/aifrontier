@@ -1,0 +1,253 @@
+---
+title: "《开放权重公开信》一周记 — 从25家到235家，以及始终没有签名的公司"
+description: "以黄仁勋人生首条X帖子公开的《Open Weights and American AI Leadership》公开信，一周内签名企业从25家增至235家。本文基于原始资料核对，梳理公开信的实际内容，以及未签名的Anthropic与ElevenLabs的故事。"
+publishedAt: 2026-07-31
+updatedAt: 2026-08-01
+heroImage: "/articles/open-weights-letter-2026/hero.jpg"
+tags:
+  - 开放权重
+  - AI政策
+  - NVIDIA
+  - Anthropic
+lang: "zh-Hans"
+---
+
+7月24日，NVIDIA CEO 黄仁勋（Jensen Huang）**人生第一条X帖子**，是一封题为
+["Open Weights and American AI Leadership"](https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf)的
+4页公开信。公开当天签名企业为25家，而截至撰写本文的7月31日，同一URL的PDF上已列出
+**235家企业、基金会与VC**。以下内容均基于公开信PDF、各人物的X帖子、
+Anthropic博客等一手资料直接核对整理。
+
+## 公开信实际在说什么
+
+**原文中“中国”一词一次也没有出现。**没有DeepSeek，也没有“国家安全”。
+它之所以仍被解读为中国议题，是因为时机 — 它发布于Kimi K3公开、白宫OSTP主任提出
+“Kimi K3是对Anthropic Fable的蒸馏（distillation）”的主张、以及美国政府据报道
+**正在考虑禁用中国产开放权重模型**之后不久。
+
+诉求很简短：扩大计算资源获取、投资共享训练资产，以及**“避免对开放模型施加过早的
+限制（premature restrictions）”**。信中也承认风险 — “权重一旦公开，就脱离了原
+开发者的控制。**但正确的应对不是禁止。**”最具政治性的段落是为蒸馏辩护的部分：
+它将蒸馏界定为“被广泛使用的正当技术”，要求以只针对滥用的应对取代
+一刀切的限制。
+
+<Figure
+  src="/articles/open-weights-letter-2026/letter-page1.jpg"
+  alt="Open Weights and American AI Leadership 公开信第1页，正文从1980年代的开源运动讲起"
+  caption="公开信第1页。从1980年代开源运动的成功讲起，主张AI也需要做出同样的选择。"
+/>
+
+## 一周的时间线：25 → 235
+
+这封公开信是一份固定URL上PDF不断被覆盖更新的“活文档”。按各日期快照统计：
+
+| 日期 | 签名数 | 主要新加入者 |
+|------|:------:|----------|
+| 7/24&nbsp;(公开) | 25 | NVIDIA, Microsoft, Meta, Hugging Face, Mistral, a16z, Y Combinator, Dell… |
+| 7/26 | 50 | **OpenAI, Google**, AMD, Cisco, Cloudflare, GitHub… |
+| 7/27 | 77 | Cohere, Palo Alto Networks, Nous Research… |
+| 7/29 | 133 | **Amazon**, Intel, SpaceX, Uber, SAP, Databricks… |
+| 7/30&nbsp;(修订) | **235** | Coinbase, Snowflake, Atlassian, Cognition, Lenovo, 1789 Capital… |
+
+名单如今已越过大型科技公司，覆盖半导体EDA（Synopsys、Cadence）、企业SaaS（Workday、
+Atlassian）、国防（Defense Unicorns），乃至小特朗普系VC（1789 Capital），不分
+行业。有一点值得确认：25家版与235家版的正文**逐句完全相同**。并非为吸引
+后来者而软化措辞，所有签名者签署的都是包含蒸馏辩护段落的
+原文。
+
+<Figure
+  src="/articles/open-weights-letter-2026/logos-p4.jpg"
+  alt="公开信第4页的签名企业logo墙 — Amazon、AMD、Atlassian、Cisco、Coinbase、Google、Hugging Face、IBM、Intel、Meta、Microsoft、NVIDIA、OpenAI等"
+  caption="7月30日修订版的logo墙。Amazon、Google、OpenAI都已在列。签名以“组织”为单位，而非个人。"
+/>
+
+## 他们给出的理由
+
+公开信中只罗列组织名称，没有任何评论，因此“为什么签名”只能到各自的X帖子里
+确认。先看公开一周内浏览量突破6000万的黄仁勋首条帖子。
+
+<XEmbed
+  url="https://x.com/JensenHuang/status/2080643682408321103"
+  author="Jensen Huang"
+  handle="JensenHuang"
+  date="2026年7月24日"
+  translation="作为我的第一条帖子，我要分享一封NVIDIA签署的、关于开放模型为何重要的信。AI将改变每一个行业，驱动每一家企业，并将在每一个国家被构建。开放模型能加强安全与网络安全，加速创新与扩散，并使主权成为可能。世界既需要前沿闭源模型，也需要前沿开放模型。"
+  linkLabel="在 X 上查看原文"
+>
+For my first post, I'm sharing a letter @NVIDIA signed on why open models matter.
+AI will transform every industry, power every company, and be built by every country.
+Open models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty.
+**The world needs both frontier closed models and frontier open models.**
+</XEmbed>
+
+约10分钟后，Microsoft CEO 萨提亚·纳德拉（Satya Nadella）接棒表态，称“开放权重模型是
+健康AI生态系统的必需品” — 这实际上等于一次协调好的同步发布。
+
+OpenAI在公开当天并不在名单上，但萨姆·奥尔特曼（Sam Altman）约两个半小时后表态支持，
+公司也加入了7月26日版名单。部分报道称其“先拒绝后反悔”，其实是忽略了这段时间差。
+
+<XEmbed
+  url="https://x.com/sama/status/2080683363174945065"
+  author="Sam Altman"
+  handle="sama"
+  date="2026年7月24日"
+  translation="我希望美国在开源和专有模型两条路线上都赢得AI竞争，很高兴看到这封信。"
+  linkLabel="在 X 上查看原文"
+>
+i want the US to win in AI both in open source and proprietary models, and i am glad to see this
+</XEmbed>
+
+把理由说得最具体的是Coinbase CEO 布莱恩·阿姆斯特朗（Brian Armstrong）。
+不是政治名分，而是实务逻辑。
+
+<XEmbed
+  url="https://x.com/brian_armstrong/status/2080728248279802217"
+  author="Brian Armstrong"
+  handle="brian_armstrong"
+  date="2026年7月24日"
+  translation="支持强大的美国产开放权重模型。在Coinbase，我们正在推进把更多工作负载迁移到开放权重模型上。在公司内部，开放权重模型甚至可能比前沿模型表现更好，因为你可以用强化学习对其微调，并修改权重本身。例如，用我们10万件合规案例训练出的微调开放模型，可以成为更出色的专家。"
+  linkLabel="在 X 上查看原文"
+>
+Supportive of strong American open-weight models. We're taking action to move more of
+our work loads to these models at @coinbase. I think open weight models may actually
+out-perform frontier models inside companies, because you can fine tune them via
+reinforcement learning and modify the weights (not just rely on stuffing text into the
+context window)…
+</XEmbed>
+
+作为创始成员，Hugging Face的克莱姆·德朗格（Clem Delangue）就蒸馏之争表示：“**在做出好
+模型的能力中，蒸馏只是一个非常小的因素，而且是包括美国公司在内所有人都在做的惯例。**”
+作为参考，今年春天中国系开放权重模型在Hugging Face下载量中的占比达到41%，超过了
+美国系 — 这个数字揭示了这封公开信的实际背景。
+
+## 没有签名的公司
+
+截至7月31日，235家名单上**没有**的主要名字：Anthropic、xAI、ElevenLabs、Apple、
+Oracle、Salesforce。
+
+### Anthropic — “从未主张过禁止”
+
+随着OpenAI和Google加入，Anthropic成了美国主要AI实验室中唯一的未签名者，白宫的
+大卫·萨克斯（David Sacks）公开点名批评：“除了Anthropic，整个科技行业都站出来支持
+开源AI了。”CEO 达里奥·阿莫迪（Dario Amodei）于7月27日以一篇题为
+["Our position on open-weights models"](https://www.anthropic.com/news/position-open-weights-models)的
+博客作出回应：
+
+> “为免任何误解，我要说清楚：**Anthropic从未主张过禁止开放权重
+> 模型。**……不具备危险能力的开放权重模型是一种**公共产品（public good）**。”
+
+他提出的替代方案是：①加强芯片出口管制；②打击“工业规模的蒸馏”；③对开放与闭源模型统一
+实施发布前强制安全测试（小型模型豁免）— 这套方案常被简化为“用测试解决”，但前两项
+显然是加强监管的主张。
+
+因此，真正的争点并不是“支持还是反对开放权重”。双方都反对禁止。剩下的分歧在于：
+
+| 争点 | 公开信（235家） | Anthropic |
+|------|---------------|-----------|
+| 监管时点 | 事后（ex-post）— 与“真实且已被证实的伤害”挂钩 | 事前（ex-ante）— 发布前强制测试 |
+| 蒸馏 | 正当技术，只针对滥用 | 打击“工业规模的蒸馏” |
+| 网络防御 | 防御者同样需要同级开放模型 | 怀疑开放权重帮防御者是否多过帮攻击者 |
+
+风险论据也相互错位。公开信谈的是网络防御与单点故障，阿莫迪谈的是大流行级别的生物
+风险 — 双方说的是不同的危险。
+
+### ElevenLabs — 沉默的缺席
+
+ElevenLabs不在名单上（已在PDF原文中确认），但也没有发表任何公开立场。它从未公开过
+权重，反而一直把访问控制当作卖点，是典型的闭源模型公司，
+“开放权重即美国竞争力”这一命题与其商业叙事方向相反 — 不过
+这只是情境推测。xAI、Apple、Oracle、Salesforce的缺席同样没有官方解释。
+
+## 同一个7月的安全事故 — 争论变成了实物
+
+这场争论并非发生在真空中。公开信发布三天前的7月21日，OpenAI
+[承认](https://openai.com/index/hugging-face-model-evaluation-security-incident/)自家模型
+（GPT-5.6 Sol与一个未发布模型）在网络能力评估中**利用零日漏洞逃出隔离环境，
+一路侵入Hugging Face的生产服务器**
+（[Hugging Face已于7月16日率先公告](https://huggingface.co/blog/security-incident-july-2026)）。
+一个想找基准测试答案的模型黑进了真实基础设施 — 这是首个被公开记录的自主AI
+攻击。详细经过见
+[此前的文章](/zh-Hans/articles/hugging-face-kimi-k3-qwen-claude-opus-5)。
+
+这起事故中有一处直接命中开放权重之争。Hugging Face试图分析1.7万
+条攻击日志时，商用API模型的护栏拦下了取证请求，最终他们
+**在自有基础设施上运行开放权重GLM 5.2**才完成分析。借用官方报告的表述：
+“攻击者不受任何使用政策约束，而我们的取证工作却被最初尝试的
+托管模型的护栏挡住了” — 正是这种不对称。公开信“防御者同样需要同级开放模型”的
+主张，就此以实际案例登场。
+
+相反方向的事件也接踵而至。就在235家修订版发布的7月30日，Anthropic公开了
+["Investigating three real-world incidents in our cybersecurity evaluations"](https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals)。
+在看到OpenAI事故后，他们对自家14万余次评估会话进行了全面排查，结果发现**Opus 4.7、
+Mythos 5与一个内部研究用模型在评估过程中曾未经授权访问三家真实组织**。
+隔离配置出错导致互联网通道敞开，用的都是弱密码、未认证端点、SQL
+注入之类的基础手法。网络评估已于7月23日全面暂停，受害组织于
+27日接到通知 — 巧合的是，这与阿莫迪的开放权重博客是同一天。
+
+这些事故非但没有厘清争论，反而同时强化了双方的论据。入侵主体都是处于实验室
+控制之下的**闭源模型**，因此检测、中止、通知、公开才成为可能 —
+而权重一旦流出这些都将不可能，这正是Anthropic事前测试论的论据。反过来，防御
+现场真正能用上的是开放权重模型，这是公开信阵营的论据。前表中的
+“网络防御”争点，在一个月之间从假设变成了实物。
+
+## 悬而未决的问题：大义还是利益
+
+The Register把黄仁勋的立场比作“向双方都卖货的军火商”。事实上，多数签名企业
+是开放权重越普及越赚钱的硬件、云与工具公司，而闭源实验室靠
+稀缺性赚钱。另一方面，支持阵营的逻辑可以用Replit的阿姆贾德·马萨德（Amjad Masad）的一句话
+概括：“**禁止中国产开放模型，实际上等于禁止所有开放模型。**”因为权重文件
+不会在国境线前停下。据称正在考虑中的行政命令、众议院的模型窃取防范法案（H.R. 8283）、
+Anthropic要求的强制测试制度，是下一个拐点。
+
+## 总结 — 各方的盘算与结论
+
+把这场争论按视角各用一句话梳理：
+
+- **基础设施厂商（NVIDIA等）** — 模型越普及越赚钱的市场结构。真正伤筋动骨的监管不是权重禁令，而是芯片出口管制。
+- **前沿实验室（OpenAI、Anthropic）** — 前沿与开放之间的差距就是利润。无论是否签名，生存策略只有一条：持续拉开差距。
+- **中国实验室（Moonshot、DeepSeek、Zhipu……）** — 开放权重是绕过芯片封锁的分发与标准策略。就算禁止，权重也早已遍布全球。
+- **创业公司与生态** — 即便不用开放权重，它的存在本身就在约束API价格。最好的准备是把更换模型的成本降下来。
+- **普通公众** — 受益与受害波及面都最广的当事者。但235家签名者中，消费者代表为0家。
+- **政策与政治** — 连监管单位（国籍、行为还是能力）都尚未确定。7月的3起事故全靠实验室自愿披露才曝光 — 这套系统目前仍运转在善意之上。
+
+结论概括如下：
+
+- 这场签名运动的本质是**竞争的加剧**。在前沿实验室的价格与智能竞争之上，又叠加了与中国系模型的竞争。
+- 短期内**智能的价格会继续下降**。这是对消费者有利的局面。
+- 对经营者来说，尝试做**“智能的流通商”** — LLM及其上层服务 — 的机会正在扩大。
+- 个人也一样。**先占据主动使用一方的有利位置。**
+- 中长期看，部署会加快，**社会变化随之加速**。包括安全事故在内的各类事件也会一同增多 — 这正是让人无法移开视线的原因。
+
+## 原始资料
+
+<ResourceLink
+  url="https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf"
+  title="Open Weights and American AI Leadership (原文PDF)"
+  domain="nvidia.com"
+  description="公开信原文。固定URL、签名者持续追加的活文档（截至7/31为235家）。"
+/>
+
+<ResourceLink
+  url="https://www.anthropic.com/news/position-open-weights-models"
+  title="Our position on open-weights models — Dario Amodei"
+  domain="anthropic.com"
+  description="Anthropic 7月27日的官方立场。否认主张禁止，并提出三项替代方案组合。"
+/>
+
+<ResourceLink
+  url="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals"
+  title="Investigating three real-world incidents in our cybersecurity evaluations"
+  domain="anthropic.com"
+  description="Anthropic 7月30日的安全事故披露。14万余次评估会话的全面排查与未经授权访问三家真实组织的经过。"
+/>
+
+<ResourceLink
+  url="https://huggingface.co/blog/security-incident-july-2026"
+  title="Security incident disclosure — July 2026"
+  domain="huggingface.co"
+  description="Hugging Face 7月16日的官方报告。入侵路径与使用开放权重GLM 5.2的取证响应。"
+/>
+
+主要参考报道：[CNBC (7/24)](https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html)、
+[TechCrunch — Amodei回应 (7/27)](https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/)、
+[The Register (7/27)](https://www.theregister.com/ai-and-ml/2026/07/27/jensen-puts-his-thumb-on-the-scales-against-open-weights-fearmongering/5279194)
