@@ -179,9 +179,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="16:13">16:13</span> **卢正石** 对，当时确实讲过。所以有attention方面的变化，MoE方面的变化，然后是各个block该如何连接，也就是residual方面的变化。从架构层面来看，这三项似乎正在成为transformer block最核心的部分。
 
-<span class="paragraph-timestamp" data-ts="16:29">16:29</span> **朴钟贤** 如果把paper中有关模型内部的内容稍微分类一下，首先可能是您刚才提到的架构，也就是模型本身长什么样这一类内容。然后，我以前曾经仔细读过一次Kimi K2的paper，我记得其中还包括训练方法、如何generation数据、如何做好simulation，以及如何构建数据和RL环境，诸如此类的内容。也就是有了架构之后，如何让这个架构中的weight变得更聪明的方法论。大体上可以分成这两类，这些内容似乎全都写在了paper里
+<span class="paragraph-timestamp" data-ts="16:29">16:29</span> **朴钟贤** 如果把paper中有关模型内部的内容稍微分类一下，首先可能是您刚才提到的架构，也就是模型本身长什么样这一类内容。然后，我以前曾经仔细读过一次Kimi K2的paper，我记得其中还包括训练方法、如何generation数据、如何做好simulation，以及如何构建数据和RL环境，诸如此类的内容。也就是有了架构之后，如何让这个架构中的weight变得更聪明的方法论。大体上可以分成这两类，这些内容似乎全都写在了paper里。
 
-<span class="paragraph-timestamp" data-ts="17:12">17:12</span> **卢正石** 我想是这样。就像钟贤所说的，当K2 paper发布时，正值reasoning模型大量涌现，RL环境的构建工作刚刚起步的时期，所以其中用了相当长的篇幅介绍他们如何在on-policy中制定rubric，以及如何构建环境，对吧。但随着Kimi K3 paper发布，如果用一句话概括这篇paper，它就是一份关于如今frontier model和frontier lab的workflow究竟如何构成的整体设计概要。所以其中一部分是模型架构以这种方式发生了变化，但事实上，比架构重要得多的是如何engineering dataset和compute，也就是这些部分，可关于这些内容，现在省略了很多。不过，它还是说明了大致的发展方向，而且每个paragraph、每一个段落，某种意义上都足以单独成为一篇论文，是这些重大成果的融合体，因此，哪怕只是想真正效仿Kimi或DeepSeek这样的公司，也需要付出极其巨大的努力，光是找出这些，我就觉得能学到很多东西。
+<span class="paragraph-timestamp" data-ts="17:07">17:07</span> **卢正石** 就像钟贤所说的，当K2 paper发布时，正值reasoning模型大量涌现，RL环境的构建工作刚刚起步的时期，所以其中用了相当长的篇幅介绍他们如何在on-policy中制定rubric，以及如何构建环境，对吧。但随着Kimi K3 paper发布，如果用一句话概括这篇paper，它就是一份关于如今frontier model和frontier lab的workflow究竟如何构成的整体设计概要。所以其中一部分是模型架构以这种方式发生了变化，但事实上，比架构重要得多的是如何engineering dataset和compute，也就是这些部分，可关于这些内容，现在省略了很多。不过，它还是说明了大致的发展方向，而且每个paragraph、每一个段落，某种意义上都足以单独成为一篇论文，是这些重大成果的融合体，因此，哪怕只是想真正效仿Kimi或DeepSeek这样的公司，也需要付出极其巨大的努力，光是找出这些，我就觉得能学到很多东西。
 
 <span class="paragraph-timestamp" data-ts="18:24">18:24</span> 而且原本在进行 pre-training 时，还有一些与 dataset 相关的内容，但这次几乎没有这方面的内容。很大的篇幅都放在了 post-training 上。至于总共投入了多少 compute、使用了多少 token，这些完全没有提到。那些内容似乎都被隐去了，后面有意思的是，为了构建 RL 环境，为了自动 generation dataset，文中介绍了具体使用了哪些方法，这些方法其实和其他地方的 Mercor 或 Scale AI生成 dataset 的方法几乎一样。
 
@@ -211,11 +211,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="22:36">22:36</span> **卢正石** 从宏观上来看，这些内容分别涉及KDA在 attention上实现了怎样的创新，接着是 Attention Residual给 transformer block之间带来了怎样的变化，
 
-<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **崔胜准** 年初，也就是今年
+<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **崔胜准** 论文是今年年初发布的。
 
 <span class="paragraph-timestamp" data-ts="22:47">22:47</span> **卢正石** 以及 MoE发生了怎样的变化。
-
-<span class="paragraph-timestamp" data-ts="22:47">22:47</span> **崔胜准** 上半年有几个，什么……
 
 <span class="paragraph-timestamp" data-ts="22:52">22:52</span> **卢正石** 而且这个数字也很重要，与 Kimi K2相比，模型的架构得到了改进，然后 dataset也发生了变化。核心通常就是这两点，在投入相同 compute的情况下，能以 2.5倍的速度达到更低的 validation loss。也就是说，完成了更多训练。我想只要向各位介绍一下他们究竟实现了哪些创新背后的思路就可以了。一直关注 transformer的各位，脑海中应该都有一个大致图景。最底层有一个把单词转换成 token的tokenizer，每个 token都带有编号，然后再把它转换成 embedding，也就是我们所说的 hidden layerdimension对应的 embedding，transformer block就是从这里开始的。一个 transformer block里面，首先是 attention block，然后是 normalization，加入 residual之后，上面还有 fullyconnected，也就是 FFN、MLP block，接着那里又有一个 residual。我们把这一整套称为一个 block，这些 block紧密堆叠，一直延伸到最顶层，最上面连接着 LM head，再由它把内容转换成最终结果，这就是一般的 transformer结构。
 
@@ -391,9 +389,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="49:05">49:05</span> **朴钟贤** 我也有这样的想法。向不同方向延伸的技术，或许会随着人员跳槽而在某些地方逐渐趋同，但也可能即使全都不同也完全没有关系。
 
-<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **卢正石** 对，没错。我们现在如果把胜准刚刚在这个模型上提出的那些问题原封不动地放到这个space里，再转向那个agent orchestration，同样的问题又会以同构的形式发生。不过我们还是继续往下讲吧。我们要是继续钻兔子洞，恐怕就没完
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **卢正石** 对，没错。我们现在如果把胜准刚刚在这个模型上提出的那些问题原封不动地放到这个space里，再转向那个agent orchestration，同样的问题又会以同构的形式发生。不过我们还是继续往下讲吧。我们要是继续钻兔子洞，恐怕就没完没了。
 
-<span class="paragraph-timestamp" data-ts="49:38">49:38</span> **崔胜准** 没了。没错。
+<span class="paragraph-timestamp" data-ts="49:38">49:38</span> **崔胜准** 没错。
 
 
 ## 预训练数据质量与 1M 上下文扩展    *49:39*
