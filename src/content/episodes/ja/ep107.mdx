@@ -312,7 +312,7 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **チェ・スンジュン** パイプラインパラレリズムはscale-outでのrack間の話なのでそれが今のブロック単位と合致するのではないですか？
 
-<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **ロ・ジョンソク** そうではなく、これはジョンヒョンさん、混同してはいけないのですがこれはcomputeではなく完了した結果がcacheに入っているので厳密に言えばmemory problemです。上にあるブロックが計算するとき、下で計算された結果をメモリから取り出してくるので、parallelismとは関係ありません。下のlayerで計算されたものがcacheにすべて入っているはずですが、それをどの割合で取り出してちょうど私たちが、何でしたっけ、attentionでsoftmaxをかけるじゃないですか。softmaxをかけて
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **ロ・ジョンソク** これはジョンヒョンさん、混同してはいけないのですがこれはcomputeではなく完了した結果がcacheに入っているので厳密に言えばmemory problemです。上にあるブロックが計算するとき、下で計算された結果をメモリから取り出してくるので、parallelismとは関係ありません。下のlayerで計算されたものがcacheにすべて入っているはずですが、それをどの割合で取り出してちょうど私たちが、何でしたっけ、attentionでsoftmaxをかけるじゃないですか。softmaxをかけて
 
 <span class="paragraph-timestamp" data-ts="41:09">41:09</span> **チェ・スンジュン** そうですね。もう一度
 

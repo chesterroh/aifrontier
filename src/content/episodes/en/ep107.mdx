@@ -312,7 +312,7 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **Seungjoon Choi** Since pipeline parallelism operates across racks in scale-out, doesn't that align with the block units here?
 
-<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **Chester Roh** No, Jonghyun, the thing you shouldn't confuse here is that this isn't about compute. The completed results are stored in the cache, so strictly speaking, it's a memory problem. When an upper block performs its computation, it retrieves the results computed below from memory, so it has nothing to do with parallelism. The results computed in the lower layers would all be stored in the cache, and it retrieves them in certain proportions, just like when we, what is it, apply softmax in attention. You apply softmax,
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **Chester Roh** Jonghyun, the thing you shouldn't confuse here is that this isn't about compute. The completed results are stored in the cache, so strictly speaking, it's a memory problem. When an upper block performs its computation, it retrieves the results computed below from memory, so it has nothing to do with parallelism. The results computed in the lower layers would all be stored in the cache, and it retrieves them in certain proportions, just like when we, what is it, apply softmax in attention. You apply softmax,
 
 <span class="paragraph-timestamp" data-ts="41:09">41:09</span> **Seungjoon Choi** Right. Again,
 
