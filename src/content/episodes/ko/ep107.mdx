@@ -297,23 +297,13 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **최승준** 파이프라인 패럴리즘은 scale-out에서 rack 사이니까 그게 지금 블록 단위와 맞아떨어지는 거 아니에요?
 
-<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **노정석** 이건 종현님이 헷갈리시면 안 되는 게 얘는 compute가 아니라 끝난 결과들이 cache에 들어 있는 거라서 엄밀하게 이야기하면 memory problem이에요. 위에 있는 블록이 계산할 때 아래에서 계산된 결과를 메모리에서 꺼내오는 거라서 parallelism과는 상관없죠. 아래 layer에서 계산된 것들이 cache에 다 담겨 있을 텐데, 그걸 어떤 비율로 꺼내서 마치 저희가, 뭐죠, attention에서 softmax를 하잖아요. softmax를 해서
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **노정석** 이건 종현님이 헷갈리시면 안 되는 게 얘는 compute가 아니라 끝난 결과들이 cache에 들어 있는 거라서 엄밀하게 이야기하면 memory problem이에요. 위에 있는 블록이 계산할 때 아래에서 계산된 결과를 메모리에서 꺼내오는 거라서 parallelism과는 상관없죠. 아래 layer에서 계산된 것들이 cache에 다 담겨 있을 텐데, 그걸 어떤 비율로 꺼내서 마치 저희가, 뭐죠, attention에서 softmax를 하잖아요. softmax를 해서 다시 query에 곱하잖아요.
 
-<span class="paragraph-timestamp" data-ts="41:09">41:09</span> **최승준** 그렇죠. 다시
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **노정석** query에 곱하잖아요.
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **최승준** 페이퍼에서는
-
-<span class="paragraph-timestamp" data-ts="41:11">41:11</span> **노정석** 비슷하다고.
-
-<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **최승준** PP와 관련이 있긴 있었어요.
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **최승준** 페이퍼에서는 PP와 관련이 있긴 있었어요.
 
 <span class="paragraph-timestamp" data-ts="41:14">41:14</span> **노정석** 맞아요. 이런 경우를 다 방어하는 마법의 방어 용어가 있더라고요. 만약 그러시다면 여러분 말이 맞습니다.
 
-<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **박종현** 그렇죠. 저도 보고 그냥 떠오른 거라서 제가
-
-<span class="paragraph-timestamp" data-ts="41:27">41:27</span> **박종현** 저희가 틀릴 수 있습니다.
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **박종현** 그렇죠. 저도 보고 그냥 떠오른 거라서 제가 틀릴 수 있습니다.
 
 <span class="paragraph-timestamp" data-ts="41:28">41:28</span> **최승준** 다 꿰고 있는 게 아니니까요.
 

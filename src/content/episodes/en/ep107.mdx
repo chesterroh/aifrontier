@@ -312,25 +312,15 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **Seungjoon Choi** Since pipeline parallelism operates across racks in scale-out, doesn't that align with the block units here?
 
-<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **Chester Roh** Jonghyun, the thing you shouldn't confuse here is that this isn't about compute. The completed results are stored in the cache, so strictly speaking, it's a memory problem. When an upper block performs its computation, it retrieves the results computed below from memory, so it has nothing to do with parallelism. The results computed in the lower layers would all be stored in the cache, and it retrieves them in certain proportions, just like when we, what is it, apply softmax in attention. You apply softmax,
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **Chester Roh** Jonghyun, the thing you shouldn't confuse here is that this isn't about compute. The completed results are stored in the cache, so strictly speaking, it's a memory problem. When an upper block performs its computation, it retrieves the results computed below from memory, so it has nothing to do with parallelism. The results computed in the lower layers would all be stored in the cache, and it retrieves them in certain proportions, just like when we, what is it, apply softmax in attention. You apply softmax and then multiply it by the query.
 
-<span class="paragraph-timestamp" data-ts="41:09">41:09</span> **Seungjoon Choi** Right. Again,
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **Chester Roh** and multiply it by the query.
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **Seungjoon Choi** In the paper,
-
-<span class="paragraph-timestamp" data-ts="41:11">41:11</span> **Chester Roh** I'm saying it's similar.
-
-<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **Seungjoon Choi** it did have something to do with PP.
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **Seungjoon Choi** In the paper, it did have something to do with PP.
 
 <span class="paragraph-timestamp" data-ts="41:14">41:14</span> **Chester Roh** Right. Apparently there's a magic defensive phrase that covers all these cases. If that's the case, you're all right.
 
-<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **Jonghyun Park** Right. I also just thought of it when I saw this, so I
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **Jonghyun Park** Right. I also just thought of it when I saw this, so I could be wrong.
 
-<span class="paragraph-timestamp" data-ts="41:27">41:27</span> We could be wrong.
-
-<span class="paragraph-timestamp" data-ts="41:28">41:28</span> **Seungjoon Choi** don't know every detail, after all.
+<span class="paragraph-timestamp" data-ts="41:28">41:28</span> **Seungjoon Choi** I don't know every detail, after all.
 
 <span class="paragraph-timestamp" data-ts="41:34">41:34</span> **Chester Roh** Then there's the MoE block, and if you look at the Stable Latent MoE here, one distinctive feature is that the hidden dimension is always large. But that will come up into this MoE block. Once it comes up, it uses two shared experts, and this part simply comes up with the same hidden dimension, while the routed experts are selected. It will select more than ten of them. But during the selection process, it compresses the representation once in the middle
 

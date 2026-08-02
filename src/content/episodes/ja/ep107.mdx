@@ -312,23 +312,13 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **チェ・スンジュン** パイプラインパラレリズムはscale-outでのrack間の話なのでそれが今のブロック単位と合致するのではないですか？
 
-<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **ロ・ジョンソク** これはジョンヒョンさん、混同してはいけないのですがこれはcomputeではなく完了した結果がcacheに入っているので厳密に言えばmemory problemです。上にあるブロックが計算するとき、下で計算された結果をメモリから取り出してくるので、parallelismとは関係ありません。下のlayerで計算されたものがcacheにすべて入っているはずですが、それをどの割合で取り出してちょうど私たちが、何でしたっけ、attentionでsoftmaxをかけるじゃないですか。softmaxをかけて
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **ロ・ジョンソク** これはジョンヒョンさん、混同してはいけないのですがこれはcomputeではなく完了した結果がcacheに入っているので厳密に言えばmemory problemです。上にあるブロックが計算するとき、下で計算された結果をメモリから取り出してくるので、parallelismとは関係ありません。下のlayerで計算されたものがcacheにすべて入っているはずですが、それをどの割合で取り出してちょうど私たちが、何でしたっけ、attentionでsoftmaxをかけるじゃないですか。softmaxをかけて、再びqueryに掛けるじゃないですか。
 
-<span class="paragraph-timestamp" data-ts="41:09">41:09</span> **チェ・スンジュン** そうですね。もう一度
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **ロ・ジョンソク** queryに掛けるじゃないですか。
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **チェ・スンジュン** ペーパーでは
-
-<span class="paragraph-timestamp" data-ts="41:11">41:11</span> **ロ・ジョンソク** 似ていると。
-
-<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **チェ・スンジュン** PPとの関連は確かにありました。
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **チェ・スンジュン** ペーパーではPPとの関連は確かにありました。
 
 <span class="paragraph-timestamp" data-ts="41:14">41:14</span> **ロ・ジョンソク** そうですね。こういう場合をすべて防御できる魔法の防御用語があるようです。もしそうであれば、皆さんの言うとおりです。
 
-<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **パク・ジョンヒョン** そうですね。私も見て、ただ思い浮かんだだけなので、私が
-
-<span class="paragraph-timestamp" data-ts="41:27">41:27</span> 私たちが間違っているかもしれません。
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **パク・ジョンヒョン** そうですね。私も見て、ただ思い浮かんだだけなので、私が間違っているかもしれません。
 
 <span class="paragraph-timestamp" data-ts="41:28">41:28</span> **チェ・スンジュン** すべてを把握しているわけではありませんから。
 

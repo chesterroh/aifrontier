@@ -312,23 +312,13 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="40:22">40:22</span> **崔胜准** 流水线并行在 scale-out 中是跨 rack 的，所以它不正好与现在的 block 单位吻合吗？
 
-<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **卢正石** 钟贤，这里不能混淆，这不是 compute，而是已经完成的结果保存在 cache 中，严格来说，这是 memory problem。上面的 block 计算时，是从内存中取出下方已经计算好的结果，所以与 parallelism 无关。下方 layer 计算出来的内容应该都保存在 cache 中，再决定以什么比例取出，就像我们，叫什么来着，在 attention 中会做 softmax。做完 softmax 后，
+<span class="paragraph-timestamp" data-ts="40:29">40:29</span> **卢正石** 钟贤，这里不能混淆，这不是 compute，而是已经完成的结果保存在 cache 中，严格来说，这是 memory problem。上面的 block 计算时，是从内存中取出下方已经计算好的结果，所以与 parallelism 无关。下方 layer 计算出来的内容应该都保存在 cache 中，再决定以什么比例取出，就像我们，叫什么来着，在 attention 中会做 softmax。做完 softmax 后，再乘到 query 上。
 
-<span class="paragraph-timestamp" data-ts="41:09">41:09</span> **崔胜准** 对。然后再
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **卢正石** 乘到 query 上。
-
-<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **崔胜准** 在论文中，
-
-<span class="paragraph-timestamp" data-ts="41:11">41:11</span> **卢正石** 就是说很相似。
-
-<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **崔胜准** 确实有涉及 PP。
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **崔胜准** 在论文中，确实有涉及 PP。
 
 <span class="paragraph-timestamp" data-ts="41:14">41:14</span> **卢正石** 对。好像有个万能的防御用语，可以应付所有这种情况。如果确实如此，那各位说得对。
 
-<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **朴钟贤** 对。我也是看了之后突然想到的，所以我
-
-<span class="paragraph-timestamp" data-ts="41:27">41:27</span> 毕竟我们也可能是错的。
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **朴钟贤** 对。我也是看了之后突然想到的，所以我也可能是错的。
 
 <span class="paragraph-timestamp" data-ts="41:28">41:28</span> **崔胜准** 并不是全都了如指掌。
 
