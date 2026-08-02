@@ -194,7 +194,7 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="21:55">21:55</span> **노정석** RSI가 Recursive Self-Improvement죠. 그러니까 모델이 스스로 재귀적으로 진화하는 걸 나타낸 건데, 좀 넘어가 볼게요.
 
-<span class="paragraph-timestamp" data-ts="22:04">22:04</span> 벤치마크들, 항상 첫 장은 요약하는 것들과 벤치마크가 우리가 이만큼 좋아졌다는 걸 나타내는 게 있죠. 이 Kimi K3가 정말 이상한 짓들을 많이 했더라고요. 여기에 자기들이 공언했던 포인트들이 나오죠. 우리 모델을 2.8T 파라미터 정도로 키웠다. 그다음에 104B activated parameter가 되고, context window는 1M token이라는 게 나왔고, 그다음에 KDA, 그다음에 Attention Residual, Stable Latent MoE.
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> 벤치마크들, 항상 첫 장은 요약하는 것들과 벤치마크가 우리가 이만큼 좋아졌다는 걸 나타내는 게 있죠. 이 Kimi K3가 정말 이상한 짓들을 많이 했더라고요. 여기에 자기들이 공헌했던 포인트들이 나오죠. 우리 모델을 2.8T 파라미터 정도로 키웠다. 그다음에 104B activated parameter가 되고, context window는 1M token이라는 게 나왔고, 그다음에 KDA, 그다음에 Attention Residual, Stable Latent MoE.
 
 ## 2.8T 파라미터와 1M context, Kimi K3 핵심 스펙    *22:13*
 
@@ -218,13 +218,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="26:33">26:33</span> **노정석** 그러면 여기서 봐야 할 신기한 게, 이게 또 DeepSeek과 완전히 다른 게 얘네가 KDA라는 걸 만들어서 전통적인 attention을 싹 바꿔냈어요. 그 KDA라는 구조가 왼쪽에 있는 이거거든요. KDA가 Kimi Delta Attention의 구조인데, 저는 이걸 보면서 이 그림과 안에 있는 알고리즘을 다 따라가지는 않을게요. 그런데 제가 심상으로 느낀 건, 이거 그냥 옛날 LSTM 느낌이고,
 
-<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **최승준** RNN 시절에
+<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **최승준** RNN 시절에 그거죠.
 
-<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **노정석** 그거죠. 네, 그렇죠. 어떤 걸 기억할 건가, 어떤 걸 잊을 건가라는 gate를 가지고 recurrent model이 쭉 돌았던 게 LSTM이었잖아요. 제가 한참 또 관심에 빠져서, SSM, State Space
-
-<span class="paragraph-timestamp" data-ts="27:20">27:20</span> **박종현** Model과 Mamba로 보통 많이
-
-<span class="paragraph-timestamp" data-ts="27:27">27:27</span> **노정석** 알려져 있다고 얘기하는 그 모델의 인튜이션이 이거였거든요. 학습은 transformer처럼 병렬로 이 모든 sequence를 한 번에 넣어서 학습할 수 있고, inference할 때는 보통의 recurrent model처럼 하나의 모델이 계속 단어를 내놓게 하는 그런 모델을 만들면 어떨까? 그러면 transformer의 비효율이 많이 사라지니까. 이게 Mamba의 인튜이션이었는데, transformer와 Mamba와 LSTM을 다 섞어 놓은 게 이거예요.
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **노정석** 네, 그렇죠. 어떤 걸 기억할 건가, 어떤 걸 잊을 건가라는 gate를 가지고 recurrent model이 쭉 돌았던 게 LSTM이었잖아요. 제가 한참 또 관심에 빠져서, SSM, State Space Model과 Mamba로 보통 많이 알려져 있다고 얘기하는 그 모델의 인튜이션이 이거였거든요. 학습은 transformer처럼 병렬로 이 모든 sequence를 한 번에 넣어서 학습할 수 있고, inference할 때는 보통의 recurrent model처럼 하나의 모델이 계속 단어를 내놓게 하는 그런 모델을 만들면 어떨까? 그러면 transformer의 비효율이 많이 사라지니까. 이게 Mamba의 인튜이션이었는데, transformer와 Mamba와 LSTM을 다 섞어 놓은 게 이거예요.
 
 <span class="paragraph-timestamp" data-ts="27:55">27:55</span> KDA예요. 전통적인 KV 캐시 block을 그냥 갖고 있지 않아요. Mamba처럼 하나의 block이 memory block이고, 그 안에 신기한 게 attention스럽게 QKV 테이블을 구현해 놨어요. 그러면서 얘가 올라가면서 input gate, forget gate를 사용하면서 이 token들이 계속 sequence를 가지고 과거에서 미래로 나아가는 것들을 쌓아갈 수 있도록 만들어 놓은 구조예요. 이건 이해하지 않으셔도 돼요. 대략적인 심상이 그렇다는 것만 생각하시면 되고, 그렇다 보니까 이렇게 recurrent network 같은 구조가 이 안에 끼어 있다 보니까, 눈치 빠르신 분들은 눈치를 채셨을 텐데, positional encoding을 넣는 게 하나도 없어요.
 
@@ -236,9 +232,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="29:34">29:34</span> **노정석** KDA는 KV 캐시가 없죠. 왜냐하면 이 안에 있는 QKV의 하나의 단일 state와 그것들의 변화를 트래킹하는 delta라고 하는 데이터를
 
-<span class="paragraph-timestamp" data-ts="29:42">29:42</span> **최승준** 조금씩, 조금씩, 조금씩, 조금씩 변화하는 게
+<span class="paragraph-timestamp" data-ts="29:42">29:42</span> **최승준** 조금씩, 조금씩, 조금씩, 조금씩 변화하는 게 delta죠.
 
-<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **노정석** delta죠. 거기를 그냥 parameterize해서 학습시키는 거거든요. 그게 왜 되냐고 저에게 묻지 마십시오. 되니까 했겠죠.
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **노정석** 거기를 그냥 parameterize해서 학습시키는 거거든요. 그게 왜 되냐고 저에게 묻지 마십시오. 되니까 했겠죠.
 
 <span class="paragraph-timestamp" data-ts="29:56">29:56</span> **최승준** 찾아보니까 이걸 연상 기억 장치나 아니면 fast weights라고 표현하는 경우가 있더라고요.
 
@@ -248,9 +244,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="30:51">30:51</span> **최승준** 그러니까 과거를 연결하는, 원래 self-attention은 그 축에서만 되는데 이건 과거 것을 참조할 수 있게 되는 거죠. 원래는 과거 것이 embedding을 따라 계속 흘러, residual을 따라 흘러가야 하는데 이건 과거의 것을 잘 참고할 수 있게 해주는 그런 느낌 아니에요?
 
-<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **노정석** 과거를, 예전의 전통적인 attention은 과거를 전부 KV 캐시로, K와 V를 다 가지고 있고 거기에 Q를 적용해서 전부 계산해보는 형태로 어떤 과거가 나와 관련이 있는지를 찾아내는 방식이었다면, 얘는 그게 아니라 그냥 쌓여온 delta를 가지고 거기에 query를 적용하면 가장 적절한 value를 그냥 내주는 거죠. 네가 찾는 value가 이걸 거라고 해서 내주는 거죠. 그걸 어떤 식으로 parameterize했는지는 저도 거기까지 들어가 보지 않았습니다. 하지만
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **노정석** 과거를, 예전의 전통적인 attention은 과거를 전부 KV 캐시로, K와 V를 다 가지고 있고 거기에 Q를 적용해서 전부 계산해보는 형태로 어떤 과거가 나와 관련이 있는지를 찾아내는 방식이었다면, 얘는 그게 아니라 그냥 쌓여온 delta를 가지고 거기에 query를 적용하면 가장 적절한 value를 그냥 내주는 거죠. 네가 찾는 value가 이걸 거라고 해서 내주는 거죠. 그걸 어떤 식으로 parameterize했는지는 저도 거기까지 들어가 보지 않았습니다. 하지만 인튜이션은 그렇다.
 
-<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **박종현** 인튜이션은 그렇다. 쉽게 말하면 과거의 어떤 정보들을 다 갖고 있는 게 아니라 더 작은 크기의 vector latent space에 압축해서 넣고, 그걸 넣는 법마저도 학습시키겠다. 이렇게 이해할 수 있을 것 같고요. 제가 이해한 대로, 정확하게 다 따라오지 못한 것 같은데 인튜이션을 한번 제 나름대로 해석해보자면, LSTM스럽다고 말씀해주셨는데 제가 듣기에는 그건 좋은 방법이라고 생각되지는 않거든요. Transformer라는 큰 골자가 있고, Transformer라는 큰 골자는 과거에 있었던 RNN이나 LSTM 같은 알고리즘에 비해 규모는 엄청 크지만 알고리즘을 뜯어보면 훨씬 간단하거든요. 그런 걸 정형원 박사님 톡을 보면 inductive bias를 풀어서 우리가 이렇게 해라, 저렇게 해라, 기억이라는 건 이렇게 하는 거다, 이런 가이드 매뉴얼 같은 걸 싹 철폐하고 그냥 데이터를 때려 박아서 네가 알아서 공부하라고 하면 똑똑해질 잠재력을 가진 큰 LLM들은 결국 데이터가 많으면 배워낼 것이다. 이런 식의 큰 인튜이션에서 출발했을 때, 이 Kimi Delta Attention이 LSTM스럽다는 건 과거를 어떻게 해라, 어디를 봐라, 이런 것들을 우리가 알고리즘적으로 복잡하게 다 집어넣어 준 거다 보니까 다시 역행했다고 볼 수 있을 것 같아요. 이 골자에서는 결국 사람도 마찬가지인데, 이런 bias를 주는 것, 신입이 들어오면 교육을 하는 거죠. 이렇게 해야 돼. 이런 강제를 주는 건 자유도를 제한함과 동시에 잠재력을 제한하면서도 상당히 효율적인 교육을 저희가 할 수 있게 하잖아요. 그러니까 compute가 제한된 상황에서, 규모가 너무 크다 보니까, 게다가 중국은 compute 자원도 제한된 상황에서 그 compute로 어떻게 하면 가장 효율적으로 큰 모델을 잘 training할 수 있을까라는 고민에서 나온 결과물이라고, 제 느낌에는 그런 인튜이션이 들고요. 그럼 결국 아마 시간이 지나면 이런 것들은 점점 쌓여가면서 더 효율적인 걸 찾다가 한계를 마주하고 다시 풀어내고, 이런 역사의 반복을 또 마주하게 되지 않을까, 이렇게 생각됩니다.
+<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **박종현** 쉽게 말하면 과거의 어떤 정보들을 다 갖고 있는 게 아니라 더 작은 크기의 vector latent space에 압축해서 넣고, 그걸 넣는 법마저도 학습시키겠다. 이렇게 이해할 수 있을 것 같고요. 제가 이해한 대로, 정확하게 다 따라오지 못한 것 같은데 인튜이션을 한번 제 나름대로 해석해보자면, LSTM스럽다고 말씀해주셨는데 제가 듣기에는 그건 좋은 방법이라고 생각되지는 않거든요. Transformer라는 큰 골자가 있고, Transformer라는 큰 골자는 과거에 있었던 RNN이나 LSTM 같은 알고리즘에 비해 규모는 엄청 크지만 알고리즘을 뜯어보면 훨씬 간단하거든요. 그런 걸 정형원 박사님 톡을 보면 inductive bias를 풀어서 우리가 이렇게 해라, 저렇게 해라, 기억이라는 건 이렇게 하는 거다, 이런 가이드 매뉴얼 같은 걸 싹 철폐하고 그냥 데이터를 때려 박아서 네가 알아서 공부하라고 하면 똑똑해질 잠재력을 가진 큰 LLM들은 결국 데이터가 많으면 배워낼 것이다. 이런 식의 큰 인튜이션에서 출발했을 때, 이 Kimi Delta Attention이 LSTM스럽다는 건 과거를 어떻게 해라, 어디를 봐라, 이런 것들을 우리가 알고리즘적으로 복잡하게 다 집어넣어 준 거다 보니까 다시 역행했다고 볼 수 있을 것 같아요. 이 골자에서는 결국 사람도 마찬가지인데, 이런 bias를 주는 것, 신입이 들어오면 교육을 하는 거죠. 이렇게 해야 돼. 이런 강제를 주는 건 자유도를 제한함과 동시에 잠재력을 제한하면서도 상당히 효율적인 교육을 저희가 할 수 있게 하잖아요. 그러니까 compute가 제한된 상황에서, 규모가 너무 크다 보니까, 게다가 중국은 compute 자원도 제한된 상황에서 그 compute로 어떻게 하면 가장 효율적으로 큰 모델을 잘 training할 수 있을까라는 고민에서 나온 결과물이라고, 제 느낌에는 그런 인튜이션이 들고요. 그럼 결국 아마 시간이 지나면 이런 것들은 점점 쌓여가면서 더 효율적인 걸 찾다가 한계를 마주하고 다시 풀어내고, 이런 역사의 반복을 또 마주하게 되지 않을까, 이렇게 생각됩니다.
 
 ## inductive bias 강제의 이유, inference 효율이라는 지상 과제    *34:01*
 

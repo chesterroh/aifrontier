@@ -204,7 +204,7 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="21:55">21:55</span> **卢正石** RSI就是 Recursive Self-Improvement。也就是说，它指的是模型自我递归进化，我们继续往下看吧。
 
-<span class="paragraph-timestamp" data-ts="22:04">22:04</span> 这些基准测试，第一页总会有摘要，还有用来展示基准测试中我们的表现提升了这么多的内容。这个 Kimi K3确实做了很多非常奇特的尝试。这里列出了他们公开宣称的要点。他们把模型扩大到了约 2.8T参数。然后有 104B activated parameter，context window则达到了 1M token，接下来是 KDA，然后是 Attention Residual、Stable Latent MoE。
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> 这些基准测试，第一页总会有摘要，还有用来展示基准测试中我们的表现提升了这么多的内容。这个 Kimi K3确实做了很多非常奇特的尝试。这里列出了他们的贡献点。他们把模型扩大到了约 2.8T参数。然后有 104B activated parameter，context window则达到了 1M token，接下来是 KDA，然后是 Attention Residual、Stable Latent MoE。
 
 
 ## 2.8T 参数、1M 上下文与 Kimi K3 的核心规格    *22:13*
@@ -230,13 +230,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="26:33">26:33</span> **卢正石** 那么这里值得注意的有趣之处是，它又与DeepSeek完全不同：他们创造了一个叫KDA的东西，把传统attention全部替换掉了。所谓KDA，就是左边的这个结构。KDA是Kimi Delta Attention的结构。看到这个时，我不会把这张图和里面的算法全部逐一讲解。不过我形成的直观印象是，这不就是以前LSTM的感觉吗？
 
-<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **崔胜准** 在RNN时代，
+<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **崔胜准** 就是RNN时代的那个。
 
-<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **卢正石** 就是那个。对，没错。通过决定要记住什么、要忘记什么的gate，让recurrent model一路运行的就是LSTM，对吧？我有一阵子又沉迷研究这个，SSM，也就是State Space
-
-<span class="paragraph-timestamp" data-ts="27:20">27:20</span> **朴钟贤** Model，以及通常广为人知的
-
-<span class="paragraph-timestamp" data-ts="27:27">27:27</span> **卢正石** Mamba，那种模型的直觉就是这个。训练时像transformer一样，把所有sequence一次性并行输入，从而完成训练；而在inference时，则像普通recurrent model一样，让一个模型不断输出单词。如果做出这样的模型会怎么样？那样就能消除transformer的许多低效之处。这原本是Mamba的直觉，而这里把transformer、Mamba和LSTM全都混在了一起。
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **卢正石** 对，没错。通过决定要记住什么、要忘记什么的gate，让recurrent model一路运行的就是LSTM，对吧？我有一阵子又沉迷研究这个，SSM，也就是State Space Model，以及通常广为人知的Mamba，那种模型的直觉就是这个。训练时像transformer一样，把所有sequence一次性并行输入，从而完成训练；而在inference时，则像普通recurrent model一样，让一个模型不断输出单词。如果做出这样的模型会怎么样？那样就能消除transformer的许多低效之处。这原本是Mamba的直觉，而这里把transformer、Mamba和LSTM全都混在了一起。
 
 <span class="paragraph-timestamp" data-ts="27:55">27:55</span> 这就是KDA。它根本没有传统的KV缓存block。和Mamba一样，一个block本身就是memory block，而其中有趣的是，它以类似attention的方式实现了QKV表。同时，随着它逐层向上运行，会使用input gate和forget gate，让这些token持续携带sequence，将从过去走向未来的内容不断累积起来。它就是这样的结构。这个大家不必理解。只要大致想象成这样就可以了。正因为其中嵌入了这种类似recurrent network的结构，眼尖的人应该已经注意到了：这里完全没有加入positional encoding。
 
@@ -248,9 +244,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="29:34">29:34</span> **卢正石** KDA没有KV缓存。因为它会对其中QKV的单一state及其变化进行追踪，使用一种叫作delta的数据，
 
-<span class="paragraph-timestamp" data-ts="29:42">29:42</span> **崔胜准** 一点一点、一点一点地变化，
+<span class="paragraph-timestamp" data-ts="29:42">29:42</span> **崔胜准** 一点一点、一点一点地变化，这就是delta。
 
-<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **卢正石** 这就是delta。他们只是把那里parameterize，然后进行训练。请不要问我为什么这样能行。肯定是因为能行才这么做的吧。
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **卢正石** 他们只是把那里parameterize，然后进行训练。请不要问我为什么这样能行。肯定是因为能行才这么做的吧。
 
 <span class="paragraph-timestamp" data-ts="29:56">29:56</span> **崔胜准** 我查了一下，发现有时会把它称为联想记忆装置，或者称为fast weights。
 
@@ -260,9 +256,9 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="30:51">30:51</span> **崔胜准** 也就是说，它把过去连接起来，原本 self-attention 只能在那个轴上运作，但这个则可以参照过去的信息。原本过去的信息要沿着 embedding 不断传递，沿着 residual 一直流下去，但这个能让它很好地参考过去的信息，是不是这种感觉？
 
-<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **卢正石** 对于过去的信息，以前的传统 attention 会把全部过去的信息放进 KV 缓存，保留所有 K 和 V，再将 Q 应用于其中，通过全部计算一遍的方式，找出过去的哪些信息与自己相关，而它不是这样，只需利用累积下来的 delta，再对其应用 query，就会直接给出最合适的 value。它会判断你要找的 value 应该就是这个，然后把它给出来。至于具体是以什么方式 parameterize 的，我也没有研究到那么深入。不过
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **卢正石** 对于过去的信息，以前的传统 attention 会把全部过去的信息放进 KV 缓存，保留所有 K 和 V，再将 Q 应用于其中，通过全部计算一遍的方式，找出过去的哪些信息与自己相关，而它不是这样，只需利用累积下来的 delta，再对其应用 query，就会直接给出最合适的 value。它会判断你要找的 value 应该就是这个，然后把它给出来。至于具体是以什么方式 parameterize 的，我也没有研究到那么深入。不过直觉上是这样的。
 
-<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **朴钟贤** 直觉上是这样的。简单来说，它不是保留过去的所有信息，而是将其压缩到尺寸更小的 vector latent space中，而且连如何放进去也要让模型学习。我觉得可以这样理解。按照我的理解，我好像没有完全跟上准确的原理，但如果让我用自己的方式解读一下这种直觉，刚才说它很像 LSTM，不过在我听来，我并不认为那是个好方法。Transformer 有一个大的框架，而 Transformer 的这个大框架相比过去的 RNN或 LSTM 等算法，规模虽然大得多，但拆开来看，算法反而简单得多。看正形元博士的演讲就会发现，它消除了 inductive bias，不再规定我们要这么做、要那么做，记忆就应该以这种方式实现，而是彻底废除这种类似指导手册的东西，只管把数据塞进去，让模型自行学习，那么具备变聪明潜力的大型 LLM最终只要数据足够多就能学会。如果从这种大的直觉出发，那么说这个 Kimi Delta Attention 很像 LSTM，就意味着我们规定了要如何处理过去、要看哪里，并以算法的方式复杂地把这些全都塞了进去，因此可以说这又走回头路了。从这个核心来看，人其实也一样，施加这种 bias，就像新人入职后要接受培训。你必须这么做。施加这种强制，在限制自由度和潜力的同时，也能让我们进行相当高效的培训。所以在 compute 受限的情况下，因为规模实在太大，再加上中国的 compute 资源也受限，因此这是在思考如何利用这些 compute最高效地把大型模型 training 好之后得出的成果，我个人直觉上是这样认为的。那么最终，也许随着时间推移，这些东西会不断积累，在寻找更高效方法的过程中遇到极限，然后再次放开限制，我想我们或许又会看到这种历史重演。
+<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **朴钟贤** 简单来说，它不是保留过去的所有信息，而是将其压缩到尺寸更小的 vector latent space中，而且连如何放进去也要让模型学习。我觉得可以这样理解。按照我的理解，我好像没有完全跟上准确的原理，但如果让我用自己的方式解读一下这种直觉，刚才说它很像 LSTM，不过在我听来，我并不认为那是个好方法。Transformer 有一个大的框架，而 Transformer 的这个大框架相比过去的 RNN或 LSTM 等算法，规模虽然大得多，但拆开来看，算法反而简单得多。看正形元博士的演讲就会发现，它消除了 inductive bias，不再规定我们要这么做、要那么做，记忆就应该以这种方式实现，而是彻底废除这种类似指导手册的东西，只管把数据塞进去，让模型自行学习，那么具备变聪明潜力的大型 LLM最终只要数据足够多就能学会。如果从这种大的直觉出发，那么说这个 Kimi Delta Attention 很像 LSTM，就意味着我们规定了要如何处理过去、要看哪里，并以算法的方式复杂地把这些全都塞了进去，因此可以说这又走回头路了。从这个核心来看，人其实也一样，施加这种 bias，就像新人入职后要接受培训。你必须这么做。施加这种强制，在限制自由度和潜力的同时，也能让我们进行相当高效的培训。所以在 compute 受限的情况下，因为规模实在太大，再加上中国的 compute 资源也受限，因此这是在思考如何利用这些 compute最高效地把大型模型 training 好之后得出的成果，我个人直觉上是这样认为的。那么最终，也许随着时间推移，这些东西会不断积累，在寻找更高效方法的过程中遇到极限，然后再次放开限制，我想我们或许又会看到这种历史重演。
 
 
 ## 为何要强制引入归纳偏置：推理效率这一首要任务    *34:01*
