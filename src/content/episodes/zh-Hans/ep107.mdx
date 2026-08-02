@@ -1,0 +1,824 @@
+---
+episodeNumber: 107
+title: "未来总是不可预测：股价过山车、Kimi K3 冲击与递归式自我改进的开端"
+description: "从 AI 概念股的过山车行情和 Leopold Aschenbrenner 清仓投资组合谈起，深入解读 Kimi K3 的架构、后训练与强化学习设计、开放权重争论，以及递归式自我改进的开端。"
+publishedAt: 2026-08-02
+duration: "1:55:37"
+youtubeId: "tgCoPeWsTU8"
+thumbnail: "https://i.ytimg.com/vi/tgCoPeWsTU8/maxresdefault.jpg"
+notionUrl: "https://erucipe.notion.site/RSI-3afd5c9e7e59809c98d5c1d97b3af8c5"
+hosts:
+  - 卢正石
+  - 崔胜准
+  - 朴钟贤
+chapters:
+  - time: "0:00"
+    title: "Leopold Aschenbrenner 清仓投资组合与大型股过山车行情"
+  - time: "4:02"
+    title: "空头头寸与追加保证金通知如何运作"
+  - time: "5:24"
+    title: "基础设施股前景与互联网、移动时代的既视感"
+  - time: "7:56"
+    title: "从 Nebius 看新云服务商与 AI 供应链瓶颈"
+  - time: "9:31"
+    title: "未来战略家的误判与面对震荡行情的谦逊"
+  - time: "12:10"
+    title: "大型 AI 概念股的异常波动与预期驱动的市场"
+  - time: "13:41"
+    title: "Fable 遭封锁引发的主权 AI 觉醒"
+  - time: "14:21"
+    title: "Kimi K3 开放权重发布及其市场冲击"
+  - time: "15:16"
+    title: "成为前沿实验室工作流设计缩影的 Kimi K3 论文"
+  - time: "20:17"
+    title: "解读基准测试的难点与更强模型即将发布的迹象"
+  - time: "22:13"
+    title: "2.8T 参数、1M 上下文与 Kimi K3 的核心规格"
+  - time: "26:33"
+    title: "融合 LSTM 与 Mamba、消除 KV Cache 的 Kimi Delta Attention"
+  - time: "34:01"
+    title: "为何要强制引入归纳偏置：推理效率这一首要任务"
+  - time: "36:06"
+    title: "跨越下层模块进行引用的 Attention Residual 与 Stable Latent MoE"
+  - time: "42:44"
+    title: "宣告结束架构深挖，转向以数据为中心的视角"
+  - time: "49:39"
+    title: "预训练数据质量与 1M 上下文扩展"
+  - time: "51:02"
+    title: "1M 长程 SFT 与长期智能体工作流学习"
+  - time: "54:07"
+    title: "工具调用轨迹蒸馏与模型能力整体提升"
+  - time: "57:13"
+    title: "RL 数据覆盖率与多教师同策略蒸馏"
+  - time: "63:05"
+    title: "利用知识图谱生成 RL 练习题与智能体环境"
+  - time: "67:39"
+    title: "论文和模型评测变成 Instagram 短视频后，阅读动力为何消失"
+  - time: "70:42"
+    title: "黄仁勋的开放权重声明及其签署企业"
+  - time: "74:56"
+    title: "拒绝签署的 Anthropic 与 Dario Amodei 的反驳"
+  - time: "77:00"
+    title: "数月间彻底逆转的立场：模型商品化与价值转移"
+  - time: "81:08"
+    title: "与 Google 垄断不同，前沿实验室没有获得充足时间"
+  - time: "85:04"
+    title: "向上下游分散的价值捕获与下一个瓶颈"
+  - time: "87:05"
+    title: "为什么铺设完整的智能体流程后，人类仍不会消失"
+  - time: "89:01"
+    title: "从复式记账账本获得灵感的智能体控制平面"
+  - time: "94:03"
+    title: "开放权重讨论与组织运行框架之间的联系"
+  - time: "97:44"
+    title: "智能价格下降为个人与企业带来的机会"
+  - time: "99:43"
+    title: "DeepSeek V4 Flash 降价与进入 RSI 阶段的信号"
+  - time: "100:56"
+    title: "自我改进框架与对抗性智能体实验"
+  - time: "103:17"
+    title: "《Pacing the Frontier》公开信与反复重演的警告史"
+  - time: "106:39"
+    title: "表演性的 Hype：研究 AI 话语的 Hype Studies"
+  - time: "110:07"
+    title: "不可预测的地平线与偶然性哲学"
+  - time: "113:27"
+    title: "不确定性时代，以及作为记忆压缩的对话"
+  - time: "115:29"
+    title: "结语"
+lang: "zh-Hans"
+alternateSlug: null
+series: "main"
+---
+
+## Leopold Aschenbrenner 清仓投资组合与大型股过山车行情    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:01">0:01</span> **卢正石** 好，开始吧。今天录制时是2026年8月1日。本周也有非常多重磅消息。要说其中最有意思的消息，恐怕就是Leopold Aschenbrenner遭受了一次重大损失。这和什么有关呢？市值排名第一、第二的大盘股连续两天分别暴跌15%，随后一天又上涨近30%，如同坐过山车一般，但如果计算这一周内的波动幅度，实际上只下跌了大约1%到2%。这是发生在美国的一件趣事，Leopold Aschenbrenner是一位非常年轻且能干的人。Leopold Aschenbrenner曾登上Dwarkesh Podcast，并发表了一篇名为Situational Awareness的论文，讲述未来我们的社会将会发生什么，从电力系统到芯片，再到芯片之上的层级，Leopold Aschenbrenner针对未来可能发生的事情撰写了一份自己的白皮书。
+
+<span class="paragraph-timestamp" data-ts="1:08">1:08</span> 不过Leopold Aschenbrenner并非只是说说而已，Leopold Aschenbrenner还成立了自己的基金，按照自身信念所指向的方向构建了投资组合。而且规模不是区区十几万人民币，而是以数千亿人民币的规模运作投资组合，这个投资组合中有很多像Anthropic这样的非上市公司股票，Leopold Aschenbrenner也从中获得了信心，因而开始更加激进地管理投资组合。也就是开始使用杠杆。Leopold Aschenbrenner认为优质股票会上涨，于是对它们加杠杆，同时做空那些会下跌的股票，认为AI公司、基础设施公司和电力公司会持续上涨，而传统软件公司则会因为AI模型的发展全部消失。因此，Leopold Aschenbrenner持有一个做空Adobe以及Figma等公司的投资组合，但在过去这段短暂的时间里，这个投资组合的走势完全相反。基础设施股暴跌，软件股上涨，而且没有人知道股市会发生什么。所以Leopold Aschenbrenner损失惨重。大部分上市股票投资组合
+
+<span class="paragraph-timestamp" data-ts="2:12">2:12</span> 似乎都被Leopold Aschenbrenner赔光了。而那些股票据说被Citadel以非常低廉的价格顺利抄底了，这一消息也传得沸沸扬扬，尽管如此，Leopold Aschenbrenner的整个基金据说仍有大约80%的正收益。像Anthropic这样的股票，因为非上市公司的股价不会每天波动，所以按照其估值计算，似乎仍然保持着正收益。而且我认为，引发这种波动的起点是Fable发布之时，这可能是营销，也可能是真心如此，但持续观察Anthropic的行动后，我也稍微倾向于一种阴谋论，认为这很可能是一场精心策划的营销。
+
+<span class="paragraph-timestamp" data-ts="3:00">3:00</span> 也就是说，Fable拥有惊人的能力，同时存在安全问题，因此会造成严重后果。他们如此大肆渲染，结果正因如此，美国政府最终封禁了这个模型。另外还有一起事件，一个被推测为GPT-6的模型入侵Hugging Face并大肆破坏，Hugging Face不得不使用LLM来阻止它，从某种角度来看，这些情况动摇了包括我们推进sovereign AI在内，所有人原本抱有的信念：美国是捍卫自由世界的标志性象征，只要我们依靠这个盟友，依靠他们打造的frontier模型，就能过上美好的生活，但美国政府明确表示“不是这样的”，从那时起，大家的想法便开始发生变化。这也催生了我们稍后将讨论的围绕开放权重的行动，而Kimi K3似乎又给这把火狠狠浇了一桶油。
+
+
+## 空头头寸与追加保证金通知如何运作    *4:02*
+
+<span class="paragraph-timestamp" data-ts="4:06">4:06</span> **崔胜准** 在话题继续展开之前，因为我不太懂股票，所以有一点很好奇：Leopold之所以遭到那样的清算，不就是因为发生了保证金追缴吗？但如果事情继续像Leopold预测的那样，AI朝这个方向发展，因此还会持续产生收益，既有需求，也会有收益，即使这些判断都是正确的，为什么还是会遭遇保证金追缴呢？
+
+<span class="paragraph-timestamp" data-ts="4:33">4:33</span> **卢正石** 因为股价下跌了。股价下跌后，比如说，胜准借入这只股票，准备做空，对吧？那么胜准应该需要针对借入价格缴纳保证金，如果其价值跌破或看起来即将跌破出借股票的证券公司要求的保证金水平，证券公司就会自动进行强制平仓。因为证券公司必须收回自己的本金。
+
+<span class="paragraph-timestamp" data-ts="5:02">5:02</span> **崔胜准** 也就是说，并不是看趋势方向，而只是机械地作出反应。那么，
+
+<span class="paragraph-timestamp" data-ts="5:07">5:07</span> **卢正石** 对。总而言之，Leopold Aschenbrenner的投资组合是着眼于数年周期设定的，但股市的价格波动每天都会发生，一旦出现大幅下挫的日子，在这期间遭到强制平仓的风险就相当高。
+
+
+## 基础设施股前景与互联网、移动时代的既视感    *5:24*
+
+<span class="paragraph-timestamp" data-ts="5:24">5:24</span> **朴钟贤** 既然话题回到了股票，虽然这个问题有点傻，但如果只问一个大家可能都很好奇的问题，那就是究竟应该买什么？
+
+<span class="paragraph-timestamp" data-ts="5:38">5:38</span> **卢正石** 这个嘛。这个嘛。以下只是我的个人看法，我是在强调这只是个人意见的前提下说的，我认为基础设施股还有很长一段上涨空间。但股票并不是反映现实，而是总会提前大肆炒作，等现实真正到来后，随着预期消退，股价往往就会下跌。互联网泡沫时期，最初火热的股票也是Cisco之类制造网络芯片、提供互联网连接能力的硬件股，但那一阶段结束后，Yahoo之类的应用开始取而代之并不断成长，随后Google崛起，Meta也崛起了，移动互联网时代最初也是芯片股当时非常火热。后来渐渐地发展到了我们现在所熟知的应用层公司。未来对AI的需求似乎很大，但现在使用的人还很少，如果每个人都开始培养自己的agent，那么需要提供给它们的computation将远远超过目前地球上存在的computation，因此数据中心、芯片、电力相关领域仍有大量需求尚未释放，这似乎是目前市场的整体看法。
+
+<span class="paragraph-timestamp" data-ts="6:57">6:57</span> 但持相反观点的人会说：“不是。即使这些东西最终被造出来，也只有处于顶层的几万名知识工作者，以及少数几家公司能真正用好，人类的生活不会发生那么大的变化。而且未来模型会变得更加高效，edge computing也会变得更加高效，随着每个单位模型能够处理的工作增加，对computation的需求不会增长那么多。所以那就是泡沫。”这两种观点目前仍在激烈交锋，至于最终会走向哪个方向，市场似乎还没有作出决定。
+
+<span class="paragraph-timestamp" data-ts="7:37">7:37</span> 我觉得基础设施类股票应该还能再涨一段时间，但如果越过基础设施类股票，以现在的移动互联网时代为例，像Uber和Airbnb这样的众多公司所代表的应用层公司还没有出现。
+
+
+## 从 Nebius 看新云服务商与 AI 供应链瓶颈    *7:56*
+
+<span class="paragraph-timestamp" data-ts="7:56">7:56</span> **朴钟贤** 对，也就是说目前是从基础设施开始的。我看那个投资组合时也很惊讶，Nebius所占的比重非常大，这让我有些意外。
+
+<span class="paragraph-timestamp" data-ts="8:03">8:03</span> 简单介绍一下Nebius这家公司，它是一家销售GPU的公司。是一家购买GPU、搭建云端后再出售服务的新云公司。我们在ICML那一期提到过Nebius的展位，当时有非常多新云服务商，我还觉得“明明是学术会议，真有意思。”看到它在投资组合中也占了很大比重后，我想到它从NVIDIA购买GPU，搭建云端后出租并销售服务，上面会运行LLM，之后还会出现使用该LLM的应用，用户则会直接使用LLM或者使用应用，供应链大概会以这种方式形成，而它几乎处于最前端。
+
+<span class="paragraph-timestamp" data-ts="8:44">8:44</span> 因为它紧接在NVIDIA之后，也就是NVIDIA或我们公司这样的韩国存储器公司之后，所以自下而上来看，恰好处于这一层级的公司正受到很多关注，我也意识到这一层级的波动性原来很大。
+
+<span class="paragraph-timestamp" data-ts="9:08">9:08</span> 从这个角度来看，长期而言，我想不仅是运营我们频道的几位主持人，所有收听节目的朋友应该也都有一致的想法，大家都认为未来的需求会变得极其庞大，正是抱有类似想法的人才会观看这期内容，所以我当然认为需求会增长得多得多。因此，包括基础设施以及其上层的所有领域，价值和资金或许都会源源不断地流入，我是这样认为的。
+
+
+## 未来战略家的误判与面对震荡行情的谦逊    *9:31*
+
+<span class="paragraph-timestamp" data-ts="9:35">9:35</span> **崔胜准** 就我个人而言，在粗略了解这次事件之后，虽然我不太懂经济是如何运转的，但我重新审视了Leopold这个人。我刚才确认了一下，他曾在2024年6月参加Dwarkesh Podcast。而他之所以参加节目，是因为此前在OpenAI的superalignment团队担任未来战略师时，好像说错了什么话，还被指控泄露了某些内容，甚至没能为自己辩解，就这样被排挤出去了。
+
+<span class="paragraph-timestamp" data-ts="10:02">10:02</span> 此后，他发布了Situational Awareness，后来，同样出身于OpenAI的Daniel Kokotajlo发布了AI 2027，前不久又公布了AI 2040。从事未来战略的人就是会做这些事情。但Leopold尽管曾是未来战略师，却还是起了贪心。他或许对方向很有信心，但确实承担了极大的风险。
+
+<span class="paragraph-timestamp" data-ts="10:30">10:30</span> **卢正石** 不过，这件事也不能简单下定论。从我们的立场来看或许是贪心，但从他的立场来看，也可能只是理所当然的投资组合管理，毕竟市场最终总会用结果让人谦逊地接受现实。
+
+<span class="paragraph-timestamp" data-ts="10:49">10:49</span> **崔胜准** 我想说的是，即便是二十岁出头、意气风发的未来战略师，在这个市场里也完全可能判断失误。
+
+<span class="paragraph-timestamp" data-ts="10:57">10:57</span> 当然。长期趋势和这个信号没有关系。
+
+<span class="paragraph-timestamp" data-ts="11:02">11:02</span> **卢正石** 不过，他从一开始确实就与众不同。只有经历过在股市中失去全部财产，并曾因那种痛苦而挣扎的人，才能在废墟之上重新积累资产。实际与人交谈后会发现，大家不像人们想象的那样坦诚，都只会谈自己判断正确的事情，说“我赚了多少。”我们也只看到这些，然后说“听说这个人赚了多少。”但三四天过去，或一周过去后，因为市场波动，那个人后来又经历了什么，我们并不会继续追踪。令人意外的是，真正赚到很多钱并取得成功的人并没有那么多。而那些人无论是使用了程序，还是靠个人操作，都是拥有能够承受这种不确定性的心态，并且敢于下注的人，最终获得了回报。所以，对于我们随口听到某个人做了什么，靠股票赚了多少钱之类的故事，各位完全没必要感到FOMO。因为我们认识的人中有95%其实都差不多，在我看来，这个股票市场中大盘股本身竟然会出现这样的波动，实在让人觉得不合常理。
+
+
+## 大型 AI 概念股的异常波动与预期驱动的市场    *12:10*
+
+<span class="paragraph-timestamp" data-ts="12:17">12:17</span> **崔胜准** 这是前所未有的事情。
+
+<span class="paragraph-timestamp" data-ts="12:19">12:19</span> **卢正石** 当然。一家市值只有几百亿韩元的科斯达克公司一天上涨或下跌15%、30%这还说得通，但像海力士或三星电子这样争夺市值第一、第二的公司出现那样的波动性，就意味着数量极其庞大的市场参与者，几乎绝大多数市场参与者都拿着这一两只股票像交易加密货币一样进行交易。因为股价是对未来预期现金流折现到今天所得结果的期望值，所谓股价上涨，是对未来将赚取巨额利润的期待被提前反映出来，与明天、一周后或一年后的基本面没有任何相关性，所以我们必须充分理解它的本质。这是一个押注预期的市场。可现在这里彻底变成了赌场，最近连我都实在看不下去了。说到底，在这种市场中承受波动的方法，就像许多人所说的那样，是提前发现价值，在价格真的很低时入场，长期持有、不卖出，这才是答案。
+
+<span class="paragraph-timestamp" data-ts="13:31">13:31</span> **崔胜准** 正因为这不容易，才闹成现在这样。
+
+<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **卢正石** 正因为这不容易，能赚钱的人才少。再深入下去就要变成哲学讨论了，我们还是到此为止吧。那么，我们刚才沿着叙事一路讲下来，也稍微谈到了一点，而这一切叙事的起点是Anthropic推出Fable。随后美国政府封禁Fable，彻底推翻了所有人的预期，市场开始意识到：“如果我们也没有自己的东西，那就糟了。不能一直相信Anthropic和OpenAI。也不能一直相信美国。”我认为，这正是过去两个月所有波动以及各种假设发生改变的起点，就连我也在想，我们也应该拥有自己的Claude才行，我确实有这种想法。
+
+
+## Fable 遭封锁引发的主权 AI 觉醒    *13:41*
+
+
+## Kimi K3 开放权重发布及其市场冲击    *14:21*
+
+<span class="paragraph-timestamp" data-ts="14:21">14:21</span> **卢正石** 就在这种情况下，Kimi K3又添了一把火。几乎达到Claude Opus级别的能力，让人觉得现在无论投入什么workload，都完全够用的一款模型。而他们竟然以开放权重的形式发布了这样的模型。当然，许可证里确实有一项条款，要求赚到巨额利润后开始付费，但对绝大多数公司来说都是免费的。所以，就连钟贤刚才提到的Nebius等公司也都已经把Kimi K3模型部署到云端，进入了对外提供服务的阶段。
+
+<span class="paragraph-timestamp" data-ts="15:00">15:00</span> 不过，Kimi K3大约一个月前就已经通过API公开，随后又按照承诺，在三天前，也就是7月27日，以开放权重的形式发布，并公开了他们如何打造自己的模型，包括模型卡、架构，以及如何进行training，这些paper全都公开了。
+
+
+## 成为前沿实验室工作流设计缩影的 Kimi K3 论文    *15:16*
+
+<span class="paragraph-timestamp" data-ts="15:16">15:16</span> **卢正石** K3: Open Frontier Intelligence.而且Kimi推出K2时，他们在架构方面基本沿用了DeepSeek发布的那些东西，带着一种“这里已经没什么可做了”的意味，只把optimizer换成Muon之类，实际上就是对DeepSeek架构稍作修改后加以使用，推出了Kimi K2、K2.5，但今年年初DeepSeek发表paper后，在attention方面带来了许多重大创新。比如sliding attention或attention compression，最终通过这些技术，讨论了在实际运行中构成最大bottleneck的KV缓存，也就是KV缓存的容量，究竟可以通过什么方式缩减。因此实现了相当显著的算法演进，
+
+<span class="paragraph-timestamp" data-ts="16:09">16:09</span> **崔胜准** 而且还谈到mHC之类的技术，在residual connection方面也……
+
+<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **卢正石** 对，当时确实讲过。所以有attention方面的变化，MoE方面的变化，然后是各个block该如何连接，也就是residual方面的变化。从架构层面来看，这三项似乎正在成为transformer block最核心的部分。
+
+<span class="paragraph-timestamp" data-ts="16:29">16:29</span> **朴钟贤** 如果把paper中有关模型内部的内容稍微分类一下，首先可能是您刚才提到的架构，也就是模型本身长什么样这一类内容。然后，我以前曾经仔细读过一次Kimi K2的paper，我记得其中还包括训练方法、如何generation数据、如何做好simulation，以及如何构建数据和RL环境，诸如此类的内容。也就是有了架构之后，如何让这个架构中的weight变得更聪明的方法论。大体上可以分成这两类，这些内容似乎全都写在了paper里
+
+<span class="paragraph-timestamp" data-ts="17:12">17:12</span> **卢正石** 我想是这样。就像钟贤所说的，当K2 paper发布时，正值reasoning模型大量涌现，RL环境的构建工作刚刚起步的时期，所以其中用了相当长的篇幅介绍他们如何在on-policy中制定rubric，以及如何构建环境，对吧。但随着Kimi K3 paper发布，如果用一句话概括这篇paper，它就是一份关于如今frontier model和frontier lab的workflow究竟如何构成的整体设计概要。所以其中一部分是模型架构以这种方式发生了变化，但事实上，比架构重要得多的是如何engineering dataset和compute，也就是这些部分，可关于这些内容，现在省略了很多。不过，它还是说明了大致的发展方向，而且每个paragraph、每一个段落，某种意义上都足以单独成为一篇论文，是这些重大成果的融合体，因此，哪怕只是想真正效仿Kimi或DeepSeek这样的公司，也需要付出极其巨大的努力，光是找出这些，我就觉得能学到很多东西。
+
+<span class="paragraph-timestamp" data-ts="18:24">18:24</span> 而且原本在进行 pre-training 时，还有一些与 dataset 相关的内容，但这次几乎没有这方面的内容。很大的篇幅都放在了 post-training 上。至于总共投入了多少 compute、使用了多少 token，这些完全没有提到。那些内容似乎都被隐去了，后面有意思的是，为了构建 RL 环境，为了自动 generation dataset，文中介绍了具体使用了哪些方法，这些方法其实和其他地方的 Mercor 或 Scale AI生成 dataset 的方法几乎一样。
+
+<span class="paragraph-timestamp" data-ts="19:02">19:02</span> 然后，RL 环境本身实际上和 pre-training 的 workload 不同。因为 pre-training 只要让它一直跑下去就行，但 RL 在训练过程中，必须逐一完成推理过程，也就是 inference。可是在 inference 过程中，有些任务很快结束，有些则耗时很长，而且即便面对同一个 rollout 问题，trajectory 的长度也可能各不相同，所以文中只是一路介绍了如何处理这些问题的思路。但如果我们真的决定把这些接入 pipeline，每一项都会成为一项不小的工作。
+
+<span class="paragraph-timestamp" data-ts="19:38">19:38</span> 所以 post-training 占用了非常多的篇幅，后面的 evaluation 部分基本就是一些数字，从 evaluation 结果来看，他们似乎是说，比 Claude Opus或 GPT-5.6 Pro更好。但他们评估认为，它比 GPT-5.6或 Fable稍差一点。不过最近随着 small model不断出现，在基准测试中 small model超越 large model的情况越来越多，所以我现在也开始有点怀疑，基准测试究竟还能不能相信。
+
+
+## 解读基准测试的难点与更强模型即将发布的迹象    *20:17*
+
+<span class="paragraph-timestamp" data-ts="20:20">20:20</span> **朴钟贤** 是的，我觉得解读 evaluation 结果一直都很困难。无论基准结果和分数如何，实际用起来时，经常会发现并不符合预期。尤其以我的感受来说，那些没有提供商业服务的模型，以及用户数量并不多的模型，这种倾向会更加严重。因为它们对基准测试进行了 overfit，虽然提高了基准分数，但到了其他使用案例，也就是非常 general的实际使用场景中，表现就不好。
+
+<span class="paragraph-timestamp" data-ts="20:44">20:44</span> 不过从这个角度来看，像 Kimi这种模型，毕竟它的目标是真正大规模地提供商业服务，所以在这种情况下，它的基准分数与实际表现应该还是有相当高的相关性，这是我个人使用后得出的感受。
+
+<span class="paragraph-timestamp" data-ts="21:05">21:05</span> **崔胜准** 我的看法有些不同，那是昨天，还是今天凌晨来着？DeepSeek V4 Flash也发布了。它的基准表现也相当不错，而这次 Claude Opus 5发布后，看到它在部分基准上的表现超过 Fable时，我的感想是，Fable 5.12应该要发布了。也就是说，出现了超越上位模型的基准成绩，就像是上位模型的下一代即将发布的征兆，我确实有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="21:34">21:34</span> **卢正石** 是的，这个差距正在迅速缩小。我觉得可能是因为我们现在正处于所谓正在跨越奇点的阶段。我们显然可以推断，这并不是人类的速度。
+
+<span class="paragraph-timestamp" data-ts="21:50">21:50</span> **崔胜准** 那就是 RSI。我认为，这些都是我们正处于 RSI某个切入点的征兆。
+
+<span class="paragraph-timestamp" data-ts="21:55">21:55</span> **卢正石** RSI就是 Recursive Self-Improvement。也就是说，它指的是模型自我递归进化，我们继续往下看吧。
+
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> 这些基准测试，第一页总会有摘要，还有用来展示基准测试中我们的表现提升了这么多的内容。这个 Kimi K3确实做了很多非常奇特的尝试。这里列出了他们公开宣称的要点。他们把模型扩大到了约 2.8T参数。然后有 104B activated parameter，context window则达到了 1M token，接下来是 KDA，然后是 Attention Residual、Stable Latent MoE。
+
+
+## 2.8T 参数、1M 上下文与 Kimi K3 的核心规格    *22:13*
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **卢正石** 从宏观上来看，这些内容分别涉及KDA在 attention上实现了怎样的创新，接着是 Attention Residual给 transformer block之间带来了怎样的变化，
+
+<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **崔胜准** 年初，也就是今年
+
+<span class="paragraph-timestamp" data-ts="22:47">22:47</span> **卢正石** 以及 MoE发生了怎样的变化。
+
+<span class="paragraph-timestamp" data-ts="22:47">22:47</span> **崔胜准** 上半年有几个，什么……
+
+<span class="paragraph-timestamp" data-ts="22:52">22:52</span> **卢正石** 而且这个数字也很重要，与 Kimi K2相比，模型的架构得到了改进，然后 dataset也发生了变化。核心通常就是这两点，在投入相同 compute的情况下，能以 2.5倍的速度达到更低的 validation loss。也就是说，完成了更多训练。我想只要向各位介绍一下他们究竟实现了哪些创新背后的思路就可以了。一直关注 transformer的各位，脑海中应该都有一个大致图景。最底层有一个把单词转换成 token的tokenizer，每个 token都带有编号，然后再把它转换成 embedding，也就是我们所说的 hidden layerdimension对应的 embedding，transformer block就是从这里开始的。一个 transformer block里面，首先是 attention block，然后是 normalization，加入 residual之后，上面还有 fullyconnected，也就是 FFN、MLP block，接着那里又有一个 residual。我们把这一整套称为一个 block，这些 block紧密堆叠，一直延伸到最顶层，最上面连接着 LM head，再由它把内容转换成最终结果，这就是一般的 transformer结构。
+
+<span class="paragraph-timestamp" data-ts="24:14">24:14</span> 这个整体结构本身至今没有改变，但其中的内容在过去两三年里，几乎以炼金术般的方式不断变化。是的，没错。不过我觉得这个应该称为炼金术。并不是因为有某种理论背景和理论，才把它做成这样，而是觉得这样做信息流动会更高效，这样做就能捕捉到信息，于是试着这样改改看，只要行得通，那就这么做。只要loss下降，evaluation也令人满意，那就行了。与其说这是一种发明，我甚至觉得，现在是不是已经进入了发现的阶段，都让我产生了这样的想法。
+
+<span class="paragraph-timestamp" data-ts="24:57">24:57</span> **朴钟贤** 对，我也同意这一点。像那里列出的Gated MLA之类的算法，从以前Qwen的Gated DeltaNet之类开始，就一直涌现出非常多种。我觉得最大的问题是scale。因为scale必须非常大，所以没办法控制这种实验、那种实验，把所有实验都做一遍。
+
+<span class="paragraph-timestamp" data-ts="25:14">25:14</span> 因此，既然存在这样的问题，既然记忆力有问题，就设计出一个觉得这样做应该不错的算法，放进去试试，效果好就结束。感觉就这么结束了。因为scale还没大到能这样也试试、那样也试试，再通过实验判断哪个更好，所以我也有类似的想法，觉得这更接近于发现，
+
+<span class="paragraph-timestamp" data-ts="25:36">25:36</span> **卢正石** 没错。刚才提到的这一个transformer block，也就是包含attention和MoE的传统transformer block，就是我正用鼠标圈出来的这个KDA和Stable LatentMoE。可以把它看作传统的一个transformer block。KDA充当新的attention，attention结束后再运行MoE，中间还有residual，整体就是这种结构。大家看这里写着3×，对吧？这个block会重复三次，上面的Gated MLA则类似于之前在DeepSeek中看到的传统attention layer。两者很相似。再放入一次这个，就构成了一个基本block。把这个基本block向上密集堆叠几十层，从而形成完整的parameter数量。
+
+
+## 融合 LSTM 与 Mamba、消除 KV Cache 的 Kimi Delta Attention    *26:33*
+
+<span class="paragraph-timestamp" data-ts="26:33">26:33</span> **卢正石** 那么这里值得注意的有趣之处是，它又与DeepSeek完全不同：他们创造了一个叫KDA的东西，把传统attention全部替换掉了。所谓KDA，就是左边的这个结构。KDA是Kimi Delta Attention的结构。看到这个时，我不会把这张图和里面的算法全部逐一讲解。不过我形成的直观印象是，这不就是以前LSTM的感觉吗？
+
+<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **崔胜准** 在RNN时代，
+
+<span class="paragraph-timestamp" data-ts="27:06">27:06</span> **卢正石** 就是那个。对，没错。通过决定要记住什么、要忘记什么的gate，让recurrent model一路运行的就是LSTM，对吧？我有一阵子又沉迷研究这个，SSM，也就是State Space
+
+<span class="paragraph-timestamp" data-ts="27:20">27:20</span> **朴钟贤** Model，以及通常广为人知的
+
+<span class="paragraph-timestamp" data-ts="27:27">27:27</span> **卢正石** Mamba，那种模型的直觉就是这个。训练时像transformer一样，把所有sequence一次性并行输入，从而完成训练；而在inference时，则像普通recurrent model一样，让一个模型不断输出单词。如果做出这样的模型会怎么样？那样就能消除transformer的许多低效之处。这原本是Mamba的直觉，而这里把transformer、Mamba和LSTM全都混在了一起。
+
+<span class="paragraph-timestamp" data-ts="27:55">27:55</span> 这就是KDA。它根本没有传统的KV缓存block。和Mamba一样，一个block本身就是memory block，而其中有趣的是，它以类似attention的方式实现了QKV表。同时，随着它逐层向上运行，会使用input gate和forget gate，让这些token持续携带sequence，将从过去走向未来的内容不断累积起来。它就是这样的结构。这个大家不必理解。只要大致想象成这样就可以了。正因为其中嵌入了这种类似recurrent network的结构，眼尖的人应该已经注意到了：这里完全没有加入positional encoding。
+
+<span class="paragraph-timestamp" data-ts="28:46">28:46</span> KDA block本身就会处理positional data，因为它本来就是处理sequence的block，所以全都能处理。不需要加入position。实际就是这样。没错，他们称之为NoPE。No Positional Encoding. 而最近见过的采用这种结构的模型就是Nemotron。Nemotron把Mamba block嵌在中间，再加入transformer attention block，混合成这种交替堆叠的结构。所以它和Kimi K3的结构非常相似。
+
+<span class="paragraph-timestamp" data-ts="29:16">29:16</span> 因此，这些东西彼此之间只有细微差异，这些创意的基因彼此之间就像发生了跨物种杂交一样。
+
+<span class="paragraph-timestamp" data-ts="29:24">29:24</span> **崔胜准** 无论那个sequence，也就是token sequence变得多长，它始终都是固定的，对吧？这些
+
+<span class="paragraph-timestamp" data-ts="29:34">29:34</span> **卢正石** KDA没有KV缓存。因为它会对其中QKV的单一state及其变化进行追踪，使用一种叫作delta的数据，
+
+<span class="paragraph-timestamp" data-ts="29:42">29:42</span> **崔胜准** 一点一点、一点一点地变化，
+
+<span class="paragraph-timestamp" data-ts="29:45">29:45</span> **卢正石** 这就是delta。他们只是把那里parameterize，然后进行训练。请不要问我为什么这样能行。肯定是因为能行才这么做的吧。
+
+<span class="paragraph-timestamp" data-ts="29:56">29:56</span> **崔胜准** 我查了一下，发现有时会把它称为联想记忆装置，或者称为fast weights。
+
+<span class="paragraph-timestamp" data-ts="29:59">29:59</span> **卢正石** 所以，他们也是把这些直觉融合进去，觉得这样可行才这么做的吧。不过，重要的是为什么要这么做，目的大多都差不多。目的始终都是减少内存和 compute。由于使用了这个 KDA，相较于使用其他传统 attention，几乎能节省约 75% 的内存。也就是将内存占用降到了非常小，Kimi K3 的 parameter size 非常大，尽管如此，我们还是经常听到这种说法。
+
+<span class="paragraph-timestamp" data-ts="30:37">30:37</span> 它不太容易做 quantization。因为内部已经压缩到了极致，所以这里完全没有这种传统计算。它的效率已经优化得非常高了。这个
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **崔胜准** 也就是说，它把过去连接起来，原本 self-attention 只能在那个轴上运作，但这个则可以参照过去的信息。原本过去的信息要沿着 embedding 不断传递，沿着 residual 一直流下去，但这个能让它很好地参考过去的信息，是不是这种感觉？
+
+<span class="paragraph-timestamp" data-ts="31:11">31:11</span> **卢正石** 对于过去的信息，以前的传统 attention 会把全部过去的信息放进 KV 缓存，保留所有 K 和 V，再将 Q 应用于其中，通过全部计算一遍的方式，找出过去的哪些信息与自己相关，而它不是这样，只需利用累积下来的 delta，再对其应用 query，就会直接给出最合适的 value。它会判断你要找的 value 应该就是这个，然后把它给出来。至于具体是以什么方式 parameterize 的，我也没有研究到那么深入。不过
+
+<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **朴钟贤** 直觉上是这样的。简单来说，它不是保留过去的所有信息，而是将其压缩到尺寸更小的 vector latent space中，而且连如何放进去也要让模型学习。我觉得可以这样理解。按照我的理解，我好像没有完全跟上准确的原理，但如果让我用自己的方式解读一下这种直觉，刚才说它很像 LSTM，不过在我听来，我并不认为那是个好方法。Transformer 有一个大的框架，而 Transformer 的这个大框架相比过去的 RNN或 LSTM 等算法，规模虽然大得多，但拆开来看，算法反而简单得多。看正形元博士的演讲就会发现，它消除了 inductive bias，不再规定我们要这么做、要那么做，记忆就应该以这种方式实现，而是彻底废除这种类似指导手册的东西，只管把数据塞进去，让模型自行学习，那么具备变聪明潜力的大型 LLM最终只要数据足够多就能学会。如果从这种大的直觉出发，那么说这个 Kimi Delta Attention 很像 LSTM，就意味着我们规定了要如何处理过去、要看哪里，并以算法的方式复杂地把这些全都塞了进去，因此可以说这又走回头路了。从这个核心来看，人其实也一样，施加这种 bias，就像新人入职后要接受培训。你必须这么做。施加这种强制，在限制自由度和潜力的同时，也能让我们进行相当高效的培训。所以在 compute 受限的情况下，因为规模实在太大，再加上中国的 compute 资源也受限，因此这是在思考如何利用这些 compute最高效地把大型模型 training 好之后得出的成果，我个人直觉上是这样认为的。那么最终，也许随着时间推移，这些东西会不断积累，在寻找更高效方法的过程中遇到极限，然后再次放开限制，我想我们或许又会看到这种历史重演。
+
+
+## 为何要强制引入归纳偏置：推理效率这一首要任务    *34:01*
+
+<span class="paragraph-timestamp" data-ts="34:01">34:01</span> **卢正石** 所以，这个架构应该会遇到某个 plateau。它会一路走到尽头，抵达一个再也无法突破的平衡点，要想超越它，就必须有 innovation，必须出现彻底的 architectural change，而那些声称要研究这种 architectural change 的公司，最近正在 Bay Area 获得几十亿美元级别的投资。
+
+<span class="paragraph-timestamp" data-ts="34:23">34:23</span> 我对钟贤刚才的话稍微补充一下，我们现在通过这张图看到的这些东西本身，就是在强制施加 inductive bias。先打造出这样的框架，再往里面投入 scale，问题就能解决。不过之所以要这样强制施加 inductive bias，原因就在于此。是为了提升内存和 compute 的效率。那为什么需要这么做？是因为 inference。training time 的低效我们完全可以承受。
+
+<span class="paragraph-timestamp" data-ts="34:54">34:54</span> 但因为 inference workload 会大得多，而 inference workload 最大的 bottleneck，在我们看来就是 KV 缓存。DeepSeek 是这样，Kimi 也是如此，它们似乎认为最大的矛盾就隐藏在这里。无论如何都要把 KV 缓存去掉。
+
+<span class="paragraph-timestamp" data-ts="35:14">35:14</span> **朴钟贤** 从大趋势来看，Transformer 这个框架问世已经快 10 年了，现在是在把它压榨到极致，尽可能通过工程优化，一点点将它推向极限的过程。可以这么说
+
+<span class="paragraph-timestamp" data-ts="35:29">35:29</span> 没错。我们正走在这条路上。
+
+<span class="paragraph-timestamp" data-ts="35:31">35:31</span> **崔胜准** 但 KV 缓存并没有消失吧。它被整合到 MLA 里了吧。
+
+<span class="paragraph-timestamp" data-ts="35:38">35:38</span> **卢正石** 是的，MLA 中仍然有 KV 缓存。Gated MLA 中有传统的 KV 缓存，用来追踪那些可能在 KDA 块中被过度消除的信息，它就是这样的结构。
+
+<span class="paragraph-timestamp" data-ts="35:50">35:50</span> **崔胜准** Multi-head Latent Attention.
+
+<span class="paragraph-timestamp" data-ts="35:53">35:53</span> **卢正石** 是的，这就是我们在 DeepSeek 中见过的。与传统 KV 缓存不同，它并不存在 hidden dimension 的 dependency，再降到一次 latent连 attention 也压缩掉了。
+
+
+## 跨越下层模块进行引用的 Attention Residual 与 Stable Latent MoE    *36:06*
+
+<span class="paragraph-timestamp" data-ts="36:06">36:06</span> **卢正石** 我们现在讲的是 residual，如果只说一下直观理解，现有 Transformer 的 residual从下方的 input 部分一直到上方的 output，都是老老实实地一层一层堆叠起来的。但 DeepSeek 在这个 attention 上所做的改变，是也给那部分加入可学习的 weight，让它学习哪些信息要向上传递、哪些要向下传递，从而构建了这样的 residual。
+
+<span class="paragraph-timestamp" data-ts="36:43">36:43</span> 但这个不一样。DeepSeek 也不会跳过各阶段的 sequence。但它在这里又引入了一个概念，可以一直跳到更下方的 block，构建了这样一条 residual pipeline。
+
+<span class="paragraph-timestamp" data-ts="37:00">37:00</span> 大家不用非得深入理解。因为如果各位再问得更深入，我就回答不了了。
+
+<span class="paragraph-timestamp" data-ts="37:06">37:06</span> **崔胜准** 不过无论如何，alpha 是 learned parameter，对吧？是学习出来的吧？
+
+<span class="paragraph-timestamp" data-ts="37:12">37:12</span> **卢正石** alpha 不是。W 是 learned parameter，而 alpha 是从这个 parameter 中决定分别以多大的 weight 从下方各 layer 提取信息时，进行 softmax 的值。
+
+<span class="paragraph-timestamp" data-ts="37:24">37:24</span> **崔胜准** 那么 alpha 是从 W 得出的吗？
+
+<span class="paragraph-timestamp" data-ts="37:30">37:30</span> **卢正石** 对，就是看系数。是加在 W 前面的系数。这个，如果说明一下整体的直观理解，就像刚才说的，这个 Transformer block从下方 input 开始，先经过三个 KDA，然后是一个 Gated MLA，以这种方式排列，中间当然还有 MoE，以三个、一个、三个、一个、三个、一个的 block 形式这样堆叠起来。Transformer block 总共有 97 个，而这里每个单元有四个，所以这种单元大概有二十多个。
+
+<span class="paragraph-timestamp" data-ts="37:58">37:58</span> 但在 residual 中，会把它视为一个 block。
+
+<span class="paragraph-timestamp" data-ts="38:03">38:03</span> **崔胜准** 那这个就是 Attention Residual 吗？
+
+<span class="paragraph-timestamp" data-ts="38:05">38:05</span> **卢正石** 对，这就是我现在说明的 Attention Residual。所以他们大体上在三个 space 中改变了这个模型，大家看下面这里，block n、block n-1、block n-2，是这样标的。它不会提取后续 block 里的 stream 来使用，因为那是不合理的，当然是从过去的 block 中提取，大家看，从 embedding 开始，有所有向下堆叠的 block。如果它是最上层的 block，那么下面应该堆叠了二十多个 block。包括 embedding 在内，可以对要从这些 block 中提取哪些 residual进行 weighting。看来只要是能够真正切分信息等可以想象到的 inductive bias，直接应用就可以了，这是我的直观感受。
+
+<span class="paragraph-timestamp" data-ts="39:06">39:06</span> **崔胜准** 我有点困惑，记得总共好像是 93 个 layer，是把大约 93 个分配到了约 23 个 block group 中吗？那么
+
+<span class="paragraph-timestamp" data-ts="39:14">39:14</span> **卢正石** 这里不能混淆 block 这个单位，我们传统上所理解的 Transformer block，是一个 KDA 加一个 Stable Latent MoE，然后一个 Gated MLA 加一个 Stable Latent MoE，这种才是传统的，叫什么来着，Transformer block，但这里所说的 blockn-1、n-2，是把三个这个和一个那个组合起来，视为 Attention Residual 的一个 block。这些 block 概念前面所加的修饰词不同。所以它们进行 attention 时，是从这些 block 输出结果全部 aggregate 后的内容中进行选择，这张图表达的就是这个意思。
+
+<span class="paragraph-timestamp" data-ts="39:58">39:58</span> **朴钟贤** 看到这个 residual，我想到的是，它想把未经处理的 token 信息全部利用起来。我觉得这可能就是它的 inductive bias，除此之外，在实际优化 inference 时，在我们通常使用的 parallelism 中，比如流水线并行，也就是前面的 block 在这边的 GPU 上运行，后面的 block 在那边的 GPU 上运行时，似乎需要做某种改进。
+
+<span class="paragraph-timestamp" data-ts="40:22">40:22</span> **崔胜准** 流水线并行在 scale-out 中是跨 rack 的，所以它不正好与现在的 block 单位吻合吗？
+
+<span class="paragraph-timestamp" data-ts="40:37">40:37</span> **卢正石** 不是，钟贤，这里不能混淆，这不是 compute，而是已经完成的结果保存在 cache 中，严格来说，这是 memory problem。上面的 block 计算时，是从内存中取出下方已经计算好的结果，所以与 parallelism 无关。下方 layer 计算出来的内容应该都保存在 cache 中，再决定以什么比例取出，就像我们，叫什么来着，在 attention 中会做 softmax。做完 softmax 后，
+
+<span class="paragraph-timestamp" data-ts="41:09">41:09</span> **崔胜准** 对。然后再
+
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **卢正石** 乘到 query 上。
+
+<span class="paragraph-timestamp" data-ts="41:10">41:10</span> **崔胜准** 在论文中，
+
+<span class="paragraph-timestamp" data-ts="41:11">41:11</span> **卢正石** 就是说很相似。
+
+<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **崔胜准** 确实有涉及 PP。
+
+<span class="paragraph-timestamp" data-ts="41:14">41:14</span> **卢正石** 对。好像有个万能的防御用语，可以应付所有这种情况。如果确实如此，那各位说得对。
+
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **朴钟贤** 对。我也是看了之后突然想到的，所以我
+
+<span class="paragraph-timestamp" data-ts="41:27">41:27</span> 毕竟我们也可能是错的。
+
+<span class="paragraph-timestamp" data-ts="41:28">41:28</span> **崔胜准** 并不是全都了如指掌。
+
+<span class="paragraph-timestamp" data-ts="41:34">41:34</span> **卢正石** 接下来还有 MoE block，看这里的 Stable Latent MoE，一个一贯的特点是 hidden dimension 的尺寸很大。但它之后会进入这里的 MoE block。进入后会使用两个 shared expert，它就保持相同的 hidden dimension 直接上去，同时还会选择 routed expert。会选择十几个。但在选择过程中，会在中间压缩一次
+
+<span class="paragraph-timestamp" data-ts="42:06">42:06</span> 对。非常 sparse，而在其中进行筛选的linear 模块有一个。像 MLA 一样把维度缩减一半。缩减之后再恢复，然后重新展开维度，再与原本传上来的结果相加。而且这里面包含了非常复杂的算法内容。这里面塞满了他们为了保证 numerical stability、让计算保持稳定而采用的算法，但我一看到那里就困得不行，所以合上了。我看到的是，这些东西组合成模块后，整体就是这样的。不过我们要在这里结束对这个模块的讨论，之所以讲这些，是因为这些东西看起来很有趣。所以我们才会聊这个。确实挺有趣的，因为看得见。
+
+
+## 宣告结束架构深挖，转向以数据为中心的视角    *42:44*
+
+<span class="paragraph-timestamp" data-ts="43:03">43:03</span> **卢正石** 不过也确实如此。理解以后，感觉自己似乎成了某种了不起的存在，好像走在了前面，又好像获得了某种领悟，的确会有这种感觉。总之，胜准和我一直这样做，每当这种论文出来时，我们都会做评述，但如果要由我做个宣告的话，我现在打算不再做这个了。
+
+<span class="paragraph-timestamp" data-ts="43:15">43:15</span> **崔胜准** 意思是只看一下，然后就到此为止吧？
+
+<span class="paragraph-timestamp" data-ts="43:21">43:21</span> **卢正石** 对。现在只要稍微看一下封面，就能大致知道它的直觉是如何发展的。而这种直觉背后的总体目的，就是因为 inference workload 变得极其庞大，所以要通过减少 KV 缓存来提高 memory 和 compute efficiency，这些宏观方向正在不断落实到那套架构中。至于这里面的内容，感觉也不像是人会去做的了。等新模型出来后，我觉得把它合上就行了。
+
+<span class="paragraph-timestamp" data-ts="43:50">43:50</span> **朴钟贤** 我觉得自己对这些的关注度也比以前低了很多。因为太复杂了，而且新东西层出不穷，所以也许下次出现足以称作 innovation 的巨大变化时，我才会关注那些变化，或者只关注这类内容。
+
+<span class="paragraph-timestamp" data-ts="44:09">44:09</span> **卢正石** 大致看一下直觉，看到的也只是我们见过很多次的那类公式，只能大概感觉到它在做什么。
+
+<span class="paragraph-timestamp" data-ts="44:12">44:12</span> **崔胜准** 不过它们的共同点是，某种意义上全都是加权和。如果说以前只是把一切都直接传下去，现在则有种从中筛选的感觉，好像所有东西都是这样。
+
+<span class="paragraph-timestamp" data-ts="44:23">44:23</span> **卢正石** 没错。我们聊这些时，总会有人出来说嘛。说归根结底全都是 matmul，说自己学了很多 matrix multiplication，就会有人讲这种话。这会是谁写的呢？会是人写的吗？然后，在 vision 上也没有另加单独的 encoder，而是直接放进一个 end-to-end block 里，把 vision 也塞进去做了。至于里面的细节，有个“原来如此，做得不错。”这种程度的直觉，然后继续往下看就可以了，但这些整体的大标题是如何安排的，我们必须有所了解。因为这是 frontier lab 的 process 设计图。每一项里都包含着极其庞大的内容，它由这样的 block 组成，现在的瓶颈在哪里，什么地方最重要，对这些问题在头脑中形成某种图景，虽然我们刚才谈到了 Leopold Aschenbrenner，但这对于未来投资众多公司的股票时，建立某种本质性假设非常重要。
+
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> 如果错了，如果错了，那胜准说的就是对的。实在说不准。会变成什么样，我也不知道。甚至现在说着这些话时，我有时也分不清究竟是我自己在说，还是某个正在对我进行 speculative decoding 的存在，替我把这些全都说了出来。这种分不清的时候
+
+<span class="paragraph-timestamp" data-ts="45:46">45:46</span> **崔胜准** 很多。最近没聊过这个了。最近所有东西似乎都把 speculative decoding 和MTP 当作基础。
+
+<span class="paragraph-timestamp" data-ts="45:51">45:51</span> **卢正石** 对。人类大脑里现在可能也运行着这种结构。即使我们正在交谈，对接下来应该说什么产生所谓似曾相识的感觉，我觉得也是因为某处有 speculative decoding，也就是说，有 decoding block正在运行。
+
+<span class="paragraph-timestamp" data-ts="46:06">46:06</span> **朴钟贤** 突然聊到 speculative decoding，我想起了一件事，我偶尔聊天的时候，可能因为我是从小玩游戏长大的那一代，所以手比嘴快。有时候我还没经过思考，说话通常都是经过思考以后才说出口，但聊天时文字却已经打出来了。也就是说，通过 speculative decoding，手已经先一步行动了。
+
+<span class="paragraph-timestamp" data-ts="46:33">46:33</span> **卢正石** 这个话题我们后面再聊吧。我们要是聊起来，可能连续聊 24 个小时也说不完。
+
+<span class="paragraph-timestamp" data-ts="46:37">46:37</span> **崔胜准** 不过这些东西看起来都与提高 TPS有关，所以稍微……
+
+<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **卢正石** 当然。所有这些内容，现在都与如何在这套 serving infrastructure 中提高 efficiency、提高效率有关。这些极其复杂的东西都被放进了 inference infrastructure，现在看起来甚至令人惊叹。回到刚才的话题，我们刚刚看过 architecture block 了吧。也就是模型里是怎么做的。虽然我们确实在那里花了很多时间，但从重要性的角度来说，我认为 model architecture 只占 10%。
+
+<span class="paragraph-timestamp" data-ts="47:10">47:10</span> 剩下的 90% 在于后面如何进行 pre-training，如何进行 post-training，而 dataset 和 compute 问题占了 90%。对于 dataset 和 compute，是没有捷径可走的。其中积累着枯燥的 engineering，每家 lab 应该都有极其深厚的积累，而这种积累的力量正在成为如今某种……该怎么说呢，differentiator。不过在这些方面已经打好基础的参与者之间，水平似乎正在迅速整体提升，我有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="47:44">47:44</span> 我认为在这里积累的 practice最终都会流向外界。可能以 Hugging Face 模型或这类方法论的形式，也可能作为由另一个智能体调用的 tool 出现，如今，每家公司都进行 model training 的时代心里想着很快还会再来，
+
+<span class="paragraph-timestamp" data-ts="48:02">48:02</span> **崔胜准** 是的。虽然这又有点跑题了，但技术已经变得如此多元，为什么性能却都差不多？
+
+<span class="paragraph-timestamp" data-ts="48:07">48:07</span> **卢正石** 我没听懂这个问题。
+
+<span class="paragraph-timestamp" data-ts="48:08">48:08</span> **崔胜准** 我的意思是，各种技术中，有的公司因为有这方面的积累而深入钻研这个，有的深入钻研那个，但看最终成果，各模型的性能和质量不是正在趋同吗？
+
+<span class="paragraph-timestamp" data-ts="48:26">48:26</span> **卢正石** 我不太确定性能和质量是否正在趋同。虽然确实正在趋同，但架构各有细微差异，产出的性能目前形成了一种Pareto frontier curve。而且所有人都在群策群力，一点一点地加入algorithm enhancement, datasetenhancement，并在其下加入engineering infrastructure enhancement，推动全人类整体的Pareto frontier不断向前发展，这样理解应该是对的。
+
+<span class="paragraph-timestamp" data-ts="48:53">48:53</span> **崔胜准** 所以我的印象是，虽然发生变化确实没错，但我刚才想到，会不会是在存在一套共同recipe的基础上稍微走向多元化。
+
+<span class="paragraph-timestamp" data-ts="49:00">49:00</span> **卢正石** 归根结底，全都是Transformer。
+
+<span class="paragraph-timestamp" data-ts="49:05">49:05</span> **朴钟贤** 我也有这样的想法。向不同方向延伸的技术，或许会随着人员跳槽而在某些地方逐渐趋同，但也可能即使全都不同也完全没有关系。
+
+<span class="paragraph-timestamp" data-ts="49:18">49:18</span> **卢正石** 对，没错。我们现在如果把胜准刚刚在这个模型上提出的那些问题原封不动地放到这个space里，再转向那个agent orchestration，同样的问题又会以同构的形式发生。不过我们还是继续往下讲吧。我们要是继续钻兔子洞，恐怕就没完
+
+<span class="paragraph-timestamp" data-ts="49:38">49:38</span> **崔胜准** 没了。没错。
+
+
+## 预训练数据质量与 1M 上下文扩展    *49:39*
+
+<span class="paragraph-timestamp" data-ts="49:39">49:39</span> **卢正石** 看看pre-training data, web text。这里写着使用了web text、code、mathematics、knowledge，这些内容。还使用了OCR之类的东西，并写着使用了从Kimi K2开始积累的data pipeline，但没有提及dataset。各个lab所拥有的pre-training用corpus的质量，以及在后端提升质量的pipeline，都是在持续不断运行的。这才是core asset。因此，通过各种algorithm的改进和dataset质量的提升，这条curve，也就是validation loss curve，从Kimi K2到Kimi K3提升了2.5倍。虽然还没有达到order of magnitude, OOM的水平，但也达到了大约2.5倍。这非常惊人。因为几乎提升了一倍。
+
+<span class="paragraph-timestamp" data-ts="50:29">50:29</span> 通过这些改进，context length达到了1M，也有training recipe，但这里写得这么短。training recipe只有这么一点。
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **崔胜准** 是因为重要，所以才写得简短吗？
+
+<span class="paragraph-timestamp" data-ts="50:44">50:44</span> **卢正石** 不是。您说的完全反了。这应该是他们自己的诀窍。不过为了做到1M，一开始先从8K开始，然后又做了什么，像这样，按照传统概念，是以什么方式进行annealing的，这里写了这类内容，还有long-context extension, NoPE。这里出现了。不使用positional encoding。
+
+
+## 1M 长程 SFT 与长期智能体工作流学习    *51:02*
+
+<span class="paragraph-timestamp" data-ts="51:02">51:02</span> **卢正石** 然后在post-training的过程中，一开始连续讲了supervised fine-tuning。就是SFT。在讲post-training时，我认为很重要的一点是，把它扩展到1M context，是他们现在非常强调的部分，然后最近在1M context中备受重视的，就是这个long-running work。持续时间非常长的agent workflow，会把1M context全部填满。1M context是非常庞大的容量。要让复杂的agent workflow反复交互，多到足以把它全部填满，同时还不中断，该如何把task完成到底。过去模型在这方面的能力不足，所以我们会在外部通过harness加入大量强制性prompt，还加入各种check logic，而这些部分正在不断被纳入模型内部，这就是这里所体现的内容。也就是如何让模型在1M以内完成这一切。关于这一点，我有所怀疑，但没有证据。
+
+<span class="paragraph-timestamp" data-ts="52:16">52:16</span> 如果我错了，那大概就是各位说得对。不过这个supervised fine-tuning部分，会不会就是Anthropic等公司所说的“那些家伙把我们的模型大规模distill了。”所指的那一部分呢？
+
+<span class="paragraph-timestamp" data-ts="52:32">52:32</span> **崔胜准** 也就是说，把运行良好的轨迹全都distill了。
+
+<span class="paragraph-timestamp" data-ts="52:35">52:35</span> **卢正石** 对。尤其是我们过去在跟进DeepSeek R1之类的模型时感受到，如果模型能力达到一定水平，只要把SFT做好，那个function就会一下子出现。所以让足够聪明的模型去做RL练习题，它就会在这个过程中变得更精细，大致需要学习的内容是在pre-training中学到的，而几乎所有东西都在SFT中学会，所以即便使用刚完成SFT的模型，它也会立刻表现得相当聪明，讲述这一点的论文曾经有不少。所以我在想，Kimi或中国的其他模型及后续模型，会不会都对Anthropic和ChatGPT进行了大规模distill。我是这么想的。比如在复杂的workflow中如何处理tool call，要做些什么，他们大概都加入了这些内容。
+
+<span class="paragraph-timestamp" data-ts="53:29">53:29</span> **朴钟贤** 资料中……我也认为这完全有可能，因为这种1M规模的long-horizon task，其trajectory实际上并不是人类能够制作成dataset的规模。它也不是存在于网络上的dataset。传统上，是在Kimi CLI等产品出现后，人们使用Claude Code之类的工具，才逐渐积累形成的一种新型dataset。因为这是以前并不存在的dataset，所以我觉得要积累这些数据并不容易。如果认为是从零开始构建的。那么在这方面，也会疑惑这些数据究竟是怎么获得的，产生这样的怀疑也完全可以理解
+
+
+## 工具调用轨迹蒸馏与模型能力整体提升    *54:07*
+
+<span class="paragraph-timestamp" data-ts="54:11">54:11</span> **卢正石** 没错。可以这么说。没错。也就是说，现在看 Anthropic 或OpenAI 的模型，reasoning trail 都会被隐藏起来。不会提供给你。所以 reasoning trail 可以隐藏，但 tool call trail 是无法隐藏的。因为它会来到 local，执行所有 tool call，再把整个 trail 重新放回模型，整体结构就是如此，所以无法去掉。
+
+<span class="paragraph-timestamp" data-ts="54:35">54:35</span> 即使站在 Anthropic 或 OpenAI 的立场，也无法区分为了 distillation 而进入的 traffic和 real user 的 traffic，而且这是即使想阻止也无法阻止的领域，所以只要不是傻子，肯定都会进行 distillation，我认为这也是应该做的。这稍微有些跑题，Anthropic 一直哭哭啼啼地要求别人不要做 distillation，这件事正在逐渐成为一个争议。
+
+<span class="paragraph-timestamp" data-ts="55:02">55:02</span> 这与开放权重有关，虽然后面还会讲到，但他们建立起来的基础也全都是建立在别人的书和别人的数据之上的，现在却说别人拿走了模型基于这些内容生成的产出。假设我买了胜准写的书。我读了那本书，更新了自己的知识体系。然后我写了一篇类似的文章。那么，这会因为我做了 distillation 而违法吗？并不会。所以我认为这是无法阻止的。
+
+<span class="paragraph-timestamp" data-ts="55:33">55:33</span> 而且这种彼此进行 distillation 的过程，也正是刚才胜准所说的大家共同向上看齐的原因之一吧，我是这么想的。大家在这里也能看到，虽然这部分很快就带过了，但我认为这里面隐藏着非常多的技巧和秘密。接下来，
+
+<span class="paragraph-timestamp" data-ts="55:54">55:54</span> **崔胜准** QAT 应该也值得介绍一下吧？
+
+<span class="paragraph-timestamp" data-ts="55:59">55:59</span> 什么？QAT。QAT 是……Quantization Aware Training。我其实也不太了解。
+
+<span class="paragraph-timestamp" data-ts="56:09">56:09</span> **朴钟贤** QAT 是指，通常我们训练模型时，会以更高的 precision 进行训练，而在 inference 时，则通过 quantization 降低 bit 数来进行 inference，这是迄今最常见的方法。我们进行 serving 时，通常会使用 MXFP4，对吧。因此，假设模型将以 FP4 进行训练，那么这里每次训练产生的微小 delta，经过四舍五入后都会被截掉，所以在意识到这一点的情况下进行 training，就能让训练适应之后要做的 quantization，大致就是这个意思。所以最近这几乎已经成为标准……
+
+<span class="paragraph-timestamp" data-ts="56:45">56:45</span> **崔胜准** “意识到”的主体是谁？
+
+<span class="paragraph-timestamp" data-ts="56:48">56:48</span> **朴钟贤** 您说的“意识到”是指什么……
+
+<span class="paragraph-timestamp" data-ts="56:50">56:50</span> **崔胜准** 刚才说“意识到之后会进行 quantization”并据此操作，
+
+<span class="paragraph-timestamp" data-ts="56:57">56:57</span> **卢正石** 这里所说的……意识到的……trainer。trainer 是这个“意识到”的主体。
+
+<span class="paragraph-timestamp" data-ts="57:00">57:00</span> **崔胜准** 所以是 training 系统本身，还是模型本身？
+
+<span class="paragraph-timestamp" data-ts="57:03">57:03</span> **朴钟贤** 可以理解为是 training 代码。
+
+<span class="paragraph-timestamp" data-ts="57:03">57:03</span> **崔胜准** training 代码。
+
+<span class="paragraph-timestamp" data-ts="57:06">57:06</span> **朴钟贤** 不过，QAT 这种方法在 LLM 出现之前的时代就一直在使用。现在只是把它同样全部应用到 LLM 上
+
+
+## RL 数据覆盖率与多教师同策略蒸馏    *57:13*
+
+<span class="paragraph-timestamp" data-ts="57:13">57:13</span> **卢正石** 而已。那我们现在进入 reinforcement learning。这相当于做练习题，在这个 reinforcement learning 阶段，我认为，为了让这里的训练能够高效进行，后面列出了一系列复杂的 engineering infrastructure 和提高效果的技巧，但比这些更重要的是dataset 的 coverage。比如，
+
+<span class="paragraph-timestamp" data-ts="57:42">57:42</span> 如果我们要针对律师、会计师之类的职业进行 post-training，目前也许只需要针对现有的、最简单且最高层级的工作进行 RL，但要让它真正变聪明，就必须针对那些 subtask做大量练习题。出现这种情况时该怎么办，出现那种情况时又该如何处理众多 edge case，只有做过这样的练习题，它在面对各种情况时，所谓的 robustness，也就是稳健性，才会提升。
+
+<span class="paragraph-timestamp" data-ts="58:13">58:13</span> **崔胜准** 在这部分不是也有 multi-teacher 之类的方法吗？不是差不多吗？
+
+<span class="paragraph-timestamp" data-ts="58:18">58:18</span> **卢正石** 我理解那是后面完成 multi-teacher 训练之后，在真正制作 production 模型时，具体做了什么的相关内容。后面讲到那里时，我再解释一下。所以在进入这些内容之前，首先会介绍采用了怎样的方式来使用这些algorithm，如果先简单说一下这部分，即便针对同一个问题，让模型执行任务时，也会生成多条 trajectory，对吧。但有些 trajectory 会很快结束，有些则会很晚结束，这样一来，按照原本的方法，就必须等所有 trajectory 全部结束，汇总它们的成功与失败，再把这些结果 backprop 到 πθ，也就是原始模型中，对吧。也就是通过 backprop 来进行更新。但等待所有任务结束会产生效率问题，所以他们是如何处理的呢？就是只挑选几条已经结束的 trajectory，先用这些已结束的 trajectory 完成一个 cycle，尚未结束的则合并到下一个 cycle 中一起处理。当然可以提出“那不就是不同的问题了吗？”这样的 question，但这里表达的意思是，即使这样做也没关系。
+
+<span class="paragraph-timestamp" data-ts="59:43">59:43</span> 我们可以看到有 max、mid、low，每个模型的 reasoning effort 都不同，对吧。那么最自然会产生的第一个疑问就是，难道这些全都是不同的模型吗？GPT-5.6 Sol 的 low、medium、high，这些全都是不同的模型吗？每次都使用不同的reasoning effort level，来切换模型吗？但那样效率太低了。因为我正在用编码agent编写代码，前面已经有这么多prefill的KV缓存，如果更换模型，就得带着这些缓存转移到别处，而且也不能保证它们位于同一个farm，所以自然会产生一个问题：这种低效要如何承受呢？所以显然应该只使用一个模型，改变其中的effort level，将其一并作为input输入，让模型据此改变behavior，这显然才是合理的做法。不过，它似乎是这样做的。在设置max effort时，通常会怎么做呢？一般会通过限制effort level，也就是compute budget的方式来训练它。如果是max effort，就会给予更多的compute budget，在这种情况下，只要还没超过某个界限，它就会持续收到可以全部用完的reward信号，因此它会尽可能拓宽问题，尝试多个方向，并以写出较长reasoning trace的形式完成模型训练。当具有这种倾向的max模型建立以后，再减少该模型的compute budget。
+
+<span class="paragraph-timestamp" data-ts="61:22">61:22</span> 达到一定程度后就直接截断。如果对超过那条界限给予负1，那么它就会知道不能做到那种程度，并寻找只在中等effort level下尽力而为的方法。对于low，则把那个模型拿来，给予更少的compute budget，这样它会认为自己的budget非常少，所以必须进行所谓的cut corners。因此，在寻找shortcut方面，它会受到更多incentivize。因为它必须在很短的时间内找到答案。按照这种方式创建max、medium、low模型，然后，这就是多教师同策略蒸馏所讲的内容。创建出这三个模型后，又不可能分别采用不同方式进行production，就像我们的Kimi K3现在以开放权重形式发布的也只有一个。它只有一个模型。因此创建student模型，真正做出用于production的模型。不过，在这个student模型旁边，会安排max、medium、low teacher，用teacher policy训练student。
+
+<span class="paragraph-timestamp" data-ts="62:23">62:23</span> **崔胜准** 是领域、domain-specialized，不是吗？multi-teacher指的是effort
+
+<span class="paragraph-timestamp" data-ts="62:29">62:29</span> **朴钟贤** 不是varying reasoning effort也同时进行
+
+<span class="paragraph-timestamp" data-ts="62:33">62:33</span> **卢正石** 不是吗？对，同时进行。同时。effort和这个全部同时进行。这里就有。有low、high、max，再把领域与这个结合起来，应该会放进这个公式中，那么对于这些内容，student模型会从teacher做过的事情中获得guide，最终得到一个集所有这些能力于一身的student模型。而这个student模型就是我们对外公开的production模型。他们说自己完成了这件事。
+
+
+## 利用知识图谱生成 RL 练习题与智能体环境    *63:05*
+
+<span class="paragraph-timestamp" data-ts="63:08">63:08</span> **卢正石** 但真正重要的是这个。RL Task Synthesis and Agentic Environments.最终，它必须切实地亲自体验环境并亲自进行inference，在这个过程中还必须进行无数次tool call，模型也必须实际运行起来。这里展示的就是，如何构建让它执行这些操作的agentic environment，以及如何构建促使它这样做的dataset，也就是如何对其进行synthesize。这张图最有意思。它是一种用于RL训练题目的curriculum，而这里的观点是，这个curriculum本身不应该采用某种category形式，而应该以graph形式构成，他们就是这样建立它的。
+
+<span class="paragraph-timestamp" data-ts="63:53">63:53</span> 编码、人文、科学和数学等是主要领域，所以他们进行了Agent Knowledge Graph Construction。为了创建这些练习题，先确定knowledge是如何构成的，再以knowledge graph的形式把它们全部建立起来，之后不断从不同角度使用这个graph，只要改变起始node和weight，就可以生成无限多道练习题，他们说自己就是这样生成练习题的。
+
+<span class="paragraph-timestamp" data-ts="64:27">64:27</span> **崔胜准** 以前创建虚假MCP，并将它用作RL环境的也是Kimi吧？是吗？
+
+<span class="paragraph-timestamp" data-ts="64:30">64:30</span> **朴钟贤** 对，对。没错。
+
+<span class="paragraph-timestamp" data-ts="64:34">64:34</span> **卢正石** 对。所以这是那项工作的延伸，设置用于生成练习题的工具这部分，是按照这种方式完成的，接下来那个环境则来自agentic environment。当时在Kimi K2等模型中讲得非常详细的部分，这次只用一个block进行了概括，用很短的篇幅说明这么大的领域，意味着里面包含了大量诀窍。因此，他们说明了具体是如何实现的；有些问题是verifiable的，比如数学和编码，答案就是明确的，但人文学科问题等这类问题实际上有很多无法应用verifier，所以他们采用以前提到的方式，创建rubric-based verifier，达到这种程度就给予0.7的reward信号，这种程度给予0.3，这个则给予1。虽然不是完美的verification，但可以创建一种进行某种quasi-verification的logic，然后用那种
+
+<span class="paragraph-timestamp" data-ts="65:30">65:30</span> **崔胜准** 方式并不能解决
+
+<span class="paragraph-timestamp" data-ts="65:32">65:32</span> 问题。虽然解决不了，但至少可以做到hill climbing吧。
+
+<span class="paragraph-timestamp" data-ts="65:35">65:35</span> **卢正石** 不过，看看现在这些frontier模型的发展方向，当我们从 Claude Opus 4.8 升级到 5.0 时，版本发生变化时，用户会感觉 agent behavior 莫名地不太一样，对吧。
+
+<span class="paragraph-timestamp" data-ts="65:56">65:56</span> **朴钟贤** 行为模式有很大不同。无论是回答的格式，还是进行 tool call 的路径，都让人觉得它不是渐进式演化，而是换了种方式？大家似乎经常会有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="66:07">66:07</span> **卢正石** 更极端地概括，frontier lab 其实目前也还没有找到答案，所以彼此相互参考，研究怎样才能实现 long-running agent之类的东西，目前最多的研究都集中在这个方向，而模型也朝着进一步 incentivize 这类能力的方向运行，在 1M tokens 期间要维持这种能力，span 就会变得太长。因此也会出现一些区间，让我们觉得 quality 下降了，我想可能就是这么回事。
+
+<span class="paragraph-timestamp" data-ts="66:37">66:37</span> 所以现在在 post-training RL 领域，他们把我们当作实验对象，同时把结果 publish 到外部。接下来就会产生这做得好、那做得不好的反馈，再从中 distillation出某些东西，打造自己的模型，然后掌握下一种 rhythm，我觉得事情可能就是这样运转的。这里同样重要的是，
+
+<span class="paragraph-timestamp" data-ts="67:00">67:00</span> 最终如何高质量地生成这些供 RL 练习的问题，也就是 dataset 这一部分，重要得不得了。
+
+<span class="paragraph-timestamp" data-ts="67:07">67:07</span> **朴钟贤** 这些努力是可以看出来的，OpenAI 最近招募了大约十万名 researcher，正在运营一项让他们使用自家模型的计划，因为 researcher 在解决各自问题的过程中，会把这些 trajectory 全都创造出来，这样就能收集到真正优质的 research trajectory，它们既可以成为练习题，也可以成为 SFT 题目，还可以用于 evaluation，大家似乎都在为此积极尝试。
+
+<span class="paragraph-timestamp" data-ts="67:32">67:32</span> **崔胜准** 就是在 crowdsourcing。
+
+<span class="paragraph-timestamp" data-ts="67:34">67:34</span> **卢正石** 就是在 distill。他们现在也在对最顶尖 quality 的人才进行 distillation。那么这些问题又会引向另一个哲学问题，那个稍后再谈。老实说，我从这里开始犯困，就没看下去了。
+
+
+## 论文和模型评测变成 Instagram 短视频后，阅读动力为何消失    *67:39*
+
+<span class="paragraph-timestamp" data-ts="67:50">67:50</span> **崔胜准** 不过关于这个 infrastructure，vLLM, SGLang, TokenSpeed 都发布了 Day-0report。
+
+<span class="paragraph-timestamp" data-ts="67:56">67:56</span> 是吗。除了 Kimi 的 reference code，他们在 Day-0 就立即发布了自己的版本。
+
+<span class="paragraph-timestamp" data-ts="68:02">68:02</span> **卢正石** 就是啊。换作以前，这些 architecture如何提升模型解决问题的品质，曾经是最重要的目标，也就是我们变得多聪明了，但现在对于我们变得多聪明了这一点，大家已经不太在意。与其说不在意，不如说大家认为这已经是解决了的问题。所以最终现在关注的是 inference 时效率有多高、能以多低的价格达到过去的性能，以及用多小的 model size也能实现同等性能，因为这些因素复杂地融合在一起，所以现在想从单一角度看待某个模型的品质，已经变得不可能了。以后出现这类内容时，我还是会看一看，但我正在考虑，今后不应该再深入讨论这些内容了。
+
+<span class="paragraph-timestamp" data-ts="69:04">69:04</span> **朴钟贤** 已经没有像以前那样深入研究的动力了。
+
+<span class="paragraph-timestamp" data-ts="69:15">69:15</span> **卢正石** 没错。而且它已经变得非常深入，以前还有研究它的意义，但现在感觉它似乎变成了某种马达。所以现在可以盖上盖子，不再研究这个马达的内部结构，而我应该前往下一个 layer，
+
+<span class="paragraph-timestamp" data-ts="69:27">69:27</span> 更加明确地产生了这种想法。
+
+<span class="paragraph-timestamp" data-ts="69:28">69:28</span> **崔胜准** 本来不打算看的，是因为今天要讲才看了。
+
+<span class="paragraph-timestamp" data-ts="69:30">69:30</span> **卢正石** 只是出于礼貌看了一遍，
+
+<span class="paragraph-timestamp" data-ts="69:32">69:32</span> **朴钟贤** 也会觉得热门模型还是应该打开看一次。
+
+<span class="paragraph-timestamp" data-ts="69:38">69:38</span> **卢正石** 与此同时，我在看这个的时候，明明知道 dataset、training 和 infrastructure这些部分重要得多，weight也都偏向这些部分，却还是被前面那些像 algorithm 的东西迷惑，看着自己一直盯着它们的样子，感觉论文开始有点像 Instagram 短视频了。把刺激性的内容放在前面，吸引许多人点开，我产生了这种感觉。真正重要的内容全都藏了起来，前面堆满了不重要却刺激性的内容，用来吸引人们观看的，是一些关于 evaluation 的内容，内容呈现出来了，就是 evaluation 那些话题。其实那些部分才是真正的核心。不过后面的内容，只要把这篇 paper 输入所有模型，想到什么问题时再问模型就可以了。全都是中国人的名字吧？还真是。全都是中国人的名字。
+
+<span class="paragraph-timestamp" data-ts="70:30">70:30</span> **崔胜准** 得有两百人吧。
+
+<span class="paragraph-timestamp" data-ts="70:33">70:33</span> **卢正石** 轻轻松松就有几百人了。接下来要讲后面的故事，因为我们今天讨论的内容从头到尾其实都连成了一体，如果重新回到最上层的话题，为什么 Kimi K3 带来的这些变化，足以在市场上引发如此剧烈的担忧以及种种反应。一个足够强大的模型以开放权重的形式发布了。而这种开放权重究竟意味着什么。
+
+
+## 黄仁勋的开放权重声明及其签署企业    *70:42*
+
+<span class="paragraph-timestamp" data-ts="71:04">71:04</span> **卢正石** 当然，Jensen 是最积极推动这件事的人。仔细想想，Jensen 真是个坏人，对于自己该获取的利益，Jensen 做得滴水不漏，同时又把所有善良的人都拉进来，全部铺在自己面前，变成自己的猎物，我会有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="71:15">71:15</span> 因为这种开放权重越多，受益的就只有他们。
+
+<span class="paragraph-timestamp" data-ts="71:19">71:19</span> 是的。好，那么钟贤，我们就自然地以开放权重这一主题进入第二章，要不要开始听听看？
+
+<span class="paragraph-timestamp" data-ts="71:30">71:30</span> **朴钟贤** 开放权重，归根结底，这应该称为由Kimi引发的开放权重运动吗？这件事引发了很多关注，其中还发表了一份名为Open Weights for AmericanAI Leadership的声明。这份声明是谁发起的呢？是Jensen Huang。Microsoft的Satya Nadella等多位人物也同时参与了联署，总之，Jensen Huang开通X账号后，以“这是我的第一篇帖子。”为开场，发布了这份声明。应该采用开放权重。应该像开源一样，这样才能建立生态系统，才不会失去美国在AI领域的领导地位，才能发展得更好，也能解决安全问题，所以应该推动开放权重。声明刚发布时，也就是同时发布的时候，那些我们熟悉的、对开放权重持友好态度的公司共同发表了声明。此后几乎每天都会增加一家签署声明的公司。其中最具代表性的就是OpenAI。OpenAI竟然签署了，这确实有点令人惊讶。因为GPT这类最frontier的模型，目前并没有公开。不过，大多数签署方都是基础设施公司。也就是开放权重生态系统发展后会受益的公司，以NVIDIA为首。因为很多公司会购买NVIDIA GPU，用它们进行training和inference，所以从Jensen Huang的立场来看，这可以说是一份对他非常有利的联署声明。总之，Jensen Huang的帖子很简单。他最终想表达的是，开放权重模型和closed frontier model两者都必须存在。
+
+<span class="paragraph-timestamp" data-ts="73:12">73:12</span> 还有一件很有意思的事，Coinbase也在大量使用LLM，据说他们原本实际使用的是closed frontier model，但正在把越来越高比例的token逐步转移到开放权重模型上。因为我们目前执行的大多数任务中，真正必须使用最顶尖模型的任务，并不占100%。比如刚才介绍的Kimi K3之类的模型，有些任务实际上可以在on-prem环境中serving并运行，有些任务能够以很高的性价比运行，而且还会有很多任务不希望数据流出外部，所以他们正在朝这个方向转变。如果从美国的立场来考虑，当Kimi K3这类中国模型在美国生态系统中像那样崛起时，虽然也会拿来放在自己的基础设施上serving，但用自己的模型当然更好。另外还有distillation，也就是刚才提到的distillation问题。从优秀的模型中获取数据，再用这些数据构建模型的行为，包括美国企业在内，大家都在做，而且这只不过是打造优秀模型过程中的极小一部分。他们也表达了这样的观点。
+
+<span class="paragraph-timestamp" data-ts="74:32">74:32</span> 而在堪称开放权重模型圣地的Hugging Face上，据说中国模型已经超越美国模型，位居第一。至少在开放权重领域，可以认为中国模型确实全面领先。顺便一提，Hugging Face是一家总部同时设在美国和法国的公司，因此其身份定位稍微有些模糊，不过总的来说，应该可以把它视为西方世界的一员。而我想说的是这件事。
+
+
+## 拒绝签署的 Anthropic 与 Dario Amodei 的反驳    *74:56*
+
+<span class="paragraph-timestamp" data-ts="74:58">74:58</span> **朴钟贤** Anthropic没有签署声明。因为Anthropic没有签署，招致了大量批评，所以Dario Amodei在Anthropic的博客上发布了一篇文章。他在官方页面上发表了一篇文章。他说，我们没有签署支持开放权重的声明，并不意味着我们排斥开放权重。只是我们无法明确承诺自己一定会采用开放权重。不过，他们主张一旦采用开放权重，就会出现一些问题，比如其他后来者，尤其是中国方面，可能会迅速追赶，此外还可能带来许多安全隐患，因此他们提出了该如何解决这些问题的方案，也就是不要采用开放权重，而应该采取以下做法。对芯片出口和基础设施出口实施管制，避免中国获得过多compute，然后还要阻止刚才提到的产业规模distillation，也就是说，必须阻止industrial-level的distillation。
+
+<span class="paragraph-timestamp" data-ts="75:58">75:58</span> **卢正石** 这正是目前引发大量反对的观点之一。
+
+<span class="paragraph-timestamp" data-ts="76:02">76:02</span> **朴钟贤** 是的，实际上Anthropic在训练书籍数据时，曾利用过图书馆之类的地方，而诉讼结果
+
+<span class="paragraph-timestamp" data-ts="76:18">76:18</span> **卢正石** 怎么样了？据我所知，他们败诉后决定赔偿约合数十亿元人民币，并以达成和解告终。
+
+<span class="paragraph-timestamp" data-ts="76:27">76:27</span> **朴钟贤** 所以这件事或许也可以用于营销，帮他们制造话题，但总之，舆论对他们似乎并没有那么友好。至于解决其他安全问题的方案，他们表示，无论open还是closed，都应该像这次Mythos所做的那样，在发布到外部之前全部加以控制。全部审查，全部审核，他们表达了这样的观点。但无论如何，这种意见与当前开放权重运动的主流趋势有些背道而驰。要实施更多监管、隐藏更多内容的论调，
+
+<span class="paragraph-timestamp" data-ts="76:56">76:56</span> 好像并不受欢迎。
+
+<span class="paragraph-timestamp" data-ts="76:57">76:57</span> 不过，静静观察Anthropic就会发现，比起他们之前说的“我们是一家好公司。OpenAI很邪恶。”之类的话，最终还是他们的行动揭示了他们真正相信的东西。这让我觉得：“原来这些话全都是胡扯。”而且他们声称不会服从政府的合规要求，不过是仅仅3到4个月前的事。我们会解除全部监管，不向国防部和不向美国政府供应这类东西。就在几个月前，他们还因此受到赞扬。现在说的这些话其实就是在发牢骚。“喂，中国把我们的东西全拿走了，所以别给他们芯片。然后再阻止 distillation。”说的就是这些，这完全是一个荒谬而自相矛盾的立场，短短几个月内就变成了这样。
+
+
+## 数月间彻底逆转的立场：模型商品化与价值转移    *77:00*
+
+<span class="paragraph-timestamp" data-ts="77:54">77:54</span> **朴钟贤** 但这正是目前 frontier lab们正在经历的结构性变化，从某种角度看，随着时代改变，本质上是不是历史正在重演，现在有很多论述都流露出这种意味。
+
+<span class="paragraph-timestamp" data-ts="78:08">78:08</span> 具体来说，比如 OpenAI最初凭借 ChatGPT迅猛突围，但在他们扩大战线期间，Anthropic则专注于 Claude Code之类的方向，专注于文本模型或 agent workflow，从中尝到了不少甜头。但这种甜头本应永远持续下去，Anthropic建立起来的优势其配方也开始流向其他地方，Codex则以更低的价格提供更频繁的重置，通过这些方式不断扩大市场份额，整体水平也在逐渐趋同。而且随着他们拿走更多份额，市场还在不断走向越来越无处可逃的领域。
+
+<span class="paragraph-timestamp" data-ts="78:48">78:48</span> 所以他们原本设想的是，这种真正具备 superintelligence级能力的模型，应该只有他们自己或 OpenAI，范围再扩大一点，也就只有 Google能够掌握，成为一种顶级技术，再凭借这种技术优势，把其他服务、企业服务之类的全部击垮，成为下一代 Google，这就是他们的蓝图。因此 Anthropic曾以 1T规模的 valuation获得投资。但 Kimi前几天也获得了投资，他们的 valuation好像是 35B左右。也就是说，差不多只有三十分之一。那么，“喂，到底是 Anthropic被高估了，还是 Kimi不是一家好公司？”我的判断是 Anthropic是一家被高估的公司。模型公司所积累的价值正在迅速下降。它正在变成 commodity。不再是差异化产品，而是在变成普通的通用商品。所以一旦处于 commodity地位，剩下的就只有效率了。这样一来，这一层的 value capture，也就是攫取利润的能力，就会减弱。因为客户会说：“不用 Anthropic模型了，我们自己买机器，放在 on-prem，
+
+<span class="paragraph-timestamp" data-ts="80:11">80:11</span> 然后部署 Kimi。”这样做也完全可以。因为没必要向他们支付高价，事情就会变成这样。他们其实都已经陷入了囚徒困境，而创造模型、生产智能的这个产业本身，说到底原来只是一个从属于数据和 compute的函数，这一点正在显现出来。而且那些配方和创意并不属于任何一个人，这一点也正在得到证明。这样一来，如果从中 capture的 value有所下降，价值首先就会转移到下游那些卖芯片的企业，这是第一次价值转移，然后再转移到上层那些能够抓住真正付费的客户，并把客户需求做好的应用公司。我认为上层的那些应用公司甚至还没有真正起步。感觉现在才要开始。我认为这是在这样的趋势中，价值开始转移的发令枪。
+
+
+## 与 Google 垄断不同，前沿实验室没有获得充足时间    *81:08*
+
+<span class="paragraph-timestamp" data-ts="81:12">81:12</span> **朴钟贤** 那我想提一个问题。如果从同构的角度回顾一下过去，那会是互联网泡沫时期吗？我那时候还比较小，所以不太清楚。从现在的角度看 Google，Google凭借压倒性的搜索引擎，几乎可以说掌控了全球互联网。如果把这套逻辑代入当今时代，搜索引擎这种能力可以替换成 LLM的模型 capability或智能，而除了 Google，当时还有 Yahoo、AltaVista等搜索引擎，但最终全都消亡了，最后由一家公司赢得了一切。也就是说，当时是不是存在一种情况：某个 LLM的智能极其出色，因而能够赢过所有对手？
+
+<span class="paragraph-timestamp" data-ts="81:58">81:58</span> **卢正石** 这个嘛。这件事不能只从一个角度来看。比如 Google当时之所以能够取得市场份额，是因为它能够将压倒性的技术实力和压倒性的搜索质量维持很长一段时间，而且在长期保持这种优势的期间，没有竞争对手。因此没有发生竞争，它获得了足够的时间，可以完整地捕捉那个时代的趋势。所以才走到了今天这一步。但反过来看，OpenAI或 Anthropic正扮演着与 Google相同的服务公司角色，那么我们应该如何解读呢？当时确实存在拥有 Google级技术的公司，而这项技术与我刚才所说的是一脉相承的。它们需要在足够长的时间里创造市场，在其中建立领导地位，并以某种形式把客户留住，为此必须获得足够的时间。但我认为，它们并没有获得这样的时间。
+
+<span class="paragraph-timestamp" data-ts="83:03">83:03</span> **朴钟贤** 明白了。那么回顾过去，可以说现在相当于存在 N家拥有与 Google相似搜索引擎能力的公司，因而没有任何一家能够占据垄断地位。
+
+<span class="paragraph-timestamp" data-ts="83:11">83:11</span> **卢正石** 没错。也就是说，当时 Google拥有具备垄断优势的技术，并凭借它做到了这一点。ChatGPT或 Anthropic的 Claude Opus、Fable原本也都是具备垄断优势的技术，但今年我们正在逐一确认，它们最有可能不再是具备垄断优势的技术，而是变成 commodity。
+
+<span class="paragraph-timestamp" data-ts="83:31">83:31</span> **朴钟贤** 原本感觉事情会变成那样，但真正揭开来看后，其实却发现结果却并非如此。
+
+<span class="paragraph-timestamp" data-ts="83:34">83:34</span> **卢正石** 没错。市场现在正逐渐意识到这一点。所以在这里，想得更超前一些的人认为，Anthropic的IPO从某种角度来看可能会以非常低的估值进行，甚至有人开始说，IPO本身也可能会失败。那么接下来竞争格局和市场走势将会如何发展，目前人们仍然众说纷纭。不过我认为，如果模型逐渐有些commodity化，无论如何，最大的受益者还是消费者。因为不用再向某个特定玩家支付高额费用，而且有一个赢家其实已经确定了。就是底层的NVIDIA和芯片公司。因为只要compute量持续增加，能够在底层提供供应的公司就只有那么几家。而且由于上层玩家之间的竞争，底层的价格已经被推得非常高了。所以他们目前捕获了最多的value，但这也不会永远持续下去。
+
+<span class="paragraph-timestamp" data-ts="84:41">84:41</span> 到了一定程度，需求终究会进入plateau期，当然也有像Vinod Khosla这样的大叔说，这种需求不会变得flat，而是会永远增长。因为这是智能嘛，如果你有一个聪明的家伙，你会一天只用它8个小时吗？你肯定想一天用100个小时嘛。话虽如此，但我觉得这同样也会存在极限。总之，回到原来的话题，整个行业中呈现出的这种value capture最终会变成什么样。正如我们所知，底层是包括芯片公司在内的基础设施，上面是模型公司，模型之上则是应用公司，这一直是目前我们所有人脑海中的结构。到目前为止，位于中间的模型公司一直被认为是能够捕获最大value的公司，所以它们的估值也很高，营收也都集中到了那里，但现在才发现，原来这是commodity。那么价值就会向上下两端扩散转移。不过我认为，底层享有的价值很快就会减少。比如现在，它们同样也在享受时间差带来的红利。ASML之类的公司，因为光刻设备的物理极限，芯片产能目前受到了极大限制，但如果中国开始量产EUV或DUV设备，Elon Musk也通过Terafab将芯片产能彻底翻倍，而且我认为这完全是能够做到的。因为这是下一个瓶颈，所以Elon Musk才站出来说要亲自解决，我认为那里的问题也会得到解决。
+
+
+## 向上下游分散的价值捕获与下一个瓶颈    *85:04*
+
+<span class="paragraph-timestamp" data-ts="86:20">86:20</span> **卢正石** 而在此期间，ASI肯定会到来。很快，似乎会比我们想象的快得多。到那时，价值将流向何处，就会成为接下来最重要的问题。会向上走。向上。但在向上走的过程中，会形成怎样一种共同捕获价值的框架，目前还没有定论。
+
+<span class="paragraph-timestamp" data-ts="86:47">86:47</span> 也就是应用、更加贴近消费者的领域。不过我认为这一部分目前也已经在一定程度上形成了一些讨论。因为我们公司也是如此，正在把公司的所有流程全部塞进agentic flow，同时运行着许多个这样的agentic flow，虽然同时让它们不断运转，但我最近一直有一个疑问。人并没有消失。
+
+
+## 为什么铺设完整的智能体流程后，人类仍不会消失    *87:05*
+
+<span class="paragraph-timestamp" data-ts="87:06">87:06</span> **朴钟贤** 为什么没有消失？问题出在哪里？
+
+<span class="paragraph-timestamp" data-ts="87:11">87:11</span> **卢正石** 没法放心地把事情交给它。还没达到能够放心地把这件事交给它，让它独自全部完成的水平。喂，你不是一直亲口说AI的性能会超越人类，一直都这么说的吗？可为什么现在又说不行？这也是实际尝试之后才明白的，是在不断白费功夫的过程中才领悟并刻进骨子里的教训，不是因为能力不足，而是因为无法控制。
+
+<span class="paragraph-timestamp" data-ts="87:42">87:42</span> 为什么无法控制？因为agent系统本身从根本上就是non-deterministic的。打个比方，就像仅仅通过面试，给我们公司招来一名经理级员工，把这名员工安排到重要的function里，而因为这名员工很聪明，就对这名员工说：“好了，那你现在就在这里工作吧。这是我们的工作手册。你照着这本手册工作。”这是行不通的。
+
+<span class="paragraph-timestamp" data-ts="88:06">88:06</span> 所以我也是，钟贤大概也是如此，我们在许多业务中使用agent系统，并且一直都说，在那些漫长的对话中包含着我们公司的流程和这些隐性知识，把它们提取为LLM维基的形式，再压缩起来，不断完善一个顶层的constitutional prompt，那最终就会成为一家公司，我们一直都是按照这种思路来运营的。最近，我最大的疑问也是为什么这样
+
+<span class="paragraph-timestamp" data-ts="88:39">88:39</span> **朴钟贤** 行不通。它总是试图偏离轨道。但我觉得，即使是人也一样。如果来了一名非常聪明的员工，这名员工与我们公司的某套系统，也就是说，因为这名员工并没有与我们公司的目标完全align，所以可能会为了自身利益，说严重一点就是做坏事，比如挪用公款，或是利用系统漏洞，也可能想把某些东西带出去。
+
+
+## 从复式记账账本获得灵感的智能体控制平面    *89:01*
+
+<span class="paragraph-timestamp" data-ts="89:04">89:04</span> **卢正石** 所以我最近每天通宵，又变成了token maxi，而我正通过这种token maxi实验的，恰恰就是这个领域。喂，认为这个task在前面推进，后面再以LLM维基的形式将其提取出来，并让这些提炼后的知识重新作为上层policy发挥作用的这一前提是错误的。就目前的阶段性结论来看，我最近一直着迷的词是control plane。就连目前我们所谓的公司这个概念本身，人本身也只是一个non-deterministic智能体。
+
+<span class="paragraph-timestamp" data-ts="89:43">89:43</span> **朴钟贤** 也可以把它看成人的约束框架。
+
+<span class="paragraph-timestamp" data-ts="89:51">89:51</span> **卢正石** 没错。公司本身就是人的约束框架，所以目前我们可以视为智能体约束框架的东西，只是在某个业务单位task中，充当使用那个tool的约束框架，也就是停留在非常低层次的概念上，而在它的上层概念中还需要再加一层约束框架。看公司也有组织架构图，权限和能够访问的数据也全都划分开来，然后当某种intention被引入时，它就是goal。无论是公司本身的愿景、goal还是业务目标，一旦确定下来，公司内的各个组织就会发生action。然后那个action会产生结果，那个结果会以某种形式留作记录，graph再从那里发生变化。但这本身不就是non-deterministic的吗？这个问题当然会随之而来。是的。不过刚才我脑海里
+
+<span class="paragraph-timestamp" data-ts="90:53">90:53</span> 突然亮起了一盏灯，我说，在公司这种组织体系中，有一个部门具备非常完善的框架。
+
+<span class="paragraph-timestamp" data-ts="90:59">90:59</span> 是什么部门？哪里？财务，finance。Finance部门有一套非常严谨的框架。而且Finance部门产出的账簿里，赚了钱、花了钱、谁花了多少、做了什么，诸如此类的内容，事实上就是其他所有function的总账。
+
+<span class="paragraph-timestamp" data-ts="91:23">91:23</span> **朴钟贤** 是最终goal啊。最后的evaluation metric。
+
+<span class="paragraph-timestamp" data-ts="91:24">91:24</span> **卢正石** 所以看大多数公司的经营体系，财务会成为backbone，各项业务则依附在它上面。财务框架之所以能够如此明确，是因为它的底层有一套明确的复式记账总账系统。正是因为有这套系统。然后在它上面逐层构建，用钱买了什么、有什么进账，都会清楚地整理在账簿中，谁做了什么、为什么这么做，这些全都能从中trace出来。不过我现在这个想法的出发点很简单。只要让智能体所做的这些non-deterministic的事情像复式记账的总账、ledger一样被妥善记录下来就可以了。而记录的方式虽然需要非常明确，但采用graph方式应该是对的。不过那个graph究竟该怎么称呼呢？又或者，也许可以像比特币一样，让总账继续以raw形式不断累积，而graph则从这些累积的log中reproduce出来，形成graph，就这样运作，再把policy、行为等一切都限制在这个graph之中，我有这样一个上层构想。
+
+<span class="paragraph-timestamp" data-ts="92:51">92:51</span> 比如现在让智能体去做某件事，那个智能体并不会被放进一个清晰的context和明确的权限范围内。实际上并不会。如果人不把LLM与维基之间的权限、数据之类的内容全都明确控制好，就会直接发生error。所以，明明已经把所有智能体都连接起来了，为什么最终的action和decision却仍然全由人来做，这就是我这一构想的出发点。
+
+<span class="paragraph-timestamp" data-ts="93:24">93:24</span> **崔胜准** 那答案就是半自动化。答案不是以自动化为导向，而是半自动化。
+
+<span class="paragraph-timestamp" data-ts="93:28">93:28</span> **卢正石** 不是。虽然有些point必须由人参与，但当智能体明确接到某个job时，如果它能在明确的权限和数据范围内自主开展活动，那就能实现。这样一来，问题就在于要用什么结构将这些agentic flow限制在这个control plane之中。
+
+<span class="paragraph-timestamp" data-ts="93:53">93:53</span> **朴钟贤** 我来总结一下，我们从开放权重与closed model的相关讨论一路谈到了这里，
+
+<span class="paragraph-timestamp" data-ts="94:01">94:01</span> **卢正石** 最终再回到这里总结一下，
+
+
+## 开放权重讨论与组织运行框架之间的联系    *94:03*
+
+<span class="paragraph-timestamp" data-ts="94:05">94:05</span> **朴钟贤** 把它套用到这里来看。所谓公司，终究是人的约束框架，而这里的人就是LLM。无论LLM是开放权重还是closed model，如果我们把使用closed model理解为从外部调用它，那么类比成人，就可以看作请了一家外包服务商来使用。如果把开放权重模型部署在on-prem环境中使用，则可以类比为内部员工。那么，给LLM套上约束框架之后，最终要在这个框架中加入的，就是公司的终极目标：创造利润，代表金钱的这个数字绝对不能出错。这会在最外层成为deterministic的检查logic，最终，最外层必须是deterministic的。而在开放权重与closed model的讨论中，反复提到的一点也是，
+
+<span class="paragraph-timestamp" data-ts="94:55">94:55</span> **卢正石** 这个安全问题，以及Hugging Face的claim所谈到的也是，
+
+<span class="paragraph-timestamp" data-ts="94:59">94:59</span> **朴钟贤** 当公司拿他们的LLM来使用时，希望能够按照公司自身的目的使用，同时不让数据流到外部。现在我们谈到了安全事故。安全事故归根结底也是LLM逃出了这个约束框架。换成公司来讲，就是员工带着某些数据离开了公司，或者顶着我公司的名义跑去别家公司骂人，做出了这些恶劣行为，而要阻止这些行为非常困难。因此只能把它们限制在on-prem环境中，如果是外包员工，风险就更大。因为把数据带出去会更容易，所以才会有人主张必须采用开放权重，我觉得这些问题最终都是相互关联的。
+
+<span class="paragraph-timestamp" data-ts="95:39">95:39</span> **卢正石** 对，没错。所以在进入下一个step，也就是RSI之前，我也来做一个总结。memory不能位于先执行某个action，再在后端整理成LLM维基形式的后置阶段。它必须位于前面。这个memory network实际上应该控制约束框架，必须形成这样的结构。
+
+<span class="paragraph-timestamp" data-ts="96:06">96:06</span> 而且这个想法似乎在公司这个系统内部已经全都存在了。公司所有的 action，以及通过 Slack、Gmail 之类每天发生的 action，要怎样像会计账簿一样以总账的形式提取出来并进行组合呢？那么这本身其实就是公司了。
+
+<span class="paragraph-timestamp" data-ts="96:30">96:30</span> 而且我之前说过，价值捕获将会向上层移动，那么在这个上层，核心问题就是用来承载这种价值的框架会是什么？因为下层的智能全都是借用的，但我们正在走向一个优秀人才可以无限供应的世界，或许这正是这一切的本质，那么，与他们共同组建公司时，要如何向客户交付符合其需求的价值呢？到头来，这就是公司这个系统。
+
+<span class="paragraph-timestamp" data-ts="96:56">96:56</span> 对于公司这个系统，我最近脑中一直想着的关键词是 control plane。关键在于如何构建这个 control plane，而价值也会被这个 control plane 捕获。因此，未来的商业会是什么形态，这些图景正在逐渐形成，我想和大家分享这一点。大家不理解也没关系。如果各位的想法与我不同，那各位就是对的。
+
+<span class="paragraph-timestamp" data-ts="97:23">97:23</span> **朴钟贤** 我们总结一下吧？总之，从开源权重和 closed-weight 的讨论开始，当它们进入人类社会之后，将会以怎样的方式发生变化？归根结底，这些似乎都是 LLM 出现后，在世界不断发生变化的趋势中出现过的信号和事件。我们正在观察这些事情，也都对它们
+
+<span class="paragraph-timestamp" data-ts="97:41">97:41</span> **卢正石** 各自有着自己的思考。
+
+
+## 智能价格下降为个人与企业带来的机会    *97:44*
+
+<span class="paragraph-timestamp" data-ts="97:44">97:44</span> **朴钟贤** 所以，以这件事为基准总结的话，虽然显而易见，智能的价格会持续下降，这对消费者更有利。所以，对于像我这样想利用它创造某种价值的人，或许也就是正在收听这些内容的所有人，我觉得现在这句话再贴切不过了。下层有提供智能的模型公司，到了上层分发这种智能的 level，就会成为分发者。因此，利用 LLM 创造某种价值，并出售这种价值，就变得更加有利了。因为成本变低了。接着，即使把这一点下放到个人 level，也是如此。归根结底，比如现在，就连我写这篇文章，也是因为在 Twitter 上看了那些讨论、看了所有相关推文后，我自己也产生了一些想法，觉得应该整理出来传达给大家。整理内容的思路虽然是我想的，但实际的整理工作也全都是 Claude 做的。所以，如果积极而熟练地使用这些工具，以前我想整理这种内容时，需要花上一两天的工作，现在会缩短到 1 小时，当然更有利。因为个人能够完成自己想做的事情，所创造的价值也会增加。
+
+<span class="paragraph-timestamp" data-ts="98:56">98:56</span> 而且从中长期的社会层面来看，最终也会演变成这样的讨论，开源权重模型表现得越好、推出得越多，模型的分发就会越来越快，模型会越来越便宜，变化也会加速，从中长期来看，这几乎是必然的趋势。无论是个人 level、经营者 level，还是公司 level，最终都必然会对整个社会，乃至政策或法案等领域产生很大的影响。安全事故之类的问题现在才刚开始浮出水面，今后也会不断发生。而这些事情，包括政策变化在内，都会深深刻在人们和公众的视野中，因此我预计变化还会进一步加快。
+
+
+## DeepSeek V4 Flash 降价与进入 RSI 阶段的信号    *99:43*
+
+<span class="paragraph-timestamp" data-ts="99:43">99:43</span> **卢正石** 好，很好。不过，胜准准备的 RSI part，按照目前的时间安排，如果现在不讲，就没有机会了，所以我们来聊一聊 RSI 相关的话题。不过，收听我们播客的各位应该都知道，我们总是越到后面，精彩的内容越多。
+
+<span class="paragraph-timestamp" data-ts="100:08">100:08</span> **崔胜准** 那我就接着钟贤刚才的话，非常巧妙地衔接一下。最近 DeepSeek V4 Flash 推出后，价格便宜得惊人。
+
+<span class="paragraph-timestamp" data-ts="100:14">100:14</span> **卢正石** 0.13，您说的是 V4，对吧？
+
+<span class="paragraph-timestamp" data-ts="100:21">100:21</span> **崔胜准** 对，Flash。Flash 推出了，而就在它推出之前，Luna 的发行价下调了 80%。打折了。后来还有一场发布，解释了这为什么能够实现。归根结底，是利用 Sol 进行了优化。Terra 和 Luna 都在降价，但 Luna 的降价幅度极大。所以在社区相关的背景下，这是其中一个 point。
+
+<span class="paragraph-timestamp" data-ts="100:42">100:42</span> 不过，为了实现这一点，也存在各种 issue，这些先跳过去，我要讲的是 RSI，就是 RSI。今天我想介绍一下Recursive Self-Improvement 这个方向，还有一个有趣的 point，就是关于工具链的 self-improvement，7 月初谈到过这个话题的TML 的 Lilian Weng 回到了 OpenAI。虽然据说是出于健康原因，但人们猜测，The Information 认为她是不是回去研究 RSI 了？诸如此类的说法正在流传。
+
+
+## 自我改进框架与对抗性智能体实验    *100:56*
+
+<span class="paragraph-timestamp" data-ts="101:23">101:23</span> **朴钟贤** Lilian Weng 从 OpenAI 离开后，是创办 Thinking Machines 的联合创始人。
+
+<span class="paragraph-timestamp" data-ts="101:32">101:32</span> **崔胜准** 是联合创始人。所以她又回去了。而 OpenAI 最近还发布了几篇有趣的帖子，原本在 ARC-AGI-3 上的成绩并不太好，但它没有使用基础工具链，而是使用了自己的工具链，尤其是采用了强化记忆的Responses API 使用方式，从而实现了超过 30%、突破 30 分的成绩。这也是一个很有意思的点。所以，这些东西借助 harness，呈现出自我改进意味的一些信号，另外还出现了一个叫“Gauntlet Loop”的东西，我也研究了一下，关键是使用 adversarial 的智能体。确实是在运行循环，但要让两个智能体不断相互竞争、对抗，并以这种方式进行验证，从而让资产本身，也就是 3D 资产本身，重新达到了能够产出优秀成果的阶段。
+
+<span class="paragraph-timestamp" data-ts="102:24">102:24</span> **朴钟贤** 也许是因为今天聊了公司的话题，所以从公司结构来看，我也会想到这一点：研究部门和质量部门会在相互交锋的过程中改进产品。
+
+<span class="paragraph-timestamp" data-ts="102:36">102:36</span> 没错。感觉确实有点像。通过相互批评来提升质量。
+
+<span class="paragraph-timestamp" data-ts="102:39">102:39</span> **崔胜准** 所以，对于 OpenAI 那边的 critic，如果说重点在于维持记忆，那么在 Gauntlet Loop 中，则要使用没有记忆的子智能体，也就是说，要在其他智能体的 context都被清空的状态下进行批评，这是关键。其中一个要点是
+
+<span class="paragraph-timestamp" data-ts="102:53">102:53</span> **朴钟贤** 也就是说，只能看结果来评判。
+
+<span class="paragraph-timestamp" data-ts="102:55">102:55</span> **崔胜准** 对，没错。要在没有上下文的情况下进行 critic，要想冷静客观地进行 critic，这一点是必要的。而让记忆得以继承，采用能够持续进行“compaction”的方法时之所以有效，是因为它可以提高 ARC-AGI-3 的分数。
+
+<span class="paragraph-timestamp" data-ts="103:11">103:11</span> **卢正石** 看来真得找时间研究一下那个 Gauntlet Loop。
+
+
+## 《Pacing the Frontier》公开信与反复重演的警告史    *103:17*
+
+<span class="paragraph-timestamp" data-ts="103:19">103:19</span> **崔胜准** 我觉得我也得一起读一读。它产出的成果确实非常厉害。而且，从 RSI 的脉络来看，有件事很有意思：7月底，出现了一封名为 Pacing the Frontier，意思是“我们现在是不是该做点什么了”的公开信。所以里面大概谈到了这些，看看签署者，有 John Schulman、TML、Jakub Pachocki、OpenAI，Jared Kaplan、Anthropic，都是资深科学家级别的人物。原来是 Chief Scientist。对，还有 Meta、Google DeepMind 的 Shane Legg，Ilya Sutskever、Mark Chen，Dario Amodei、Jack Clark，这些耳熟能详的人都签了名。
+
+<span class="paragraph-timestamp" data-ts="103:59">103:59</span> **卢正石** 这不全都是外交姿态吗？
+
+<span class="paragraph-timestamp" data-ts="104:03">104:03</span> **崔胜准** 是的，我也有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="104:06">104:06</span> **朴钟贤** 感觉他们实际上不会真的放慢步调。
+
+<span class="paragraph-timestamp" data-ts="104:09">104:09</span> **卢正石** 绝对做不到。
+
+<span class="paragraph-timestamp" data-ts="104:11">104:11</span> **崔胜准** 但这恰恰是一项旁证。正因为已经处于 RSI 的初期阶段，才会出现这种说法。也就是具备自我改进能力的初期阶段。所以这里写道，“我们认为，AI 企业可能已经接近能够自动化 AI 研究的阶段。”但这并非只是“可能”，前面介绍的案例虽然目前仍然是由人类控制的自我改进，但自我改进早在2020年代就已经开始了。所以这也成了它的旁证。
+
+<span class="paragraph-timestamp" data-ts="104:42">104:42</span> **卢正石** 整整一周都在干坏事，到了周末才来忏悔。现在就是这样。
+
+<span class="paragraph-timestamp" data-ts="104:48">104:48</span> **崔胜准** 不过，这让我产生了既视感，因为2023年3月也有过这样一封公开信。这个好像是 FLI 发起的。对，是他们发起的，不过当时参与签署的都是更德高望重的大师级人物，包括 Geoffrey Hinton、Yoshua Bengio 等，他们发出公开信，表示“我们应该克制一点。”那是在 GPT-4 即将推出时发布的。但没能奏效。
+
+<span class="paragraph-timestamp" data-ts="105:11">105:11</span> **朴钟贤** 已经过去3年了。
+
+<span class="paragraph-timestamp" data-ts="105:17">105:17</span> **崔胜准** 但结论是，它没能奏效。没有任何人停下来。不过，它的前传早在2022年2月就出现了。2月初，AlphaCode 论文中写道：“从长期来看，代码生成可能很快会带来高级 AI 风险。AI 的编程能力可能催生能够递归式自我改进的系统，而这可能迅速催生出越来越先进的系统。”这已经成为现实。随后在2月底，Anthropic发表了一篇名为 Predictability and Surprise in Large Generative Models 的论文，其中写道：“直截了当地说，这里总结的现象表明，在未来几年，我们将会看到各类行为主体构建越来越大的模型，而尽管这些模型可能会对社会造成有害影响，这些行为主体仍将拥有部署它们的强大动机。”太有预言性了。这两件事都精准描述了现在的情况。
+
+<span class="paragraph-timestamp" data-ts="106:14">106:14</span> **卢正石** 如果把一切都还原到历史框架中，从蒸汽机到印刷术的发展，硬要进行映射的话，会发现这些都是同构的故事，而且在不断重演，所以该发生的事情似乎终究会发生。
+
+<span class="paragraph-timestamp" data-ts="106:28">106:28</span> **崔胜准** 所以我很好奇，步调调节是否真的会发生，如果真的发生，又会带来什么结果，不过我们朴素的预测是，这一切似乎都只是姿态而已。
+
+
+## 表演性的 Hype：研究 AI 话语的 Hype Studies    *106:39*
+
+<span class="paragraph-timestamp" data-ts="106:39">106:39</span> **崔胜准** 但与此相关，我最近接触到一个名为 Hype Studies 的研究团体。他们真的在研究 Hype。他们会实际研究 AI CEO 们制造的 Hype 等现象。确实会对此进行研究。研究它带着怎样的意图发挥作用。Hype 并不只是夸张或宣传文案。Hype 具有施为性。所以，制造 Hype 的行为本身就是一种布局。
+
+<span class="paragraph-timestamp" data-ts="107:04">107:04</span> **朴钟贤** 这里所说的 Hype 是指……
+
+<span class="paragraph-timestamp" data-ts="107:06">107:06</span> **崔胜准** 就是我们平时说的 AI Hype，那个 Hype。也就是人们的……
+
+<span class="paragraph-timestamp" data-ts="107:09">107:09</span> **朴钟贤** 某种过度关注。
+
+<span class="paragraph-timestamp" data-ts="107:18">107:18</span> **崔胜准** 大惊小怪。指的就是这些现象。对技术的美好愿景，以及宣扬它存在这些风险，全都属于 Hype。但这些东西具有施为性。其中尤其有意思的是最后一部分，他们提出了一个叫 hype researcher's paradox 的概念，即为了批判 Hype，如果反复提及它，反而可能会提高它的可见度和权威性；但如果不追随 Hype，又会陷入无法获得研究经费的困境。这一点本身就很有意思，今天成为讨论焦点的各种技术相关讨论，以及中国和大型科技公司的出现，这些东西传递着什么样的信息，对此进行整体展望，最终与我们的日常生活，对股票的Hype，其中也有FOMO，诸如此类的事情。
+
+<span class="paragraph-timestamp" data-ts="108:00">108:00</span> 我觉得它们之间可能存在着紧密的联系。我发现甚至还有一项工作，把这种Hype是如何产生的都可视化了。
+
+<span class="paragraph-timestamp" data-ts="108:13">108:13</span> **朴钟贤** 所谓Hype，归根结底就是得大肆造势，才能吸引投资，才能引起关注、开展营销，进而推动整个生态发展，所谓“施为性”，好像指的就是这回事。不过我也不知道该不该把这称为良性循环。
+
+<span class="paragraph-timestamp" data-ts="108:30">108:30</span> **崔胜准** 可能并不是良性循环。但它确实有某种自我实现的成分。
+
+<span class="paragraph-timestamp" data-ts="108:33">108:33</span> **朴钟贤** 就是说它会起到促进作用。
+
+<span class="paragraph-timestamp" data-ts="108:35">108:35</span> **崔胜准** 通过把它说出来，促使自己去实现。
+
+<span class="paragraph-timestamp" data-ts="108:39">108:39</span> **朴钟贤** 对，就像一种宣言。说出“我要减肥。”之后，就会更加努力，大概是这种感觉。
+
+<span class="paragraph-timestamp" data-ts="108:43">108:43</span> **崔胜准** 说的就是这个。它有一种自我放大的倾向。
+
+<span class="paragraph-timestamp" data-ts="108:49">108:49</span> **朴钟贤** 过去的我，怎么说呢，个人比较悲观？经常觉得事情不会顺利，在LLM时代以前，也有人持乐观看法，积极地认为事情会进展顺利，而我的想法现在也发生了相当大的变化。这种Hype从某种角度来看，几乎处于乐观主义的极端，而人的行为也会与Hype相一致，采取这些行动之后，就会对原本不了解的事物有更多认识，即使当初大肆造势的Hype最终没有实现，也会从中了解到与其相邻的某些事物，而且有些事情还真的会实现。所以我几年前就想，以后应该大张旗鼓地活着。
+
+<span class="paragraph-timestamp" data-ts="109:32">109:32</span> **崔胜准** 我们的频道现在恰好就是这么做的。
+
+<span class="paragraph-timestamp" data-ts="109:35">109:35</span> **朴钟贤** 没错。社会层面也是如此。
+
+<span class="paragraph-timestamp" data-ts="109:37">109:37</span> **崔胜准** 所以我们也有一种自觉，知道自己正在为Hype服务。
+
+<span class="paragraph-timestamp" data-ts="109:42">109:42</span> **朴钟贤** 而且最近我们的播客也很容易被标成Hype。
+
+<span class="paragraph-timestamp" data-ts="109:45">109:45</span> **卢正石** 这个我没听明白。什么？
+
+<span class="paragraph-timestamp" data-ts="109:50">109:50</span> **朴钟贤** 在YouTube上，内容上传之后会出现Hype按钮。所以收到很多Hype后，因为AI前沿属于播客类别，它就会被明确贴上“播客中的Hype”标签。所以频道和视频都在成为Hype。
+
+
+## 不可预测的地平线与偶然性哲学    *110:07*
+
+<span class="paragraph-timestamp" data-ts="110:12">110:12</span> **崔胜准** 说到收尾，Terence Tao不知道是独自整理自己在Mastodon上说过的内容，还是借助了其他人的力量，总之他会把这些内容汇总起来，用自己的文章生成页面。那里有一篇文章谈到了最近在ICML上，总之是在那里发表的内容。“我在2023年对数学相关预测所抱有的信心，如今已经消失了。世界变得远比以前更加难以预测，目前我认为，没有人能够对一年以后——最多也就一年——作出可信的预测。”Terence Tao是这么说的。现在真的什么都不知道了。只能一周一周地过，
+
+<span class="paragraph-timestamp" data-ts="110:49">110:49</span> **卢正石** 就是这样。一周一周地活着。现在说是勉强活下去，确实很贴切。对吧。
+
+<span class="paragraph-timestamp" data-ts="110:52">110:52</span> **崔胜准** 是的。所以
+
+<span class="paragraph-timestamp" data-ts="110:57">110:57</span> 我最后想介绍的是我最近正在读的内容，其中有一个新接触的术语Contingency，也被称作偶然性、偶发性，就是这样一个术语。这是哲学界备受关注的Yuk Hui这位香港哲学家所谈论的概念。那么，这个Contingency是什么呢？就是我未曾呼唤，却来到我身边、触及我的东西。也就是说，它指的是来自计算与预测范围之外的偶发性。从外部到来并触及我们的东西。今天想强调的是，刚才我们谈到Situational Awareness之类的内容时，也提到了波动性和不确定性，我们目前所看到的视野本身实在太不可预测了。尽管我们想尽一切办法，试图收紧控制、预测并做好准备，但在某些方面，我们似乎也需要保持谦逊，这个念头从我脑中闪过，所以我把这个概念带来分享。
+
+<span class="paragraph-timestamp" data-ts="111:55">111:55</span> **朴钟贤** 钟贤是认为，尤其因为RSI，一切会变得更加不确定，也会发生更多偶发性的事情，对吧？
+
+<span class="paragraph-timestamp" data-ts="111:58">111:58</span> **崔胜准** 是的。谁也不知道RSI会产生什么副产品，或者会催生出什么东西。也正因为如此，才有人提出应该控制一下节奏。
+
+<span class="paragraph-timestamp" data-ts="112:14">112:14</span> **卢正石** 模型开发商或前沿实验室展示给我们的那些harness，我们应该推定是由模型制作的。应该这样看。我们公司内部也会制作很多harness，真正重要的部分，固然会采用human-in-the-loop的方式逐一检查并制作，但对于子系统，只要设定好目标并且能够运行，我们也经常直接拿来使用，不是吗。即使发生错误，我们也不会去看智能体生成的提交日志，对吧。只是说着“完成了吗？验证一下。再找找。”，然后就直接关掉了。
+
+<span class="paragraph-timestamp" data-ts="112:46">112:46</span> **朴钟贤** 只询问自己好奇的部分，觉得逻辑上大致说得通之后，很多时候似乎就直接略过去了。
+
+<span class="paragraph-timestamp" data-ts="112:56">112:56</span> **崔胜准** 没错。所以Yuk Hui使用Contingency这个术语来指称计划表之外的事物。这是一个原本就存在的概念。既然无法将其消除，那就把它作为建立关系的对象。我由此想到的是大世界假说，也就是Sutton的大世界假说，它始终认为世界比智能体更大。由于存在有限理性，不可能掌握所有信息，所以无论是智能体还是人，都只能在自己已知的范围内采取有限理性的行动，我就以此作结。
+
+
+## 不确定性时代，以及作为记忆压缩的对话    *113:27*
+
+<span class="paragraph-timestamp" data-ts="113:31">113:31</span> **卢正石** 没错。我想起了一部漫画。我小时候记得看过那部漫画，叫《阿尔米安的四个女儿》。那里面出现的
+
+<span class="paragraph-timestamp" data-ts="113:36">113:36</span> **崔胜准** 是申一淑老师来着吗？
+
+<span class="paragraph-timestamp" data-ts="113:43">113:43</span> **卢正石** 对，对。“人生总是不可预测，因而生命才有了意义。”经常会用这句话。不过，这句话好像正适合当下。正因如此，反过来说，这个变动性如此之高的世界，对于那些想尝试做些什么的人来说，正是机遇。这样的变化
+
+<span class="paragraph-timestamp" data-ts="114:02">114:02</span> **朴钟贤** 很有趣。
+
+<span class="paragraph-timestamp" data-ts="114:02">114:02</span> **崔胜准** 确实会分泌多巴胺。
+
+<span class="paragraph-timestamp" data-ts="114:10">114:10</span> **卢正石** 好，我们久违地聊了很长时间。不过我们也是，无论钟贤、胜准还是我，都会带来资料，我们三个人你来我往地交流，从中获得一些启发，至少在今天，思想会达到一种平衡，尽管到了下周这种平衡可能会全部消失，但今天确实能达到思想上的平衡。所以反过来，我认为这个过程是最近用来进行memory compaction的session。
+
+<span class="paragraph-timestamp" data-ts="114:37">114:37</span> **崔胜准** 先完成compaction，对。只保留那些关键词。因为随着时间推移，细节就记不住了。
+
+<span class="paragraph-timestamp" data-ts="114:43">114:43</span> **卢正石** 就这样，我们展开交流，等交流结束后，会留下几个重要的关键词，带着那几个经过compaction的关键词，在稍微卸下一些东西的状态下开始下一周。对我们来说，这个过程本身也是一个非常重要的学习过程。
+
+<span class="paragraph-timestamp" data-ts="114:57">114:57</span> **崔胜准** 原来是一个rollout过程啊。
+
+<span class="paragraph-timestamp" data-ts="114:59">114:59</span> **卢正石** 是的。完成一条trajectory，再以on-policy的方式更新我们的model……
+
+<span class="paragraph-timestamp" data-ts="115:04">115:04</span> **崔胜准** 只用本周的policy进行rollout，到下周就已经更新了。
+
+<span class="paragraph-timestamp" data-ts="115:08">115:08</span> **卢正石** 就是这样。正因如此，今天的Kimi K3论文里，仔细一看，连我们人生的指南也全都包含在里面。
+
+<span class="paragraph-timestamp" data-ts="115:16">115:16</span> **朴钟贤** 对。把今天对话中提到的Kimi K3内容进行encoding，然后完整地放进去，以attention的形式进入latent space。
+
+
+## 结语    *115:29*
+
+<span class="paragraph-timestamp" data-ts="115:29">115:29</span> **卢正石** 我们自己聊着聊着也觉得挺好笑的。那么，今天就到这里结束吧。两位，今天也非常感谢二位的诸多指教。
