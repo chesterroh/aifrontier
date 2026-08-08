@@ -1,0 +1,469 @@
+---
+episodeNumber: 108
+title: "Connecting Chips with Light: Silicon Photonics and AI Data Centers' Next Bottleneck"
+description: "Explore silicon photonics from the limits of copper interconnects and the rise of CPO and Optical I/O to AI-driven photonic device design."
+publishedAt: 2026-08-08
+duration: "1:24:54"
+youtubeId: "Z6sltgRAkWU"
+thumbnail: "https://i.ytimg.com/vi/Z6sltgRAkWU/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Junho Park
+  - Taehan Kim
+  - Jinwon Lee
+chapters:
+  - time: "0:00"
+    title: "Opening on Silicon Photonics and AI Infrastructure Bottlenecks"
+  - time: "1:50"
+    title: "Panel Introductions and Research Background"
+  - time: "4:08"
+    title: "The Three Bottlenecks of AI Infrastructure and the Explosive Growth of Data Center Scale"
+  - time: "7:11"
+    title: "Three Scaling Axes from Scale Up to Scale Across"
+  - time: "9:55"
+    title: "The Distance Limits of Copper Wires and the Energy Efficiency of Optical Communication"
+  - time: "13:48"
+    title: "Stages of Optical Integration from Pluggables to Optical I/O"
+  - time: "17:42"
+    title: "The Photonics Industry Landscape Through Investments by NVIDIA and Marvell"
+  - time: "19:18"
+    title: "Key CPO Metrics pJ/bit and Shoreline Density"
+  - time: "22:14"
+    title: "The Principles of EO Modulation for Encoding Bits onto Light"
+  - time: "25:58"
+    title: "The Mach-Zehnder Structure and Phase-Based Bit Encoding"
+  - time: "27:52"
+    title: "The Challenges of Silicon Lasers and Heterogeneous Integration"
+  - time: "33:39"
+    title: "The Advantages of WDM Multiplexing for Transmitting Overlapping Wavelengths"
+  - time: "38:02"
+    title: "Photonics Integration Limits and Inverse Design"
+  - time: "41:42"
+    title: "Gradient Descent-Based Optimization of Optical Structures"
+  - time: "44:26"
+    title: "Inverse Design Limits and the Protein Design Feedback Loop"
+  - time: "48:52"
+    title: "Stagnation in Photonics Integration Density and the Definition of the Research Problem"
+  - time: "52:13"
+    title: "Inefficiencies in Existing Inverse Design Pipelines"
+  - time: "54:03"
+    title: "cVAE Skeleton Generation for Learning Good Design Distributions"
+  - time: "57:55"
+    title: "Improving Manufacturability and Defining Metrics"
+  - time: "60:04"
+    title: "Photonics Fabrication Processes and Yield Bottlenecks"
+  - time: "66:04"
+    title: "Identifying Process-Critical Regions with Integrated Gradients"
+  - time: "67:50"
+    title: "Hotspot Validation and the Potential for QC Efficiency Gains"
+  - time: "70:31"
+    title: "Scarce Photonics Talent and Patenting AI/ML Research"
+  - time: "73:18"
+    title: "Low-Hanging Fruit from Combining Domain Knowledge with AI"
+  - time: "77:19"
+    title: "Problem Definition and the Power of Collaboration in Exploring Unfamiliar Fields"
+  - time: "80:30"
+    title: "Prospects for Photonics Industry Applications and the Expansion of AI Methodologies"
+  - time: "81:52"
+    title: "Agent-Based Optical Circuit Design and Future Research Directions"
+  - time: "84:33"
+    title: "Closing and a Request to Share with the Community"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## Opening on Silicon Photonics and AI Infrastructure Bottlenecks    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we record, is Sunday, July 26, 2026. It’s morning. During ICML Week, I had the chance to meet two fascinating researchers, and I wanted to introduce their work, so I invited them onto today’s episode. Junho Park, a PhD student at the University of Michigan, and Taehan Kim, a PhD student at MIT, along with a familiar guest who regularly appears on our show, Jinwon Lee, CTO of HyperAccel. With that, let’s begin today’s session.
+
+<span class="paragraph-timestamp" data-ts="00:34">00:34</span> Back in Episode 96, we talked a bit about inference token economics. While discussing tokens, we explained that today’s AI data centers face two major bottlenecks: compute and memory, which constrain performance. Soon, we also plan to take a deeper dive into token dynamics with CTO Jinwon Lee.
+
+<span class="paragraph-timestamp" data-ts="00:55">00:55</span> But when we discussed being compute- bound or memory-bound, this came up a lot. When discussing systems like NVL72 and NVL144, we took it for granted that connections within a rack use copper, while connections between racks, between data centers, and, of course, across the internet use optics. We accepted this architecture as completely natural, but when I spoke with Junho and Taehan, I learned that optics could extend all the way to chip-to-chip connections, taking bandwidth to another level, improving it by more than an order of magnitude. I found that field incredibly fascinating.
+
+<span class="paragraph-timestamp" data-ts="01:43">01:43</span> It’s called silicon photonics. So today, we’ve invited these two young researchers, who also have entrepreneurial ambitions, to tell us about silicon photonics. Junho and Taehan, welcome.
+
+
+## Panel Introductions and Research Background    *01:50*
+
+<span class="paragraph-timestamp" data-ts="01:52">01:52</span> **Junho Park** Hello. It’s great to be here.
+
+<span class="paragraph-timestamp" data-ts="01:53">01:53</span> **Chester Roh** Could you each briefly introduce your background before we move on to today’s main topic?
+
+<span class="paragraph-timestamp" data-ts="01:59">01:59</span> **Junho Park** I’ll start by briefly telling you about my background. As an undergraduate at UC Berkeley, I majored in EECS and materials science and engineering. While studying, I became more interested in semiconductors, which naturally led me to silicon photonics. I liked the field so much, and its future seemed so promising, that I decided to pursue a PhD in silicon photonics at the University of Michigan.
+
+<span class="paragraph-timestamp" data-ts="02:30">02:30</span> **Taehan Kim** To briefly introduce myself, I also studied computer science at Berkeley as an undergraduate. That’s where I met Junho, and we became friends. I’ll soon be starting my PhD at MIT. As an undergraduate, I worked on AI discovery and research combining biology with AI. But the bottleneck there was also on the hardware side. While thinking about that problem, I happened to call Junho late one night, and we found a connection between our interests. That’s how we came to start this research.
+
+<span class="paragraph-timestamp" data-ts="02:56">02:56</span> **Chester Roh** Jinwon, please say a few words as well.
+
+<span class="paragraph-timestamp" data-ts="03:00">03:00</span> **Jinwon Lee** Hello. I’m Jinwon Lee, CTO of HyperAccel. We’re a fabless company that develops AI chips specialized for LLM inference. Since NVIDIA dominates this market, we closely follow the direction NVIDIA is taking. Looking at systems like Vera Rubin and NVL72, followed by NVL144, their approach is to fit a huge number of GPUs into a single rack. The idea is to connect as many GPUs as possible using copper. But as speeds continue to increase, we’re hearing more and more that copper is reaching its limits. That’s why the AI semiconductor industry is showing tremendous interest in optics and silicon photonics, and we’re also very interested in the field. I’m excited because I think we’ll hear a fascinating discussion today. It’s great to be here.
+
+<span class="paragraph-timestamp" data-ts="04:00">04:00</span> **Chester Roh** Shall we get started, then? From Memory to Photonics—let’s begin. Shall we take a lesson on Memory to Photonics?
+
+
+## The Three Bottlenecks of AI Infrastructure and the Explosive Growth of Data Center Scale    *04:08*
+
+<span class="paragraph-timestamp" data-ts="04:08">04:08</span> **Taehan Kim** We’ll be talking about Memory to Photonics. We’ll start with the motivation and give an overview of why photonics matters from an ML perspective. I think AI infrastructure faces three challenges. For compute, it’s how quickly calculations can be performed. For memory, it’s how quickly data can be retrieved and how much can be stored. The third and final challenge is probably what we’ll be introducing today: on the interconnect side, how quickly devices can communicate with one another. In my view, compute devices such as GPUs and TPUs already deliver strong performance. Ultimately, the question is how quickly data can be moved from HBM to SRAM. That’s why research such as FlashAttention received so much attention: it explores how to minimize data movement between HBM and SRAM, retrieve data quickly, and use techniques like tiling to concentrate computation there and make it as fast as possible. There seems to be a lot of research along those lines. This is generally referred to as IO-aware or memory-aware attention research.
+
+<span class="paragraph-timestamp" data-ts="05:15">05:15</span> A lot of engineering also seems to have gone into device communication as models have grown enormously. When a model becomes extremely large, it no longer fits on a single device, so you might split it using model parallelism, or when the amount of data is enormous, you can't let a single GPU sit idle, so you split the data into multiple batches, train them on different devices, and figure out how to take what was trained separately and combine it again. This kind of research and engineering work seems to be getting a lot of attention, and I think it becomes especially important at larger scales. When scaling up or training large models, data movement is extremely important. Compute matters too, but data movement is critical.
+
+<span class="paragraph-timestamp" data-ts="05:58">05:58</span> So if we think about this on a slightly larger scale, a few years ago, or perhaps 10 years ago, the focus was on how much computing power you could get from a single device or GPU. But as the scale keeps growing, we're moving toward the scale of next-generation data centers. So we're moving from local devices to distributed environments or extremely large-scale systems, from problems within a single accelerator to the rack-to-rack level. So Zuckerberg announced plans to build a data center, and OpenAI is building a $3 billion AI data center. But the power requirements seem almost absurd. The power demand is beyond anything we'd normally imagine. Apparently, it's equivalent to 60% of all the electricity used by Seoul, and another article said a data center being built in Utah would raise the surrounding temperature by 3°F. Since that temperature increase can alter the ecosystem, there's talk of putting data centers in deserts or at sea, or even sending them into space. What I want to emphasize here is that this scale is beyond our normal frame of reference. That's really the point.
+
+<span class="paragraph-timestamp" data-ts="07:08">07:08</span> This scale is growing to an almost absurd size. And to support it, we can scale chips and devices along three axes. In the scale-up case we mentioned earlier, you keep stacking along the Y-axis. With scale out, you keep adding racks along the X-axis, and you can also stack upward. So you can build out in these three directions. As you can see, there are three approaches, and each one seems to have its own challenges and advantages.
+
+
+## Three Scaling Axes from Scale Up to Scale Across    *07:11*
+
+<span class="paragraph-timestamp" data-ts="07:40">07:40</span> **Junho Park** To add a little more here, the three terms—scale up, scale out, and scale across— are standard terminology in the photonics industry. When we talk about scaling a data center, it's not just scaling in general. Whether you're scaling up, scaling out, or scaling across determines whether you're talking about connections within a rack, chip-to-chip connections, or data center-to-data center connections. That's the distinction.
+
+<span class="paragraph-timestamp" data-ts="08:09">08:09</span> **Chester Roh** Then should we clearly explain these three concepts—up, out, and across— before moving on? It's easy enough to understand these as the X, Y, and Z axes, but could you explain up, out, and across?
+
+<span class="paragraph-timestamp" data-ts="08:23">08:23</span> **Junho Park** Starting with scale up, a data center has racks, and inside each rack, as Jinwon mentioned earlier, there are a huge number of GPUs. Scale up means connecting the GPU at the very bottom all the way to the GPU at the very top as effectively as possible. In other words, it's about GPU-to-GPU or chip-to-chip connections within a rack, and how effectively they connect vertically. That's what scale up refers to.
+
+<span class="paragraph-timestamp" data-ts="08:52">08:52</span> Scale out, on the other hand, refers to optical interconnects between racks. That's what scale out covers. Scale across refers to data center-to-data center connections—efforts to distribute data centers themselves. That's because, as we saw on the earlier slide, when a data center grows to nearly the size of Manhattan, it can become difficult to manage it as a single data center. So you distribute it across multiple data centers, connect those data centers, and scale them together. That's the concept of scale across.
+
+<span class="paragraph-timestamp" data-ts="09:25">09:25</span> **Chester Roh** A rack, a data center, and another data center— we can think of them as three distinct levels.
+
+<span class="paragraph-timestamp" data-ts="09:31">09:31</span> **Taehan Kim** So the conclusion we can draw here is that if we want to build truly great next-generation models, software-level approaches and writing hardware-aware code, as we discussed earlier, are important, but the hardware itself must also accommodate these massive-scale environments. That will become a critical bottleneck. That seems fairly self-evident here, which is why we wanted to discuss photonics next.
+
+
+## The Distance Limits of Copper Wires and the Energy Efficiency of Optical Communication    *09:55*
+
+<span class="paragraph-timestamp" data-ts="09:55">09:55</span> **Taehan Kim** So, to talk a little about the hardware bottleneck, as Jinwon has seen while running HyperAccel, and as we mentioned earlier, GPUs are still all connected with copper wires. Copper is great because it's very cheap, but it has many limitations. If you look at this chart, the X-axis along the bottom shows the length of the interconnect. From 1 cm— —to 1 km. At short distances, copper isn't bad. Its power efficiency isn't bad, and fabrication is also It's very cheap, but at meter-scale distances, its energy efficiency drops dramatically compared with optics. In contrast, with optics—that is, optical communication— the energy per bit remains nearly constant. So it barely varies with distance. Whether you use optics over short distances or over long distances, in terms of energy efficiency, it remains nearly constant. That doesn't mean copper wiring is inherently bad. For short-distance interconnects, it can be very efficient and inexpensive, but for rack-to-rack data movement in data centers, and later, as racks grow larger, the distances between racks and between GPUs within a rack will be measured in meters, bottlenecks will begin to emerge there too.
+
+<span class="paragraph-timestamp" data-ts="11:24">11:24</span> So if we look at these simple graphs, the graph on the left shows signal loss. Then, in terms of distance, when we want to transmit data, it shows how signal loss changes. With copper, there's almost no signal loss over short distances, but as the distance increases to several meters, signal loss rises very rapidly. So data loss becomes substantial. That translates to much lower bandwidth. In contrast, optical fiber has almost no signal loss, even over longer distances. Now, if you look at the graph on the right, the y-axis is distance, and the x-axis is bandwidth in GB/s. So when you compare passive copper interconnects with fiber, you can see that fiber offers roughly two to three orders of magnitude more bandwidth.
+
+<span class="paragraph-timestamp" data-ts="12:26">12:26</span> So what companies are trying to do now— including NVIDIA— is make copper links more efficient. In fact, to my knowledge, even NVIDIA has yet to build and commercialize a fully optical rack-to-rack interconnect. So what many companies are trying to do is increase the operating frequency of copper links to raise bandwidth, but the problem is that loss increases dramatically as bandwidth rises. Physically, this is because of the skin effect and dielectric loss, which are inherent limitations of metal interconnects. So signal loss rises dramatically with frequency. That means there's an upper limit to how much bandwidth copper can provide. Because the loss becomes so high, if you go beyond a certain frequency to increase bandwidth, you need devices like retimers and DSPs to amplify the signal and correct signal errors. You end up needing many of these devices, and the more devices you add, the more power they consume and the bulkier the packaging becomes. And when power consumption rises, that naturally generates much more heat. And when that much heat is generated, at data-center scale, as Taehwan mentioned earlier, the surrounding temperature can rise by nearly 4 degrees Fahrenheit. This is bad for the environment and highly inefficient from an energy standpoint.
+
+
+## Stages of Optical Integration from Pluggables to Optical I/O    *13:48*
+
+<span class="paragraph-timestamp" data-ts="13:52">13:52</span> **Taehan Kim** That's why many companies are working on silicon photonics and technologies like optical I/O and co-packaged optics, putting significant effort into commercializing them. But if we look at where technologies like co-packaged optics and silicon photonics are actually used, starting from the left, we begin with pluggable optics, which are essentially the industry standard and relatively easy to fabricate and package. They're widely used for rack-to-rack connections. Just think of them as USB cables, but for optical connections. They're literally plug-and-play rack-to-rack interconnects. Next, onboard optics are an effort to integrate these pluggable optics more directly onto the board. With co-packaged optics, the optics are packaged together with the ASIC itself, so the distance between the ASIC and the optical interconnect shrinks to just a few millimeters. With optical I/O, the optics are integrated during lithography, as part of the same fabrication process. This brings them much closer together, essentially right next to the ASIC. So the length of the copper connection approaches zero. But as you move to the right, fabrication complexity increases. When making pluggable optics, you're essentially making a cable, and optical communication is already widely used. It's essentially the same optical communication technology, so it's much easier to fabricate. But once you integrate it onto the board, fabrication becomes much more difficult because it has to be done together with the chip.
+
+<span class="paragraph-timestamp" data-ts="15:39">15:39</span> **Chester Roh** When NVIDIA's Jensen Huang gives a keynote, he shows systems like the NVL72 along with their dedicated internal optical interconnect chips. Would those be considered co-packaged optics? CTO Jinwon probably knows more about the last keynote.
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> **Jinwon Lee** If you look at this year's GTC, they talked a great deal about Rubin. For example, they call one of their LPUs the LPX. Their lineup—the Rubin family—has a huge number of products. One of them is a CPU chip called—
+
+<span class="paragraph-timestamp" data-ts="16:14">16:14</span> **Junho Park** Are the specs already out?
+
+<span class="paragraph-timestamp" data-ts="16:16">16:16</span> **Jinwon Lee** Yes, there's even a separate CPU chip called something like Spectrum-X. It looks almost exactly like this diagram here. Among the various Rubin products— as I mentioned at the beginning, systems like the Vera Rubin NVL72 or 144 pack as many GPUs as possible within scale-up to do as much as possible using scale-up alone, without moving to scale-out. The question is how to connect the most GPUs with copper cables. So a server rack may be 48U high. Rack height is measured in units called U, and a 48U rack can hold forty-eight 1U servers. A 1U server typically has four GPUs and two CPUs. By connecting them all, you can scale up to 72 or even 144 GPUs.
+
+<span class="paragraph-timestamp" data-ts="17:12">17:12</span> So they maximize what they can do within that, and for connections beyond it, they plan to use optics.
+
+<span class="paragraph-timestamp" data-ts="17:22">17:22</span> The CPU-related chip I mentioned is also part of the Rubin family. So I understand that NVIDIA is also investing heavily in this area and plans to release products.
+
+<span class="paragraph-timestamp" data-ts="17:34">17:34</span> **Chester Roh** Our key insight is that the technology is evolving from simply plugging things into an Ethernet hub all the way down to the lithography level. With that, I think we can move on.
+
+
+## The Photonics Industry Landscape Through Investments by NVIDIA and Marvell    *17:42*
+
+<span class="paragraph-timestamp" data-ts="17:42">17:42</span> **Junho Park** The industry is making major efforts with CPO and optical I/O to integrate these photonic components at the die level, fabricating them directly at the silicon level and packaging them together. So I think it was around March— Marvell is heavily involved in networking, right? Marvell acquired Celestial AI, a company working on co-packaged optics and optical I/O, for about $2 billion. Then, three months after that acquisition, it acquired another component manufacturer called Polariton.
+
+<span class="paragraph-timestamp" data-ts="18:19">18:19</span> NVIDIA, meanwhile, invested in Lumentum and Coherent. Those of you who follow stocks closely have probably heard of them. They also do a lot of work on co-packaged optics for optical communications. NVIDIA invested $2 billion in each company. So major networking players like NVIDIA and Marvell are moving to vertically integrate photonics and lock up everything from manufacturing onward before anyone else can.
+
+<span class="paragraph-timestamp" data-ts="18:51">18:51</span> **Chester Roh** It certainly seems to be the direction of the future.
+
+<span class="paragraph-timestamp" data-ts="18:55">18:55</span> **Junho Park** Right. I actually listened to a podcast featuring NVIDIA's Jensen Huang. I got the strong impression that they're prefetching now for the boom in co-packaged optics and related manufacturing expected in two or three years, because they don't want other companies to get there first. Their thinking is, “We'll invest first and lock up the manufacturing capacity.” So, to explain why CPO and optical I/O are necessary, more copper wiring means lower bandwidth and greater heat loss, so there's a major effort to drastically reduce copper wiring. To do that, you need co-packaged optics— photonics that reduces the amount of copper wiring. These seem to be the two most important metrics when discussing photonics. The first is pJ/bit, which indicates how much energy is used to transmit one bit. It's a unit of energy per bit. Then there's shoreline density. If you have a package or silicon wafer, its edge is called the shoreline. This measures how many Tb/s of optical interconnect bandwidth can be integrated along that edge, so it's measured per millimeter. In other words, it measures the bandwidth per millimeter of edge, so higher is better. For energy per bit, lower is better. As you can see on the left, pluggable optics have the highest energy per bit. That's because the copper wiring is the longest. As you move toward optical I/O and tighter integration with the die, you can see that energy per bit also decreases. That's because the section using copper wiring gets shorter. This eliminates the need, when signal loss occurs, to perform error correction again or boost the amplitude. With those measures no longer necessary, energy per bit decreases.
+
+
+## Key CPO Metrics pJ/bit and Shoreline Density    *19:18*
+
+<span class="paragraph-timestamp" data-ts="21:00">21:00</span> **Junho Park** But as I mentioned earlier, moving toward co-packaged optics, or CPO, and optical I/O brings a number of problems. Companies like NVIDIA and Marvell would obviously prefer optical I/O and CPO. From a company's perspective, they offer high bandwidth and much lower energy per bit. But once everything is packaged together, the first issue is that you can't remove and replace individual parts. That's because they're packaged together. With pluggable optics, if the cable fails, you can simply replace the cable. But if the CPO fails, you can't replace the entire chip. That means lower serviceability as well. And because the photonics sit next to the ASIC, the heat generated by the ASIC also also affects photonics. And of course, if they're fabricated together, manufacturing becomes much more difficult. So it's very unfavorable in terms of yield, compared with something like pluggable optics. So the real question is not when everything will switch over, but which parts should move to photonics first. That's really the key question.
+
+
+## The Principles of EO Modulation for Encoding Bits onto Light    *22:14*
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **Junho Park** So let me go into the details of silicon photonics. The basic concept of silicon photonics is to convert an electrical signal, send it as light, and then convert that light signal— the optical signal—back into an electrical signal. So, for example, if a CPU or ASIC wants to send information, it sends it as bits. Then the optical engine, or transceiver, has to convert the electrical signal into an optical signal. It encodes the bits onto the light. That light then travels through the fiber to the receiver. At the receiving end, the receiver converts the optical signal back into an electrical signal. That allows the receiving chip to interpret it correctly.
+
+<span class="paragraph-timestamp" data-ts="23:02">23:02</span> But the most important question is how to convert the electrical signal into an optical signal. That's the key. Converting an electrical signal into an optical signal and an optical signal back into an electrical signal is called EO modulation. It stands for electro- optic modulation. To explain the principle at a very high level, inside something like co-packaged optics, the laser is always on. So the laser stays on, and there's an electrical signal coming from the chip, right? There's also light at a given wavelength, and the electrical bits are applied to the modulator as voltage. When we apply that voltage, the refractive index of the modulator material changes. As the refractive index changes, it changes the phase of the light from the laser. The phase changes, and the bits are encoded into that phase. The light travels through the fiber and is picked up by a detector. The detector senses properties such as the phase and reads the bits back out. So most modulators don't directly change the intensity of the light. They change silicon's refractive index to create phase interference and encode the bits that way.
+
+<span class="paragraph-timestamp" data-ts="24:25">24:25</span> **Chester Roh** Do all existing EO modulators operate on that principle?
+
+<span class="paragraph-timestamp" data-ts="24:32">24:32</span> **Junho Park** Right. In the past, people tried to encode bits by controlling the intensity. So, for example, you could turn the laser itself on and off to produce an optical signal, or place something like a MEMS device in front of the laser, like a shutter, and use it to
+
+<span class="paragraph-timestamp" data-ts="24:55">24:55</span> Turn it on and off. Turn it on and off. But when they tried that, it wasn't fast enough. Lasers are extremely complex from a physics standpoint, so the process of turning a laser off and on has physical limits. There's a limit to its speed. And, for example, if you use something like a shutter, the shutter has to block the light and then physically move out of the way, so that motion also has a speed limit. So people thought that if controlling the intensity wasn't fast enough, they could leave the laser on and change its phase to encode the bits, which would be much faster. That's because when voltage is applied to a material, its refractive index changes extremely quickly— faster than a laser can turn off and on. We're now moving from gigabit to nearly terabit-scale data rates, and for bandwidth to reach the terabit range, it has to be extremely fast. At this point, changing the refractive index is practically the only method fast enough to keep up. At least for now.
+
+
+## The Mach-Zehnder Structure and Phase-Based Bit Encoding    *25:58*
+
+<span class="paragraph-timestamp" data-ts="26:02">26:02</span> **Chester Roh** Got it. And the medium carrying the data-bearing light is still what we think of as optical fiber, right?
+
+<span class="paragraph-timestamp" data-ts="26:12">26:12</span> **Junho Park** But it's hard to visualize how changing the phase encodes data, right? So let me briefly explain how it works. The laser stays on continuously. Its light is split into two paths. On one path, the light simply passes through unchanged. The other path has a modulator, a device that applies voltage to change the refractive index. So when voltage is applied there, only the light traveling along the upper path changes phase. The light traveling along the lower path doesn't change phase at all, because it isn't affected in any way. Then we use the constructive interference and destructive interference we learned about in high school. When a certain voltage is applied, the phase shifts by 180 degrees, so when the two beams meet, they cancel each other out. The output intensity then becomes zero— the light intensity, that is. Now suppose we apply a voltage here that produces a 360-degree shift, or apply no voltage at all. Then when the two beams meet, they combine again, making the intensity one. That's how the electrical signal becomes a change in refractive index, with the applied voltage producing a phase shift, and the phase-shifted arm recombining with the unchanged arm. It's converted into a change in intensity, which is how the bits are embedded. So even today, almost all modulators use this kind of scheme.
+
+<span class="paragraph-timestamp" data-ts="27:41">27:41</span> **Chester Roh** You were describing a single channel, and we should think of a large number of channels being transmitted simultaneously over a single medium, right?
+
+<span class="paragraph-timestamp" data-ts="27:47">27:47</span> **Junho Park** That's called multiplexing and demultiplexing, and that's really where the strength of photonics comes from.
+
+<span class="paragraph-timestamp" data-ts="27:50">27:50</span> **Chester Roh** Shall we keep going, then?
+
+
+## The Challenges of Silicon Lasers and Heterogeneous Integration    *27:52*
+
+<span class="paragraph-timestamp" data-ts="27:56">27:56</span> **Junho Park** But one key challenge in silicon photonics is that, as I showed earlier, the laser has to stay on at all times. So the laser has to be somewhere on the chip. But the biggest problem with silicon is that it's extremely difficult to make a laser from it. From a physics standpoint, silicon has what's called an indirect band gap, so it isn't a good medium for generating light. So if you want to make a laser on the chip, you have to attach a different semiconductor to it. For example, suppose you have a wafer with this silicon photonic die. You would make the laser, for example, from InP and attach it on top of the silicon die.
+
+<span class="paragraph-timestamp" data-ts="28:38">28:38</span> That's called III-V integration, and it's one reason silicon photonics fabrication is so difficult and yields are so low. That's because every CMOS process is highly optimized for silicon. So it would be great if we could make lasers from silicon, of course, but because we can't make efficient silicon lasers, we have to make the laser on another platform and attach it to the silicon. But making this laser and bonding it is extremely difficult, so companies like SK hynix, Samsung, and Lumentum are conducting extensive research into how to attach these lasers efficiently and with high yields. That's my understanding, at least.
+
+<span class="paragraph-timestamp" data-ts="29:26">29:26</span> **Chester Roh** Is that also made through lithography and built up layer by layer like this? Or is that module made somewhere else and placed on top during the lithography process?
+
+<span class="paragraph-timestamp" data-ts="29:38">29:38</span> **Junho Park** It has to be placed on top. It would be easier if you could build it up during silicon lithography. Relatively speaking, anyway. But you actually have to bond it at the atomic level. You have to bond this laser onto the silicon— On top of it? But bonding it at the atomic level is extremely difficult, so yields drop significantly at that stage.
+
+<span class="paragraph-timestamp" data-ts="30:03">30:03</span> **Chester Roh** Conventional semiconductor fabrication involves building things up one layer at a time like this. Is there a separate process where you bring in something made elsewhere and attach it? Or is this the first time that's been done?
+
+<span class="paragraph-timestamp" data-ts="30:14">30:14</span> **Junho Park** There is. In the industry, it's called heterogeneous integration, and it's called heterogeneous because you're attaching two completely different dies. That's why it's called heterogeneous integration, and pluggable optics also contain lasers. So lasers for pluggable optics sometimes use heterogeneous bonding as well, and as far as I know, today's co-packaged chips, including CPU chips, all use heterogeneous integration. That's because silicon can't readily emit light. It's extremely difficult. When you compare an InP laser with a silicon laser, there's roughly a 100- to 1,000-fold difference in efficiency, so attaching an InP laser is considered far more efficient.
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> As far as I know, my advisor did a lot of research on heterogeneous integration during his postdoc, and patented the technology with UC Santa Barbara before selling it to Intel. I understand Intel still uses my advisor's patent to make its own CPO chips. But I remember that being around 2006 or 2007, so heterogeneous integration itself has been around for 20 to 30 years, but you could say it's receiving a lot of attention now.
+
+<span class="paragraph-timestamp" data-ts="31:36">31:36</span> **Chester Roh** With option B, of course, you could make it externally and insert it, and that would work. But intuitively, making it externally and inserting it takes up more space and prevents integration
+
+<span class="paragraph-timestamp" data-ts="31:46">31:46</span> **Jinwon Lee** with the chip. Since you asked, though, let me add a little more to the answer. Vertically stacking dies like this has recently become common even outside silicon photonics. That's because dies and chips keep getting larger, while what we generally call I/O— the signals going out— can only pass through the edges. But area grows in two dimensions, while the perimeter grows in only one, so as the area increases, the ratio of perimeter to area decreases. That leaves less space for moving data, so you stack things vertically. That's why you get things like 3D ICs, with TSVs running through the silicon to send signals vertically. That's a somewhat similar concept. I mean vertically stacking multiple dies, like this. That approach is now widely used even outside optics. Those technologies are still in their early stages too.
+
+<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **Chester Roh** This field is fascinating. I've read all sorts of books about it, and people have attempted and pulled off engineering feats that seem impossibly magical. If it weren't for AI, I probably wouldn't even have cared what was happening in the chip industry, I think. But because of AI, we now have to understand everything from power plants to data centers, then chips, and even things like memory capacity and bandwidth. Only by understanding all of that can we get a rough sense of where the world is headed. In a way, it's fascinating, but it does make my head hurt. The boundaries between these layers aren't clearly defined, and everything seems deeply intertwined. Even in your case, Jinwon, to build this chip, you need to understand everything from running models in PyTorch at the top all the way down to electrical engineering at the bottom. All right, shall we move on?
+
+
+## The Advantages of WDM Multiplexing for Transmitting Overlapping Wavelengths    *33:39*
+
+<span class="paragraph-timestamp" data-ts="33:43">33:43</span> **Junho Park** So, going back to what you asked earlier, in photonics, even a single waveguide or fiber can carry different information on light at different frequencies through multiplexing and demultiplexing, as I mentioned earlier. That is precisely the main reason to use photonics. With electrical wiring like copper, if you want to transmit four different streams of information, you need four separate copper channels. But with photonics, even a single path can use different frequencies to encode different information on each one. You send light at different frequencies down a single path, and then a demux separates the different frequencies of light so you can process the signals here. So electrical wiring requires more physical channels, but with light, even a single path can carry multiple wavelengths, each encoded with different information, dramatically increasing the number of channels.
+
+<span class="paragraph-timestamp" data-ts="34:57">34:57</span> Earlier, Jinwon mentioned that area grows quadratically in 2D, while the edge grows only linearly. With this kind of multiplexing, what's known as shoreline density improves dramatically. That's because with copper wiring along the edge, increasing the channel count means fitting more channels along the edge— going from four to ten, and then to sixteen. But with CPO or optical I/O, you don't necessarily have to do that. Even with only one or two physical channels, you can simply carry multiple frequencies on them. Of course, it depends on the performance of the demux— specifically, how well it can separate very closely spaced frequencies. Even so, the shoreline density is much higher than with copper wiring.
+
+<span class="paragraph-timestamp" data-ts="35:45">35:45</span> **Jinwon Lee** I have a question about that. Using different frequencies essentially means using different colors of light and transmitting them simultaneously, right? With copper, when we say we're transmitting zeros and ones digitally, we don't limit ourselves to just two signal levels. These days, we use four, six, or even eight levels. In other words, we add multiple levels between zero and one, allowing multiple bits to be transmitted simultaneously.
+
+<span class="paragraph-timestamp" data-ts="36:13">36:13</span> But when you do that, the signal inevitably becomes more vulnerable to the loss you mentioned earlier. The voltage levels sent over copper distinguish zeros from ones, but as you subdivide those levels, even slight noise can cause errors. But if you send multiple colors of light simultaneously, can factors like temperature cause the colors to change?
+
+<span class="paragraph-timestamp" data-ts="36:43">36:43</span> **Junho Park** Yes. That's why the most important thing in CPO is temperature control. Packaging is extremely important because how it's done determines how much components like muxes and demuxes are affected by temperature. This is therefore an active area of research at the packaging level. And if you divide the spectrum into very tightly spaced wavelengths at 0.3 nm intervals, even a one-degree increase in temperature can shift the wavelengths, causing bits of information to get mixed together. So that is indeed an issue.
+
+<span class="paragraph-timestamp" data-ts="37:20">37:20</span> Copper wiring can also implement concepts similar to muxing and demuxing, but the best thing about photonics is that mux and demux devices are passive. So they consume no energy. Multiplexing and demultiplexing light requires no applied voltage or other energy. With copper wiring, if you encode multiple streams of information, the receiver side has to process all of them. But with light, that isn't necessary.
+
+<span class="paragraph-timestamp" data-ts="37:54">37:54</span> **Taehan Kim** So device design comes down to how to make photonics more efficient and compact. That seems to be the key.
+
+
+## Photonics Integration Limits and Inverse Design    *38:02*
+
+<span class="paragraph-timestamp" data-ts="38:02">38:02</span> **Junho Park** Looking at devices like these, photonic chips are still on the centimeter scale. Building even one of these requires a centimeter-scale footprint, so integration is extremely difficult. With transistors, a single transistor is now made using a 1.5 nm or 1 nm process, but photonics operates on the millimeter or centimeter scale. The devices are simply too large, making them difficult to integrate. But the reason they're so difficult to integrate is Why does it have to reach the centimeter scale? If you think about it, light itself has wavelengths on the micrometer scale, so to confine light at that scale, the device itself can't be on the nanometer scale. That means all the components end up being made on the micrometer scale. Then, as you combine those micrometer-scale components, you reach the millimeter and eventually the centimeter scale.
+
+<span class="paragraph-timestamp" data-ts="39:00">39:00</span> **Chester Roh** But there's still the advantage you mentioned earlier. Can't you fit in much more information?
+
+<span class="paragraph-timestamp" data-ts="39:05">39:05</span> **Junho Park** To explain why we need greater integration, naturally, the more components you integrate, the higher the bandwidth becomes. Photonics is really no different. Greater integration means more components and, naturally, higher bandwidth. That's because you have more lanes. So, as I mentioned earlier, there are a few key components.
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> Multiplexers and demultiplexers are extremely important.
+
+<span class="paragraph-timestamp" data-ts="39:29">39:29</span> Another important component is a power splitter. Rather than separating frequencies, it divides optical power, so the concept is similar. One separates frequencies, and the other divides optical power. These are the two key components.
+
+<span class="paragraph-timestamp" data-ts="39:45">39:45</span> **Taehan Kim** So I think this is where things get really important. This wasn't my field either, and I didn't know much about photonics. In the early hours one day last October, I was talking with Junho, and at the time, the biotech field was seeing a very similar trend. People there were also talking about things like Moore's law, and as per-sequence sequencing costs fell, vast amounts of data accumulated. Then, two years ago, David Baker, Hassabis, and Jumper won the Nobel Prize in Chemistry, drawing a lot of attention. Looking at this design, what struck me was that it looked like a fish skeleton. The design is highly unintuitive. So my first thought was: since it's unintuitive anyway, and already beyond what humans could design, but we needed to make it smaller, maybe we could apply deep learning.
+
+<span class="paragraph-timestamp" data-ts="40:38">40:38</span> **Junho Park** To give you some context, Earlier— I mentioned that the components are enormous. So— Conventional— If you look at conventional component sizes, a single mux or demux is on the millimeter scale, and even a power splitter is measured in micrometers, but it's something like 2,000 μm. So that's also on the millimeter scale. But there's an optimization technique called inverse design. With inverse design, you can reduce the size of devices like muxes and power splitters to what you see here: just 2 μm to 5 μm, on the micrometer scale. That's how small they can get. So you can shrink them by a factor of 50, 100, or even 1,000.
+
+<span class="paragraph-timestamp" data-ts="41:15">41:15</span> But the problem is, as Taehan mentioned earlier, the resulting designs are highly unintuitive. That's because they're generated by an optimization algorithm and essentially left to the laws of physics. You're asking the optimization algorithm how to separate frequencies as efficiently as possible, so it doesn't produce the kind of intuitive design a person would envision.
+
+<span class="paragraph-timestamp" data-ts="41:36">41:36</span> **Chester Roh** Shouldn't you briefly explain what inverse design is so we can understand what comes next?
+
+
+## Gradient Descent-Based Optimization of Optical Structures    *41:42*
+
+<span class="paragraph-timestamp" data-ts="41:46">41:46</span> **Junho Park** To explain conventional device design, a person first comes up with a fairly intuitive geometry, runs a simulation to evaluate the device's performance, then reviews the results and tweaks the design to improve its performance. So it was a simulation loop based on human intuition. With inverse design, we first define the specifications we want for the device and leave the rest to an algorithm. We tell it we want a device with a certain function, such as separating frequencies in a particular way, and feed those requirements into the algorithm. Then it generates the geometry.
+
+<span class="paragraph-timestamp" data-ts="42:33">42:33</span> **Jinwon Lee** For example, is it like solving dog-versus-cat classification with deep learning, where you start with the result and work backward to identify the features that best distinguish the two? Is that a fair comparison?
+
+<span class="paragraph-timestamp" data-ts="42:46">42:46</span> **Junho Park** Really, you can think of it as gradient descent. You have a desired objective, right? The function you want the device to perform can be quantified. In photonics, you define an objective for that metric and perform gradient descent on that objective. So really, it's just gradient descent.
+
+<span class="paragraph-timestamp" data-ts="43:09">43:09</span> **Chester Roh** Then that physical geometry is effectively what gets optimized, and it serves as the model. You set performance as the objective function, and although we don't know exactly how it gets there, the optimization produces this result. So you used that kind of inverse approach to solve it as an optimization problem. And as a result, problems previously solvable only at the millimeter scale could suddenly be solved at the micrometer scale as well. Is that what you're showing in this figure? Behind that physical device that separates the colors, with holes punched all through it— is that the actual geometry?
+
+<span class="paragraph-timestamp" data-ts="43:51">43:51</span> **Junho Park** Those really are holes. They’re like air holes in a silicon slab. Like air holes.
+
+<span class="paragraph-timestamp" data-ts="43:56">43:56</span> **Chester Roh** And with that design, the colors get demuxed like this. So this image shows that happening at the micrometer scale. We’ve skipped a lot of the context, but when we let a machine create that design instead of a person, it achieved the same thing in a much smaller footprint.
+
+<span class="paragraph-timestamp" data-ts="44:15">44:15</span> **Taehan Kim** So if a position is filled with silicon, it’s 1, and if it’s empty, it’s 0—a very simple structure.
+
+<span class="paragraph-timestamp" data-ts="44:22">44:22</span> **Junho Park** The result is a highly unintuitive design. The key is that it produces a design that’s difficult to fabricate.
+
+
+## Inverse Design Limits and the Protein Design Feedback Loop    *44:26*
+
+<span class="paragraph-timestamp" data-ts="44:26">44:26</span> **Junho Park** So although we get a compact device, we make a lot of sacrifices. First, we need to impose design constraints, and in terms of manufacturability, as you mentioned earlier, there are all these holes throughout the structure. When the design is actually fabricated, there’s no guarantee those holes will come out exactly as designed. There’s also the optimization cost: even after running the simulation, if the final result is wrong, you have to start over from the beginning. And even if we start from a particular point and arrive at a final design, there’s no guarantee that final design is the optimal one.
+
+<span class="paragraph-timestamp" data-ts="45:06">45:06</span> So there are a variety of issues like these. At the time, I was working in AI drug discovery, researching proteins and new drug development. When I heard about this problem, I thought the two problems were very similar. The scientists who won the Nobel Prize in 2024— if we go to the next slide— were tackling a very similar problem.
+
+<span class="paragraph-timestamp" data-ts="45:25">45:25</span> Protein structures are also extremely complex. You have various atoms, such as carbon, hydrogen, and oxygen, at molecular and angstrom scales. So how did people design something this complex before? The process was very similar. Scientists would examine existing proteins, look at them under microscopes and other instruments, apply thermodynamics, and run simulations repeatedly. Then they would make small changes and examine them again. They kept repeating this highly repetitive process.
+
+<span class="paragraph-timestamp" data-ts="45:56">45:56</span> In protein design, what these scientists did was create a scaffold. A protein has a basic structural and chemical scaffold. They would build that scaffold and then, for example, identify the critical region where an antibody interacts with an antigen or a virus, and modify only that region. They refined just that region. Similarly, in photonics, could we create a scaffold and use simulations to refine only the important parts of that scaffold? Then, when we get the output,
+
+<span class="paragraph-timestamp" data-ts="46:29">46:29</span> some designs will be good and others bad. Could we feed that information back into the loop, so the optimization effort we previously called wasted could instead be used as feedback and fed back into the loop? That was the idea. In protein design, we can specify the protein structure we want or a protein with the function we want, and then design and even generate a scaffold for it. We can create it entirely from scratch if we want. Then we fill in that scaffold, design the sequence, and finally get feedback on whether it was successfully completed—that’s the protein workflow. I thought photonics could work the same way.
+
+<span class="paragraph-timestamp" data-ts="47:06">47:06</span> We have the target function we want, as mentioned earlier. Then we create and screen scaffolds to select the candidates we want. Next, we move to fabrication, conduct wet-lab work, and use the resulting data as feedback. I thought we could build this entire pipeline. So when I was trying to persuade Junho’s professor at the time, we wanted access to the cleanroom. Our model simulations were working well, but when we wanted to test it for real, here’s how I persuaded him: I rendered a protein structure and showed it to him.
+
+<span class="paragraph-timestamp" data-ts="47:35">47:35</span> It must have contained hundreds of thousands of molecules. It showed an extremely dense arrangement of atoms. So I told him, “If deep learning can handle proteins, then this 2D substrate or this design may look complex, but it seems simpler than a protein. So I don’t think there’s any reason it can’t work. If it works for proteins, there’s no way this can’t work.” Once I showed him that image while making my case, he immediately said we could use the lab, so we were able to take it all the way to wet-lab testing.
+
+<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **Chester Roh** Before we move on, I have a quick question. We’ve been discussing the background of photonics, and then shifted to the research the two of you focus on. Since we’ve moved ahead without clearly defining the problem, there may be some gaps in the audience’s understanding. So my question is whether the problem you wanted to solve, given the current limitations of photonics that you’ve been explaining, was how to shrink these millimeter-scale processes down to a scale small enough to integrate onto a chip. And as a narrower example of that problem, you used inverse design to tackle MUX and DEMUX and build something. Is that the core of the research you two are doing?
+
+
+## Stagnation in Photonics Integration Density and the Definition of the Research Problem    *48:52*
+
+<span class="paragraph-timestamp" data-ts="48:55">48:55</span> **Junho Park** I think this slide is important. The integration density of HPC chips such as GPUs and CPUs triples every one to two years, closely following Moore’s law, but photonics does not. And I think the reason it doesn’t is that it has not been able to overcome the physical limits on integration. As we showed earlier, we believe these circuits start out on the centimeter or millimeter scale, so to solve this integration density problem, an optimization technique called inverse design is absolutely essential.
+
+<span class="paragraph-timestamp" data-ts="49:33">49:33</span> So, to increase integration density, we began studying inverse design and found that it, too, had the various issues we showed earlier: manufacturability, yield, optimization cost, and potentially failing to produce the optimal design. So we decided to tackle these problems.
+
+<span class="paragraph-timestamp" data-ts="49:59">49:59</span> **Jinwon Lee** When you talk about increasing integration density, what improvements does that bring? Of the things you mentioned earlier, what improves, what gets smaller, and what becomes possible that wasn't possible before?
+
+<span class="paragraph-timestamp" data-ts="50:12">50:12</span> **Junho Park** As we mentioned earlier, shoreline density is extremely important. Just as with copper wires, if you can integrate more devices into the same wafer area, photonics enables multiplexing and demultiplexing, so even without very high shoreline density, it can provide far greater bandwidth than copper wires. Still, the higher the density, the more photonics benefits. The more channels photonics has, the less tightly the frequencies need to be packed. So increasing the number of channels inevitably benefits photonics as well.
+
+<span class="paragraph-timestamp" data-ts="50:54">50:54</span> For example, suppose a DEMUX using conventional methods has to be fabricated on the millimeter scale, and its shoreline density is limited to just four DEMUX channels per millimeter. In that case, if inverse design can shrink it to the 2- or 3-micron scale, you could increase the shoreline density from just four lanes to around 200.
+
+<span class="paragraph-timestamp" data-ts="51:18">51:18</span> **Jinwon Lee** So ultimately, on the same chip, so to speak, you could transmit signals at much higher bandwidth—or at the same bandwidth, with much higher quality and far less loss, right?
+
+<span class="paragraph-timestamp" data-ts="51:31">51:31</span> **Junho Park** Right. In theory, yes.
+
+<span class="paragraph-timestamp" data-ts="51:38">51:38</span> **Chester Roh** But in optics, unlike in electronics, where you design a chip and add logic—the kind of engineering we can readily imagine— you have to implement that functionality as a physical structure. Finding that structure is the focus of your research, and the result is a structure that can deliver much higher bandwidth along the same shoreline— a structure riddled with holes that looks incomprehensible to the human eye. That's how I understand your research.
+
+<span class="paragraph-timestamp" data-ts="52:08">52:08</span> Taehan, let's go back to briefly— the protein discussion from earlier.
+
+
+## Inefficiencies in Existing Inverse Design Pipelines    *52:13*
+
+<span class="paragraph-timestamp" data-ts="52:13">52:13</span> **Chester Roh** So the problem I mentioned earlier is this: there's a conventional inverse design workflow. You want to design a tiny device riddled with the holes we discussed earlier, starting from random noise or a midpoint, and then design it through simulation. In the pipelines I've seen, you might use simulation to generate, say, ten candidates, then fabricate and test them. If eight perform poorly and only two perform well, you discard those eight entirely without any post hoc analysis and keep only the two. In other words, after obtaining both good and bad designs, they don't reuse the information from either group. Put another way, after running all those simulations, if the final design turns out to be poor, all that work goes to waste. That's because we keep only the good designs.
+
+<span class="paragraph-timestamp" data-ts="53:09">53:09</span> But I thought that if we continued this way, progress in this field would take a very long time. We need a feedback loop. As I see it, there's a saying in computing: scale enough, and the problem eventually gets solved. The strength of photonics is that it's verifiable. You have simulations, and with them, you can verify whether a device works well. So I wondered, why not put that into a feedback loop? Inspired by the protein work I mentioned earlier, I thought that if we combined the two, instead of wasting information about good and bad designs or discarding designs because they're bad, we could label them as good or bad, feed them into a feedback loop, and give that information to the model. I thought something interesting might happen.
+
+<span class="paragraph-timestamp" data-ts="53:53">53:53</span> What you see at the top is the conventional pipeline: if eight of the ten designs are poor, the current pipeline discards them. In the pipeline we created, we select the good designs and train the model on their distribution, then, just as we extracted a protein backbone, we extract a photonics backbone. So instead of starting from random noise or a midpoint, we use a structural template learned from excellent designs. Think of baking cookies: you first make the cookie cutter, then run the simulation within that template. Wouldn't that improve the results? Our hypothesis was that this would produce designs much faster while also making them more manufacturable. So what you're seeing here is the pipeline at the bottom.
+
+
+## cVAE Skeleton Generation for Learning Good Design Distributions    *54:03*
+
+<span class="paragraph-timestamp" data-ts="54:40">54:40</span> **Junho Park** But there's one more thing I'd like to add: with the proteins Taehan works on, To verify it, you need to work with the actual protein in a wet lab: synthesize it and test it. But with photonics, the simulation tools are extremely accurate. If you properly set the conditions in a Maxwell’s equations solver, the results closely match the performance of the fabricated device. Assuming it’s fabricated properly. That’s why we think it can serve as a verifier. That’s our thinking. Even without doing the actual fabrication ourselves.
+
+<span class="paragraph-timestamp" data-ts="55:15">55:15</span> **Chester Roh** Or it may be enough to sample and test just a few of them. In our field, we call that intermediate component an RL environment— an environment that generates reward signals. The simulator used as that environment is highly reliable and almost perfectly accurate. So I understand that this can readily run the same virtuous loop that powers today’s LLMs.
+
+<span class="paragraph-timestamp" data-ts="55:43">55:43</span> What appealed to me here was that in biotech, even after designing a protein, you still have to run clinical trials, if possible, and if you want to turn it into an actual drug, the pipeline takes a very long time. But here, the gap between design, simulation, and actual fabrication is very small. So iteration and data collection are much faster, which made me wonder why they still weren’t using a big-data-driven approach. As you can see, the model we used is called a conditional variational autoencoder. Put simply, it learns a distribution. When we feed it a vast amount of high-quality photonics data, it learns the distribution of that data. So the design you see on the left represents the various photonics specifications we provide. Suppose we specify wavelengths or other design parameters, such as wavelengths 1 and 2, and have design data that matches those specifications. We train the model on it to learn the distribution. That’s what the green and red peaks represent. We trained that compact distribution on the photonics data.
+
+<span class="paragraph-timestamp" data-ts="56:53">56:53</span> But once the model has been trained, we can randomly sample new designs from that distribution. Previously, creating one of those designs required running simulations for hours on end. Now, in theory, we can generate ten thousand designs in a single second. Or rather, the templates. So what used to take weeks can now yield ten thousand designs in one second the moment we run the model. At least— The templates. So that cut the time dramatically. But speed isn’t the only benefit. Because we trained it exclusively on good designs, it produces highly fabrication-friendly designs. That’s because we trained it primarily on that kind of data from the outset. So we thought it could alleviate not only the speed issue but also some of the bottlenecks in fabrication.
+
+
+## Improving Manufacturability and Defining Metrics    *57:55*
+
+<span class="paragraph-timestamp" data-ts="57:55">57:55</span> **Chester Roh** As you can see, when we used this model-generated framework— this cVAE seed—as the starting point, it converged on a finished design much faster. That was because we trained it only on good designs and provided a solid template as the starting point. That’s what we meant by faster convergence. And looking at the manufacturability aspect we mentioned earlier, Figure A shows one design on top and another on the bottom. Of course, we need to do more testing, but from what we can see, the design on top is much more fabrication-friendly. That’s because the design below has islands and regions with holes scattered all over, which makes it highly prone to fabrication errors. By contrast, designs generated by our model already account for all of this, so they come out clean and elegant, like the design shown above.
+
+<span class="paragraph-timestamp" data-ts="58:25">58:25</span> **Jinwon Lee** Could fabrication-related factors like these also be scored in a verifiable way? Even if it can’t perfectly verify what you just described, it seems like it could substantially increase the likelihood of success.
+
+<span class="paragraph-timestamp" data-ts="58:40">58:40</span> **Junho Park** Actually, we do have something labeled “manufacturability index” here. In our research, we looked at device performance— that is, the figure of merit—and its correlation with manufacturability. So we generated samples with our cVAE, then generated and evaluated the devices. The figure of merit obviously needed to be high, but manufacturability also needed to be high. We wanted to see how that would turn out. Compared with devices that started from random noise or other initial conditions, both manufacturability and the figure of merit were higher. But this manufacturability index was something we defined ourselves. Specifically, we defined it as the square root of A divided by P. That was our definition.
+
+<span class="paragraph-timestamp" data-ts="59:27">59:27</span> A is the silicon area, while P is the perimeter of the silicon islands and chunks. Because it’s the square root of A divided by P, the more fragments there are, the larger P becomes. More islands mean a greater total perimeter. That means manufacturability decreases. Based on that relationship, we used the square root of A divided by P as a manufacturability index that we defined ourselves.
+
+
+## Photonics Fabrication Processes and Yield Bottlenecks    *1:00:04*
+
+<span class="paragraph-timestamp" data-ts="1:00:04">1:00:04</span> **Chester Roh** As for the wet-lab manufacturing process— To help us understand, could you explain? At the micrometer scale, you end up with some kind of object, right? That object looks like a kind of crystal to me. How do you make it?
+
+<span class="paragraph-timestamp" data-ts="1:00:22">1:00:22</span> **Junho Park** It’s more accurate to think of it as carving material away rather than building it up. That’s how silicon photonics works. For example, you start with a silicon wafer, with a silicon oxide layer on top. You create this kind of silicon structure— the device structure—on that oxide layer. First, you deposit silicon on it. Then there’s something called EBL. It writes the silicon mask onto the surface. On the deposited silicon, it draws the device mask. Once the device mask has been drawn, you leave that part and etch away everything else. That’s basically how it works. It’s a top-down approach.
+
+<span class="paragraph-timestamp" data-ts="1:01:11">1:01:11</span> **Chester Roh** But this is also a three-dimensional structure, and it looks somewhat layered. So, as in lithography, do you create those holes and build it up one layer at a time?
+
+<span class="paragraph-timestamp" data-ts="1:01:22">1:01:22</span> **Junho Park** It’s all done at once— All of it? It’s etched from the top.
+
+<span class="paragraph-timestamp" data-ts="1:01:28">1:01:28</span> In one step? Yes. It’s called etching. First, you deposit the silicon, and then deposit something called photoresist on top. You use EBL to pattern the photoresist. You have SiO2 with Si on top, like this, and the patterned areas are removed. Something like this. The PR remains like this. These areas then form the silicon device mask we want. Next, we etch it. That etches away the exposed silicon.
+
+<span class="paragraph-timestamp" data-ts="1:02:01">1:02:01</span> **Chester Roh** So it isn’t formed in a single two-dimensional process. I was wondering whether it was continuously built up in 3D or completed in just one layer. That’s why I asked. You keep repeating this process, which is how semiconductor circuits are built up. The circuitry, I mean. So—
+
+<span class="paragraph-timestamp" data-ts="1:02:22">1:02:22</span> **Junho Park** With a device like this, it’s all done at once. You don’t do this and then deposit another layer. It’s completed in a single pass, so it’s simpler than you might think.
+
+<span class="paragraph-timestamp" data-ts="1:02:33">1:02:33</span> **Chester Roh** So this has nothing to do with engineering from a digital-circuit perspective. It’s really like physically creating a piece of art on the surface.
+
+<span class="paragraph-timestamp" data-ts="1:02:43">1:02:43</span> **Taehan Kim** When Junwoo explained it to me, an example that helped me understand was dalgona candy, like in Squid Game— Something like that. You carve it out like that. But— If it’s a star, it’s hard to carve out with a needle or toothpick, but a square is much easier to cut out. That’s a good way to think about the process. With lots of star-like shapes, errors are more likely. You want to carve it so the design snaps cleanly free.
+
+<span class="paragraph-timestamp" data-ts="1:03:02">1:03:02</span> **Jinwon Lee** But when you create those patterns, you can’t keep making perfectly identical ones, so each will vary slightly, right?
+
+<span class="paragraph-timestamp" data-ts="1:03:10">1:03:10</span> **Junho Park** That’s actually the biggest bottleneck in silicon photonics. The tool we use in our lab at the University of Michigan is specified to pattern features as small as 20 nm. But if you actually try to pattern a 20 nm hole, it won’t come out as a perfect 20 nm circle. It may come out at 25 nm, or depending on the voltage, it might come out at 15 nm. Because of this, when you actually fabricate the design, it won’t be 100% identical to the original. So when these devices are actually fabricated, their shapes change slightly. As we saw earlier, those holes produce effects like destructive interference. So if those holes vary in size or shape by 30 or 50 nm, the device’s performance inevitably suffers. That’s actually the biggest problem.
+
+<span class="paragraph-timestamp" data-ts="1:04:15">1:04:15</span> **Chester Roh** Finding the correct design—the right design— and managing manufacturing yield may need to be treated as separate problems.
+
+<span class="paragraph-timestamp" data-ts="1:04:23">1:04:23</span> **Junho Park** I’ll say more about our research project, which tackles that issue— the yield side of it. So, as I mentioned earlier, when you try to fabricate this, it doesn’t come out as designed, and the device performance drops. But when a fabricated device underperforms, with a shape like this, you don’t even know where to start. You don’t know where to look or which parts matter, because you have no intuition about it at all. So if fabrication fails, your only option is to run the process again. That wastes a lot of resources. We wanted to find a way to solve that problem.
+
+<span class="paragraph-timestamp" data-ts="1:05:04">1:05:04</span> **Taehan Kim** Before we move on, photonics is important because it enables communication, and we want to make photonic devices smaller. Making them smaller led us to inverse design. But inverse design produces unintuitive results. And on top of that, the fabrication cycle takes a very long time. So, to address that cycle, a feedback loop like the one from protein research I mentioned earlier. We designed it using a cyclical approach. And the last point you summarized was that design and fabrication are separate issues.
+
+<span class="paragraph-timestamp" data-ts="1:05:38">1:05:38</span> Because even if you design something, the design may look beautiful, but problems can arise during fabrication. So fabrication presents its own challenges. A few months before I started this work, I was conducting cell research at a cancer research center. I gained a similar insight from that work. When doing the same kind of work with cells, you need to identify the important regions. You need to determine what and where to target, and one technique I heard about there was integrated gradients, shown on the next slide. Given this complex design, which locations are particularly important?
+
+
+## Identifying Process-Critical Regions with Integrated Gradients    *1:06:04*
+
+<span class="paragraph-timestamp" data-ts="1:06:11">1:06:11</span> **Taehan Kim** As you can see, these red dots mark regions that, during fabrication, must be handled with the utmost care to ensure they are fabricated accurately. While we can't perfectly etch every part of every design, knowing that certain parts must be etched very precisely to maintain performance can provide valuable insight during fabrication. Mathematically, one way to obtain this information is to damage or perturb a region in the simulation and track how much the resulting metric changes. If we keep tracking and aggregating those changes, that's how those red dots emerge.
+
+<span class="paragraph-timestamp" data-ts="1:06:54">1:06:54</span> Those points mark regions with a major impact on the final FOM or metric, so the insight is that those areas require special attention during fabrication. By combining these two pipelines, we can rapidly iterate through design cycles and reliably produce clean designs. But that's not all. Before sending both an existing completed design and a newly created design to fabrication, if both come with insights about which regions require special attention, we thought the fabrication process could become faster and more reliable. That's why we pursued both research directions simultaneously.
+
+<span class="paragraph-timestamp" data-ts="1:07:32">1:07:32</span> **Chester Roh** To me, these naturally have to go hand in hand. From a deep learning perspective, there are always two questions: how to train and how to evaluate. Let's move on, then wrap up with a final question and some Q&A.
+
+
+## Hotspot Validation and the Potential for QC Efficiency Gains    *1:07:50*
+
+<span class="paragraph-timestamp" data-ts="1:07:50">1:07:50</span> **Junho Park** This is something we actually fabricated at the University of Michigan fab— a demux. When we used IG to identify the important pixels and overlaid them on an electron microscopy image of the fabricated device, these hotspots emerged. These regions play a crucial role in separating the frequencies. Another thing we did was validate this experimentally. We applied perturbations to these hotspots and to unimportant areas to create control samples. We found that perturbing the important regions caused a much more pronounced drop in device performance. That's the key result.
+
+<span class="paragraph-timestamp" data-ts="1:08:43">1:08:43</span> This could make the fabrication process far more efficient. Companies like ASML and others scan an entire wafer during inspection. They check each device individually for defects. But if you have heuristics indicating the importance of particular pixels, you can target only the critical areas. By inspecting them carefully, you wouldn't need to scan the entire wafer to have some assurance that the device will perform well. So this can significantly improve efficiency during the QC stage.
+
+<span class="paragraph-timestamp" data-ts="1:09:20">1:09:20</span> **Taehan Kim** Everyone agrees that photonics is important. What we proposed was that, for it to scale quickly in the next stage and achieve reliable fabrication, we may need a data-driven feedback loop like the one used in protein research. To persuade others of that idea, we conducted the two studies I mentioned earlier. If this feedback loop works properly, we believe it could substantially shorten the time required to commercialize photonics fabrication. That is the direction of our research.
+
+<span class="paragraph-timestamp" data-ts="1:09:58">1:09:58</span> **Chester Roh** Is there competing research in the same field? As far as I know, in silicon photonics, there aren't that many researchers working in the field. Industry attention is still focused on electrical chip design and related areas. I do think this field is next, but only a handful of companies and very few professors and labs are working on it. I understand that both of you worked hard to graduate from Berkeley before moving on to Michigan and MIT. This may be an overly business-oriented question, but may I ask about the current competitive landscape?
+
+
+## Scarce Photonics Talent and Patenting AI/ML Research    *1:10:31*
+
+<span class="paragraph-timestamp" data-ts="1:10:35">1:10:35</span> **Junho Park** Speaking from an academic perspective, as I mentioned, companies' demand for silicon photonics talent is rising rapidly. But the number of labs specializing in silicon photonics is fewer than ten in Korea. As far as I know, there are at most about 30 in the US. Among those specializing in the field, almost none can handle fabrication in-house. And in silicon photonics, labs are applying AI and ML methods to As far as I know, almost no labs are developing design frameworks like this. It feels like we’re pioneering this kind of research as well.
+
+<span class="paragraph-timestamp" data-ts="1:11:23">1:11:23</span> **Chester Roh** But listening to everything you’ve just described, this isn’t something like ASML’s 2-nanometer process, and it seems like it could be commercialized relatively quickly. I imagine you’ve discussed commercialization ideas with your professor as well. Is that something you’re considering?
+
+<span class="paragraph-timestamp" data-ts="1:11:43">1:11:43</span> **Junho Park** In fact, research combining photonics with AI and ML is extremely rare. People in photonics don’t know AI and ML very well, while AI and ML researchers don’t understand photonics itself. So almost all the pioneering research we do involves patentable technology. Every time we write a paper, or create a new framework or methodology, we file patents for all of it through the University of Michigan.
+
+<span class="paragraph-timestamp" data-ts="1:12:17">1:12:17</span> **Chester Roh** So the research you two are doing— during ICML, I spoke with a lot of people working on AI for Science because I’ve been very interested in biology lately. As I jokingly mentioned in the previous episode, plenty of people work in biology, and obviously there are many areas where AI can contribute. But the field is locked into a rigid framework, similar to what Taehan pointed out earlier. They believe biological problems have always been approached and solved in certain ways, so they often build only within the domains they already know.
+
+<span class="paragraph-timestamp" data-ts="1:12:51">1:12:51</span> On the other hand, as Junho and Taehan are doing, people from conventional domains disparage those trying new approaches by calling them “scalists.” They see them as scale maximalists—and as dangerous. But these researchers take what they learned from LLMs and the kind of intuition developed through breakthroughs in reinforcement learning, and take a completely different approach.
+
+
+## Low-Hanging Fruit from Combining Domain Knowledge with AI    *1:13:18*
+
+<span class="paragraph-timestamp" data-ts="1:13:18">1:13:18</span> **Chester Roh** So what Taehan and Junho are describing also reflects this so-called scalist approach. I don’t think the cVAE you mentioned is an enormously large model. That’s exactly right. It can be done with a very lightweight model, and because you understand both the domain and AI, you can combine those two forms of intuition and identify things that domain specialists simply can’t see— what we would consider low-hanging fruit.
+
+<span class="paragraph-timestamp" data-ts="1:13:45">1:13:45</span> **Junho Park** Right. Exactly.
+
+<span class="paragraph-timestamp" data-ts="1:13:48">1:13:48</span> **Taehan Kim** When we first started this research, I asked Junho about it because, from an ML perspective, these models weren’t complicated at all. They used very straightforward modeling techniques. We didn’t use tens of thousands or even hundreds of GPUs. Just a few were enough to train the model, and I think training took only about 30 minutes to an hour. So when I wondered why no one had done this before, Junho’s professor was also an unusual case, as you said. He had spent decades in industry, so when I introduced him to ML, which he knew nothing about, he picked it up and studied it much faster than people my age. So I think we may have benefited from some good fortune there.
+
+<span class="paragraph-timestamp" data-ts="1:14:30">1:14:30</span> **Chester Roh** Right. We’re here now with Junho, Jinwon, and Taehan, discussing all of this, but there used to be a saying that developments in physics take 20 years to become commercial realities. That saying was common 10 or 15 years ago. But now that 20-year gap seems to be shrinking to four or five years. When a new development or discovery occurs in a lab, the time to commercialization seems to be shrinking dramatically. AI models appear to be one of the drivers accelerating that process, and I think you two will benefit greatly from it. Another point is that when you run the simulator, the Maxwell equation solver we discussed earlier gives you nearly perfect accuracy. From a scalist’s perspective, that essentially makes this a solved problem. Right. So it’s only a matter of time. You should quickly iterate toward commercialization, and I imagine you’ll start a company as well. When Junho first introduced this to me, I thought this bandwidth issue would inevitably become the next major problem, just as everyone is currently focused on power, with seemingly no limit to how much demand can grow. I believe this research will be indispensable to the field and become an essential industrial building block.
+
+<span class="paragraph-timestamp" data-ts="1:15:48">1:15:48</span> **Junho Park** Thank you. I originally hadn’t thought much about taking this direction, and I was working in conventional photonics myself. But during a phone call, we happened to start talking about inverse design. Then I showed Taehan this strange, Swiss cheese-like design, and he immediately got an idea from it. Once we found a way to combine it with proteins, it became a combination that really shouldn’t make sense: combining proteins with photonics. But somehow it worked, so we kept pursuing the research. It worked far better than we expected, which surprised us too.
+
+<span class="paragraph-timestamp" data-ts="1:16:38">1:16:38</span> **Chester Roh** You two have either just begun your PhDs or are about to begin them, and Taehan, you mentioned that you’ve been in this field for less than a year, right? Yet in such a short time, you seem to have built up your understanding of the domain remarkably quickly. And you two seem to be saying much the same thing about AI and ML methodologies. I kept feeling that only the terminology was different.
+
+<span class="paragraph-timestamp" data-ts="1:17:06">1:17:06</span> In such a short time, you recognized the problem in this domain and thought, “This is a huge problem.” Then, “I need to learn about it,” and finally, you took action. How did you shorten that process?
+
+
+## Problem Definition and the Power of Collaboration in Exploring Unfamiliar Fields    *1:17:19*
+
+<span class="paragraph-timestamp" data-ts="1:17:22">1:17:22</span> **Taehan Kim** I had only ever done AI research, and now I work in bio. But when applying AI to science, the domain may differ, and of course domain knowledge is needed, but I think the pipeline is the same. So this problem isn’t limited to this field. For example, I once had an interesting experience developing a pesticide. I’ve also built a model for a new pesticide— you have, and its pipeline was similar, too. That’s where I drew all my inspiration from. Once you explore one field deeply, I think you can apply its pipeline to other areas.
+
+<span class="paragraph-timestamp" data-ts="1:17:47">1:17:47</span> Second, I still don’t know enough about photonics, so I’m continuing to study it. Even after I go to MIT, I’ll probably continue with other research as well, because my primary research area is bio. I’ve learned that I need to collaborate with experts. Whenever it comes to photonics, I ask Junho about everything. So instead of thinking I can do everything alone, I think collaborating, sharing insights, and exchanging ideas quickly makes things move much faster. I think those are the two key things.
+
+<span class="paragraph-timestamp" data-ts="1:18:24">1:18:24</span> **Junho Park** From a photonics perspective, I enjoy picking up bits of knowledge from different places. Even as an undergraduate researcher, I worked in the UC Berkeley cleanroom and did a lot of fabrication. During my first semester at Michigan, I also did fabrication in the cleanroom. As I talked with people doing that kind of work, I realized that in photonics, especially silicon photonics, fabrication is absolutely critical. So when you talk to people in the industry, some kind of problem is bound to surface. No field is perfect. And among those problems, the same fabrication issues kept coming up, always around the same theme. So,
+
+<span class="paragraph-timestamp" data-ts="1:19:01">1:19:01</span> while I was working on inverse design, everyone kept saying the fabrication quality was very poor and yields were low. That made me wonder whether there was any way to improve those yields. While thinking about that, I called Taehan, and he said there was a similar problem with proteins— a problem that isn’t intuitive— and suggested we find a way to apply that insight here. That’s really how we started. First, talking with people in the field— in my case, naturally, my labmates— as much as possible seems to be the best way to identify the most important problem in the field. And building the connections and intuition for applying frameworks from other fields to the problem is also extremely important.
+
+<span class="paragraph-timestamp" data-ts="1:19:57">1:19:57</span> **Chester Roh** Listening to both of you, it seems that rather than diving deeply into a single discipline, you need broad knowledge across many fields. And within that broad range, instead of going deep in only one area, you need a certain level of depth in three or four, or perhaps four or five areas. When those areas combine effectively with AI and machine learning methods, problems often seem to suddenly fall into place. That’s something I’ve also been noticing a lot lately. Jinwon, do you have any final questions or thoughts?
+
+
+## Prospects for Photonics Industry Applications and the Expansion of AI Methodologies    *1:20:30*
+
+<span class="paragraph-timestamp" data-ts="1:20:30">1:20:30</span> **Jinwon Lee** This is actually a very hot topic in my field. As we discussed at the beginning, in the future— right now, the rule of thumb is copper for short distances and optics for distances beyond a few meters. That has become the standard, but optics is moving into shorter and shorter distances. So I expected to hear a lot about that, but as the discussion went on, you covered methods I encountered when I was seriously studying deep learning, such as cVAE, which I had seen quite often. Integrated Gradients was also one of the methods we often used to improve interpretability. As Taehan said, those methods were actually used in bio, and it was fascinating to see the process of applying them to silicon photonics. I also think you picked a great topic. Once again, it reminded me that AI is an extremely useful tool that can be applied across fields. Back then, we also did a lot of work to improve interpretability. So if you try combining those methods with many other approaches, I think even more interesting possibilities could emerge. I really enjoyed the discussion.
+
+
+## Agent-Based Optical Circuit Design and Future Research Directions    *1:21:52*
+
+<span class="paragraph-timestamp" data-ts="1:21:52">1:21:52</span> **Junho Park** So far, we’ve used methods like Integrated Gradients and cVAE as tools, but lately, Taehan and I have been considering using agents to design what are called photonic integrated circuits. We’re also considering having an agent design the circuit itself. Since agents are such a major topic these days, instead of designing according to human intuition, what if we simply left it to an agent to design photonic circuits? We could give the agent the frameworks we developed, such as Integrated Gradients and cVAE, as tools, and tell it, “Use these tools and try designing an optical circuit yourself.” would also be fascinating, so I’ve also been looking into agents lately.
+
+<span class="paragraph-timestamp" data-ts="1:22:45">1:22:45</span> **Chester Roh** To broaden that point a little, these days, every problem in the world seems to be shifting toward discovering unknown unknowns we haven’t explored yet not by inventing something, but simply by applying compute and searching. That seems to be the basic methodology for solving every problem. People who have that framework in place seem to produce results very quickly. And just as you chose problems like photonics, rather than leaving everything to the model from scratch, for a given domain, you need to clearly establish the overall direction, insight, and purpose for the search to succeed. We sometimes call that purpose intention, sometimes willpower, and sometimes taste. It’s the person who decides where to go and guides the direction, while AI does the work. When those are combined, as in S1 or o1, I think that is becoming the new methodology for research, product development, and services. That’s my impression.
+
+<span class="paragraph-timestamp" data-ts="1:24:01">1:24:01</span> What both of you shared was also a great example that aligned perfectly with the framework we had in mind, so I learned a lot.
+
+<span class="paragraph-timestamp" data-ts="1:24:09">1:24:09</span> **Taehan Kim** I think that was a really great point. I also do AI research, and one question I’ve wrestled with is: AI is already so good at coding, and it’s becoming far better at math than I am, so what is my role? I wondered whether I’d still have a job in five years. That makes the domain knowledge you mentioned earlier and problem definition all the more important—humans are still very good at them. And if we use AI as a tool, I think we can go even further in those areas, so I’ve been working hard to become that kind of person.
+
+
+## Closing and a Request to Share with the Community    *1:24:33*
+
+<span class="paragraph-timestamp" data-ts="1:24:36">1:24:36</span> **Chester Roh** We’ve covered a lot today. Please continue to keep us updated on your progress. And since you’re both Korean, I hope you’ll share this kind of cutting-edge knowledge widely with our community here in Korea. Thank you. We’ll wrap up here for today.
+
+<span class="paragraph-timestamp" data-ts="1:24:48">1:24:48</span> **Taehan Kim** Thank you.
+
+<span class="paragraph-timestamp" data-ts="1:24:48">1:24:48</span> **Jinwon Lee** Thank you.
