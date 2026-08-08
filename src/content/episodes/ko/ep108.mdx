@@ -72,15 +72,16 @@ lang: "ko"
 alternateSlug: null
 series: "main"
 ---
-
 ## 실리콘 포토닉스와 AI 인프라 병목을 여는 오프닝    *00:00*
+
 <span class="paragraph-timestamp" data-ts="00:00">00:00</span> **노정석** 녹화를 하고 있는 오늘은 2026년 7월 26일 일요일 아침입니다. ICML Week 기간 동안 제가 굉장히 흥미로운 연구자분 두 분을 만나게 돼서 그 내용을 한번 소개하면 좋겠다 싶어서 오늘 에피소드에 모셨습니다. 미시간 대학교에서 박사 과정을 하고 계시는 박준우 님, 그리고 MIT에서 박사 과정을 하고 계시는 김태환 님, 그리고 저희 방송에 항상 나오시는 게스트분이시죠. HyperAccel의 이진원 CTO님, 이렇게 모시고 오늘 세션을 진행해 보도록 하겠습니다.
 
-<span class="paragraph-timestamp" data-ts="00:34">00:34</span> 저희가 지난 에피소드 96에서도 inference token economics와 관련한 이야기를 좀 했었고, 토큰 관련 얘기를 하면서 현재 AI IDC가 크게 compute-bound와 memory-bound, 이 두 가지 병목으로 인해 성능에 제약을 받는다는 말씀을 드렸고, 곧 이진원 CTO님과 함께 token dynamics도 더 깊게 한번 파볼 생각입니다.
+<span class="paragraph-timestamp" data-ts="00:31">00:31</span> 저희가 지난 에피소드 96에서도 inference token economics와 관련한 이야기를 좀 했었고, 토큰 관련 얘기를 하면서 현재 AI IDC가 크게 compute-bound와 memory-bound, 이 두 가지 병목으로 인해 성능에 제약을 받는다는 말씀을 드렸고, 곧 이진원 CTO님과 함께 token dynamics도 더 깊게 한번 파볼 생각입니다.
 
 <span class="paragraph-timestamp" data-ts="00:55">00:55</span> 그런데 저희가 compute-bound, memory-bound 이야기를 하면서 이런 얘기를 많이 했었죠. NVL72, NVL144 같은 얘기를 하면서 같은 랙 안에서는 구리선으로 연결하고, 랙과 랙, 그다음에 IDC 사이, 그다음에 인터넷은 당연히 optics로 연결하고, 이런 것들을 너무 자연스럽게 받아들이고 있었는데, 저희 준우 님과 태환 님과 얘기하면서 이 optics를 칩과 칩 사이, chip-to-chip까지 끌고 와서 bandwidth를 한층 더, OOM을 뛰어넘는 다른 레벨로 끌어올릴 수 있다는 분야의 이야기를 들으면서 정말 흥미로웠거든요.
 
-<span class="paragraph-timestamp" data-ts="01:43">01:43</span> 그래서 오늘 이 두 분의 젊은 연구자분들, 또 사업적으로도 꿈을 꾸고 계시는 두 분을 모시고 silicon photonics 이야기를 한번 들어보도록 하겠습니다. 준우 님, 태환 님, 어서 오십시오.
+<span class="paragraph-timestamp" data-ts="01:35">01:35</span> 그 분야가 silicon photonics라고 한다고 해요. 그래서 오늘 이 두 분의 젊은 연구자분들, 또 사업적으로도 꿈을 꾸고 계시는 두 분을 모시고 silicon photonics 이야기를 한번 들어보도록 하겠습니다. 준우 님, 태환 님, 어서 오십시오.
+
 
 ## 패널 소개와 연구 배경    *01:50*
 
@@ -90,53 +91,57 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="01:59">01:59</span> **박준우** 그럼 제가 먼저 제 biography를 간략하게 설명해 드리자면, 저는 학부 때 UC Berkeley에서 EECS와 재료공학을 전공했고요. 공부하는 도중에 반도체에 좀 더 관심을 갖게 돼서 silicon photonics로 자연스럽게 넘어오게 됐고, 그다음에 분야가 너무 마음에 들어서 미래도 밝은 것 같아서 미시간 대학교에서 박사 과정을 silicon photonics 쪽으로 진행하게 되었습니다.
 
-<span class="paragraph-timestamp" data-ts="02:30">02:30</span> **김태환** 다음으로 제 소개를 간략하게 드리면, 저도 학부 때 Berkeley에서 컴퓨터를 전공했었고요. 그 당시 준우도 거기서 친구로 만났었고, MIT 박사 과정 입학 예정입니다. 그래서 학부 때는 AI discovery나 bio와 AI를 접목하는 연구를 했었고, 그런데 거기서도 병목이 hardware 쪽이라서 그런 고민을 하다가 준우와 우연히 새벽에 통화하면서 연결고리를 찾아서 이렇게 연구를 시작하게 된 것 같습니다.
+<span class="paragraph-timestamp" data-ts="02:28">02:28</span> **김태환** 다음으로 제 소개를 간략하게 드리면, 저도 학부 때 Berkeley에서 컴퓨터를 전공했었고요. 그 당시 준우도 거기서 친구로 만났었고, MIT 박사 과정 입학 예정입니다. 그래서 학부 때는 AI discovery나 bio와 AI를 접목하는 연구를 했었고, 그런데 거기서도 병목이 hardware 쪽이라서 그런 고민을 하다가 준우와 우연히 새벽에 통화하면서 연결고리를 찾아서 이렇게 연구를 시작하게 된 것 같습니다.
 
 <span class="paragraph-timestamp" data-ts="02:56">02:56</span> **노정석** 진원 님도 여기서 한 말씀 해주시면 됩니다.
 
-<span class="paragraph-timestamp" data-ts="03:00">03:00</span> **이진원** 안녕하세요. 저는 HyperAccel에서 CTO로 일하고 있는 이진원이라고 하고요. 저희는 LLM 추론에 특화된 AI 반도체를 만드는 팹리스 회사인데, 아무래도 이 시장을 NVIDIA가 장악하고 있다 보니까 저희도 NVIDIA가 가는 길을 유심히 보고 있는데, 지금 보면 Vera Rubin 같은 것, NVL72가 나오고 그다음에는 NVL144처럼 랙 안에 굉장히 많은 GPU를 다 집어넣는 접근을 하고 있는데, 그 기반이 구리선으로 최대한 많은 GPU를 연결하기 위해서 그런 거거든요. 그런데 그것조차도 속도가 빨라지면서 구리로는 한계가 있다는 얘기들이 많이 나오고 있고, 그래서 AI 반도체 분야에서 광학, silicon photonics에 대한 관심이 굉장히 높고 저희도 굉장히 관심이 많은데요. 그래서 오늘 굉장히 재미있는 이야기를 들을 수 있을 것 같아서 기대가 많이 되고 있습니다. 반갑습니다.
+<span class="paragraph-timestamp" data-ts="02:59">02:59</span> **이진원** 안녕하세요. 저는 HyperAccel에서 CTO로 일하고 있는 이진원이라고 하고요. 저희는 LLM 추론에 특화된 AI 반도체를 만드는 팹리스 회사인데, 아무래도 이 시장을 NVIDIA가 장악하고 있다 보니까 저희도 NVIDIA가 가는 길을 유심히 보고 있는데, 지금 보면 Vera Rubin 같은 것, NVL72가 나오고 그다음에는 NVL144처럼 랙 안에 굉장히 많은 GPU를 다 집어넣는 접근을 하고 있는데, 그 기반이 구리선으로 최대한 많은 GPU를 연결하기 위해서 그런 거거든요. 그런데 그것조차도 속도가 빨라지면서 구리로는 한계가 있다는 얘기들이 많이 나오고 있고, 그래서 AI 반도체 분야에서 광학, silicon photonics에 대한 관심이 굉장히 높고 저희도 굉장히 관심이 많은데요. 그래서 오늘 굉장히 재미있는 이야기를 들을 수 있을 것 같아서 기대가 많이 되고 있습니다. 반갑습니다.
 
-<span class="paragraph-timestamp" data-ts="04:00">04:00</span> **노정석** 그러면 저희 한번 시작해 보도록 할까요? From Memory to Photonics, 시작하시죠. 그럼 저희가 Memory to Photonics 수업을 한번 들어볼까요?
+<span class="paragraph-timestamp" data-ts="03:58">03:58</span> **노정석** 그러면 저희 한번 시작해 보도록 할까요? From Memory to Photonics, 시작하시죠. 그럼 저희가 Memory to Photonics 수업을 한번 들어볼까요?
+
 
 ## AI 인프라의 세 가지 병목과 데이터센터 규모 폭증    *04:08*
 
 <span class="paragraph-timestamp" data-ts="04:08">04:08</span> **김태환** Memory to Photonics 얘기를 할 거고요. 일단 첫 번째로 motivation 얘기를 할 건데, ML 관점에서 왜 photonics가 중요한지 먼저 overview해 보겠습니다. AI infrastructure에는 세 가지 문제가 있는 것 같아요. compute 쪽에는 얼마나 빠르게 계산하는가가 있고, memory 쪽에서는 얼마나 빠르게 데이터를 가져오고 얼마나 많이 저장하는가가 있고, 마지막 세 번째가 아마 저희가 소개해 드릴 내용일 것 같은데, intercommunication 쪽에서 device 간 연결이 얼마나 빠르게 이루어지는지, 이 부분인 것 같아요. 제가 봤을 때 GPU나 TPU 같은 compute의 경우에는 성능이 이미 잘 나오고 있다고 생각하고, 결국 HBM 같은 곳에서 SRAM 같은 장치로 데이터를 얼마나 빨리 가져올 수 있느냐, 그래서 많은 주목을 받았던 FlashAttention 같은 연구도 HBM과 SRAM 간의 데이터 이동을 어떻게 최소화해서 빨리 가져오고, tiling 같은 기법을 사용해서 연산을 최대한 그쪽에 몰아 빠르게 할 수 있을까라는 연구들이 많이 이루어지고 있는 것 같아요. 그래서 이런 걸 보통 IO-aware나 memory-aware attention 같은 연구라고 했던 것 같고,
 
-<span class="paragraph-timestamp" data-ts="05:15">05:15</span> 그리고 device communication 쪽에서도 모델이 엄청나게 커지기 시작하면서 engineering이 많이 이루어진 것 같고요. 모델 크기가 엄청나게 커지게 되면 한 모델이 device 하나에 들어가지 않기 때문에 그걸 model parallel로 쪼갠다거나, 아니면 데이터 양이 엄청나게 많을 경우에 GPU 하나가 놀고 있으면 안 되니까 데이터를 여러 batch로 쪼개서 다른 device에서 학습시키고, 어떻게 하면 분할해서 학습한 것을 다시 합칠 수 있는가, 이러한 연구나 engineering work가 많은 주목을 받고 있는 것 같고, 특히 대규모로 갈수록 더 중요해지는 것 같아요. scaling하거나 대규모 모델을 학습할 때 data movement가 엄청나게 중요하다. compute도 중요하지만 data movement가 엄청나게 중요하다는 거죠.
+<span class="paragraph-timestamp" data-ts="05:15">05:15</span> device communication 쪽에서도 모델이 엄청나게 커지기 시작하면서 engineering이 많이 이루어진 것 같고요. 모델 크기가 엄청나게 커지게 되면 한 모델이 device 하나에 들어가지 않기 때문에 그걸 model parallel로 쪼갠다거나, 아니면 데이터 양이 엄청나게 많을 경우에 GPU 하나가 놀고 있으면 안 되니까 데이터를 여러 batch로 쪼개서 다른 device에서 학습시키고, 어떻게 하면 분할해서 학습한 것을 다시 합칠 수 있는가, 이러한 연구나 engineering work가 많은 주목을 받고 있는 것 같고, 특히 대규모로 갈수록 더 중요해지는 것 같아요. scaling하거나 대규모 모델을 학습할 때 data movement가 엄청나게 중요하다. compute도 중요하지만 data movement가 엄청나게 중요하다는 거죠.
 
 <span class="paragraph-timestamp" data-ts="05:58">05:58</span> 그래서 저희가 조금 더 큰 scale로 생각해 보면, 몇 년 전 혹은 10년 전에는 device 하나, GPU 하나에서 얼마나 좋은 연산을 할 수 있을까라는 얘기였던 것 같고, 점점 커질수록 차세대 data center 규모가 되는 것 같아요. 그래서 local device에서 distributed environment나 엄청나게 큰 장치의 scale로 넘어가게 되는 것 같고, accelerator 하나 안에서 일어나는 문제에서 rack-to-rack level로 가는 것 같고, 그래서 Zuckerberg가 data center를 짓는다고 발표했고, OpenAI가 3 billion dollar AI data center를 짓는데, 이 전력 규모가 좀 말이 안 되는 것 같아요. 상식을 벗어나는 전력 수준인 것 같고, 보시면 서울시 전체가 쓰는 전기의 60%인 것 같고, 다른 기사에서는 Utah에 짓는 data center가 주변 온도를 3°F 올린다고 했던 것 같아요. 그래서 온도 자체가 생태계를 바꾸기 때문에 사막이나 바다에 올리자, 아니면 우주로도 보내자는 얘기가 나오는 것 같고, 여기서 강조하고 싶은 것은 저희의 사고 범주를 넘어선 규모라는 것, 이 정도인 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="07:08">07:08</span> 이 scale이 정말 말도 안 되는 크기로 커지고 있고, 그래서 이를 위해 칩이나 device를 scaling하면 세 가지 axis로 볼 수 있을 것 같은데, 아까 scale up 같은 경우에는 Y축으로 계속 쌓는 방식이고, scale out은 랙을 계속해서 X축으로 쌓고, 또 위로도 쌓을 수 있겠죠. 그래서 이 세 방향으로 쌓을 수 있을 것 같아요. 보시면 이러한 세 가지 방법이 있고, 그 세 가지 방법별로 다양한 문제와 다양한 이점이 있을 것 같아요.
+<span class="paragraph-timestamp" data-ts="07:06">07:06</span> 이 scale이 정말 말도 안 되는 크기로 커지고 있고, 그래서 이를 위해 칩이나 device를 scaling하면 세 가지 axis로 볼 수 있을 것 같은데, 아까 scale up 같은 경우에는 Y축으로 계속 쌓는 방식이고, scale out은 랙을 계속해서 X축으로 쌓고, 또 위로도 쌓을 수 있겠죠. 그래서 이 세 방향으로 쌓을 수 있을 것 같아요. 보시면 이러한 세 가지 방법이 있고, 그 세 가지 방법별로 다양한 문제와 다양한 이점이 있을 것 같아요.
+
 
 ## Scale Up부터 Scale Across까지의 확장 세 축    *07:11*
 
-<span class="paragraph-timestamp" data-ts="07:40">07:40</span> **박준우** 여기에 좀 더 추가하자면, scale up, scale out, scale across라는 세 가지 axis term이 photonics 업계에서 굉장히 conventional하게 쓰이는 문구이긴 하거든요. data center를 scaling한다고 했을 때 그냥 scaling이 아니라 scale up을 하느냐, scale out을 하느냐, scale across를 하느냐에 따라서 랙 안을 말하는 것이냐, 아니면 chip-to-chip을 말하는 것이냐, 아니면 data center-to-data center를 말하는 것이냐가 달라지게 되는 거죠.
+<span class="paragraph-timestamp" data-ts="07:38">07:38</span> **박준우** 여기에 좀 더 추가하자면, scale up, scale out, scale across라는 세 가지 axis term이 photonics 업계에서 굉장히 conventional하게 쓰이는 문구이긴 하거든요. data center를 scaling한다고 했을 때 그냥 scaling이 아니라 scale up을 하느냐, scale out을 하느냐, scale across를 하느냐에 따라서 랙 안을 말하는 것이냐, 아니면 chip-to-chip을 말하는 것이냐, 아니면 data center-to-data center를 말하는 것이냐가 달라지게 되는 거죠.
 
-<span class="paragraph-timestamp" data-ts="08:09">08:09</span> **노정석** 그렇다면 이 up과 out, across, 이 세 개를 저희가 정확하게 설명하고 넘어갈까요? 지금 X, Y, Z의 3축이라는 건 당연히 이해되는데, 이 up과 out과 across를 한번 설명해 주시겠어요?
+<span class="paragraph-timestamp" data-ts="08:06">08:06</span> **노정석** 그렇다면 이 up과 out, across, 이 세 개를 저희가 정확하게 설명하고 넘어갈까요? 지금 X, Y, Z의 3축이라는 건 당연히 이해되는데, 이 up과 out과 across를 한번 설명해 주시겠어요?
 
-<span class="paragraph-timestamp" data-ts="08:23">08:23</span> **박준우** scale up부터 간단하게 설명해 드리자면, data center에 랙들이 있잖아요. 그 랙 안에 아까 진원 님이 말씀드린 것처럼 GPU들이 엄청나게 들어 있는데, scale up이라는 건 말 그대로 가장 아래층에 있는 GPU를 가장 위층에 있는 GPU까지 잘 연결해 주는 것을 말합니다. 말 그대로 랙 내에서 GPU-to-GPU, 아니면 chip-to-chip으로 어떻게 위로 잘 연결되느냐에 관해 얘기하는 거고요.
+<span class="paragraph-timestamp" data-ts="08:20">08:20</span> **박준우** scale up부터 간단하게 설명해 드리자면, data center에 랙들이 있잖아요. 그 랙 안에 아까 진원 님이 말씀드린 것처럼 GPU들이 엄청나게 들어 있는데, scale up이라는 건 말 그대로 가장 아래층에 있는 GPU를 가장 위층에 있는 GPU까지 잘 연결해 주는 것을 말합니다. 말 그대로 랙 내에서 GPU-to-GPU, 아니면 chip-to-chip으로 어떻게 위로 잘 연결되느냐에 관해 얘기하는 거고요.
 
-<span class="paragraph-timestamp" data-ts="08:52">08:52</span> scale out 같은 경우는 랙들 간의 optical interconnect, 그것에 관해 얘기하는 거고, scale across 같은 경우는 data center-to-data center, 즉 data center 자체를 분산하려는 노력도 있거든요. 왜냐하면 아까 슬라이드에서 본 것처럼 크기가 거의 Manhattan 정도가 돼버리니까 이것을 하나의 data center로 관리하기가 힘들어지는 경우도 있어서, 그래서 이것을 data center별로 분산해서 data center끼리 연결하고 scaling한다는 것이 scale across라는 개념인 거죠.
+<span class="paragraph-timestamp" data-ts="08:50">08:50</span> scale out 같은 경우는 랙들 간의 optical interconnect, 그것에 관해 얘기하는 거고, scale across 같은 경우는 data center-to-data center, 즉 data center 자체를 분산하려는 노력도 있거든요. 왜냐하면 아까 슬라이드에서 본 것처럼 크기가 거의 Manhattan 정도가 돼버리니까 이것을 하나의 data center로 관리하기가 힘들어지는 경우도 있어서, 그래서 이것을 data center별로 분산해서 data center끼리 연결하고 scaling한다는 것이 scale across라는 개념인 거죠.
 
 <span class="paragraph-timestamp" data-ts="09:25">09:25</span> **노정석** 랙, data center, 그다음에 다른 data center, 이 세 가지 개념으로 나눠서 생각하면 되겠네요.
 
 <span class="paragraph-timestamp" data-ts="09:31">09:31</span> **김태환** 그래서 여기서 얻을 수 있는 결론은 저희가 만약 차세대에 정말 좋은 모델을 만들고 싶다면, 앞서 말한 software level이나 hardware-aware한 코드를 짜는 것도 중요하지만, hardware 자체가 이 모든 대규모 환경을 고려하는 것이 매우 중요한 병목이 될 거라는 게 이 점에서 좀 자명한 이야기 같고, 그래서 photonics 얘기를 그다음에 하고 싶었던 것 같아요.
 
+
 ## 구리선의 거리 한계와 광통신의 에너지 효율    *09:55*
 
-<span class="paragraph-timestamp" data-ts="09:55">09:55</span> **김태환** 그래서 hardware 병목에 관해 말씀을 좀 드리자면, 진원 님도 HyperAccel을 운영하시면서 아까 말씀드렸던 게, GPU들을 아직까지는 모두 구리선으로 연결하고 있는데, 구리선이라는 게 굉장히 싸서 좋기는 하지만 한계가 많습니다. 여기 표를 보시면 아래에 있는 X축이 연결 interconnect의 길이예요. 1cm부터 1km까지 가는데, 짧은 거리에서는 copper가 나쁘지 않습니다. 전력 효율도 나쁘지 않고 fabrication하는 것도 굉장히 싼데, 미터 단위로 가게 되면 에너지 효율이 굉장히 떨어지게 돼요. optics와 비교했을 때요. 그에 반해 optics, 즉 광통신은 energy per bit가 굉장히 flat합니다. 그래서 거리와 별로 상관이 없는 거죠. 그래서 단거리에 옵틱스를 쓰거나 장거리에 옵틱스를 쓰거나 에너지 효율적인 측면에서는 거의 flat한 거죠. 구리선이 아예 안 좋다는 건 아니에요. 단거리 인터커넥트를 할 때는 굉장히 효율적이고 쌀 수가 있지만 데이터센터 rack-to-rack 무브먼트 그다음에 나중에 랙도 커지게 되면 랙 사이나 랙 안의 GPU 간 거리도 미터 단위가 될 텐데 거기서도 바틀넥이 생기기 시작하는 거죠.
+<span class="paragraph-timestamp" data-ts="09:55">09:55</span> **박준우** 그래서 hardware 병목에 관해 말씀을 좀 드리자면, 진원 님도 HyperAccel을 운영하시면서 아까 말씀드렸던 게, GPU들을 아직까지는 모두 구리선으로 연결하고 있는데, 구리선이라는 게 굉장히 싸서 좋기는 하지만 한계가 많습니다. 여기 표를 보시면 아래에 있는 X축이 연결 interconnect의 길이예요. 1cm부터 1km까지 가는데, 짧은 거리에서는 copper가 나쁘지 않습니다. 전력 효율도 나쁘지 않고 fabrication하는 것도 굉장히 싼데, 미터 단위로 가게 되면 에너지 효율이 굉장히 떨어지게 돼요. optics와 비교했을 때요. 그에 반해 optics, 즉 광통신은 energy per bit가 굉장히 flat합니다. 그래서 거리와 별로 상관이 없는 거죠. 그래서 단거리에 옵틱스를 쓰거나 장거리에 옵틱스를 쓰거나 에너지 효율적인 측면에서는 거의 flat한 거죠. 구리선이 아예 안 좋다는 건 아니에요. 단거리 인터커넥트를 할 때는 굉장히 효율적이고 쌀 수가 있지만 데이터센터 rack-to-rack 무브먼트 그다음에 나중에 랙도 커지게 되면 랙 사이나 랙 안의 GPU 간 거리도 미터 단위가 될 텐데 거기서도 바틀넥이 생기기 시작하는 거죠.
 
 <span class="paragraph-timestamp" data-ts="11:24">11:24</span> 그래서 간단하게 이런 그래프를 보면 왼쪽 그래프는 시그널 로스고요. 그다음에 거리에 관해 우리가 데이터를 보내고 싶을 때 시그널 로스가 어떻게 바뀌는지 설명하고 있는데 구리선 같은 경우는 단거리에서는 시그널 로스가 거의 없지만 장거리, 미터 단위로 갈수록 시그널 로스가 굉장히 빠르게 커집니다. 그래서 데이터 손실이 굉장히 커요. 그 말은 밴드위스가 굉장히 낮다는 얘기죠. 그에 반해 옵티컬 파이버 같은 경우는 시그널 로스가 거의 없습니다. 거리가 길어지더라도요. 그래서 오른쪽 그래프를 보시면 Y축이 거리고요. 그다음에 X축이 GB/s, 밴드위스죠. 그래서 보시면 패시브 구리 인터커넥트와 파이버를 비교했을 때도 파이버가 밴드위스 측면에서 거의 2~3 orders of magnitude 정도 더 높은 것을 보실 수 있습니다.
 
-<span class="paragraph-timestamp" data-ts="12:26">12:26</span> 그래서 회사들이 지금 하려는 게 NVIDIA 같은 경우도 구리선을 좀 더 효율적으로 만들려고 하고 있어요. 사실 NVIDIA 같은 경우도 아직까지 완벽하게 rack-to-rack 옵티컬 인터커넥트를 구축, 그러니까 상용화하지는 못했다고 알고 있거든요. 그래서 많은 회사가 하려는 게 구리선의 주파수, frequency를 올려서 밴드위스를 높이려고 하는데, 문제는 밴드위스를 올리려고 하면 로스가 굉장히 커집니다. 물리학적으로 skin effect와 dielectric loss라는 게 있어서 메탈의 성질이거든요. 그래서 주파수가 오르면 시그널 로스가 굉장히 커져요. 그래서 구리선으로 밴드위스를 높이는 데는 상한선이 있는 거예요. 로스가 너무 커지기 때문에 어떠한 주파수 이상으로 밴드위스를 올리려고 하면 그때부터는 리타이머나 DSP 같은 시그널을 증폭하거나 시그널 에러를 correction해 주는 디바이스가 많이 들어가게 되는 거고 그런 디바이스가 많이 들어갈수록 전력 소모가 커지고 패키징도 훨씬 더 bulky해지겠죠. 그리고 전력을 많이 소비하게 되면 당연히 열 손실이 많이 발생하고요. 그다음에 열 손실이 많이 발생하면 데이터센터 스케일로 갔을 때 아까 태환 님이 말씀드린 것처럼 주변 온도가 거의 화씨 4도 정도 올라갈 수 있는 환경적으로도 안 좋지만 에너지 측면에서도 굉장히 안 좋은 문제가 되는 거죠.
+<span class="paragraph-timestamp" data-ts="12:20">12:20</span> 그래서 회사들이 지금 하려는 게 NVIDIA 같은 경우도 구리선을 좀 더 효율적으로 만들려고 하고 있어요. 사실 NVIDIA 같은 경우도 아직까지 완벽하게 rack-to-rack 옵티컬 인터커넥트를 구축, 그러니까 상용화하지는 못했다고 알고 있거든요. 그래서 많은 회사가 하려는 게 구리선의 주파수, frequency를 올려서 밴드위스를 높이려고 하는데, 문제는 밴드위스를 올리려고 하면 로스가 굉장히 커집니다. 물리학적으로 skin effect와 dielectric loss라는 게 있어서 메탈의 성질이거든요. 그래서 주파수가 오르면 시그널 로스가 굉장히 커져요. 그래서 구리선으로 밴드위스를 높이는 데는 상한선이 있는 거예요. 로스가 너무 커지기 때문에 어떠한 주파수 이상으로 밴드위스를 올리려고 하면 그때부터는 리타이머나 DSP 같은 시그널을 증폭하거나 시그널 에러를 correction해 주는 디바이스가 많이 들어가게 되는 거고 그런 디바이스가 많이 들어갈수록 전력 소모가 커지고 패키징도 훨씬 더 bulky해지겠죠. 그리고 전력을 많이 소비하게 되면 당연히 열 손실이 많이 발생하고요. 그다음에 열 손실이 많이 발생하면 데이터센터 스케일로 갔을 때 아까 태환 님이 말씀드린 것처럼 주변 온도가 거의 화씨 4도 정도 올라갈 수 있는 환경적으로도 안 좋지만 에너지 측면에서도 굉장히 안 좋은 문제가 되는 거죠.
+
 
 ## Pluggable에서 Optical I/O까지 광 집적 단계    *13:48*
 
-<span class="paragraph-timestamp" data-ts="13:52">13:52</span> **김태환** 그래서 많은 회사가 실리콘 포토닉스 아니면 optical I/O, co-packaged optics 같은 것을 상용화하려고 많이 노력하고 있어요. 그런데 co-packaged optics나 실리콘 포토닉스 같은 게 어느 단위에서 쓰이는지를 보면 일단 왼쪽부터 시작하면 왼쪽은 사실 industry standard 수준인 굉장히 fabrication과 패키징이 쉬운 pluggable optics부터 시작하는데요. 이건 rack-to-rack connection을 할 때 굉장히 많이 쓰이는 거예요. 간단하게 생각하시면 그냥 USB 케이블이라고 생각하시면 돼요. 대신 옵틱스를 위한 USB 케이블인 거고 말 그대로 그냥 뺐다 꽂았다 할 수 있는 rack-to-rack 인터커넥트를 말하는 거고요. 그다음에 onboard optics는 이 pluggable을 조금 더 보드 위에 integrate하려는 노력이고요. co-packaged optics는 아예 패키징 단계부터 ASIC 칩과 함께 패키징하게 되는 그래서 ASIC 칩과 옵티컬 인터커넥트 간의 거리가 밀리미터 정도로 줄어들게 되는 그다음에 optical I/O는 아예 리소그래피를 할 때 같이 해버리는 겁니다. fabrication을요. 그래서 거리가 훨씬 더 가까워지고 ASIC 칩과 거의 붙어 있겠죠. 그래서 구리선으로 연결되는 거리도 거의 0에 수렴하게 되는 거고 대신 오른쪽으로 갈수록 fabrication 복잡도가 올라갑니다. 당연히 pluggable optics 같은 것을 만들 때는 사실 케이블을 만드는 거니까 광통신은 지금까지 많이 유용하게 쓰이고 있잖아요. 사실 광통신 기술 같은 건데 그런 것은 fabrication하기가 훨씬 쉽지만 이걸 보드에 집적하게 되면 fabrication 난이도가 훨씬 올라가겠죠. 칩과 같이 해야 되니까요.
+<span class="paragraph-timestamp" data-ts="13:48">13:48</span> **박준우** 그래서 많은 회사가 실리콘 포토닉스 아니면 optical I/O, co-packaged optics 같은 것을 상용화하려고 많이 노력하고 있어요. 그런데 co-packaged optics나 실리콘 포토닉스 같은 게 어느 단위에서 쓰이는지를 보면 일단 왼쪽부터 시작하면 왼쪽은 사실 industry standard 수준인 굉장히 fabrication과 패키징이 쉬운 pluggable optics부터 시작하는데요. 이건 rack-to-rack connection을 할 때 굉장히 많이 쓰이는 거예요. 간단하게 생각하시면 그냥 USB 케이블이라고 생각하시면 돼요. 대신 옵틱스를 위한 USB 케이블인 거고 말 그대로 그냥 뺐다 꽂았다 할 수 있는 rack-to-rack 인터커넥트를 말하는 거고요. 그다음에 onboard optics는 이 pluggable을 조금 더 보드 위에 integrate하려는 노력이고요. co-packaged optics는 아예 패키징 단계부터 ASIC 칩과 함께 패키징하게 되는 그래서 ASIC 칩과 옵티컬 인터커넥트 간의 거리가 밀리미터 정도로 줄어들게 되는 그다음에 optical I/O는 아예 리소그래피를 할 때 같이 해버리는 겁니다. fabrication을요. 그래서 거리가 훨씬 더 가까워지고 ASIC 칩과 거의 붙어 있겠죠. 그래서 구리선으로 연결되는 거리도 거의 0에 수렴하게 되는 거고 대신 오른쪽으로 갈수록 fabrication 복잡도가 올라갑니다. 당연히 pluggable optics 같은 것을 만들 때는 사실 케이블을 만드는 거니까 광통신은 지금까지 많이 유용하게 쓰이고 있잖아요. 사실 광통신 기술 같은 건데 그런 것은 fabrication하기가 훨씬 쉽지만 이걸 보드에 집적하게 되면 fabrication 난이도가 훨씬 올라가겠죠. 칩과 같이 해야 되니까요.
 
 <span class="paragraph-timestamp" data-ts="15:39">15:39</span> **노정석** 저희가 지금 NVIDIA의 Jensen Huang이 키노트할 때 보여주는 NVL72라든지 그 전용 내부 광통신 칩들이 있잖아요. 그게 co-packaged optics 레벨이라고 보면 되나요? 지난번 키노트에서 진원 CTO 님이 더 잘 알고 계실 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="16:02">16:02</span> **이진원** 올해 GTC를 보면 Rubin 관련 이야기를 굉장히 많이 했는데 그러면서 예를 들면 그중의 LPU라는 걸 LPX로 해서 자기네 패밀리, Rubin을 보면 Rubin 패밀리가 엄청 많거든요. 그중에 CPU 칩이 있어요. 이름이
+<span class="paragraph-timestamp" data-ts="15:57">15:57</span> **이진원** 올해 GTC를 보면 Rubin 관련 이야기를 굉장히 많이 했는데 그러면서 예를 들면 그중의 LPU라는 걸 LPX로 해서 자기네 패밀리, Rubin을 보면 Rubin 패밀리가 엄청 많거든요. 그중에 CPU 칩이 있어요. 이름이
 
 <span class="paragraph-timestamp" data-ts="16:14">16:14</span> **박준우** 스펙 나왔나요? 벌써?
 
@@ -144,189 +149,205 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="17:12">17:12</span> 그래서 거기서 최대한 하고, 그 밖으로 나가는 것은 옵틱스를 활용해서 하겠다는 거죠.
 
-<span class="paragraph-timestamp" data-ts="17:22">17:22</span> 그러면서 CPU 관련 칩도 말씀드린 Rubin 패밀리 안에 들어 있습니다. 그래서 아마 앞으로 NVIDIA도 이쪽으로 굉장히 많이 준비하고 있고 제품도 나올 것으로 알고 있어요.
+<span class="paragraph-timestamp" data-ts="17:18">17:18</span> 그러면서 CPU 관련 칩도 말씀드린 Rubin 패밀리 안에 들어 있습니다. 그래서 아마 앞으로 NVIDIA도 이쪽으로 굉장히 많이 준비하고 있고 제품도 나올 것으로 알고 있어요.
 
-<span class="paragraph-timestamp" data-ts="17:34">17:34</span> **노정석** 기술이 단순히 이더넷 허브처럼 꽂는 것에서 리소그래피 레벨까지 계속 발전하고 있다는 것을 저희의 key insight로 가지고 다음으로 넘어가면 될 것 같습니다.
+<span class="paragraph-timestamp" data-ts="17:30">17:30</span> **노정석** 기술이 단순히 이더넷 허브처럼 꽂는 것에서 리소그래피 레벨까지 계속 발전하고 있다는 것을 저희의 key insight로 가지고 다음으로 넘어가면 될 것 같습니다.
+
 
 ## NVIDIA와 Marvell의 투자로 본 포토닉스 업계 지형    *17:42*
 
 <span class="paragraph-timestamp" data-ts="17:42">17:42</span> **박준우** 인더스트리가 CPO, optical I/O처럼 좀 더 이런 포토닉스 컴포넌트들을 다이 레벨, 실리콘 레벨에서 아예 함께 fabrication하려는 패키징하려는 노력을 많이 하고 있거든요. 그래서 아마 3월인가 Marvell이 네트워킹을 많이 하는 회사잖아요. Marvell이 Celestial AI라고, 이런 co-packaged optics, 그다음에 optical I/O를 하는 회사를 20억인가에 인수했었고요. 그다음에 그 인수가 일어난 세 달 후에 Polariton이라는 다른 컴포넌트를 만드는 회사를 또 바로 인수했습니다.
 
-<span class="paragraph-timestamp" data-ts="18:19">18:19</span> 그리고 NVIDIA 같은 경우도 Lumentum과 Coherent, 주식을 많이 하시는 분들이라면 아마 아는 회사들일 것 같은데 얘네들도 광통신 쪽에서 co-packaged optics를 많이 하는 회사거든요. 얘네들한테 각각 2 billion씩 투자했습니다. 그래서 네트워킹에서 강자인 NVIDIA, Marvell 같은 회사들도 이런 포토닉스를 좀 더 vertically integrate해서 자기네들이 manufacturing부터 다 미리 먹어버리겠다는 행보를 보이고 있는 거죠.
+<span class="paragraph-timestamp" data-ts="18:17">18:17</span> 그리고 NVIDIA 같은 경우도 Lumentum과 Coherent, 주식을 많이 하시는 분들이라면 아마 아는 회사들일 것 같은데 얘네들도 광통신 쪽에서 co-packaged optics를 많이 하는 회사거든요. 얘네들한테 각각 2 billion씩 투자했습니다. 그래서 네트워킹에서 강자인 NVIDIA, Marvell 같은 회사들도 이런 포토닉스를 좀 더 vertically integrate해서 자기네들이 manufacturing부터 다 미리 먹어버리겠다는 행보를 보이고 있는 거죠.
 
 <span class="paragraph-timestamp" data-ts="18:51">18:51</span> **노정석** 확실한 미래 방향성은 맞네요.
 
-<span class="paragraph-timestamp" data-ts="18:55">18:55</span> **박준우** 그렇죠. 안 그래도 제가 NVIDIA의 Jensen Huang이 나오는 팟캐스트를 들었는데 지금 하는 게 2~3년 뒤에 co-packaged optics나 이런 manufacturing이 굉장히 활발해질 텐데 자기네들은 다른 회사에 뺏기기 싫다면서 먼저 좀 prefetching하고 있다는 느낌을 많이 받았거든요. 우리가 먼저 투자해서 그 manufacturing 라인을 먹어버리겠다. 그래서 왜 CPO, 왜 optical I/O를 써야 하는지 이야기하자면 당연히 구리선이 많으면 많을수록 밴드위스가 떨어지고 열 손실도 올라가니까 구리선을 굉장히 줄이려고 많이 노력하는 거고 그러려면 co-packaged optics, 구리선을 줄인 포토닉스가 필요하다는 거죠. 포토닉스에 대해 이야기할 때 가장 중요한 metric인 것 같아요. 이 두 개가요. pJ / bit라는 게 비트 하나를 보내기 위해 에너지를 얼마나 쓰느냐를 나타내는 energy per bit 단위고 그다음에 shoreline density는 패키지나 실리콘 웨이퍼가 있을 때 그 웨이퍼의 shoreline이라고 하죠. 가장자리에서 얼마나 많은 Tb/s를 전송할 수 있는 옵티컬 인터커넥트를 집적할 수 있는지 그래서 per millimeter인 거거든요. 가장자리의 millimeter당 얼마나 많은 밴드위스가 나오는지 그래서 높을수록 좋은 거죠. 그다음에 energy per bit는 낮을수록 좋은 거고요. 왼쪽을 보시면 알겠지만 pluggable 같은 경우는 energy per bit가 가장 높습니다. 당연히 구리선이 가장 길기 때문이고 optical I/O 쪽, 좀 더 다이와 함께 integrate되는 쪽으로 내려갈수록 energy per bit도 같이 내려가는 것을 보실 수 있습니다. 구리선이 존재하는 구간이 짧아지기 때문인 거죠. 그래서 시그널 로스가 생겼을 때 다시 error correction을 해야 한다거나 amplitude를 다시 올려줘야 한다거나 이럴 필요가 없어지기 때문에 energy per bit가 내려가는 겁니다.
+<span class="paragraph-timestamp" data-ts="18:53">18:53</span> **박준우** 그렇죠. 안 그래도 제가 NVIDIA의 Jensen Huang이 나오는 팟캐스트를 들었는데 지금 하는 게 2~3년 뒤에 co-packaged optics나 이런 manufacturing이 굉장히 활발해질 텐데 자기네들은 다른 회사에 뺏기기 싫다면서 먼저 좀 prefetching하고 있다는 느낌을 많이 받았거든요. 우리가 먼저 투자해서 그 manufacturing 라인을 먹어버리겠다. 그래서 왜 CPO, 왜 optical I/O를 써야 하는지 이야기하자면 당연히 구리선이 많으면 많을수록 밴드위스가 떨어지고 열 손실도 올라가니까 구리선을 굉장히 줄이려고 많이 노력하는 거고 그러려면 co-packaged optics, 구리선을 줄인 포토닉스가 필요하다는 거죠. 포토닉스에 대해 이야기할 때 가장 중요한 metric인 것 같아요. 이 두 개가요. pJ / bit라는 게 비트 하나를 보내기 위해 에너지를 얼마나 쓰느냐를 나타내는 energy per bit 단위고 그다음에 shoreline density는 패키지나 실리콘 웨이퍼가 있을 때 그 웨이퍼의 shoreline이라고 하죠. 가장자리에서 얼마나 많은 Tb/s를 전송할 수 있는 옵티컬 인터커넥트를 집적할 수 있는지 그래서 per millimeter인 거거든요. 가장자리의 millimeter당 얼마나 많은 밴드위스가 나오는지 그래서 높을수록 좋은 거죠. 그다음에 energy per bit는 낮을수록 좋은 거고요. 왼쪽을 보시면 알겠지만 pluggable 같은 경우는 energy per bit가 가장 높습니다. 당연히 구리선이 가장 길기 때문이고 optical I/O 쪽, 좀 더 다이와 함께 integrate되는 쪽으로 내려갈수록 energy per bit도 같이 내려가는 것을 보실 수 있습니다. 구리선이 존재하는 구간이 짧아지기 때문인 거죠. 그래서 시그널 로스가 생겼을 때 다시 error correction을 해야 한다거나 amplitude를 다시 올려줘야 한다거나 이럴 필요가 없어지기 때문에 energy per bit가 내려가는 겁니다.
+
 
 ## CPO 핵심 지표 pJ/bit와 Shoreline Density    *19:18*
 
-<span class="paragraph-timestamp" data-ts="21:00">21:00</span> **박준우** 그런데 아까도 말씀드렸지만 co-packaged optics, CPO나 optical I/O 쪽으로 가게 되면 여러 가지 문제가 같이 따라와요. 사실 NVIDIA나 Marvell 같은 회사들도 당연히 optical I/O와 CPO를 하고 싶겠죠. 회사 입장에서는 밴드위스도 잘 나오고 energy per bit도 훨씬 더 낮으니까요. 그런데 같이 패키징하게 되면 첫 번째로 뽑아서 교체할 수가 없어요. 패키징을 같이 하게 되니까요. Pluggable optics 같은 경우는 만약 이 케이블이 fail한다면 그냥 케이블만 교체해 주면 되는데 이 CPO가 fail하게 되면 칩 전체를 다 바꿀 수는 없잖아요. 그렇기 때문에 serviceability 측면에서도 낮아지고 그다음에 ASIC 칩 옆에 포토닉스를 같이 놓기 때문에 ASIC에서 발생하는 열도 포토닉스에 영향을 끼치게 됩니다. 그리고 당연히 함께 fabricate하게 되면 manufacturing할 때 난이도도 훨씬 더 올라가겠죠. 그래서 수율 측면에서 굉장히 좋지 않아요. pluggable optics 같은 것과 비교했을 때요. 그래서 사실 가장 좋은 질문은 언제 전부 바뀌는가가 아니라 어느 파트부터 포토닉스로 옮겨야 하느냐가 되는 거죠. 가장 중요한 부분이긴 한 거죠.
+<span class="paragraph-timestamp" data-ts="20:56">20:56</span> **박준우** 그런데 아까도 말씀드렸지만 co-packaged optics, CPO나 optical I/O 쪽으로 가게 되면 여러 가지 문제가 같이 따라와요. 사실 NVIDIA나 Marvell 같은 회사들도 당연히 optical I/O와 CPO를 하고 싶겠죠. 회사 입장에서는 밴드위스도 잘 나오고 energy per bit도 훨씬 더 낮으니까요. 그런데 같이 패키징하게 되면 첫 번째로 뽑아서 교체할 수가 없어요. 패키징을 같이 하게 되니까요. Pluggable optics 같은 경우는 만약 이 케이블이 fail한다면 그냥 케이블만 교체해 주면 되는데 이 CPO가 fail하게 되면 칩 전체를 다 바꿀 수는 없잖아요. 그렇기 때문에 serviceability 측면에서도 낮아지고 그다음에 ASIC 칩 옆에 포토닉스를 같이 놓기 때문에 ASIC에서 발생하는 열도 포토닉스에 영향을 끼치게 됩니다. 그리고 당연히 함께 fabricate하게 되면 manufacturing할 때 난이도도 훨씬 더 올라가겠죠. 그래서 수율 측면에서 굉장히 좋지 않아요. pluggable optics 같은 것과 비교했을 때요. 그래서 사실 가장 좋은 질문은 언제 전부 바뀌는가가 아니라 어느 파트부터 포토닉스로 옮겨야 하느냐가 되는 거죠. 가장 중요한 부분이긴 한 거죠.
+
 
 ## 빛에 비트를 싣는 EO Modulation의 원리    *22:14*
 
-<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **박준우** 그래서 실리콘 포토닉스의 디테일에 대해 얘기를 해드릴 건데요. 실리콘 포토닉스라는 개념 자체가 전기 신호를 바꾸고 빛을 보내고 뒤, 그 빛 신호를 광 신호를 전기 신호로 바꾸는 거예요. 그래서 예를 들어 CPU나 ASIC 칩에서 어떠한 정보를 보내고 싶다면 비트로 보내겠죠. 그러면 이 옵티컬 엔진, 트랜시버라는 게 이 전기 신호를 광 신호로 바꿔줘야 돼요. 그러면 그걸 빛에 비트로 임베딩합니다. 그럼 그 빛이 파이버를 타고 쭉 움직여서 리시버 사이드에 가겠죠. 그럼 그 리시버, 받는 쪽에서는 그 광 신호를 다시 전기 신호로 바꿔주는 거예요. 그러면 받는 쪽 칩에서도 그걸 잘 이해할 수 있겠죠.
+<span class="paragraph-timestamp" data-ts="22:14">22:14</span> **박준우** 그래서 실리콘 포토닉스의 디테일에 대해 얘기를 해드릴 건데요. 실리콘 포토닉스라는 개념 자체가 전기 신호를 바꾸고 빛을 보낸 뒤, 그 빛 신호를 광 신호를 전기 신호로 바꾸는 거예요. 그래서 예를 들어 CPU나 ASIC 칩에서 어떠한 정보를 보내고 싶다면 비트로 보내겠죠. 그러면 이 옵티컬 엔진, 트랜시버라는 게 이 전기 신호를 광 신호로 바꿔줘야 돼요. 그러면 그걸 빛에 비트로 임베딩합니다. 그럼 그 빛이 파이버를 타고 쭉 움직여서 리시버 사이드에 가겠죠. 그럼 그 리시버, 받는 쪽에서는 그 광 신호를 다시 전기 신호로 바꿔주는 거예요. 그러면 받는 쪽 칩에서도 그걸 잘 이해할 수 있겠죠.
 
-<span class="paragraph-timestamp" data-ts="23:02">23:02</span> 그런데 가장 중요한 게 이 전기 신호를 어떻게 광 신호로 바꾸느냐가 가장 중요하거든요. 그다음에 이 전기 신호를 광 신호로 바꿔주고 광 신호를 전기 신호로 바꿔주는 걸 EO 모듈레이션이라고 해요. electro- optic modulation이라고 하는데, 그 원리를 굉장히 하이 레벨로 설명해 드리자면 코패키지드 옵틱스 같은 것 안에는 레이저가 항상 켜져 있습니다. 그래서 레이저는 항상 켜져 있고, 칩에서 오는 전기적인 신호가 있을 거 아니에요? 빛이나 파장 같은 게 있을 텐데, 이 전기적 비트를 모듈레이터에 전압으로 가합니다. 그러면 우리가 전압을 가했을 때 그 모듈레이터 물질의 굴절률이 바뀌어요. 그 굴절률이 바뀌면서 이 레이저에서 오는 빛의 위상이 바뀝니다. 그래서 phase가 바뀌게 되는데, 그 phase의 빛을 임베딩하는 거예요. 파이버를 타고 쭉 이동해서 디텍터에서 감지되고, 그 디텍터에서는 그 phase 같은 것을 감지해서 비트를 다시 읽어내는 겁니다. 그래서 대부분의 모듈레이터는 빛의 intensity를 바꾸지 않고, 실리콘의 굴절률을 바꿈으로써 위상에 간섭을 줘서 거기에 비트를 임베딩하는 겁니다.
+<span class="paragraph-timestamp" data-ts="23:01">23:01</span> 그런데 가장 중요한 게 이 전기 신호를 어떻게 광 신호로 바꾸느냐가 가장 중요하거든요. 그다음에 이 전기 신호를 광 신호로 바꿔주고 광 신호를 전기 신호로 바꿔주는 걸 EO 모듈레이션이라고 해요. electro- optic modulation이라고 하는데, 그 원리를 굉장히 하이 레벨로 설명해 드리자면 코패키지드 옵틱스 같은 것 안에는 레이저가 항상 켜져 있습니다. 그래서 레이저는 항상 켜져 있고, 칩에서 오는 전기적인 신호가 있을 거 아니에요? 빛이나 파장 같은 게 있을 텐데, 이 전기적 비트를 모듈레이터에 전압으로 가합니다. 그러면 우리가 전압을 가했을 때 그 모듈레이터 물질의 굴절률이 바뀌어요. 그 굴절률이 바뀌면서 이 레이저에서 오는 빛의 위상이 바뀝니다. 그래서 phase가 바뀌게 되는데, 그 phase의 빛을 임베딩하는 거예요. 파이버를 타고 쭉 이동해서 디텍터에서 감지되고, 그 디텍터에서는 그 phase 같은 것을 감지해서 비트를 다시 읽어내는 겁니다. 그래서 대부분의 모듈레이터는 빛의 intensity를 바꾸지 않고, 실리콘의 굴절률을 바꿈으로써 위상에 간섭을 줘서 거기에 비트를 임베딩하는 겁니다.
 
-<span class="paragraph-timestamp" data-ts="24:25">24:25</span> **노정석** 현존하는 EO 모듈레이터들은 다 그런 원리로 동작한다고 보면 되나요?
+<span class="paragraph-timestamp" data-ts="24:23">24:23</span> **노정석** 현존하는 EO 모듈레이터들은 다 그런 원리로 동작한다고 보면 되나요?
 
-<span class="paragraph-timestamp" data-ts="24:32">24:32</span> **박준우** 그렇죠. 사실 예전에는 intensity를 조절해서 비트를 임베딩하려고 했어요. 그래서 예를 들어 레이저를 직접 켰다 껐다 해서 파장이 나오게 할 수도 있는 거고, 아니면 레이저 앞에 MEMS 같은 걸 넣어서 차폐막 같은 걸 넣어서 그걸로
+<span class="paragraph-timestamp" data-ts="24:29">24:29</span> **박준우** 그렇죠. 사실 예전에는 intensity를 조절해서 비트를 임베딩하려고 했어요. 그래서 예를 들어 레이저를 직접 켰다 껐다 해서 파장이 나오게 할 수도 있는 거고, 아니면 레이저 앞에 MEMS 같은 걸 넣어서 차폐막 같은 걸 넣어서 그걸로
 
-<span class="paragraph-timestamp" data-ts="24:55">24:55</span> **박준우** 껐다 켰다. 껐다 켰다 할 수 있는 건데, 그걸 해보니까 속도가 안 나옵니다. 레이저라는 것도 물리학적으로 굉장히 복잡해서 레이저가 꺼졌다 켜지는 과정에 물리적인 한계가 있거든요. 그 속도에요. 또 예를 들어 차폐막 같은 걸 놓는다고 했을 때, 차폐막이 막았다가 올라가는 식으로 움직여야 하는데 거기에도 움직임의 속도 제한이 있겠죠. 그래서 사람들이 생각한 게, 그러면 intensity를 조절하는 방식으로는 속도가 안 나오니까 레이저는 항상 켜두고 그 phase, 즉 위상을 바꿔서 거기에 비트를 임베딩하면 훨씬 더 속도가 빠르게 나오겠다는 생각을 한 거예요. 왜냐하면 물질에 전압을 가했을 때 굴절률이 바뀌는 속도는 굉장히 빠르거든요. 레이저가 꺼졌다 켜지는 속도보다요. 그래서 우리는 지금 기가바이트에서 거의 테라바이트 단위로 가고 있는데, 밴드위스가 그렇게 테라바이트 정도로 가려면 속도가 굉장히 빨라야겠죠. 그런데 그 속도를 따라잡을 수 있는 게 이 굴절률을 바꾸는 것밖에 거의 없다고 보시면 됩니다. 아직까지는요.
+<span class="paragraph-timestamp" data-ts="24:49">24:49</span> **노정석** 껐다 켰다.
+
+<span class="paragraph-timestamp" data-ts="24:50">24:50</span> **박준우** 껐다 켰다 할 수 있는 건데, 그걸 해보니까 속도가 안 나옵니다. 레이저라는 것도 물리학적으로 굉장히 복잡해서 레이저가 꺼졌다 켜지는 과정에 물리적인 한계가 있거든요. 그 속도에요. 또 예를 들어 차폐막 같은 걸 놓는다고 했을 때, 차폐막이 막았다가 올라가는 식으로 움직여야 하는데 거기에도 움직임의 속도 제한이 있겠죠. 그래서 사람들이 생각한 게, 그러면 intensity를 조절하는 방식으로는 속도가 안 나오니까 레이저는 항상 켜두고 그 phase, 즉 위상을 바꿔서 거기에 비트를 임베딩하면 훨씬 더 속도가 빠르게 나오겠다는 생각을 한 거예요. 왜냐하면 물질에 전압을 가했을 때 굴절률이 바뀌는 속도는 굉장히 빠르거든요. 레이저가 꺼졌다 켜지는 속도보다요. 그래서 우리는 지금 기가바이트에서 거의 테라바이트 단위로 가고 있는데, 밴드위스가 그렇게 테라바이트 정도로 가려면 속도가 굉장히 빨라야겠죠. 그런데 그 속도를 따라잡을 수 있는 게 이 굴절률을 바꾸는 것밖에 거의 없다고 보시면 됩니다. 아직까지는요.
+
 
 ## Mach-Zehnder 구조와 위상 기반 비트 인코딩    *25:58*
 
-<span class="paragraph-timestamp" data-ts="26:02">26:02</span> **노정석** 알겠습니다. 데이터가 실린 빛이 지나가는 매체는 여전히 우리가 광섬유라고 생각하면 되는 거죠?
+<span class="paragraph-timestamp" data-ts="25:58">25:58</span> **노정석** 알겠습니다. 데이터가 실린 빛이 지나가는 매체는 여전히 우리가 광섬유라고 생각하면 되는 거죠?
 
-<span class="paragraph-timestamp" data-ts="26:12">26:12</span> **박준우** 그런데 사실 이 위상을 바꿔서 데이터를 임베딩하는 게 머릿속으로 시각화하기가 잘 안 되잖아요. 그래서 그 원리를 간략하게 말씀드리자면, 레이저는 항상 켜져 있고요. 레이저가 두 갈래로 나뉩니다. 하나는 아무것도 없이 그냥 지나가는 빛이고요. 하나는 모듈레이터가 달려 있고, 굴절률을 바꾸기 위해 전압을 가하는 장치가 달려 있는 다른 하나의 길이라고 생각하시면 돼요. 그래서 여기에 전압을 주면 위쪽으로 가는 빛만 위상이 바뀌겠죠. 아래쪽으로 가는 빛은 위상이 전혀 바뀌지 않고, 어떠한 간섭도 받지 않으니까요. 그래서 우리는 고등학교 때 배운 constructive interference와 destructive interference를 이용합니다. 어떠한 전압을 가했을 때 phase가 180도 돌아가서 이 두 빛이 만날 때 상쇄되는 거예요. 그러면 아웃풋의 intensity는 0이 되겠죠. 빛의 세기가요. 그다음에 여기 전압을 가했는데 360도가 되거나 전압을 가하지 않았다고 해볼게요. 그러면 이 빛들이 만날 때 다시 합쳐져서 intensity가 1이 되겠죠. 그렇게 해서 전기 신호를 굴절률 변화로 바꿔주고, 전압을 가함으로써 위상 변화를 일으키고, 위상 변화를 준 arm과 주지 않은 arm이 합쳐지면서 그게 intensity 변화로 바뀌고, 그걸로 비트를 임베딩하게 되는 겁니다. 그래서 아직까지는 거의 모든 모듈레이터가 이런 스키마를 사용하고 있어요.
+<span class="paragraph-timestamp" data-ts="26:06">26:06</span> **박준우** 그런데 사실 이 위상을 바꿔서 데이터를 임베딩하는 게 머릿속으로 시각화하기가 잘 안 되잖아요. 그래서 그 원리를 간략하게 말씀드리자면, 레이저는 항상 켜져 있고요. 레이저가 두 갈래로 나뉩니다. 하나는 아무것도 없이 그냥 지나가는 빛이고요. 하나는 모듈레이터가 달려 있고, 굴절률을 바꾸기 위해 전압을 가하는 장치가 달려 있는 다른 하나의 길이라고 생각하시면 돼요. 그래서 여기에 전압을 주면 위쪽으로 가는 빛만 위상이 바뀌겠죠. 아래쪽으로 가는 빛은 위상이 전혀 바뀌지 않고, 어떠한 간섭도 받지 않으니까요. 그래서 우리는 고등학교 때 배운 constructive interference와 destructive interference를 이용합니다. 어떠한 전압을 가했을 때 phase가 180도 돌아가서 이 두 빛이 만날 때 상쇄되는 거예요. 그러면 아웃풋의 intensity는 0이 되겠죠. 빛의 세기가요. 그다음에 여기 전압을 가했는데 360도가 되거나 전압을 가하지 않았다고 해볼게요. 그러면 이 빛들이 만날 때 다시 합쳐져서 intensity가 1이 되겠죠. 그렇게 해서 전기 신호를 굴절률 변화로 바꿔주고, 전압을 가함으로써 위상 변화를 일으키고, 위상 변화를 준 arm과 주지 않은 arm이 합쳐지면서 그게 intensity 변화로 바뀌고, 그걸로 비트를 임베딩하게 되는 겁니다. 그래서 아직까지는 거의 모든 모듈레이터가 이런 스키마를 사용하고 있어요.
 
-<span class="paragraph-timestamp" data-ts="27:41">27:41</span> **노정석** 이게 하나의 채널을 말씀하신 거고, 굉장히 많은 채널이 하나의 매체에 동시에 쏘고 있는 거라고 봐야 하는 거죠?
+<span class="paragraph-timestamp" data-ts="27:36">27:36</span> **노정석** 이게 하나의 채널을 말씀하신 거고, 굉장히 많은 채널이 하나의 매체에 동시에 쏘고 있는 거라고 봐야 하는 거죠?
 
-<span class="paragraph-timestamp" data-ts="27:47">27:47</span> **박준우** 멀티플렉싱, 디멀티플렉싱이라고 하는데, 사실 포토닉스의 강점이 거기서 나오는 거죠.
+<span class="paragraph-timestamp" data-ts="27:44">27:44</span> **박준우** 멀티플렉싱, 디멀티플렉싱이라고 하는데, 사실 포토닉스의 강점이 거기서 나오는 거죠.
 
 <span class="paragraph-timestamp" data-ts="27:50">27:50</span> **노정석** 그러면 계속 진행해 볼까요?
 
+
 ## 실리콘 레이저의 난제와 Heterogeneous Integration    *27:52*
 
-<span class="paragraph-timestamp" data-ts="27:56">27:56</span> **박준우** 그런데 실리콘 포토닉스에서 가장 중요한 게, 아까 보여드린 것처럼 레이저가 항상 켜져 있어야 하잖아요. 그래서 레이저는 칩 어딘가에 존재해야 하는 거예요. 그런데 실리콘의 가장 큰 문제는 실리콘으로 레이저를 만들기가 굉장히 어렵다는 겁니다. 실리콘은 물리학적으로 봤을 때 indirect band gap이라고 해서 빛을 만들기에 좋은 매개체가 아니에요. 그래서 레이저를 칩 위에 만들려면 다른 semiconductor를 갖다 붙여야 하는 거예요. 예를 들어 이 실리콘 포토닉 다이가 웨이퍼가 있다고 치면 레이저는 예를 들어 InP 재료로 만들어서 실리콘 다이 위에 갖다 붙여야 하는 겁니다.
+<span class="paragraph-timestamp" data-ts="27:52">27:52</span> **박준우** 그런데 실리콘 포토닉스에서 가장 중요한 게, 아까 보여드린 것처럼 레이저가 항상 켜져 있어야 하잖아요. 그래서 레이저는 칩 어딘가에 존재해야 하는 거예요. 그런데 실리콘의 가장 큰 문제는 실리콘으로 레이저를 만들기가 굉장히 어렵다는 겁니다. 실리콘은 물리학적으로 봤을 때 indirect band gap이라고 해서 빛을 만들기에 좋은 매개체가 아니에요. 그래서 레이저를 칩 위에 만들려면 다른 semiconductor를 갖다 붙여야 하는 거예요. 예를 들어 이 실리콘 포토닉 다이가 웨이퍼가 있다고 치면 레이저는 예를 들어 InP 재료로 만들어서 실리콘 다이 위에 갖다 붙여야 하는 겁니다.
 
 <span class="paragraph-timestamp" data-ts="28:38">28:38</span> 그걸 III-V integration이라고 하는데, 이게 실리콘 포토닉스 수율, fabrication 하기가 굉장히 어려운 이유 중 하나예요. 왜냐하면 모든 CMOS 프로세스가 실리콘에 굉장히 최적화되어 있잖아요. 그래서 실리콘으로 레이저를 만들 수 있으면 굉장히 좋겠지만, 실리콘으로 레이저를 효율적으로 만들 수 없기 때문에 다른 플랫폼에서 레이저를 만들어서 실리콘 위에 갖다 붙여야 하는데, 이 레이저를 만들어서 본딩하는 게 굉장히 어려운 작업이어서 하이닉스나 삼성, Lumentum 같은 회사들이 하고 있는 게 어떻게 하면 이 레이저를 효율적이고 높은 수율로 갖다 붙일 수 있는지에 대한 연구를 많이 진행하는 것으로 알고 있습니다.
 
 <span class="paragraph-timestamp" data-ts="29:26">29:26</span> **노정석** 저것도 리소그래피 과정에서 만들어서 이렇게 쌓아 올리는 거예요? 아니면 저 모듈은 다른 데서 가져와서 리소그래피 단계에서 올려야 하는 건가요?
 
-<span class="paragraph-timestamp" data-ts="29:38">29:38</span> **박준우** 올려야 하는 거예요. 실리콘 리소그래피를 하면서 같이 쌓아 올리면 쉽겠죠. 그나마요. 그런데 아예 원자 단위에서 본딩을 해줘야 하는 거예요. 이 레이저를 실리콘 위에다가요? 그런데 이 작업을 원자 단위로 본딩하려면 굉장히 어려우니까 거기서 수율이 많이 떨어지게 되는 거죠.
+<span class="paragraph-timestamp" data-ts="29:37">29:37</span> **박준우** 올려야 하는 거예요. 실리콘 리소그래피를 하면서 같이 쌓아 올리면 쉽겠죠. 그나마요. 그런데 아예 원자 단위에서 본딩을 해줘야 하는 거예요. 이 레이저를 실리콘 위에다가요? 그런데 이 작업을 원자 단위로 본딩하려면 굉장히 어려우니까 거기서 수율이 많이 떨어지게 되는 거죠.
 
-<span class="paragraph-timestamp" data-ts="30:03">30:03</span> **노정석** 일반적인 반도체 제작 공정은 이런 식으로 하나씩 한 층씩 쌓아가는 구조로 되어 있잖아요. 그게 아니라 밖에 있는 걸 가져와서 붙이는 다른 공정이 있나요? 아니면 이게 처음인 건가요?
+<span class="paragraph-timestamp" data-ts="29:56">29:56</span> **노정석** 일반적인 반도체 제작 공정은 이런 식으로 하나씩 한 층씩 쌓아가는 구조로 되어 있잖아요. 그게 아니라 밖에 있는 걸 가져와서 붙이는 다른 공정이 있나요? 아니면 이게 처음인 건가요?
 
-<span class="paragraph-timestamp" data-ts="30:14">30:14</span> **박준우** 있죠. 이걸 업계에서는 heterogeneous integration이라고 하는데, heterogeneous인 이유는 아예 다른 다이 두 개를 갖다 붙이기 때문이에요. 그래서 heterogeneous integration이라고 하는데, pluggable optics에도 레이저가 들어가긴 합니다. 그래서 pluggable optics에서 레이저를 만들 때도 heterogeneous bonding을 할 때가 있고, 요즘에 코패키지드 칩, CPU 칩 같은 걸 만들 때는 다 heterogeneous integration으로 하는 것으로 알고 있습니다. 왜냐하면 실리콘에서는 빛이 나올 수가 없어요. 굉장히 어렵습니다. InP 레이저와 실리콘 레이저를 비교했을 때 거의 100배, 1,000배 정도 효율이 차이 나니까 갖다 붙이는 게 훨씬 효율적이라는 판단이 되는 거죠.
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **박준우** 있죠. 이걸 업계에서는 heterogeneous integration이라고 하는데, heterogeneous인 이유는 아예 다른 다이 두 개를 갖다 붙이기 때문이에요. 그래서 heterogeneous integration이라고 하는데, pluggable optics에도 레이저가 들어가긴 합니다. 그래서 pluggable optics에서 레이저를 만들 때도 heterogeneous bonding을 할 때가 있고, 요즘에 코패키지드 칩, CPU 칩 같은 걸 만들 때는 다 heterogeneous integration으로 하는 것으로 알고 있습니다. 왜냐하면 실리콘에서는 빛이 나올 수가 없어요. 굉장히 어렵습니다. InP 레이저와 실리콘 레이저를 비교했을 때 거의 100배, 1,000배 정도 효율이 차이 나니까 갖다 붙이는 게 훨씬 효율적이라는 판단이 되는 거죠.
 
-<span class="paragraph-timestamp" data-ts="30:59">30:59</span> 제가 알기로는 제 지도 교수님이 포닥을 하실 때 heterogeneous integration 쪽으로 연구를 많이 하셔서 UC Santa Barbara와 함께 특허를 내서 Intel에 팔았고, Intel이 아직도 자체 CPO 칩을 만들 때 제 지도 교수님의 특허를 쓰는 것으로 알고 있어요. 그런데 그게 아마 2006년이나 2007년쯤인 것으로 기억해서, 이 heterogeneous integration이라는 기술 자체는 20~30년 정도 된 기술인데 요즘에 각광받고 있다고 말씀드리면 될 것 같아요.
+<span class="paragraph-timestamp" data-ts="30:55">30:55</span> 제가 알기로는 제 지도 교수님이 포닥을 하실 때 heterogeneous integration 쪽으로 연구를 많이 하셔서 UC Santa Barbara와 함께 특허를 내서 Intel에 팔았고, Intel이 아직도 자체 CPO 칩을 만들 때 제 지도 교수님의 특허를 쓰는 것으로 알고 있어요. 그런데 그게 아마 2006년이나 2007년쯤인 것으로 기억해서, 이 heterogeneous integration이라는 기술 자체는 20~30년 정도 된 기술인데 요즘에 각광받고 있다고 말씀드리면 될 것 같아요.
 
 <span class="paragraph-timestamp" data-ts="31:36">31:36</span> **노정석** 옵션 B는 당연히 밖에서 만들어서 넣어주면 되는 거겠네요. 그런데 이건 너무나도 직관적으로, 밖에서 만들어서 넣으면 당연히 부피가 커지고 칩과
 
 <span class="paragraph-timestamp" data-ts="31:46">31:46</span> **이진원** 같이 integration이 안 되고 질문하셔서 저도 답변을 조금 추가로 드리면, 이렇게 다이를 수직으로 쌓는 방식은 실리콘 포토닉스가 아니어도 최근에 많이 하고 있고, 왜냐하면 다이와 칩의 크기는 점점 커지는데, 우리가 기본적으로 I/O라고 하죠. 신호가 밖으로 나가는 것은 다 변을 통할 수밖에 없거든요. 그런데 면적은 2차원으로 커지지만 변은 1차원으로 커지기 때문에, 면적이 커질수록 면적 대비 변의 비율이 작아지고, 그러다 보면 데이터 이동을 할 수 있는 공간이 적어지기 때문에 위로 쌓는 거죠. 그래서 실리콘에 TSV 같은 걸 뚫어서 위아래로 신호를 보내는 3D IC 이런 것들이 약간 비슷한 콘셉트인 것 같아요. 여기처럼 다이를 여러 개 수직으로 쌓는 방식이요. 그런 접근법은 옵틱스가 아니어도 지금 많이 사용하고 있습니다. 이제 시작 단계죠. 그런 것들도요.
 
-<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **노정석** 참 이쪽이, 저도 이런저런 책을 읽어보는데 마법처럼 말도 안 되는 엔지니어링을 시도하고 성공하면서 해 왔더라고요. AI가 아니었으면 저도 칩 분야에서 도대체 무슨 일이 일어나는지 아마 관심도 없었을 것 같아요. 그런데 이게 AI 때문에 저희가 아래 발전소부터 데이터 센터, 그다음에 칩, 그다음에 메모리의 크기와 밴드위스 같은 것들까지 다 알아야 하고, 그걸 다 알아야만 이 세상이 어디로 가는지가 대략 보이는 세상이 된 게 어떻게 보면 참 재미있기도 하지만 머리가 아프긴 합니다. 이 레이어의 경계가 명확하게 지어지지 않고 너무 다 섞여 있는 것 같아요. 진원 님만 하시더라도 이 칩을 만들려면 사실 저 위의 PyTorch로 모델을 계산하는 것부터 이 아래의 전자공학까지 다 알아야 가능한 얘기잖아요. 자, 그럼 넘어갈까요?
+<span class="paragraph-timestamp" data-ts="32:44">32:44</span> **노정석** 참 이쪽이, 저도 이런저런 책을 읽어보는데 마법처럼 말도 안 되는 엔지니어링을 시도하고 성공하면서 해 왔더라고요. AI가 아니었으면 저도 칩 분야에서 도대체 무슨 일이 일어나는지 아마 관심도 없었을 것 같아요. 그런데 이게 AI 때문에 저희가 아래 발전소부터 데이터 센터, 그다음에 칩, 그다음에 메모리의 크기와 밴드위스 같은 것들까지 다 알아야 하고, 그걸 다 알아야만 이 세상이 어디로 가는지가 대략 보이는 세상이 된 게 어떻게 보면 참 재미있기도 하지만 머리가 아프긴 합니다. 이 레이어의 경계가 명확하게 지어지지 않고 너무 다 섞여 있는 것 같아요. 진원 님만 하시더라도 이 칩을 만들려면 사실 저 위의 PyTorch로 모델을 계산하는 것부터 이 아래의 전자공학까지 다 알아야 가능한 얘기잖아요. 자, 그럼 넘어갈까요?
+
 
 ## 파장을 겹쳐 보내는 WDM Multiplexing의 강점    *33:39*
 
-<span class="paragraph-timestamp" data-ts="33:43">33:43</span> **박준우** 그래서 아까 질문하셨던 게 포토닉스는 waveguide fiber가 하나만 있어도 다양한 정보를 주파수가 다른 빛에 multiplexing, demultiplexing할 수 있다고 말씀드렸었는데, 정확하게 그게 포토닉스를 써야 하는 가장 큰 이유입니다. 전기 배선, copper 같은 경우는 만약에 네 개의 다른 정보를 보내고 싶다면 네 개의 다른 구리선 채널이 있어야 하는 거죠. 하지만 포토닉스는 선이 하나만 있어도 주파수만 바꿔서 그 주파수마다 각각 다른 정보를 embedding하게 된다면, 서로 다른 주파수의 빛을 길 하나로 내보내고 일단 demux라는 게 그 주파수가 다른 빛들을 각각 나눠 줘서 여기서 signal processing을 하면 되는 겁니다. 그래서 전기 배선은 채널의 개수를 늘려야 하지만, 빛은 채널이 하나만 있어도 파장만 다르게 해서 정보를 embedding하게 된다면 채널을 굉장히 많이 늘릴 수 있는 거죠.
+<span class="paragraph-timestamp" data-ts="33:39">33:39</span> **박준우** 그래서 아까 질문하셨던 게 포토닉스는 waveguide fiber가 하나만 있어도 다양한 정보를 주파수가 다른 빛에 multiplexing, demultiplexing할 수 있다고 말씀드렸었는데, 정확하게 그게 포토닉스를 써야 하는 가장 큰 이유입니다. 전기 배선, copper 같은 경우는 만약에 네 개의 다른 정보를 보내고 싶다면 네 개의 다른 구리선 채널이 있어야 하는 거죠. 하지만 포토닉스는 선이 하나만 있어도 주파수만 바꿔서 그 주파수마다 각각 다른 정보를 embedding하게 된다면, 서로 다른 주파수의 빛을 길 하나로 내보내고 일단 demux라는 게 그 주파수가 다른 빛들을 각각 나눠 줘서 여기서 signal processing을 하면 되는 겁니다. 그래서 전기 배선은 채널의 개수를 늘려야 하지만, 빛은 채널이 하나만 있어도 파장만 다르게 해서 정보를 embedding하게 된다면 채널을 굉장히 많이 늘릴 수 있는 거죠.
 
-<span class="paragraph-timestamp" data-ts="34:57">34:57</span> 그래서 아까 진원 님이 말씀드린 면적은 2D에서 제곱으로 늘어나지만, 변은 1차원적으로만 늘어난다고 말씀드렸는데, 이런 multiplexing을 하게 된다면 이걸 shoreline density라고 하거든요. 이 shoreline density가 굉장히 극적으로 좋아지는 거죠. 왜냐하면 변에서 구리선 같은 경우는 채널을 늘리고 싶다면 변에 한 번에 네 개씩 들어가야 할 채널을 열 개로 늘려야 하고 열여섯 개로 늘려야 하는 상황이 오게 되는데, CPO나 optical I/O 같은 경우는 굳이 그럴 필요는 없다는 거죠. 채널이 한두 개만 있어도 거기에 주파수를 여러 개 그냥 넣으면 되니까요. demux의 성능에 따라 당연히 바뀌겠지만, 이 demux가 얼마나 촘촘한 주파수를 잘게 잘 솎아낼 수 있느냐의 차이이긴 한데, 그래도 구리선보다 shoreline density가 훨씬 더 올라간다는 거죠.
+<span class="paragraph-timestamp" data-ts="34:48">34:48</span> 그래서 아까 진원 님이 말씀드린 면적은 2D에서 제곱으로 늘어나지만, 변은 1차원적으로만 늘어난다고 말씀드렸는데, 이런 multiplexing을 하게 된다면 이걸 shoreline density라고 하거든요. 이 shoreline density가 굉장히 극적으로 좋아지는 거죠. 왜냐하면 변에서 구리선 같은 경우는 채널을 늘리고 싶다면 변에 한 번에 네 개씩 들어가야 할 채널을 열 개로 늘려야 하고 열여섯 개로 늘려야 하는 상황이 오게 되는데, CPO나 optical I/O 같은 경우는 굳이 그럴 필요는 없다는 거죠. 채널이 한두 개만 있어도 거기에 주파수를 여러 개 그냥 넣으면 되니까요. demux의 성능에 따라 당연히 바뀌겠지만, 이 demux가 얼마나 촘촘한 주파수를 잘게 잘 솎아낼 수 있느냐의 차이이긴 한데, 그래도 구리선보다 shoreline density가 훨씬 더 올라간다는 거죠.
 
-<span class="paragraph-timestamp" data-ts="35:45">35:45</span> **이진원** 제가 이와 관련해서 하나 질문드리고 싶은 게 있는데, 주파수를 다르게 한다는 게 결국 빛의 색을 다르게 해서 다른 색깔의 빛을 동시에 보낸다고 이해하면 되는 거잖아요. 이게 구리에서도 사실 우리가 디지털로 0과 1을 보낸다고 했을 때 그걸 단순히 두 개의 신호로 구분하지 않고, 요즘은 네 개 혹은 여섯 개, 여덟 개로 확장하거든요. 그러니까 0과 1 사이에 여러 개를 넣는 것, 비트를 여러 개 동시에 보내는 개념인 거죠.
+<span class="paragraph-timestamp" data-ts="35:42">35:42</span> **이진원** 제가 이와 관련해서 하나 질문드리고 싶은 게 있는데, 주파수를 다르게 한다는 게 결국 빛의 색을 다르게 해서 다른 색깔의 빛을 동시에 보낸다고 이해하면 되는 거잖아요. 이게 구리에서도 사실 우리가 디지털로 0과 1을 보낸다고 했을 때 그걸 단순히 두 개의 신호로 구분하지 않고, 요즘은 네 개 혹은 여섯 개, 여덟 개로 확장하거든요. 그러니까 0과 1 사이에 여러 개를 넣는 것, 비트를 여러 개 동시에 보내는 개념인 거죠.
 
 <span class="paragraph-timestamp" data-ts="36:13">36:13</span> 그런데 그렇게 하다 보면 아까 말씀해 주신 손실에 취약해질 수밖에 없거든요. 이 구리선을 통해 전달되는 voltage로 0과 1을 구분하는 걸 더 세분화하다 보면, 조금만 noise가 끼더라도 잘못 인식될 수 있기 때문에요. 그런데 여기서도 동시에 여러 색의 빛을 보내면 온도라든지 이런 것 때문에 색깔이 변하는 일은 없나요?
 
-<span class="paragraph-timestamp" data-ts="36:43">36:43</span> **박준우** 있죠. 그래서 가장 중요한 게 CPO에서는 온도 제어예요. 그래서 패키징이 굉장히 중요한 이유는 패키징을 어떻게 잘해야 이런 mux나 demux 같은 게 온도에 영향을 많이 받지 않는지, 이런 것도 패키징 단위에서 굉장히 많이 연구하거든요. 그다음에 주파수 같은 걸 굉장히 촘촘하게 0.3nm 단위의 wavelength로 잘게 쪼갠다고 하면, 온도가 1도만 올라가더라도 wavelength가 shift되고, 이러다 보면 비트 같은 정보도 섞이게 되는데, 그런 문제점이 있기는 하죠.
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> **박준우** 있죠. 그래서 가장 중요한 게 CPO에서는 온도 제어예요. 그래서 패키징이 굉장히 중요한 이유는 패키징을 어떻게 잘해야 이런 mux나 demux 같은 게 온도에 영향을 많이 받지 않는지, 이런 것도 패키징 단위에서 굉장히 많이 연구하거든요. 그다음에 주파수 같은 걸 굉장히 촘촘하게 0.3nm 단위의 wavelength로 잘게 쪼갠다고 하면, 온도가 1도만 올라가더라도 wavelength가 shift되고, 이러다 보면 비트 같은 정보도 섞이게 되는데, 그런 문제점이 있기는 하죠.
 
-<span class="paragraph-timestamp" data-ts="37:20">37:20</span> 구리선도 mux, demux와 비슷한 개념을 구현할 수 있기는 한데, 포토닉스의 가장 좋은 점은 이 mux와 demux라는 디바이스 자체가 passive해요. 그래서 아무런 에너지가 들지 않습니다. 빛을 multiplexing하고 demultiplexing하는 데 전압 같은 에너지가 들지 않기 때문에, 구리선 같은 경우는 여러 정보를 embedding한다고 치면 receiver side에서 그걸 다 processing해 줘야 하는 거잖아요. 그런데 빛은 그럴 필요가 없는 거죠.
+<span class="paragraph-timestamp" data-ts="37:18">37:18</span> 구리선도 mux, demux와 비슷한 개념을 구현할 수 있기는 한데, 포토닉스의 가장 좋은 점은 이 mux와 demux라는 디바이스 자체가 passive해요. 그래서 아무런 에너지가 들지 않습니다. 빛을 multiplexing하고 demultiplexing하는 데 전압 같은 에너지가 들지 않기 때문에, 구리선 같은 경우는 여러 정보를 embedding한다고 치면 receiver side에서 그걸 다 processing해 줘야 하는 거잖아요. 그런데 빛은 그럴 필요가 없는 거죠.
 
-<span class="paragraph-timestamp" data-ts="37:54">37:54</span> **김태환** 그래서 디바이스를 설계하려면 어떻게 하면 더 efficient하고 compact하게 포토닉스를 설계할 수 있느냐, 이렇게 될 것 같아요.
+<span class="paragraph-timestamp" data-ts="37:51">37:51</span> **김태환** 그래서 디바이스를 설계하려면 어떻게 하면 더 efficient하고 compact하게 포토닉스를 설계할 수 있느냐, 이렇게 될 것 같아요.
+
 
 ## 포토닉스 집적도 한계와 Inverse Design    *38:02*
 
 <span class="paragraph-timestamp" data-ts="38:02">38:02</span> **박준우** 이런 걸 보면 아직까지 포토닉스 칩이 거의 cm 스케일인 거예요. 이런 걸 하나 만드는 데 거의 cm 단위의 면적을 쓰게 되니까 집적하기가 굉장히 힘들죠. 트랜지스터 같은 경우는 트랜지스터 하나에 요즘에는 1.5nm 공정, 1nm 공정 이런데, 포토닉스는 mm, cm 스케일로 가게 되다 보니까 디바이스 크기가 너무 커서 집적하기가 힘들어지는 거죠. 그런데 집적하기 힘든 이유가 왜 이렇게 cm 스케일까지 가야 하느냐고 생각해 보면, 애초에 빛이라는 게 파장이 μm 스케일이기 때문에 이 μm 스케일의 빛을 가두려면 디바이스 자체가 nm 스케일일 수는 없으니까 컴포넌트 같은 것들이 모두 μm 스케일로 만들어지게 되는 거죠. 그러면 그 μm 스케일의 컴포넌트들을 합치다 보면 mm 스케일이 되고 cm 스케일이 되는 겁니다.
 
-<span class="paragraph-timestamp" data-ts="39:00">39:00</span> **노정석** 대신 아까 얘기하신 강점이 있잖아요. 훨씬 더 많은 정보를 넣어도 되지 않습니까?
+<span class="paragraph-timestamp" data-ts="38:58">38:58</span> **노정석** 대신 아까 얘기하신 강점이 있잖아요. 훨씬 더 많은 정보를 넣어도 되지 않습니까?
 
-<span class="paragraph-timestamp" data-ts="39:05">39:05</span> **박준우** 왜 집적을 더 많이 해야 하느냐에 대해 설명해 드리자면, 당연히 많이 집적할수록 bandwidth가 올라가기 때문이라고 보시면 됩니다. 포토닉스도 사실 똑같은 거죠. 많이 집적할수록 컴포넌트가 늘어나고, bandwidth가 올라가는 건 당연한 거죠. lane의 수가 늘어나게 되니까요. 그래서 아까 말씀드린 것처럼 컴포넌트의 예가 있죠.
+<span class="paragraph-timestamp" data-ts="39:03">39:03</span> **박준우** 왜 집적을 더 많이 해야 하느냐에 대해 설명해 드리자면, 당연히 많이 집적할수록 bandwidth가 올라가기 때문이라고 보시면 됩니다. 포토닉스도 사실 똑같은 거죠. 많이 집적할수록 컴포넌트가 늘어나고, bandwidth가 올라가는 건 당연한 거죠. lane의 수가 늘어나게 되니까요. 그래서 아까 말씀드린 것처럼 컴포넌트의 예가 있죠.
 
 <span class="paragraph-timestamp" data-ts="39:23">39:23</span> multiplexer나 demultiplexer 같은 게 굉장히 중요하고요.
 
-<span class="paragraph-timestamp" data-ts="39:29">39:29</span> 또 다른 중요한 컴포넌트 중에 power splitter라는 게 있습니다. 이건 주파수를 나눠주는 게 아니라 빛의 세기를 나눠주는 디바이스를 말하는데, 비슷한 개념인 거죠. 하나는 주파수를 나눠주는 것, 하나는 빛의 세기를 나눠주는 것으로, 이 두 개가 중요한 컴포넌트라고 보시면 됩니다.
+<span class="paragraph-timestamp" data-ts="39:27">39:27</span> 또 다른 중요한 컴포넌트 중에 power splitter라는 게 있습니다. 이건 주파수를 나눠주는 게 아니라 빛의 세기를 나눠주는 디바이스를 말하는데, 비슷한 개념인 거죠. 하나는 주파수를 나눠주는 것, 하나는 빛의 세기를 나눠주는 것으로, 이 두 개가 중요한 컴포넌트라고 보시면 됩니다.
 
 <span class="paragraph-timestamp" data-ts="39:45">39:45</span> **김태환** 그래서 제가 봤을 때 여기서부터 굉장히 중요한 것 같아요. 저도 사실 이 전공이 아니었고, 포토닉스에 대한 지식이 별로 없었어요. 작년 10월 새벽쯤에 준우랑 얘기하다가 그 당시에 바이오 쪽에서도 굉장히 비슷한 움직임이 있어요. 그쪽에서도 Moore's law 같은 얘기가 나오고, 각 sequence 단위로 sequencing할 때 비용이 줄어들면서 데이터가 많이 쌓이고, 그 당시에 2년 전에 David Baker나 Hassabis나 Jumper 같은 분들이 노벨 화학상을 받으면서 주목을 많이 받게 됐는데, 저는 이 디자인을 보면서 어떤 생각이 들었냐면 생선 가시 같다는 생각이 들기 시작했어요. 디자인이 굉장히 unintuitive합니다. 그래서 그때 처음 든 생각은, 어차피 unintuitive한데 이미 인간의 영역을 넘어선 거라면, 우리가 작게 만들어야 하는데 딥러닝을 접목해 볼 수 있지 않을까라는 단순한 생각이었고요.
 
-<span class="paragraph-timestamp" data-ts="40:38">40:38</span> **박준우** 맥락을 드리자면, 아까 제가 말씀드렸던 게 컴포넌트 크기가 엄청 크다고 했잖아요. 그래서 conventional한 컴포넌트 크기를 보면, mux, demux 하나가 mm 스케일이고, power splitter도 보시면 μm 단위인데 2,000μm 이렇잖아요. 그래서 이것도 mm 스케일인 거죠. 그런데 inverse design이라는 optimization algorithm이 있는데, 이 inverse design을 쓰면 이런 mux나 power splitter 같은 디바이스의 크기를 보시는 것과 같이 μm 스케일, 거의 2μm, 5μm 스케일로 줄일 수 있다는 거예요. 그래서 거의 50배부터 100배, 1,000배까지 줄일 수 있는 거죠.
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **박준우** 맥락을 드리자면, 아까 제가 말씀드렸던 게 컴포넌트 크기가 엄청 크다고 했잖아요. 그래서 conventional한 컴포넌트 크기를 보면, mux, demux 하나가 mm 스케일이고, power splitter도 보시면 μm 단위인데 2,000μm 이렇잖아요. 그래서 이것도 mm 스케일인 거죠. 그런데 inverse design이라는 optimization algorithm이 있는데, 이 inverse design을 쓰면 이런 mux나 power splitter 같은 디바이스의 크기를 보시는 것과 같이 μm 스케일, 거의 2μm, 5μm 스케일로 줄일 수 있다는 거예요. 그래서 거의 50배부터 100배, 1,000배까지 줄일 수 있는 거죠.
 
-<span class="paragraph-timestamp" data-ts="41:15">41:15</span> 그런데 문제가 뭐냐고 했을 때, 아까 태환 님이 말씀드린 것처럼 디자인이 굉장히 unintuitive하게 나온다는 단점이 있어요. 왜냐하면 optimization algorithm으로 돌려서 그냥 물리 법칙에 맡긴 거예요. optimization algorithm에 주파수를 어떻게 하면 가장 효율적으로 나눌 수 있느냐고 물어본 것이기 때문에, 사람이 생각하는 그런 intuitive한 디자인이 나오지는 않는 거죠.
+<span class="paragraph-timestamp" data-ts="41:13">41:13</span> 그런데 문제가 뭐냐고 했을 때, 아까 태환 님이 말씀드린 것처럼 디자인이 굉장히 unintuitive하게 나온다는 단점이 있어요. 왜냐하면 optimization algorithm으로 돌려서 그냥 물리 법칙에 맡긴 거예요. optimization algorithm에 주파수를 어떻게 하면 가장 효율적으로 나눌 수 있느냐고 물어본 것이기 때문에, 사람이 생각하는 그런 intuitive한 디자인이 나오지는 않는 거죠.
 
 <span class="paragraph-timestamp" data-ts="41:36">41:36</span> **노정석** 이 inverse design이 뭔지는 살짝 설명해 주셔야 뒤가 이해되지 않을까요?
 
+
 ## Gradient Descent 기반 광학 구조 최적화    *41:42*
 
-<span class="paragraph-timestamp" data-ts="41:46">41:46</span> **박준우** conventional한 방식으로 디바이스를 설계하는 것에 대해 말씀드리자면, 사람이 생각했을 때 좀 intuitive한 geometry를 먼저 생각하고 그걸 simulation으로 돌려서 디바이스 성능을 본 뒤, 그걸 보고 다시 사람이 조금 더 tweak해서 성능을 올리는 식으로, 사람의 intuition에 기반한 simulation loop였는데, inverse design이라는 건 우리가 원하는 디바이스의 사양을 먼저 정하고 그걸 algorithm에 맡기는 거예요. 우리는 이런 기능을 하는 디바이스를 만들고 싶고, 주파수를 이렇게 이렇게 이렇게 나눠주는 걸 만들고 싶다고 algorithm에 넣으면, 그게 geometry를 만들어 주는 겁니다.
+<span class="paragraph-timestamp" data-ts="41:42">41:42</span> **박준우** conventional한 방식으로 디바이스를 설계하는 것에 대해 말씀드리자면, 사람이 생각했을 때 좀 intuitive한 geometry를 먼저 생각하고 그걸 simulation으로 돌려서 디바이스 성능을 본 뒤, 그걸 보고 다시 사람이 조금 더 tweak해서 성능을 올리는 식으로, 사람의 intuition에 기반한 simulation loop였는데, inverse design이라는 건 우리가 원하는 디바이스의 사양을 먼저 정하고 그걸 algorithm에 맡기는 거예요. 우리는 이런 기능을 하는 디바이스를 만들고 싶고, 주파수를 이렇게 이렇게 이렇게 나눠주는 걸 만들고 싶다고 algorithm에 넣으면, 그게 geometry를 만들어 주는 겁니다.
 
-<span class="paragraph-timestamp" data-ts="42:33">42:33</span> **이진원** 예를 들면 예전에 딥러닝으로 개와 고양이를 구분하는 classification 문제를 푸는 것과 비슷하게, 결과를 먼저 보고 어떤 특징을 찾아야 이걸 잘 구분할 수 있을지를 inverse로 찾아가는 과정과 비슷하다고 보면 될까요?
+<span class="paragraph-timestamp" data-ts="42:29">42:29</span> **이진원** 예를 들면 예전에 딥러닝으로 개와 고양이를 구분하는 classification 문제를 푸는 것과 비슷하게, 결과를 먼저 보고 어떤 특징을 찾아야 이걸 잘 구분할 수 있을지를 inverse로 찾아가는 과정과 비슷하다고 보면 될까요?
 
 <span class="paragraph-timestamp" data-ts="42:46">42:46</span> **박준우** 사실 이건 그냥 gradient descent라고 보시면 돼요. 원하는 objective가 있을 거 아니에요? 디바이스가 이런 기능을 하면 좋겠다는 게 수치화되거든요. 포토닉스에서는 그 metric에 대한 objective를 만들고 그 objective에 대해 gradient descent를 수행하는 것이기 때문에, 사실 그냥 gradient descent라고 보시면 돼요.
 
-<span class="paragraph-timestamp" data-ts="43:09">43:09</span> **노정석** 그러면 저 물리적인 형상이 사실상 최적화의 대상이 되는 거고, 모델 역할을 해주는 거고, 성능을 objective function으로 놓고 우리는 어떻게 되는지 모르겠지만 최적화했더니 이렇게 됐다고 하니까요. 그러면 그런 식으로 inverse approach를 사용해서 최적화 문제로 해를 한번 구해봤다. 그래서 그랬더니 mm 스케일에서만 풀리던 문제가 μm 스케일에서도 갑자기 되는 것들이 나왔다는 걸 이 그림에서 보여주신 거죠? 저렇게 색깔을 분리하는 물리적인 장치 뒤에 구멍이 뽕뽕 뚫린 것 같은 저게 실제 형상인 건가요?
+<span class="paragraph-timestamp" data-ts="43:07">43:07</span> **노정석** 그러면 저 물리적인 형상이 사실상 최적화의 대상이 되는 거고, 모델 역할을 해주는 거고, 성능을 objective function으로 놓고 우리는 어떻게 되는지 모르겠지만 최적화했더니 이렇게 됐다고 하니까요. 그러면 그런 식으로 inverse approach를 사용해서 최적화 문제로 해를 한번 구해봤다. 그래서 그랬더니 mm 스케일에서만 풀리던 문제가 μm 스케일에서도 갑자기 되는 것들이 나왔다는 걸 이 그림에서 보여주신 거죠? 저렇게 색깔을 분리하는 물리적인 장치 뒤에 구멍이 뽕뽕 뚫린 것 같은 저게 실제 형상인 건가요?
 
-<span class="paragraph-timestamp" data-ts="43:51">43:51</span> **박준우** 그런데 구멍인 거예요. silicon slab에 뚫린 air hole 같은 거죠. 공기 구멍 같은
+<span class="paragraph-timestamp" data-ts="43:50">43:50</span> **박준우** 그런데 구멍인 거예요. silicon slab에 뚫린 air hole 같은 거죠. 공기 구멍 같은
 
 <span class="paragraph-timestamp" data-ts="43:56">43:56</span> **노정석** 저렇게 해 놓으니까 색깔이 이렇게 demux되더라. μm 단위에서 그걸 보여주는 그림인 거네요. 저희가 맥락을 많이 생략해서 그런 거지, 저 디자인을 사람이 한 게 아니라 기계에 맡겼더니 훨씬 작게 저런 게 되더라.
 
-<span class="paragraph-timestamp" data-ts="44:15">44:15</span> **김태환** 그래서 그 위치에 실리콘이 채워지면 1이고, 없으면 0인 굉장히 단순한 구조로 보면 될 것 같아요.
+<span class="paragraph-timestamp" data-ts="44:14">44:14</span> **김태환** 그래서 그 위치에 실리콘이 채워지면 1이고, 없으면 0인 굉장히 단순한 구조로 보면 될 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="44:22">44:22</span> **박준우** 굉장히 unintuitive한 디자인이 나온다. fabrication하기 힘든 디자인이 나온다는 게 핵심인 거죠.
+<span class="paragraph-timestamp" data-ts="44:19">44:19</span> **박준우** 굉장히 unintuitive한 디자인이 나온다. fabrication하기 힘든 디자인이 나온다는 게 핵심인 거죠.
+
 
 ## Inverse Design의 한계와 Protein Design Feedback Loop    *44:26*
 
-<span class="paragraph-timestamp" data-ts="44:26">44:26</span> **박준우** 그래서 저희가 어쨌든 소형 디바이스를 얻었지만, 많은 sacrifice를 하는데, 첫 번째는 design constraint도 줘야 하고 manufacturability도 아까 말씀하신 대로 보시면 이런 뽕뽕 뚫린 구멍들이 있는데, 이 뽕뽕 뚫린 구멍이 실제 fabrication을 진행할 때 그대로 나오리라는 보장도 없고, 그리고 optimization cost도 있어서 시뮬레이션을 돌려도 마지막 결과가 잘못되면 다시 처음부터 돌려야 되고, 그리고 저희가 어떠한 시작점을 바탕으로 어떤 final design을 얻었다고 해서 그 final design이 최적의 디자인이라는 보장이 없는 것 같아요.
+<span class="paragraph-timestamp" data-ts="44:26">44:26</span> **김태환** 그래서 저희가 어쨌든 소형 디바이스를 얻었지만, 많은 sacrifice를 하는데, 첫 번째는 design constraint도 줘야 하고 manufacturability도 아까 말씀하신 대로 보시면 이런 뽕뽕 뚫린 구멍들이 있는데, 이 뽕뽕 뚫린 구멍이 실제 fabrication을 진행할 때 그대로 나오리라는 보장도 없고, 그리고 optimization cost도 있어서 시뮬레이션을 돌려도 마지막 결과가 잘못되면 다시 처음부터 돌려야 되고, 그리고 저희가 어떠한 시작점을 바탕으로 어떤 final design을 얻었다고 해서 그 final design이 최적의 디자인이라는 보장이 없는 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="45:06">45:06</span> 그래서 이러한 다양한 문제가 있는 것 같고, 저는 그 당시에 AI drug discovery 쪽에서 protein이나 그런 신약 개발 쪽 연구나 일을 하고 있었어요. 그 당시에 저는 이 문제를 들었을 때 뭔가 문제가 매우 유사하다고 생각했어요. 그래서 2024년에 노벨상을 받은 과학자분들이 어떻게 했었냐면, 다음 슬라이드로 넘어가면 매우 비슷한 문제였어요.
+<span class="paragraph-timestamp" data-ts="45:04">45:04</span> 그래서 이러한 다양한 문제가 있는 것 같고, 저는 그 당시에 AI drug discovery 쪽에서 protein이나 그런 신약 개발 쪽 연구나 일을 하고 있었어요. 그 당시에 저는 이 문제를 들었을 때 뭔가 문제가 매우 유사하다고 생각했어요. 그래서 2024년에 노벨상을 받은 과학자분들이 어떻게 했었냐면, 다음 슬라이드로 넘어가면 매우 비슷한 문제였어요.
 
 <span class="paragraph-timestamp" data-ts="45:25">45:25</span> 그러니까 이쪽도 사실 protein 구조가 매우 복잡해요. 어떤 atom들이 있고, 이 atom들이 carbon, hydrogen, oxygen같이 분자나 Å 단위에 있는데, 그러면 이 너무 복잡한 것을 그전에는 어떻게 디자인했냐면 매우 비슷했어요. 과학자들이 이전에 있던 protein을 보고 현미경이나 이런 걸 들여다본 다음에 열역학도 적용하고 시뮬레이션을 여러 번 돌린 다음에 조금씩 바꿔보고 다시 들여다보고, 그러니까 이러한 매우 repetitive한 패턴을 반복했던 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="45:56">45:56</span> protein 쪽에서 디자인할 때 이 과학자분들이 어떻게 하셨었냐면 뼈대를 만들었어요. 그러니까 protein이 가진 기본 골격, 화학적 뼈대가 있는데 그 뼈대를 만들고 그중에서 예를 들면 저희가 antigen이나 antibody나 어떤 바이러스에 접목하는 이 antibody가 맞닥뜨리는 중요한 부분만 골라서 거기만 건드린 거죠. refinement를 한 거죠. 마찬가지로 이 photonics 쪽에서도 뼈대를 만들고 그 뼈대에서 중요한 부분만 시뮬레이션으로 refinement를 하는 방식으로 가능하지 않을까?
+<span class="paragraph-timestamp" data-ts="45:53">45:53</span> protein 쪽에서 디자인할 때 이 과학자분들이 어떻게 하셨었냐면 뼈대를 만들었어요. 그러니까 protein이 가진 기본 골격, 화학적 뼈대가 있는데 그 뼈대를 만들고 그중에서 예를 들면 저희가 antigen이나 antibody나 어떤 바이러스에 접목하는 이 antibody가 맞닥뜨리는 중요한 부분만 골라서 거기만 건드린 거죠. refinement를 한 거죠. 마찬가지로 이 photonics 쪽에서도 뼈대를 만들고 그 뼈대에서 중요한 부분만 시뮬레이션으로 refinement를 하는 방식으로 가능하지 않을까? 그렇다면 output을 가지고 왔을 때
 
-<span class="paragraph-timestamp" data-ts="46:29">46:29</span> 그렇다면 output을 가지고 왔을 때 좋은 디자인이 있고 안 좋은 디자인이 있는데, 그 정보 역시 다시 feedback loop에 넣어서 아까 저희가 낭비됐다고 말한 optimization이 아니라 그 낭비된 것을 feedback loop에 활용해서 다시 loop에 넣을 수 있지 않을까 하는 발상을 한 거고, protein design 쪽에서는 저희가 원하는 protein 구조나 이 기능을 하는 protein이 있고, 그다음에 그거를 위해서 뼈대를 디자인하고 그 뼈대 역시 만들 수 있어요. 원하면 아예 처음부터 새로요. 그다음에 거기에 채워 넣어서 sequence를 디자인한 다음에, 그다음에 마지막에 이게 잘 완성됐냐는 feedback을 만들어주는 게 protein인데, photonics도 똑같다고 생각했어요.
+<span class="paragraph-timestamp" data-ts="46:29">46:29</span> 좋은 디자인이 있고 안 좋은 디자인이 있는데, 그 정보 역시 다시 feedback loop에 넣어서 아까 저희가 낭비됐다고 말한 optimization이 아니라 그 낭비된 것을 feedback loop에 활용해서 다시 loop에 넣을 수 있지 않을까 하는 발상을 한 거고, protein design 쪽에서는 저희가 원하는 protein 구조나 이 기능을 하는 protein이 있고, 그다음에 그거를 위해서 뼈대를 디자인하고 그 뼈대 역시 만들 수 있어요. 원하면 아예 처음부터 새로요. 그다음에 거기에 채워 넣어서 sequence를 디자인한 다음에, 그다음에 마지막에 이게 잘 완성됐냐는 feedback을 만들어주는 게 protein인데, photonics도 똑같다고 생각했어요.
 
 <span class="paragraph-timestamp" data-ts="47:06">47:06</span> 저희가 원하는 아까 말한 target function이 있고, 그다음에 그전에 뼈대를 만들고 screening을 해서 원하는 후보를 얻은 다음에, 그다음에 저희가 fabrication 단계로 가서 wet lab 같은 걸 진행한 다음에 거기에서 정보를 다시 얻어서 이 pipeline을 구축할 수 있겠다는 생각을 해서, 저는 당시에 그래서 준우의 교수님을 설득할 때 저희가 clean lab을 쓰고 싶었어요. 저희가 이 모델의 시뮬레이션은 잘 돌아갔는데, 실제로 쓰고 싶을 때 제가 어떻게 설득했냐면 제가 protein 구조를 rendering해서 보여드렸어요.
 
-<span class="paragraph-timestamp" data-ts="47:35">47:35</span> 몇십만 개의 분자가 있었겠죠. 그래서 매우 촘촘히 생성된 atom들이 있었는데, 그래서 말씀드렸어요. “Protein도 deep learning으로 됐는데, 이 2D 기판이나 이 디자인이 물론 복잡해 보이지만 protein보다 간단해 보인다. 그래서 안 될 거라고 생각하지 않는다. 이 protein 단위도 됐는데 이건 안 될 리가 없다.”라고 설득하면서 그 사진을 한 번 보여드리니까, 바로 그러면 lab을 써도 된다고 말씀하셔서 실제 wet lab까지 진행하게 됐던 것 같고요.
+<span class="paragraph-timestamp" data-ts="47:34">47:34</span> 몇십만 개의 분자가 있었겠죠. 그래서 매우 촘촘히 생성된 atom들이 있었는데, 그래서 말씀드렸어요. “Protein도 deep learning으로 됐는데, 이 2D 기판이나 이 디자인이 물론 복잡해 보이지만 protein보다 간단해 보인다. 그래서 안 될 거라고 생각하지 않는다. 이 protein 단위도 됐는데 이건 안 될 리가 없다.”라고 설득하면서 그 사진을 한 번 보여드리니까, 바로 그러면 lab을 써도 된다고 말씀하셔서 실제 wet lab까지 진행하게 됐던 것 같고요.
 
-<span class="paragraph-timestamp" data-ts="48:05">48:05</span> **노정석** 이게 넘어가기 전에 살짝 질문을 드리면, 저희가 계속 photonics에 대한 배경을 이야기하다가 두 분이 집중하고 있는 연구 쪽으로 switching하면서 이 문제 부분이 명확하게 정의되지 않은 채로 이렇게 쭉 달려오는 약간의 이해 gap들이 생길 것 같아서 질문을 드리면, 이게 해결하고 싶었던 문제가 결국은 현재 photonics의 문제점이나 이런 것들을 쭉 설명해 주시면서 이 scale이 밀리미터 단위에서 일어나는 이런 것들을 어떻게 칩에 집적시킬 수 있겠느냐는 것이고, 예를 들어 거기서 살짝 문제를 줄이신 게 MUX, DEMUX 문제를 가지고 이 inverse design을 통해서 어떤 걸 만드셨다고 했는데, 그 부분이 두 분이 하시는 연구의 핵심이라고 보면 되는 건가요?
+<span class="paragraph-timestamp" data-ts="48:03">48:03</span> **노정석** 이게 넘어가기 전에 살짝 질문을 드리면, 저희가 계속 photonics에 대한 배경을 이야기하다가 두 분이 집중하고 있는 연구 쪽으로 switching하면서 이 문제 부분이 명확하게 정의되지 않은 채로 이렇게 쭉 달려오는 약간의 이해 gap들이 생길 것 같아서 질문을 드리면, 이게 해결하고 싶었던 문제가 결국은 현재 photonics의 문제점이나 이런 것들을 쭉 설명해 주시면서 이 scale이 밀리미터 단위에서 일어나는 이런 것들을 어떻게 칩에 집적시킬 수 있을 정도로 작은 단위로 줄일 수 있겠느냐는 것이고, 예를 들어 거기서 살짝 문제를 줄이신 게 MUX, DEMUX 문제를 가지고 이 inverse design을 통해서 어떤 걸 만드셨다고 했는데, 그 부분이 두 분이 하시는 연구의 핵심이라고 보면 되는 건가요?
+
 
 ## 포토닉스 집적도 정체와 연구 문제 정의    *48:52*
 
-<span class="paragraph-timestamp" data-ts="48:55">48:55</span> **박준우** 이 슬라이드가 중요한 것 같아요. 그러니까 GPU나 CPU 같은 HPC의 집적도는 1~2년에 3배씩 올라가면서 Moore's law를 잘 따라가고 있지만, photonics는 그렇지 않다는 거죠. 그런데 그렇지 않은 이유가 물리적으로 집적할 수 있는 한계를 벗어나지 못했기 때문이라고 생각하거든요. 저희가 생각하는 건 아까 보여드린 것처럼 애초에 그 circuit 단위가 센티미터, 밀리미터 scale로 나오니까, 그 집적도 문제를 해결하기 위해서는 inverse design이라는 optimization technique이 반드시 필요하다고 생각한 거죠.
+<span class="paragraph-timestamp" data-ts="48:52">48:52</span> **박준우** 이 슬라이드가 중요한 것 같아요. 그러니까 GPU나 CPU 같은 HPC의 집적도는 1~2년에 3배씩 올라가면서 Moore's law를 잘 따라가고 있지만, photonics는 그렇지 않다는 거죠. 그런데 그렇지 않은 이유가 물리적으로 집적할 수 있는 한계를 벗어나지 못했기 때문이라고 생각하거든요. 저희가 생각하는 건 아까 보여드린 것처럼 애초에 그 circuit 단위가 센티미터, 밀리미터 scale로 나오니까, 그 집적도 문제를 해결하기 위해서는 inverse design이라는 optimization technique이 반드시 필요하다고 생각한 거죠.
 
-<span class="paragraph-timestamp" data-ts="49:33">49:33</span> 저희는 그렇기 때문에 이 집적도를 올리려고 inverse design에 대해 연구하다 보니까 이 inverse design에도 아까 보여드린 여러 문제점이 있었던 거죠. manufacturability라든가 yield라든가 optimization cost라든가, 가장 최적화된 디자인이 안 나올 수도 있는 거고, 그래서 이 문제들을 tackle 하기로 결정한 거죠.
+<span class="paragraph-timestamp" data-ts="49:31">49:31</span> 저희는 그렇기 때문에 이 집적도를 올리려고 inverse design에 대해 연구하다 보니까 이 inverse design에도 아까 보여드린 여러 문제점이 있었던 거죠. manufacturability라든가 yield라든가 optimization cost라든가, 가장 최적화된 디자인이 안 나올 수도 있는 거고, 그래서 이 문제들을 tackle 하기로 결정한 거죠.
 
-<span class="paragraph-timestamp" data-ts="49:59">49:59</span> **이진원** 그래서 이 집적도를 높인다고 얘기하신 게, 집적도를 높이면 실제로 어느 부분에서 아까 앞에서 얘기하셨던 것 중에 뭐가 좋아지고, 어디가 작아지고, 예전에 못 하던 걸 뭘 할 수 있게 되거나
+<span class="paragraph-timestamp" data-ts="49:54">49:54</span> **이진원** 그래서 이 집적도를 높인다고 얘기하신 게, 집적도를 높이면 실제로 어느 부분에서 아까 앞에서 얘기하셨던 것 중에 뭐가 좋아지고, 어디가 작아지고, 예전에 못 하던 걸 뭘 할 수 있게 되거나
 
-<span class="paragraph-timestamp" data-ts="50:12">50:12</span> **박준우** 아까 말씀하셨던 게 shoreline density가 굉장히 중요하다고 했잖아요. 구리선 같은 경우에도 그래서 당연히 같은 wafer 면적에 더 많은 device를 집적할 수 있게 된다면, photonics도 당연히 multiplexing, demultiplexing이 돼서 shoreline density가 그렇게 높지 않아도 구리선보다 훨씬 더 높은 bandwidth를 줄 수 있지만, 많으면 많을수록 그래도 photonics에 더 이득이 되는 건 사실이잖아요. photonics도 channel이 많으면 많을수록 그만큼 더 촘촘한 주파수를 보낼 필요가 없는 거고, channel이 더 많아지게 된다면 photonics 관점에서도 이득이 될 수밖에 없는 거죠.
+<span class="paragraph-timestamp" data-ts="50:09">50:09</span> **박준우** 아까 말씀하셨던 게 shoreline density가 굉장히 중요하다고 했잖아요. 구리선 같은 경우에도 그래서 당연히 같은 wafer 면적에 더 많은 device를 집적할 수 있게 된다면, photonics도 당연히 multiplexing, demultiplexing이 돼서 shoreline density가 그렇게 높지 않아도 구리선보다 훨씬 더 높은 bandwidth를 줄 수 있지만, 많으면 많을수록 그래도 photonics에 더 이득이 되는 건 사실이잖아요. photonics도 channel이 많으면 많을수록 그만큼 더 촘촘한 주파수를 보낼 필요가 없는 거고, channel이 더 많아지게 된다면 photonics 관점에서도 이득이 될 수밖에 없는 거죠.
 
-<span class="paragraph-timestamp" data-ts="50:54">50:54</span> 그래서 예를 들어 DEMUX를 현재 conventional한 방식으로는 밀리미터 scale로 제작해야 된다면, 예를 들어 shoreline density가 DEMUX channel이 밀리미터당 4개밖에 안 나온다고 가정하게 되면, inverse design으로 이거를 2, 3마이크론 scale로 줄이게 된다면 lane이 4개밖에 안 되던 거를 200개 정도까지 shoreline density를 올릴 수 있다는 거죠.
+<span class="paragraph-timestamp" data-ts="50:51">50:51</span> 그래서 예를 들어 DEMUX를 현재 conventional한 방식으로는 밀리미터 scale로 제작해야 된다면, 예를 들어 shoreline density가 DEMUX channel이 밀리미터당 4개밖에 안 나온다고 가정하게 되면, inverse design으로 이거를 2, 3마이크론 scale로 줄이게 된다면 lane이 4개밖에 안 되던 거를 200개 정도까지 shoreline density를 올릴 수 있다는 거죠.
 
 <span class="paragraph-timestamp" data-ts="51:18">51:18</span> **이진원** 결과적으로 그러면 같은 칩이라고 할까요? 그런 곳에서 훨씬 더 높은 bandwidth, 혹은 같은 bandwidth라도 훨씬 높은 quality로 손실이 훨씬 적은 그런 신호를 보낼 수 있다는 얘기시죠?
 
 <span class="paragraph-timestamp" data-ts="51:31">51:31</span> **박준우** 그렇죠. 이론상 그런 거죠.
 
-<span class="paragraph-timestamp" data-ts="51:38">51:38</span> **노정석** 그런데 optics에서는, 전자공학에서는 그 안에 칩 설계를 하고 logic을 넣는 등 우리가 뻔히 상상할 수 있는 그런 engineering을 하면 되는데, optics에서는 그걸 물리적인 구조로 구현해야 되는데, 그 구현하는 구조를 찾는 방법이 두 분의 연구 주제인 거고, 그 결과물로 훨씬 더 같은 shoreline에서 훨씬 높은 bandwidth를 내도록 하는, 이 구멍이 뽕뽕 뚫려 인간의 눈으로 봐서는 이해할 수 없는 구조를 만들어낼 수 있다는 게 두 분이 하시는 연구라고 이해가 됐습니다.
+<span class="paragraph-timestamp" data-ts="51:33">51:33</span> **노정석** 그런데 optics에서는, 전자공학에서는 그 안에 칩 설계를 하고 logic을 넣는 등 우리가 뻔히 상상할 수 있는 그런 engineering을 하면 되는데, optics에서는 그걸 물리적인 구조로 구현해야 되는데, 그 구현하는 구조를 찾는 방법이 두 분의 연구 주제인 거고, 그 결과물로 훨씬 더 같은 shoreline에서 훨씬 높은 bandwidth를 내도록 하는, 이 구멍이 뽕뽕 뚫려 인간의 눈으로 봐서는 이해할 수 없는 구조를 만들어낼 수 있다는 게 두 분이 하시는 연구라고 이해가 됐습니다.
 
 <span class="paragraph-timestamp" data-ts="52:08">52:08</span> 그럼 태환 님, 아까 단백질 얘기 쪽으로 살짝 돌아가서요.
 
+
 ## 기존 Inverse Design 파이프라인의 비효율    *52:13*
 
-<span class="paragraph-timestamp" data-ts="52:13">52:13</span> **노정석** 그래서 아까 말씀드린 문제가 뭐냐 하면, 저게 conventional inverse design workflow가 있는데, 아까 말씀드린 구멍이 뽕뽕 뚫린 매우 작은 device design을 하고 싶은데, 어떠한 random noise나 midpoint에서 시작해서 시뮬레이션 기반으로 디자인했어요. 현재 제가 봤던 pipeline은 시뮬레이션 기반으로 후보군을 예를 들면 10개를 만들었다고 해서 실제 fabrication을 진행한 다음에 testing하고, 그중에 예를 들면 8개는 성능이 안 좋았고 2개만 성능이 좋았다고 하면 그 8개는 아예 버리고 후처리 분석을 하지 않고 2개만 가져가는 방식인데, 다시 말해서 좋은 디자인과 나쁜 디자인을 얻었을 때 그 나쁘고 좋은 디자인에 대한 정보를 재사용하지 않더라고요. 다시 말하면 전에 했던 시뮬레이션을 다 돌려서 만약에 최종 디자인이 안 좋았다고 하면 다 낭비가 되는 거죠. 좋은 것만 저희가 keep하니까요.
+<span class="paragraph-timestamp" data-ts="52:13">52:13</span> **김태환** 그래서 아까 말씀드린 문제가 뭐냐 하면, 저게 conventional inverse design workflow가 있는데, 아까 말씀드린 구멍이 뽕뽕 뚫린 매우 작은 device design을 하고 싶은데, 어떠한 random noise나 midpoint에서 시작해서 시뮬레이션 기반으로 디자인했어요. 현재 제가 봤던 pipeline은 시뮬레이션 기반으로 후보군을 예를 들면 10개를 만들었다고 해서 실제 fabrication을 진행한 다음에 testing하고, 그중에 예를 들면 8개는 성능이 안 좋았고 2개만 성능이 좋았다고 하면 그 8개는 아예 버리고 후처리 분석을 하지 않고 2개만 가져가는 방식인데, 다시 말해서 좋은 디자인과 나쁜 디자인을 얻었을 때 그 나쁘고 좋은 디자인에 대한 정보를 재사용하지 않더라고요. 다시 말하면 전에 했던 시뮬레이션을 다 돌려서 만약에 최종 디자인이 안 좋았다고 하면 다 낭비가 되는 거죠. 좋은 것만 저희가 keep하니까요.
 
-<span class="paragraph-timestamp" data-ts="53:09">53:09</span> 그런데 이렇게 돼서는 제가 봤을 때 이 분야가 발전하는 데 매우 오래 걸리겠다고 생각했어요. feedback loop가 있고, 어쨌든 제가 봤을 때는 컴퓨터에서 그런 말이 있잖아요. scale하면 문제가 어쨌든 결국 풀린다. 그런데 이 photonics의 강점은 verifiable하다는 거죠. 시뮬레이션이 있고, 이 시뮬레이션으로 이 device가 잘 작동하는지 verify가 되는데, 그럼 이걸 왜 feedback loop에 넣지 않지라는 생각을 한 거고, 아까 말씀드린 protein 쪽에서 영감을 얻어서 두 개를 합친다고 하면 좋은 디자인과 나쁜 디자인에 대한 정보를 낭비하거나 나쁘다고 버리는 게 아니라, 좋고 나쁜 것을 labeling해서 저희가 feedback loop에 넣고 그 정보 자체를 모델에 넣어준다면 재미있는 일이 일어나지 않을까라는 생각을 한 것 같아요.
+<span class="paragraph-timestamp" data-ts="53:07">53:07</span> 그런데 이렇게 돼서는 제가 봤을 때 이 분야가 발전하는 데 매우 오래 걸리겠다고 생각했어요. feedback loop가 있고, 어쨌든 제가 봤을 때는 컴퓨터에서 그런 말이 있잖아요. scale하면 문제가 어쨌든 결국 풀린다. 그런데 이 photonics의 강점은 verifiable하다는 거죠. 시뮬레이션이 있고, 이 시뮬레이션으로 이 device가 잘 작동하는지 verify가 되는데, 그럼 이걸 왜 feedback loop에 넣지 않지라는 생각을 한 거고, 아까 말씀드린 protein 쪽에서 영감을 얻어서 두 개를 합친다고 하면 좋은 디자인과 나쁜 디자인에 대한 정보를 낭비하거나 나쁘다고 버리는 게 아니라, 좋고 나쁜 것을 labeling해서 저희가 feedback loop에 넣고 그 정보 자체를 모델에 넣어준다면 재미있는 일이 일어나지 않을까라는 생각을 한 것 같아요.
 
 <span class="paragraph-timestamp" data-ts="53:53">53:53</span> 그래서 보시면 저 위쪽에 있는 건 conventional pipeline, 아까 말씀드린 10개 중 8개의 디자인이 좋지 않으면 버리자는 현재 pipeline이고, 저희가 만든 pipeline은 모델에 좋은 디자인만 골라서 분포를 학습시키고 거기에서 protein의 뼈대를 추출한 것처럼 photonics 뼈대를 가져오자는 거예요. 그래서 시작점을 이상한 random noise나 midpoint가 아니라 매우 좋은 디자인에서 배워온 뼈대 틀을 쿠키를 굽는다고 하면 일단 틀을 먼저 만들어주고 그 틀 속에서 시뮬레이션을 돌리면 좋아지지 않을까? 훨씬 빠르고 좋은 manufacturability friendly한 디자인이 나오지 않을까라는 가설이었던 것 같아요. 그래서 보시는 게 밑에 있는 pipeline이고요.
 
+
 ## 좋은 디자인 분포를 학습하는 cVAE 뼈대 생성    *54:03*
 
-<span class="paragraph-timestamp" data-ts="54:40">54:40</span> **박준우** 그런데 여기서 하나를 더 말씀드리자면, 태환 님이 하시는 protein 같은 경우에는 verify하려면 사실 wet lab에서 진짜 protein을 synthesize하고 testing해 봐야 하는데, photonics 같은 경우는 시뮬레이션 tool이 굉장히 정확합니다. 이 Maxwell 방정식 solver가 simulation condition만 잘 맞추면 거의 실제 fabrication한 device의 성능과 비슷하게 나와요. fabrication만 잘 된다면요. 그렇기 때문에 이런 verifier로서의 역할을 할 수 있다고 생각하는 거죠. 저희는 실제 fab을 하지 않더라도요.
+<span class="paragraph-timestamp" data-ts="54:36">54:36</span> **박준우** 그런데 여기서 하나를 더 말씀드리자면, 태환 님이 하시는 protein 같은 경우에는 verify하려면 사실 wet lab에서 진짜 protein을 synthesize하고 testing해 봐야 하는데, photonics 같은 경우는 시뮬레이션 tool이 굉장히 정확합니다. 이 Maxwell 방정식 solver가 simulation condition만 잘 맞추면 거의 실제 fabrication한 device의 성능과 비슷하게 나와요. fabrication만 잘 된다면요. 그렇기 때문에 이런 verifier로서의 역할을 할 수 있다고 생각하는 거죠. 저희는 실제 fab을 하지 않더라도요.
 
-<span class="paragraph-timestamp" data-ts="55:15">55:15</span> **노정석** 혹은 그중에서 몇 개만 sampling해서 test해 봐도 될 정도로, 그 정도로 중간에 있는, 저희가 이 업계에서는 그걸 RL environment라고 얘기하는데, 보상 신호를 발생시키는 RL 환경이라고 얘기하는데, 그 환경으로서의 simulator가 굉장히 수율이 높고 거의 정확하다. 사실 현존하는 LLM들이 돌고 있는 선순환 loop를 얘도 쉽게 돌 수 있다는 말씀으로 이해됩니다.
+<span class="paragraph-timestamp" data-ts="55:14">55:14</span> **노정석** 혹은 그중에서 몇 개만 sampling해서 test해 봐도 될 정도로, 그 정도로 중간에 있는, 저희가 이 업계에서는 그걸 RL environment라고 얘기하는데, 보상 신호를 발생시키는 RL 환경이라고 얘기하는데, 그 환경으로서의 simulator가 굉장히 수율이 높고 거의 정확하다. 사실 현존하는 LLM들이 돌고 있는 선순환 loop를 얘도 쉽게 돌 수 있다는 말씀으로 이해됩니다.
 
-<span class="paragraph-timestamp" data-ts="55:43">55:43</span> 그래서 제가 여기서 매력을 느낀 건 바이오 같은 경우에는 protein design을 했다고 해도 임상시험을 한 번 가능하면 해봐야 되고, 실제 신약으로 넣으려고 하면 되게 오래 걸리는 파이프라인이 있는데, 여기 같은 경우에는 디자인과 실제 시뮬레이션과 실제 fabrication의 갭이 되게 좁더라고요. 그래서 훨씬 iteration이 빠르고 데이터 컬렉션도 빠른데, 아직까지 그럼 왜 이 데이터, 빅데이터 driven approach를 하지 않지라는 의문이 좀 컸던 것 같고. 그래서 보시면 저희가 쓴 모델은 conditional variational autoencoder라는 모델인데, 간단하게 말씀드리면 그냥 분포도를 학습하는 거고요. 무수히 많은 좋은 포토닉스 데이터를 저희가 먹이면 그거에 대한 분포도를 학습합니다. 그래서 보시면 저희 왼쪽에 있는 저 디자인이 저희가 준 다양한 포토닉스 스펙이죠. wavelength나 아니면 저기에 주는 그러한 다양한 디자인 스펙, wavelength 1, 2 등이 있다면 그걸 주고 거기에 맞는 디자인 데이터를 저희가 가지고 있다면, 그거를 모델에 학습시켜서 분포도를 학습시키는 거죠. 그래서 거기에 보이는 초록색 봉우리랑 빨간색 봉우리가 그거입니다. 포토닉스 데이터를 저 compact된 distribution에 학습시킨 거죠.
+<span class="paragraph-timestamp" data-ts="55:41">55:41</span> **김태환** 그래서 제가 여기서 매력을 느낀 건 바이오 같은 경우에는 protein design을 했다고 해도 임상시험을 한 번 가능하면 해봐야 되고, 실제 신약으로 넣으려고 하면 되게 오래 걸리는 파이프라인이 있는데, 여기 같은 경우에는 디자인과 실제 시뮬레이션과 실제 fabrication의 갭이 되게 좁더라고요. 그래서 훨씬 iteration이 빠르고 데이터 컬렉션도 빠른데, 아직까지 그럼 왜 이 데이터, 빅데이터 driven approach를 하지 않지라는 의문이 좀 컸던 것 같고. 그래서 보시면 저희가 쓴 모델은 conditional variational autoencoder라는 모델인데, 간단하게 말씀드리면 그냥 분포도를 학습하는 거고요. 무수히 많은 좋은 포토닉스 데이터를 저희가 먹이면 그거에 대한 분포도를 학습합니다. 그래서 보시면 저희 왼쪽에 있는 저 디자인이 저희가 준 다양한 포토닉스 스펙이죠. wavelength나 아니면 저기에 주는 그러한 다양한 디자인 스펙, wavelength 1, 2 등이 있다면 그걸 주고 거기에 맞는 디자인 데이터를 저희가 가지고 있다면, 그거를 모델에 학습시켜서 분포도를 학습시키는 거죠. 그래서 거기에 보이는 초록색 봉우리랑 빨간색 봉우리가 그거입니다. 포토닉스 데이터를 저 compact된 distribution에 학습시킨 거죠.
 
-<span class="paragraph-timestamp" data-ts="56:53">56:53</span> 그런데 한 번 학습시키고 나면 저희가 저 distribution에서 랜덤하게 새로운 디자인을 뽑아낼 수가 있어요. 그래서 전에는 그 디자인을 만들려고 하면 하나를 만들 때 시뮬레이션을 계속 몇 시간 동안 돌려야 되지만, 이제 저희가 1초면 만 개의 디자인을 이론상 뽑아낼 수 있는 거죠. 그 틀을. 그래서 전에는 몇 주가 걸렸다면, 이제 모델을 돌리면 1초 만에 만 개의 디자인이 바로 나오는 거예요. 적어도 틀을. 그래서 그 속도가 확 줄었고, 속도만 줄었냐고 하면 그게 아니라 저희가 좋은 디자인만 먹였기 때문에 되게 fabrication-friendly한 디자인이 나오게 됩니다. 왜냐하면 저희가 애초에 그런 데이터 위주로 학습했기 때문에. 그래서 속도뿐만 아니라 fabrication 단위의 bottleneck도 어느 정도는 해소할 수 있겠다는 생각을 한 거고.
+<span class="paragraph-timestamp" data-ts="56:51">56:51</span> 그런데 한 번 학습시키고 나면 저희가 저 distribution에서 랜덤하게 새로운 디자인을 뽑아낼 수가 있어요. 그래서 전에는 그 디자인을 만들려고 하면 하나를 만들 때 시뮬레이션을 계속 몇 시간 동안 돌려야 되지만, 이제 저희가 1초면 만 개의 디자인을 이론상 뽑아낼 수 있는 거죠. 그 틀을. 그래서 전에는 몇 주가 걸렸다면, 이제 모델을 돌리면 1초 만에 만 개의 디자인이 바로 나오는 거예요. 적어도 틀을. 그래서 그 속도가 확 줄었고, 속도만 줄었냐고 하면 그게 아니라 저희가 좋은 디자인만 먹였기 때문에 되게 fabrication-friendly한 디자인이 나오게 됩니다. 왜냐하면 저희가 애초에 그런 데이터 위주로 학습했기 때문에. 그래서 속도뿐만 아니라 fabrication 단위의 bottleneck도 어느 정도는 해소할 수 있겠다는 생각을 한 거고.
+
 
 ## Manufacturability 개선과 지표화    *57:55*
 
-<span class="paragraph-timestamp" data-ts="57:55">57:55</span> **노정석** 그리고 아까 말씀드린 manufacturability 분야에서도 보면 저기 Figure A에서 위의 디자인과 아래 디자인이 있는데, 물론 저희가 testing을 더 해봐야 되겠지만, 저희가 봤을 때는 저 위에 있는 디자인이 훨씬 fabrication-friendly하죠. 왜냐하면 밑에 있는 건 island나 구멍이 뚫린 region들이 되게 scattered돼서 fabrication할 때 실수하기가 너무 쉬운 것 같아요. 저희가 만든 모델로 만든 디자인 같은 경우에는 이미 그걸 다 고려했기 때문에 위에 나오는 디자인처럼 되게 예쁜 디자인만 나오게 되는 거죠.
+<span class="paragraph-timestamp" data-ts="57:35">57:35</span> **김태환** 그래서 보시면 저희가 가진 모델로 만든 이 뼈대, 이 cVAE seed를 시작점으로 주게 됐을 경우에 훨씬 더 빨리 완성된 디자인에 converge했고. 왜냐하면 저희가 좋은 디자인만 먹여서 이미 틀을 시작점으로 제공했기 때문에. 그게 저희가 보여드린 faster convergence 얘기인 거고. 그리고 아까 말씀드린 manufacturability 분야에서도 보면 저기 Figure A에서 위의 디자인과 아래 디자인이 있는데, 물론 저희가 testing을 더 해봐야 되겠지만, 저희가 봤을 때는 저 위에 있는 디자인이 훨씬 fabrication-friendly하죠. 왜냐하면 밑에 있는 건 island나 구멍이 뚫린 region들이 되게 scattered돼서 fabrication할 때 실수하기가 너무 쉬운 것 같아요. 저희가 만든 모델로 만든 디자인 같은 경우에는 이미 그걸 다 고려했기 때문에 위에 나오는 디자인처럼 되게 예쁜 디자인만 나오게 되는 거죠.
 
 <span class="paragraph-timestamp" data-ts="58:25">58:25</span> **이진원** 이런 fabrication 관련된 것도 뭔가 verifiable하게 scoring할 수 있는 방법이 있지 않을까요? 지금 얘기하신 그걸 완벽하게 verify하지 못하더라도 가능성을 굉장히 높게 만들 수 있을 것 같은데.
 
-<span class="paragraph-timestamp" data-ts="58:40">58:40</span> **박준우** 사실 저희가 여기 manufacturability index라고 써 있긴 하거든요. 저희 연구에서는 이 디바이스의 performance, 그러니까 figure of merit과 manufacturability의 상관관계를 좀 보고 싶어서 저희가 만든 cVAE로 모델을 뽑아서, cVAE로 그 디바이스를 뽑아서 돌렸을 때 당연히 figure of merit도 높아야겠지만 manufacturability도 높아야겠죠. 그게 어떻게 되는지 한번 보고 싶었는데, 다른 random noise에서 시작하거나 다른 starting condition에서 시작한 디바이스보다 manufacturability도 높았고 figure of merit도 높았는데, 이 manufacturability index라는 게 저희가 임의로 하나를 define했어요. 사실은 그래서 square root of A over P라고 define했거든요.
+<span class="paragraph-timestamp" data-ts="58:37">58:37</span> **박준우** 사실 저희가 여기 manufacturability index라고 써 있긴 하거든요. 저희 연구에서는 이 디바이스의 performance, 그러니까 figure of merit과 manufacturability의 상관관계를 좀 보고 싶어서 저희가 만든 cVAE로 모델을 뽑아서, cVAE로 그 디바이스를 뽑아서 돌렸을 때 당연히 figure of merit도 높아야겠지만 manufacturability도 높아야겠죠. 그게 어떻게 되는지 한번 보고 싶었는데, 다른 random noise에서 시작하거나 다른 starting condition에서 시작한 디바이스보다 manufacturability도 높았고 figure of merit도 높았는데, 이 manufacturability index라는 게 저희가 임의로 하나를 define했어요. 사실은 그래서 square root of A over P라고 define했거든요.
 
 <span class="paragraph-timestamp" data-ts="59:27">59:27</span> A가 실리콘 area가 얼마큼 있는지, 그다음에 P가 그 실리콘 섬들과 chunk들의 둘레를 나타낸 건데, square root of A over P니까 fragment가 많으면 많을수록 P가 올라가겠죠. island들이 훨씬 더 많아지니까 perimeter들이 올라가니까. 그러면 manufacturability가 떨어진다는 그런 상관관계를 성립시켜서 square root of A over P라는 manufacturability index를 저희가 임의로 설정한 겁니다.
+
 
 ## 포토닉스 Fabrication 공정과 수율 병목    *1:00:04*
 
@@ -334,19 +355,21 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="1:00:22">1:00:22</span> **박준우** 이게 사실 쌓아 올린다는 개념보다 깎아낸다는 개념이 맞는 것 같아요. 실리콘 포토닉스는. 예를 들어서 실리콘 웨이퍼가 있으면 그 웨이퍼가 있고, 위에 실리콘 oxide 산화층이 있거든요. 그 산화층 위에 이런 실리콘 structure를, device structure를 만드는 건데, 이 산화층 위에 실리콘을 먼저 적층합니다. 그다음에 EBL이라는 게 있어요. 그게 실리콘 마스크를 위에 쏴주는 건데, 적층된 실리콘 위에 이 device mask를 그려줍니다. 그러면 이 device mask를 그려준 다음에 그것만 남기고 나머지 부분은 그냥 다 깎아낸다고 보시면 될 것 같아요. top-down approach이기 때문에.
 
-<span class="paragraph-timestamp" data-ts="1:01:11">1:01:11</span> **노정석** 그런데 이것도 3차원 구조체인데, 구조체가 약간 층층으로 돼 있으니까 이것도 lithography 과정처럼 그 구멍들을 만들면서 하나씩 하나씩 쌓아 올리는 그런 구조인가요?
+<span class="paragraph-timestamp" data-ts="1:01:08">1:01:08</span> **노정석** 그런데 이것도 3차원 구조체인데, 구조체가 약간 층층으로 돼 있으니까 이것도 lithography 과정처럼 그 구멍들을 만들면서 하나씩 하나씩 쌓아 올리는 그런 구조인가요?
 
 <span class="paragraph-timestamp" data-ts="1:01:22">1:01:22</span> **박준우** 한 번에 다 깎아내리는 구조예요. 위에서.
 
-<span class="paragraph-timestamp" data-ts="1:01:28">1:01:28</span> **박준우** 한 번에? 네. etching이라고 하거든요. 실리콘을 먼저 적층하고 그다음에 photoresist라는 것을 위에 또 적층해주고, EBL로 photoresist에 patterning을 해줍니다. 그러면 SiO2가 있고 Si가 이렇게 나오는데, patterning된 부분이 잘려나가요. 약간 이런 식으로. PR이라고 하면 이렇게 남게 되는데, 그러면 이 부분들이 저희가 원하는 실리콘 device mask가 되겠죠. 그다음에 저희가 etching을 해줍니다. 그러면 이 비어 있는 실리콘이 깎여 내려가는 거예요.
+<span class="paragraph-timestamp" data-ts="1:01:24">1:01:24</span> **노정석** 한 번에?
+
+<span class="paragraph-timestamp" data-ts="1:01:25">1:01:25</span> **박준우** 네. etching이라고 하거든요. 실리콘을 먼저 적층하고 그다음에 photoresist라는 것을 위에 또 적층해주고, EBL로 photoresist에 patterning을 해줍니다. 그러면 SiO2가 있고 Si가 이렇게 나오는데, patterning된 부분이 잘려나가요. 약간 이런 식으로. PR이라고 하면 이렇게 남게 되는데, 그러면 이 부분들이 저희가 원하는 실리콘 device mask가 되겠죠. 그다음에 저희가 etching을 해줍니다. 그러면 이 비어 있는 실리콘이 깎여 내려가는 거예요.
 
 <span class="paragraph-timestamp" data-ts="1:02:01">1:02:01</span> **노정석** 저게 2차원적인 과정 하나로 그려지는 게 아니라 3차원적인 과정으로 계속 적층하는지, 아니면 그냥 한 면으로 끝나는 건지 그게 궁금해서 질문드렸던 거였고요. 그러니까 방금 이 공정을 계속 반복하면서 사실 반도체도 쌓아 올리잖아요. 회로를. 그러니까
 
-<span class="paragraph-timestamp" data-ts="1:02:22">1:02:22</span> **박준우** 이런 디바이스는 한 번에 이걸 하고 또 다른 layer를 적층하는 게 아니라 그냥 한 번에 끝나는 process이기 때문에 생각보다 simple한 과정인 거죠.
+<span class="paragraph-timestamp" data-ts="1:02:20">1:02:20</span> **박준우** 이런 디바이스는 한 번에 이걸 하고 또 다른 layer를 적층하는 게 아니라 그냥 한 번에 끝나는 process이기 때문에 생각보다 simple한 과정인 거죠.
 
-<span class="paragraph-timestamp" data-ts="1:02:33">1:02:33</span> **노정석** 그런데 저게 전혀 디지털 회로적인 그런 engineering 관점이 아니라, 진짜 물리적으로 그 위에 작품 하나를 그냥 그리는 과정이네요.
+<span class="paragraph-timestamp" data-ts="1:02:30">1:02:30</span> **노정석** 그런데 저게 전혀 디지털 회로적인 그런 engineering 관점이 아니라, 진짜 물리적으로 그 위에 작품 하나를 그냥 그리는 과정이네요.
 
-<span class="paragraph-timestamp" data-ts="1:02:43">1:02:43</span> **김태환** 아마 준우가 저한테 설명할 때 이해하기 쉬웠던 예시는 약간 달고나, 저희 Squid Game 달고나 같은 거 이렇게 깎아내리잖아요. 그런데 별 모양이면 저희가 needle이나 이쑤시개로 깎아내리기 어려워지는데, 네모 모양이면 훨씬 잘라내기 쉬워지잖아요. 그런 과정이라고 보면 될 것 같아요. 별 모양 같은 게 여러 개 있으면 error가 나기 쉽고, 그냥 깎아내니까 똑 하고 디자인을 떼어내고 싶은 느낌.
+<span class="paragraph-timestamp" data-ts="1:02:39">1:02:39</span> **김태환** 아마 준우가 저한테 설명할 때 이해하기 쉬웠던 예시는 약간 달고나, 저희 Squid Game 달고나 같은 거 이렇게 깎아내리잖아요. 그런데 별 모양이면 저희가 needle이나 이쑤시개로 깎아내리기 어려워지는데, 네모 모양이면 훨씬 잘라내기 쉬워지잖아요. 그런 과정이라고 보면 될 것 같아요. 별 모양 같은 게 여러 개 있으면 error가 나기 쉽고, 그냥 깎아내니까 똑 하고 디자인을 떼어내고 싶은 느낌.
 
 <span class="paragraph-timestamp" data-ts="1:03:02">1:03:02</span> **이진원** 그런데 저런 pattern을 만들 때 완벽하게 동일한 pattern을 계속 만들 수는 없어서 약간씩 달라질 거잖아요.
 
@@ -358,37 +381,41 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="1:05:04">1:05:04</span> **김태환** 저희가 넘어가기 전에, 포토닉스가 중요한 것은 communication 때문이고, 그 포토닉스를 작게 만들고 싶은데 작게 만들다 보니 inverse design을 진행했고. 그 inverse design을 하게 되면 unintuitive한데, 그렇다 보면 그 unintuitive한 것에 더해 공정 cycle이 되게 오래 걸렸다. 그래서 그 cycle을 해결하기 위해 아까 말한 protein에서 가져온 feedback loop 같은 cycle approach를 써서 디자인한 거고요. 마지막으로 아까 정리해 주신 게, 디자인과 fabrication은 별개의 이야기다.
 
-<span class="paragraph-timestamp" data-ts="1:05:38">1:05:38</span> 왜냐하면 디자인하더라도 디자인은 너무 예쁘게 나왔지만 공정 단계에서 문제가 생길 수 있다. 그래서 또 공정 단계의 문제가 있겠죠. 그래서 당시 제가 이걸 하기 몇 달 전에 암 연구센터에서 세포 관련 연구를 하고 있었어요. 그 세포에서도 다시 비슷한 insight를 얻었는데, 세포로 같은 걸 할 때 중요한 region 같은 것을 알아내야 해요. 어떤 것을, 어디를 targeting해야 할지 알아내야 하는데, 거기서 주워들은 기법 중 하나가 다음 슬라이드의 integrated gradients라는 기법이었는데. 저희가 이 복잡한 디자인이 있는데 어떤 위치가 되게 중요하냐.
+<span class="paragraph-timestamp" data-ts="1:05:34">1:05:34</span> 왜냐하면 디자인하더라도 디자인은 너무 예쁘게 나왔지만 공정 단계에서 문제가 생길 수 있다. 그래서 또 공정 단계의 문제가 있겠죠. 그래서 당시 제가 이걸 하기 몇 달 전에 암 연구센터에서 세포 관련 연구를 하고 있었어요. 그 세포에서도 다시 비슷한 insight를 얻었는데, 세포로 같은 걸 할 때 중요한 region 같은 것을 알아내야 해요. 어떤 것을, 어디를 targeting해야 할지 알아내야 하는데, 거기서 주워들은 기법 중 하나가 다음 슬라이드의 integrated gradients라는 기법이었는데. 저희가 이 복잡한 디자인이 있는데 어떤 위치가 되게 중요하냐.
+
 
 ## Integrated Gradients로 찾는 공정 핵심 영역    *1:06:04*
 
-<span class="paragraph-timestamp" data-ts="1:06:11">1:06:11</span> **김태환** 보시면 이 빨간색 점들이 fabrication할 때 저쪽 region들은 반드시 인간이 최대한 최선을 다해서 잘 fabrication해달라는 거죠. 왜냐하면 우리가 모든 디자인에서 모든 것을 다 예쁘게 깎을 수는 없지만, 저쪽 디자인에 대해서는 되게 예쁘게 깎아줘야만 성능이 유지된다는 정보가 있으면 공정 단계에서 insight를 많이 얻을 수 있겠죠. 수학적으로 예를 들면 어떻게 얻을 수 있냐면, 이쪽 region을 만약 저희가 부서뜨렸거나 perturbation시켰을 때 실제 simulation에서 얻은 metric이 얼마나 바뀌었는지를 계속 트래킹을 할 수 있고, 그걸 합쳐본다면 저렇게 빨간색 점들이 모이게 되는 거죠.
+<span class="paragraph-timestamp" data-ts="1:06:09">1:06:09</span> **김태환** 보시면 이 빨간색 점들이 fabrication할 때 저쪽 region들은 반드시 인간이 최대한 최선을 다해서 잘 fabrication해달라는 거죠. 왜냐하면 우리가 모든 디자인에서 모든 것을 다 예쁘게 깎을 수는 없지만, 저쪽 디자인에 대해서는 되게 예쁘게 깎아줘야만 성능이 유지된다는 정보가 있으면 공정 단계에서 insight를 많이 얻을 수 있겠죠. 수학적으로 예를 들면 어떻게 얻을 수 있냐면, 이쪽 region을 만약 저희가 부서뜨렸거나 perturbation시켰을 때 실제 simulation에서 얻은 metric이 얼마나 바뀌었는지를 계속 트래킹을 할 수 있고, 그걸 합쳐본다면 저렇게 빨간색 점들이 모이게 되는 거죠.
 
-<span class="paragraph-timestamp" data-ts="1:06:54">1:06:54</span> 그럼 저쪽 점들은 이 마지막 FOM이나 이 메트릭에 지대한 영향을 끼치는 구역이기 때문에 패브리케이션 단계에서 저쪽 부분을 무조건 신경 써달라는 인사이트가 나오는 거죠. 그래서 이 두 가지 파이프라인을 합치게 되면 디자인도 사이클화해서 빠르게 얻을 수 있고, reliable하게 예쁜 디자인을 얻을 수 있고요. 물론 그것도 있지만, 기존에 이미 완성된 디자인과 새로 만든 디자인을 공정 단계로 넘기기 전에 저쪽 구역에 있는 것들은 신경 써달라는 인사이트가 둘 다 제공된다면 공정 프로세스가 빠르고 reliable하게 될 수 있겠다는 생각 때문에 이 두 가지 방향을 동시에 연구한 거죠.
+<span class="paragraph-timestamp" data-ts="1:06:50">1:06:50</span> 그럼 저쪽 점들은 이 마지막 FOM이나 이 메트릭에 지대한 영향을 끼치는 구역이기 때문에 패브리케이션 단계에서 저쪽 부분을 무조건 신경 써달라는 인사이트가 나오는 거죠. 그래서 이 두 가지 파이프라인을 합치게 되면 디자인도 사이클화해서 빠르게 얻을 수 있고, reliable하게 예쁜 디자인을 얻을 수 있고요. 물론 그것도 있지만, 기존에 이미 완성된 디자인과 새로 만든 디자인을 공정 단계로 넘기기 전에 저쪽 구역에 있는 것들은 신경 써달라는 인사이트가 둘 다 제공된다면 공정 프로세스가 빠르고 reliable하게 될 수 있겠다는 생각 때문에 이 두 가지 방향을 동시에 연구한 거죠.
 
 <span class="paragraph-timestamp" data-ts="1:07:32">1:07:32</span> **노정석** 그런데 이거는 저는 너무 당연하게 따라다녀야 하는 게, 딥러닝 관점에서 보면 어떻게 트레이닝할 것인가, 어떻게 evaluation할 것인가, 이 두 개가 항상 따라다니는 pair problem과 비슷한 거라서요. 그러면 이제 조금 더 가보고, 마무리 질문과 질의응답을 한번 해볼까요?
+
 
 ## Hotspot 검증과 QC 효율화 가능성    *1:07:50*
 
 <span class="paragraph-timestamp" data-ts="1:07:50">1:07:50</span> **박준우** 실제로 이건 저희가 미시간대학교 팹에서 팹을 한 디먹스고요. 이 IG로 뽑아냈을 때 중요한 픽셀들을 실제로 패브리케이션된 전자현미경 이미지 위에 오버레이해 보니까 이런 핫스팟들이 생겨난 거죠. 얘네들이 굉장히 중요한 역할을 주파수를 나눠주는 데 굉장히 중요한 역할을 한다는 거고, 저희가 또 한 것은 이런 것을 실제로 실험을 통해 증명해 본 거예요. 이런 핫스팟들에 어떠한 perturbation을 주고, 중요하지 않은 곳에도 perturbation을 줘서 컨트롤 샘플도 만들고 그렇게 해봤더니, 실제로 이 중요한 region을 perturb했을 때 디바이스 성능이 훨씬 확연하게 떨어지는 걸 볼 수 있었다는 게 핵심인 겁니다.
 
-<span class="paragraph-timestamp" data-ts="1:08:43">1:08:43</span> 공정 과정에서 굉장히 효율성이 올라가겠죠. 지금 같은 경우는 아마 ASML이나 이런 회사들이 웨이퍼 같은 것을 inspection할 때 웨이퍼를 전부 스캔하잖아요. 디바이스마다 defect가 있는지 없는지를 일일이 확인하게 되는데, 이런 중요한 픽셀의 중요도 같은 것에 대한 휴리스틱이 있으면 중요한 부분만 타기팅해서 inspection을 잘한다면 웨이퍼 전체를 스캔하지 않아도 그 디바이스의 성능이 어느 정도는 좋을 것이라는 게 보장되는 거죠. 그래서 이런 QC 단계에서 굉장히 효율성을 높일 수 있습니다.
+<span class="paragraph-timestamp" data-ts="1:08:39">1:08:39</span> 공정 과정에서 굉장히 효율성이 올라가겠죠. 지금 같은 경우는 아마 ASML이나 이런 회사들이 웨이퍼 같은 것을 inspection할 때 웨이퍼를 전부 스캔하잖아요. 디바이스마다 defect가 있는지 없는지를 일일이 확인하게 되는데, 이런 중요한 픽셀의 중요도 같은 것에 대한 휴리스틱이 있으면 중요한 부분만 타기팅해서 inspection을 잘한다면 웨이퍼 전체를 스캔하지 않아도 그 디바이스의 성능이 어느 정도는 좋을 것이라는 게 보장되는 거죠. 그래서 이런 QC 단계에서 굉장히 효율성을 높일 수 있습니다.
 
 <span class="paragraph-timestamp" data-ts="1:09:20">1:09:20</span> **김태환** 저희가 제시하는 방향은 포토닉스가 중요하다는 데 모두가 동의하는데, 다음 단계에서 빠르게 스케일링되고 패브리케이션도 잘되려면 이러한 데이터 기반 피드백 루프가 단백질 분야처럼 이루어져야 하지 않을까 하는 것이었고, 그것을 저희가 다른 분들에게 설득하기 위해 아까 말씀드린 두 가지 연구를 진행한 거고요. 이 피드백 루프가 제대로 작동한다면 포토닉스 공정이 상용화되는 데 훨씬 더 짧은 시간이 걸리지 않을까, 이런 게 저희의 연구 방향인 것 같습니다.
 
-<span class="paragraph-timestamp" data-ts="1:09:58">1:09:58</span> **노정석** 경쟁 연구는 똑같은 분야에 있나요? 사실 이게 실리콘 포토닉스에 제가 알기로는 하시는 분들의 숫자가 그렇게 많지 않은 것으로 알고 있고, 아직은 electrical chip design이나 이런 쪽에 산업의 관심이 쏠려 있기 때문에 이 분야가 next라고 생각하긴 하지만, 아직은 하는 회사도 몇 개 없고 연구하시는 교수님과 랩도 얼마 없기 때문에 두 분도 힘들게 버클리를 나오셔서 미시간과 MIT로 가신 것으로 알고 있는데요. 현재 경쟁 현황은 너무 사업적인 질문이긴 한데, 여쭤봐도 될까요?
+<span class="paragraph-timestamp" data-ts="1:09:52">1:09:52</span> **노정석** 경쟁 연구는 똑같은 분야에 있나요? 사실 이게 실리콘 포토닉스에 제가 알기로는 하시는 분들의 숫자가 그렇게 많지 않은 것으로 알고 있고, 아직은 electrical chip design이나 이런 쪽에 산업의 관심이 쏠려 있기 때문에 이 분야가 next라고 생각하긴 하지만, 아직은 하는 회사도 몇 개 없고 연구하시는 교수님과 랩도 얼마 없기 때문에 두 분도 힘들게 버클리를 나오셔서 미시간과 MIT로 가신 것으로 알고 있는데요. 현재 경쟁 현황은 너무 사업적인 질문이긴 한데, 여쭤봐도 될까요?
+
 
 ## 희소한 포토닉스 인재와 AI·ML 연구의 특허화    *1:10:31*
 
-<span class="paragraph-timestamp" data-ts="1:10:35">1:10:35</span> **박준우** 저는 academia 측면에서 말씀드리자면, 말씀드린 것처럼 회사들의 실리콘 포토닉스에 대한 인재 수요는 굉장히 높아지고 있는 상황인 거죠. 그런데 실리콘 포토닉스를 전문적으로 하는 랩이 한국에서도 거의 열 손가락 안에 꼽히고요. 미국에서도 많아봤자 30개 정도밖에 안 되는 것으로 알고 있거든요. 전문적으로 하는 곳 중에서 팹까지 다 할 수 있는 곳은 거의 없다고 보시면 되고, 또 실리콘 포토닉스에서 이런 AI·ML 방법론을 적용해서 디자인 프레임워크를 만드는 랩은 거의 없는 것으로 알고 있어요. 이런 연구도 거의 저희가 선행 연구를 하는 느낌이고요.
+<span class="paragraph-timestamp" data-ts="1:10:31">1:10:31</span> **박준우** 저는 academia 측면에서 말씀드리자면, 말씀드린 것처럼 회사들의 실리콘 포토닉스에 대한 인재 수요는 굉장히 높아지고 있는 상황인 거죠. 그런데 실리콘 포토닉스를 전문적으로 하는 랩이 한국에서도 거의 열 손가락 안에 꼽히고요. 미국에서도 많아봤자 30개 정도밖에 안 되는 것으로 알고 있거든요. 전문적으로 하는 곳 중에서 팹까지 다 할 수 있는 곳은 거의 없다고 보시면 되고, 또 실리콘 포토닉스에서 이런 AI·ML 방법론을 적용해서 디자인 프레임워크를 만드는 랩은 거의 없는 것으로 알고 있어요. 이런 연구도 거의 저희가 선행 연구를 하는 느낌이고요.
 
-<span class="paragraph-timestamp" data-ts="1:11:23">1:11:23</span> **노정석** 그런데 지금 말씀해 주신 것들을 쭉 듣다 보면, 이게 ASML의 2나노미터 공정 같은 것도 아니고, 상업화가 어떻게 보면 좀 빠르게 될 수도 있는 부분으로 보이는데, 이거에 대한 어떤 상업화 아이디어를 교수님과도 이야기하고 계실 것 같은데, 그런 부분도 염두에 두고 계신가요?
+<span class="paragraph-timestamp" data-ts="1:11:20">1:11:20</span> **노정석** 그런데 지금 말씀해 주신 것들을 쭉 듣다 보면, 이게 ASML의 2나노미터 공정 같은 것도 아니고, 상업화가 어떻게 보면 좀 빠르게 될 수도 있는 부분으로 보이는데, 이거에 대한 어떤 상업화 아이디어를 교수님과도 이야기하고 계실 것 같은데, 그런 부분도 염두에 두고 계신가요?
 
 <span class="paragraph-timestamp" data-ts="1:11:43">1:11:43</span> **박준우** 사실 저희가 하는 포토닉스와 AI·ML을 합치는 연구를 거의 하지 않기 때문에, 포토닉스를 하는 사람들은 AI·ML을 잘 모르고, AI·ML을 하시는 분들은 포토닉스 자체를 모르시기 때문에 저희가 하는 거의 모든 선행 연구가 특허로 낼 수 있는 기술이거든요. 논문을 하나 쓸 때마다, 새로운 프레임워크와 새로운 방법론을 만들 때마다 저희는 미시간대학교와 특허를 모두 출원하고 있습니다.
 
-<span class="paragraph-timestamp" data-ts="1:12:17">1:12:17</span> **노정석** 그러니까 두 분이 하시는 연구가, 사실 저희가 ICML 기간 동안 저는 요즘 바이오 쪽에 관심이 많기 때문에 AI for Science를 하시는 분들과 이야기를 많이 했는데요. 제가 지난 에피소드에서도 장난스럽게 말씀드렸지만, 바이오는 하시는 분들도 많고 AI가 들어가서 할 수 있는 부분도 많다고 당연히 알고 있지만, 움직이지 않는 딱 틀에 짜인 부분, 아까 태환 님이 지적하신 부분과도 비슷한데, 그분들은 바이오 문제는 항상 이렇게 해왔고 이렇게 해결해 왔다고 생각하기 때문에 본인들이 알던 도메인 안에서 쌓아가는 경우가 많거든요.
+<span class="paragraph-timestamp" data-ts="1:12:14">1:12:14</span> **노정석** 그러니까 두 분이 하시는 연구가, 사실 저희가 ICML 기간 동안 저는 요즘 바이오 쪽에 관심이 많기 때문에 AI for Science를 하시는 분들과 이야기를 많이 했는데요. 제가 지난 에피소드에서도 장난스럽게 말씀드렸지만, 바이오는 하시는 분들도 많고 AI가 들어가서 할 수 있는 부분도 많다고 당연히 알고 있지만, 움직이지 않는 딱 틀에 짜인 부분, 아까 태환 님이 지적하신 부분과도 비슷한데, 그분들은 바이오 문제는 항상 이렇게 해왔고 이렇게 해결해 왔다고 생각하기 때문에 본인들이 알던 도메인 안에서 쌓아가는 경우가 많거든요.
 
 <span class="paragraph-timestamp" data-ts="1:12:51">1:12:51</span> 그런데 반대편에서는 준우 님과 태환 님이 하시다시피, 컨벤셔널한 도메인에 계시던 분들은 새로운 접근법을 시도하는 분들을 scalist라고 부르면서 상당히 비하해요. 스케일주의자들이고 위험한 사람들이라는 거죠. 그런데 저쪽은 LLM에서 배운 것과 reinforcement learning이 뚫어왔던 일종의 intuition을 가져와서 완전히 다른 접근법을 취하거든요.
+
 
 ## 도메인 지식과 AI 결합이 여는 Low-hanging Fruit    *1:13:18*
 
@@ -396,46 +423,50 @@ series: "main"
 
 <span class="paragraph-timestamp" data-ts="1:13:45">1:13:45</span> **박준우** 그렇죠. 맞아요.
 
-<span class="paragraph-timestamp" data-ts="1:13:48">1:13:48</span> **김태환** 처음에 이 연구를 할 때 제가 준우한테 물어봤던 것은, ML 관점에서 이 모델들이 전혀 복잡하지 않고 굉장히 쉬운 모델링 기법이라는 거였어요. 저희가 거창하게 GPU를 몇만 대나 몇백 대 쓴 게 아니라, 몇 대만 돌려도 충분히 학습되고 거의 30분에서 1시간이면 학습됐을 것 같아요. 그래서 왜 이런 게 나오지 않았을까 생각해 보면, 말씀하신 대로 준우의 교수님도 특이한 사례였어요. 인더스트리에서 몇십 년 동안 계셨던 분이기 때문에, 제가 전혀 모르시는 ML을 소개해 드렸을 때 제 또래들보다도 엄청 빠르게 받아들이시고 공부하시더라고요. 그래서 아마 그런 운이 좀 있지 않았나 생각한 것 같아요.
+<span class="paragraph-timestamp" data-ts="1:13:46">1:13:46</span> **김태환** 처음에 이 연구를 할 때 제가 준우한테 물어봤던 것은, ML 관점에서 이 모델들이 전혀 복잡하지 않고 굉장히 쉬운 모델링 기법이라는 거였어요. 저희가 거창하게 GPU를 몇만 대나 몇백 대 쓴 게 아니라, 몇 대만 돌려도 충분히 학습되고 거의 30분에서 1시간이면 학습됐을 것 같아요. 그래서 왜 이런 게 나오지 않았을까 생각해 보면, 말씀하신 대로 준우의 교수님도 특이한 사례였어요. 인더스트리에서 몇십 년 동안 계셨던 분이기 때문에, 제가 전혀 모르시는 ML을 소개해 드렸을 때 제 또래들보다도 엄청 빠르게 받아들이시고 공부하시더라고요. 그래서 아마 그런 운이 좀 있지 않았나 생각한 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="1:14:30">1:14:30</span> **노정석** 그렇죠. 저희가 지금 준우 님과 진원 님, 태환 님을 모시고 이런 이야기를 하고 있지만, 어떻게 보면 물리학에서 일어난 일이 20년의 격차를 두고 현실에서 사업화된다는 격언이 있었거든요. 10년, 15년 전에는요. 그런데 이제 그 20년의 갭이 4~5년의 갭으로 줄어드는 것 같아요. 어느 연구실에서 새로운 개발이나 discovery가 일어나면 그것이 상업화되는 시기가 극단적으로 줄어들고 있는 것 같고, AI 모델들이 들어와서 이를 줄여주는 일종의 driver 같은데, 두 분도 그 수혜를 많이 받으실 것 같고요. 또 한 가지는 시뮬레이터를 돌리면, 아까 그 맥스웰 방정식 solver가 거의 완벽한 정확도를 준다는 것은 사실 스케일주의자 관점에서 보면 끝난 문제인 거죠. 맞아요. 시간문제니까 얘를 빨리 상업화하는 루프를 돌리시고, 아마 회사도 차리시게 될 것 같은데요. 그래서 그때 준우 님이 소개해 주셨을 때 저는 이 bandwidth 문제가, 지금 사람들이 전력에 집중하는 것처럼, 당연히 그다음 문제가 될 것이고, 높아지는 상방은 끝이 없을 것 같거든요. 그 분야에서 반드시 필요한 연구와 필요한 어떤 산업 재료라는 생각이 듭니다.
+<span class="paragraph-timestamp" data-ts="1:14:25">1:14:25</span> **노정석** 그렇죠. 저희가 지금 준우 님과 진원 님, 태환 님을 모시고 이런 이야기를 하고 있지만, 어떻게 보면 물리학에서 일어난 일이 20년의 격차를 두고 현실에서 사업화된다는 격언이 있었거든요. 10년, 15년 전에는요. 그런데 이제 그 20년의 갭이 4~5년의 갭으로 줄어드는 것 같아요. 어느 연구실에서 새로운 개발이나 discovery가 일어나면 그것이 상업화되는 시기가 극단적으로 줄어들고 있는 것 같고, AI 모델들이 들어와서 이를 줄여주는 일종의 driver 같은데, 두 분도 그 수혜를 많이 받으실 것 같고요. 또 한 가지는 시뮬레이터를 돌리면, 아까 그 맥스웰 방정식 solver가 거의 완벽한 정확도를 준다는 것은 사실 스케일주의자 관점에서 보면 끝난 문제인 거죠. 맞아요. 시간문제니까 얘를 빨리 상업화하는 루프를 돌리시고, 아마 회사도 차리시게 될 것 같은데요. 그래서 그때 준우 님이 소개해 주셨을 때 저는 이 bandwidth 문제가, 지금 사람들이 전력에 집중하는 것처럼, 당연히 그다음 문제가 될 것이고, 높아지는 상방은 끝이 없을 것 같거든요. 그 분야에서 반드시 필요한 연구와 필요한 어떤 산업 재료라는 생각이 듭니다.
 
-<span class="paragraph-timestamp" data-ts="1:15:48">1:15:48</span> **박준우** 감사합니다. 이게 또 원래는 제가 이쪽으로 생각이 많이 없었고, 저도 컨벤셔널한 포토닉스를 했는데요. 어쩌다가 전화를 하다 보니까 인버스 디자인에 관해 이야기하게 되고, 또 이 스위스 치즈 같은 이상한 디자인을 태환 님한테 보여드리니까 거기서 바로 아이디어를 얻게 돼서 단백질과 잘 결합하다 보니까, 사실 말도 안 되는 조합인 거죠. 단백질과 포토닉스를 결합한다는 게요. 그런데 어쩌다 보니 잘돼서 계속 그렇게 연구하게 된 사례인데, 저희 예상보다 훨씬 더 잘돼서 저희도 놀랍네요.
+<span class="paragraph-timestamp" data-ts="1:15:47">1:15:47</span> **박준우** 감사합니다. 이게 또 원래는 제가 이쪽으로 생각이 많이 없었고, 저도 컨벤셔널한 포토닉스를 했는데요. 어쩌다가 전화를 하다 보니까 인버스 디자인에 관해 이야기하게 되고, 또 이 스위스 치즈 같은 이상한 디자인을 태환 님한테 보여드리니까 거기서 바로 아이디어를 얻게 돼서 단백질과 잘 결합하다 보니까, 사실 말도 안 되는 조합인 거죠. 단백질과 포토닉스를 결합한다는 게요. 그런데 어쩌다 보니 잘돼서 계속 그렇게 연구하게 된 사례인데, 저희 예상보다 훨씬 더 잘돼서 저희도 놀랍네요.
 
-<span class="paragraph-timestamp" data-ts="1:16:38">1:16:38</span> **노정석** 두 분은 이제 박사과정을 겨우 시작하셨거나 시작하실 시점이고, 태환 님도 말씀하시는 중에 이 분야에 노출된 지 1년이 채 안 됐다고 하셨죠? 그래서 이렇게 빨리 이런 부분에 대해 도메인에 대한 이해도 굉장히 빠르게 축적하신 것으로 보이고요. 두 분도 아마 AI·ML 방법론과 똑같은 이야기를 하고 계시는데, 용어들만 좀 다른 것으로 저는 계속 느꼈거든요.
+<span class="paragraph-timestamp" data-ts="1:16:32">1:16:32</span> **노정석** 두 분은 이제 박사과정을 겨우 시작하셨거나 시작하실 시점이고, 태환 님도 말씀하시는 중에 이 분야에 노출된 지 1년이 채 안 됐다고 하셨죠? 그래서 이렇게 빨리 이런 부분에 대해 도메인에 대한 이해도 굉장히 빠르게 축적하신 것으로 보이고요. 두 분도 아마 AI·ML 방법론과 똑같은 이야기를 하고 계시는데, 용어들만 좀 다른 것으로 저는 계속 느꼈거든요.
 
-<span class="paragraph-timestamp" data-ts="1:17:06">1:17:06</span> 이 짧은 시간 안에 이 도메인의 문제를 인식하고, 첫 번째로 ‘이건 굉장히 큰 문제다.’ ‘그러면 그에 대해 학습해야 한다.’ 그리고 나서 무언가 행동하는 과정에 이르는 그 기간을 어떻게 줄였는지가 궁금해요.
+<span class="paragraph-timestamp" data-ts="1:17:01">1:17:01</span> 이 짧은 시간 안에 이 도메인의 문제를 인식하고, 첫 번째로 ‘이건 굉장히 큰 문제다.’ ‘그러면 그에 대해 학습해야 한다.’ 그리고 나서 무언가 행동하는 과정에 이르는 그 기간을 어떻게 줄였는지가 궁금해요.
+
 
 ## 낯선 분야를 파고드는 문제 정의와 협업의 힘    *1:17:19*
 
-<span class="paragraph-timestamp" data-ts="1:17:22">1:17:22</span> **김태환** 저는 사실 인공지능 연구만 한 사람이었고, 바이오를 하고 있는데, 인공지능을 과학에 접목하는 파이프라인은 도메인이 달라서 당연히 도메인 지식이 필요하지만 다 똑같다고 생각해요. 그래서 이 문제가 비단 여기뿐만 아니라, 예를 들면 제가 예전에 재미있게 농약 개발을 한 적이 있어요. 신농약 모델을 만들어 본 적이 있는데, 그것도 역시 파이프라인이 비슷했고 다 거기서 영감을 얻은 거고요. 어떤 분야를 깊게 해보면 그 파이프라인이 다른 곳에도 접목되는 것 같고,
+<span class="paragraph-timestamp" data-ts="1:17:19">1:17:19</span> **김태환** 저는 사실 인공지능 연구만 한 사람이었고, 바이오를 하고 있는데, 인공지능을 과학에 접목하는 파이프라인은 도메인이 달라서 당연히 도메인 지식이 필요하지만 다 똑같다고 생각해요. 그래서 이 문제가 비단 여기뿐만 아니라, 예를 들면 제가 예전에 재미있게 농약 개발을 한 적이 있어요. 신농약 모델을 만들어 본 적이 있는데, 그것도 역시 파이프라인이 비슷했고 다 거기서 영감을 얻은 거고요. 어떤 분야를 깊게 해보면 그 파이프라인이 다른 곳에도 접목되는 것 같고,
 
-<span class="paragraph-timestamp" data-ts="1:17:47">1:17:47</span> 어떤 분야를 깊게 해보면 그 파이프라인이 다른 곳에도 접목되는 것 같고, 두 번째는 사실 저도 포토닉스 도메인이 아직 부족해서 계속 공부하고 있어요. 아마 MIT에 가서는 다른 연구도 계속하게 될 것 같아요. 제 주 연구 분야가 바이오이기 때문인데요. 전문가와 같이 컬래버레이션을 해야 되는구나. 제가 포토닉스 쪽에 맡기면 다 준우한테 물어보거든요. 그래서 혼자 다 한다고 생각하기보다는 협업하면서 서로 인사이트를 나누고 빨리 주고받으면 훨씬 빠르지 않을까, 이 두 가지인 것 같아요.
+<span class="paragraph-timestamp" data-ts="1:17:49">1:17:49</span> 두 번째는 사실 저도 포토닉스 도메인이 아직 부족해서 계속 공부하고 있어요. 아마 MIT에 가서는 다른 연구도 계속하게 될 것 같아요. 제 주 연구 분야가 바이오이기 때문인데요. 전문가와 같이 컬래버레이션을 해야 되는구나. 제가 포토닉스 쪽에 맡기면 다 준우한테 물어보거든요. 그래서 혼자 다 한다고 생각하기보다는 협업하면서 서로 인사이트를 나누고 빨리 주고받으면 훨씬 빠르지 않을까, 이 두 가지인 것 같아요.
 
-<span class="paragraph-timestamp" data-ts="1:18:24">1:18:24</span> **박준우** 포토닉스 관점에서 말씀드리자면, 저는 여러 가지를 주워듣는 것을 좋아해서 학부 연구생 때도 버클리 클린룸에 들어가서 패브리케이션도 많이 했고, 미시간 첫 학기에도 클린룸에 들어가서 fabrication을 했었는데 그런 친구들이랑 얘기를 하다 보니까 포토닉스, 실리콘 포토닉스 분야는 사실 fabrication이 너무나도 중요한 거예요. 그래서 그 업계 종사자분들이랑 얘기를 해보면 어떠한 문제점이 무조건 튀어나올 거라고 생각해요. 완벽한 분야는 없으니까요. 그런데 그 문제점들 중에서 이런 fabrication 문제가 계속 나오는 거예요. 똑같은 테마로요.
+<span class="paragraph-timestamp" data-ts="1:18:16">1:18:16</span> **박준우** 포토닉스 관점에서 말씀드리자면, 저는 여러 가지를 주워듣는 것을 좋아해서 학부 연구생 때도 버클리 클린룸에 들어가서 패브리케이션도 많이 했고, 미시간 첫 학기에도 클린룸에 들어가서 fabrication을 했었는데 그런 친구들이랑 얘기를 하다 보니까 포토닉스, 실리콘 포토닉스 분야는 사실 fabrication이 너무나도 중요한 거예요. 그래서 그 업계 종사자분들이랑 얘기를 해보면 어떠한 문제점이 무조건 튀어나올 거라고 생각해요. 완벽한 분야는 없으니까요. 그런데 그 문제점들 중에서 이런 fabrication 문제가 계속 나오는 거예요. 똑같은 테마로요. 그러다 보니까
 
-<span class="paragraph-timestamp" data-ts="1:19:01">1:19:01</span> 그러다 보니까 inverse design 연구를 하는데 사람들이 다 fabrication이 굉장히 안 좋고 수율이 낮다고 하니까, 그럼 이 수율을 어떻게 올려볼 수 있는 방법이 없을까에 대해서 생각하다가 태환님과 전화를 하게 됐고, 단백질에도 이와 비슷한 문제점이 있다, 이런 직관적이지 않은 문제점이 있는데 이걸 어떻게 잘 접목해 보면 어떻겠느냐고 해서 사실 시작한 거라, 일단 업계에 있는 사람들과 저 같은 경우에는 당연히 랩메이트들이죠. 얘기를 최대한 많이 해보는 게 이 업계에서 가장 중요한 문제가 뭔지에 대한 problem identification을 하는 데 가장 도움이 되는 것 같아요. 그리고 다른 분야에 있는 프레임워크를 어떻게 접목할 수 있느냐에 대한 connection과 intuition을 구축하는 것도 굉장히 중요한 것 같습니다.
+<span class="paragraph-timestamp" data-ts="1:19:01">1:19:01</span> inverse design 연구를 하는데 사람들이 다 fabrication이 굉장히 안 좋고 수율이 낮다고 하니까, 그럼 이 수율을 어떻게 올려볼 수 있는 방법이 없을까에 대해서 생각하다가 태환님과 전화를 하게 됐고, 단백질에도 이와 비슷한 문제점이 있다, 이런 직관적이지 않은 문제점이 있는데 이걸 어떻게 잘 접목해 보면 어떻겠느냐고 해서 사실 시작한 거라, 일단 업계에 있는 사람들과 저 같은 경우에는 당연히 랩메이트들이죠. 얘기를 최대한 많이 해보는 게 이 업계에서 가장 중요한 문제가 뭔지에 대한 problem identification을 하는 데 가장 도움이 되는 것 같아요. 그리고 다른 분야에 있는 프레임워크를 어떻게 접목할 수 있느냐에 대한 connection과 intuition을 구축하는 것도 굉장히 중요한 것 같습니다.
 
-<span class="paragraph-timestamp" data-ts="1:19:57">1:19:57</span> **노정석** 두 분 얘기를 듣다 보니까 하나의 전공을 깊게 파는 것보다 여러 분야를 굉장히 넓게 알아야 하고, 그 넓은 영역에서도 하나만 깊게 파는 게 아니라 한 3~4개, 혹은 4~5개 정도는 어느 정도 깊게 파야 하고, 그것들이 AI와 ML, 머신러닝의 방법론과 잘 결합하면 문제들이 휙휙 풀리는 그런 구간들이 많이 나오는 것 같아요. 그런 관찰을 저도 요새 많이 하고 있는 것 같습니다. 그러면 진원님, 마지막으로 어떤 질문이나 이런 것들이 있으신가요?
+<span class="paragraph-timestamp" data-ts="1:19:52">1:19:52</span> **노정석** 두 분 얘기를 듣다 보니까 하나의 전공을 깊게 파는 것보다 여러 분야를 굉장히 넓게 알아야 하고, 그 넓은 영역에서도 하나만 깊게 파는 게 아니라 한 3~4개, 혹은 4~5개 정도는 어느 정도 깊게 파야 하고, 그것들이 AI와 ML, 머신러닝의 방법론과 잘 결합하면 문제들이 휙휙 풀리는 그런 구간들이 많이 나오는 것 같아요. 그런 관찰을 저도 요새 많이 하고 있는 것 같습니다. 그러면 진원님, 마지막으로 어떤 질문이나 이런 것들이 있으신가요?
+
 
 ## 포토닉스 산업 적용 전망과 AI 방법론 확장    *1:20:30*
 
 <span class="paragraph-timestamp" data-ts="1:20:30">1:20:30</span> **이진원** 사실 제가 지금 일하는 분야에서 굉장히 핫한 토픽이고, 미래에는 처음 얘기했던 것처럼 지금은 공식처럼 짧은 거리는 구리로 하고, 몇 미터 이상 되는 거리는 광으로 하고, 이런 것들이 공식화돼 있는데 광이 점점 더 가까운 거리로 치고 들어오고 있고, 그래서 그런 얘기가 많을 거라고 기대했는데 뒤로 가면서 제가 예전에 딥러닝을 한참 열심히 공부할 때 접했던 이런 cVAE 같은 것도 굉장히 많이 봤던 것이고, 지금 보면 Integrated Gradients 같은 것도 우리가 interpretability를 위해서 많이 했던 것 중 하나인데, 그런 것들이 태환님이 얘기하신 것처럼 바이오에서 실제로 쓰였고, 그걸 보고 실리콘 포토닉스에도 적용하는 과정이 굉장히 흥미로웠고요. 저도 토픽을 아주 잘 잡으신 것 같아요. 그래서 다시 한번 AI가 분야를 막론하고 잘 적용될 수 있는 굉장히 좋은 도구라는 생각이 들었고, 그 시절에 우리가 interpretability를 높이기 위해 했던 작업들도 굉장히 많이 있거든요. 그래서 그런 것들을 또 다른 것들과 많이 접목해 보시면 더 재미있는 것도 많이 나올 수 있겠다는 생각도 하고 있습니다. 너무 재미있게 잘 들었습니다.
 
+
 ## Agent 기반 광회로 설계와 미래 연구 방향    *1:21:52*
 
 <span class="paragraph-timestamp" data-ts="1:21:52">1:21:52</span> **박준우** 지금까지는 저희가 Integrated Gradients나 cVAE 같은 모델들을 도구로 쓰고 있는데, 요즘 다시 생각하고 있는 연구가 태환님과 agent를 활용해서 이런 photonic integrated circuit이라고 하거든요. circuit 자체를 agent에게 설계시키는 연구도 생각하고 있거든요. 요즘 agent가 워낙 뜨다 보니까 사람의 intuition대로 설계하지 말고 그냥 agent에게 맡겨서 이런 포토닉스 회로를 설계시키면 어떨까라는 저희가 만든 Integrated Gradients와 cVAE 같은 프레임워크를 agent에게 도구로 주고, 그 agent에게 “이런 도구를 써서 네가 한번 광회로를 직접 만들어 봐.”라고 하는 연구도 굉장히 재미있을 것 같아서 agent 쪽으로도 요즘 보고 있습니다.
 
-<span class="paragraph-timestamp" data-ts="1:22:45">1:22:45</span> **노정석** 그 말씀을 조금 더 광의로 확장해 보면, 요새 세상의 모든 문제가 그냥 compute를 투입해서 우리가 아직 가보지 않은 unknown unknown sector를 그냥 찾는 것, 무언가를 invention하는 게 아니라 그냥 compute를 투입해서 search하는 것으로 전환되는 게 모든 문제 해결의 기본 방법론인 것 같아요. 그래서 그 틀이 잘 잡힌 분들은 빨리빨리 결과를 내시는 것 같고, 그리고 거기에서 포토닉스와 이런 문제를 선택하신 것처럼 그냥 모델에게 밑바닥부터 맡기는 게 아니라 본인이 어떤 도메인에 대한 큰 방향성이나 insight, 목적성을 잘 설정해 줘야 search도 성공하거든요. 목적을 저희가 intention이라고 부르기도 하고, willpower라고 하기도 하고, taste라고 표현하기도 하는데, 이 사람이 어디로 가야겠다고 하는 그 방향을 가이드하며 일은 AI가 하고, 그걸 묶어서 그냥 S1, o1처럼 되는 것이 새로운 연구, 그다음에 product 개발, 서비스의 방법론이 되어가고 있지 않나 하는 생각이 듭니다.
+<span class="paragraph-timestamp" data-ts="1:22:41">1:22:41</span> **노정석** 그 말씀을 조금 더 광의로 확장해 보면, 요새 세상의 모든 문제가 그냥 compute를 투입해서 우리가 아직 가보지 않은 unknown unknown sector를 그냥 찾는 것, 무언가를 invention하는 게 아니라 그냥 compute를 투입해서 search하는 것으로 전환되는 게 모든 문제 해결의 기본 방법론인 것 같아요. 그래서 그 틀이 잘 잡힌 분들은 빨리빨리 결과를 내시는 것 같고, 그리고 거기에서 포토닉스와 이런 문제를 선택하신 것처럼 그냥 모델에게 밑바닥부터 맡기는 게 아니라 본인이 어떤 도메인에 대한 큰 방향성이나 insight, 목적성을 잘 설정해 줘야 search도 성공하거든요. 목적을 저희가 intention이라고 부르기도 하고, willpower라고 하기도 하고, taste라고 표현하기도 하는데, 이 사람이 어디로 가야겠다고 하는 그 방향을 가이드하며 일은 AI가 하고, 그걸 묶어서 그냥 S1, o1처럼 되는 것이 새로운 연구, 그다음에 product 개발, 서비스의 방법론이 되어가고 있지 않나 하는 생각이 듭니다.
 
-<span class="paragraph-timestamp" data-ts="1:24:01">1:24:01</span> 그리고 두 분이 말씀해 주신 내용도 저희가 가지고 있었던 그 프레임에 완전히 일치하는 좋은 예라서 많이 배웠습니다.
+<span class="paragraph-timestamp" data-ts="1:23:55">1:23:55</span> 그리고 두 분이 말씀해 주신 내용도 저희가 가지고 있었던 그 프레임에 완전히 일치하는 좋은 예라서 많이 배웠습니다.
 
-<span class="paragraph-timestamp" data-ts="1:24:09">1:24:09</span> **김태환** 되게 좋은 말씀을 해 주신 것 같아요. 왜냐하면 저도 인공지능 연구를 하는데, 많이 했던 고민은 인공지능이 코딩도 너무 잘하고 수학도 저보다 훨씬 잘하게 되는데, 그러면 내 역할이 뭐지? 5년 뒤에 내가 할 일이 있을까 했는데 그래서 더더욱 아까 말씀하신 도메인이나 문제 definition 같은 건 아직 사람이 되게 잘하고, AI를 도구로 활용한다면 더 나아갈 수 있는 영역인 것 같아서 그런 사람이 될 수 있도록 많이 노력하고 있는 것 같아요.
+<span class="paragraph-timestamp" data-ts="1:24:05">1:24:05</span> **김태환** 되게 좋은 말씀을 해 주신 것 같아요. 왜냐하면 저도 인공지능 연구를 하는데, 많이 했던 고민은 인공지능이 코딩도 너무 잘하고 수학도 저보다 훨씬 잘하게 되는데, 그러면 내 역할이 뭐지? 5년 뒤에 내가 할 일이 있을까 했는데 그래서 더더욱 아까 말씀하신 도메인이나 문제 definition 같은 건 아직 사람이 되게 잘하고, AI를 도구로 활용한다면 더 나아갈 수 있는 영역인 것 같아서 그런 사람이 될 수 있도록 많이 노력하고 있는 것 같아요.
+
 
 ## 마무리와 커뮤니티 공유 부탁    *1:24:33*
 
-<span class="paragraph-timestamp" data-ts="1:24:36">1:24:36</span> **노정석** 그러면 오늘 긴 시간을 썼고요. 두 분께서 계속 progress를 업데이트해 주시면, 저희 커뮤니티에서도 두 분이 한국인이시니까 한국에도 이러한 선진 지식을 많이 공유해 주시기를 부탁드리겠습니다. 그러면 감사합니다. 오늘 여기까지 하겠습니다.
+<span class="paragraph-timestamp" data-ts="1:24:33">1:24:33</span> **노정석** 그러면 오늘 긴 시간을 썼고요. 두 분께서 계속 progress를 업데이트해 주시면, 저희 커뮤니티에서도 두 분이 한국인이시니까 한국에도 이러한 선진 지식을 많이 공유해 주시기를 부탁드리겠습니다. 그러면 감사합니다. 오늘 여기까지 하겠습니다.
 
-<span class="paragraph-timestamp" data-ts="1:24:48">1:24:48</span> **김태환** 감사합니다.
+<span class="paragraph-timestamp" data-ts="1:24:51">1:24:51</span> **김태환** 감사합니다.
 
-<span class="paragraph-timestamp" data-ts="1:24:48">1:24:48</span> **이진원** 감사합니다.
+<span class="paragraph-timestamp" data-ts="1:24:52">1:24:52</span> **이진원** 감사합니다.

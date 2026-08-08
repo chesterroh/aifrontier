@@ -315,6 +315,13 @@ series: "${meta.series}"
 `;
 }
 
+function extractExistingFrontmatter(filePath: string): string | null {
+  if (!fs.existsSync(filePath)) return null;
+  const existing = fs.readFileSync(filePath, 'utf-8');
+  const match = existing.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+  return match ? match[0] : null;
+}
+
 function findPublishFile(epDir: string, lang: 'ko' | 'en' | 'ja' | 'zh-Hans'): string | null {
   const outputsDir = path.join(epDir, 'outputs');
   if (!fs.existsSync(outputsDir)) return null;
@@ -384,7 +391,8 @@ function syncEpisode(
   epNum: number,
   lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko',
   series: 'main' | 'interview' = 'main',
-  seriesNumber: number | null = null
+  seriesNumber: number | null = null,
+  preserveFrontmatter = false
 ): boolean {
   // epNum = 소스 디렉터리 식별자(examples/ep{N}). interview일 때는 시리즈 내 표시 번호(seriesNumber)를
   // 별도로 가지며, 출력 파일명/episodeNumber 프런트매터는 이 표시 번호를 따른다.
@@ -452,12 +460,9 @@ function syncEpisode(
     series,
   };
 
-  if (!ytMeta) {
+  if (!ytMeta && !preserveFrontmatter) {
     console.log(`  ⚠️  No YouTube metadata found - youtubeId needs manual update`);
   }
-
-  // Generate MDX content
-  const mdxContent = generateFrontmatter(meta) + content;
 
   // Write to content directory
   const outputDir = path.join(CONTENT_DIR, lang);
@@ -467,9 +472,13 @@ function syncEpisode(
 
   const outputBasename = series === 'interview' ? `interview${outputNumber}` : `ep${outputNumber}`;
   const outputFile = path.join(outputDir, `${outputBasename}.mdx`);
+  const existingFrontmatter = preserveFrontmatter
+    ? extractExistingFrontmatter(outputFile)
+    : null;
+  const mdxContent = (existingFrontmatter || generateFrontmatter(meta)) + content;
   fs.writeFileSync(outputFile, mdxContent, 'utf-8');
   console.log(`  Output: ${path.relative(BLOG_ROOT, outputFile)}`);
-  if (meta.youtubeId === 'REPLACE_ME') {
+  if (meta.youtubeId === 'REPLACE_ME' && !existingFrontmatter) {
     console.log(`  ⚠️  Remember to update youtubeId and publishedAt!`);
   }
 
@@ -497,11 +506,13 @@ let syncAll = false;
 let lang: 'ko' | 'en' | 'ja' | 'zh-Hans' = 'ko';
 let series: 'main' | 'interview' = 'main';
 let seriesNumber: number | null = null;
+let preserveFrontmatter = false;
 
 function printUsage(): void {
   console.log('Usage:');
   console.log('  npx tsx scripts/sync-episodes.ts --ep 83');
   console.log('  npx tsx scripts/sync-episodes.ts --ep 83 --lang en');
+  console.log('  npx tsx scripts/sync-episodes.ts --ep 83 --lang en --preserve-frontmatter');
   console.log('  npx tsx scripts/sync-episodes.ts --all');
   console.log('  npx tsx scripts/sync-episodes.ts --ep 9001 --series interview --series-number 1');
 }
@@ -532,6 +543,8 @@ for (let i = 0; i < args.length; i++) {
     }
     seriesNumber = parsed;
     i++;
+  } else if (args[i] === '--preserve-frontmatter') {
+    preserveFrontmatter = true;
   }
 }
 
@@ -554,7 +567,7 @@ if (syncAll) {
     syncEpisode(ep, lang);
   }
 } else if (epNum) {
-  syncEpisode(epNum, lang, series, seriesNumber);
+  syncEpisode(epNum, lang, series, seriesNumber, preserveFrontmatter);
 } else {
   printUsage();
   process.exit(1);

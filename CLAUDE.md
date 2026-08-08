@@ -180,6 +180,9 @@ npx tsx scripts/sync-episodes.ts --ep 84
 # 3. youtubeId, publishedAt 수동 수정
 ```
 
+이미 검수한 다국어 제목·설명·호스트 등 frontmatter를 유지한 채 전사 본문만 다시 동기화할 때는
+`--preserve-frontmatter`를 추가한다. 기존 출력 파일에 frontmatter가 없으면 일반 생성 방식으로 폴백한다.
+
 #### 방법 3: YouTube 메타데이터 활용
 ```bash
 # data/youtube_metadata.json에서 정보 확인
