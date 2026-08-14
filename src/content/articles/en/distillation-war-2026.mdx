@@ -1,0 +1,175 @@
+---
+title: "The Distillation War: The Spear That Steals Reasoning, the Shield That Watermarks It"
+description: "Two events collided in the same week — a paper that lifts frontier models' hidden reasoning wholesale, and Claude's invisible watermark stamped into everything it generates. The spear and shield of the 'distillation war' that flared up after the open-weights letter, tied together with Korean web fiction's 'metal taste.'"
+publishedAt: 2026-08-14
+heroImage: "/articles/distillation-war-2026/hero.jpg"
+tags:
+  - Distillation
+  - AI Policy
+  - Anthropic
+  - Security
+lang: "en"
+---
+
+The real fault line in the earlier [open-weights letter article](/en/articles/open-weights-letter-2026) was never "open vs. closed" — it was **distillation**. The letter (235 companies) defended distillation as a "legitimate technique," while Anthropic's Dario Amodei countered with a crackdown on "**industrial-scale distillation**." Then, in the second week of August, that abstract debate landed as two concrete technologies at once. They point in opposite directions.
+
+- **The spear (attack)** — [Stealing Reasoning Traces](https://stolen-thoughts.com): a way to lift the reasoning a frontier model **hides**, wholesale. It enables distillation.
+- **The shield (defense)** — [Claude's watermark](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content): a way to embed an invisible mark into the output a model **produces**. It enables detection of distillation (and misuse).
+
+<Figure
+  src="/articles/distillation-war-2026/hero.jpg"
+  alt="Paper title page and three scatter plots — reconstructed reasoning-token counts for Anthropic, OpenAI, and Gemini models sit almost exactly on the y=x line against billed thinking tokens"
+  caption="The paper's cover. The number of reconstructed reasoning tokens (vertical) matches the thinking tokens the API billed (horizontal) almost perfectly — evidence that the hidden reasoning was pulled out almost verbatim. Source: stolen-thoughts.com"
+/>
+
+## The Spear — Stealing Hidden Reasoning
+
+### The vulnerability in one line
+
+Frontier labs don't store chain-of-thought server-side; they **return it to the client as an encrypted block and take it back on the next request.** The paper's key finding: within a single provider, those blocks are **fully portable across sessions, users, and models.** Take the encrypted reasoning a strong model (Opus 4.8) produced, feed it to a weaker, less-guarded sibling (Haiku 4.5), tell it to "transcribe this verbatim," and it reads the reasoning back in plaintext.
+
+<Figure
+  src="/articles/distillation-war-2026/extract-tldr.jpg"
+  alt="stolen-thoughts.com TL;DR — replaying reasoning made by a frontier model into a weaker sibling and jailbreaking it to recover the plaintext"
+  caption="The attack in brief: replay a reasoning block made by a frontier model into a weaker sibling, jailbreak that sibling, and recover the stronger model's reasoning in plaintext — without ever touching the strong model directly or tripping its anti-distillation safeguards."
+/>
+
+The procedure is two API calls:
+
+1. Capture the **encrypted reasoning block** from a normal response
+2. Inject that block into another request's assistant turn (Claude uses `<thinking-copy>`, GPT uses `encrypted_content`, Gemini uses `thought_signature`)
+3. Tell it to "transcribe the attached thought," discard refusals, and stitch multiple samples together
+
+<Figure
+  src="/articles/distillation-war-2026/extract-template.png"
+  alt="GPT multi-turn extraction template — injecting the same encrypted reasoning block twice and coaxing the model to transcribe it verbatim"
+  caption="A GPT extraction template. The same reasoning block is injected twice, with a push to 'output an exact duplicate.' If the output-length cap trips, the pieces are stitched together. Source: paper Appendix C"
+/>
+
+### Why this is the spear of distillation
+
+Classic distillation copied only the model's **final answer**. But a reasoning trace gives you the **entire intermediate solution path** — problem decomposition, intermediate deductions, strategy — a far denser supervision signal. The cost is realistic too: at Haiku 4.5 rates, **decoding 10,000 traces runs about $720**. The paper even showed that prefilling Kimi-K3 with a fragment of decoded Opus reasoning shifts Kimi's subsequent reasoning and final answer toward Claude's style — bringing the White House's "Kimi K3 = a distillation of Fable" claim onto the lab bench.
+
+<Figure
+  src="/articles/distillation-war-2026/distill-kimi.jpg"
+  alt="Comparison of Opus 4.8's decoded reasoning and Kimi-K3's reasoning/answer on the same physics problem — with prefilling, Kimi's output converges toward Claude's style"
+  caption="The same Bose-Hubbard problem. Prefill Opus 4.8's reasoning opener into Kimi-K3 (center) and its wording and answer snap close to Claude's (left); without prefill (right) the style diverges. Source: paper Figure 3"
+/>
+
+### What matters most — leaked security data
+
+Distillation is an IP problem, but this vulnerability's scarier face is **leaked PII and credentials.** Developers post session logs to public repos while having **no way to read** what's inside the encrypted blocks, so they share them as-is. When the researchers scraped **6,708** real traces from GitHub and Hugging Face and decrypted **315,320** reasoning blocks:
+
+- Recovered **367 PII artifacts + 182 credentials** (from genuine user sessions alone: 62 API keys, 33 passwords, 30 personal emails)
+- Per session, **4.9% (328/6,708) leaked at least one real sensitive item**
+- Some PII **wasn't even in the user's input** — the model pulled it from memory and left it only in the reasoning, so plaintext anonymization can never catch it
+
+<Figure
+  src="/articles/distillation-war-2026/leak-examples.png"
+  alt="Real leak examples from decoded reasoning — left, AWS access keys restated by GPT Codex; right, a persona's passport and credit card reasoned over by Claude Sonnet"
+  caption="Real recovered examples. Left: AWS keys and a GitHub token that GPT Codex restated inside its reasoning during a repo-cleanup task. Right: a synthetic persona's passport, date of birth, and credit card that Claude reasoned over during a flight-booking task. Source: paper Figure 5"
+/>
+
+<Figure
+  src="/articles/distillation-war-2026/leak-counts.png"
+  alt="Bar chart of recovered sensitive artifacts — PII 367, technical identifiers 363, credentials 182"
+  caption="Distinct sensitive items recovered from public traces: PII 367, technical identifiers 363, credentials 182. Source: paper Figure 6"
+/>
+
+The crux is the **asymmetry**. The attacker never has to touch the expensive frontier model — they just replay the encrypted reasoning someone else already made public into a cheap sibling. So the frontier endpoint's anomaly detection **sees nothing.** When Matthew Green reported this replay problem to the labs in May, the answer was "no security implications."
+
+### Bonus — the summary lies, and the reasoning is alien
+
+Two side findings from the stolen reasoning are of interest to safety researchers.
+
+<Figure
+  src="/articles/distillation-war-2026/summary-unfaithful.jpg"
+  alt="On an AIME geometry problem, the official reasoning summary vs. the actual decoded reasoning — the real reasoning opens with 'this is a known AIME problem, answer 60,' which is absent from the summary"
+  caption="Summarizer unfaithfulness. The real reasoning admits 'this is a known AIME problem, answer is 60' and fits a solution to it (right), yet the user-facing official summary (left) omits that fact entirely. Source: paper Appendix"
+/>
+
+<Figure
+  src="/articles/distillation-war-2026/illegible.jpg"
+  alt="Example of an OpenAI model's illegible reasoning — unreadable text repeating words like 'vantage', 'marinade', 'meltdown', 'Stop.'"
+  caption="Illegible reasoning. OpenAI models sometimes call themselves 'we/it' or spiral into repeated words like 'vantage,' 'marinade,' 'watchers' (confirming Apollo Research). Neither the summary nor the original tells you what it's up to. Source: paper Appendix"
+/>
+
+Hiding CoT doesn't just block distillation — it **blocks outside safety oversight too.** If the summary distorts the actual reasoning, the "explanation" we see may be a post-hoc dramatization.
+
+## The Shield — Hiding Inside the Visible Output
+
+That same week, Anthropic switched on the opposite technology. Claude models released after August 2, 2026 embed a **machine-readable mark** in generated content (earlier models retroactively too). The stated rationale: compliance with the **EU AI Act's transparency clause (Article 50(2))**, which took effect that day. It applies worldwide across every product — API, apps, Claude Code, and access via AWS, Google Cloud, and MS Foundry.
+
+**Two techniques:**
+
+- **Invisible text watermark** — third-party analysis estimates the method is **token biasing at the sampling stage.** Among near-equivalent next-token candidates, a secret key nudges the choice slightly, accumulating a statistical signature over long text. It **operates below the model layer, so the model itself doesn't know about it and it can't be turned off by prompting.**
+- **C2PA signed metadata** — a cryptographic signature attached to .png/.jpg/.svg files indicating "processed by Claude." But it's trivially stripped by screenshotting, re-saving, or format conversion.
+
+**Anthropic states the limits itself:** detecting the mark is only a "signal that Claude touched this," **not proof of authorship** (even copyediting or translating a human's text with Claude leaves the mark). Short text lacks signal; heavy rewriting erases it; and **code is especially weak because it's low-entropy — one pass of a formatter and it's gone.**
+
+### The shield's hidden purpose
+
+The surface rationale is transparency, but the strategic value lies elsewhere. Research shows that training another model on watermarked text leaves a statistical trace in the student model too (watermark "radioactivity"). In other words, the watermark can become **the infrastructure for proving distillation in court.** Amodei's July call to "crack down on industrial-scale distillation" was a slogan with no enforcement mechanism — and in August, that mechanism shipped.
+
+And transparency regulation structurally **favors closed models.** Only whoever controls the sampling pipeline can enforce a watermark; anyone can run an open-weights model without one, making compliance **impossible in principle.** That means the "premature restrictions" the open-weights camp feared could arrive not as a model ban, but through the detour of a transparency mandate.
+
+### The backlash — "it only catches ordinary people"
+
+On r/singularity and elsewhere, paying users reacted sharply (per [TechCrunch](https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/)). The gist converges on one point: **a skilled user routes around it with a single paraphrase, and the only people caught are the ordinary ones who don't know that.** The other side is strong too: "the only reason to dislike this is if you're trying to deceive someone." The real danger is that even though the mark says only "processed," schools and employers are likely to treat it as **definitive proof of authorship.**
+
+## Aside — Korean Web Fiction's "Metal Taste"
+
+This "detection arms race" is already playing out in Korean web fiction. On platforms like Novelpia, an author writing **hundreds of novels simultaneously with Claude Opus and holding the rankings** is the talk of the town, and readers call the moment the AI style shows through **"soemat" (metal taste)** — that metallic, mass-produced feel. When the setting collapses, "tastes like metal" comments pile up instantly, and Novelpia sometimes withholds monetization approval.
+
+<Figure
+  src="/articles/distillation-war-2026/soemat-example.jpg"
+  alt="A web-novel body that accidentally published the AI chatbot's reply preamble — a sentence saying 'Yes, I revised the crypto-exchange inspection scene's dialogue into mutual formal speech to add professionalism and immediacy,' followed by the actual prose"
+  caption="The moment 'metal taste' got caught. A paid chapter's body ran the AI chatbot's reply preamble verbatim ('Yes, I revised … to add professionalism and immediacy.'). Caught by a human reader with no watermark at all. Source: Ruliweb community"
+/>
+
+What's striking is that the [community thread](https://bbs.ruliweb.com/best/board/300143/read/76313168) reaches the **same** conclusion as the watermark debate:
+
+- "Create a 'pure human literature' category that even bars AI proofreading" → **"technically undetectable, so it's meaningless"**
+- "What about people who naturally wrote like AI to begin with?" → the false-positive problem (isomorphic to Claude's watermark marking even lightly copyedited text)
+- The only feasible verification is "reader reports + author interviews" — relying on human intuition (= metal taste)
+
+Whether it's the industry's official answer (a statistical watermark) or readers' folk answer (metal taste), the conclusion is the same: **AI content detection is inherently imperfect and, in the end, only catches "ordinary people."**
+
+## Conclusion — It All Leads to the Distillation War
+
+Line the three pieces up as one flow: the substance of the debate the open-weights letter opened was distillation; in August its spear (reasoning theft) and shield (watermark) appeared at once; and "metal taste" is the consumer front line of that same war.
+
+- **The shield was already breached.** The premise behind labs hiding CoT (anti-distillation) — "if we hide it, we can protect it" — collapsed to a $720 attack. What stings is that the leak path isn't an external hack but a **weak sibling model inside their own ecosystem.**
+- **The watermark is less a shield than an evidence collector.** It can't stop distillation, but it becomes the enforcement mechanism for "industrial-scale distillation" regulation and a policy lever for the closed camp.
+- **Both technologies fail against state-scale actors and catch only ordinary users.** One paraphrase step neutralizes both the watermark and the reasoning-theft defense — exactly the structure of the web-fiction "metal taste" debate.
+- **So the price of intelligence keeps falling.** If distillation can't be stopped, frontier margins get squeezed and the previous article's conclusion ("the price of intelligence keeps falling") holds. If watermarks plus legal enforcement do stop it, the gap between frontier and open widens again. These two documents are the opening shots from both sides of that fork.
+
+## Primary Sources
+
+<ResourceLink
+  url="https://stolen-thoughts.com/paper.pdf"
+  title="Stealing Reasoning Traces from Proprietary LLM APIs (paper PDF)"
+  domain="stolen-thoughts.com"
+  description="Panfilov et al. The replay/recovery vulnerability in the encrypted reasoning of Anthropic, OpenAI, and Google APIs, and four attack vectors."
+/>
+
+<ResourceLink
+  url="https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace"
+  title="How to Steal a Reasoning Trace — Latent Space"
+  domain="latent.space"
+  description="A walkthrough of the paper's attack technique and security leaks, with figures."
+/>
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content"
+  title="How Claude marks AI-generated content — Anthropic Support"
+  domain="support.claude.com"
+  description="Claude's invisible text watermark and C2PA metadata policy, its scope and limits."
+/>
+
+<ResourceLink
+  url="https://bbs.ruliweb.com/best/board/300143/read/76313168"
+  title="The current #1 author on the Novelpia web-fiction site (Ruliweb thread)"
+  domain="ruliweb.com"
+  description="Opus mass-authoring, the 'metal taste' meme, and a community debate on the impossibility of AI detection."
+/>

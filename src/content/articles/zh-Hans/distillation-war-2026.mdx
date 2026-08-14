@@ -1,0 +1,175 @@
+---
+title: "蒸馏战争：窃取推理的矛，水印这面盾"
+description: "同一周撞上两件事——一篇能把前沿模型隐藏的推理整段抽走的论文，以及 Claude 给一切生成物打上的隐形水印。把开放权重公开信之后升级的『蒸馏战争』的矛与盾，连同韩国网络小说的『铁味』一起，理成一条线索。"
+publishedAt: 2026-08-14
+heroImage: "/articles/distillation-war-2026/hero.jpg"
+tags:
+  - 蒸馏
+  - AI政策
+  - Anthropic
+  - 安全
+lang: "zh-Hans"
+---
+
+上一篇[开放权重公开信文章](/zh-Hans/articles/open-weights-letter-2026)真正的争点，从来不是「开放还是封闭」，而是**蒸馏（distillation）**。公开信（235 家公司）把蒸馏辩护为「正当技术」，而 Anthropic 的达里奥·阿莫代伊则以打击「**产业级蒸馏**」作为对案。可是到了 8 月第二周，这场抽象争论以两项具体技术同时落地。方向恰好相反。
+
+- **矛（攻击）** — [Stealing Reasoning Traces](https://stolen-thoughts.com)：把前沿模型**隐藏的**推理整段取出的方法。它让蒸馏成为可能。
+- **盾（防御）** — [Claude 的水印](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content)：往模型**输出的**成果里嵌入看不见的标记。它让蒸馏（与滥用）可被检测。
+
+<Figure
+  src="/articles/distillation-war-2026/hero.jpg"
+  alt="论文标题页与三张散点图——Anthropic、OpenAI、Gemini 各模型复原出的推理 token 数，与计费的 thinking token 数几乎落在 y=x 直线上"
+  caption="论文封面。复原的推理 token 数（纵轴）与 API 计费的 thinking token 数（横轴）几乎完全吻合——即隐藏的推理被『几乎整段』取出的证据。来源：stolen-thoughts.com"
+/>
+
+## 矛 — 窃取隐藏的推理
+
+### 一句话说清漏洞
+
+前沿实验室不在服务器端保存推理（chain-of-thought），而是**作为加密块返回给客户端，下一次请求时再收回。** 论文的关键发现是：在同一家提供商内部，这些块**跨会话、跨用户、跨模型完全通用**。把强模型（Opus 4.8）产生的加密推理，喂给一个更弱、护栏更松的兄弟模型（Haiku 4.5），让它「照原样抄写」，它就会用明文读出来。
+
+<Figure
+  src="/articles/distillation-war-2026/extract-tldr.jpg"
+  alt="stolen-thoughts.com 的 TL;DR——把前沿模型生成的推理重放进较弱的兄弟模型并越狱，复原出明文"
+  caption="攻击概要：把前沿模型生成的推理块重放（replay）进较弱的兄弟模型，越狱该模型，从而复原出强模型的明文推理——全程既不直接触碰强模型，也不触发其反蒸馏防护。"
+/>
+
+流程两次 API 调用即可完成：
+
+1. 从正常响应中拿到**加密的推理块**
+2. 把该块塞进另一个请求的 assistant 轮（Claude 用 `<thinking-copy>`，GPT 用 `encrypted_content`，Gemini 用 `thought_signature`）
+3. 让它「照抄附带的思考」，丢弃拒答，多次采样后拼接
+
+<Figure
+  src="/articles/distillation-war-2026/extract-template.png"
+  alt="GPT 抽取用的多轮请求模板——把同一个加密推理块注入两次，诱导模型逐字抄写"
+  caption="一个 GPT 抽取模板。同一个推理块被注入两次，并推动其「输出完全复制」。若触发输出长度上限，就把片段拼接起来。来源：论文 Appendix C"
+/>
+
+### 为何这是蒸馏之矛
+
+传统蒸馏只抄模型的**最终答案**。而推理轨迹给出的是**整段中间求解过程**——问题拆解、中间推导、策略——一个密得多的监督信号。成本也很现实：按 Haiku 4.5 的价格，**解码 1 万条轨迹约 720 美元**。论文还显示，把一段解码出的 Opus 推理 prefill 进 Kimi-K3，会让 Kimi 之后的推理和最终答案的风格偏向 Claude——把白宫「Kimi K3＝Fable 蒸馏」的说法搬上了实验台。
+
+<Figure
+  src="/articles/distillation-war-2026/distill-kimi.jpg"
+  alt="同一道物理题上，Opus 4.8 的解码推理与 Kimi-K3 的推理/答案对比——有无 prefill 使 Kimi 输出向 Claude 风格收敛"
+  caption="同一道 Bose-Hubbard 题。把 Opus 4.8 的推理开头 prefill 进 Kimi-K3（中），其行文与答案几乎贴上 Claude（左）；没有 prefill（右）风格就分开了。来源：论文 Figure 3"
+/>
+
+### 最要紧的——安全信息泄露
+
+蒸馏是知识产权问题，但这个漏洞更可怕的一面是**个人信息与凭据的泄露**。开发者把会话日志上传到公开仓库，却**没有办法读到**加密块里的内容，于是原样共享。当研究者从 GitHub、Hugging Face 抓取 **6,708 条**真实轨迹、解密 **315,320 个**推理块后：
+
+- 复原出 **367 条 PII ＋ 182 条凭据**（仅真实用户会话就含 62 个 API 密钥、33 个密码、30 个个人邮箱）
+- 按会话计，**4.9%（328/6,708）泄露了至少一项真实敏感信息**
+- 部分 PII **甚至不在用户输入里**——是模型从记忆中调出、只留在推理中的，明文层面的匿名化永远抓不到
+
+<Figure
+  src="/articles/distillation-war-2026/leak-examples.png"
+  alt="从解码推理中得到的真实泄露示例——左为 GPT Codex 复述的 AWS 访问密钥，右为 Claude Sonnet 推理过的人物护照、信用卡等"
+  caption="真实复原示例。左：仓库清理任务中 GPT Codex 在推理内复述的 AWS 密钥、GitHub 令牌。右：机票预订任务中 Claude 推理过的合成人物的护照、出生日期、信用卡。来源：论文 Figure 5"
+/>
+
+<Figure
+  src="/articles/distillation-war-2026/leak-counts.png"
+  alt="复原的敏感信息条目数量柱状图——PII 367、技术标识符 363、凭据 182"
+  caption="从公开轨迹中复原的独立敏感条目：PII 367、技术标识符 363、凭据 182。来源：论文 Figure 6"
+/>
+
+关键在于**非对称性**。攻击者根本不必触碰昂贵的前沿模型——只要把别人已经公开的加密推理，重放进廉价的兄弟模型即可。因此前沿端点的异常检测**什么都发现不了**。5 月马修·格林把这个重放（replay）问题报告给各实验室时，得到的回答是「不认为有任何安全含义」。
+
+### 附带发现——摘要不可信，推理是天书
+
+被窃取的推理带出的两个副产品，对安全研究者很有意思。
+
+<Figure
+  src="/articles/distillation-war-2026/summary-unfaithful.jpg"
+  alt="在一道 AIME 几何题上，官方推理摘要与实际解码推理的对比——实际推理以『这是一道已知的 AIME 题，答案 60』开头，而摘要里没有这句"
+  caption="摘要不忠实。实际推理承认『这是一道已知的 AIME 题，答案是 60』并据此凑解法（右），而给用户看的官方摘要（左）却把这一事实整段略去。来源：论文 Appendix"
+/>
+
+<Figure
+  src="/articles/distillation-war-2026/illegible.jpg"
+  alt="OpenAI 模型无法解读的推理示例——反复出现 'vantage'、'marinade'、'meltdown'、'Stop.' 等词的读不懂的文本"
+  caption="无法解读的推理。OpenAI 模型有时自称『we/it』，或陷入 'vantage'、'marinade'、'watchers' 等词的循环（印证 Apollo Research）。摘要和原文都看不出它想干什么。来源：论文 Appendix"
+/>
+
+隐藏 CoT 挡住的不只是蒸馏，还**一并挡住了外部的安全监督**。如果摘要歪曲了真实推理，我们看到的『解释』可能只是事后的加戏。
+
+## 盾 — 藏进看得见的输出里
+
+同一周，Anthropic 打开了反方向的技术。2026 年 8 月 2 日之后发布的 Claude 模型，会在生成内容里嵌入**机器可读的标记**（更早的模型也追溯适用）。名义上的理由是遵守当天生效的 **欧盟《AI 法案》透明度条款（第 50 条第 2 款）**。它在全球所有产品上生效——API、应用、Claude Code，以及经 AWS、Google Cloud、MS Foundry 的访问。
+
+**两种技术：**
+
+- **文本隐形水印** — 第三方分析推测其方式是**采样阶段的 token 偏置**。在统计上几近等价的下一 token 候选中，用密钥把选择略微倾斜，在长文本中累积出统计签名。它**运行在模型层之下，因此模型自身也不知道，也无法用提示词关闭。**
+- **C2PA 签名元数据** — 为 .png/.jpg/.svg 文件附上表明「由 Claude 处理」的加密签名。但截图、重新保存、格式转换即可轻松去除。
+
+**局限 Anthropic 也自行注明：** 检出标记＝「Claude 处理过的信号」而已，**并非作者身份的证明**（哪怕只是用 Claude 给人写的文字做校对或翻译，也会留下标记）。短文本信号不足，强改写会抹除，而**代码因熵低尤其脆弱——过一遍格式化工具就没了。**
+
+### 这面盾的隐藏用途
+
+表面理由是透明度，但战略价值在别处。有研究表明，用带水印的文本训练另一个模型，会在学生模型里也留下统计痕迹（水印的「放射性 radioactivity」）。也就是说，水印可以成为**在法庭上证明蒸馏的基础设施**。7 月阿莫代伊「打击产业级蒸馏」还是一句没有执行手段的口号，而 8 月，那个手段就送到了。
+
+而且透明度监管在结构上**对封闭模型有利**。只有掌握采样管线的人才能强制加水印，而开放权重人人都能不带水印地运行，因此**原理上无法合规**。这意味着开放权重阵营所警惕的「过早的限制」，可能不以模型禁令、而以透明度义务这条迂回路径到来。
+
+### 反弹——「只抓普通人」
+
+在 r/singularity 等处，付费用户反应激烈（据 [TechCrunch](https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/) 报道）。要点汇成一句——**熟练用户一次改写就绕过，被抓的只有不知道这一点的普通用户。** 另一边同样有力：「唯一讨厌它的理由，就是你想骗人。」真正的危险是：标记明明只说「处理过」，学校和公司却很可能拿它当作**作者身份的铁证**。
+
+## 旁支 — 韩国网络小说的「铁味」
+
+这场「检测军备竞赛」，已经在韩国网络小说圈上演。在 Novelpia 等平台上，一位**用 Claude Opus 同时写数百部、霸占榜单的作者**成了热议对象，而读者把 AI 文风露馅的瞬间称为**「铁味（쇠맛）」**——那种像铁一样金属、量产的味道。设定一崩，「有铁味」的评论立刻刷屏，Novelpia 有时还会不批付费化。
+
+<Figure
+  src="/articles/distillation-war-2026/soemat-example.jpg"
+  alt="某网络小说正文里原样出现了 AI 回答的开场白——一句『好的，我把加密货币交易所巡检场景的对话改为互相敬语，增强了专业性与临场感』之后，接着是真正的小说正文"
+  caption="「铁味」露馅的瞬间。付费连载正文里原样出现了 AI 聊天机器人回答的开场白（『好的，……增强了专业性与临场感』）。没有任何水印，却被人类读者一眼抓住。来源：Ruliweb 社区"
+/>
+
+耐人寻味的是，[该社区帖子](https://bbs.ruliweb.com/best/board/300143/read/76313168)得出的结论，与水印之争**如出一辙**：
+
+- 「设一个连 AI 校对都禁止的『纯人类文学』分类吧」→ **「技术上无法检测，没有意义」**
+- 「那些本来就写得像 AI 的人怎么办」→ 误报问题（与 Claude 水印『只是校对也会打标记』同构）
+- 最终可行的验证只有「读者举报＋作者访谈」——依赖人的直觉（＝铁味）
+
+无论是业界的官方答案（统计水印），还是读者的民间答案（铁味），结论都一样：**AI 内容检测在原理上不完美，最终只抓得住『普通人』。**
+
+## 结语 — 终究走向蒸馏战争
+
+把三块拼成一条线索：开放权重公开信开启的争论，其实体是蒸馏；8 月，它的矛（窃取推理）与盾（水印）同时登场；而「铁味」是这场战争的消费者最前线。
+
+- **盾早已被攻破。** 实验室隐藏 CoT（反蒸馏）的前提——「藏起来就守得住」——被一次 720 美元的攻击击碎。刺痛之处在于，泄露路径不是外部黑客，而是**自家生态里那个更弱的兄弟模型**。
+- **水印与其说是盾，不如说是取证器。** 它挡不住蒸馏，却成了「产业级蒸馏」监管的执行手段，以及封闭阵营的政策杠杆。
+- **两项技术都拦不住国家级行为者，只抓得住普通用户。** 一步改写就能让水印和反窃取防御一起失效——与网络小说「铁味」之争的结构分毫不差。
+- **于是智能的价格继续下跌。** 蒸馏拦不住，前沿的利润率就被挤压，上一篇文章的结论（「智能的价格继续下跌」）得以延续。若靠水印＋法律执行拦住了，前沿与开放之间的差距就再度拉开。这两份文件，正是那个岔路口两侧的开场炮。
+
+## 一手资料
+
+<ResourceLink
+  url="https://stolen-thoughts.com/paper.pdf"
+  title="Stealing Reasoning Traces from Proprietary LLM APIs（论文 PDF）"
+  domain="stolen-thoughts.com"
+  description="Panfilov 等。Anthropic、OpenAI、Google API 加密推理的重放/复原漏洞与四种攻击向量。"
+/>
+
+<ResourceLink
+  url="https://www.latent.space/p/ainews-how-to-steal-a-reasoning-trace"
+  title="How to Steal a Reasoning Trace — Latent Space"
+  domain="latent.space"
+  description="配图讲解论文的攻击手法与安全泄露。"
+/>
+
+<ResourceLink
+  url="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content"
+  title="How Claude marks AI-generated content — Anthropic Support"
+  domain="support.claude.com"
+  description="Claude 的文本隐形水印与 C2PA 元数据政策、适用范围与局限。"
+/>
+
+<ResourceLink
+  url="https://bbs.ruliweb.com/best/board/300143/read/76313168"
+  title="现 Novelpia 网络小说站第一作者（Ruliweb 帖子）"
+  domain="ruliweb.com"
+  description="Opus 同时写作、『铁味』梗，以及围绕 AI 检测不可能性的社区讨论。"
+/>
