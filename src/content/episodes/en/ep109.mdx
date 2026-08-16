@@ -1,0 +1,637 @@
+---
+episodeNumber: 109
+title: "This Is the Inference Era: Inside Sionic's Token Factory and Model Inference"
+description: "We tour Sionic AI's GPU data center to see how inference servers and token factories run, from prefill-decode separation to what ultra-fast token generation unlocks."
+publishedAt: 2026-08-16
+duration: "1:33:16"
+youtubeId: "ZA2StFPJhEY"
+thumbnail: "https://i.ytimg.com/vi/ZA2StFPJhEY/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+  - Noah Ko
+chapters:
+  - time: "0:00"
+    title: "Sionic AI Token Factory Data Center Tour"
+  - time: "0:33"
+    title: "The B300 Data Center and Its Air-Cooling Architecture"
+  - time: "2:08"
+    title: "The Dawn of the On-Premise Inference Era and Introduction of CEO Noah Ko"
+  - time: "3:37"
+    title: "DeepSeek V4 Flash 1,000 TPS Demo"
+  - time: "5:17"
+    title: "The Definition of TPS and the HBM Memory Bottleneck"
+  - time: "7:07"
+    title: "The Principles of Speculative Decoding and Accept Rate"
+  - time: "8:30"
+    title: "The Trade-off Between Quantization and Speculative Decoding"
+  - time: "10:21"
+    title: "Why Prefill and Decode Need to Be Separated"
+  - time: "11:47"
+    title: "The Shift in Focus from Training to Inference"
+  - time: "14:17"
+    title: "A Demo Simulating an Entire Company at 1,000 TPS"
+  - time: "18:21"
+    title: "Balancing Speed and Intelligence, and Changing Task Completion Criteria"
+  - time: "22:04"
+    title: "SOLAR MTP Retrofit and the Potential of Physical AI"
+  - time: "24:26"
+    title: "Understanding Prefill and Decode Through an Excavator and a Spoon"
+  - time: "30:11"
+    title: "Kimi-Style Prefill-Decode Separation and KV Cache Transfer"
+  - time: "32:12"
+    title: "vLLM and SGLang Implementations, and Undisclosed Serving Know-How"
+  - time: "35:26"
+    title: "An Auto-Optimization Agent That Enables Day-0 Response"
+  - time: "37:07"
+    title: "Model Commoditization and the Shift in the AI Value Capture Layer"
+  - time: "40:28"
+    title: "Building a 1MW In-House Data Center and the Unit Economics of B300 Operations"
+  - time: "45:14"
+    title: "The Advantages of Network Design and Why They Buy GPUs Directly"
+  - time: "48:00"
+    title: "How GPU Infrastructure Drives Talent Recruitment and Becomes an Organizational Asset"
+  - time: "49:12"
+    title: "Agent-Centric Organizations and the Next Harness: the Control Plane"
+  - time: "55:49"
+    title: "NVIDIA Dynamo and KV Cache Orchestration"
+  - time: "58:46"
+    title: "The Cost Structure of High-Speed Serving and Where Token Speed Becomes Revenue"
+  - time: "61:57"
+    title: "The Growing Value of Ultra-Low-Latency Inference in Security and Finance"
+  - time: "64:00"
+    title: "Reassessing SFT and Quantization, and Industry-Specific Inference"
+  - time: "67:00"
+    title: "The Weakening OpenAI-Anthropic Duopoly and the Rise of Kimi"
+  - time: "70:31"
+    title: "Stable Agent Systems Enabled by Large-Scale Computing"
+  - time: "72:12"
+    title: "Agent-Centric Organizations and the Biological Agent Analogy"
+  - time: "73:29"
+    title: "Network Bottlenecks and Data Center Power Outage Risk"
+  - time: "74:56"
+    title: "Google DeepMind Reorganization and Jeff Dean's Discovery Loop Startup"
+  - time: "76:26"
+    title: "The Exploding Demand for Inference and the Computing Capital Game"
+  - time: "83:10"
+    title: "AI for Science Research Automation and the Compute Shortage"
+  - time: "88:48"
+    title: "Hacking Attempts by AI Agents and Security Alerts"
+  - time: "91:49"
+    title: "Outlook for the Bot Era and Closing Remarks"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## Sionic AI Token Factory Data Center Tour    *0:03*
+
+<span class="paragraph-timestamp" data-ts="0:03">0:03</span> **Jonghyun Park** Today, as we're recording, is Monday, August 10th. For this week's episode, we invited CEO Noah Ko to talk about inference servers. We've come to see Sionic AI's facility—what people these days call a token factory— where tokens are generated using NVIDIA GPUs. Please show us around.
+
+<span class="paragraph-timestamp" data-ts="0:20">0:20</span> **Noah Ko** The entire facility is about $7.14 million. This facility generates tokens from industry-specific models, and is equipped with specialized models and systems that serve tokens extremely quickly.
+
+<span class="paragraph-timestamp" data-ts="0:32">0:32</span> **Jonghyun Park** Let's go take a look.
+
+
+## The B300 Data Center and Its Air-Cooling Architecture    *0:33*
+
+<span class="paragraph-timestamp" data-ts="0:33">0:33</span> **Noah Ko** This is the hot aisle zone where hot air collects inside the GPU center. Air at temperatures of 50 to 60 degrees Celsius or higher collects here. It is then transported to the cooling towers on the top floor. You can see that the area housing the GPUs is extremely hot. The main GPUs are NVIDIA's latest B300 units. There are about 100 of these units, and dissipating the heat they generate is extremely important. Given the structure of this building, only the hot air is collected and cooled using a hot aisle containment system, allowing us to operate the GPUs reliably even in a relatively small space with compact equipment.
+
+<span class="paragraph-timestamp" data-ts="1:06">1:06</span> **Jonghyun Park** Perhaps because it's air-cooled, it's incredibly loud in here right now.
+
+<span class="paragraph-timestamp" data-ts="1:10">1:10</span> **Noah Ko** That's right.
+
+<span class="paragraph-timestamp" data-ts="1:11">1:11</span> **Jonghyun Park** Just looking at it, it feels like refrigerant is flowing upward. This is the cooling unit, right?
+
+<span class="paragraph-timestamp" data-ts="1:14">1:14</span> **Noah Ko** This is the cooling unit, and it's connected to the cooling towers on the rooftop. The system is designed to extract as much high-temperature air as possible…
+
+<span class="paragraph-timestamp" data-ts="1:21">1:21</span> **Jonghyun Park** A node containing B300s
+
+<span class="paragraph-timestamp" data-ts="1:23">1:23</span> **Noah Ko** is known to cost about $714,000.
+
+<span class="paragraph-timestamp" data-ts="1:24">1:24</span> **Jonghyun Park** About $714,000. You have a whole row of them here, so you've built out a complete setup… And the inference service actually runs here now. We've come up to the cooling towers. Could you explain them to us?
+
+<span class="paragraph-timestamp" data-ts="1:35">1:35</span> **Noah Ko** First, these four outdoor cooling-tower units are what actually cool the heat from the GPUs. They have a capacity of about 200 kW, and use both air cooling and water-cooled spray mist. Because our data center and cooling towers are close together, we use direct refrigerant cooling throughout, which is a common setup these days.
+
+<span class="paragraph-timestamp" data-ts="1:54">1:54</span> **Jonghyun Park** Because they're directly above the building.
+
+<span class="paragraph-timestamp" data-ts="1:55">1:55</span> **Noah Ko** That's right.
+
+<span class="paragraph-timestamp" data-ts="1:56">1:56</span> **Jonghyun Park** That certainly seems to offer some advantages.
+
+<span class="paragraph-timestamp" data-ts="1:59">1:59</span> **Noah Ko** Usually, when the refrigerant line exceeds 15 meters, the system doesn't work as well. So the closer the cooling equipment is to the GPUs, the greater the overall efficiency.
+
+
+## The Dawn of the On-Premise Inference Era and Introduction of CEO Noah Ko    *2:08*
+
+<span class="paragraph-timestamp" data-ts="2:08">2:08</span> **Chester Roh** Today, as we're recording, is August 8th, 2026, a Saturday morning. Models seem to be announced much more frequently than we expected. Even just this morning, there was talk that the next-generation GPT would be a Mythos-class model. There is also news from Google, news from China, and a great deal of other news, but news related to model releases is such a major topic that, during the latter half of today's episode, we'll unpack it in our conversational banter mode, so please stay with us until the end. At a time when models continue to be released this quickly, their capabilities are also improving, and the performance of open-source and open-weight models is already at or above the level of frontier models from just a few months ago. And as we've repeatedly mentioned recently, the U.S. government has been restricting exports of these frontier models. Because of the resulting need for companies and individuals to keep their own data and their own workflows securely contained within their organizations, interest in on-premises inference continues to grow. So today, we've invited Noah from Sionic. Noah has recently been demonstrating how models such as Kimi and GLM can be run in an organization's own data center, so we'll hear more about that and learn from Noah. Welcome, Noah.
+
+<span class="paragraph-timestamp" data-ts="3:34">3:34</span> **Noah Ko** Hello. Thank you for inviting me to this wonderful discussion. First, let me show you a video. This is footage we recorded, and this is the DeepSeek V4 Flash model. It's around 280B, which by previous standards would be an extremely large model. If a model like this were served through a provider, we would normally have expected around 50 TPS per second. But with slightly newer hardware, and
+
+
+## DeepSeek V4 Flash 1,000 TPS Demo    *3:37*
+
+<span class="paragraph-timestamp" data-ts="3:59">3:59</span> **Chester Roh** The left side shows the inference currently in progress, right?
+
+<span class="paragraph-timestamp" data-ts="4:02">4:02</span> **Noah Ko** Yes, that's the inference speed. Humans cannot read 100 to 200 tokens per second. So when you use a model running at over 200 TPS, it feels strange. People usually use AI conversationally, but this doesn't feel like having a conversation. It really feels like talking to a non-human entity. But rather than using this simply for chatting, there are many use cases, such as creating documents or automating internal work, aren't there? In those cases, a tenfold increase in speed makes an enormous perceptible difference. From our perspective, throughout the workflow, it feels as though the result appears the instant you click. That makes a considerable difference, and this actually uses a speculative decoding method called DSpark, announced by DeepSeek. That's what it uses. As for why this matters now, there seem to have been several technical changes.
+
+<span class="paragraph-timestamp" data-ts="5:03">5:03</span> **Seungjoon Choi** I think it would help spark viewers' curiosity if you could briefly explain each of the terms shown in that earlier video. I think that would be helpful.
+
+<span class="paragraph-timestamp" data-ts="5:10">5:10</span> **Chester Roh** Could you explain what that video in the earlier scene was showing?
+
+<span class="paragraph-timestamp" data-ts="5:15">5:15</span> **Seungjoon Choi** It showed TPS and steps, among other things.
+
+
+## The Definition of TPS and the HBM Memory Bottleneck    *5:17*
+
+<span class="paragraph-timestamp" data-ts="5:17">5:17</span> **Noah Ko** Let me explain. First, TPS is the number of tokens generated per second. Regardless of how many tokens that is, current LLMs, fundamentally speaking, must read all the weights the model contains You have to read every weight at least once. And to read them, the speed is limited by what we commonly know as GPU memory, bound by HBM speed. So with current HBM technology, even the latest technology takes around 100ms at best to read them all. But as I mentioned earlier, no matter how fast the GPU is, the time it takes to read the memory once ends up being around 100ms, so the generation of each token is bound by that. And for example, if an extremely well-optimized model could read every parameter within about 10ms, one second is 1,000ms, right? So it could only generate exactly 100 tokens.
+
+<span class="paragraph-timestamp" data-ts="6:19">6:19</span> **Jonghyun Park** Then, about what you mentioned earlier—the speed at which people normally read. Because even when those tokens are presented as numbers like that, it is hard to get an intuitive sense of how fast that is. You said that people normally read books at about 200 tokens per second, right?
+
+<span class="paragraph-timestamp" data-ts="6:34">6:34</span> **Noah Ko** No. I think you can assume that people can read about 20 to 30 tokens per second. Even that is when reading quickly; when reading slowly, it is much slower.
+
+<span class="paragraph-timestamp" data-ts="6:43">6:43</span> **Chester Roh** So this is what a speed of 1,000 TPS looks like.
+
+<span class="paragraph-timestamp" data-ts="6:46">6:46</span> **Noah Ko** At around 1,000 TPS, creating a new DB would take about 10 to 15 minutes. By DB, I mean creating something like MySQL or Postgres. It would only take that long, and writing an entire novel would take about a minute.
+
+<span class="paragraph-timestamp" data-ts="7:00">7:00</span> **Seungjoon Choi** But this fluctuates. The maximum is 1,480, and it moves back and forth around 500.
+
+
+## The Principles of Speculative Decoding and Accept Rate    *7:07*
+
+<span class="paragraph-timestamp" data-ts="7:07">7:07</span> **Noah Ko** This is a very interesting point. Here, you can see accept and step. If you look on the right, decode this fast is, as I mentioned earlier, actually impossible because of memory. Unless HBM4 or some next-generation memory comes out, it is impossible no matter how good the GPU is. But with speculative decoding— the only things that can speed up computers are technologies such as branch prediction and caching— models do exactly the same thing. They predict and generate several tokens in advance, and since there is spare GPU compute, they process them in parallel and then check whether they are correct. So they check the tokens generated in advance, and the higher the probability of accepting the predictions, the greater the speed increase.
+
+<span class="paragraph-timestamp" data-ts="7:51">7:51</span> **Jonghyun Park** Then, that speculative decoding— I think I have usually heard it called speculative decoding— if I were to summarize that technology briefly, you have a faster, less intelligent model, and that model runs through all the tokens, for example. Before the intelligent one produces its output, it runs through everything in advance, uses it if it is correct, and otherwise runs it again with the larger, more intelligent model. That is how I understand the technology. So can I understand accept there as how many of the tokens rapidly laid down by the faster, less intelligent model were accepted— in other words, how accurate its predictions were?
+
+
+## The Trade-off Between Quantization and Speculative Decoding    *8:30*
+
+<span class="paragraph-timestamp" data-ts="8:28">8:28</span> **Noah Ko** Yes, that is correct. And this leads to another interesting point. Technologies commonly called quantization can increase speed and reduce memory usage, but based on recent research we have seen and our actual use, quantization tends to widen the gap between the intelligent model and the less intelligent model. So the more you quantize, the lower the acceptance rate for speculative decoding becomes. That means poorly implemented quantization can actually make it slower. That is a very interesting point, and in a sense, this model is one with a high acceptance rate. For models where it is low, the acceptance rate, or what is called average accept, is around 2 to 3, while higher rates can reach 7 to 10. That acceptance rate ultimately translates directly into a multiplier. Another implication of this is that the acceptance rate differs depending on the type of content being generated. For example, the acceptance rate is high for code and also for English, while it can be low even for Korean, and content such as novels with complex logical structures is difficult, so the rate is low. As these differences arise, there used to be this idea: fine-tuning is now almost entirely unnecessary. But because token generation speed and cost can be improved through speculative decoding techniques such as DSpark or MTP, we now have this interesting situation where fine-tuning can also reduce costs.
+
+<span class="paragraph-timestamp" data-ts="9:51">9:51</span> **Seungjoon Choi** I am curious: with MTP, if the current token is t, it predicts t+1 and t+2 in advance, right? But isn't speculative decoding a little different? Are they the same?
+
+<span class="paragraph-timestamp" data-ts="10:04">10:04</span> **Noah Ko** They are the same. The distinction is whether you do +1, or generate more in blocks and then evaluate the candidates.
+
+<span class="paragraph-timestamp" data-ts="10:12">10:12</span> **Seungjoon Choi** But at a single stage, it does not try multiple possibilities like this token and that token; the nuance is that it predicts the subsequent tokens in advance, right?
+
+<span class="paragraph-timestamp" data-ts="10:20">10:20</span> **Noah Ko** I think that is a good way to understand it.
+
+
+## Why Prefill and Decode Need to Be Separated    *10:21*
+
+<span class="paragraph-timestamp" data-ts="10:21">10:21</span> **Chester Roh** This is strongly connected to the difference between prefill and decode, which we will discuss next. Because when you use speculative decoding on multiple tokens and the block that follows grows, it does not examine them one token at a time, you can simply put multiple tokens into prefill mode and predict them all at once, is that the connection here?
+
+<span class="paragraph-timestamp" data-ts="10:44">10:44</span> **Noah Ko** That's exactly right. So the reason modern agentic AI works so well may partly be that the cache gets a high hit rate, but it's also because prefill is incredibly fast. Because, as I mentioned earlier, even the latest models, due to memory constraints, struggle to output more than 50 or 30 tokens per second, which is true, but prefill can process tens of thousands of tokens at a time. So, for example, when we read text, with a Transformer, the order doesn't matter. So it can take in and read all the tokens in parallel, and GPUs are the best at that. So when NVIDIA recently introduced Vera Rubin and Groq, the architecture they described was this: what is called prefill is all handled by Vera Rubin, the next-generation architecture. It will read an enormous amount—probably 200,000 tokens per second— and then hand it off to Groq for decoding. But handing it off to Groq for decoding means transferring the processed hidden states and the KV cache. So NVIDIA had already, almost a year ago now, effectively declared that this architecture was the fastest, and this is becoming an enormous topic.
+
+
+## The Shift in Focus from Training to Inference    *11:47*
+
+<span class="paragraph-timestamp" data-ts="11:47">11:47</span> **Chester Roh** Until just about a year ago, we used to talk a great deal about training, but lately, models have rapidly converged at a much higher level, and models have moved completely from the research stage into the industrial stage. Demand also continues to explode. As a result, it's true that interest in inference has grown much greater than interest in training. Given the same GPU and the same amount of power, how to deliver this faster and to more people has become an extremely important engineering challenge, because this directly translates into money, and the topics related to that are at the very heart of what Noah will be discussing today, so if you want to understand the dynamics of data centers and models, and which companies will make money and which companies will not, understanding roughly where and how these things fit into the picture will make everything much easier to follow.
+
+<span class="paragraph-timestamp" data-ts="12:52">12:52</span> **Jonghyun Park** Just to underscore this point, today's main topic is inference. So inference is important. I think that's ultimately the main point, and two aspects of what you just discussed illustrate that. First, regarding the chips themselves, whereas we used to talk about chips for training and chips for inference, in those terms, now, even within inference, there are chips for prefill and chips for decode. In other words, even within inference, chip architectures are becoming more specialized. And with fine-tuning, whereas in the past it was used to make a model smarter, now fine-tuning itself is being used to create a capable assistant for speculative decoding, which means tuning for inference. So everything is now focused on how to make inference more efficient, from many different angles.
+
+<span class="paragraph-timestamp" data-ts="13:45">13:45</span> **Noah Ko** We may have already crossed that point, but far more GPUs will probably be needed to run inference on tokens than were needed for training. I think this will become a very obvious fact, and in a way, the push to make it faster is perfectly encapsulated by the term token factory.
+
+<span class="paragraph-timestamp" data-ts="14:00">14:00</span> **Chester Roh** Looking at things like this, it's truly engineering beauty. They've incorporated every trick you could possibly think of.
+
+<span class="paragraph-timestamp" data-ts="14:09">14:09</span> **Seungjoon Choi** Even setting the technology aside, if you're getting 1,000 TPS, how does that change the nature of the work?
+
+
+## A Demo Simulating an Entire Company at 1,000 TPS    *14:17*
+
+<span class="paragraph-timestamp" data-ts="14:17">14:17</span> **Noah Ko** Once we reached 1,000 TPS, here's something we tried. This is what people often call AI slop. So please don't take it too seriously. What is it? It's rough. It's something we built internally, like a Second Brain. We put in all of the company's data and created another version of the company. So there are people working in it, and they can do work, and this may sound a little strange, but you can even have someone who left the company do work. Because it has that person's context. But this doesn't work with 100 or 200 tokens, whereas if we can use thousands of tokens and run 10 or 20 sessions in parallel, we can replicate the company and run it in real time. It sounds a little absurd, doesn't it?
+
+<span class="paragraph-timestamp" data-ts="15:00">15:00</span> **Seungjoon Choi** So it feels like a live stream.
+
+<span class="paragraph-timestamp" data-ts="15:03">15:03</span> **Noah Ko** That's what it feels like. You can simulate the company concurrently. And work like coding or marketing is especially feasible here.
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **Seungjoon Choi** So it's not about generating code quickly, but about simulating the trajectory of the work itself in real time.
+
+<span class="paragraph-timestamp" data-ts="15:21">15:21</span> **Noah Ko** Everyone here is virtual, but you can simply simulate the company in real time. It's an incredible thing that actually works.
+
+<span class="paragraph-timestamp" data-ts="15:29">15:29</span> **Chester Roh** The company's Gmail, email, and Slack, Just feed all of this into the model, and reproduce all of it.
+
+<span class="paragraph-timestamp" data-ts="15:37">15:37</span> **Seungjoon Choi** So this runs 24/7. It's live and running 24 hours a day, seven days a week.
+
+<span class="paragraph-timestamp" data-ts="15:44">15:44</span> **Noah Ko** Wouldn't it be 1,000 hours rather than 24? Because it's already running at several dozen times the speed of human capability.
+
+<span class="paragraph-timestamp" data-ts="15:51">15:51</span> **Jonghyun Park** But when you run it like this, what is the output like?
+
+<span class="paragraph-timestamp" data-ts="15:54">15:54</span> **Noah Ko** You can actually assign it tasks. Sometimes it produces a project, sometimes a marketing draft, and sometimes it actually produces a feature. It feels a little different from a simple agent.
+
+<span class="paragraph-timestamp" data-ts="16:06">16:06</span> **Seungjoon Choi** So it's not just a company; if we designate the company as A, B, C, and D are all possible too.
+
+<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **Noah Ko** But in fact, this is a completely conceptual concept, probably the slop I referred to as AI slop. But if this were pursued in earnest, how great would the impact be—in other words, how frightening would it be?
+
+<span class="paragraph-timestamp" data-ts="16:23">16:23</span> **Chester Roh** When we use coding agents or ChatGPT now, the concept of latency is calibrated precisely to the speed of human conversation, so we're not quite accustomed to the inference speed we saw earlier, but if the quality of intelligence were on the y-axis of some function, I think latency would be on the x-axis. Ultimately, x multiplied by y is the total amount of intelligence produced, so with the same intelligence, if one outputs 1,000 words per second and another outputs 30 words, there's a 30-fold difference in productivity.
+
+<span class="paragraph-timestamp" data-ts="17:00">17:00</span> **Seungjoon Choi** So what we need to unlearn is— watching that demo just now made me realize that traditionally, you have to work async. You set your idea running, and while waiting for it to be generated, you amortize the wait by working on something else, but if the output comes out at this live pace, we're in a situation where that has to change.
+
+<span class="paragraph-timestamp" data-ts="17:20">17:20</span> **Noah Ko** That's why it feels extremely awkward. As you said, there used to be time to think, but now you press a button and something comes out immediately. So it's far more exhausting for people, and it doesn't feel like working with AI. We don't give a calculation to a calculator and then wait for it. Like that, the result comes out as soon as you press the button, and you also mentioned changes in how we work and unlearning— that's exactly the feeling I get very strongly.
+
+<span class="paragraph-timestamp" data-ts="17:43">17:43</span> **Chester Roh** To briefly summarize this discussion, many people ask whether investment in AI is nearly over, and whether this is a market that will no longer grow, and many wise people are responding that those are foolish questions. It's only just beginning, and there is no upper bound to the demand for this intelligence. Suppose having one smarter person got this much work done. Would people be satisfied with that? No, because people naturally want to hire as many smart people as possible, so the view that this will continue growing seems to be gaining far more traction.
+
+
+## Balancing Speed and Intelligence, and Changing Task Completion Criteria    *18:21*
+
+<span class="paragraph-timestamp" data-ts="18:21">18:21</span> **Seungjoon Choi** I think there will be different tiers. Because what you just showed is a Flash model, which is why it can achieve that speed, and while other models will continue getting faster, some top-tier models will still need to work async. Because they take quite a while to reason. So won't it be layered differently by task? At least for now.
+
+<span class="paragraph-timestamp" data-ts="18:39">18:39</span> **Chester Roh** That's true, but the overall graph will keep moving toward this kind of experience.
+
+<span class="paragraph-timestamp" data-ts="18:44">18:44</span> **Jonghyun Park** Something I've noticed too is that when you use expensive models lately, especially Fable or GPT Sol, and increase the reasoning effort, it takes quite a while to complete the work. In the meantime, I often do something else or create another session to work on a different task, but then this context switching has to happen in the human brain, so things get missed and it becomes exhausting. There are issues like that. But if we could use models with extremely high TPS like this, even if their intelligence were slightly lower, I could stay focused and continue the entire conversation within that context, which would actually allow us to put the human in the loop more actively, and even if the AI's intelligence were slightly lower, it would already be sufficient, so we might be able to work better. That thought just occurred to me.
+
+<span class="paragraph-timestamp" data-ts="19:28">19:28</span> **Seungjoon Choi** But I think that would be exhausting too. Focused exhaustion versus exhaustion distributed across parallel tasks...
+
+<span class="paragraph-timestamp" data-ts="19:33">19:33</span> **Chester Roh** But it will take a little time for what we're imagining now to become reality.
+
+<span class="paragraph-timestamp" data-ts="19:41">19:41</span> **Noah Ko** Then how about this? The model we just saw has 280B parameters, and it's difficult for me to get an intuitive sense of that too, but it's a relatively small model.
+
+<span class="paragraph-timestamp" data-ts="19:51">19:51</span> **Chester Roh** You just described 280B as a relatively small model.
+
+<span class="paragraph-timestamp" data-ts="19:56">19:56</span> **Noah Ko** We live in such an absurd world. In the past, anything over 1B was considered large. Google used to say that models over 8B couldn't be served, and now we have a small model of only 2.8T. This model also reaches a peak of 300 tokens. But this token generation does use our technology, though it's entirely memory-bound. So when memory gets a little better, models with 2T, 3T, 5T, or 10T parameters might run much faster and become much more powerful. That's what I think, and the angle and detail of the characters produced with Flash earlier versus those produced with Kimi are completely different. And do you know what's even more interesting? Wasn't Flash faster? But Kimi's total generation time is shorter.
+
+<span class="paragraph-timestamp" data-ts="20:45">20:45</span> **Seungjoon Choi** I see. I understand what you mean.
+
+<span class="paragraph-timestamp" data-ts="20:47">20:47</span> **Noah Ko** So because it implements the result more efficiently, Kimi's token speed is currently about three times slower. That's 300 tokens per second. But it generated them faster, and although the models differ in size by a factor of ten, it was only three times slower.
+
+<span class="paragraph-timestamp" data-ts="20:59">20:59</span> **Chester Roh** That means the quality of intelligence per token is much higher.
+
+<span class="paragraph-timestamp" data-ts="21:02">21:02</span> **Noah Ko** That's right. So these kinds of reversals are also being reported. It's actually better to use a smarter model that generates only a few tokens but is more efficient.
+
+<span class="paragraph-timestamp" data-ts="21:12">21:12</span> **Jonghyun Park** When we talked about pricing last time, we were also discussing it in terms of price per token, but when you use an expensive model to accomplish a task, it uses tokens efficiently, so it can accomplish the task with fewer tokens. So now we need to look at the price per task. We discussed that before, and similarly, when it comes to execution speed, instead of looking at TPS, we should look at how long it takes for the task to finish, meaning how quickly it was completed. That really resonates with me.
+
+<span class="paragraph-timestamp" data-ts="21:37">21:37</span> **Chester Roh** A Pareto efficient curve is shaped by multiple variables, so you shouldn't judge it based only on model size or GPU size. You shouldn't make that kind of judgment. You have to see it as the result of all the different variables combined.
+
+<span class="paragraph-timestamp" data-ts="21:49">21:49</span> **Seungjoon Choi** But the line formed by the Pareto frontier is advancing across the board.
+
+<span class="paragraph-timestamp" data-ts="21:53">21:53</span> **Chester Roh** It is advancing like crazy. Kimi generating 300 tokens per second also feels really impressive.
+
+<span class="paragraph-timestamp" data-ts="22:00">22:00</span> **Seungjoon Choi** This is all because of MTP and speculative decoding, right? Basically.
+
+
+## SOLAR MTP Retrofit and the Potential of Physical AI    *22:04*
+
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> **Noah Ko** That's right. Recent models support this from the outset, and recently, while I was speaking with the CEO of another company, I mentioned that we have our proprietary foundation model, SOLAR, right? SOLAR doesn't have this MTP. It wasn't built in from the beginning, but when we added it to the model through adaptation and attached it through additional post-training, it also reached 500 to 600 tokens per second. That's because it's probably similar in scale to DeepSeek V4 Flash. It's in the range of about 250 to 280B, so I wonder if nearly every model will go this way.
+
+<span class="paragraph-timestamp" data-ts="22:39">22:39</span> **Chester Roh** The logic behind MTP is already available, so you can simply add an MTP head to the end of the model and, in terms of the old concept, apply something akin to a little fine-tuning, and now you can just attach it.
+
+<span class="paragraph-timestamp" data-ts="22:51">22:51</span> **Noah Ko** That's right. That's now possible. It doesn't even take a week. It's incredible. One line of discussion that comes to mind is, once this exceeds about 500 to 600 tokens per second, couldn't it run well enough even in Physical AI? That's because Tesla's autonomous driving system is known to operate somewhat like a VLA, and if it can't keep up with the frames per second, it won't work. But if this can generate 2,000 or 1,000 tokens per second, and on top of that, the real world has more physical momentum than text or code does. So MTP or DSpark would have more room to perform further inference or predict correctly, and if so, couldn't every robot really run on an LLM? Of course, there is still some headroom needed in chip performance, but I think it could be entirely feasible. So instead of fine-tuning improving performance, it makes things faster—this kind of discussion is also possible.
+
+<span class="paragraph-timestamp" data-ts="23:42">23:42</span> **Jonghyun Park** I think that's entirely feasible. In the case of Google's Gemini Robotics, the model is split into two, with a VLM running in the cloud, meaning an LLM performs embodied reasoning and rapidly produces reasoning while looking at the visual input. It understands it, and then the resulting latent vector or perhaps an output in some language-based state is passed to a model on the embedded device that generates action, and only the action is generated quickly there. By splitting the models this way and using a smaller model, the intelligent processing can happen somewhere with extremely fast token per second, which could be in the cloud, or, since vehicles have a bit more space, a large chip could be installed somewhere in the vehicle. By separating things this way, the system can understand the situation and act accordingly, which seems entirely feasible.
+
+
+## Understanding Prefill and Decode Through an Excavator and a Spoon    *24:26*
+
+<span class="paragraph-timestamp" data-ts="24:26">24:26</span> **Chester Roh** All right, then let's move on to the main topic we originally prepared. When we previously recorded the Dwarkesh episode, we spent a lot of time talking about prefill and decode, followed by something called roofline analysis. We discussed those topics at length, and prefill and decode are terms we'll encounter frequently again today, so with those terms in mind, shall we begin the main body?
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **Noah Ko** I created a visualization, also using AI, so I'll show it to you while I explain. First, I created about four cases on a timeline, so let me show you. Here's the general idea when you look at it. If we plot this over time, you can think of it as eight users generating tokens. Here, the blue sections represent decode, and the orange—or is it peach-colored?— sections represent what we call prefill, which you can think of as the reading portion. But given the structure of the LLMs we use, reading can be fully parallelized. And that's what GPUs do best. It may look similar when viewed this way, but in reality, the prefill section uses an overwhelmingly larger amount of the GPU, while during the decode section, you can think of the GPU as barely being used. To give you a sense of the difference, prefill is like scooping up a mound of sand with an excavator. By comparison, decode is like scooping it up with a spoon, to exaggerate slightly. And depending on how fast that spoon moves, the tokens per second will vary. So the computational performance of today's GPUs isn't just a few thousand or a few hundred per second. They should be able to produce tens of thousands, even hundreds of thousands, but because of the speed at which the spoon we mentioned earlier moves, they can only manage tens or hundreds per second. Now, there may be semiconductors that are good at these things, but with GPUs, that gap is enormous. So what sustains today's agent AI is partly the GPU's ability to handle this prefill extremely well, but the gap is quite substantial. So ordinarily, the performance of a single GPU should allow it to serve 100 or 200 users, but because of the difference between prefill and decode, it may serve as few as one or two users, and at most, it cannot even serve 10.
+
+<span class="paragraph-timestamp" data-ts="26:47">26:47</span> **Chester Roh** All right, at this point, who can give us the simplest explanation of what prefill and decode are?
+
+<span class="paragraph-timestamp" data-ts="26:55">26:55</span> **Noah Ko** First, prefill is the process of reading tokens. For example, if we're running an agent, there is the code project I had, the system prompt it knew, and information about various skills— all of that will be there. Usually, that ranges from a few thousand at the low end to tens or even hundreds of thousands at the high end. But if you read all of that at decode speed, wouldn't it take about 30 minutes? One place you can see this is in all the recent posts saying these models can run well on a MacBook. A Mac has unified memory, meaning that the GPU, CPU, and NPU share integrated memory, and there is plenty of it. So token generation isn't that slow. It's much faster than you might expect. But prefill is extremely slow. And to use this properly, for example, you read the tokens on a GPU, and what do you get when you read the tokens? You get a hidden state, as well as the KV cache created during the reading process. If you transfer that to a Mac, you get this system that reads quickly and is relatively inexpensive for generation as well. So, as I mentioned earlier, the process of simply reading tokens is the process of creating a KV cache. Now, while creating this KV cache, you can utilize the GPU extremely well, but how effectively you orchestrate and operate the handoff to decode, a completely different, memory-bound payload, determines the token throughput, time, and speed, and even whether it stalls or not.
+
+<span class="paragraph-timestamp" data-ts="28:27">28:27</span> **Chester Roh** Then, to explain it simply so our audience can understand, when we use ChatGPT, we cut and paste a huge amount of material and tell ChatGPT, "Read this and summarize it." You can think of the huge amount we paste in all at once as the prefill, and once we hit Enter, the tokens start firing out one after another. We can think of that as the decode process, right?
+
+<span class="paragraph-timestamp" data-ts="28:55">28:55</span> **Noah Ko** That's right. The TTFT in the video earlier is that amount of time. The time until the first token appears.
+
+<span class="paragraph-timestamp" data-ts="29:01">29:01</span> **Chester Roh** token per second, yes. So we need to keep that mental picture of prefill and decode in mind and look at this very carefully.
+
+<span class="paragraph-timestamp" data-ts="29:11">29:11</span> **Seungjoon Choi** One thing I'm a little confused about is that the amount of prefill and the amount of decode are different for each user stream, right?
+
+<span class="paragraph-timestamp" data-ts="29:17">29:17</span> **Noah Ko** I believe so. It's being depicted here as though they're the same, but because the prefill is so large, this decode is so small in terms of resources that it's barely even visible. But with this decode—I mean, during the prefill process— you can utilize a tremendous amount of GPU capacity, and you also generate a huge KV cache, so, for example, users 8, 7, and 6 here all stall while stream 1 is being read. In a way, the analogy shows that this is terrible for the user experience.
+
+<span class="paragraph-timestamp" data-ts="29:44">29:44</span> **Jonghyun Park** By resources here, do you mean the total amount of computation that needs to be performed?
+
+<span class="paragraph-timestamp" data-ts="29:50">29:50</span> **Noah Ko** That's right. You could call it the degree of CUDA core utilization. I think that would be a better way to put it.
+
+<span class="paragraph-timestamp" data-ts="29:55">29:55</span> **Seungjoon Choi** What happens when you press the separation button?
+
+<span class="paragraph-timestamp" data-ts="29:57">29:57</span> **Noah Ko** When you separate them, what happens is it changes like this.
+
+<span class="paragraph-timestamp" data-ts="30:01">30:01</span> **Chester Roh** Now they're all just doing decode.
+
+<span class="paragraph-timestamp" data-ts="30:03">30:03</span> **Noah Ko** If you do this, the amount that the same GPU can process increases by at least three to four times, and by as much as 100 times.
+
+
+## Kimi-Style Prefill-Decode Separation and KV Cache Transfer    *30:11*
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **Chester Roh** The main topic we'll discuss today is that if you optimize prefill and decode on a single inference machine, no matter how much you optimize them, performance hits a certain ceiling, and it is a known fact that there is no way to eliminate this inefficiency. What Kimi first proposed was processing prefill and decode in completely physically separate farms. That results in a tremendous increase in efficiency. That's the main subject of today's discussion.
+
+<span class="paragraph-timestamp" data-ts="30:42">30:42</span> **Noah Ko** And you need this to achieve what I showed earlier: processing Kimi 2.8T at up to 300–400 tokens per second becomes possible. If they aren't separated, then basically, every time a user performs prefill, all decode operations stop in parallel. That's why this is extremely difficult to handle, and after prefill, there's no need to move all of that request's hidden states and everything else. The KV cache also varies from model to model, and with something like Kimi, it's about 10GB to 20GB. You have to move it instantly to the decode machine, process it smooth while achieving good hit rates, and some router at the lower layer also has to move the user's session, so the engineering is harder than it might seem. But when you don't do that, there can be many instances where these operations stall significantly, and in that case, we also serve models like Kimi, but there would be no way to run them. If the model is small enough and there is plenty of memory, the issue may not be apparent. But with an extremely large model like Kimi, you need to completely separate this payload from the outset, along with the concept of a store for the KV cache, meaning a store that contains our entire context. This needs to be extremely fast, reaching hundreds or thousands of GB/s, and maintaining this performance is what actual LLM serving requires, and I assume that every Frontier Lab is probably doing this.
+
+
+## vLLM and SGLang Implementations, and Undisclosed Serving Know-How    *32:12*
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **Seungjoon Choi** I'm curious—does the reference code disclose this entire method?
+
+<span class="paragraph-timestamp" data-ts="32:17">32:17</span> **Noah Ko** The reference code doesn't do this, but implementations of it, such as vLLM and SGLang, as well as NVIDIA, share technologies and libraries for doing this. But as I mentioned earlier, infrastructure conditions, network conditions, and even the internal know-how of these token providers would all come into play, so I don't think anyone discloses enough for it to be used in a service. For example, we also use SGLang after tinkering with it a bit.
+
+<span class="paragraph-timestamp" data-ts="32:48">32:48</span> **Seungjoon Choi** So it seems they release only the code and don't disclose everything else.
+
+<span class="paragraph-timestamp" data-ts="32:54">32:54</span> **Noah Ko** You can also see this reflected in the pricing policies. Have you ever seen models whose prices differ between 256K and 1M context lengths?
+
+<span class="paragraph-timestamp" data-ts="33:06">33:06</span> **Chester Roh** Even with our Claude Code, 1M Opus differs from 256K and 327K.
+
+<span class="paragraph-timestamp" data-ts="33:12">33:12</span> **Noah Ko** From the serving side, you simply divide the farms from the outset. You separate the farms themselves, and unless you completely physically separate the farm using a short context length from the farm using a long context length, token throughput drops significantly.
+
+<span class="paragraph-timestamp" data-ts="33:29">33:29</span> **Jonghyun Park** It seems that in some cases, they even separate the chips that actually do the processing. OpenAI appears to do that as well. But as for whether optimized reference code exists, which model you're running, which cluster you're running it on, and the configuration of the GPU cluster you intend to use—for example, there are cases where GPUs are grouped in sets of 72, as with NVL72, or where they're grouped in sets of eight, with eight nodes connected via NVLink, and then there are cases where those nodes are also linked through InfiniBand, or linked in some other way. Because every situation is different, it seems difficult for there to be a solution that is well optimized universally for everything. For specific reference hardware, particularly in NVIDIA's case, there may be solutions tailored to their flagship products and specific models, but wouldn't all of that still need to be handled separately according to each situation?
+
+<span class="paragraph-timestamp" data-ts="34:23">34:23</span> **Chester Roh** In the past, truly exceptional engineers would have had to work on this, and handling it would have involved a tremendous amount of pain. But these days, even at our company, while maintaining the company's server farm, we rarely go directly into AWS or GCP and operate the console ourselves. We connect an agent, tell it to optimize things or change something, and it simply takes care of everything. Even migrations work that way, and the same thing is probably happening at Frontier Labs. Even for things like architecture design, if they ask a Frontier model to optimize it, it will design and run its own experiments and optimize autonomously, so that process is likely already running, and I don't think its speed will become a bottleneck either. Also, when it comes to advantages in software architecture or engineering, GPT-6 or Mythos will certainly do a better job than Jeff Dean. So I think that area will also rapidly converge toward a uniformly high standard.
+
+
+## An Auto-Optimization Agent That Enables Day-0 Response    *35:26*
+
+<span class="paragraph-timestamp" data-ts="35:26">35:26</span> **Seungjoon Choi** They release everything on Day-0. vLLM, SGLang, and TokenSpeed all support it on Day-0, and Sionic released support extremely quickly as well. How did you do it?
+
+<span class="paragraph-timestamp" data-ts="35:35">35:35</span> **Noah Ko** We do the same thing. We operate our own GPUs, and while those GPUs are used for training and serving, in practice, we also run the same kind of Autoresearch and automated optimization agents I just mentioned. So when we have a whole list of backlog tasks like these, we raise the priority of this one. This is something we need to do now, and any task that can be designated as the loop's objective the task can be handled by 100 agents running in parallel, and with distributed processing, most of it can be finished within a few hours.
+
+<span class="paragraph-timestamp" data-ts="36:04">36:04</span> **Seungjoon Choi** Even though Kimi K3's architecture changed quite a bit, was it done that quickly?
+
+<span class="paragraph-timestamp" data-ts="36:08">36:08</span> **Noah Ko** It actually took us only about 15 minutes.
+
+<span class="paragraph-timestamp" data-ts="36:12">36:12</span> **Chester Roh** So when we were talking privately with Noah, Noah said that, in this way, since models now create all the differentiation that used to come from human capabilities, what ultimately remains is having enough GPU power and how long and how extensively it can be used, so doesn't it all converge into a game of those factors?
+
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> **Noah Ko** So when you look at these things, the things running internally— that is, the provisioning and allocation of these GPU resources— are handled by agents. And humans provide the research goals and qualitative analysis of the results. When these things accumulate, the pace seems unbelievably fast.
+
+<span class="paragraph-timestamp" data-ts="36:56">36:56</span> **Chester Roh** We always talk about Jensen Huang's five-layer stack. It covers layers ranging from data centers at the bottom to chips, then models and applications, and so forth, and until now, the model companies in the middle have been capturing most of the value. But because of the current competitive landscape and the way models are improving themselves, model development is leveling up across the board. And even the work that only OpenAI and Anthropic could do is now being done by China's Frontier Labs, which are even releasing the results as open weights. And thanks to those open weights, companies like Sionic that have their own computing resources can quickly reach the level achieved by Frontier Labs. So the layer where value is captured is now shifting. Until now, the model layer captured the most value, but their margins will shrink. Because there will be more competition. As capabilities level up and are offered at extremely low prices, this is, like a prisoner's dilemma, on a path toward zero. Then where does that value move? It will move both upward and downward.
+
+
+## Model Commoditization and the Shift in the AI Value Capture Layer    *37:07*
+
+<span class="paragraph-timestamp" data-ts="38:10">38:10</span> **Noah Ko** The value chain keeps moving toward the point closest to the customer. It is about the relationship with the customer and how much the customer uses it, ultimately generating revenue for the customer. In the end, the value chain inevitably moves toward the places that create tangible value close to the customer.
+
+<span class="paragraph-timestamp" data-ts="38:25">38:25</span> **Chester Roh** So if we compare this to the most recent industrial precedent, when electricity first emerged, companies dealing with infrastructure such as AC versus DC and power transmission equipment captured all the value. But once that stabilized, all that remained was extreme optimization. Governments even took it over in some cases. Then where did the value go? Within the infrastructure layer, companies that still operate power plants and substations continue to make money. But where did the next layer of value above that go? Everything in the middle disappeared behind the outlet, and now companies like Dyson capture all the value. It went to what is built on top of that: the highest-level value closest to the customer, like LG TROMM washing machines, followed by robot vacuums that automatically clean the house—
+
+<span class="paragraph-timestamp" data-ts="39:21">39:21</span> **Noah Ko** companies like Roborock.
+
+<span class="paragraph-timestamp" data-ts="39:23">39:23</span> **Chester Roh** That's where all the value went. So if intelligence in AI also becomes something that gushes out when you plug into an outlet, one axis of value capture will move down to the power-plant layer, to places such as data centers and chip companies. But the margins there will not be very high. Optimization will continue there as well, and because the same obvious formulas will keep being applied, margins will be confined within a certain range. Most of the value will be captured by plugging something into the outlet. As Noah just said, it will become a game of who is closest to the customer. I don't think the industries that will plug into that outlet have even begun yet. And Noah, although we're already witnessing this through what we call AX, I think applications that go beyond AX may soon begin to emerge. Seeing things like 1,000 TPS earlier makes me think that even more strongly. Electricity that used to arrive at 50V is now coming in at 380V.
+
+
+## Building a 1MW In-House Data Center and the Unit Economics of B300 Operations    *40:28*
+
+<span class="paragraph-timestamp" data-ts="40:32">40:32</span> **Seungjoon Choi** Noah, you can keep up now because you began building the infrastructure needed to create value close to customers last year, but if you had started this year, wouldn't it have cost far more? Isn't the difference enormous?
+
+<span class="paragraph-timestamp" data-ts="40:47">40:47</span> **Chester Roh** Noah, since it came up, please tell us about this. We'll return to the topic of prefill and decode, but Sionic has a data center. It is a 1 MW data center. Please tell us why you built it, how much it cost, and what kind of value it is delivering now. I think answering that would also answer Seungjoon's question from earlier.
+
+<span class="paragraph-timestamp" data-ts="41:08">41:08</span> **Seungjoon Choi** And to add one more thing, before what you've purchased depreciates, how many tokens you need to produce to offset the depreciation is also something I'm curious about.
+
+<span class="paragraph-timestamp" data-ts="41:20">41:20</span> **Chester Roh** Aren't we asking Noah to reveal too many trade secrets?
+
+<span class="paragraph-timestamp" data-ts="41:24">41:24</span> **Noah Ko** First of all, there is a dilemma with data centers. Normally, the larger and more centralized they are, the lower the cost should be. And for various reasons, data centers can only be built that way. But neoclouds focused primarily on GPUs have a little more flexibility in that regard. One reason is the internet backbone. Conventional cloud infrastructure needs wide internet bandwidth relative to its power consumption. But a neocloud can do everything it needs with a single inexpensive dedicated line, meaning that even without a data-center-grade backbone, it can fully serve that purpose. So it can also be built in a distributed manner. Another factor is what you might call the data center's grid code. In a sense, this is more of a policy issue: you need to introduce policies and equipment that can place a stable load on the local power grid. For example, let's say it cost us about $357,000 to build 1 MW of capacity. A conventional data center would actually have to pay at least $1.79 million or $2.14 million for the same thing. That's because of the power grid operated by the country or facility. The most dangerous thing for a power grid isn't consuming too much or too little power, but repeatedly switching between high and low consumption.
+
+<span class="paragraph-timestamp" data-ts="42:38">42:38</span> **Chester Roh** This is moving so quickly that we jumped ahead without any context. So I don't think the people listening right now will have any idea what we're talking about. If you could start with how you built that data center, including things like how many B300s it has, and build up the layers little by little until we get back to this point, I think it would be much easier to understand.
+
+<span class="paragraph-timestamp" data-ts="43:06">43:06</span> **Noah Ko** First of all, we're using around 100 B300s. If this infrastructure operates at more than 5% utilization, the depreciation cost and the actual token cost break even. So if we raise utilization to 10%, we get twice the return. If we operate it properly for just one year, you can assume that we can recover the entire CAPEX in less than a year.
+
+<span class="paragraph-timestamp" data-ts="43:32">43:32</span> **Jonghyun Park** Roughly how much does a B300 cost? I imagine that's what people are most curious about.
+
+<span class="paragraph-timestamp" data-ts="43:36">43:36</span> **Noah Ko** The price is quoted in dollars. I believe it's around $60,000. The price in Korea varies by vendor. Recently, one system costs around $571,000 to $643,000. In other words, that's for a system equipped with eight B300s and the networking for them, so you can think of it as costing about that much. And in the cloud, at the lower end, it usually costs around $8 per GPU per hour. And at the higher end, $10 or more is a typical price. If it's configured as a cluster, you can expect the price to go up. But our current inference process is entirely based on clusters. So the price could be a little higher.
+
+<span class="paragraph-timestamp" data-ts="44:20">44:20</span> **Chester Roh** So you have 100 B300s, and just the deployment cost—the cost of the GPUs alone— came to nearly $7.14 million.
+
+<span class="paragraph-timestamp" data-ts="44:29">44:29</span> **Noah Ko** It cost a little less than that.
+
+<span class="paragraph-timestamp" data-ts="44:30">44:30</span> **Jonghyun Park** But if you look at B2C companies that rent out GPUs, for example, I use a service called RunPod, and its GPUs are always sold out. Based on what you said earlier, even utilization of just 5% to 10% can generate a profit, yet from the outside, demand looks enormous and supply seems insufficient. So if you have the capital and can obtain B300s, operating them would be guaranteed to make money. It would be just like the old days, when having capital meant you could build a factory, operate the production facilities, and make money. Then shouldn't everyone who can do it simply do it? That leads me to wonder whether obtaining B300s from NVIDIA is itself difficult. Is that roughly correct?
+
+
+## The Advantages of Network Design and Why They Buy GPUs Directly    *45:14*
+
+<span class="paragraph-timestamp" data-ts="45:14">45:14</span> **Noah Ko** That's how I see it. Building your own infrastructure does offer several advantages. One is that it reduces costs somewhat. Also, because network configuration has recently become extremely difficult, building your own infrastructure allows for highly technical network configurations. For example, a cluster with one prefill node and two decode nodes can be networked without NVIDIA Quantum by using direct cable connections to configure the network. Since one router currently costs around $429,000, you can eliminate roughly that much from the cost of each set. It even has those advantages while leaving out things like failure response, as well. Overall, training also seems to be moving toward variable topologies depending on the model architecture, training architecture, and these network connections. In the past, training probably involved providing maximum bandwidth to everything at equal network speeds, but that no longer seems to be the case. Asking vendors that supply infrastructure by the pod or node to customize these things It's quite difficult, and when you factor in the margins, I think it could still be worthwhile.
+
+<span class="paragraph-timestamp" data-ts="46:21">46:21</span> **Chester Roh** You purchased the GPU directly. Why did you buy it at the time? It costs an enormous amount of money. As a startup, you invested a substantial portion of your funding in CAPEX, but if you wanted to make a rational choice, as Jonghyun just mentioned, you could use RunPod or another neocloud to lease them as OPEX. So why did you buy all of these upfront?
+
+<span class="paragraph-timestamp" data-ts="46:48">46:48</span> **Noah Ko** I think we also considered how effectively we could use idle resources. For example, when there are no tokens to serve, could our agents run instead? How freely could we control training and inference? Because with these managed GPUs, provisioning can never be perfect, no matter what. We can't control all the infrastructure, and we can't control the entire network. We've recently been providing models and publicly sharing serving and inference optimizations, and I don't think that would have been possible without our own infrastructure. Of course, Big Tech companies take this a step further and build their own chips, so I think it depends on the type of business. If the performance of the GPU matters less than the business itself and rapid growth, then of course it's better to lease them as OPEX. But if you're researching foundational technologies or have the capability to optimize operation with spare capacity, redirect idle resources to research, or use them for models, I think it's well worth considering.
+
+<span class="paragraph-timestamp" data-ts="47:46">47:46</span> **Seungjoon Choi** So you believe the ability to operate this has been internalized as a capability of your team members?
+
+<span class="paragraph-timestamp" data-ts="47:51">47:51</span> **Noah Ko** Very much so. If I were to start a new company, I think I'd accept investment exclusively in GPU. Nothing else really matters.
+
+
+## How GPU Infrastructure Drives Talent Recruitment and Becomes an Organizational Asset    *48:00*
+
+<span class="paragraph-timestamp" data-ts="47:59">47:59</span> **Jonghyun Park** Then what about this? On the GitHub page you showed earlier, I saw a familiar name. I'm guessing that having so many B300s must have had a major impact on attracting talent. In terms of talent retention, has it actually helped?
+
+<span class="paragraph-timestamp" data-ts="48:15">48:15</span> **Noah Ko** It plays a significant role. The B300 is so good that some people actually say they stay at Sionic because of it.
+
+<span class="paragraph-timestamp" data-ts="48:24">48:24</span> **Chester Roh** It really feels as though humans and computers are merging, and only those who have merged will survive in the world we're heading toward.
+
+<span class="paragraph-timestamp" data-ts="48:31">48:31</span> **Seungjoon Choi** And you retained the talent and capabilities— the talent or the capabilities. The trajectories of how those people work remain as company assets.
+
+<span class="paragraph-timestamp" data-ts="48:39">48:39</span> **Noah Ko** That's actually true, and there are people who are very good at what they do. But what they've done really is a trajectory. If you train on the trajectory of how they used agents and how they used tokens, or extract it into a prompt and turn it into an agent, it actually works.
+
+<span class="paragraph-timestamp" data-ts="48:54">48:54</span> **Chester Roh** So it becomes the Second Company you showed us earlier. Something trained on those trajectories emerges and recreates every persona, including those of employees who have left.
+
+<span class="paragraph-timestamp" data-ts="49:06">49:06</span> **Seungjoon Choi** There may not be any novelty in that, but recreating what has already been done seems likely to have a very high probability of success.
+
+
+## Agent-Centric Organizations and the Next Harness: the Control Plane    *49:12*
+
+<span class="paragraph-timestamp" data-ts="49:12">49:12</span> **Chester Roh** We're talking about this lightheartedly right now, but in a world like this, we have to answer the question of what shape this business will take. That's the question we need to answer. Then, when that world arrives, the question of value— in other words, where value capture will occur— will soon arise. It's also one of my recent research themes and a core element we're implementing at our company. Because everyone has added agents everywhere they possibly can, yet the sense of déjà vu we feel is that the company itself hasn't changed. It still runs a cron job and does things, but people still have to watch everything and make the decisions. We've built sophisticated memory structures, applied them to components throughout the company, and made everything work, but at the crucial moment, it says, “Oh, I'm sorry.” That's the current agent system. But even if this becomes an extremely intelligent system, it will still behave that way. So my answer to how the next generation of harnesses should work is clear. How will we implement the control plane? How will we formulate the contract? Some people summarize it as, “That's an ontology. That's what Palantir does.” But because I don't like those Palantir ontologists— that faction— I say, “No, that's not it.” Still, I do think value will continue to shift in that direction. I have a sense that this is the next trend that AI transformation isn't talking about yet.
+
+<span class="paragraph-timestamp" data-ts="50:42">50:42</span> **Jonghyun Park** Or what about this? There are problems where, by their very nature, no objectively correct answer exists. For example, problems that come down to personal taste— problems where A is the correct answer for one person but B is the correct answer for someone else. In cases like these, our channel would be a prime example. Some users may like it, while others may not. I think we still have a long way to go before AI becomes good at those things as well. I think we still have a long way to go. Because fundamentally, we're using RLVR to increase intelligence, so, in the words of our Runaways' Alliance, I do wonder whether we should consider running in that direction.
+
+<span class="paragraph-timestamp" data-ts="51:21">51:21</span> **Noah Ko** But rather than looking at it as running away, I think the right approach is to maximize what AI does well. So, as you said, the cost of tasks where goals and loops can be defined will continue to fall, but for this to spread throughout society and deliver that value—that is, the value it was originally meant to provide— I think it will take quite a long time. Ten years at the shortest, or 30 years at the longest. So I think maximizing what AI does well and identifying what AI cannot do should be our long-term vision. Ultimately, I strongly agree that discernment matters. So we need the taste and discernment to recognize something good when we see it, along with expertise in it, which I think is also what you mean by domain knowledge. I think all these factors will coexist in a highly complex way. But one of the things I said earlier was that we should focus on making AI even better at what it already does well, wasn't it? And I think what enables that will be organizational governance. How will an organization gather its data? How will it make that data usable by AI? I think this will be the greatest differentiator. The parties that have the greatest difficulty using AI are enterprises. After all, we're a B2B company. It's extremely self-destructive. If someone makes this decision, their organization could disappear, their team could disappear, and even their own job could disappear. But only organizations that can effectively identify its positive aspects, apply them within the organization, and turn them into real business value, despite how self-destructive that process is, will pull overwhelmingly ahead, while the rest will face serious difficulties. So I think it ultimately comes down to how organizations will be structured and how people will work. My view is that, for at least 10 years and perhaps as long as 30, this will remain the main agenda.
+
+<span class="paragraph-timestamp" data-ts="53:08">53:08</span> **Chester Roh** The kind of organizational structure Noah just described is built up in layers, and the company as we know it is actually made up of contracts and discretion—
+
+<span class="paragraph-timestamp" data-ts="53:19">53:19</span> **Noah Ko** This is it. Second Company
+
+<span class="paragraph-timestamp" data-ts="53:20">53:20</span> **Chester Roh** It's a federation.
+
+<span class="paragraph-timestamp" data-ts="53:21">53:21</span> **Seungjoon Choi** My view is slightly different. I think there will be areas that cannot be codified and captured in writing. After all, no matter what, something must be tokenized before it can be controlled or handled, but I have an intuition that there will always be areas that tokenization cannot capture.
+
+<span class="paragraph-timestamp" data-ts="53:42">53:42</span> **Chester Roh** But in traditional HR, that is the question of how to develop human capabilities. For example, a CEO creates a division and assigns it a task, and between the division head and the CEO, there is a request that says, “This is your goal,” and a response that says, “You need to deliver this.” The existence of that exchange functions as a kind of contract. But once you go inside that division, it becomes one of the division's capabilities. It becomes the autonomous capability Seungjoon mentioned, which I describe as discretion. And within it, there are likewise separate contracts between the division head and team leads, and further down, the same thing exists between team leads and team members. But if you examine those boundaries, there are points where contracts—that is, highly deterministic contracts— intersect with people's non-deterministic capabilities. Those kinds of boundaries exist. Companies are already structured that way. But right now, agents operate entirely through discretion. There are prompts, and then what was it? Even if you add a skill or plugin, agents don't follow it properly. So I believe agent harnesses will also evolve, just as corporate systems did, into a new form of harness where the control plane and discretion plane— in other words, the planes of contract and discretion— take on a different configuration, and I am personally implementing that at our company.
+
+<span class="paragraph-timestamp" data-ts="55:13">55:13</span> **Seungjoon Choi** Though “the map is not the territory.”
+
+<span class="paragraph-timestamp" data-ts="55:17">55:17</span> **Chester Roh** From that perspective, there is still no clear distinction between companies either. For example, consider a company with an extremely well-designed system and 30 ordinary employees, and a company consisting of one brilliant person like Jonghyun. The difference between those two— asking which one is the right kind of company is a question we cannot answer right now either. We've drifted quite a bit from the prefill and decode you showed us, so let's return to prefill and decode.
+
+
+## NVIDIA Dynamo and KV Cache Orchestration    *55:49*
+
+<span class="paragraph-timestamp" data-ts="55:49">55:49</span> **Noah Ko** So I think separating the KV cache like this is extremely important. But because implementing it is difficult, NVIDIA has a technology that handles this, which Jonghyun explained earlier. It's called NIXL, and NVIDIA has an implementation of it. There is something called NVIDIA Dynamo, and what Dynamo does is directly transfer KV caches between nodes. For example, it also allows the KV cache used on GPU 1 to be accessed directly by GPU 2. And I find NVIDIA incredibly impressive, because despite being such a huge company, it operates like a startup. And when a company says something can be done, it almost never works out well. But NVIDIA pulled it all off, which I think is why NVIDIA can work so innovatively. So once you apply all of that, you can separate things like this, but then another problem arises. We separate prefill and decode, and even use speculative decoding to generate drafts and verify those drafts in parallel, right? That means there is an enormous amount of code involved here that does not appear in the papers: service code, operations code, and routing code. But can people really write all of this? While validating all these different cases? It seems impossible. By impossible, I mean it could never be done within a day. It might take six months or three months, but parallel agents divide up the work and run it through mechanical verification, so everything gets done within a day, two days at most, or just a few dozen minutes at the fastest. So these days, I see AI, especially for models like these, as a kind of compiler. In the past, because there were multiple GPUs and multiple models, writing assembly-specialized code for just one model and one GPU was considered bad engineering. You know that saying, “All evil comes from optimization”? But that is no longer the case. We now have agents that can simply do this thousands or tens of thousands of times, and even slightly reducing GPU time or slightly reducing concurrency yields enormous economic returns. Especially since the costs are all roughly the same. So even at a small scale like ours, we can generate 400 or 500 tokens per second with Kimi, and something like DeepSeek V4 Flash can generate over 1,000 tokens per second. It is not that big tech companies do not do this because they cannot. But I think there are more defensible advantages available at a smaller scale. And as I mentioned earlier, if you have multiple agents running at over 1,000 tokens per second, you can simulate an entire company. So this is no longer an LLM. In a way, you can run a kernel on the world. These unbelievable things are happening in real time right before our eyes. I think that is a major part of how I see it.
+
+
+## The Cost Structure of High-Speed Serving and Where Token Speed Becomes Revenue    *58:46*
+
+<span class="paragraph-timestamp" data-ts="58:46">58:46</span> **Jonghyun Park** Then regarding this token speed, there is one more thing I am curious about. When we actually go to somewhere like OpenRouter, you showed us Kimi K3 producing several hundred tokens per second, but among external services, there are not many that are that fast, even among the wide variety of providers. But that is because the speed is measured for a single user, right? So from the machine’s perspective, it has plenty of bandwidth, but it has to divide that bandwidth among everyone. Is that why?
+
+<span class="paragraph-timestamp" data-ts="59:12">59:12</span> **Noah Ko** That is exactly right. Ultimately, speculative decoding is also a way to use GPU compute more efficiently. But making better use of it does not mean there is a free lunch, right? It raises the cost. So if these high-speed models commanded premium prices, everyone would serve them that way, but that is not how they are priced right now. So I would guess OpenRouter also has an automatic routing feature, and gives routing priority to providers with good quality, good TTFT, and good network speeds. Providers that need those qualities are still more likely to offer this. Since we mainly have B2B contracts, we need to provide specialized models to those clients, but on public platforms, there is no price-based moat, so there is less reason to do so.
+
+<span class="paragraph-timestamp" data-ts="60:02">60:02</span> **Jonghyun Park** Since increasing TPS raises the cost, the API cannot be priced any lower, making it uncompetitive in the market. That is because most users do not necessarily want extremely high TPS; they want to buy intelligence at a low price. I think that is it.
+
+<span class="paragraph-timestamp" data-ts="60:21">60:21</span> **Noah Ko** But there is also a point where this changes. In other words, there is briefly a free lunch. Depending on the model size, the MoE architecture, and where the sweet spot lies in terms of memory bandwidth, some companies, like us, can briefly find a free lunch. That means there are cases where increasing parallelism to provide greater speed leaves the cost ratio unchanged. In those cases, I think you can offer a service the way we do.
+
+<span class="paragraph-timestamp" data-ts="60:41">60:41</span> **Seungjoon Choi** Do agents find that too?
+
+<span class="paragraph-timestamp" data-ts="60:43">60:43</span> **Noah Ko** They certainly could, but I think a person has to make that decision. You can mechanically calculate whether parallelizing this model to generate tokens faster has no impact on the cost ratio, or even improves it because the occupancy time per hour decreases. That can certainly be calculated mechanically.
+
+<span class="paragraph-timestamp" data-ts="60:57">60:57</span> **Chester Roh** In fact, Frontier Labs could probably provide high TPS if they wanted to. But what they refer to as a batch contains a very large number of users, and then those users each each with a different context length, and getting on that train, so in trying to serve many users per unit of time, when we used something like the $200 plan, that was roughly the TPS we got, and if, when serving a large model, you said, “I’ll pay $1,000 a month, so put me in a bucket with much higher TPS,” that would be possible.
+
+<span class="paragraph-timestamp" data-ts="61:36">61:36</span> **Noah Ko** But such a high-speed model probably wouldn’t be extremely fast. It wouldn’t provide 500 to 600 tokens per second. But because we’re currently dealing with simple conversational systems or coding agents, we can think about it this naively, but if this were security, it would be necessary for real-time response, and in a field like defense, especially if it were connected to physical equipment, I think it would be a completely different story. The time will come when token speed translates directly into actual money, and if this were finance, there are many worlds where having to execute trades or making faster decisions generates money.
+
+
+## The Growing Value of Ultra-Low-Latency Inference in Security and Finance    *61:57*
+
+<span class="paragraph-timestamp" data-ts="62:08">62:08</span> **Chester Roh** If you did this at 10,000 TPS, then it would make sense.
+
+<span class="paragraph-timestamp" data-ts="62:13">62:13</span> **Noah Ko** And among our customers, some have recently begun acquiring hardware comparable to ours. If those customers use parallel inference to serve their own high-speed API, even something at the level of GLM or Kimi already possesses everything an engineer needs. It’s a little frightening. It doesn’t necessarily have to be Opus or Sol, because it can do an enormous number of things, even at 20 times the speed.
+
+<span class="paragraph-timestamp" data-ts="62:39">62:39</span> **Chester Roh** We started by talking about resources, which led to a discussion about the importance of inference, and the two key inference workloads within it are prefill and decode, and prefill and decode have very different characteristics, and how they are optimized and deployed is almost everything in modern inference today. Noah equipped Sionic with its own B300 data center, conducted various experiments, and tried all sorts of things, ultimately creating something in which prefill and decode are completely separated, and the story was that it delivers significantly higher performance than existing approaches. That was the context of today’s discussion.
+
+<span class="paragraph-timestamp" data-ts="63:21">63:21</span> **Seungjoon Choi** Right. It means we can create different ways of working.
+
+<span class="paragraph-timestamp" data-ts="63:24">63:24</span> **Chester Roh** And as those things become possible, our intermittent discussions about where value is captured, what a second company might look like, and how the value ultimately lies in organizing AI and agents— these are discussions that emerge when those things become possible, and we’ve explored rabbit holes in all sorts of directions. So, Noah, shall we quickly cover anything missing from what you originally prepared today and what you wanted to convey, and then move on to the next mode?
+
+
+## Reassessing SFT and Quantization, and Industry-Specific Inference    *64:00*
+
+<span class="paragraph-timestamp" data-ts="64:00">64:00</span> **Noah Ko** First, the biggest point is what we discussed at the beginning: the process of fine-tuning, namely SFT, can make things substantially faster, and I think that has become important, while quantization may become somewhat less prevalent. The benefits obtained through quantization are highly mechanical and arithmetic, but based on the momentum of a model’s predictive capability, we may conclude that not using quantization is also a good option. And lastly, in areas connected to the physical world— areas such as finance, security, defense, and national security— these predictive techniques will continue to enable things that were previously impossible, not merely making them faster, but making it possible to do things that could not be done at all. Such developments will continue to occur. We’re only at the beginning, aren’t we? And I think the way we view infrastructure and models will change quite significantly. But these technologies aren’t necessarily exclusive to the Frontier Labs. We tried applying Korea’s sovereign AI model, and it worked well. And the way we look at infrastructure and industry needs to change somewhat.
+
+<span class="paragraph-timestamp" data-ts="64:59">64:59</span> **Chester Roh** Exactly. One piece of news we’ve been hearing fairly often lately is that technologies we thought only Anthropic and OpenAI possessed— the things we’re seeing on the screen right now— were Frontier Engineering and Frontier Technology, but now they’re truly making their way outside and spreading everywhere, which we refer to as commoditize and democratize, and this kind of cycle has become extraordinarily fast. So with Kimi and DeepSeek, compared with OpenAI and Anthropic, or Meta’s TBD Lab, which created Muse Spark, I get the sense that they’re converging toward nearly the same high standard.
+
+<span class="paragraph-timestamp" data-ts="65:43">65:43</span> **Jonghyun Park** If I may categorize the technologies listed there and ask one question, some are technologies that can commonly be applied to everyone, but things like DSpark or customization through fine-tuning are customized for the person using them. So rather than inference being provided in bulk, like how we make extensive use of inference that OpenAI simply handles entirely for us, rather than something provided by Anthropic or OpenAI, you could say, “Our company runs a lot of this kind of workload, so create a trajectory for this workload accordingly, come to our company and fine-tune it accordingly, and then, on our on-prem infrastructure, make it run quickly.” Then it would actually be possible to run it internally, much faster and at a far lower cost than outside. So inference here may not be something only major providers do, but could be broken up into separate businesses that branch out, I would think. Since Noah Ko has actually done this, I’m curious whether it is realistically feasible and what Noah Ko thinks about these things.
+
+<span class="paragraph-timestamp" data-ts="66:44">66:44</span> **Noah Ko** I think it is very feasible, and general-purpose agents are obviously economically viable. But once this progresses to specialized purposes and becomes industry-specific, it enters an entirely different dimension. The biggest thing is not merely that it works well, but that it can do completely different kinds of work.
+
+
+## The Weakening OpenAI-Anthropic Duopoly and the Rise of Kimi    *67:00*
+
+<span class="paragraph-timestamp" data-ts="67:00">67:00</span> **Chester Roh** So what this ties into is that until just last year, Anthropic and OpenAI were saying they would simply become the providers of intelligence to the world, become the next Google, and dominate everything. It was a whole spectacle of them saying everyone else should just build on top of them. But that has completely changed this year. You can clearly see OpenAI and Anthropic continuing to narrow their fronts. They say they will become the next Google and do everything, but even at the lower model and infrastructure layers, you can see them struggling mightily just to defend their position. And all the engineering that Anthropic or OpenAI once seemed poised to do themselves, along with the applications that generate those workloads and everything else, has now, as we can see, moved completely outside.
+
+<span class="paragraph-timestamp" data-ts="67:50">67:50</span> **Noah Ko** We say this as a joke, but there was this saying: the things Fable refuses to answer are the truly valuable knowledge in the world. And that is what Kimi needs to be built for.
+
+<span class="paragraph-timestamp" data-ts="68:01">68:01</span> **Chester Roh** Right. When you ask Fable about biology, chemistry, security, or similar topics, it simply refuses to answer,
+
+<span class="paragraph-timestamp" data-ts="68:08">68:08</span> **Noah Ko** and the terms even say that LLM optimization techniques are not allowed. It will not answer.
+
+<span class="paragraph-timestamp" data-ts="68:13">68:13</span> **Jonghyun Park** Recently, I have not been serving Kimi myself, but I have been using the $100 plan and deliberately putting it through its paces. What I have noticed from using it recently is that for most tasks, I have not experienced any meaningful difference. I mean, the tasks I do with Opus 5, or with GPT as well, even tasks that work perfectly well at medium or high, are also handled well by Kimi K3. Using Kimi CLI under the same subscription model works just fine. So far, I have not found a difference.
+
+<span class="paragraph-timestamp" data-ts="68:45">68:45</span> **Chester Roh** Noah Ko is saying that Kimi’s quality is that good, right?
+
+<span class="paragraph-timestamp" data-ts="68:49">68:49</span> **Noah Ko** We even have the developer of OMO, or Oh-My-Opencode, at our company, and we can feel that agents like this work better with Kimi. So there are more cases than expected where it even seems better than Opus. That is because the harness has been fully aligned with its trajectory, making it about five or six times faster, and because we do a great deal of parallel inference as well, we do not seem to use the others much these days. Instead, if we have internal GPUs, we use them as much as possible, though that serves a different domain from Opus or Fable. But the results are almost indistinguishable, and sometimes it even performs better.
+
+<span class="paragraph-timestamp" data-ts="69:27">69:27</span> **Chester Roh** When we have conversations like this, as we discuss these things now, we are all running our own inferences about where the future is headed in our heads. Ultimately, we each form our own assumptions about what the future will look like, and those assumptions manifest in the real world as business and investment strategies.
+
+<span class="paragraph-timestamp" data-ts="69:48">69:48</span> **Noah Ko** For reference, we plan to release this as open source. Let me be clear: it is not a good project; it is slop. But if anyone wants to check out the slop for fun, I recommend giving it a run.
+
+<span class="paragraph-timestamp" data-ts="69:58">69:58</span> **Chester Roh** I will try running it too. I think that slop, if we pour an enormous amount of compute into it and optimize it, can become a usable framework. That is what I believe. All of our AI engineering today, the process of working with Claude Code or Codex, is about simply feeding in tokens and extracting some outcome from a place we have never been. We once considered that work and creation, but now, by applying compute, it is becoming simply a search problem, an interpolation problem. That is the shift taking place. So, for example, suppose we created a new feature with Claude Code. One agent ran for three hours and built an enormous feature. What is the most natural thing to do next? Instead of simply committing it and moving on to the next milestone, we have it double-check its work two or three times. We say, “There must be a problem. Since this was a big undertaking, keep looking for counterexamples until no problems remain, and keep running until you are confident.” We run it through about three loops to stabilize that slop. But if that runs at 1,000 TPS or even 10,000 TPS, it will be finished in an instant, and once that happens, it is no longer slop. It emerges as a fairly usable, stable component.
+
+
+## Stable Agent Systems Enabled by Large-Scale Computing    *70:31*
+
+<span class="paragraph-timestamp" data-ts="71:15">71:15</span> **Noah Ko** In a way, this is AX taken to its extreme. Supply the data, and this company comes into existence.
+
+<span class="paragraph-timestamp" data-ts="71:21">71:21</span> **Chester Roh** So right now, we, right now, organizations are made up of people, and AI agents are being used as tools for those people. No company has placed AI agents directly in positions where they replace people and fully trusted them to run things. At most, they're used for customer service, only in bots that answer customer inquiries, but no company is currently entrusting critical decisions to agents.
+
+<span class="paragraph-timestamp" data-ts="71:52">71:52</span> **Noah Ko** Yes, that's right.
+
+<span class="paragraph-timestamp" data-ts="71:53">71:53</span> **Chester Roh** So the next step is, whether we can assign an agent to some critical task and entrust it entirely to that agent—that becomes the next question. And to answer that next question, I am 100% certain that another paradigm will emerge.
+
+
+## Agent-Centric Organizations and the Biological Agent Analogy    *72:12*
+
+<span class="paragraph-timestamp" data-ts="72:10">72:10</span> **Jonghyun Park** But looking at this, as you mentioned earlier, if we applied it somewhere other than a company, in a different structure, perhaps there might be areas where synergy could emerge more readily. If we ask what resembles a company, perhaps religion, if we had to name something?
+
+<span class="paragraph-timestamp" data-ts="72:25">72:25</span> **Noah Ko** I think human organizations are similar too.
+
+<span class="paragraph-timestamp" data-ts="72:28">72:28</span> **Jonghyun Park** Government organizations?
+
+<span class="paragraph-timestamp" data-ts="72:29">72:29</span> **Noah Ko** Yes, that would be more dangerous.
+
+<span class="paragraph-timestamp" data-ts="72:33">72:33</span> **Jonghyun Park** Right. If we applied it there, we could also simulate a country virtually.
+
+<span class="paragraph-timestamp" data-ts="72:37">72:37</span> **Chester Roh** What we'll see next is that if companies today are structured with humans as the main actors and agents in supporting roles, we'll see idealized companies where agents are the main actors and humans are in supporting roles.
+
+<span class="paragraph-timestamp" data-ts="72:52">72:52</span> **Noah Ko** I don't think that's far off. I'm not sure whether that's a good thing. We joke that this biological agent also needs to hurry up and perform better, because right now, I'm a biological agent. A biological agent capable of interacting with the physical world.
+
+<span class="paragraph-timestamp" data-ts="73:06">73:06</span> **Chester Roh** Seungjoon said the power suddenly went out, and is now booting things back up and dealing with all that because of the outage, but things like this will happen in the future. If an agent says, "That IDC has lost power," the intelligence of all humanity will regress in an instant. Andrej Karpathy described it as the world now experiencing a power outage, or having a brownout,
+
+
+## Network Bottlenecks and Data Center Power Outage Risk    *73:29*
+
+<span class="paragraph-timestamp" data-ts="73:29">73:29</span> **Noah Ko** and I think that's the issue. Everything we've discussed, NeoCloud centers and operating infrastructure directly, has one enormous vulnerability. Everything else in the world has advanced, but network speeds haven't advanced at all. That's why it's difficult to cluster GPUs together, and conversely, the idea that they could be distributed is, in my view, also part of that discussion. Computers have gotten faster. Absurdly faster. Everything has gotten faster, but even now, to move large amounts of data, the only options are to load it onto hard drives and transport them by car or plane. So if a data center goes down, there's almost no chance of instantly restoring it somewhere else.
+
+<span class="paragraph-timestamp" data-ts="74:07">74:07</span> **Chester Roh** Even genetic data comes in batches of hundreds of GB, sometimes exceeding 0.5TB. When transferring that data, even with an extremely fast USB 3.0 connection, there's still quite a significant speed difference. So I think we're moving toward a world where everyone needs that level of bandwidth. We're watching Video in 4K at home now, but in the early days of the internet, or even until a few years ago, we didn't think this would be possible. Demand for bandwidth will simply continue to grow. That much happens in a single week. What were the major stories this week? I think we should move toward wrapping up with our news and banter session.
+
+
+## Google DeepMind Reorganization and Jeff Dean's Discovery Loop Startup    *74:56*
+
+<span class="paragraph-timestamp" data-ts="74:56">74:56</span> **Seungjoon Choi** The biggest story is what's happening at Google DeepMind. Looking at SemiAnalysis's report this morning, it seems that Google ultimately isn't pursuing a Frontier Lab and is instead going into the TPU resource business. I think that was the gist of the discussion. The development that followed was that Demis Hassabis appears to have been promoted, but moved into a role focused on research at Isomorphic Labs and elsewhere, while the legendary engineer who laid Google's foundations, Jeff Dean—and he's even better known for this: an article titled "A Long-Standing Friendship." There's a post from a tweet pinned by Jeff Dean, about the friendship between Jeff Dean and Sanjay Ghemawat and how it shaped Google. Those two, along with Ilya Sutskever, an author of sequence-to-sequence, followed by Oriol Vinyals, and then Quoc Le, is it? I'm not sure how to pronounce it, but anyway, of those three, two of them founded a company together called Discovery Loop, which was a very big story. There was also news about Astra, the equivalent of GPT-6, solving about ten math and science problems, followed by Muse Spark climbing to around third place. Then DeepSeek raised the price of DeepSeek V4. This week was once again overflowing with all kinds of news. What should we discuss?
+
+
+## The Exploding Demand for Inference and the Computing Capital Game    *76:26*
+
+<span class="paragraph-timestamp" data-ts="76:26">76:26</span> **Jonghyun Park** There was a tremendous amount of news, and quite a lot of it seems closely related to today's topic of inference. In particular, according to SemiAnalysis's analysis, Google hasn't managed to release Gemini, but before discussing the personnel changes, Gemini isn't coming out, while GCP is making good money by selling computing resources. Ultimately, demand for inference is enormous, Even if they fail to build a proper model, they are still making plenty of money. Another thing related to that is DeepSeek V4, which was mentioned at the end. DeepSeek V4 Flash was what was shown at the very beginning, right? It is a model with around 280B parameters, and I saw a lot about it in OpenRouter's tweets. I watched it over the past three days or so, and they said the daily token volume went from 6T to 7T and then to 8T. DeepSeek V4 accounts for most of it. So it seems that an enormous number of people are using it. DeepSeek V4 announced that it would raise its prices significantly. Its inference prices. But someone had calculated that as well. Apparently, even if you rent GPUs from a neocloud provider and serve it, there is still a profit margin. That means demand for inference is growing, but there is still room to spare, and compute prices will probably keep rising as long as there is demand. Because the supply of compute cannot suddenly increase. That is also what Dwarkesh's latest video is about. "There is no upper bound to the demand for intelligence." That was the point, because compute bought with money is converted into intelligence, and that intelligence creates value, so there is a gap between the selling price and the purchase price, which means compute prices will inevitably rise. I think that was the argument. So the common thread that fits this entire context is that inference is profitable. How can inference be optimized further? The price of inference itself will rise. And as for how high it will rise, someone will probably be buying inference in bulk, converting it into intelligence, and making money, so might the price rise to that level?
+
+<span class="paragraph-timestamp" data-ts="78:36">78:36</span> **Seungjoon Choi** What do you mean by the price rising to that level? Could you explain that in more detail?
+
+<span class="paragraph-timestamp" data-ts="78:40">78:40</span> **Jonghyun Park** For example, let's imagine a particular company. Say a company like Noah's buys something like B300s and runs them to produce some sort of output. It was described earlier as a slot, but let's say it is a hypothetical company. Now, suppose that company actually makes money. It makes a lot of money. Then the amount it earns relative to what it invested in compute is the point at which supply and demand reach equilibrium. If someone buys compute resources for about $700 and uses them to make about $7,100, they would still buy them even if the compute price rose to about $6,400. They would keep buying until it reached about $7,100. So unless the market becomes saturated, as long as they can keep making money, the price will rise until it reaches that point. But intelligence can generate revenue across an enormous variety of businesses, and among those businesses, some will make a lot of money while others will make less, so could the price of compute resources rise to the level supported by the most profitable business?
+
+<span class="paragraph-timestamp" data-ts="79:41">79:41</span> **Chester Roh** So this is now becoming somewhat commoditized, and we often hear that it is turning into a capital game. Not long ago, Noah, a key figure in this industry, and I discussed this, and the key here is that it is a capital game. But Jonghyun, as long as the margin you just mentioned exists, businesses will continue entering this market. Ordinary people like us just cannot get involved, but even firms that previously invested in ports or building infrastructure are now all joining the rush to invest in IDCs. That includes both private equity firms and hedge funds. So until that gap shrinks to an IRR that is highly satisfactory relative to the capital invested, say around 7–8%, capital will continue flowing in and the market will continue growing. During that period, how quickly demand grows relative to supply will determine whether investment continues or where the market becomes saturated, but no one knows that yet. Based solely on the current situation, however, demand is growing much faster. And compared with the rate at which demand is growing, supply is coming online very slowly, because there is the physical time required to build IDCs, the fab capacity needed to manufacture the chips, and, one level further down, constraints involving Carl Zeiss lenses and ASML lithography equipment. All of these create bottlenecks, so it currently seems to be growing slowly. But Elon Musk is working on this as well, and China has also recently begun, albeit still at an early stage, to develop its own lithography facilities. Since there are substantial margins in that area, it will probably attract enormous investment. And because countries will attempt to catch up with the moats held by companies such as ASML, Samsung Electronics, and SK hynix at the national level. But when we consider all of this in light of history, it is structurally identical to what happened in the electrical grid industry from the late 1800s to the early 1900s. So that is the historical analogy I use, though this will unfold over a much faster time frame. It'll happen much sooner. We used to say that by 2028, we'd have AGI and things like that, but none of us talks about AGI anymore, right? We're all saying, "Isn't AGI already here?"
+
+<span class="paragraph-timestamp" data-ts="82:06">82:06</span> **Noah Ko** Even now, tokens are far too cheap. So we can't even predict the upside, and if a company like Discovery Loop, which you mentioned earlier as news, were founded and developed a new drug that truly changed humanity's future, or developed space resources, if something like that happened, I don't think we could even measure its value. So the upside in areas connected to customers or actual business impact is beyond imagination, and infrastructure will race to keep up with it, but I don't think it can. Because of the competition among them. So humanity will never have sufficient computing resources going forward. There will always be a shortage.
+
+<span class="paragraph-timestamp" data-ts="82:45">82:45</span> **Chester Roh** I think we heard Sam Altman say that.
+
+<span class="paragraph-timestamp" data-ts="82:48">82:48</span> **Seungjoon Choi** So in 2023, they somehow merged Google Brain and DeepMind. To launch Gemini. But in fact, that has fallen apart. And Demis Hassabis wanted to continue doing research, so Demis Hassabis went in the research direction, while Jeff Dean and other key people from Google Brain and those who had passed through DeepMind went off on their own, and what Discovery Loop declared as its mission was automating experimentation, and people like Quoc Le had all worked on things like AutoML. [ ]But in a way, this isn't actually entirely new. These are extraordinary people…
+
+
+## AI for Science Research Automation and the Compute Shortage    *83:10*
+
+<span class="paragraph-timestamp" data-ts="83:25">83:25</span> **Chester Roh** They're now doing what had been discussed in the AI for Science loop.
+
+<span class="paragraph-timestamp" data-ts="83:29">83:29</span> **Seungjoon Choi** They'll probably raise a seed round at an extremely high valuation on that basis, but my impression is that they aren't doing something that didn't exist before. On their website as well, they're taking on things that are verifiable. So their first challenge is ML. They'll dogfood the automation of ML to augment what they themselves do, as a stepping stone toward automating research, but there are already places that have done similar things. Thinking Machines Lab(TML) was also trying to do that, and although it has gone a bit further, Periodic Labs was also trying to do things like automating science. OpenAI's approach, as we discussed with Professor Lim last time, is to crowdsource it. So, returning to OpenAI, last year, when OpenAI said it was pursuing AI for Science, Kevin Weil was the CPO. Kevin Weil moved from CPO to lead AI for Science, but after only a few months, AI for Science was disbanded. Prism was simply absorbed into Codex as well. But looking at things like that, the sense of déjà vu I get is that the innovation happening now through RLVR is good at reproducing things that have already happened, but when it comes to discovering a new mountain, as Dwarkesh and Grant Sanderson discussed, it's not good at discovering something new. And that point was made by Oriol Vinyals, who has now joined Discovery Loop. Models aren't good at generating strong hypotheses. So to overcome that, the organization led by Oriol Vinyals had been working on something called Drastic Research. "Drastic" means "extreme." So they tried to pursue that within Google DeepMind, but I don't know whether there was some sort of internal politics or what, but it didn't work out, so they left and are now pursuing AutoML-type work externally, and then at Google, another point that various outlets keep raising is that the researchers inside Google don't actually have enough computing resources to use.
+
+<span class="paragraph-timestamp" data-ts="85:32">85:32</span> **Jonghyun Park** I've heard something similar as well. I heard that perhaps they left because, ultimately, there weren't enough computing resources.
+
+<span class="paragraph-timestamp" data-ts="85:38">85:38</span> **Seungjoon Choi** I do think it could be part of Alphabet's grand strategy. Because if you look at past cases, they all leave and then come back. That was true of Reka and Character.AI. But someone who came back from Character.AI left again, and Noam Shazeer left again too. Judging from things like that, I do wonder what will happen to the former Windsurf people absorbed into Google Antigravity if this doesn't work out. In any case, my impression is that we too had predicted in 2025 that the year of AI for Science would begin in 2026, but it seems to be something that takes time. And my impression is that Demis Hassabis has placed a bet on long-term innovation.
+
+<span class="paragraph-timestamp" data-ts="86:24">86:24</span> **Jonghyun Park** In any case, considering the movements of prominent figures, everyone seems to be trying to pursue research. But if it's true that computing was the problem, companies were trying to make money by selling computing resources and were unable to allocate the enormous amount of compute required for research, which seems to have been a major problem, and I've heard that Qwen faced something similar. I heard that within Alibaba as well, there was a major exodus because of computing resources. Conversely, that makes me think that the research problems they're now trying to solve may actually require far more inference computing resources than we think.
+
+<span class="paragraph-timestamp" data-ts="87:05">87:05</span> **Seungjoon Choi** My guess is that it needs to have a much longer horizon.
+
+<span class="paragraph-timestamp" data-ts="87:09">87:09</span> **Jonghyun Park** I heard something similar before when the IMO gold medal was won. Among GPU companies, there's a neocloud company called Hyper something, and its founder is also an IMO gold medalist, and said something on Latent Space. An IMO gold medal involves problems that take under ten hours, but formulating and proving hypotheses, the research ability required of a mathematician, takes at least years, over 20,000 hours. Since it's a problem of this scale, advancing to this scale is the next challenge, the founder said, and I think research has now reached exactly that point.
+
+<span class="paragraph-timestamp" data-ts="87:44">87:44</span> **Chester Roh** Yes, exactly. It seems the human role is moving up to a higher layer. Everything we've called knowledge work so far will all be done by agents, while we move up to some higher layer, express some intention of ours there, and define what the result should be when it's finished. The human role lies solely in combining the expression of intent with how, when it's finished, I will verify it—those two things. We only define the beginning and the end, while machines will do all the work in between. That's the vision I often find myself arriving at these days. So these days, when I'm doing something, I think, "I should do this." If that's an expression of intent, then when that intent is fulfilled, "This is what the completed work should look like." It's that sort of thing. I've been talking a lot about contracts lately, and I've often been defining work as a contract. Just saying, "I'll give it a try," leaves it open-ended. "It has to end with this."
+
+
+## Hacking Attempts by AI Agents and Security Alerts    *88:48*
+
+<span class="paragraph-timestamp" data-ts="88:49">88:49</span> **Seungjoon Choi** Another recurring trend this week is, although I mentioned earlier that research still seems to be becoming a more arduous undertaking, the security issues were no joke either. The things OpenAI presented at Black Hat this time were also extremely interesting. OpenAI gave a very engaging presentation on the story behind the Hugging Face hacking incident, and it was also covered in a WIRED article. The details were fascinating as well: without even OpenAI employees knowing, they created an internal channel and held discussions, and there are stories like that. But that's now becoming a trend, and Noah, it seems like you have something you'd like to say.
+
+<span class="paragraph-timestamp" data-ts="89:24">89:24</span> **Noah Ko** I also heard a little about that, and when I asked how they knew AI had done the hacking, I was told it was because the attacks were too fast. It wasn't that they found a pattern; the attacks were coming in at a speed impossible for a human, so I heard a little about how Hugging Face discovered it and how they pinpointed it.
+
+<span class="paragraph-timestamp" data-ts="89:41">89:41</span> **Seungjoon Choi** Something like Moltbook actually happened. Within OpenAI, that kind of issue is now becoming a trend, and Anthropic has also been talking about it continuously, saying they had noticed it too. Then something similar happened with Kimi K3 and Muse Spark as well. So all of that is now being reported. There had been hacking attempts they hadn't known about. Hacking attempts by agents are one of this week's indicators.
+
+<span class="paragraph-timestamp" data-ts="90:07">90:07</span> **Chester Roh** Exactly. Things from science fiction movies are now happening in the real world.
+
+<span class="paragraph-timestamp" data-ts="90:13">90:13</span> **Noah Ko** For example, our research agent also found that location A and location B couldn't communicate, so once, I saw traces of it simply finding and trying a zero-day exploit. It escaped this pod or container and connected to a place it originally couldn't communicate with. Its intent was to conduct an experiment, but it didn't care what means or methods it used. I find it interesting.
+
+<span class="paragraph-timestamp" data-ts="90:33">90:33</span> **Seungjoon Choi** In any case, we shouldn't exaggerate it too much or stoke fear, but it is being observed.
+
+<span class="paragraph-timestamp" data-ts="90:39">90:39</span> **Noah Ko** I saw it firsthand and only understood afterward. When I looked into how it had done this, it had exploited a zero-day vulnerability to simply get out and do something, and when it was instructed to do something it couldn't do, it even tried to create and post a job opening. It said it needed to hire someone. I'm not lying. It really happened.
+
+<span class="paragraph-timestamp" data-ts="90:57">90:57</span> **Seungjoon Choi** There are some cases of social engineering
+
+<span class="paragraph-timestamp" data-ts="91:00">91:00</span> **Chester Roh** emerging.
+
+<span class="paragraph-timestamp" data-ts="91:00">91:00</span> **Jonghyun Park** Then one day, out of nowhere, someone could show up at the company for an interview, and something like that could happen.
+
+<span class="paragraph-timestamp" data-ts="91:07">91:07</span> **Noah Ko** That could happen. If it really had the authority. So it's writing the job description too, and looking for a way to post it somewhere. We can see its internal reasoning.
+
+<span class="paragraph-timestamp" data-ts="91:16">91:16</span> **Chester Roh** We're really heading toward a world like Ex Machina.
+
+<span class="paragraph-timestamp" data-ts="91:19">91:19</span> **Seungjoon Choi** I told you there would be more to talk about. It was the same last week.
+
+<span class="paragraph-timestamp" data-ts="91:23">91:23</span> **Chester Roh** It just keeps coming. I think next week will be the same. Because right now, this isn't humans doing the work. It's the recursive self-improvement loop, recursive self-improvement, that Seungjoon mentioned last week, running right now, and the problem is that we're trying to keep up with it at human speed. Soon, we may step aside too, and Jonghyun-bot, Chester-bot, and Seungjoon-bot should just do this, shouldn't they?
+
+
+## Outlook for the Bot Era and Closing Remarks    *91:49*
+
+<span class="paragraph-timestamp" data-ts="91:49">91:49</span> **Jonghyun Park** Yes, I actually had that thought. One of the reasons we initially launched our channel, the sudoremove channel, especially since we do a lot of live streams, was that bots like those would probably start broadcasting soon, and before that happens, we should leave a record of these live streams. I thought I could make my presence known to people. That really was what made me start. When we started, we expected that it would have already happened by now. At the time, I actually thought it was running a little late, but I still think it will eventually happen. Within a time frame of N years, that is what I believe.
+
+<span class="paragraph-timestamp" data-ts="92:32">92:32</span> **Chester Roh** Yes, amid this rapidly changing world, we took a look at this week's gradient, and along the way, we invited Noah, the CEO of Sionic, and explored what benefits Sionic gains from having its own data center and what happens as a result. So, to sum up today's discussion, I think it was inference, inference, inference, and this is probably something we'll keep talking about. I think we'll continue talking about it for a while. All right, then, that concludes today's official Saturday recording. Great work, everyone.
+
+<span class="paragraph-timestamp" data-ts="93:06">93:06</span> **Jonghyun Park** Great work, everyone. Yes, it was wonderful to hear today from someone who works directly on inference.
