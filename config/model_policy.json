@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_version": "2026-07-17.1",
+  "policy_version": "2026-07-27.1",
   "active_profiles": {
     "subtitle_translation": "subtitle_translation",
     "subtitle_correction": "subtitle_correction",
@@ -22,7 +22,7 @@
   },
   "profiles": {
     "general_automation": {
-      "model": "gpt-5.6-luna",
+      "model": "gpt-5.6-sol",
       "effort": "medium"
     },
     "structured_transform": {
@@ -56,6 +56,31 @@
       "model": "gpt-5.3-codex-spark",
       "effort": "high",
       "status": "allowlisted"
+    },
+    "blog_paragraph_split": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "note": "spark 접근 불가로 교체 (2026-08-18 사용자 지시)"
+    },
+    "claude_editorial_batch": {
+      "provider": "anthropic",
+      "model": "claude-opus-5",
+      "effort": "medium"
+    },
+    "claude_bulk_review": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "effort": "medium"
+    },
+    "claude_light_extraction": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5",
+      "effort": "low"
+    },
+    "voice_judgment": {
+      "provider": "anthropic",
+      "model": "claude-fable-5",
+      "effort": "high"
     }
   },
   "legacy": {
