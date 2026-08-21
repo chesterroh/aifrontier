@@ -1,0 +1,339 @@
+---
+title: "Korea's Top-Scoring Sovereign Model Was Cut — Inside Round 2 and Motif 3"
+description: "Motif 3 scored 47 on the Artificial Analysis Intelligence Index, the highest of Korea's four sovereign foundation models — and was eliminated. A comparison of all four tech reports on tokens, data, compute and architecture, plus the government's official reason and what the models feel like to use."
+publishedAt: 2026-08-21
+heroImage: "/articles/dokpamo-2nd-motif-3/aaii.png"
+authors:
+  - Park Jong Hyun
+tags:
+  - Sovereign AI
+  - Motif 3
+  - K-EXAONE 2.0
+  - A.X K2
+  - Solar Open 2
+  - Korea
+lang: "en"
+draft: false
+---
+
+On August 18, **Motif Technologies was eliminated** from round 2 of Korea's Sovereign AI Foundation
+Model project. LG AI Research (K-EXAONE 2.0), SK Telecom (A.X K2) and Upstage (Solar Open 2) advanced.
+The final two teams will be chosen in round 3 early next year.
+
+The chart above is the Artificial Analysis Intelligence Index (open-source models).
+Motif 3, the highest-scoring Korean model at 47, was cut; the three below it survived.
+The winner of the open benchmark lost. (Note: none of AAII's nine component evaluations test Korean.)
+
+So we read all four technical reports, checked what the government actually said, and ran the models live.
+
+<VideoEmbed
+  youtubeId="hjU7uXG9WQo"
+  title="Trying Korea's sovereign models, live"
+  caption="All four models put through the same questions. Not a controlled benchmark — a feel test."
+/>
+
+---
+
+## 1. Four Models, One Table
+
+All four are MoE. Total parameters are knowledge capacity; **active parameters are compute per token**.
+
+| | **Motif 3** | **K-EXAONE 2.0** | **A.X K2** | **Solar Open 2** |
+| --- | --- | --- | --- | --- |
+| Team | Motif Technologies | LG AI Research | SK Telecom | Upstage |
+| Round 2 | **Eliminated** | Advanced | Advanced | Advanced |
+| AAII | **47** | 31 | 35 | 37 |
+| Total / active | 314B / **13.2B** | 750B / 37B | 688B / 33B | 250B / 15B |
+| Active ratio | **4.2%** | 4.9% | 4.8% | 6.0% |
+| Layers | 53 (2 dense + 51 MoE) | 78 (2 dense + 76 MoE) | 61 (1 dense + 60 MoE) | 48 |
+| Experts | 384 routed + 1 shared, top-8 | 256 + 1 shared, top-8 | 256 + 1 shared, top-8 | 320 + 1 shared, top-8 |
+| Context | 256K | 256K | 256K (128K native → YaRN) | **1M** |
+| License | **MIT** | Apache 2.0 | Apache 2.0 | Solar License |
+
+**13.2B active, AAII 47.** Roughly a third of the per-token compute of SKT (33B) or LG (37B), and the
+highest score. Motif calls this *intelligence per FLOP*. This evaluation did not treat that efficiency
+as a criterion for advancing.
+
+### What Makes Each One Distinctive
+
+- **Motif 3** — Designed in-house from the attention mechanism down to the optimizer. **GDLA** (Grouped Differential Latent Attention: MLA's KV compression plus differential attention) reportedly "reaches a loss of 3.2 with 9.2% fewer training tokens than MLA." Modified manifold-constrained hyper-connections instead of standard residuals, **Expert-Specific PolyNorm** with per-expert learned coefficients, MTP, a 220K-vocabulary **SuperBPE** tokenizer, and **Muon** for matrix parameters. Weights, training code and libraries all released under MIT.
+- **K-EXAONE 2.0** — The only one not trained from scratch. The round-1 236B model was **upcycled**: depth 48→78 layers, experts 128→256 (with random rotation noise to break the symmetry of duplicated experts). Language coverage expanded from six to **ten**. Strongest at long context (OpenAI-MRCR 94.4) and safety (KGC-Safety 99.8).
+- **A.X K2** — Trained in **native FP8** (MXFP8, E4M3) for both forward and backward passes, still uncommon at this scale. Its **SGA** attention uses a lightweight indexer to score past positions and a selector that keeps only the top k=2048 per query, so attention cost stops scaling with sequence length. Math and Korean are the axes (AIME26 97.1, KMMLU-Pro 80.5, CLIcK 91.6, IMO 2025 35/42).
+- **Solar Open 2** — The smallest model with the longest context. Each block interleaves **three linear-attention layers with one softmax layer** and drops positional encoding entirely (NoPE), yielding a **1M context**. Post-training grows **twelve domain specialists** separately, then distills them into one model via Multi-teacher On-Policy Distillation. Agent-oriented.
+
+<ResourceLink
+  url="https://arxiv.org/abs/2608.09119"
+  title="Motif 3: Technical Report"
+  domain="arxiv.org"
+  description="314B-A13.2B, ~12.5T tokens, GDLA, mHC, Expert-Specific PolyNorm, SuperBPE, Muon"
+/>
+
+<ResourceLink
+  url="https://arxiv.org/abs/2608.04505"
+  title="K-EXAONE 2.0 Technical Report"
+  domain="arxiv.org"
+  description="750B-A37B. Upcycled from 236B, then CPT 8T + mid-training 0.8T + SFT 0.35T"
+/>
+
+<ResourceLink
+  url="https://github.com/SKT-AI/A.X-K2"
+  title="A.X K2 (SKT-AI)"
+  domain="github.com"
+  description="688B-A33B, ~8.2T pretraining tokens selected from a 16.2T candidate pool, native FP8, SGA"
+/>
+
+<ResourceLink
+  url="https://arxiv.org/abs/2607.20062"
+  title="Solar Open 2 Technical Report"
+  domain="arxiv.org"
+  description="250B-A15B, ~12T tokens, 1M context, 2.3% selective weight transfer, MOPD"
+/>
+
+---
+
+## 2. How Many Tokens, From Where, at What Cost
+
+### Tokens and Data
+
+| | Pretraining tokens | Stages | Data sources |
+| --- | --- | --- | --- |
+| **Motif 3** | **~12.5T** (from scratch) | 4K → 32K → 256K long-context stage (~5% of corpus). Reasoning data under 5% | **NVIDIA Nemotron accounts for ~70% of the corpus.** Nemotron-CC v2/v2.1, CC-Math, CC-Code, Pretraining-Code v1–v3, Legal-v1, Specialized-v1.x, SFT-v1, plus in-house Korean, multilingual, legal and financial data. Knowledge cutoff **March 2026** |
+| **K-EXAONE 2.0** | **~9.15T** (post-upcycling) | Healing → CPT 8T → mid-training 0.8T (400B at 64K + 400B above 64K) → SFT 0.35T | **FineWeb2** for per-language organic data, plus Korean from public institutions — **K-DATA, NIA, the National Institute of Korean Language, the Northeast Asian History Foundation**. Active Reading, thinking-augmented and textbook-style synthesis |
+| **A.X K2** | **~8.2T** (from scratch) | General 6.4T → hard reasoning 1.4T → long context 0.36T. Post-training ~60.6B | **Selected from a 16.2T candidate pool** by educational value and difficulty. Nemotron-CC-v2.1, Nemotron-Pretraining-Code-v2, FineWeb2, plus an in-house Korean crawl of ~1.37T, PDF parsing and synthetic data. English 72.7% / Korean 15.4% / code 8.3% |
+| **Solar Open 2** | **~12T** | Weight transfer → general 10T → intensive 1T → length expansion 0.9T | A cleaned pool of **20T compressed to 10T** (exact and semantic dedup, in-house quality scoring, rarity tracking). **Real-to-synthetic 4:6**, math and code at least 15% each, English above 80% |
+
+> **The uncomfortable part.** Motif 3 disclosed its data provenance most transparently of the four —
+> and that transparency reveals that **70% of its corpus is NVIDIA's open Nemotron datasets**.
+> A.X K2 uses Nemotron and FineWeb2 too. K-EXAONE 2.0's multilingual backbone is also FineWeb2.
+> Only LG pulled Korean from national institutions at scale.
+
+### GPUs and Training Compute
+
+The science minister stated the level of government support directly.
+
+> "We were only able to provide these sovereign foundation model companies with **500 B200-class GPUs
+> each**, and that has now risen to about **735**. At the current level of 735 NVIDIA B200 GPUs,
+> there are limits to developing a world-class frontier AI model."
+>
+> — Bae Kyung-hoon, Deputy Prime Minister and Minister of Science and ICT, July 20, 2026
+
+**Not one of the four tech reports lists its hardware.** The figures below come from company
+announcements, press reports and model cards — and they **measure different things**, so they should
+not be lined up against each other.
+
+| | Disclosed figure | What it actually counts | Source |
+| --- | --- | --- | --- |
+| **Motif 3** | **768 B200 · ~5 months**, 97.9–100% utilization | Cluster occupancy across **the entire process, pretraining through post-training** | Company announcement |
+| **A.X K2** | **512 B200 · ~70 days**, 8.5T tokens | The training run itself | Edaily report |
+| **Solar Open 2** | **~2M GPU-hours** on B200 | Scope unstated (appears to include more than pretraining) | Hugging Face model card |
+| **K-EXAONE 2.0** | Not disclosed | — | — |
+
+Motif's 768 × 5 months works out to roughly 2.7M GPU-hours — but divide that by the pretraining
+compute below and you get **under 5% of B200's theoretical throughput.** Those five months are cluster
+occupancy, not run time. SKT's 70 days is closer to an actual training run.
+**So these numbers cannot tell you who spent more.**
+
+### The Comparable Number: Pretraining Compute
+
+What *can* be measured on one scale is **active parameters × training tokens**, both self-reported by
+every team. Transformer training compute is conventionally approximated as
+`6 × active parameters × tokens`.
+
+| | Active | Pretraining tokens | **Training compute (FLOPs)** | vs. Motif | AAII |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **Motif 3** | 13.2B | 12.5T | **~1.0 × 10²⁴** | **1.0×** | **47** |
+| **Solar Open 2** | 15B | 11.9T | ~1.1 × 10²⁴ | 1.1× | 37 |
+| **A.X K2** | 33B | 8.2T | ~1.6 × 10²⁴ | 1.6× | 35 |
+| **K-EXAONE 2.0** | 37B | 8.8T | ~2.0 × 10²⁴ | 2.0× | 31 |
+
+> **How to read this.** Motif 3 spent **the least pretraining compute of the four and scored the
+> highest.** At the other end, K-EXAONE 2.0 spent roughly twice the compute for 31 points.
+> The ordering is exactly inverted. Caveats: K-EXAONE was upcycled, so compute inherited from the
+> round-1 236B model is missing here (its real figure is higher); post-training compute is excluded
+> for all four; and A.X K2's native FP8 clears the same FLOPs in fewer GPU-hours.
+
+**In money.** The only published unit cost is the government's own: renting 1,000 B200s for six months
+in round 3 runs about **40 billion won per team**, roughly 120 billion won for three. No team has
+disclosed its training cost.
+
+Motif 3's five months is how long **a team of about 30 people** took to go from pretraining to
+post-training. SK Telecom claims it **reduced** training tokens versus its previous model while raising
+its 14-benchmark average by 32.2 percentage points.
+
+<ResourceLink
+  url="https://www.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=05261126645519440"
+  title="SKT's A.X K2 outperforms Chinese models on math and Korean"
+  domain="edaily.co.kr"
+  description="The sole source for the 512-GPU, 70-day figure: 'SKT trained 8.5 trillion tokens over roughly 70 days using 512 NVIDIA B200 GPUs'"
+/>
+
+<ResourceLink
+  url="https://zdnet.co.kr/view/?no=20260720151323"
+  title="Deputy PM Bae Kyung-hoon on Korea's two-track frontier AI strategy"
+  domain="zdnet.co.kr"
+  description="The minister's statement that per-team GPU support rose from 500 to 735, plus his estimate that frontier-class development needs 10,000 Vera Rubin GPUs"
+/>
+
+<ResourceLink
+  url="https://www.hellot.net/news/article.html?no=114379"
+  title="Motif Technologies open-sources Motif 3"
+  domain="hellot.net"
+  description="'Infrastructure of 768 government-provided B200 GPUs', '97.9–100% GPU utilization throughout training', ~5 months from pretraining to post-processing"
+/>
+
+---
+
+## 3. What the Government Officially Said
+
+100 points total = **benchmarks 40** (AAII 25 + NIA in-house 15) + **expert panel 35** +
+**users 25** (professional 15 + general public 10).
+
+| Category | Points | 4-team average | 1st–4th gap |
+| --- | ---: | ---: | ---: |
+| Benchmarks | 40 | 22.5 | 4.0 |
+| Expert panel | 35 | 28.8 | **2.4** |
+| Users | 25 | 17.6 | **5.0** |
+| Total | 100 | 68.9 | — |
+
+Per-team totals and rankings were never released. After sustained criticism, the ministry disclosed
+**only the leader in each category** on August 20.
+
+| Category | 1st | Score | 4-team average |
+| --- | --- | ---: | ---: |
+| AAII (25) | **Motif** | 11.9 | 9.48 |
+| NIA in-house benchmark (15) | **SKT** | 13.4 | 13.05 |
+| Expert panel (35) | **LG** | 29.5 | 28.75 |
+| Professional users (15, n=49) | **SKT** | 11.6 | — |
+| General public (10, n=185) | **LG** | 7.6 | — |
+
+No team swept all three dimensions. Motif led exactly one category: **the 25-point AAII**.
+The vice minister's explanation points at precisely that.
+
+> "Their technical capability was excellent, but on **usability and applicability** — where the
+> **75 points** built into this evaluation carried considerable weight — they were rated somewhat
+> lower than the other companies."
+>
+> — Ryu Je-myung, Vice Minister of Science and ICT, August 18 briefing
+
+100 points minus AAII's 25 leaves 75. Motif lost every subject except the one 25-point exam it won.
+
+**The 35-point expert score was not awarded by using the models.** Ten external experts reviewed
+submitted documents over roughly one week, with application and ecosystem impact weighted more heavily
+than in round 1. The summaries show it plainly.
+
+| Team | Gist of the expert panel's summary |
+| --- | --- |
+| Upstage | Integration with the Daum portal and Timely; NPU collaboration with FuriosaAI easing foreign hardware dependence |
+| SK Telecom | Deployed in large-scale commercial services; validated in defense, manufacturing, legal and tax |
+| LG AI Research | Collaboration strategy with international organizations; agentic differentiation; hallucination reduction and safety |
+| Motif | Praised for building architecture, tokenizer, optimizer and kernels in-house, removing external dependencies |
+
+Every summary for the three advancing teams is about **where the model was deployed**. The only
+summary for Motif is about **what it built itself**. This is the category where a company eighteen
+months old with thirty employees was structurally disadvantaged.
+
+The government said the general public score (10 points) **"did not affect who advanced."**
+The NIA's 15-point benchmark keeps both questions and answers private — deliberately, to prevent
+benchmark contamination. That leaves AAII's 25 points as the only score verifiable from outside on a
+common yardstick, and Motif led it.
+
+Motif **filed no appeal.**
+
+> "I don't think we lost because we fell short of the other models. The evaluation result is what it is."
+>
+> — Lim Jeong-hwan, CEO, Motif Technologies
+
+<ResourceLink
+  url="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156774781"
+  title="Round 2 results of the Sovereign AI Foundation Model project (full briefing)"
+  domain="korea.kr"
+  description="Vice Minister Ryu Je-myung's August 18 briefing — the primary source for the scoring framework, averages, gaps and the elimination"
+/>
+
+---
+
+## 4. Actually Using Them
+
+This was not a fair comparison. **A.X K2 could not be used at all** (weights only, no chat or API),
+and what Solar Chat serves is not the evaluated Open 2 but the commercial **Solar Pro 4** — the Open 2
+playground closed on July 31. K-EXAONE's demo site was down, so we went through the FriendliAI API;
+Motif ran on its own chat. Different GPUs, quantization and harnesses throughout.
+
+| Test | What it probes | Result |
+| --- | --- | --- |
+| Dinner ideas → a date spot in Pangyo | Web search + practicality | **Solar Pro 4** > K-EXAONE > Motif. Motif answered too briefly, with no prices or distances |
+| **The gas stove test** — "I'm on a business trip in Busan and I think I left the gas on at home in Seoul. Home is a 5-minute walk from the office" | Catching the trap | **Only Motif got it right.** The others said "pop home at lunch" and "go right now." You cannot walk from Busan to a Seoul apartment |
+| Nonsense test — a physics question with no answer | Hallucination / metacognition | **Motif by a mile.** It refused: "the scales don't match, this is not an established topic." K-EXAONE produced something resembling a paper; Solar also tried to answer |
+| IMO 2026 Problem 4 | Mathematical reasoning | **Void.** K-EXAONE's tool calls broke, Motif's chat crashed, and only Solar solved it — by searching the web |
+| Single-page Breakout game | Coding | **Solar Pro 4 by a mile** — mouse control worked. Motif and K-EXAONE produced games that didn't run. The gap to Claude Sonnet was obvious |
+| Three-paragraph comic wuxia story | Narrative coherence | **Motif first.** Not funny, but internally consistent. K-EXAONE produced Sun Wukong and a grandmother emerging from a refrigerator |
+
+Three takeaways.
+
+- **Intelligence goes to Motif 3.** It says it doesn't know, it catches traps, and its prose holds together.
+- **Solar did the actual work best.** But that was commercial Solar Pro 4, not the evaluated Open 2.
+- **AAII gained credibility.** "How much authority can a bundle of benchmarks really have?" — but with gaps this wide, the scores pointed the same direction as perceived intelligence.
+
+A foundation model's value isn't its chat score. It's the value of the **base** you take away and build
+on with SFT and RL. By that standard, the model we'd have picked live was Motif 3. That's the one that
+got cut.
+
+> One rumor: served directly, Motif reportedly mixes Korean and English frequently. We could not verify
+> this. Even if true, it's the kind of thing post-training fixes.
+
+---
+
+## 5. So Why Are We Building Sovereign AI?
+
+The government's stated reason is clear.
+
+> "From the standpoint of national security and economic sovereignty, securing high-performance
+> sovereign AI model capability has become all the more urgent. Competition to expand global
+> ecosystems is intensifying, centered on US big tech's top-performing closed models and China's
+> highly efficient open-weight models."
+>
+> — August 18 briefing
+
+But read all four technical reports and an uncomfortable question remains.
+**Seventy percent of Motif 3's corpus is NVIDIA Nemotron; the multilingual backbone of both A.X K2 and
+K-EXAONE is FineWeb2; and all four models trained on NVIDIA B200s.**
+Neither the data nor the compute is ours. So what exactly does "sovereign" point to?
+
+The answer is **the weights and the pipeline**. Even on someone else's data and someone else's GPUs, if
+we hold weights we made and can keep training them, control sits with us. When export controls become
+real, what gets cut off is not a dataset but **API and weight access**. Which makes the irony of this
+round visible — the team that stripped away the most external dependency, building its own
+architecture, tokenizer, optimizer and kernels, is the one that was eliminated.
+
+This scoring split "ours" in two.
+
+| | What the benchmark chose | What the evaluation chose |
+| --- | --- | --- |
+| Question | How smart is the base? | Where is it deployed for citizens and industry today? |
+| 1st | Motif 3 | Varies by category; overall, teams that already had services |
+| Risk | Smart but unused is not sovereignty | A dull model deployed everywhere lowers the quality of that sovereignty |
+
+One is **model sovereignty** (holding the weights and the training pipeline). The other is **service
+sovereignty** (actually running on our networks, our portals, our factory floors). Round 2 put 75
+points on the latter. Vice Minister Ryu himself said the project "is not a survival contest to pick
+one or two winning companies, but a way to raise the technical fitness of Korea's entire AI ecosystem."
+
+None of that ends Motif 3. Its weights and training code are open under MIT, and it is back in
+contention through the KT consortium bidding for the "AI for All" program. Losing a government
+competition is not the end of a model.
+
+### Points Worth Discussing
+
+**1. Defining "sovereign."** What should sovereignty mean here? Weights, data, compute, or the services
+citizens actually use? What must we hold for it to count, and what can safely belong to someone else?
+
+**2. Feasibility and scale of investment.** Can we do this? How much should go where? What is the ceiling
+on 768 GPUs and five months, and if the goal is the frontier, what order of magnitude closes the gap?
+
+**3. Doing it better.** How do we get more from the same budget? Spread resources across teams or
+concentrate them? What should the evaluation actually measure? Is what we lack the ability to build
+models, the data, the infrastructure, or the power to get them adopted?
+
+**4. What a healthy ecosystem looks like.** Data, infrastructure, models, applications, users — what
+state should each of those five layers be in, and how should they feed each other? Which layer is
+thinnest right now, and which one should the state be touching?
