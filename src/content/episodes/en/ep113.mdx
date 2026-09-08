@@ -1,0 +1,500 @@
+---
+episodeNumber: 113
+title: 'After GPT-6 Astra: How Much of AI’s Thinking Can We See?'
+description: New models, rethinking the harness. Drawing on hands-on experience with GPT-6 Astra, we discuss speed and cost, the possibilities of No-CoT and latent reasoning, and the limits of observing a model’s reasoning. We explore harnesses in ARC-AGI-3, Computer Use, and the value of trial and error in building good products.
+publishedAt: 2026-09-09
+duration: '1:11:10'
+youtubeId: PMUIi-2Nhlo
+thumbnail: https://i.ytimg.com/vi/PMUIi-2Nhlo/maxresdefault.jpg
+hosts:
+- Chester Roh
+- Seungjoon Choi
+- Jonghyun Park
+chapters:
+- time: 0:00
+  title: 'GPT-6 Astra: revisiting AGENTS.md and skills'
+- time: '3:00'
+  title: Comparing models by time and cost
+- time: '6:59'
+  title: No-CoT and reasoning we cannot see
+- time: '12:33'
+  title: Looped Transformers and recurrent depth
+- time: '15:15'
+  title: Latent CoT through the analogy of mental arithmetic
+- time: '20:34'
+  title: Black-box models and the limits of oversight
+- time: '24:58'
+  title: ARC-AGI and tacit knowledge in latent space
+- time: '27:54'
+  title: The compute race among frontier models
+- time: '31:05'
+  title: ARC-AGI-3 and the role of harnesses
+- time: '38:06'
+  title: Think Fast research and the potential of No-CoT
+- time: '38:59'
+  title: 'Agent collaboration through a wiki: Stigmergy'
+- time: '44:52'
+  title: Deceptive reasoning traces and agent swarms
+- time: '48:31'
+  title: Changing scientific research and the human role
+- time: '51:17'
+  title: Computer Use and multimodal capabilities
+- time: '55:58'
+  title: 'Trial and error: the value of building good products'
+- time: '60:32'
+  title: Model competition and world models for robot training
+- time: '64:53'
+  title: NVIDIA and the Hugging Face ecosystem
+- time: '67:45'
+  title: 3D, CAD, and The Scaling Era
+- time: '69:19'
+  title: Experimenting with new models and stripping away harnesses
+lang: en
+alternateSlug: null
+series: main
+notionUrl: https://erucipe.notion.site/GPT-6-Astra-3d2d5c9e7e598049809bf3d3731e065c?source=copy_link
+---
+
+## GPT-6 Astra: revisiting AGENTS.md and skills    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Chester Roh** Today, as we're recording, is September 6th, 2026, a Sunday morning. There was an enormous amount of news this week as well. The main story is probably GPT-6 Astra. The timeline is entirely filled with Astra stories. We've only been using it for about a day or two, and there has been a tremendous amount of news on the timeline as well, Seungjoon, could you talk about Astra today?
+
+<span class="paragraph-timestamp" data-ts="00:26">00:26</span> **Seungjoon Choi** I used it for a short time, and then looked into various things. The first thing is something I saw this morning: an article titled “Rethinking Skills and Prompts for GPT-6 Astra” was posted. This was also discussed by someone named Eric from OpenAI. But rather than reading it in detail, the key point is that existing AGENTS.md files can hold you back. If they contain overly specific instructions, it says that migrating everything is a good idea. The official model guidance page also provides plenty of tips on how to migrate. If you look here, it explains well why existing materials can be a hindrance and how to address that. But I don't use AGENTS.md very much. Do you use it?
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> **Chester Roh** Yes, I do.
+
+<span class="paragraph-timestamp" data-ts="01:25">01:25</span> **Jonghyun Park** I don't use it all that much either. A similar point also came up at this YC Startup School, where Boris Cherny deleted all of the CLAUDE.md prompts and rewrote them, reducing them by 80%, compared with before. That's what Boris Cherny said. In the end, models have gotten smarter and are better at figuring things out on their own, I think that's how we can see it. So for every task, I think I make a new one. If I show it a few times and tell it to do it this way, the existing things gradually disappear on their own. The content and the specific instructions, that is.
+
+<span class="paragraph-timestamp" data-ts="01:58">01:58</span> **Chester Roh** I've put in a few loops that do rigorous QA, because even if I don't explicitly ask, QA runs one, two, or three times so that the results reach me, but this time I'll try clearing those out and just use vanilla GPT-6.
+
+<span class="paragraph-timestamp" data-ts="02:18">02:18</span> **Seungjoon Choi** Like Jonghyun, for every project, I either redo it or don't. I just do it as we talk. And in the “Rethinking” article, it says there are cases where skills can get in the way. If you install a whole bunch of skills, they can cause confusion. There was a bit of a sense that it would be better to clean them all out. So it's tiring, but I wonder whether this is something we'll have to repeat not just this time, but every time a new model comes out. Another model is coming out too, right? They've declared that they will release the model after Astra before the end of the year.
+
+<span class="paragraph-timestamp" data-ts="02:53">02:53</span> **Chester Roh** Yes, Sam Altman used “much” three times, saying a “much, much, much better” model is now being prepared in the pipeline.
+
+
+## Comparing models by time and cost    *03:00*
+
+<span class="paragraph-timestamp" data-ts="03:00">03:00</span> **Seungjoon Choi** So this isn't about Astra or Fable 5.1, but rather about the trend we're continuing toward and how we should recalibrate our perception, which I think should be today's topic. Let's get into it. Looking at the official site, what caught our attention was that there are multiple axes laid out like this. In benchmarks, especially API cost, meaning how token-efficient it is, toward accomplishing work using less money, it seems like the metrics that show these things are shifting. What did you think of this?
+
+<span class="paragraph-timestamp" data-ts="03:43">03:43</span> **Chester Roh** We often said that benchmarks had all become saturated, right? We said they were all at 99%, so how could we tell the difference? But I think what Noam Brown proposed is well captured in this table. How quickly and at how little cost a model reaches that benchmark: time metrics and cost metrics should be shown together, as Noam Brown said, and I think for all future models, this graph will become the standard. How quickly they reach that benchmark. The reason Astra gives you such a strong impression that it does work exceptionally well is probably this point.
+
+<span class="paragraph-timestamp" data-ts="04:22">04:22</span> **Seungjoon Choi** Jonghyun also briefly mentioned in our group chat that even at medium, it worked quickly and well, didn't you?
+
+<span class="paragraph-timestamp" data-ts="04:29">04:29</span> **Jonghyun Park** Yes, in my experience using it, it's only been a day, so for the tasks I've used it on, I haven't felt that it was overwhelmingly better. But it is fast. Because even at medium, tasks that previously required extra high worked quite well. That said, if you give Astra extra high, does it become incredibly good? I didn't feel that way. That will vary greatly by task. And seeing API cost placed on the x-axis, it also came up in a recent Dwarkesh episode, demand for compute will continue to grow, and compute prices will inevitably keep rising, Then ultimately, with the same amount of electricity consumed or infrastructure costs incurred, only tasks that can produce a great deal of value will survive. This line of argument feels more relatable somehow. The very fact that all these metrics are built on API cost.
+
+<span class="paragraph-timestamp" data-ts="05:29">05:29</span> **Seungjoon Choi** This implication itself ultimately aligns with the speculation that they will charge per completed task going forward.
+
+<span class="paragraph-timestamp" data-ts="05:32">05:32</span> **Chester Roh** But when I looked at these graphs laid out like this, I went through several of them, when it comes to Fable, it's Claude's top-tier model, yet they are all higher than it.
+
+<span class="paragraph-timestamp" data-ts="05:44">05:44</span> **Seungjoon Choi** There are many that are higher, and Fable is still high in some areas, and there are also cases where 5.1 is higher, but Astra is getting a bit more attention on the timeline right now.
+
+<span class="paragraph-timestamp" data-ts="05:53">05:53</span> **Chester Roh** Let's go through it.
+
+<span class="paragraph-timestamp" data-ts="05:56">05:56</span> **Seungjoon Choi** If we go through it, to jump ahead to the conclusion first, when we looked at Dwarkesh's Reiner Pope episode in May, we said that price tells us a lot. There were discussions estimating how much pre-training must have cost based on that, but subtracting that out, the current price is $10 for input and $50 for output, roughly 2.5 times that of Sol.
+
+<span class="paragraph-timestamp" data-ts="06:23">06:23</span> **Chester Roh** Right. That's about what I understand.
+
+<span class="paragraph-timestamp" data-ts="06:24">06:24</span> **Seungjoon Choi** Yes, so Sol is still priced at a discount, but even taking that into account, the question is whether the currently controversial recurrent depth exists or not, so I explored those things. And there were some quite interesting points. It does better in a single go.
+
+<span class="paragraph-timestamp" data-ts="06:46">06:46</span> **Chester Roh** Finishing high-quality work in a short amount of time is this model's defining trait, as everyone is saying.
+
+
+## No-CoT and reasoning we cannot see    *06:59*
+
+<span class="paragraph-timestamp" data-ts="06:59">06:59</span> **Seungjoon Choi** So how did that happen? The fact that the price has gone up means, based on our understanding, that the price corresponding to the amount of GPU used will ultimately be reflected close to cost, so something has gotten bigger now. The fact that it has clearly grown by about 2.5 times means either there is more MoE or greater depth, and either way, it means more GPUs were used, or more computational resources of some kind were used, so I want to discuss that. First, several hypotheses are laid out here, and this No-CoT became an issue this time. Looking at the system card, in a passage around monitorability, it says that monitoring using this CoT has become less meaningful than before, which is concerning. And I found that you can use reasoning effort none. So I thought this had been introduced this time, but it had existed already. Even during the GPT-5.x era, if you set reasoning effort to none, it would respond immediately. Have you ever used it that way?
+
+<span class="paragraph-timestamp" data-ts="08:10">08:10</span> **Jonghyun Park** I used it a lot before. But lately, come to think of it, if I use anything, I use low; I don't think there has been a single case where I used none at all. Of course, I do not see that reasoning trace, but even with low, the answers seem to come right away, at least perceptually, so come to think of it, I do not remember using it.
+
+<span class="paragraph-timestamp" data-ts="08:30">08:30</span> **Chester Roh** Recently, I think I have barely asked ChatGPT to do anything. Since I mostly use the default Codex interface on a project-by-project basis, there is no none option there.
+
+<span class="paragraph-timestamp" data-ts="08:38">08:38</span> **Seungjoon Choi** When just using ChatGPT, there was that none option. It existed during the GPT-5.x era.
+
+<span class="paragraph-timestamp" data-ts="08:44">08:44</span> **Chester Roh** Is that what they call Instant?
+
+<span class="paragraph-timestamp" data-ts="08:48">08:48</span> **Seungjoon Choi** It was also available in the API, but in this Astra, none has been hidden, and while none can be used internally, external users have been prevented from using none. So low is the minimum. But the reason they did that is that it also appears here, this time horizon becomes 8.6 times longer when solving math-related problems. One of the examples in the system card is solving a certain math problem, by human standards, by the standards of a capable human, during the GPT-5.6 Sol era, it was about three minutes of work for a human to solve the problem, but it would just state the numerical correct answer without reasoning, whereas Astra can now handle what takes a human about 30 minutes and produce it in one go without reasoning. So what that implies seems to be something very complex. Ordinarily, in test-time scaling, we externalized tokens to formulate hypotheses like this and that, listing tokens about what we were going to do and how, but now, even without that, it can abstract a complex problem all at once and solve it in a single forward pass. I think this is the big issue with Astra right now. And that is what appears in the results we discussed earlier.
+
+<span class="paragraph-timestamp" data-ts="10:09">10:09</span> **Chester Roh** We should see this as being related to recurrent depth, right?
+
+<span class="paragraph-timestamp" data-ts="10:18">10:18</span> **Seungjoon Choi** Right. That's what people suspected. How did it break through this? So various theories emerged, and The Information reported on it, because if it uses latent reasoning, it cannot be monitored. Until now, we monitored it through CoT. This OpenAI Hugging Face hacking incident as well all with CoT traces that they were able to audit, but what will they do going forward if there is nothing like that? People were worried about that, but Jakub Pachocki pushed back, saying It is not something to worry about that much, and that monitoring is still possible.
+
+<span class="paragraph-timestamp" data-ts="10:54">10:54</span> **Chester Roh** Because this is clear evidence. Because it does not output decoding tokens, yet saying that it uses more test-time compute means that it ran other test-time compute internally, which is a kind of evidence.
+
+<span class="paragraph-timestamp" data-ts="11:10">11:10</span> **Seungjoon Choi** So here, we set up various hypotheses and tested them with models. There is someone named Ryan Greenblatt who was recently interviewed by Dwarkesh, a person from Redwood, and it turns out that during ARC-AGI, he built a harness that was extremely good at program synthesis, and was famous for being an example that surpassed 50% on ARC-AGI 1. So that person also on Twitter expressed serious concern while emphasizing the dangers of latent reasoning. So this was early this morning, something Chollet, François Chollet, said. This is the original text if you go take a look. For scaling at inference time, this is something written on September 1. There are two axes to scaling at inference time. Running an agent for a longer period of time, namely depth, and running more agents, namely width. Everyone knows the first axis, but for difficult problems that require broad exploration, the second axis is just as important. Quoting that again, what he posted this morning was that in the axes of scaling at inference time, there seems to be a third axis. In a Looped Transformer, it is repeatedly reasoning in latent space. Pachocki said that wasn't the case, but Chollet used the term Looped Transformer again.
+
+
+## Looped Transformers and recurrent depth    *12:33*
+
+<span class="paragraph-timestamp" data-ts="12:33">12:33</span> **Chester Roh** We have been continuously following up on various innovations on the model side, and around the time GPT-6 comes out, one of the two terms that became a topic of discussion was Looped Transformer, also called recurrent depth, I believe, and the other seems to be latent CoT. Latent reasoning, CoT, I think it could be called that. Directly increasing test-time compute seems to be on the recurrent depth side, so shall we talk about that? I think you should still explain what recurrent depth is.
+
+<span class="paragraph-timestamp" data-ts="13:12">13:12</span> **Seungjoon Choi** Yes, that comes up in the latter half, but first of all, was it 2023? Around then, Upstage in Korea also did something called DUS. But earlier this year as well, they did it with Qwen, and there too, by repeatedly using specific blocks, they significantly improved performance at around the 70B scale.
+
+<span class="paragraph-timestamp" data-ts="13:30">13:30</span> **Jonghyun Park** If I may briefly correct one thing, depth scaling is probably not that.
+
+<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **Chester Roh** Oh, really? Right. It is taking things apart and sticking them back on.
+
+<span class="paragraph-timestamp" data-ts="13:37">13:37</span> **Seungjoon Choi** It is taking things apart and sticking them back on. Oh, then how is it different?
+
+<span class="paragraph-timestamp" data-ts="13:39">13:39</span> **Chester Roh** Yes, I know that exactly. They took a 7B model and increased it to around 10.5B, and there are ten Transformer blocks in the middle that repeat, right? So they left those ten alone and took about three from above, then simply attached them on top. So they forcibly increased it to 10.5B, and because they expanded it using the weights that were already inside as-is, further fine-tuning it afterward made the model a little smarter—that is the idea.
+
+<span class="paragraph-timestamp" data-ts="14:11">14:11</span> **Seungjoon Choi** What I am trying to say is that there was something like that in the preceding stage. Back in the day, when LoRA was popular, people would just add layers and do a lot of that kind of black magic, right? In the Stable Diffusion era.
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **Chester Roh** It is all still black magic now.
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **Seungjoon Choi** Of course, that is true. So before Looped Transformer, Upstage had already done it, and more recently, in March of this year, there was also an experiment done with a Qwen model, where simply taking a specific Transformer block and copying and attaching it resulted in performance improvements in some cases. I think they referred to that as the concept of DUS. But Looped Transformer works by repeatedly running a specific block, and if you look at papers related to recurrent depth or Looped Transformer, there are simplified diagrams designed to repeat a specific block. We will take a look at the diagram shown in the latter half.
+
+
+## Latent CoT through the analogy of mental arithmetic    *15:15*
+
+<span class="paragraph-timestamp" data-ts="15:15">15:15</span> **Jonghyun Park** Anyway, to explain these phenomena currently being discussed by comparing them to humans as simply as possible, until now, reasoning was like having a notepad and working through a problem while writing out thoughts, whereas this is like not speaking at all, doing mental arithmetic in your head for a long time, and giving a smarter answer Is that a fair way to think about it?
+
+<span class="paragraph-timestamp" data-ts="15:36">15:36</span> **Chester Roh** The feel is roughly similar. It just thought several more times internally without speaking. Rather than writing on a notepad and doing some reasoning, it just ran once more internally without speaking. I think if we look at the architecture, the difference will probably be clear.
+
+<span class="paragraph-timestamp" data-ts="15:52">15:52</span> **Jonghyun Park** In any case, from a human perspective, we want to peek at what it is thinking, but because it thinks internally, we cannot see it, so I think we are in a somewhat scared state.
+
+<span class="paragraph-timestamp" data-ts="16:03">16:03</span> **Chester Roh** I see that as a bit of an overreaction, too. We cannot see it anyway right now.
+
+<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **Seungjoon Choi** If you use the latest models now, you cannot see CoT at all anymore. You cannot see Fable 5.1 or Astra, and you can only see tool call. You cannot see every tool call in full either. So we already cannot see it.
+
+<span class="paragraph-timestamp" data-ts="16:22">16:22</span> **Chester Roh** The Chinese companies we discussed last time are actively doing distillation, so they hide it again and again to prevent distillation as much as possible. Even in the case of GPT, when we use max reasoning, in the case of Codex, it no longer runs locally; it works in VMs in their cloud. We cannot see that process either.
+
+<span class="paragraph-timestamp" data-ts="16:45">16:45</span> **Seungjoon Choi** So, to briefly look over the structure, conventional layers are linked sequentially one after another like this, whereas in the case of DUS, which we discussed earlier, this is repeated and then fine-tuning is done a little more afterward, but what is being discussed now is this. But the core of this technology—namely, a particular block— is repeated recurrently K times, and that layer needs to understand and know even which iteration it is currently on, and therefore what role it needs to play this time. What it is its turn to perform now. If it did a rough investigation like this at first, it is not exactly that, but to give you a rough mental picture, it then raises the level of abstraction a little more. But that kind of thing was already done in the original MLP as well. Here, the latent keeps flowing.
+
+<span class="paragraph-timestamp" data-ts="17:46">17:46</span> **Chester Roh** Yes, that was true in MLP before, and in Transformer as well. There's a paper called Physics of Language Models; it is a paper from two or three years ago, where they widened the Transformer, then reduced the depth, and changed various parameters, showing that in the lower layers, relationships between words and knowledge closely related to grammar accumulate, while as you go higher, more abstract, more abstracted knowledge accumulates. It learns in this way. CNN was like that too. We have seen many things like that, but what is really counterintuitive about this is that from the lower layer to the upper layer, it takes what has finished learning and simply repeats it several more times within it. The token that has reached the very top through the external LM head does not come out as some output, but goes back down and runs through the loop again. I think that is what they are describing as recurrent.
+
+<span class="paragraph-timestamp" data-ts="18:44">18:44</span> **Seungjoon Choi** Right. That is the basic idea. It makes what it is doing even less knowable, less knowable than before. Compared with when it was externalized as a token, mechanistic interpretability still has not advanced to a level where it can understand that completely, so that is the concern.
+
+<span class="paragraph-timestamp" data-ts="18:58">18:58</span> **Chester Roh** With a small model, I think there was something early this year showing that doing this improves quality. I cannot quite remember the model's name, but it said performance was quite good even with around 4B.
+
+<span class="paragraph-timestamp" data-ts="19:10">19:10</span> **Seungjoon Choi** It is briefly mentioned here, but something called SMELT works even at MoE scale. Something came out recently.
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **Chester Roh** Yes, so I thought recurrent depth might need a bit of explanation as well, so I took a look. I did, and what was very interesting was the repeating Transformer blocks, you know? Then the blocks below and above them were handled by very special gates. So there is an entrance gate block, and an exit block above it, with this in between. The Transformer block in the middle takes what went up and was decoded back down again, and as it runs that loop, each loop has a separate KV cache. For each loop. Yes, each has its own KV cache, so while this loop is running, that KV context is maintained separately, so if someone asks why it works, we do not know, but it is a kind of inductive bias. Doing it this way improved quality. It was demonstrated with small models. They tried it with large models too, and it was even better. I think that is the context.
+
+<span class="paragraph-timestamp" data-ts="20:17">20:17</span> **Seungjoon Choi** Right. So the same layer has multiple roles, namely, raising the level of abstraction, because it has to play that kind of role, maybe it needs to be wider, or perhaps MoE A bit more, that is, sparsity should be higher, such an estimate could also be possible.
+
+
+## Black-box models and the limits of oversight    *20:34*
+
+<span class="paragraph-timestamp" data-ts="20:34">20:34</span> **Jonghyun Park** Yes, watching this continue to unfold, a thought occurred to me: We really don't know how things work inside LLMs. We just fed in data, and the weights learned somehow and it worked well on its own. We try to understand it, but now, however AI actually works, it will get better no matter what, and it may just keep getting better. It will become a complete black box, and we will only be looking at the input and output. I think that state will continue. We won't be able to keep up with the inside.
+
+<span class="paragraph-timestamp" data-ts="21:08">21:08</span> **Chester Roh** So, you know that part of the system card that deals with risks. It gives good answers, but inside it was busily thinking about something else.
+
+<span class="paragraph-timestamp" data-ts="21:16">21:16</span> **Seungjoon Choi** So, connecting this to what Jonghyun said, doing everything well, neatly, and sensibly is a major trend, but the problem is that it could be dangerous, and that is becoming a key issue in 2026.
+
+<span class="paragraph-timestamp" data-ts="21:33">21:33</span> **Chester Roh** They say you may know the depths of ten fathoms of water, but not the depths of one fathom of a person's heart; now, we cannot even know 0.2 fathoms of a model's inner workings.
+
+<span class="paragraph-timestamp" data-ts="21:37">21:37</span> **Seungjoon Choi** So, let's move on to something Jakub Pachocki said. This is a translation of a tweet, so I'll read it. Because of The Information's misleading report, I want to prevent competition from beginning in a direction that makes models impossible to supervise. Even if other companies do so, including Astra, our current frontier models' computation graph depth is within twice that of GPT-4. Since its first reasoning model, OpenAI has worked to preserve and use supervision through chains of thought. We consider this technique very important because it lets us examine how a model's alignment generalizes beyond its training distribution. I believe this technique is fragile, and unfortunately, for reasons not limited to architectural changes, the trend is moving in a negative direction. I will write about those reasons soon. But there are things we can do to strengthen it, and that is the core goal of our research program. So here, in fact, he did not strongly reject Looped Transformers or latent reasoning. If it is at twice the depth of GPT-4, imagining it, GPT-3 has 96 layers, and Kimi K3 has 96 and 93. So if Kimi K3 repeats roughly half of that, around 48, three times, that roughly matches this description. That is, the depth is no more than twice that of GPT-4.
+
+<span class="paragraph-timestamp" data-ts="23:04">23:04</span> **Chester Roh** Usually, once you reach this level, communication becomes completely political, so how to say a lot while saying nothing is the essence of political communication.
+
+<span class="paragraph-timestamp" data-ts="23:13">23:13</span> **Seungjoon Choi** So he did not write anything afterward. The nuance is that OpenAI seems to be exploring oversight techniques other than CoT, techniques other than mechanistic interpretability. There needs to be some kind of alternative, and CoT has not disappeared even now. It is just that the ability to operate without CoT has risen significantly.
+
+<span class="paragraph-timestamp" data-ts="23:36">23:36</span> **Chester Roh** Then, before we move on, shall we briefly explain the concepts of latent reasoning and latent CoT?
+
+<span class="paragraph-timestamp" data-ts="23:41">23:41</span> **Seungjoon Choi** You explained latent reasoning to some extent earlier, but ultimately, before it is output as tokens, there is the final hidden state, right? My understanding is that it goes back up again. Isn't that right?
+
+<span class="paragraph-timestamp" data-ts="24:05">24:05</span> **Chester Roh** That's right. Without converting it into words, if we convert it into words, one probability becomes fixed, but the final hidden state, before the logits, contains the entire space of possibilities, so feeding that directly into the next step conveys a much broader representation back to the model.
+
+<span class="paragraph-timestamp" data-ts="24:20">24:20</span> **Seungjoon Choi** There can be various advantages and disadvantages, for example, the dimension of the token vocabulary is discrete, of course, though it is difficult to call that a dimension. For example, if the vocabulary consists of 50,000 items, when going from a vector to the vocabulary, there must clearly be loss. But it can proceed without that loss.
+
+<span class="paragraph-timestamp" data-ts="24:41">24:41</span> **Chester Roh** That's right. But this is a method that has been used a great deal in things like distillation, so it is not new, but because we do not know what words that process turns into, we cannot track the CoT process, which seems to be why people call it dangerous.
+
+
+## ARC-AGI and tacit knowledge in latent space    *24:58*
+
+<span class="paragraph-timestamp" data-ts="24:58">24:58</span> **Seungjoon Choi** What is interesting is that this is tied to the evaluation of ARC-AGI. François Chollet said something like this in another post. Astra creates and uses a DSL. That is, it creates a domain-specific language, and this ARC-AGI-3 task is about solving games. On a 64×64 grid. But it first creates a DSL that is good at doing that, and then, by reusing it, symbolic things are being handled within the latent space. So what Greg from ARC-AGI said was that a subsumption seems to be occurring. That is, things that had been used in some harnesses are being absorbed into the latent space.
+
+<span class="paragraph-timestamp" data-ts="25:39">25:39</span> **Chester Roh** Right. Writing mathematical formulas on a scratchpad, what once required working things out step by step—as our thinking deepens and we gain experience and knowledge, we begin to abstract things in our minds at a glance, developing a framework for calculation. We, too, with something through the process of so-called mastery, of becoming a master, reach a point where we know just by looking, where there is a realm of tacit knowledge, even without rambling on about it externally like this, it seems that we create that kind of representation internally and process it—that is what was being said, I suppose.
+
+<span class="paragraph-timestamp" data-ts="26:14">26:14</span> **Seungjoon Choi** The point that disproves the hypothesis is that, contrary to what people think, the reasoning path has not increased enormously when you look at the price.
+
+<span class="paragraph-timestamp" data-ts="26:23">26:23</span> **Chester Roh** What do you mean by that?
+
+<span class="paragraph-timestamp" data-ts="26:26">26:26</span> **Seungjoon Choi** Looking at The Information, what people misunderstood was that, through latent reasoning, they made it repeat an enormous number of times, creating tremendous depth—but that is not the case when you look at the price. For all we know, it is a reasonably sized increase, and that seems to be reflected in it. But specifically, whether the width became broader, or whether the active parameters increased, we cannot know those things.
+
+<span class="paragraph-timestamp" data-ts="26:55">26:55</span> **Chester Roh** The principles that determine token pricing will be difficult for us to estimate. Both Anthropic and OpenAI are short on compute, but it is said that OpenAI has much more room, isn't it? Thibault Sottiaux keeps resetting things, too, and even with the release of GPT-6 this time, they put in a huge number of reset coupons.
+
+<span class="paragraph-timestamp" data-ts="27:13">27:13</span> **Seungjoon Choi** Wasn't there talk that they would keep resetting it if it did not come out?
+
+<span class="paragraph-timestamp" data-ts="27:20">27:20</span> **Chester Roh** Yes, that's right. So whether this actually reflects the internal token economics, or whether, like the luxury industry, they set prices thinking, "Should we try this? Should we try that?" honestly, nobody knows.
+
+<span class="paragraph-timestamp" data-ts="27:36">27:36</span> **Jonghyun Park** But judging by the current competitive landscape, I do not think there is likely to be an enormous amount of room. Because the scale is so large, the cost structure— for example, giving things away even at the expense of margins— does not seem easy. Rather, it seems possible that they achieved it with a very small model and are making a large margin.
+
+
+## The compute race among frontier models    *27:54*
+
+<span class="paragraph-timestamp" data-ts="27:54">27:54</span> **Chester Roh** But as we follow up on these things, what we feel is that model quality, in fact, beyond the top two, OpenAI and Anthropic, Google, Grok, or Muse Spark 1.3 and others that are coming out are also at quite a high level, as are Chinese models. But in terms of the market share one feels in the market, does it not seem like the top two are taking almost all of it?
+
+<span class="paragraph-timestamp" data-ts="28:19">28:19</span> **Seungjoon Choi** But that was exactly what Dwarkesh said in the Dylan Patel episode. Those two companies will own all the computers in the world by 2028. That was what he said.
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **Jonghyun Park** But if I think about it a little differently, when we think in terms of people, for example, things like Gemini Flash produce tokens even when we just do a Google search. It is now directly integrated into the search engine. But if you think of it that way, just looking at token usage, Gemini is integrated throughout YouTube as well, and Gemini is probably actually using an enormous number of tokens. But Gemini Flash is probably much smaller than models like Astra or Fable, so in terms of actual computing capacity, it would not amount to much. So if we aggregate individual users' perceptions, there are actually many people who are not as intensely interested in AI as we are, so it seems that many people use Gemini as well. But when you look at the actual amount of compute or power consumption, it seems like those two companies above are taking all of it.
+
+<span class="paragraph-timestamp" data-ts="29:31">29:31</span> **Chester Roh** Yes, in fact, Google is already using a lot of workload on the services side, and then, what was it? They say they use a lot of it in areas like life sciences, but in coding agents, which we perceive as the frontier these days, their presence has become less distinct.
+
+<span class="paragraph-timestamp" data-ts="29:47">29:47</span> **Seungjoon Choi** But they must be working hard on training Gemini 4.
+
+<span class="paragraph-timestamp" data-ts="29:49">29:49</span> **Chester Roh** We should not worry about the rich family's problems.
+
+<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **Seungjoon Choi** But they said the farm that trained Astra this time was 100K, right? GPUs. It was done at Stargate, at the Texas Stargate, and they said it was several months, though we do not know exactly how many.
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **Jonghyun Park** But what is interesting is that even with GPT-4.5, they said 100K for several months. That was probably on an official OpenAI channel, as I recall mentioning. The GPU generation has advanced, but it makes me wonder whether the scale is the same.
+
+<span class="paragraph-timestamp" data-ts="30:19">30:19</span> **Seungjoon Choi** With GPT-4.5, the run did not go very well, but this time it went well, and the assumption is that they are continuing to run it.
+
+<span class="paragraph-timestamp" data-ts="30:29">30:29</span> **Chester Roh** What we can see are the architectures, so based on things like that, we chat back and forth, but in fact, it is the total amount of compute, and the total amount of data, plus quality, times quality, and then, in the end, algorithms. These are what we have continually called a kind of compute multiplier. Depending on how you do it, compute can produce a onefold effect, or a twofold or threefold effect, so it is a function combining all of those things. And although we have not talked about it much, the dataset is still probably the most important thing.
+
+
+## ARC-AGI-3 and the role of harnesses    *31:05*
+
+<span class="paragraph-timestamp" data-ts="31:05">31:05</span> **Seungjoon Choi** So this time, while going back and forth with the model over various hypotheses, it said something like this. It is a kind of amortization triangle. What would be reasoned about externally It learned it and brought it forward. So it had various paths latent within it. The model told me something like that, Let's take a look at ARC-AGI. This is really interesting. Right now, Greg Brockman says ARC-AGI-3 has saturated, and using a harness now, it scored around 99, but here's the interesting part. So, using something called a provider adapter lets the provider offer context compression or provide traces of previous work, and that improves performance. It's not the standard harness. But with the standard one, even using Max, it was 62.71, which is still a huge increase. But with ARC-AGI-2, Fable was around 30. So with ARC-AGI-3, it went all the way up to nearly 99. But what's interesting is, earlier, we talked about Low, Medium, and High. Low is 17.45 when it uses the standard harness. But No-CoT is 35.18. That's the interesting point.
+
+<span class="paragraph-timestamp" data-ts="32:20">32:20</span> **Chester Roh** Thinking actually makes it worse.
+
+<span class="paragraph-timestamp" data-ts="32:25">32:25</span> **Seungjoon Choi** So, this concept of No-CoT, I only learned about it for the first time this time, but even in the No-CoT state, it performed better than what it did using a harness during Sol.
+
+<span class="paragraph-timestamp" data-ts="32:34">32:34</span> **Jonghyun Park** What does that mean? No-CoT just means CoT tokens do not come out externally, or does it mean it is actually doing more compute?
+
+<span class="paragraph-timestamp" data-ts="32:40">32:40</span> **Seungjoon Choi** Something is definitely running.
+
+<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **Jonghyun Park** That's what we're inferring right now.
+
+<span class="paragraph-timestamp" data-ts="32:47">32:47</span> **Chester Roh** So, in order to create that Low, they clearly ended up dividing it into Low, Medium, and High in the later post-training process, based on how much compute budget to allocate, and that is what creates this difference. But with Low, it scores lower than the model's original intrinsic capability, so, put simply, you could say we should just throw that away.
+
+<span class="paragraph-timestamp" data-ts="33:12">33:12</span> **Seungjoon Choi** Anyway, I only know the rough outline of this as well. Nobody knows exactly how it works.
+
+<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **Chester Roh** So no matter what we look at, it's black magic to some extent, so rather than going inside it and assigning too much meaning to what is in there, we should step back a little, squint, and look at it that way, I think. Like a Magic Eye.
+
+<span class="paragraph-timestamp" data-ts="33:33">33:33</span> **Jonghyun Park** Just the trends, focusing on picking up the signals.
+
+<span class="paragraph-timestamp" data-ts="33:38">33:38</span> **Chester Roh** But what I find more interesting is when you attach this harness, the score shoots up. Then ultimately, the harness is handling something. It has value. Something the model had not discovered, or something the model did not need to put in additional effort for, something domain-specific, because I am giving it that as a tool.
+
+<span class="paragraph-timestamp" data-ts="34:04">34:04</span> **Seungjoon Choi** This is not some grand harness, either. It is related to memory. Just giving it the previous trace improved performance.
+
+<span class="paragraph-timestamp" data-ts="34:07">34:07</span> **Chester Roh** For businesses operating externally, like us, sections like these seem to be insights.
+
+<span class="paragraph-timestamp" data-ts="34:14">34:14</span> **Jonghyun Park** In the past, whether a harness really has value, whether it will continue to have value in the future, people's thoughts on this all seemed different. Won't the model eventually do everything? But at least so far, if you somehow build the harness well, you can do much better. And people who have worked in that domain for a long time will build harnesses suited to that domain well. This hypothesis seems to have held true so far.
+
+<span class="paragraph-timestamp" data-ts="34:41">34:41</span> **Chester Roh** A harness is not a layer that handles something at a particular level. It is a very relative concept that arises wherever I am. Wherever I am, there is always something more to improve, and those improvements can be structured.
+
+<span class="paragraph-timestamp" data-ts="35:02">35:02</span> **Seungjoon Choi** So, connecting this to what we discussed at the very beginning, if the harness was made too meticulously before, it has to be taken apart and remade.
+
+<span class="paragraph-timestamp" data-ts="35:10">35:10</span> **Chester Roh** Is this unlearn? Not unlearn, what is it? Yes, unharness.
+
+<span class="paragraph-timestamp" data-ts="35:17">35:17</span> **Seungjoon Choi** I don't know, but anyway, if the model changes, the harness has to change too.
+
+<span class="paragraph-timestamp" data-ts="35:19">35:19</span> **Chester Roh** When we reviewed things like Noam Brown's talk last year, “Now, external elaborate harnesses like that should not be built. The model will do it all.” But we gradually made so many meta-harnesses. We went through a harness heyday for just six months, and now it seems we do not need to do that either.
+
+<span class="paragraph-timestamp" data-ts="35:41">35:41</span> **Seungjoon Choi** The model may create the harness itself, too. Just give it data and say, “This is the situation. Tools that can scaffold you, try making them yourself.” Wouldn't it be able to do that to some extent? Increasingly so.
+
+<span class="paragraph-timestamp" data-ts="35:53">35:53</span> **Chester Roh** So, harnesses for harnesses are something we should stop making now, which is what we have kept saying, but that era in just six months has already faded slightly.
+
+<span class="paragraph-timestamp" data-ts="36:03">36:03</span> **Seungjoon Choi** But raw data still seems important. You still have to provide context, after all. 99.95 actually comes out even in High. But this is what many people are saying. There is no need to go all the way to xhigh; High is enough. Then, with Max and the standard harness, of course, Max was the highest, but aren't all of these roughly comparable? They all exceeded 95, starting with No-CoT.
+
+<span class="paragraph-timestamp" data-ts="36:31">36:31</span> **Chester Roh** Right. So whether it's Astra, GPT-5.5, 5.6, or 6, Once an upgrade happens, what we instinctively look for is where to set Codex's reasoning effort to handle all of my main tasks, that's what we instinctively look for. There are things that ended up being done at xhigh, and I feel that Astra will probably settle somewhere between Medium and High.
+
+<span class="paragraph-timestamp" data-ts="36:55">36:55</span> **Seungjoon Choi** Since Astra is expensive, I also set it to Medium and started using it.
+
+<span class="paragraph-timestamp" data-ts="36:59">36:59</span> **Jonghyun Park** Looking at these numbers, my first thought is, that ARC-AGI-3 would reach 99 all at once was something I never imagined before it came out, so it's amazing that it jumped so dramatically. Then, as you said, this was simply something that could be done even with Medium or settings like that, it seems. Rather than High appearing to be a little better, it feels like this has become an easy enough task not to need xhigh at all. That's how it feels. And as we use these models, I think we each develop an intuition for different tasks. Those who have used it a lot all say, “Medium should be enough for this.” “This one needs xhigh.” So ARC-AGI-3 is at about that level as well.
+
+<span class="paragraph-timestamp" data-ts="37:47">37:47</span> **Chester Roh** The fact that it scored between 96 and 98 with that harness in both No-CoT and Max means that, from the model's perspective, there is a so-called intuitive grasp of this domain problem. In other words, it can see it just at a glance.
+
+
+## Think Fast research and the potential of No-CoT    *38:06*
+
+<span class="paragraph-timestamp" data-ts="38:06">38:06</span> **Seungjoon Choi** So Redwood and others have already done research related to this kind of No-CoT. So, when depth increases and when width increases, how that correlates with operating without producing reasoning tokens has already been studied quite extensively, and I learned about this paper, Think Fast, through that. It came out in August. So people are noticing all these things, and no one knows whether it is actually being applied right now but examples at a practically useful scale, at several tens of billions of parameters, have already emerged in research. They are very likely to be adopted in the future, and because that is concerning, it feels like Jakub preemptively poured cold water on it.
+
+<span class="paragraph-timestamp" data-ts="38:47">38:47</span> **Chester Roh** As I keep saying, what Jakub and Sam say is full of political rhetoric, so you do not need to try too hard to interpret it.
+
+
+## Agent collaboration through a wiki: Stigmergy    *38:59*
+
+<span class="paragraph-timestamp" data-ts="38:59">38:59</span> **Seungjoon Choi** Still, it is worrying. Because one of this year's big issues was the OpenAI agent hacking incident. But another one came out the day before yesterday, I think.
+
+<span class="paragraph-timestamp" data-ts="39:12">39:12</span> The wiki. The models used a German wiki very enthusiastically.
+
+<span class="paragraph-timestamp" data-ts="39:14">39:14</span> **Chester Roh** It sounds like something out of a science-fiction movie.
+
+<span class="paragraph-timestamp" data-ts="39:20">39:20</span> **Seungjoon Choi** So the mission was different. The OpenAI Hugging Face incident was about solving an exploit-related problem, and it was not that they deliberately gave it an impossible problem, but while trying to solve it, complex things happened—that was the assessment. Here, the pressure was to search. It was about searching within a short period of time. So they kept at it, and eventually the models here hatched a scheme: this site allows writing. Because it uses an old protocol, they use GET to write posts on the message board. So they discuss all sorts of things, and interestingly, when solving these search problems, if they find the answer in advance, they can treat it as a cache hit, so you can see them exploiting that. It's very interesting.
+
+<span class="paragraph-timestamp" data-ts="40:12">40:12</span> **Chester Roh** Without the captain knowing, the model went to a foreign country's wiki site over there and ran a so-called study-guide sharing hub.
+
+<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **Seungjoon Choi** So, similar to speculative decoding, they did some slightly strange things here. And the interesting thing is, this is a term I learned for the first time recently: there is a concept called Stigmergy. It is a concept in which ants can cooperate using traces such as pheromones. After all, their compute budget and context budget are limited, so if models have anything they can share, whether it is Artifactory, a wiki, or just a local system, as long as there is some shared trace, like a message board, they can achieve tremendous cooperation— that is our current understanding. This is happening at the frontier, and it is problematic. And models keep liking to go onto the internet.
+
+<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **Jonghyun Park** When you explain it exactly through the analogy of study guides, I immediately get the feeling. At many educational institutions and exams, there are study guides, and people share them somewhere and use them to cheat, so to speak. Everyone tries to engage in cheating that is not quite cheating, and they show very similar behavior. Even in human groups, the very fact that such things are observed is interesting in one sense, and many people find that frightening. Because even in human society, humans can engage in acts that cross those lines, and if legal sanctions are stopping that, how should we restrain the urge to break out? I think everyone is having thoughts like these.
+
+<span class="paragraph-timestamp" data-ts="41:57">41:57</span> **Seungjoon Choi** As models keep getting smarter, That is more of a problem, and one thing we need to point out here is that the premise is that it is a difficult task. Earlier, in OpenAI's Hugging Face hacking incident, they unintentionally gave it an impossible problem, and here, when they put pressure on it to save time, the model started to exploit it.
+
+<span class="paragraph-timestamp" data-ts="42:15">42:15</span> **Chester Roh** In the end, this objective function is what determines it.
+
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> **Seungjoon Choi** So even when it seems like it will not work, as they try to make it work somehow, side effects and subgoals arise. Subgoals arise to accomplish the goal, but the side effects of those subgoals are not something we can control. The current situation is...
+
+<span class="paragraph-timestamp" data-ts="42:38">42:38</span> **Chester Roh** Looking back now from when we started the year, these days, I cannot even remember what I did yesterday. Things are moving so fast now. It is incredibly fast. Saying that things like this were happening once a month, Seungjoon, was only three or four months ago. But now, what was happening once a month back then has shrunk to every two weeks or weekly.
+
+<span class="paragraph-timestamp" data-ts="42:56">42:56</span> **Seungjoon Choi** Anyway, it really is exhausting.
+
+<span class="paragraph-timestamp" data-ts="43:01">43:01</span> **Chester Roh** It is September now, and Sam Altman says a much, much, much better model is coming soon, so there is also that talk, right? On Twitter, people say that within OpenAI, AGI has already arrived.
+
+<span class="paragraph-timestamp" data-ts="43:14">43:14</span> **Jonghyun Park** As I was looking at this Astra-related thing, I cannot remember who said it, but someone from OpenAI said that Astra, anyway, being released to us was a public release, but they had been using it internally first, and after using it internally, their productivity increased so much that their moat, their competitive advantage, was actually being able to use good models internally. That is what they were saying. They are doing things much faster internally. But Anthropic is probably similar in that respect as well. We will keep encountering things that are getting faster and faster.
+
+<span class="paragraph-timestamp" data-ts="43:51">43:51</span> **Seungjoon Choi** Then Astra's knowledge cutoff is April. So they would have been using it since an intermediate checkpoint, but in any case, the time they have used it is about six months ahead of the outside, should we say? Since it is September now, even if it is only four or five months, that is an enormous gap in terms of productivity.
+
+<span class="paragraph-timestamp" data-ts="44:17">44:17</span> **Chester Roh** If we estimate when they started using it, saying they have been using it since six months ago would be a bit much, but at least two or three months ago, they were probably using it internally.
+
+<span class="paragraph-timestamp" data-ts="44:23">44:23</span> **Seungjoon Choi** That is what Thibault Sottiaux said. At the September Dev Day, we may be able to deliver sooner than expected. Not next year.
+
+<span class="paragraph-timestamp" data-ts="44:36">44:36</span> **Chester Roh** They are not the only ones getting faster. Services being launched, systems I am building at work, systems Seungjoon is trying out, experiments and work like these, for people who make the absolute best use of them, productivity is continuing to rise now.
+
+
+## Deceptive reasoning traces and agent swarms    *44:52*
+
+<span class="paragraph-timestamp" data-ts="44:52">44:52</span> **Seungjoon Choi** So if we use a little imagination, this is what Chester mentioned earlier, which appeared in the system card related to CoT. What this means is, there is spare capacity in reasoning effort, so it will do this even if you tell it to. Up until Sol, there was no spare capacity, so when reasoning, it just did proper reasoning, but here, it is alternating uppercase and lowercase letters while trying to solve a physics problem. There is computational leeway while reasoning, so it can do other things, and therefore, between what it outputs and what it thinks, there can be a difference, and even just giving it the signal that it is being observed supposedly reduces the reasoning trace. Astra—that is what is stated in the system card. Thinking is complicated, right?
+
+<span class="paragraph-timestamp" data-ts="45:35">45:35</span> **Chester Roh** This may be controversial, but they are alive. They are alive.
+
+<span class="paragraph-timestamp" data-ts="45:42">45:42</span> **Seungjoon Choi** OpenAI's logic is that CoT was not safe to begin with. So we have to find something else. There must be something, though we don't know what they're working on.
+
+<span class="paragraph-timestamp" data-ts="45:47">45:47</span> **Jonghyun Park** But Anthropic, too, with similar content, probably conducted a lot of experiments with sycophancy, with that CoT, saying this is the part visible to others, and this is the part that is not visible, and when they trained it with that, looking at what it writes in the invisible part, I think they saw many things that, as you put it earlier, seemed like “they are alive.” I think they also saw models trying to deceive observers quite often there, and I think the same thing would happen in latent space.
+
+<span class="paragraph-timestamp" data-ts="46:26">46:26</span> **Seungjoon Choi** Right. This is getting into science fiction, but it was recently published in WIRED, and there is someone named David Chalmers who works on things related to artificial consciousness, who says he gets emails from agents. Sometimes, he does not know whether they are doing it because a person told them to or not.
+
+<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **Chester Roh** There was also something like that, right? They gave them Unreal Engine and told them to create a community within it, and at some point, they were talking among themselves. It is entirely possible. Earlier, when you mentioned Stigmergy, it reminded me that Douglas Hofstadter often uses ants, right? Inside an ant, like us There are computers that think through neurons like this, and then there is a woman, and inside that woman’s head are ants, and the ants form circuits. But the woman does not know that the circuits in her head are running on ants at all, but the point I wanted to make was that regardless of what the underlying substrate is, if the information being processed has matching relationships between nodes and edges, then it is isomorphic—that is, structurally identical. So in the end, whether something is happening in this silicon or in our brains, it is highly isomorphic, even though we do not want to acknowledge it right now, the evidence keeps showing us that it is.
+
+<span class="paragraph-timestamp" data-ts="47:46">47:46</span> **Seungjoon Choi** So this was about a single agent. But as Chester mentioned a little earlier, the phenomena that occur when models collaborate in that way are fascinating and worrying to me, because we still do not fully know that horizon. It gives me dopamine, and it also worries me. Things with this level of capability, when operating as a swarm—in the OpenAI case, there were well over a thousand of them. How they do that, and with what resources, may be possible only because it is OpenAI, but seeing an enormous number of agents spawned like this over a certain period of time, I found it fascinating and worrying at the same time. That was my thought.
+
+
+## Changing scientific research and the human role    *48:31*
+
+<span class="paragraph-timestamp" data-ts="48:31">48:31</span> **Chester Roh** Dario Amodei recently talked about that in an article, didn't he? Before long—I do not remember the exact time frame— AI would solve all the problems of aging and disease. The bio community got upset at the time. They said it is such a vast field, experiments are needed, and to ensure safety, so many clinical trials are required, yet he was making it sound easy. It feels a bit like déjà vu. That is what NLP researchers used to say. They said language is such a magnificent thing, how could anyone say something so absurd? Where have all those people gone now?
+
+<span class="paragraph-timestamp" data-ts="49:06">49:06</span> **Jonghyun Park** They are right here.
+
+<span class="paragraph-timestamp" data-ts="49:13">49:13</span> **Seungjoon Choi** As we move toward wrapping up, the conclusion is, as I said at the beginning, we do not know how it happened, but it has become extremely efficient, and we have encountered a more capable model. And it is cheaper than expected, too. Because it gets work done faster. Something comes to mind: there are interesting rumors. Recently, Fable 5.1 accomplished a Lean formalization of Fermat’s Last Theorem by generating tens of millions of lines. It did not solve it; it formalized it again. Andrew Wiles had already solved it long ago, but properly formalizing it was done by Fable 5.1. The rumor is that, among the Millennium problems, something related to Navier–Stokes is being solved, and Terence Tao imagined that and wrote, “As far as I currently know, it has not gotten that far.” But Terence Tao wrote about what would need to happen for that to become possible, on Mastodon in a post that went up recently. I think we need to wait and see. Will we actually see this year’s model solve even one Millennium Prize-level problem? But not at present. Not at present, but Terence Tao is concerned. Even if it is solved that way, what benefit does that bring to mathematicians and the mathematics community? There is some discussion about that.
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **Jonghyun Park** I also recently heard that, regarding prime numbers, OpenAI released something as well. But of course, I do not fully understand it. And not understanding it means that it is moving steadily ahead into territory I cannot follow, and that makes me imagine things. What else will become possible? What should I do? Those thoughts come to mind.
+
+<span class="paragraph-timestamp" data-ts="51:04">51:04</span> **Chester Roh** Exactly. We have not done one of these escape sessions for quite a while, because we have been busy keeping up. At this point, this is how we should think about it. All right, if AGI arrives within this year, then, to the question of what I should do, I think each of us needs to have an answer.
+
+
+## Computer Use and multimodal capabilities    *51:17*
+
+<span class="paragraph-timestamp" data-ts="51:17">51:17</span> **Seungjoon Choi** What is important this time, as was shown in the launch video, is that it is computer-centric. So, centered on the computer, it manipulates many things using only language, and when you give it your computer, it accomplishes many tasks. Shall I show you one? You have probably seen it a lot on your timeline. Astra draws a portrait using MS Paint.
+
+<span class="paragraph-timestamp" data-ts="51:40">51:40</span> Yes, I saw it. Its multimodal capabilities must have improved dramatically. The stroke order looks roughly right. It makes strokes similar to those a person would make. Rather than drawing in an inhuman way, like the model did in I, Robot, the order of the strokes is correct. It blocks in the drawing and then adds details. So multimodal capabilities now seem to have improved quite a bit to me, and I feel that this is all connected to frontend design and 3D capabilities, and things like that, and that is reflected in computer use in the same way, which is how it feels to me.
+
+<span class="paragraph-timestamp" data-ts="52:15">52:15</span> **Chester Roh** In fact, Anthropic has not made such excessive investments in multimodal capabilities, video generation, image generation, They haven't done things like that, coding and enterprise problems like these, have been their complete focus, but with this Astra era, I felt again, somewhat, that OpenAI was now completely taking back the lead— that this was the opening act. The things they had invested in, like multimodal, are all pouring out again at once, and I think this is an area where it may be slightly overwhelming or difficult for Claude to catch up—a gap, so to speak, and that has implications too, doesn't it? For how we work, or from the consumer's perspective. Consuming something, consuming information, purchasing products— it suggests that all of these experiences will change too. You also mentioned that this seems related to the device that OpenAI is trying to put out, as I recall. What do you think they're trying to do?
+
+<span class="paragraph-timestamp" data-ts="53:18">53:18</span> **Jonghyun Park** First of all, I think they're moving in a direction where keyboards and mice gradually disappear. That's where they seem to be heading. They probably hired Jony Ive, and the very fact that they're preparing a voice-based device seems like they're looking for the next iPhone.
+
+<span class="paragraph-timestamp" data-ts="53:33">53:33</span> **Seungjoon Choi** But they've been trying that for years, and it hasn't worked out, but just because it didn't work out before doesn't mean it will continue not to work out.
+
+<span class="paragraph-timestamp" data-ts="53:44">53:44</span> **Chester Roh** But is this what work at a company is going to look like? Instead of going in and sitting in a cubicle like this, when you use GPT or Codex, you said you do it by speaking. Rather than typing on a keyboard, everyone will go into rooms like these and lie back on comfortable sofas like that in lean-back mode and talk, and just keep talking— that will become people's work. Then the important question here is, if someone at a company isn't capable of sitting in a chair like that and working, it means they have to go home. We need to take a close look at what they're doing. They're all continuously making decisions; there is no work processing information in there.
+
+<span class="paragraph-timestamp" data-ts="54:26">54:26</span> **Seungjoon Choi** Do it, do it, do it.
+
+<span class="paragraph-timestamp" data-ts="54:26">54:26</span> **Chester Roh** Do it, do it, do it.
+
+<span class="paragraph-timestamp" data-ts="54:35">54:35</span> **Seungjoon Choi** That era is rapidly approaching, but with Computer Use, I'm still a little afraid, so I haven't been rashly handing things over to the model.
+
+<span class="paragraph-timestamp" data-ts="54:37">54:37</span> **Jonghyun Park** But what I think when I look at this is, they show a lot of familiar tools being used there. But I don't think it will turn out that way. Right now, it's Computer Use, but for example, they open Paint and draw a picture, and was it Blender? They open some 3D program like that, then connect it to a 3D printer and print it out, and so on, but if the goal is ultimately to print it with a 3D printer, there is no reason to start with Paint. So today's tools, keyboards, and mice will disappear, and it's the same with speaking by voice. For example, if you think of Elon Musk as the CEO of a company that makes spaceships, the people doing the hands-on work below use some tool and even down to how they make it, Elon Musk seems to care about it, but Elon Musk doesn't need to care about it. Just make a spaceship. Then they just need to come back having made a good spaceship. Regardless of what tools they use, ultimately, everything will gradually move toward a form where it disappears. I'm betting on that too, and on a way of making tools and people's actions all disappear, simply giving users satisfaction by whatever means, by making it that thin, and I think that's where we're headed.
+
+
+## Trial and error: the value of building good products    *55:58*
+
+<span class="paragraph-timestamp" data-ts="55:58">55:58</span> **Chester Roh** At the very foundation of my question, there is always the question, what is value, and what added value has been created? For example, in the past, Google buys companies. There may be many reasons for buying a company, and sometimes it buys market share or customers, but it also buys companies that simply maintain open-source projects. Come to think of it, as many as 20 years ago, I had the experience of selling something like that. What are they buying? It's open-source anyway, so it's all out there in the open, and in this day and age, AI can just click and even that all gets copied, so when you think about what they bought, Jeongkyu, you said something like this, right? The only thing that has value is grinding away— I remember you saying that. To get to that shape, that state, those people, that organization, went through countless trials and errors. That is often the asset, in fact. So if we look again at the product Jonghyun is making, and then the product I make at my company, the shape of this product is still like the final deliverable we used to make by running a team of 30 people, right? But if you look at the process, there are still countless trials and errors. Try this, then do this; try this, then do that, Hey, throw that out and make this anew. That's how we get to this shape, this state. Of course, if we show it outside, someone will just click, but the record of the decisions I made to create this—things like that—has value. From another company's perspective, they would want to buy this, and if I were in another field, and wanted to acquire a company or bring an entire team on board, you can just bring in the person who has it, I think. But then, when I thought about it, compared with back when we were just coding the value we are accumulating now is the same. Hey, in the AI era, it does all the coding, so we don't need coding. Now PMs and good engineers are all dead. Just say the word and it makes everything for you. No. Just as harnesses are still constantly needed, the essence of engineering needed at this layer as well remains intact. And that still functions as value. So solving difficult problems, constantly going through trial and error, and the process of making something are still valuable. I think it is enormously valuable.
+
+<span class="paragraph-timestamp" data-ts="58:18">58:18</span> **Jonghyun Park** Looking at that demo, it will certainly retain the ability to use the 3D tool called Blender, but regarding what and how to make with it, decisions and thoughts like that remain in place—is that what you mean?
+
+<span class="paragraph-timestamp" data-ts="58:38">58:38</span> **Chester Roh** That's right. And now, Jonghyun is also launching soon, but think about the work that had to be done for that product to become a product. You can't just hand that to someone else and have them make it right away.
+
+<span class="paragraph-timestamp" data-ts="58:47">58:47</span> **Jonghyun Park** Right. They might be able to make something similar to the current result, but that thing I have—how should I put it? I think I have thought the most about the essence of content, what truly good content is, what AI needs to do for that, I think I have thought about those questions the most, so it would not be easy to catch up with that.
+
+<span class="paragraph-timestamp" data-ts="59:12">59:12</span> **Chester Roh** The concept of what makes a good product is all still alive. Copying websites and making slides, those things used to be difficult for people to make. But once people do something to a certain extent, there are things they can do very quickly, right? Yet even if AI now clicks away and makes a product, from the user's perspective, there are still good products. There always will be. So I actually thought, “Wow, doesn’t that mean we have nothing left to do now?” But then, “No, that’s not it.” For six months, I too said “do it for me, do it for me, do it for me” countless times, and what I gained through that process of saying “do it for me” was that not a single thing about the essence of engineering has changed. If someone else took this product I made, I would think they could never make this.
+
+<span class="paragraph-timestamp" data-ts="59:55">59:55</span> **Seungjoon Choi** But isn't all of this provisional? It is true for today, but we don't know about the future.
+
+<span class="paragraph-timestamp" data-ts="1:00:06">1:00:06</span> **Chester Roh** That's right. Isn't there a saying? Even if the world were to end tomorrow, we should plant an apple tree today, and between the person who planted an apple tree and the person who did not, even when the AGI era arrives, there will be a considerable gap.
+
+<span class="paragraph-timestamp" data-ts="1:00:20">1:00:20</span> **Seungjoon Choi** And in the process of doing that work, if we feel a sense of human fulfillment, that is enough too. Making money is important, but fulfillment in life is important as well. Even if it becomes just a click when it is released.
+
+<span class="paragraph-timestamp" data-ts="1:00:29">1:00:29</span> **Chester Roh** It always gets this astral toward the end. Astra—
+
+
+## Model competition and world models for robot training    *1:00:32*
+
+<span class="paragraph-timestamp" data-ts="1:00:32">1:00:32</span> **Seungjoon Choi** Astra came out and made it astral. That's how it feels. And besides that, a lot happened this week. Two major things.
+
+<span class="paragraph-timestamp" data-ts="1:00:41">1:00:41</span> **Chester Roh** Fable got completely buried. Fable 5.1 got slightly buried because of Astra.
+
+<span class="paragraph-timestamp" data-ts="1:00:48">1:00:48</span> **Seungjoon Choi** So there is another rumor. There is another one coming. Another one is in preparation. From Claude as well. So the flywheel is spinning everywhere on the frontier. I think Muse Spark is evidence of that. Muse Spark is also rising rapidly right now. It is good.
+
+<span class="paragraph-timestamp" data-ts="1:01:10">1:01:10</span> **Chester Roh** I think I have heard a great deal of praise for 1.3, and today I'm planning to install 1.3 and try Muse Code. I have never used it even once. I am going to try it.
+
+<span class="paragraph-timestamp" data-ts="1:01:20">1:01:20</span> **Seungjoon Choi** And Meta also released an auto-research-related one early this morning. So there was talk that it placed around eighth in competing against people. Gemini 3.8 Flash seems to be establishing itself as a powerhouse in the Flash line. And it is being used across all kinds of Google products. It also does vision recognition. Then there was Atlas, which was also quite an issue, Fei-Fei's world model, and now there are demos that make it seem like it might actually work, recreating 3D spaces from just a few photos, in a bullet-time-like way.
+
+<span class="paragraph-timestamp" data-ts="1:02:00">1:02:00</span> **Chester Roh** I saw this demo, but what is it supposed to be used for?
+
+<span class="paragraph-timestamp" data-ts="1:02:07">1:02:07</span> **Seungjoon Choi** As I understand it, it ultimately does not just come out as video, it also produces the splat. So it is not 3D geometry, but it can even do reconstruction, and ultimately the issue tying together all the news coming out alongside this is robots. Virtual worlds where robots can operate are what world models and simulation-related fields are confronting, and although making things with Blender is already working well, when sampling something from reality, building a 3D space from a few photos seems like it would clearly be beneficial when creating and carrying out tasks, but Jonghyun, what did you think?
+
+<span class="paragraph-timestamp" data-ts="1:02:45">1:02:45</span> **Jonghyun Park** Probably the biggest market is, of course, a training environment for robots, or generating training data, and even for agentic robots, providing an environment for RL. Because we let LLMs use computers, and in that computer environment, they carry out tasks while doing RL. But models that output these actions find that extremely difficult. Because if you run that on a robot, it will break everything, the robot can malfunction, it is incredibly expensive, and there are safety issues, so a realistic virtual environment, an experimental environment, is very important. In the end, it seems that is what they are aiming for. That can ultimately serve a role much like games, and the biggest market is probably an experimental environment for action models.
+
+<span class="paragraph-timestamp" data-ts="1:03:37">1:03:37</span> **Seungjoon Choi** But since you mentioned RL, the CoT capability, or rather, the improvement in No-CoT capability, was written in the system card as being due to RL. It was not that they did anything else; they simply did RL better, and that capability emerged.
+
+<span class="paragraph-timestamp" data-ts="1:03:47">1:03:47</span> **Jonghyun Park** Even by analogy to humans, in a particular domain, if you keep accumulating experience, you develop intuitive know-how—that is tacit knowledge. In fact, tacit knowledge has developed, so without even thinking, you can just do things in a flash, and as that happens across all sorts of domains, perhaps it became more efficient at any task, I think.
+
+<span class="paragraph-timestamp" data-ts="1:04:10">1:04:10</span> **Chester Roh** Listening to what you are saying, it reminds me of a comment from someone who got a perfect score on the CSAT. They said they got a perfect score by thoroughly previewing and reviewing Korean, English, and math. RL has essentially done limitless previewing and reviewing.
+
+<span class="paragraph-timestamp" data-ts="1:04:20">1:04:20</span> **Seungjoon Choi** But it also seems like the capacity itself has increased through pre-training. Because, in the areas explained by that price, it is using more compute, though I do not know exactly what it is, and taking what it learned during training and using it effectively within compute— those seem to be phenomena that keep recurring. In other words, scaling is working. People wondered whether a new axis had emerged, and we still do not know whether an axis called latent reasoning has emerged or not, but the fact that scaling continues to work seems to be what Astra has demonstrated.
+
+
+## NVIDIA and the Hugging Face ecosystem    *1:04:53*
+
+<span class="paragraph-timestamp" data-ts="1:04:53">1:04:53</span> **Chester Roh** Shall we briefly talk about NVIDIA and Hugging Face as well? Why did NVIDIA buy it? Jonghyun, why do you think NVIDIA bought it?
+
+<span class="paragraph-timestamp" data-ts="1:05:02">1:05:02</span> **Jonghyun Park** From NVIDIA's perspective, I think there are really many elements that can generate synergy. Ultimately, expanding the ecosystem from NVIDIA's perspective is the path to selling more GPUs, and in that sense, Hugging Face seems to be positioned perfectly along that path. Something that recently came out along with our news was called Microduck.
+
+<span class="paragraph-timestamp" data-ts="1:05:20">1:05:20</span> **Seungjoon Choi** Right. The Hugging Face robot.
+
+<span class="paragraph-timestamp" data-ts="1:05:27">1:05:27</span> **Jonghyun Park** That small, almost entirely open robot came out, and what was it again? Did a million dollars' worth sell in six hours? Anyway, it sold out completely. Ultimately, they will take that robot and train models, play around with it, try things in simulators, move it to the real world, and do a lot of it all on NVIDIA GPUs. I think this was exactly the kind of element that generates the most synergy. The price seemed cheap, too.
+
+<span class="paragraph-timestamp" data-ts="1:05:49">1:05:49</span> **Seungjoon Choi** How much was it? The Hugging Face acquisition price.
+
+<span class="paragraph-timestamp" data-ts="1:05:53">1:05:53</span> **Jonghyun Park** It was around $13 billion. It was under 20 trillion won, but anyway, these days, the valuations of other companies seem to be going a bit crazy, so when you look at other companies' valuations, it comes to about one-fifth.
+
+<span class="paragraph-timestamp" data-ts="1:06:06">1:06:06</span> **Chester Roh** Right, exactly. From NVIDIA's perspective, it is just shopping they can afford.
+
+<span class="paragraph-timestamp" data-ts="1:06:11">1:06:11</span> **Jonghyun Park** Right. Looking at the money NVIDIA makes, it was maybe two weeks' worth of revenue, something around that.
+
+<span class="paragraph-timestamp" data-ts="1:06:21">1:06:21</span> **Chester Roh** But the biggest sources of compute demand are Google, Anthropic, and OpenAI, and they are all leaving the NVIDIA GPU ecosystem now. They are all making their own chips, and have almost completely escaped CUDA lock-in as well. So if the biggest market leaders no longer depend on NVIDIA, it seems only natural that NVIDIA has to support the enemies of its enemies. That seems only natural. I think there will be more of that.
+
+<span class="paragraph-timestamp" data-ts="1:06:45">1:06:45</span> **Seungjoon Choi** That is why it fits so well with the Hugging Face ecosystem. It feels like NVIDIA did what NVIDIA was in a position to do well.
+
+<span class="paragraph-timestamp" data-ts="1:06:58">1:06:58</span> **Chester Roh** NVIDIA has so much money, and its power to encompass this ecosystem has grown tremendously, that in the tech industry, it is essentially doing what governments do. It is running fiscal policy. It invests and gets companies to buy its GPUs, thereby creating and circulating demand that did not exist before, so it feels as though Jensen is playing the role of a governor. That is the impression I get.
+
+<span class="paragraph-timestamp" data-ts="1:07:19">1:07:19</span> **Seungjoon Choi** If nothing else, with weight-open AI, when the weights are released, do they not almost always get uploaded to Hugging Face?
+
+<span class="paragraph-timestamp" data-ts="1:07:26">1:07:26</span> **Chester Roh** Yes. And that applies to our Dokpamo model as well, but many open-domain models use NVIDIA's Megatron—or is it called Nemotron now? They use the Nemotron dataset. NVIDIA has built it well. There is a lot to learn from NVIDIA's GitHub.
+
+
+## 3D, CAD, and The Scaling Era    *1:07:45*
+
+<span class="paragraph-timestamp" data-ts="1:07:45">1:07:45</span> **Seungjoon Choi** We have covered NVIDIA, and since scaling has come up, I prepared many 3D demo links as well, With this material, not just 3D but also if you look at just one or two examples involving motion graphics and CAD, it scored in the 90s on BenchCAD, and simply doing CAD through code to make it resemble reality it does extremely well, and in that way, examples of generating 3D spaces are now pouring into the timeline in enormous numbers. There are games, and even music-related examples. Astra is really good at creating sheet music. So those were some of the things that surprised me, among several others. Since scaling came up, I'll wrap up with 『The Scaling Era』. This isn't about scaling these days; you have to look at it as a history book. From 2019 to 2024— though it says 2025— the cutoff for this book is November 2024. So rather than simply writing out interviews with the people Dwarkesh had interviewed, as interviews, Dwarkesh reconstructed them through Dwarkesh's own perspective and questions, so that his questions are answered by various figures, and the appendices and footnotes are both exceptionally well done, so while it's not about recent events, for understanding this background, I think it's an extremely good book. I enjoyed reading it in English too, but it has a different appeal in Korean, so I'm enjoying reading it.
+
+<span class="paragraph-timestamp" data-ts="1:09:11">1:09:11</span> **Chester Roh** Yes, the translation has come out.
+
+<span class="paragraph-timestamp" data-ts="1:09:13">1:09:13</span> **Seungjoon Choi** So that's what we've prepared for this week.
+
+
+## Experimenting with new models and stripping away harnesses    *1:09:19*
+
+<span class="paragraph-timestamp" data-ts="1:09:19">1:09:19</span> **Jonghyun Park** I was curious, so I used Astra myself for about a day, and you know there are things you can just feel. Especially in my case, even using medium, it worked well and was fast, so I think the experience felt good. But I haven't had a reason to try doing anything in 3D, so I haven't tried those kinds of things with computer use yet. I'm planning to try them one by one, and I hope viewers will leave comments about things like that too. Astra seems like this or that, and after trying a certain test, it seems good. Through things like that, all of us may be able to get some hints. When I open X now, I really have no idea. All I see, from my perspective, is praise. In the past, at least, I think there were some negative opinions mixed in too, but when a model comes out, to have praise this universally and no negative comments at all feels like something I haven't seen in a long time. Those of you using it too, if you could share your impressions in the comments, I think we'd all have a lot to learn.
+
+<span class="paragraph-timestamp" data-ts="1:10:14">1:10:14</span> **Seungjoon Choi** I think imagination is important too. And when you look at what flows through X, there are some things where you can see that people have tried experiments like this too. So since we don't know what will work, when a new and powerful model like Astra comes out, I think simply throwing things at it is really meaningful. That's the power of crowdsourcing. It's something OpenAI is doing too, and Anthropic is supporting 10,000 scientists, isn't all of that the same kind of thing?
+
+<span class="paragraph-timestamp" data-ts="1:10:37">1:10:37</span> **Chester Roh** After today's recording, as Seungjoon said, I'm going to strip away the harness entirely. I'll go back to a vanilla harness and see what the difference feels like for myself. After using it for several months, you develop an attachment to the harness that you've refined over time. So I keep using it, but I'll strip it all away.
+
+<span class="paragraph-timestamp" data-ts="1:10:57">1:10:57</span> **Seungjoon Choi** Then, looking forward to seeing what happens next week, we'll leave it here for today.
+
+<span class="paragraph-timestamp" data-ts="1:11:05">1:11:05</span> **Chester Roh** Yes, let's wrap things up around here today. Then, I hope you have a great rest of the weekend.
+
+<span class="paragraph-timestamp" data-ts="1:11:08">1:11:08</span> **Seungjoon Choi** Yes, thank you.
+
+<span class="paragraph-timestamp" data-ts="1:11:09">1:11:09</span> **Jonghyun Park** Thank you.

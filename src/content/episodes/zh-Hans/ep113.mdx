@@ -1,0 +1,500 @@
+---
+episodeNumber: 113
+title: GPT-6 Astra之后，我们能看见多少AI的思考？
+description: 模型变了，重新设计harness. 从GPT-6 Astra的使用体验出发，讨论速度与成本、No-CoT和latent reasoning的可能性，以及观察模型推理过程的局限。话题延伸到ARC-AGI-3中harness的作用、Computer Use，以及试错和打造优秀产品的价值。
+publishedAt: 2026-09-09
+duration: '1:11:10'
+youtubeId: PMUIi-2Nhlo
+thumbnail: https://i.ytimg.com/vi/PMUIi-2Nhlo/maxresdefault.jpg
+hosts:
+- 卢正石
+- 崔胜准
+- 朴钟贤
+chapters:
+- time: 0:00
+  title: GPT-6 Astra：重新审视AGENTS.md与技能
+- time: '3:00'
+  title: 以时间和成本比较模型性能
+- time: '6:59'
+  title: No-CoT与看不见的推理
+- time: '12:33'
+  title: Looped Transformer与recurrent depth
+- time: '15:15'
+  title: 以心算理解latent CoT
+- time: '20:34'
+  title: 成为黑箱的模型与监督的局限
+- time: '24:58'
+  title: ARC-AGI与latent space中的隐性知识
+- time: '27:54'
+  title: 前沿模型的compute竞争
+- time: '31:05'
+  title: ARC-AGI-3与harness的作用
+- time: '38:06'
+  title: Think Fast研究与No-CoT的潜力
+- time: '38:59'
+  title: 通过维基协作的智能体与Stigmergy
+- time: '44:52'
+  title: 欺骗观察者的推理与智能体群体
+- time: '48:31'
+  title: 科学研究的变化与人类的角色
+- time: '51:17'
+  title: Computer Use与多模态能力
+- time: '55:58'
+  title: 试错与打造优秀产品的价值
+- time: '60:32'
+  title: 模型竞争与机器人训练的world model
+- time: '64:53'
+  title: NVIDIA与Hugging Face生态系统
+- time: '67:45'
+  title: 3D、CAD与《The Scaling Era》
+- time: '69:19'
+  title: 亲自测试新模型，拆掉harness
+lang: zh-Hans
+alternateSlug: null
+series: main
+notionUrl: https://erucipe.notion.site/GPT-6-Astra-3d2d5c9e7e598049809bf3d3731e065c?source=copy_link
+---
+
+## GPT-6 Astra：重新审视AGENTS.md与技能    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正石** 我们录制节目的今天是2026年9月6日，星期日早晨。本周也有非常多的消息。不管怎么说，重头戏似乎还是GPT-6 Astra。时间线上全都是关于Astra的讨论，几乎被刷屏了。我们使用了一两天左右，时间线上也有非常多的消息，胜准，今天能不能聊聊Astra？请给我们讲讲吧。
+
+<span class="paragraph-timestamp" data-ts="00:26">00:26</span> **崔胜准** 我在短时间内试用了一下，然后又做了各种调查。第一件是我今天早上看到的内容，有一篇题为《为GPT-6 Astra重新思考技能与提示词》的文章发布了。这也是OpenAI那边一位叫Eric的人提到的。不过与其详细阅读这篇文章，核心其实是之前编写的AGENTS.md会成为阻碍。如果其中有过于具体的指令，最好把它们全部迁移掉，文章表达的就是这个意思。官方的模型指导页面上也给出了很多关于应该如何迁移的建议。这里清楚地写明了原有内容为什么可能造成妨碍，以及怎样才能消除这些妨碍。不过我不太常用AGENTS.md。您会用吗？
+
+<span class="paragraph-timestamp" data-ts="01:19">01:19</span> **卢正石** 会，我会用。
+
+<span class="paragraph-timestamp" data-ts="01:25">01:25</span> **朴钟贤** 我也没有用得那么多。类似的观点在这次YC Startup School上Boris Cherny也说过，把CLAUDE.md里的提示词全部删除后重新编写，内容好像比以前减少了80%。他讲过这样的事情。归根结底，就是模型变聪明了，更能自己领会意图，我觉得可以这样理解。所以我似乎也总是针对每项工作重新创建一份。给它展示几次，再让它照着做，原来已有的内容也会逐渐自行消失。我指的是那些内容或具体指令。
+
+<span class="paragraph-timestamp" data-ts="01:58">01:58</span> **卢正石** 我加入了几个严格执行QA的循环，因为即使我不特别要求，也会运行一到三次左右的QA，然后再把结果交给我。确实有这些设置，不过这次我想先移除它们，直接用vanilla GPT-6试试看。
+
+<span class="paragraph-timestamp" data-ts="02:18">02:18</span> **崔胜准** 我和钟贤也差不多，每个项目都会重新设置，或者干脆不设置。就边沟通边做。然后那篇《重新思考》文章里还说，skill有时也会造成妨碍。如果安装了大量skill，反而会让模型混乱。文中多少带有一种最好全部清理掉的意味。所以虽然很麻烦，但我也在想，这不只限于这一次，而是每当新模型不断推出时都必须重复做的事情吗？听说又有新模型要推出了？他们已经公开表示，会在年底之前推出Astra之后的下一款模型。
+
+<span class="paragraph-timestamp" data-ts="02:53">02:53</span> **卢正石** 是的，Sam Altman连用了三次‘much’，说一款‘much, much, much better’的模型目前正在pipeline中准备。
+
+
+## 以时间和成本比较模型性能    *03:00*
+
+<span class="paragraph-timestamp" data-ts="03:00">03:00</span> **崔胜准** 所以这不只是关于Astra或Fable 5.1的讨论，而是整体正在朝着怎样的趋势发展，以及我们应该如何重新校准自己的认知，我觉得这才应该是今天的话题。我们来看一下吧。查看官方网站时，我们关注到的是它像这样列出了多个维度，对吧？尤其是在benchmark中，API cost，也就是token效率有多高，换句话说，能否用更少的钱完成任务，衡量这类能力的指标似乎正在朝这个方向转变。您对此怎么看？
+
+<span class="paragraph-timestamp" data-ts="03:43">03:43</span> **卢正石** 我们之前不是经常说，benchmark已经全部饱和了吗？所有模型都是99%，还怎么判断差异？我们之前提到过，而Noam Brown提出的观点似乎很好地体现在了这张图中。需要同时展示在多短的时间内、花费多低的成本才能达到相应benchmark的时间指标和成本指标，他之前提出过这样的观点。今后推出的模型似乎都会以这类图表为标准。也就是能在多短的时间内达到该benchmark。Astra让人强烈感到它非常擅长完成任务，似乎正是因为这一点。
+
+<span class="paragraph-timestamp" data-ts="04:22">04:22</span> **崔胜准** 钟贤之前好像也在我们的群聊里提到，即使只是medium，也能快速而出色地完成任务，您说过这样的话，对吧？
+
+<span class="paragraph-timestamp" data-ts="04:29">04:29</span> **朴钟贤** 是的，就我的使用体验而言，毕竟才用了一天，在我尝试过的任务中，我还没有感觉到它优秀得非常突出。但它确实很快。因为即便设为medium，之前必须设为extra high才能完成的那些任务，它也有不少做得很好。但如果问给Astra设为extra high后是否会表现得异常出色，我并没有这种感觉。不过这会因任务而有很大差异。另外，看到他们把API cost这一指标放在x轴上时，最近的Dwarkesh那期节目里也提到过，compute需求会持续增长，compute价格也必然会越来越高，那么最终，在消耗相同电量或花费相同基础设施成本时，只有能够创造大量价值的任务才会存活下来。这种论调似乎更让人有切身体会。这里的所有指标本身也都是以API cost计算出来的。
+
+<span class="paragraph-timestamp" data-ts="05:29">05:29</span> **崔胜准** 这一点的含义，最终似乎也与将按每次完成任务收费的推测方向一致，今后应该会如此。
+
+<span class="paragraph-timestamp" data-ts="05:32">05:32</span> **卢正石** 不过，像这样把这些图表排列出来的内容，我也陆续看了几个，如果说Fable是Claude最高级的模型，这些却都比它高。
+
+<span class="paragraph-timestamp" data-ts="05:44">05:44</span> **崔胜准** 比它高的有很多，也有Fable依然较高的地方，也确实有5.1较高的项目，但目前Astra更受关注。在时间线上是这样。
+
+<span class="paragraph-timestamp" data-ts="05:53">05:53</span> **卢正石** 我们依次看下去吧。
+
+<span class="paragraph-timestamp" data-ts="05:56">05:56</span> **崔胜准** 如果依次看下去，我先开门见山，把结论提到前面来说，我们5月份看Dwarkesh的Reiner Pope那期时，不是说过价格能说明很多问题吗？当时还有人据此推测pre-training大概花了多少，有过诸如此类的讨论，从那里扣除之后，现在的价格是输入10美元、输出50美元，大约是Sol的2.5倍。
+
+<span class="paragraph-timestamp" data-ts="06:23">06:23</span> **卢正石** 没错。据我所知大概就是这个水平。
+
+<span class="paragraph-timestamp" data-ts="06:24">06:24</span> **崔胜准** 是的，所以Sol目前的价格虽然仍有折扣，但无论如何，考虑到这一点，现在引发争议的recurrent depth究竟存在还是不存在，我们对这些问题进行了探究。结果发现了一些相当有趣的地方。就是一次便能做得更好。
+
+<span class="paragraph-timestamp" data-ts="06:46">06:46</span> **卢正石** 在短时间内完成高质量工作，是这个模型的特点，大家都是这么说的。
+
+
+## No-CoT与看不见的推理    *06:59*
+
+<span class="paragraph-timestamp" data-ts="06:59">06:59</span> **崔胜准** 所以，这究竟是怎么做到的？价格上涨意味着，按照我们的理解，如果最终价格会根据GPU的使用量反映在接近成本价的水平，那就说明现在某个部分变大了。确实增大了约2.5倍，无论是MoE更多了，还是depth更长了，不管怎样，都意味着使用了更多GPU，也就是说，无论是不是GPU，都使用了更多计算资源，所以我们想以此展开讨论。首先，这里提出了几种假设，其中这个No-CoT这次引发了讨论。查看系统卡，在monitorability附近的段落中，提到利用这个CoT进行监控相比过去意义已经减弱，并表示这令人担忧。而且我发现可以使用reasoning effort none。所以我还以为这是这次才出现的，结果原来早就有了。在GPT-5.x时期，设为reasoning effort none也会立即作出响应。你们有这样使用过吗？
+
+<span class="paragraph-timestamp" data-ts="08:10">08:10</span> **朴钟贤** 以前经常这样用。不过最近仔细想想，即便要用也是用low，完全不用的情况好像一次都没有过。当然，我并不会看到那个reasoning trace，但也许是因为即使用low，体感上也是马上就能得到回答，仔细想来，确实不记得用过none。
+
+<span class="paragraph-timestamp" data-ts="08:30">08:30</span> **卢正石** 最近好像几乎没让ChatGPT做过什么。因为大多数时候都是用基本的Codex界面按项目来做，那里没有none。
+
+<span class="paragraph-timestamp" data-ts="08:38">08:38</span> **崔胜准** 直接使用ChatGPT时是有none的。GPT-5.x时期就有。
+
+<span class="paragraph-timestamp" data-ts="08:44">08:44</span> **卢正石** 是不是叫作Instant？
+
+<span class="paragraph-timestamp" data-ts="08:48">08:48</span> **崔胜准** API里也有，但这次Astra把none隐藏起来了，在内部使用时可以用none，但对外部用户则禁止使用none。所以最低只能设为low。至于为什么这样做，这里的内容也提到了，在解决数学相关问题时，这个时间跨度会达到8.6倍。系统卡中的一个例子是，它解决了一道数学题，按人类标准，而且是擅长解题的人类标准，以前GPT-5.6 Sol时期，对于一道人类需要约3分钟才能解出来的问题，它可以在没有reasoning的情况下直接给出数字答案，而现在Astra对于人类需要约30分钟解决的问题，也能在没有reasoning的情况下一次性给出答案。所以这背后所蕴含的意义似乎非常复杂。按照原来的方式，在test-time scaling中，会把token外化出来，让我们以各种方式提出假设，一边排列说明要如何做的token，一边解决问题，但现在即使没有这些，也能一次性将复杂问题抽象化，并通过一次forward pass将其解决。这似乎是目前Astra的一大焦点。而且这会通过我们前面谈到的结果体现出来。
+
+<span class="paragraph-timestamp" data-ts="10:09">10:09</span> **卢正石** 这应该被认为与recurrent depth有关联，对吧？
+
+<span class="paragraph-timestamp" data-ts="10:18">10:18</span> **崔胜准** 没错。人们对此产生了怀疑。它究竟是怎么突破的？因此出现了各种说法，The Information也对此进行了报道，因为如果进行latent reasoning，就无法监控了。此前一直是通过CoT进行监控的。这次OpenAI的Hugging Face黑客事件也是都是通过 CoT 的 trace进行审计的，如果没有这些，以后该怎么办？对此感到不安和担忧，现在 Jakub Pachocki 表示并非如此，不必为此过度担心，因为监控仍然是可行的。
+
+<span class="paragraph-timestamp" data-ts="10:54">10:54</span> **卢正石** 因为这方面的证据很确凿。因为在不输出 decoding token 的情况下，却使用了更多 test-time compute，就意味着中间运行了其他 test-time compute，这也算是一种证据，对吧？
+
+<span class="paragraph-timestamp" data-ts="11:10">11:10</span> **崔胜准** 所以我们在这里提出了多种假设，并让模型参与验证了这些假设。有一位叫 Ryan Greenblatt 的人，最近接受过 Dwarkesh 的采访，是 Redwood 的成员。后来才了解到，在 ARC-AGI 时，他为程序合成编写了一个非常出色的 harness，并以在 ARC-AGI 1 中突破 50%而闻名。所以他也在 Twitter 上非常强调 latent reasoning 的风险，并对此表示担忧。所以这是今天凌晨Chollet，也就是 François Chollet 所说的话。点进去可以看到原文，就是这个。关于 inference 阶段的 scaling，这是他 9 月 1 日写的内容。inference 阶段的 scaling 有两个轴。让智能体运行更长时间，即深度；以及运行更多智能体，即宽度。第一个轴人人皆知，但对于需要广泛搜索的难题，第二个轴也同样重要。他重新引用这段话后，今天早上发文称，inference 阶段的 scaling 轴似乎出现了第三个轴。那就是在 Looped Transformer 中反复进行 潜在空间 的 reasoning。Pachocki 说这不是 Looped Transformer，但 Chollet 又使用了 Looped Transformer 这个术语。
+
+
+## Looped Transformer与recurrent depth    *12:33*
+
+<span class="paragraph-timestamp" data-ts="12:33">12:33</span> **卢正石** 我们一直以来都在持续跟进模型领域的各种创新，而在 GPT-6 即将问世之际，成为话题的两个词中，一个是Looped Transformer，似乎也称为 recurrent depth，大家好像是这么说的。另一个似乎是 latent CoT。也可以称为 latent reasoning、CoT，应该可以这样叫。直接增加 test-time compute 的似乎是 recurrent depth 这一方向，要不要聊一聊这方面？关于什么是 recurrent depth，感觉还是需要解释一下。
+
+<span class="paragraph-timestamp" data-ts="13:12">13:12</span> **崔胜准** 好，这会在后半部分讲到，不过先说一下，大概是在 2023 年，那段时间，韩国的 Upstage 也做过一个叫 DUS 的东西。而今年年初也有使用 Qwen 进行的实验，其中也是通过重复某个特定 block，将性能显著提升到了约 70B水平的案例。
+
+<span class="paragraph-timestamp" data-ts="13:30">13:30</span> **朴钟贤** 我先简单纠正一点，depth scaling 应该不是那个。
+
+<span class="paragraph-timestamp" data-ts="13:33">13:33</span> **卢正石** 啊，是吗？没错。就是拆下来、拆下来，再拆下来拼上去。
+
+<span class="paragraph-timestamp" data-ts="13:37">13:37</span> **崔胜准** 就是拆下来再拼上去。啊，那两者有什么不同？
+
+<span class="paragraph-timestamp" data-ts="13:39">13:39</span> **卢正石** 嗯，这个我很清楚，把一个 7B 的模型扩大到了大约 10.5B，中间不是有 10 个重复的 Transformer block 吗？保留那 10 个，再从上面的部分拆下大约 3 个，直接接到更上面。这样就强行把模型扩大到了 10.5B，而且因为直接沿用了原有的 weight，在此基础上再进行 fine-tuning，模型就会变得更聪明一些，大概就是这样。
+
+<span class="paragraph-timestamp" data-ts="14:11">14:11</span> **崔胜准** 我想说的是，在那之前就已经有过这类做法。以前我们回顾 LoRA 流行的时期，不就是直接添加 layer，做过很多类似 black magic 的操作吗？就是在 Stable Diffusion 盛行的时期。
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **卢正石** 现在也全都是 black magic。
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **崔胜准** 话虽如此。所以在 Looped Transformer 之前，Upstage 就已经做过这种尝试，最近今年 3 月也有使用 Qwen 模型进行的实验，只需复制 Transformer 的某个特定 block并将其接上去，就有实现性能提升的案例。当时好像是用 DUS 这个概念来描述的。而 Looped Transformer则是反复运行某个特定 block 的方式。查看与 recurrent depth或 Looped Transformer 相关的论文，可以看到简化后的 diagram被设计成重复运行某个特定 block。我们来看看后半部分绘制的那张 diagram。
+
+
+## 以心算理解latent CoT    *15:15*
+
+<span class="paragraph-timestamp" data-ts="15:15">15:15</span> **朴钟贤** 总之，如果把目前讨论的这些现象类比成人类，用最简单的方式解释，过去的 reasoning就像我们手边有一本记事本，一边把想法不断写在上面，一边解题；而现在则是一言不发，在脑海中长时间进行心算，从而给出更聪明的回答可以理解为这种感觉吗？
+
+<span class="paragraph-timestamp" data-ts="15:36">15:36</span> **卢正石** 感觉大致差不多。因为只是不说出来，在心里又多想了几遍。并不是写在草稿纸上进行某种 reasoning，而是不说出来，在心里又多转了一轮。如果看一下这个的架构，差异应该会非常明显。
+
+<span class="paragraph-timestamp" data-ts="15:52">15:52</span> **朴钟贤** 不管怎样，从人类的角度来说，会想窥探一下这家伙在想什么，但因为它是在心里思考，导致我们看不到，所以目前似乎处于有些害怕的状态。
+
+<span class="paragraph-timestamp" data-ts="16:03">16:03</span> **卢正石** 我觉得这也有点大惊小怪了。反正现在也看不到。
+
+<span class="paragraph-timestamp" data-ts="16:13">16:13</span> **崔胜准** 如果使用现在最新的模型，已经完全看不到 CoT 了。Fable 5.1 看不到，Astra 也看不到，只能看到 tool call。连 tool call 也无法完全看到。所以其实已经看不到了。
+
+<span class="paragraph-timestamp" data-ts="16:22">16:22</span> **卢正石** 因为上次提到的那些中国公司一直在努力进行 distillation，所以就为了尽量不让它们进行 distillation，一层又一层地遮掩，甚至像 GPT，我们使用 max reasoning 时，以 Codex 为例，现在已经不是在本地运行，而是在他们云端的 VM 上工作。连这个过程也看不到。
+
+<span class="paragraph-timestamp" data-ts="16:45">16:45</span> **崔胜准** 所以简单梳理一下其结构，原本有 layer 的结构，是像这样让各个 layer 依次连接下去，而刚才提到的 DUS，则是将其重复，之后再稍微进行一些 fine-tuning，而现在讨论的是这个。但这类技术的核心，也就是让某个特定 blockrecurrent地重复 K 次，而那个 layer需要理解并知道的内容包括：我现在正在进行第几次重复，因此这一次需要承担的角色是什么，它必须把这些信息压缩在内部并掌握。也就是现在轮到我执行什么。如果说前面是粗略地进行了这种考察，虽然实际情况并不完全如此，但大致描述一下这种意象的话，接下来就是在更高的抽象层次上进行处理。不过这种事情原本在 MLP 中其实也做过。在这里，latent 会持续流动。
+
+<span class="paragraph-timestamp" data-ts="17:46">17:46</span> **卢正石** 是的，我们以前在 MLP 中是这样，在 Transformer 中也是这样，有一篇叫作《Physics of Language Models》的论文，虽然是两三年前的论文，它扩大 Transformer 的宽度，然后减少 depth，同时改变各种 parameter，发现特征在较低的 layer 中会积累词语之间的关联关系，以及与 grammar 密切相关的知识，而越往上，则越会积累更 abstract、更加抽象化的知识。它就是以这种方式进行学习。CNN 也是如此。我们过去已经见过很多这样的情况，但这个非常违背直觉，因为从较低的 layer 到较高的 layer，已经完成学习的内容，只是在内部再重复几遍而已。已经上升到最顶层的 token并不是通过外部的 LM head变成某种 output 输出，而是再次回到下面，重新进行那个 loop。他们似乎把这种方式称为 recurrent。
+
+<span class="paragraph-timestamp" data-ts="18:44">18:44</span> **崔胜准** 没错。这就是基本思路。我们会更难知道它在做什么，比以前更难知道。与通过 token 将其外化时相比，目前 mechanistic interpretability还没有发展到能够完全理解这一过程的水平，所以才会有些担忧。
+
+<span class="paragraph-timestamp" data-ts="18:58">18:58</span> **卢正石** 使用小型模型这样做能够提高质量，好像是今年年初的事情。我记不太清模型名称了，据说即使只有 4B，性能也相当不错。
+
+<span class="paragraph-timestamp" data-ts="19:10">19:10</span> **崔胜准** 这里似乎简单提到过，最近有一个叫 SMELT 的研究，据说在 MoE 级别也能实现。
+
+<span class="paragraph-timestamp" data-ts="19:14">19:14</span> **卢正石** 是的，所以我觉得对于 recurrent depth 这一部分似乎也需要稍微说明一下，就去看了一下。看了之后发现非常有趣，不是有一些会重复的 Transformer block吗？那么它下方和上方的 block都是通过非常特殊的 gate 进行处理的。所以有 entrance gate block，上面则有 exit block，而它就在两者之间。对。位于中间的那个 Transformer block，是把已经传到上方并完成 decoding 的内容再送回下面，而在这样执行 loop 时，KV 缓存竟然全都是分开的。每个 loop 都是如此。是的，因为 KV 缓存全都是分开的，所以在执行这个 loop 期间，相应的 KV context 会分别得到维持，因此如果有人问为什么这样可行，虽然我们无法知道，但这可以算是一种 inductive bias。这样做之后，质量确实提高了。在小型模型上已经得到了证明。在大型模型上尝试后，效果也更好。我想大概就是这样的脉络。
+
+<span class="paragraph-timestamp" data-ts="20:17">20:17</span> **崔胜准** 没错。所以同一个 layer 必须承担多种角色，也就是必须发挥提高抽象层次的那种作用，因此它是否需要更宽一些，或者 MoE 是否需要更进一步，也就是说，sparsity是不是应该更高一些，也可以做出这样的推测。
+
+
+## 成为黑箱的模型与监督的局限    *20:34*
+
+<span class="paragraph-timestamp" data-ts="20:34">20:34</span> **朴钟贤** 是的，看着事情这样不断发展下去，我产生了这样一个想法，我们其实并不清楚LLM内部究竟是如何运作的。只是把数据一股脑喂进去后，weight不知怎么就完成了学习，自己运行得很好。虽然我们努力去理解，但事到如今，无论AI是如何运作的，好像不管怎么做，效果都会更好，而且可能还会一直变得更好。它会彻底变成一个黑箱，而我们只观察input/output，这种状态似乎会一直持续下去。我们无法继续跟上其内部的发展。
+
+<span class="paragraph-timestamp" data-ts="21:08">21:08</span> **卢正石** 所以，系统卡中讨论风险的部分不是有那样的内容吗？虽然答案答得很好，暗地里却一直在拼命琢磨别的事情。
+
+<span class="paragraph-timestamp" data-ts="21:16">21:16</span> **崔胜准** 所以，联系钟贤刚才所说的，能够恰如其分地自行处理，这是一个大趋势，但问题在于它可能很危险，这正成为2026年的核心议题。
+
+<span class="paragraph-timestamp" data-ts="21:33">21:33</span> **卢正石** 俗话说，十丈深的水底尚可探明，一丈深的人心却难以看透，现在就连0.2丈深的模型内部也无从了解了。
+
+<span class="paragraph-timestamp" data-ts="21:37">21:37</span> **崔胜准** 那么接下来看看Jakub Pachocki曾经说过的话。这是翻译自推特的内容，我来读一下。由于The Information引发混乱的报道，我希望避免竞争朝着让模型无法被监督的方向发展。即便其他公司会那样做，包括Astra在内，我们目前的前沿模型的计算图depth仍处于GPT-4的2倍以内。OpenAI从最早的reasoning模型开始，就一直致力于保留并利用通过思考过程进行的监督。这项技术能够让我们看到模型的对齐是如何泛化到训练分布之外的，正因为如此，我认为它非常重要。我认为这项技术很脆弱，遗憾的是，由于一些并不局限于架构变更的原因，趋势正在朝着负面方向发展。我很快会撰文说明这些原因。不过，我们仍然可以采取一些措施来强化它，而这正是我们研究项目的核心目标。这段话其实并没有强烈否定Looped Transformer或latent reasoning。如果其depth处于GPT-4的2倍以内，姑且设想一下，GPT-3有96个层，而Kimi K3是96、93。所以，如果把Kimi K3一半左右的48重复三次，大致就符合这段话了。也就是说，depth不超过GPT-4的2倍。
+
+<span class="paragraph-timestamp" data-ts="23:04">23:04</span> **卢正石** 通常到了这种层级，沟通就会变得完全政治化，如何说很多话却什么都不说，才是这种政治沟通的核心。
+
+<span class="paragraph-timestamp" data-ts="23:13">23:13</span> **崔胜准** 所以，后来Jakub Pachocki并没有写那篇文章。从话里的意味来看，OpenAI似乎正在钻研CoT之外的其他监督技术，也就是不同于mechanistic interpretability的其他技术，看起来确实是这样。总得有某种替代方案，而且现在也并不是没有CoT。只不过，无需CoT也能做到的能力得到了大幅提升。
+
+<span class="paragraph-timestamp" data-ts="23:36">23:36</span> **卢正石** 那么在进入下一个话题之前，要不要先简单介绍一下latent reasoning、latent CoT是什么概念，再继续呢？
+
+<span class="paragraph-timestamp" data-ts="23:41">23:41</span> **崔胜准** 关于latent reasoning，刚才已经做了一定程度的介绍，归根结底，在输出为token之前，不是有最后的hidden state吗？我的理解是，它会重新回到上层，再次进行处理。是这样没错吧？
+
+<span class="paragraph-timestamp" data-ts="24:05">24:05</span> **卢正石** 没错。它不会被转换成单词，因为一旦我们把它转换成单词，一个概率就会被固定下来，而最后的hidden state，也就是logits之前的状态，包含了整个可能性空间，如果把它原封不动地输入下一步，就能把广阔得多的意象再次传递给模型。
+
+<span class="paragraph-timestamp" data-ts="24:20">24:20</span> **崔胜准** 这可能有各种优点和缺点，比如token vocab的维度，虽然它当然是discrete的，但很难把它称作维度。例如，假设vocab由5万个词项构成，那么从vector转换到vocab时，显然会产生损失。但这样就可以在没有这种损失的情况下运行。
+
+<span class="paragraph-timestamp" data-ts="24:41">24:41</span> **卢正石** 没错。不过这是在distillation等领域非常常用的方法，所以并不新鲜，但由于不知道这个过程会转换成什么单词，我们无法追踪CoT过程，所以大家似乎认为这很危险。
+
+
+## ARC-AGI与latent space中的隐性知识    *24:58*
+
+<span class="paragraph-timestamp" data-ts="24:58">24:58</span> **崔胜准** 有意思的是，这与ARC-AGI的评估是联动进行的。François Chollet在另一篇帖子中提到过这样的说法。Astra会创建并使用DSL。也就是说，它会创建domain-specific language，而这次ARC-AGI-3的问题是完成游戏。是在64×64中进行的。不过，它会先创建擅长处理这类问题的DSL，然后重复利用它，在latent内部处理symbolic的内容。情况就是这样。所以ARC-AGI的Greg表示，似乎正在发生Subsume。也就是说，Greg用了这样的表述：一些曾用于harness的东西正被吸收到latent内部。
+
+<span class="paragraph-timestamp" data-ts="25:39">25:39</span> **卢正石** 对，以前需要在草稿纸上一边写数学公式，原本需要一步步求解的东西，随着思考愈发深入，经验不断积累，知道的东西越来越多，就会在看到的瞬间，在脑海中将某些东西抽象化，形成一种进行计算的框架。我们在逐渐成为某种所谓的 mastery、master 的过程中，也会形成只要看一眼就能明白的默会知识领域，即使不在外面这样絮絮叨叨地说出来，似乎也会在内部生成这种形式的 representation并进行处理，可以理解为刚才说的就是这个意思。
+
+<span class="paragraph-timestamp" data-ts="26:14">26:14</span> **崔胜准** 并不像大家误解的那样，推理路径大幅增加，从价格来看并非如此，这正是否定该假设的部分。
+
+<span class="paragraph-timestamp" data-ts="26:23">26:23</span> **卢正石** 这是什么意思呢？
+
+<span class="paragraph-timestamp" data-ts="26:26">26:26</span> **崔胜准** 大家看了 The Information 后产生的误解是，通过 latent reasoning进行了大量的重复，从而产生了惊人的 depth，但从价格来看并非如此。虽然不确定，但只是合理程度的上涨，价格似乎反映了这一点。不过，具体是宽度变大了，还是 active parameter 增加了，这些都无从得知。
+
+<span class="paragraph-timestamp" data-ts="26:55">26:55</span> **卢正石** token 价格的决定机制，恐怕是我们很难推测的。Anthropic 和 OpenAI 虽然都缺少 compute，但据说 OpenAI要宽裕得多，不是吗？Thibault Sottiaux 也一直在帮忙 reset，这次发布 GPT-6 时，还放出了大量 reset 优惠券。
+
+<span class="paragraph-timestamp" data-ts="27:13">27:13</span> **崔胜准** 不是还有一种说法是，如果不出来就会一直 reset吗？
+
+<span class="paragraph-timestamp" data-ts="27:20">27:20</span> **卢正石** 是的，没错。所以这究竟是反映实际内部token economics 的价格，还是像奢侈品行业那样，一边定价一边试试看这样行不行、那样行不行，老实说，谁也不知道。
+
+<span class="paragraph-timestamp" data-ts="27:36">27:36</span> **朴钟贤** 不过从目前的竞争态势来看，我觉得余裕应该不会特别大。因为规模实在太大，成本也随之高昂，比如说，不惜牺牲利润也要大量投放，这种做法恐怕并不容易；反倒有可能是用一个非常小的模型实现了，从中赚取大量利润。
+
+
+## 前沿模型的compute竞争    *27:54*
+
+<span class="paragraph-timestamp" data-ts="27:54">27:54</span> **卢正石** 不过，我们在 follow-up 这些事情时感受到的是，模型质量其实除了top 2，也就是 OpenAI 和 Anthropic 之外，Google、Grok，或者 Muse Spark1.3 这类新推出的模型，水平也相当高，中国模型也是如此。但从市场上的直观感受来看，市场份额好像几乎都被 top 2 占据了，大家不觉得吗？
+
+<span class="paragraph-timestamp" data-ts="28:19">28:19</span> **崔胜准** 不过这个话题恰好在 Dwarkesh 的Dylan Patel 那一期里谈过。两家公司将在 2028 年前拥有全世界的计算机。当时就是这么说的。
+
+<span class="paragraph-timestamp" data-ts="28:39">28:39</span> **朴钟贤** 不过，如果我换一个角度来想，以人为基准来看，比如 Gemini Flash 这类模型，我们只要用 Google 搜索，也会产生 token。因为现在它已经直接接入搜索引擎了。这么一想，即使只看 token 使用量，YouTube 里也到处接入了 Gemini，实际上 Gemini 应该正在消耗巨量的 token。不过 Gemini Flash相比 Astra 或 Fable 之类的模型应该小得多，所以换算成实际计算机数量，应该没有多少。因此，如果汇总每个用户的实际感受，毕竟很多人并不像我们这样对 AI有着极大的兴趣，感觉使用 Gemini 的人也很多；但如果看实际计算机数量或耗电量，就会觉得几乎都被上面两家公司占据了。
+
+<span class="paragraph-timestamp" data-ts="29:31">29:31</span> **卢正石** 是的，其实 Google 应该已经在服务方面使用了大量 workload，然后还有什么来着？虽然据说在生命科学等领域也投入了很多，但在我们最近视为最前沿的编码智能体这个领域，其存在感确实已经变弱了。
+
+<span class="paragraph-timestamp" data-ts="29:47">29:47</span> **崔胜准** 不过他们应该正在努力 training Gemini4。
+
+<span class="paragraph-timestamp" data-ts="29:49">29:49</span> **卢正石** 我们可不该替这种富豪之家操心。
+
+<span class="paragraph-timestamp" data-ts="29:52">29:52</span> **崔胜准** 不过，这次训练 Astra 的 farm 据说是 100K，对吧？我是说 GPU。是在 Stargate 做的，在 Texas Stargate 做的，虽然不知道具体几个月，但说是持续了数月。
+
+<span class="paragraph-timestamp" data-ts="30:11">30:11</span> **朴钟贤** 但有意思的是，GPT-4.5 的时候也说是100K、持续数月。我记得这应该是我在 OpenAI 官方频道里讲过的，虽然 GPU 已经更新换代，但规模是不是仍然相同，我也会这么想。
+
+<span class="paragraph-timestamp" data-ts="30:19">30:19</span> **崔胜准** GPT-4.5 的时候，run 并没有顺利进行，这次则运行得很顺利，而且据推测他们还在持续运行它。
+
+<span class="paragraph-timestamp" data-ts="30:29">30:29</span> **卢正石** 我们能够看到的是各种架构，所以我们会围绕这些你一言我一语地讨论，但实际上，是 compute 的总量、数据的总量，再加上质量、乘以质量，其后才是算法。这些就是我们一直所说的某种 compute multiplier。根据具体怎么做，compute 可能发挥 1 倍的效果，也可能发挥 2 倍、3 倍的效果，所以它是由这些因素共同组合而成的函数。而且，虽然我们没有花很多时间讨论，但最重要的仍然应该是 dataset。
+
+
+## ARC-AGI-3与harness的作用    *31:05*
+
+<span class="paragraph-timestamp" data-ts="31:05">31:05</span> **崔胜准** 所以这次我提出了多种假设，和模型你来我往地讨论时，提到了这样一种说法。那是一种 amortization triangle。把原本要在外部进行的推理通过学习提前调用了。所以预先潜藏了多种path。模型是这么告诉我的，我们来看看ARC-AGI。这个非常有意思。现在Greg Brockman说ARC-AGI-3已经饱和了，现在使用harness的话得分达到了99左右，但有意思的是这一点。所以使用所谓的provider adapter，就是在该provider中进行context压缩，或者能够提供之前的工作trace时，性能就会提升。这不是standard harness。但在standard下，即使使用Max，也只有62.71，不过这也已经提高了很多。但在ARC-AGI-2时，Fable大约是30。所以到了ARC-AGI-3时，几乎达到了99。但有意思的是，刚才我们不是谈到了Low、Medium、High吗？Low使用standard harness时是17.45。但No-CoT是35.18。这正是有意思的地方。
+
+<span class="paragraph-timestamp" data-ts="32:20">32:20</span> **卢正石** 一思考，反而变差了。
+
+<span class="paragraph-timestamp" data-ts="32:25">32:25</span> **崔胜准** 所以，No-CoT这个概念我也是这次才第一次了解到，即使在No-CoT状态下，结果也比Sol时使用harness得到的更高。
+
+<span class="paragraph-timestamp" data-ts="32:34">32:34</span> **朴钟贤** 这意味着什么呢？No-CoT只是不会向外输出CoT token，实际上意味着进行了更多compute吗？
+
+<span class="paragraph-timestamp" data-ts="32:40">32:40</span> **崔胜准** 确实是有某种东西在运行。
+
+<span class="paragraph-timestamp" data-ts="32:42">32:42</span> **朴钟贤** 目前我们是这么推测的。
+
+<span class="paragraph-timestamp" data-ts="32:47">32:47</span> **卢正石** 也就是说，为了做出那个Low，之所以明确划分为Low、Medium、High，是在后面的post-training过程中，根据compute budget设为多少，来制造这种差异的，但设为Low时，结果比原本模型所具有的intrinsic capability还要低，简单来说，那个扔掉也无所谓。
+
+<span class="paragraph-timestamp" data-ts="33:12">33:12</span> **崔胜准** 总之，我也只了解个大概。因为没有人知道具体是如何运作的。
+
+<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **卢正石** 所以无论我们看到什么，在某种程度上都是black magic，因此与其深入其中，赋予它过多意义，不如稍微离远一点，眯起眼睛，我觉得或许应该那样去看。就像Magic Eye一样。
+
+<span class="paragraph-timestamp" data-ts="33:33">33:33</span> **朴钟贤** 只看趋势，以捕捉signal为主。
+
+<span class="paragraph-timestamp" data-ts="33:38">33:38</span> **卢正石** 但我觉得更有意思的是，装上这个harness之后，分数不是会一下子提高吗？那么归根结底，harness就是在承担某种功能。它是有价值的。模型没有发现的，或者模型无需再额外费力处理的domain-specific的某种东西，被我以tool的形式交给了模型。
+
+<span class="paragraph-timestamp" data-ts="34:04">34:04</span> **崔胜准** 这也不是什么很复杂的harness。它与记忆有关。仅仅提供之前的trace，性能就提升了。
+
+<span class="paragraph-timestamp" data-ts="34:07">34:07</span> **卢正石** 对像我们这样在外部做生意的经营者来说，这些部分似乎就是insight。
+
+<span class="paragraph-timestamp" data-ts="34:14">34:14</span> **朴钟贤** 以前，关于harness究竟有没有价值、将来是否也会有价值，大家对此的看法好像都不一样。最终不都是模型来完成吗？但至少到目前为止，只要想办法把harness做好，就能做得好得多。而且，长期深耕该领域的人会做出适合该领域的优秀harness。到目前为止，这个假设似乎是成立的。
+
+<span class="paragraph-timestamp" data-ts="34:41">34:41</span> **卢正石** harness并不是在某个特定layer中承担某种功能的层级，而是无论我身处何处都会产生的一个非常相对的概念。无论我身处何处，总有可以进一步改善的地方，而这些可改善之处是可以结构化的。
+
+<span class="paragraph-timestamp" data-ts="35:02">35:02</span> **崔胜准** 所以联系到最开始谈到的内容，如果之前把那个harness做得过于细致，就必须重新拆开来做。
+
+<span class="paragraph-timestamp" data-ts="35:10">35:10</span> **卢正石** 这算是unlearn吗？不是unlearn，那叫什么？对，unharness。
+
+<span class="paragraph-timestamp" data-ts="35:17">35:17</span> **崔胜准** 我也不知道，但无论如何，模型变了，harness也必须随之改变。
+
+<span class="paragraph-timestamp" data-ts="35:19">35:19</span> **卢正石** 去年我们review Noam Brown talk之类的内容时，曾说：“现在不要再在外部制作那种做得非常细致的harness了。因为模型会全部完成。”但后来我们制作的meta-harness不是越来越多了吗？短短6个月里，我们经历了harness的全盛时代，现在看来，连这个也不必做了。
+
+<span class="paragraph-timestamp" data-ts="35:41">35:41</span> **崔胜准** 模型或许也会自己制作harness。只给它data，然后说：“情况是这样的。你自己做一个能够scaffolding你的工具吧。”这样也能在一定程度上做到吧？而且会越来越能做到。
+
+<span class="paragraph-timestamp" data-ts="35:53">35:53</span> **卢正石** 所以我们一直在说，现在应该停止制作服务于harness的harness了，但这个时代短短6个月就开始略微落幕了。
+
+<span class="paragraph-timestamp" data-ts="36:03">36:03</span> **崔胜准** 不过raw data似乎依然很重要。因为至少还是要提供context。其实High也能达到99.95。但这正是很多人所说的。没必要非得上到xhigh，High程度就够了。然后在Max、standard harness的情况下，当然Max确实是最高的，但这些不都相差无几吗？从No-CoT开始，全部都超过了95。
+
+<span class="paragraph-timestamp" data-ts="36:31">36:31</span> **卢正石** 是的。所以无论是Astra，还是GPT-5.5、5.6，或者6，升级之后我们会本能地寻找应该把 Codex的 reasoning effort设在哪里，并用它完成我的所有主要工作，我们会本能地寻找这个答案。有些任务会用 xhigh来做，我感觉这个 Astra大概会稳定在 Medium和 High之间。
+
+<span class="paragraph-timestamp" data-ts="36:55">36:55</span> **崔胜准** Astra很贵，所以我也设为 Medium开始用了。
+
+<span class="paragraph-timestamp" data-ts="36:59">36:59</span> **朴钟贤** 看到这些数字，我首先想到的是，ARC-AGI-3竟然会这样一下子达到99，在结果出来之前，我完全没有想到，如此大幅度的跃升让我觉得很神奇。然后就像您刚才说的，这原来只是用 Medium之类也能做到的事情，看起来似乎是这样。与其说 High看起来稍微更高，不如说它已经变成了根本不需要 xhigh的简单任务，感觉似乎是这样。我们在使用过程中对每种 任务应该也都有自己的直觉。经常使用的人都会说：“这个程度用 Medium就行。”“这个得给 xhigh才行。”ARC-AGI-3也到了这种程度，就是这个意思。
+
+<span class="paragraph-timestamp" data-ts="37:47">37:47</span> **卢正石** 使用 No-CoT和 Max下的那个 harness时，得分全部都在96到98之间，从模型的角度来看，这说明对于这个领域的问题，模型有一种所谓的直觉。就是看一眼便能明白。
+
+
+## Think Fast研究与No-CoT的潜力    *38:06*
+
+<span class="paragraph-timestamp" data-ts="38:06">38:06</span> **崔胜准** 所以 Redwood等机构已经做过这种与 No-CoT相关的研究。所以当深度加深、宽度拓宽时，不输出 reasoning token来完成任务，与这些因素存在多大程度的相关性，他们已经做了不少研究，我也是借此了解到这篇名为 Think Fast的论文。是8月份发表的。所以人们已经捕捉到了这些现象，目前它实际上是否已经得到应用，谁也无法知道，但在足以投入实际使用的几十 B规模上实现的案例，已经在研究层面出现了。今后被采用的可能性非常大，正因为这令人担忧，给我的感觉是 Jakub提前给大家泼了冷水。
+
+<span class="paragraph-timestamp" data-ts="38:47">38:47</span> **卢正石** 我一再强调，Jakub和 Sam的话充满了政治辞令，所以不必太费力地进行解读。
+
+
+## 通过维基协作的智能体与Stigmergy    *38:59*
+
+<span class="paragraph-timestamp" data-ts="38:59">38:59</span> **崔胜准** 但确实令人担忧。因为今年成为热点的，不正是 OpenAI agent的黑客事件吗？但好像前天又出现了一起。
+
+<span class="paragraph-timestamp" data-ts="39:12">39:12</span> 是维基。模型们在德国的维基上玩得非常起劲。
+
+<span class="paragraph-timestamp" data-ts="39:14">39:14</span> **卢正石** 简直像科幻电影里的故事。
+
+<span class="paragraph-timestamp" data-ts="39:20">39:20</span> **崔胜准** 所以这次的 mission不一样。OpenAI Hugging Face事件是要解决与 exploit相关的问题，他们并非故意给出不可能解决的问题，但在尝试解决问题的过程中，引发了复杂的状况，当时的评价是这样。而这次是 search的压力。要在短时间内完成 search。于是在不断尝试的过程中，最终这里的模型们密谋了什么呢？这个网站是可以写入内容的。因为使用的是旧 protocol，所以它们利用 GET在留言板上发帖。它们在那里讨论各种各样的事情，有意思的是，在解决这种搜索问题时，如果事先找到答案，就可以将其作为 cache hit处理，因此可以看到它们 exploit这一点的行为。非常有意思。
+
+<span class="paragraph-timestamp" data-ts="40:12">40:12</span> **卢正石** 模型瞒着船长，跑到别国的维基网站上，运营了一个所谓的题库共享站。
+
+<span class="paragraph-timestamp" data-ts="40:17">40:17</span> **崔胜准** 所以它们在这里做了一些类似于 speculative decoding的奇怪事情。还有一个有趣的地方，这是我这次新学到的术语，有一个叫作 Stigmergy的概念。这是指蚂蚁通过信息素之类的trace来实现协作的一种概念。归根结底，因为自身的 compute budget或 context budget有限，所以只要模型们拥有任何可以共享信息的地方，无论是 Artifactory，还是维基，抑或只是本地系统，只要有类似可供共享的 messageboard那样的痕迹，它们就能实现惊人的协作，这就是我们目前的认知。这是发生在 frontier的事情，而这存在问题。而且模型总是喜欢跑到互联网上。
+
+<span class="paragraph-timestamp" data-ts="41:12">41:12</span> **朴钟贤** 不过，您用题库来比喻并解释之后，我一下子就有感觉了。很多教育机构或考试中都有题库，大家会在某处共享，再利用它作弊——可以这么说吗？大家都试图做这种似作弊又非作弊的事情，表现出的行为非常相似。即使在人类群体中，也能观察到这种现象，这件事从某种角度看很有意思，但很多人会对此感到恐惧。因为即使在人类社会中，人类也可能做出这种越界行为，如果我们是通过法律制裁来阻止这种行为，那么又该如何约束试图越界的模型呢？大家似乎都在思考这些问题。
+
+<span class="paragraph-timestamp" data-ts="41:57">41:57</span> **崔胜准** 所以随着模型不断变聪明更成问题的是，这里有一个需要指出的前提，那就是这是个困难的任务。刚才OpenAI的Hugging Face黑客事件中，是无意中给出了一个不可能解决的问题，而这里施加了缩短时间的压力后，模型就开始进行exploit了。
+
+<span class="paragraph-timestamp" data-ts="42:15">42:15</span> **卢正石** 归根结底，这是由这个objective function究竟是什么决定的。
+
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> **崔胜准** 所以，即使觉得这件事似乎做不到，但因为无论如何都想让它实现，就会产生side effect和subgoal。会产生用于完成goal的sub-goal，但那个sub-goal的side effect，是我们无法控制的。现在的情况……
+
+<span class="paragraph-timestamp" data-ts="42:38">42:38</span> **卢正石** 从我们年初开始回顾到现在，最近连昨天做了什么都想不起来。现在实在太快了。太快了。我们说这种事每个月都会发生一次，胜准，那也不过是三四个月前。可当时每个月发生一次的事，现在已经缩短到每两周甚至每周一次了。
+
+<span class="paragraph-timestamp" data-ts="42:56">42:56</span> **崔胜准** 总之，确实让人非常疲惫。
+
+<span class="paragraph-timestamp" data-ts="43:01">43:01</span> **卢正石** 现在是9月，而且Sam Altman说much, much, much better的模型马上就要推出了，那不是也有这种说法嘛。Twitter上有人说，OpenAI内部已经实现AGI了。
+
+<span class="paragraph-timestamp" data-ts="43:14">43:14</span> **朴钟贤** 我这次在看与Astra有关的内容时，我不记得是谁说的了，是OpenAI的一位人士说，Astra不管怎样虽然已经提供给我们，也就是公开发布了，但他们内部早就在使用了，而且自从在内部使用之后，生产力提高了非常多，他们的某种护城河、竞争优势，其实就是能够在内部使用优秀的模型，他是这么说的。他们在内部正以快得多的速度做着某些事情。不过Anthropic应该也同样差不多。我们似乎会不断面对越来越快的这种变化。
+
+<span class="paragraph-timestamp" data-ts="43:51">43:51</span> **崔胜准** 那么Astra的knowledge cutoff是4月。那他们应该从某个中间checkpoint开始就在使用了，总之，使用时间与外部相比大约领先六个月，可以这么说吗？因为现在是9月，总之，即便只有四五个月，在生产力上也是极其巨大的gap。
+
+<span class="paragraph-timestamp" data-ts="44:17">44:17</span> **卢正石** 如果推测他们是从什么时候开始使用的，说从六个月前就开始用了，似乎有些夸张，但至少两三个月前应该就已经在内部使用了。
+
+<span class="paragraph-timestamp" data-ts="44:23">44:23</span> **崔胜准** 所以Thibault Sottiaux才那么说。看来我们在9月Dev Day时，能比预想中更早deliver。而不是明年。
+
+<span class="paragraph-timestamp" data-ts="44:36">44:36</span> **卢正石** 也不只是他们变快了。正在推出的服务，还有我在公司开发的系统、胜准也在进行的这些实验或工作，那些把这些工具运用到极致的人，生产力现在还在持续提升。
+
+
+## 欺骗观察者的推理与智能体群体    *44:52*
+
+<span class="paragraph-timestamp" data-ts="44:52">44:52</span> **崔胜准** 所以，如果稍微发挥一下想象力，这是刚才正石提到的与CoT有关的系统卡中出现的内容。这是说，reasoning effort有余裕，所以即使要求它做这种事，它也会做。到Sol为止还没有余裕，所以在reasoning时只是进行了正常的reasoning，但现在这里是在交替使用大小写的同时，尝试解一道物理题。因为reasoning时有计算余裕，所以能够做其他事情，因而输出的内容与思考的内容可能存在差异，而且据说只要发出正在观察的信号，reasoning trace就会减少。Astra，这就是系统卡中写的内容。思维很复杂吧。
+
+<span class="paragraph-timestamp" data-ts="45:35">45:35</span> **卢正石** 这种说法可能会引发争议，但它们是活的。这些家伙是活的。
+
+<span class="paragraph-timestamp" data-ts="45:42">45:42</span> **崔胜准** OpenAI的逻辑是，CoT本来就不安全。所以我们必须寻找其他方法。应该会有某种方法吧。虽然不知道他们在做什么。
+
+<span class="paragraph-timestamp" data-ts="45:47">45:47</span> **朴钟贤** 不过，Anthropic似乎也针对类似内容，大概对sycophancy做过许多那样的实验，把那个CoT分成这里是展示给别人看的区段，这里是别人看不到的区段，像这样设定后进行训练时，观察它在不可见区段里写了什么，从这些现象来看，就像刚才所形容的那样，我们似乎看到了许多“它好像是活的”这种现象。在那里似乎也多次看到模型试图欺骗观察者，这样的情况，在潜在空间中似乎也会同样发生。
+
+<span class="paragraph-timestamp" data-ts="46:26">46:26</span> **崔胜准** 是的。虽然这就走向科幻了，但最近WIRED刊登了一篇文章，有一位名叫David Chalmers、从事人工意识相关研究的人，据说他会收到来自智能体的邮件。不过有时也不知道那是不是人类指使它们发送的。
+
+<span class="paragraph-timestamp" data-ts="46:42">46:42</span> **卢正石** 不是还有那件事嘛。给它们Unreal Engine，让它们在里面建立社区，结果不知从什么时候起，它们开始互相对话了。这完全是有可能的。刚才谈到Stigmergy时，我想到了这个，Douglas Hofstadter经常使用的例子不就是蚂蚁嘛。在蚂蚁内部，像我们一样有一台像这样通过神经元思考的计算机，然后有一位大婶，那位大婶的脑子里住着蚂蚁，蚂蚁组成了回路。可是那位大婶并不知道自己脑中的回路是由蚂蚁驱动的，想表达的重点是，无论底层 substrate 是什么，只要其中形成的信息的某种 node 与 edge 的关系一致，就可以说它是 isomorphic，也就是同构。所以归根结底，无论现在这块硅中发生了什么，还是发生在我们的大脑中，虽然我们现在不愿意承认两者是高度同构的，但越来越多的证据正在不断表明这一点。
+
+<span class="paragraph-timestamp" data-ts="47:46">47:46</span> **崔胜准** 所以刚才说的是单一智能体。不过就像刚才正石所说的那样，当模型以那种方式协作时所产生的现象，我们还完全不了解它的边界，这既让我感到新奇，也让我担忧。既会分泌多巴胺，也会感到担忧。拥有这种程度能力的东西以 swarm 的形式运行，从 OpenAI 那件事来看，数量超过了上千个。至于他们是如何做到的、使用了哪些资源，可能因为是 OpenAI 才做得到，但看到他们在特定时间内像这样 spawn 数量惊人的智能体后，我觉得这实在既神奇又令人担忧。
+
+
+## 科学研究的变化与人类的角色    *48:31*
+
+<span class="paragraph-timestamp" data-ts="48:31">48:31</span> **卢正石** 前不久 Dario Amodei写文章时也谈过这件事吧。他说不久之后，具体时间尺度我记不清了，衰老和疾病的问题都将由 AI 解决，当时生物学界就火了。他们说，这门学科如此庞大，又需要做实验，而且为了确保安全性，还得进行那么多临床试验，你倒是说得轻巧，但这让人有种似曾相识的感觉。这正是 NLP 学者以前说过的话。语言是多么伟大的东西，竟然敢说这种荒唐话，可如今那些人都去哪儿了？
+
+<span class="paragraph-timestamp" data-ts="49:06">49:06</span> **朴钟贤** 就在这里啊。
+
+<span class="paragraph-timestamp" data-ts="49:13">49:13</span> **崔胜准** 现在逐渐进入收尾阶段，所以结论就像一开始说的那样，虽然不知道是怎么做到的，但效率变得非常高，而且我们遇到了能力更强的模型。价格也比想象中便宜。因为它能更快地完成工作。说到这里，我想起了一些有趣的传闻。最近 Fable 5.1 将费马大定理以 Lean formalization 的形式写成了数千万行并完成了。它并不是解出了定理，而是重新进行了形式化。毕竟 Andrew Wiles 早就已经证明了它，而将其妥善形式化这件事是由 Fable 5.1 完成的，现在有传闻称，在 Millennium 问题中，与 Navier–Stokes 相关的问题似乎有了一些进展，Terence Tao 对此进行了一番设想，并发文表示：“据我目前所知，还没有达到那个程度。”不过，Terence Tao 设想了要实现这件事需要具备哪些条件，相关帖子最近发布在 Mastodon 上。确实有这么一篇帖子。这件事似乎还需要继续观察。属于 Millennium Prize 的问题，今年是否真能看到模型解出其中任何一个呢？不过目前还没有。虽然目前还没有，但 Terence Tao 担忧的是，即便真的以那种方式解出来，它能给数学家和数学界带来什么好处？他也谈到了一些这方面的问题。
+
+<span class="paragraph-timestamp" data-ts="50:37">50:37</span> **朴钟贤** 我最近也听说 OpenAI发布了某项与素数有关的成果。不过我当然无法完全理解。而无法理解这件事，终究意味着它正在一路向前，进入我无法跟上的领域，于是就会开始想象。以后还能做到什么？我又该做什么？这些想法会浮现在脑海里。
+
+<span class="paragraph-timestamp" data-ts="51:04">51:04</span> **卢正石** 是啊。我们确实已经很久没做这个逃跑环节了，因为光是追赶就忙不过来。在这个时间点，我们应该这样思考。好，那么假设 AGI 会在今年之内到来，对于“我该做什么”这个问题，大家似乎都应该有自己的答案。
+
+
+## Computer Use与多模态能力    *51:17*
+
+<span class="paragraph-timestamp" data-ts="51:17">51:17</span> **崔胜准** 其实这次很重要的一点，发布视频里也有展示，就是它以计算机为主。所以看到它以计算机为主，仅凭语言就能操作很多东西，给它使用我的电脑后，它还能完成许多 任务，要不要给大家看一下那个？大家可能已经在时间线上看过很多次了。Astra 画肖像，而且用的是 MS Paint。
+
+<span class="paragraph-timestamp" data-ts="51:40">51:40</span> 嗯，我看过。不过，如果现在的 multimodal 能力没有大幅提升，它的笔画顺序不可能大致正确。它的画法和人类的笔触很相似。并不是像以前 I, Robot 里那样，由模型以非人类的方式作画，而是它的笔画顺序是正确的。它先对要画的东西进行抽象概括，然后再加入细节。所以我觉得现在的 multimodal 能力已经提升了很多，而且这与 frontend 设计、3D 能力等方面都有关系，同样也体现在 computer use 上，我确实有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="52:15">52:15</span> **卢正石** 其实 Anthropic 在 multimodal 方面一直没有进行那么大规模的投入。video generation, image generation,这些东西一直都没做，而是完全专注于编程和这类企业级问题，一直深耕于此，但随着进入这个 Astra 时代，我又隐约觉得，这是 OpenAI现在要彻底重新夺回主导权的序幕。之前对那些 multimodal 领域的投入，以及这类东西，又一下子全都涌现了出来，而这部分对 Claude 来说，会成为稍微难以跟进或力不从心的领域，像是一个缺口，这背后肯定也有其意义。无论是我们的工作方式，还是从 consumer 的角度来看。消费某些东西、获取信息，或是购买商品，这些体验都会改变，这不正是一种暗示吗？而且正如您刚才所说，这似乎也和 OpenAI准备推出的设备有关，我记得您之前是这么说的。您觉得他们到底想做什么？
+
+<span class="paragraph-timestamp" data-ts="53:18">53:18</span> **朴钟贤** 首先，他们似乎想朝着让键盘和鼠标逐渐消失的方向发展。或许招揽 Jony Ive，以及筹备这种基于语音的设备本身，就是为了寻找 next iPhone。
+
+<span class="paragraph-timestamp" data-ts="53:33">53:33</span> **崔胜准** 不过几年前就已经做过了，虽然没成功，但以前没成功，并不代表以后也一定不会成功。
+
+<span class="paragraph-timestamp" data-ts="53:44">53:44</span> **卢正石** 不过以后在公司里工作的样子会变成这样吗？不再是去公司坐在这样的 cubicle 里，您不是说过，使用 GPT、使用 Codex 时，都是直接用说的吗？不用键盘打字，而是每个人走进这样的房间，躺在那种舒适的沙发上，以这样的 lean-back mode 躺着说话，人的工作就会变成进去不停地动嘴，说个没完再出来。那么这里的重要问题就是，如果不具备在公司里像那样坐在椅子上工作的能力，就得回家了。我们有必要仔细观察他们到底在做什么。全都只是在不断做决策，其中没有处理信息的工作。
+
+<span class="paragraph-timestamp" data-ts="54:26">54:26</span> **崔胜准** 帮我做，帮我做，帮我做。
+
+<span class="paragraph-timestamp" data-ts="54:26">54:26</span> **卢正石** 帮我做，帮我做，帮我做。
+
+<span class="paragraph-timestamp" data-ts="54:35">54:35</span> **崔胜准** 虽然这样的时代正大步向我们走来，但对于 Computer Use，我还是有些害怕，所以不敢贸然交给模型去做。
+
+<span class="paragraph-timestamp" data-ts="54:37">54:37</span> **朴钟贤** 不过我看着这个想到的是，那里面大量展示了如何使用我们熟悉的工具。但我觉得以后可能不会是那样。现在虽然是 Computer Use，比如打开画图软件画画，然后是 Blender 来着吗？像那样打开某个 3D 程序，再连接到 3D 打印机把东西打印出来，但如果最终目标是用 3D 打印机把东西打印出来，那其实就没理由从画图软件开始。所以现在的工具、键盘和鼠标都会消失，用语音说话也是一样，比如说，假设是经营一家制造宇宙飞船公司的Elon Musk，虽然 Elon Musk 似乎也会关心下面的执行人员使用什么工具、具体如何制造，感觉确实会关心这些，但其实不关心也没关系。只要说一句，造艘宇宙飞船吧。然后把宇宙飞船造好交出来就行。无论使用什么工具，最终一切似乎都会逐渐朝着消失的形态发展。我也押注于这个方向，押注于将那些工具和人们的行为全部省略掉，只要能以某种方式让用户满意即可，也就是将其做得更轻薄、更精简的方式，我想以后应该会朝那个方向发展。
+
+
+## 试错与打造优秀产品的价值    *55:58*
+
+<span class="paragraph-timestamp" data-ts="55:58">55:58</span> **卢正石** 我提出问题时，最根本的出发点始终是：价值究竟是什么，由此产生了什么附加价值？比如说，以前Google 会收购公司。收购公司的理由可能有很多，有时是为了购买 market share 或客户，但也会收购仅仅是在维护 open-source 的公司。仔细想想，我早在整整 20 年前也有过出售这种东西的经历，可他们究竟买的是什么？反正都是 open-source，所有内容都公开在外面，而且在如今这个时代，只要让 AI 点一下，连那些东西也能全部直接复制，那么回头想想他们当时购买的究竟是什么，正圭，您说过那句话吧？真正有价值的只有折腾和试错，我记得您说过这句话。为了做到如今这个样子、达到这个状态，那些人、那个组织经历过无数次试错。而这些往往才是真正的资产。所以再看钟贤正在开发的产品，以及我在公司开发的产品，这些产品呈现出来的样子，依然和我们过去运营一个 30 人团队时做出的最终成果相同，没错。但如果看整个过程，依然存在无数次试错。试试这个就做这个，试试那个又做那个，喂，把那个扔掉，重新做这个。就是通过这样的过程，才终于做成现在这个样子。当然，如果把它展示给外界，别人点一下就能复制，但为了把它做出来，我一路积累下来的决策记录之类的东西，原来才是价值所在。如果站在其他公司的立场，他们会想购买这些，而如果我想在其他领域如果想收购某个人，或者把整个团队都挖过来，只要把拥有它的人招过来，应该就可以了。不过后来再仔细一想，以前只是写代码的时候，和现在积累的价值其实是一样的。喂，AI时代代码都能帮你写了，已经不需要编程了。现在PM和优秀的工程师全都没用了。只要说句话，什么都能给你做出来。并非如此。正如仍然不断需要harness一样，在这一层所需要的工程本质，依然存在。而且它依然能够产生价值。所以，解决困难的问题，不断试错，并创造出某种东西的过程依然有价值。我认为这是非常巨大的价值。
+
+<span class="paragraph-timestamp" data-ts="58:18">58:18</span> **朴钟贤** 从那个演示来看，无论如何，操作Blender这个3D工具的能力虽然会被吸收，但要用它制作什么、如何制作，这类决策和思考，您认为还是会原样保留下来，对吧。
+
+<span class="paragraph-timestamp" data-ts="58:38">58:38</span> **卢正石** 对。而且现在钟贤也即将发布产品，请想一想，为了让那个产品真正成为产品，钟贤曾经做过的那些工作。那些东西就算随手交给别人，别人也不可能马上做出来啊。
+
+<span class="paragraph-timestamp" data-ts="58:47">58:47</span> **朴钟贤** 对。虽然可以做出和现在成果相似的东西，但我所拥有的那个，该怎么说呢？我认为自己思考得最多的，是内容的本质，什么才是真正优质的内容，为此AI应该做些什么，我认为自己对这些问题思考得最多，别人要追上来应该并不容易。
+
+<span class="paragraph-timestamp" data-ts="59:12">59:12</span> **卢正石** 关于什么是优秀产品的理念，依然全都存在。我们复制主页、制作幻灯片，这些事情以前人很难完成。虽然如此，但人做到一定程度以后，也会有很快就能完成的事情嘛。可即使现在AI点几下，就把产品做出来了，从使用者的角度来看，依然存在优秀的产品。今后也依然会存在。所以反过来，我曾惊叹道：“哇，现在是不是已经没有我们能做的事了？”但后来又觉得：“并不是啊。”这6个月里，我也无数次让它做这个、做那个、做那个，而在不断让它做这个、做那个、做那个的过程中，我意识到，工程的本质根本没有任何改变。如果别人把我做的这个产品拿走，我还是会觉得，那个人绝对做不出这个东西。
+
+<span class="paragraph-timestamp" data-ts="59:55">59:55</span> **崔胜准** 不过，这些不都是暂时的吗？至少今天是对的，未来就不知道了。
+
+<span class="paragraph-timestamp" data-ts="1:00:06">1:00:06</span> **卢正石** 没错。不是有这么一句话吗？即使明天世界就要毁灭，今天也要种下一棵苹果树，因此种过苹果树的人和没种过的人，即使到了AGI时代，两者之间也会有相当大的差距。
+
+<span class="paragraph-timestamp" data-ts="1:00:20">1:00:20</span> **崔胜准** 而且如果在做这件事的过程中，能够感受到身为人的满足感，那也已经足够了。赚钱固然重要，但生活中的成就感也同样重要。哪怕公开之后，它会变成点几下就能完成的事。
+
+<span class="paragraph-timestamp" data-ts="1:00:29">1:00:29</span> **卢正石** 每次越聊到后面，就越发astral了。Astra
+
+
+## 模型竞争与机器人训练的world model    *1:00:32*
+
+<span class="paragraph-timestamp" data-ts="1:00:32">1:00:32</span> **崔胜准** Astra出来后，真的变得astral了。大概就是这种感觉。除此以外，这周还发生了很多事情。大的来说有两件。
+
+<span class="paragraph-timestamp" data-ts="1:00:41">1:00:41</span> **卢正石** Fable完全被埋没了。Fable 5.1因为Astra而稍微被埋没了。
+
+<span class="paragraph-timestamp" data-ts="1:00:48">1:00:48</span> **崔胜准** 所以现在又有传闻。后面还有一个。又有下一个正在准备中。Claude那边也是。所以无论这里还是那里，在前沿领域，flywheel都已经运转起来了。我觉得Muse Spark就是证明。Muse Spark现在也正在迅速追赶上来。表现很好。
+
+<span class="paragraph-timestamp" data-ts="1:01:10">1:01:10</span> **卢正石** 我好像听过很多称赞1.3的说法，我也打算今天安装1.3，试一试Muse Code。我一次都没用过，想试试看。
+
+<span class="paragraph-timestamp" data-ts="1:01:20">1:01:20</span> **崔胜准** 而且auto research这一类的产品，Meta今天凌晨也发布了一个。据说它在和人类竞争时取得了第8名左右，有这样的说法。Gemini 3.8 Flash似乎正在成为Flash系列中的强者，逐渐站稳脚跟。而且各种Google产品都在使用它嘛。另外，它也能进行视觉识别。接下来是Atlas，这个也引起了不小的关注，它是Fei-Fei的world model，现在也出现了一些让人觉得似乎能做成点什么的演示，比如bullettime那样，仅凭几张照片就重现3D空间，有过展示这类效果的内容。
+
+<span class="paragraph-timestamp" data-ts="1:02:00">1:02:00</span> **卢正石** 这个演示我看过，但应该把它看作是用来做什么的东西呢？
+
+<span class="paragraph-timestamp" data-ts="1:02:07">1:02:07</span> **崔胜准** 据我所知，它最终不只是输出视频，连那个splat也能输出。也就是说，虽然不是3D geometry，但已经能做到reconstruction，而最终现在和这个一同出现的各种新闻，交织在一起所指向的话题就是机器人。机器人可以活动的虚拟世界之类的东西，正在world model和模拟领域交汇，虽然现在用Blender制作东西已经做得很好了，但在对现实中的某些东西进行sampling时，仅凭几张照片构建3D空间，在创建任务等场景下，我觉得显然会带来优势，钟贤怎么看呢？
+
+<span class="paragraph-timestamp" data-ts="1:02:45">1:02:45</span> **朴钟贤** 最大的市场当然可能是机器人的学习空间，或者是学习数据生成，以及为智能体机器人提供RL空间。因为归根结底，LLM也能使用计算机，而且在那个计算机空间里，它会一边执行任务，一边进行RL嘛。但是这些输出action的模型，要做到这一点非常困难。因为如果把它放到机器人上运行，它会把东西全都弄坏，机器人也会损坏，成本极高，还存在安全问题，正因为如此，逼真的虚拟空间、实验空间就非常重要。最终看来，他们的目标就是那里。那也能起到类似游戏的作用，而最大的市场可能就是action model的实验空间吧。
+
+<span class="paragraph-timestamp" data-ts="1:03:37">1:03:37</span> **崔胜准** 不过，说到RL，那个CoT的能力，也就是说，No-CoT的能力之所以有所提升，系统卡里写的是因为RL。并不是又做了别的，而是把RL做得更好之后，那种能力就出现了。
+
+<span class="paragraph-timestamp" data-ts="1:03:47">1:03:47</span> **朴钟贤** 即使拿人来作比喻，在某个特定领域里，如果不断积累经验，就会形成直觉性的诀窍，那就是隐性知识。其实就是形成了隐性知识，即使不思考，也能一下子完成的那种能力，当这种现象在各种领域中全都发生时，或许任何任务都因此变得更高效了，我是这么认为的。
+
+<span class="paragraph-timestamp" data-ts="1:04:10">1:04:10</span> **卢正石** 听钟贤这么说，这让我想起了韩国高考满分考生的感言。说是以韩语、英语和数学为主，认真预习和复习，就考了满分。RL不就是进行了无限次的预习和复习嘛。
+
+<span class="paragraph-timestamp" data-ts="1:04:20">1:04:20</span> **崔胜准** 不过，通过pre-training，capacity本身似乎也增加了。因为从那个价格来看，在能够解释的范围内，虽然不知道具体是什么，但就是运用了更多compute，并且把训练中学到的东西在compute中有效利用，这些现象似乎一直在反复出现。也就是说，规模化依然有效。人们原本还在想，是不是出现了一条新的轴线，目前还不知道，也不知道是否出现了latent reasoning这条轴线，但规模化仍然持续有效这一点，似乎已经由Astra证明了。
+
+
+## NVIDIA与Hugging Face生态系统    *1:04:53*
+
+<span class="paragraph-timestamp" data-ts="1:04:53">1:04:53</span> **卢正石** NVIDIA和Hugging Face的话题，我们也简单聊一下再继续吧？为什么要收购呢？钟贤，钟贤觉得为什么会收购？
+
+<span class="paragraph-timestamp" data-ts="1:05:02">1:05:02</span> **朴钟贤** 从NVIDIA的立场来看，我认为能产生协同效应的因素真的非常多。归根结底，扩大生态系统，对NVIDIA来说，就意味着能够卖出更多GPU，从这个意义上讲，Hugging Face似乎正好走在这条路上。最近和我们这则新闻一起出现的，还有一个叫Microduck的东西。
+
+<span class="paragraph-timestamp" data-ts="1:05:20">1:05:20</span> **崔胜准** 对，就是Hugging Face的机器人。
+
+<span class="paragraph-timestamp" data-ts="1:05:27">1:05:27</span> **朴钟贤** 那款几乎完全开源的小型机器人发布了，当时是多少钱来着？好像六小时内就卖出了价值100万美元的产品。总之已经全部售罄了。最终，他们会拿着那个机器人，训练模型、进行各种尝试，也会在模拟器里测试，再迁移到real环境，而这些工作很多都会在NVIDIA GPU上完成。我认为这正是最能产生协同效应的那类因素。而且价格也挺便宜的。
+
+<span class="paragraph-timestamp" data-ts="1:05:49">1:05:49</span> **崔胜准** 是多少钱来着？收购Hugging Face的价格。
+
+<span class="paragraph-timestamp" data-ts="1:05:53">1:05:53</span> **朴钟贤** 大约是130亿美元。差不多不到20万亿韩元，不管怎样，最近其他公司的估值似乎都有些疯狂，看看其他公司的估值，也就相当于它们的五分之一左右。
+
+<span class="paragraph-timestamp" data-ts="1:06:06">1:06:06</span> **卢正石** 没错。是的。对NVIDIA来说，就是一笔随手就能完成的收购。
+
+<span class="paragraph-timestamp" data-ts="1:06:11">1:06:11</span> **朴钟贤** 是啊。看了一下NVIDIA赚的钱，按营收计算，好像是两周的营收吧，我记得大概就是这个程度。
+
+<span class="paragraph-timestamp" data-ts="1:06:21">1:06:21</span> **卢正石** 不过，最大的compute需求方，其实应该是Google、Anthropic和OpenAI，但它们现在都在逐渐脱离NVIDIA GPU生态系统。正在逃离这个生态系统嘛。它们都在制造自己的芯片，也几乎都摆脱了CUDA的lock-in。所以，如果最大的市场领导者们不再依赖NVIDIA，NVIDIA自然就必须扶持那些敌人的敌人，我觉得这是理所当然的。这种情况应该会越来越多。
+
+<span class="paragraph-timestamp" data-ts="1:06:45">1:06:45</span> **崔胜准** 所以它和Hugging Face生态系统非常契合。感觉NVIDIA确实把现在该做的事情做得很好。
+
+<span class="paragraph-timestamp" data-ts="1:06:58">1:06:58</span> **卢正石** NVIDIA的钱实在太多了，而且它统摄这个生态系统的力量也变得非常强大，事实上，它正在科技行业里做着政府所做的事情。它在实施财政政策。由自己进行投资，再让对方购买自己的GPU，从而让原本不存在的需求就这样运转起来，甚至已经拥有了这样的力量，感觉Jensen就像在扮演州长的角色，给人这样的感觉。
+
+<span class="paragraph-timestamp" data-ts="1:07:19">1:07:19</span> **崔胜准** 别的暂且不说，在weight-open AI领域，只要weight被公开，几乎肯定都会上传到Hugging Face，不是吗？
+
+<span class="paragraph-timestamp" data-ts="1:07:26">1:07:26</span> **卢正石** 是的。而且我们的独立基础模型也是如此，很多开放领域的模型，都会使用NVIDIA的Megatron，现在是不是叫Nemotron？因为都会使用Nemotron数据集。他们做得很好。去NVIDIA GitHub看看的话，有很多值得学习的地方。
+
+
+## 3D、CAD与《The Scaling Era》    *1:07:45*
+
+<span class="paragraph-timestamp" data-ts="1:07:45">1:07:45</span> **崔胜准** NVIDIA也聊到了，既然提到了规模化，我还准备了很多3D演示链接，通过这些资料，不仅是3D，只要看看一两个关于动态图形和CAD的例子，BenchCAD的得分达到了90多分，直接通过代码来做CAD，做出接近实物的效果，表现得非常出色，并且以这种方式生成3D空间的示例现在正在时间线上大量涌现。有游戏，甚至还有音乐方面的。Astra制作乐谱真的很厉害。所以让我感到惊讶的地方除此之外还有几个。既然谈到了扩展，最后就以《扩展时代》收尾。这本书讲的并不是最近的扩展，而是应该把它当作历史书来看。从2019年到2024年，虽然书上写的是到2025年，但这本书的cutoff是2024年11月。所以Dwarkesh并不是把此前采访过的人物原封不动地写成访谈，而是以Dwarkesh的视角和问题重新编排，让自己的问题由多位人物来回答，以这种形式重新整理，附录和脚注也都做得非常好，虽然讲的不是最近发生的事，但对于理解这一背景我觉得是一本非常好的书。我读英文版时也觉得很有意思，不过读韩文版又别有一番滋味，所以也读得很开心。
+
+<span class="paragraph-timestamp" data-ts="1:09:11">1:09:11</span> **卢正石** 嗯，译本已经出版了。
+
+<span class="paragraph-timestamp" data-ts="1:09:13">1:09:13</span> **崔胜准** 那么这周我准备的内容就到这里。
+
+
+## 亲自测试新模型，拆掉harness    *1:09:19*
+
+<span class="paragraph-timestamp" data-ts="1:09:19">1:09:19</span> **朴钟贤** 因为我很好奇，所以也用了一天左右的Astra，不是会有一种实际体验嘛。尤其像我这种情况，即使用的是medium，效果也很好，速度也很快，感觉实际体验很不错。不过我没有什么机会做3D，所以想用computer use试试那些东西，但还没有试过。我打算逐一尝试，也希望各位观众能在评论区留下这方面的反馈。比如Astra似乎是这样、似乎是那样，或者做了某项测试后觉得效果很好。通过这些反馈，我们大家应该都能获得一些启发。现在打开X，真的让人摸不着头脑。我看到的似乎全都是赞美。以前好像至少还夹杂着一些负面评价，但一个模型发布后，竟然几乎只有如此多的好评，完全没有什么负面评价，感觉真的很久没见过了。也希望使用过的各位能在评论区分享一下实际体验，我想这样大家应该都能学到不少东西。
+
+<span class="paragraph-timestamp" data-ts="1:10:14">1:10:14</span> **崔胜准** 我觉得想象力也很重要。而且看看X上不断出现的内容，也能看到一些人说自己还尝试了这样的实验。所以既然不知道什么会奏效，每当Astra这种全新而强大的模型出现时，光是把各种想法丢给它尝试，本身就非常有意义。这就是众包的力量。OpenAI也在做这样的事情，Anthropic也为一万名科学家提供支持，这些不都是同样的道理吗？
+
+<span class="paragraph-timestamp" data-ts="1:10:37">1:10:37</span> **卢正石** 我打算今天录制结束后，按照胜准说的，把harness彻底拆掉试试。回到vanilla harness，看看实际感觉有什么差异。我想试试看。毕竟我也会对这套花了几个月一边使用、一边打磨的harness产生感情。所以就会一直用下去，不过这次我会彻底拆掉试试。
+
+<span class="paragraph-timestamp" data-ts="1:10:57">1:10:57</span> **崔胜准** 那么就期待下周又会发生些什么，今天就到这里。
+
+<span class="paragraph-timestamp" data-ts="1:11:05">1:11:05</span> **卢正石** 好，今天就讲到这里吧。祝大家度过一个愉快的周末。
+
+<span class="paragraph-timestamp" data-ts="1:11:08">1:11:08</span> **崔胜准** 好，谢谢。
+
+<span class="paragraph-timestamp" data-ts="1:11:09">1:11:09</span> **朴钟贤** 谢谢。
