@@ -1,0 +1,112 @@
+---
+title: "Images 2.5 × Astra: An AI Frontier Brand Kit Experiment"
+description: "Astra designs logos, picks a winner, and turns it into merchandise. The results and cost of an 11-minute brand kit experiment with Images 2.5."
+publishedAt: 2026-09-09
+lang: "en"
+tags: ["OpenAI", "ChatGPT Images", "GPT-6 Astra", "Design", "Experiment"]
+heroImage: "/articles/images-2-5-brandkit/hero.webp"
+---
+
+**“Design logos for AI Frontier, pick the best one, and make merchandise from it.”** I handed the brief to Astra and Images 2.5. They produced 15 images in 11 minutes and 15 seconds. What interested me most was the process of looking at the results, choosing, and revising them.
+
+## What's new in Images 2.5?
+
+OpenAI announced Images 2.5 on September 8, with **Flare for fast generation** and **Sunburst for precise editing**. The main improvements are reference preservation, consistency across edits, lighting, and texture. OpenAI reports up to 50% lower latency for Flare than Images 2.0. [Official announcement](https://openai.com/index/introducing-chatgpt-images-2-5/)
+
+Both API models cost $5 for text input, $8 for image input, and $30 for image output per million tokens. The cost per image depends on size, quality, and reference images. [Official pricing](https://developers.openai.com/api/docs/pricing)
+
+<XPostEmbed url="https://x.com/OpenAI/status/2097394956457623964" lang="en" description="OpenAI's official Images 2.5 announcement." />
+
+**Do earlier changes survive repeated edits?** Watch the [official OpenAI video](https://openai.com/index/introducing-chatgpt-images-2-5/?video=1224686197), which joins edited images into a sequence to demonstrate consistency.
+
+Another useful feature is **streaming previews before the image is finished**. In the official API example below, partial images arrive before the final result. The `partial_images` setting lets you request up to three previews. [Official documentation](https://developers.openai.com/api/docs/guides/image-generation#streaming)
+
+<div className="grid grid-cols-3 gap-2">
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-1.webp" alt="First streaming preview: a snowy valley with a loosely defined river of feathers" caption="① First preview" />
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-2.webp" alt="Second streaming preview: the river and feathers take shape" caption="② Second preview" />
+  <Figure src="/articles/images-2-5-brandkit/stream-final.webp" alt="Final image: a feather river, an owl, and detailed winter mountains" caption="③ Final image" />
+</div>
+
+**Stop motion** particularly caught my attention: generate small movements of the same character, then connect the images. This example from OpenAI's Charlie Guo had about 390,000 views as of September 9. Assembling the frames is a separate step; the full workflow and number of failed attempts have not been disclosed.
+
+<XPostEmbed url="https://x.com/charlierguo/status/2097399137142772071" lang="en" description="A stop-motion example assembled from successive images, shared by an OpenAI employee." />
+
+## Thumbnail comparison: the newest model was cheaper this time
+
+First, I compared thumbnails using the same reference image and instructions. Every API run used `1536x1024` and `quality=high`.
+
+| Model | Cost/image¹ | What stood out |
+| --- | ---: | --- |
+| Codex built-in tool | No separate API charge² | Good style, insufficient empty space |
+| GPT Image 1 | $0.260 | Headline cropped and overlapping the subject |
+| GPT Image 1.5 | $0.212 | Korean typo: `바꿔버린` became `바꾸버린` |
+| GPT Image 2 | $0.188 | Good text, but hair color and composition drifted |
+| **2.5 Flare** | **$0.065** | **Best at leaving room for the headline on the left** |
+| 2.5 Sunburst | $0.065 | Good texture, but the subject intruded into the empty space |
+| ChatGPT Image Latest | $0.218 | Good style; partial compliance with line count and spacing |
+
+¹ Average of two calls per model, calculated from usage and [official rates](https://developers.openai.com/api/docs/pricing.md), without invoice verification. Including previously omitted charges, the 12 API images cost about **$2.02**. ² The four Codex images used subscription allowances; the underlying model was not identified.
+
+<Figure src="/articles/images-2-5-brandkit/benchmark-hybrid.webp" alt="Seven image backends compared with the same headline composited onto their backgrounds" caption="The same headline was added with code. Flare had the least overlap between text and subject." />
+
+In this test, **following composition instructions mattered more than rendering letters**. But `high` has a different token budget across generations, and the sample is small. This is not an overall model ranking.
+
+## A brand kit from one brief
+
+Next came an experiment in which **Astra planned and evaluated, while Flare generated images**. I used the Responses API's image generation tool and fed the actual outputs back to Astra. This tool connection was available before 2.5. [API documentation](https://developers.openai.com/api/docs/guides/tools-image-generation)
+
+I supplied the description from the [AI Frontier website](https://aifrontier.kr/ko/) and three [YouTube](https://www.youtube.com/@chester_roh) thumbnails as reference material. The brief, in condensed form:
+
+> Create different logos, compare the actual results, and improve the best one. Use it to make a brand kit and merchandise, then fix the weakest result. Make your own choices without asking follow-up questions.
+
+**Four candidates → selection and refinement → nine derivatives → evaluation and repair.** The runner had this sequence and its automatic stage instructions defined in advance. “One prompt” means one human brief. No person chose or corrected the designs along the way.
+
+<Figure src="/articles/images-2-5-brandkit/concepts.webp" alt="Four logo concepts: A Open Threshold, B Interlocking Questions, C Uncharted Horizon, and D Folded Exploration Path" caption="A Open Threshold · B Interlocking Questions · C Uncharted Horizon · D Folded Exploration Path" />
+
+Astra chose **A, “Open Threshold.”** It judged that the two facing forms suggested dialogue and an open boundary, while working well in one color and at small sizes. It also identified weaknesses: the mark could look like brackets, and its strokes had uneven thickness.
+
+<Figure src="/articles/images-2-5-brandkit/logo-evolution.webp" alt="The selected A concept and its refined reference logo" caption="Selected logo → refined reference. The difference in stroke thickness shrank but did not disappear." />
+
+Each derivative used this logo as a shared reference. Ink navy, warm paper tones, blue accents, and ivory fabric tied the collection together.
+
+<Figure src="/articles/images-2-5-brandkit/moodboard.webp" alt="AI Frontier moodboard with colors, typography, and materials" caption="A moodboard for color, type, and materials." />
+
+<Figure src="/articles/images-2-5-brandkit/wordmark.webp" alt="The revised horizontal AI Frontier KR logo" caption="The final horizontal logo." />
+
+<Figure src="/articles/images-2-5-brandkit/thumbnail.webp" alt="YouTube thumbnail with a Korean headline meaning What if AI built a brand?" caption="The Korean headline is readable, but the logo remains blurry." />
+
+<Figure src="/articles/images-2-5-brandkit/banner.webp" alt="AI Frontier KR banner" caption="Extra strokes turned the logo into a pair of square brackets." />
+
+<Figure src="/articles/images-2-5-brandkit/wearables.webp" alt="Mockups of an ivory T-shirt and a cap with a patch" caption="T-shirt and cap. Matching fabric colors and blue tabs connect the designs." />
+
+<Figure src="/articles/images-2-5-brandkit/small-goods.webp" alt="Sticker, acrylic keyring, and keycap mockups" caption="Stickers, keyring, and keycaps. The stickers split the strokes; the keycaps changed their ends." />
+
+**Looking like one brand and preserving exactly the same logo proved to be different things.** The collection felt cohesive, but the mark's geometry drifted. These are mockups, not manufacturing files.
+
+<ResourceLink url="/articles/images-2-5-brandkit/brandkit.zip" title="Download the brand kit" domain="Original PNGs and size variants" description="Logos, moodboard, thumbnail, banner, and merchandise mockups, including the observed flaws." />
+
+## It revised its work, but its evaluation could be wrong
+
+Astra chose the blurry horizontal logo for repair. After editing, it preferred the revision because the outline and the smudge in the center had improved.
+
+<Figure src="/articles/images-2-5-brandkit/repair.webp" alt="Before-and-after comparison of the horizontal logo" caption="Before → after. Sharper, but still not an exact match for the reference logo's proportions." />
+
+There was also a problem with the evaluation: **a transparent PNG displayed against a dark background was judged to have poor contrast**. After the experiment, I showed the same images on white. Astra withdrew its claim that the text was unreadable, while still preferring the revision.
+
+The generate, inspect, and revise loop worked. It also needed a suitable viewing environment and clear requirements for details such as logo geometry. Here, self-improvement means **iterating on the output**, not training the model.
+
+## Time and cost
+
+| Main experiment | Result |
+| --- | ---: |
+| API calls / generated images | 20 / 15 |
+| Elapsed time | 11 min 15 sec |
+| Astra input / output tokens | 101,056 / 15,239 |
+| Astra cost calculated from usage | $1.95 |
+| Estimated image output cost | $0.64 |
+
+**The subtotal was about $2.59, or $2.69 including the separate background check.** Image-tool input costs were not reported in the response and are excluded, so this is not a final billed total. The Astra calculation includes cache writes; image output cost is estimated from size and quality using the official calculator. [Recorded metrics](/articles/images-2-5-brandkit/metrics.json), [calculation method](https://developers.openai.com/api/docs/guides/image-generation#gpt-image-25-and-gpt-image-2-output-tokens)
+
+<ResourceLink url="/articles/images-2-5-brandkit/experiment.zip" title="Prompts, code, original images, and usage records" domain="Experiment files" description="The full workflow, evaluations, and cost calculations." />
+
+Next, I want to **composite the original logo onto designs and let AI handle backgrounds and materials**. For stop motion, we could generate 12 character frames and have Astra identify and repair only the ones that drift. The next question is how much this process can reduce rework in real production.

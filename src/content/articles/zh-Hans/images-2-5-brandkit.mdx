@@ -1,0 +1,112 @@
+---
+title: "Images 2.5 × Astra：AI Frontier 品牌套件实验"
+description: "让 Astra 设计标志、选出最佳方案，再延伸为周边产品。一次约 11 分钟的 Images 2.5 品牌套件实验，记录结果与成本。"
+publishedAt: 2026-09-09
+lang: "zh-Hans"
+tags: ["OpenAI", "ChatGPT Images", "GPT-6 Astra", "设计", "实验"]
+heroImage: "/articles/images-2-5-brandkit/hero.webp"
+---
+
+**“为 AI Frontier 设计标志，选出最好的方案，再做成周边产品。”** 我把这个任务交给了 Astra 和 Images 2.5。11 分 15 秒，一共生成了 15 张图。比画质更让我感兴趣的，是它看着结果自行选择、修改的过程。
+
+## Images 2.5 有什么变化？
+
+OpenAI 于 9 月 8 日发布了 Images 2.5，分为**侧重快速生成的 Flare**和**侧重精细编辑的 Sunburst**。主要改进包括保留参考图特征、多轮编辑的一致性，以及光照和质感。官方称，Flare 的延迟相比 Images 2.0 最多降低 50%。[官方发布](https://openai.com/index/introducing-chatgpt-images-2-5/)
+
+两个模型的 API 单价相同：每百万 token，文本输入 $5、图像输入 $8、图像输出 $30。每张图的实际成本取决于尺寸、质量和参考图。[官方价格表](https://developers.openai.com/api/docs/pricing)
+
+<XPostEmbed url="https://x.com/OpenAI/status/2097394956457623964" lang="zh-Hans" description="OpenAI 的 Images 2.5 官方发布帖。" />
+
+**反复修改后，之前的改动还能保留下来吗？** [OpenAI 的官方视频](https://openai.com/index/introducing-chatgpt-images-2-5/?video=1224686197)把多张编辑结果连接起来，展示了这种一致性。
+
+另一个功能是**在生成完成前，依次接收图像预览的流式输出**。下面的官方 API 示例先返回中间图像，最后返回完成版。通过 `partial_images`，最多可以请求 3 张中间图像。[官方文档](https://developers.openai.com/api/docs/guides/image-generation#streaming)
+
+<div className="grid grid-cols-3 gap-2">
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-1.webp" alt="第一张中间图像：积雪覆盖的山谷，以及轮廓尚不清晰的羽毛河流" caption="① 中间图像" />
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-2.webp" alt="第二张中间图像：河流和羽毛的形态逐渐清晰" caption="② 中间图像" />
+  <Figure src="/articles/images-2-5-brandkit/stream-final.webp" alt="完成版：羽毛组成的河流、猫头鹰，以及冬日山景的细节" caption="③ 完成版" />
+</div>
+
+尤其吸引我的是**定格动画**：生成同一个角色逐步移动的图像，再把它们连接起来。OpenAI 的 Charlie Guo 发布的这个案例，截至 9 月 9 日约有 39 万次浏览。拼接画面需要另外完成，完整制作流程和失败次数尚未公开。
+
+<XPostEmbed url="https://x.com/charlierguo/status/2097399137142772071" lang="zh-Hans" description="使用连续图像制作定格动画的案例，发布者是 OpenAI 员工。" />
+
+## 缩略图对比：这次最新的模型更便宜
+
+首先，我用相同的参考图和指令比较了缩略图。所有 API 调用均使用 `1536x1024`、`quality=high`。
+
+| 模型 | 每张成本¹ | 明显差异 |
+| --- | ---: | --- |
+| Codex 内置工具 | 无单独 API 费用² | 风格不错，留白不足 |
+| GPT Image 1 | $0.260 | 标题被裁切，与主体重叠 |
+| GPT Image 1.5 | $0.212 | 韩文错字：`바꿔버린` → `바꾸버린` |
+| GPT Image 2 | $0.188 | 文字不错，但发色和构图偏离要求 |
+| **2.5 Flare** | **$0.065** | **最能为左侧标题留出空间** |
+| 2.5 Sunburst | $0.065 | 质感不错，但主体侵入留白区域 |
+| ChatGPT Image Latest | $0.218 | 风格不错，行数和留白要求只部分落实 |
+
+¹ 每个模型两次调用的平均值，根据使用量和[官方单价](https://developers.openai.com/api/docs/pricing.md)计算，未经账单核对。补上原记录中的遗漏后，API 生成的 12 张图合计约 **$2.02**。² 另有 4 张图在 Codex 订阅额度内生成，未确认其内部模型。
+
+<Figure src="/articles/images-2-5-brandkit/benchmark-hybrid.webp" alt="在七种后端生成的背景图上合成相同标题的对比" caption="用代码合成相同标题。Flare 的文字与主体重叠最少。" />
+
+这次，**能否遵守构图指令，比文字绘制更影响实用性。** 不过，各代模型的 `high` 对应不同的 token 预算，样本也很少，不能据此给模型排出综合名次。
+
+## 一次委托，做出品牌套件
+
+接下来是**由 Astra 规划和评价、Flare 负责绘图的实验**。我使用 Responses API 的图像生成工具，再把实际生成结果交给 Astra 查看。这种工具连接在 2.5 之前就已支持。[API 文档](https://developers.openai.com/api/docs/guides/tools-image-generation)
+
+我预先提供了 [AI Frontier 网站](https://aifrontier.kr/ko/)的介绍，以及 [YouTube](https://www.youtube.com/@chester_roh) 上的 3 张缩略图作为参考。任务可以概括为：
+
+> 设计不同的标志，比较实际结果，选出最好的方案并改进。以它为基础制作品牌套件和周边产品，再修改最差的一项。不要追问，自行选择。
+
+**4 个候选 → 选择与改进 → 9 张衍生图 → 评价与修改。** 执行程序预先设定了这一顺序和各阶段的自动指令。“一条提示词”指人类只委托一次，过程中没有人挑选设计或追加修改意见。
+
+<Figure src="/articles/images-2-5-brandkit/concepts.webp" alt="四个标志概念：A 开放的门槛、B 交扣的问句、C 未知的地平线、D 折叠的探索路径" caption="A 开放的门槛 · B 交扣的问句 · C 未知的地平线 · D 折叠的探索路径" />
+
+Astra 选择了 **A，“开放的门槛”**。它认为两个相向的结构可以表达对话与开放边界，也适合单色和小尺寸使用。同时，它指出了两个弱点：可能被看作括号，左右笔画粗细也不一致。
+
+<Figure src="/articles/images-2-5-brandkit/logo-evolution.webp" alt="被选中的 A 方案与改进后的基准标志" caption="选中的标志 → 改进后的基准图。笔画粗细的差异缩小了，但并未完全一致。" />
+
+所有衍生图都使用这个标志作为共同参考。墨蓝色、暖纸色、蓝色点缀和象牙白面料，让整套设计有了联系。
+
+<Figure src="/articles/images-2-5-brandkit/moodboard.webp" alt="汇集 AI Frontier 配色、字体和材料的情绪板" caption="整理配色、字体和材料的情绪板。" />
+
+<Figure src="/articles/images-2-5-brandkit/wordmark.webp" alt="修改后的 AI Frontier KR 横版标志" caption="最终选定的横版标志。" />
+
+<Figure src="/articles/images-2-5-brandkit/thumbnail.webp" alt="带有韩文标题的 YouTube 缩略图，标题意为如果 AI 来打造品牌" caption="韩文标题可以读清，但标志仍有模糊。" />
+
+<Figure src="/articles/images-2-5-brandkit/banner.webp" alt="AI Frontier KR 横幅" caption="横幅中的标志多出了笔画，变成了一对方括号。" />
+
+<Figure src="/articles/images-2-5-brandkit/wearables.webp" alt="象牙白 T 恤和带贴片帽子的效果图" caption="T 恤与帽子。相同的面料颜色和蓝色布标带来统一感。" />
+
+<Figure src="/articles/images-2-5-brandkit/small-goods.webp" alt="贴纸、亚克力钥匙扣和键帽效果图" caption="贴纸、钥匙扣、键帽。贴纸的笔画分离、键帽的端点变形仍然存在。" />
+
+**看起来属于同一个品牌，与精确保留同一个标志，是两回事。** 产品系列的氛围很统一，但标志形状发生了偏移。这些是效果图，不是可以直接交付生产的文件。
+
+<ResourceLink url="/articles/images-2-5-brandkit/brandkit.zip" title="下载品牌套件" domain="PNG 原图与不同尺寸文件" description="标志、情绪板、缩略图、横幅和周边效果图，也保留了实验中发现的问题。" />
+
+## 它会修改，但评价也会出错
+
+Astra 选择修复模糊的横版标志。编辑后，它认为轮廓和中央污迹有所改善，因此选择了修改版。
+
+<Figure src="/articles/images-2-5-brandkit/repair.webp" alt="横版标志修改前后的对比" caption="修改前 → 修改后。清晰度提高了，但比例仍未与基准标志完全一致。" />
+
+评价本身也有问题：**透明 PNG 显示在深色背景上，被判断为对比度不足。** 实验结束后，我把同样的图像放到白色背景上再交给 Astra，它撤回了“文字不可读”的判断，但仍然更喜欢修改版。
+
+生成、观察、修改的循环确实有效。不过，它也需要合适的显示环境，以及标志形状等必须遵守的标准。这里的自我改进指的是**反复修改产出**，不是训练模型。
+
+## 时间与成本
+
+| 主实验 | 结果 |
+| --- | ---: |
+| API 调用 / 生成图像 | 20 次 / 15 张 |
+| 运行时间 | 11 分 15 秒 |
+| Astra 输入 / 输出 token | 101,056 / 15,239 |
+| 按使用量计算的 Astra 成本 | $1.95 |
+| 估算的图像输出成本 | $0.64 |
+
+**主实验小计约 $2.59，加上另做的一次背景对照评价后，约为 $2.69。** 响应没有提供图像工具的输入费用，因此未计入，这并非最终账单总额。Astra 成本根据使用量计算，包含缓存写入；图像输出成本则按尺寸和质量，用官方计算器估算。[测量记录](/articles/images-2-5-brandkit/metrics.json)、[计算依据](https://developers.openai.com/api/docs/guides/image-generation#gpt-image-25-and-gpt-image-2-output-tokens)
+
+<ResourceLink url="/articles/images-2-5-brandkit/experiment.zip" title="提示词、代码、原图与使用量记录" domain="实验资料" description="可查看完整执行过程、评价和成本计算。" />
+
+下一次，我想**直接合成原始标志，让 AI 负责背景和材质**。定格动画也可以尝试：先生成同一角色的 12 帧，再让 Astra 找出并修复偏离的画面。这套过程能在实际制作中减少多少返工，是我接下来想验证的问题。

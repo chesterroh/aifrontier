@@ -1,0 +1,593 @@
+{
+  "measured_at": "2026-09-09",
+  "responses_calls": 20,
+  "image_count": 15,
+  "wall_seconds": 674.909541,
+  "api_wait_seconds": 650.732,
+  "astra_input_tokens": 101056,
+  "astra_output_tokens": 15239,
+  "astra_cache_read_tokens": 0,
+  "astra_cache_write_tokens": 70301,
+  "astra_cost_from_usage_usd": 1.9482625,
+  "image_output_tokens_estimate": 21324,
+  "image_output_cost_estimate_usd": 0.63972,
+  "total_billed_cost_usd": null,
+  "notes": [
+    "Astra cost calculated from reported usage, including cache writes, at Standard rates. Not invoice-reconciled.",
+    "Native image tool returned no usage. Image output tokens/cost are official-calculator estimates; tool input tokens/cost are unknown.",
+    "Organization usage endpoint returned 403 missing api.usage.read. No complete billing total is claimed.",
+    "Wall time includes local controller work and any resume gap; API wait is summed observed request latency.",
+    "Research, Codex subscription, article editing, packaging and build time excluded."
+  ],
+  "calls": [
+    {
+      "stage": "01-plan",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 46.097,
+      "usage": {
+        "input_tokens": 4138,
+        "input_tokens_details": {
+          "cache_write_tokens": 4135,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1998,
+        "output_tokens_details": {
+          "reasoning_tokens": 160
+        },
+        "total_tokens": 6136
+      },
+      "astra_cost_from_usage_usd": 0.1516175,
+      "images": []
+    },
+    {
+      "stage": "02-concept-A",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 29.01,
+      "usage": {
+        "input_tokens": 2832,
+        "input_tokens_details": {
+          "cache_write_tokens": 1188,
+          "cached_tokens": 0
+        },
+        "output_tokens": 277,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3109
+      },
+      "astra_cost_from_usage_usd": 0.04514,
+      "images": [
+        {
+          "file": "images/02-concept-A-1.png",
+          "size": "1024x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1756,
+          "output_cost_estimate_usd": 0.05268,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "02-concept-B",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 26.391,
+      "usage": {
+        "input_tokens": 2897,
+        "input_tokens_details": {
+          "cache_write_tokens": 1218,
+          "cached_tokens": 0
+        },
+        "output_tokens": 312,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3209
+      },
+      "astra_cost_from_usage_usd": 0.047615,
+      "images": [
+        {
+          "file": "images/02-concept-B-1.png",
+          "size": "1024x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1756,
+          "output_cost_estimate_usd": 0.05268,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "02-concept-C",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 23.685,
+      "usage": {
+        "input_tokens": 2888,
+        "input_tokens_details": {
+          "cache_write_tokens": 1219,
+          "cached_tokens": 0
+        },
+        "output_tokens": 302,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3190
+      },
+      "astra_cost_from_usage_usd": 0.0470275,
+      "images": [
+        {
+          "file": "images/02-concept-C-1.png",
+          "size": "1024x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1756,
+          "output_cost_estimate_usd": 0.05268,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "02-concept-D",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 29.002,
+      "usage": {
+        "input_tokens": 2971,
+        "input_tokens_details": {
+          "cache_write_tokens": 1237,
+          "cached_tokens": 0
+        },
+        "output_tokens": 367,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3338
+      },
+      "astra_cost_from_usage_usd": 0.0511525,
+      "images": [
+        {
+          "file": "images/02-concept-D-1.png",
+          "size": "1024x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1756,
+          "output_cost_estimate_usd": 0.05268,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "03-selection",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 33.754,
+      "usage": {
+        "input_tokens": 7588,
+        "input_tokens_details": {
+          "cache_write_tokens": 7585,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1558,
+        "output_tokens_details": {
+          "reasoning_tokens": 253
+        },
+        "total_tokens": 9146
+      },
+      "astra_cost_from_usage_usd": 0.1727425,
+      "images": []
+    },
+    {
+      "stage": "04-canonical",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 33.287,
+      "usage": {
+        "input_tokens": 4311,
+        "input_tokens_details": {
+          "cache_write_tokens": 2554,
+          "cached_tokens": 0
+        },
+        "output_tokens": 390,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4701
+      },
+      "astra_cost_from_usage_usd": 0.068995,
+      "images": [
+        {
+          "file": "images/04-canonical-1.png",
+          "size": "1024x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1756,
+          "output_cost_estimate_usd": 0.05268,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "05-kit-plan",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 75.313,
+      "usage": {
+        "input_tokens": 2169,
+        "input_tokens_details": {
+          "cache_write_tokens": 2166,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3792,
+        "output_tokens_details": {
+          "reasoning_tokens": 271
+        },
+        "total_tokens": 5961
+      },
+      "astra_cost_from_usage_usd": 0.216705,
+      "images": []
+    },
+    {
+      "stage": "06-banner",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 27.872,
+      "usage": {
+        "input_tokens": 4499,
+        "input_tokens_details": {
+          "cache_write_tokens": 2437,
+          "cached_tokens": 0
+        },
+        "output_tokens": 368,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4867
+      },
+      "astra_cost_from_usage_usd": 0.0694825,
+      "images": [
+        {
+          "file": "images/06-banner-1.png",
+          "size": "1536x864",
+          "quality": "high",
+          "output_tokens_estimate": 1078,
+          "output_cost_estimate_usd": 0.03234,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-cap",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 30.78,
+      "usage": {
+        "input_tokens": 4788,
+        "input_tokens_details": {
+          "cache_write_tokens": 2436,
+          "cached_tokens": 0
+        },
+        "output_tokens": 370,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5158
+      },
+      "astra_cost_from_usage_usd": 0.07247,
+      "images": [
+        {
+          "file": "images/06-cap-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-keycaps",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 31.553,
+      "usage": {
+        "input_tokens": 4782,
+        "input_tokens_details": {
+          "cache_write_tokens": 2448,
+          "cached_tokens": 0
+        },
+        "output_tokens": 352,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5134
+      },
+      "astra_cost_from_usage_usd": 0.07154,
+      "images": [
+        {
+          "file": "images/06-keycaps-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-keyring",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 29.268,
+      "usage": {
+        "input_tokens": 4768,
+        "input_tokens_details": {
+          "cache_write_tokens": 2427,
+          "cached_tokens": 0
+        },
+        "output_tokens": 359,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5127
+      },
+      "astra_cost_from_usage_usd": 0.0716975,
+      "images": [
+        {
+          "file": "images/06-keyring-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-moodboard",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 34.557,
+      "usage": {
+        "input_tokens": 4855,
+        "input_tokens_details": {
+          "cache_write_tokens": 2461,
+          "cached_tokens": 0
+        },
+        "output_tokens": 412,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5267
+      },
+      "astra_cost_from_usage_usd": 0.0753025,
+      "images": [
+        {
+          "file": "images/06-moodboard-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-stickers",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 27.014,
+      "usage": {
+        "input_tokens": 4755,
+        "input_tokens_details": {
+          "cache_write_tokens": 2420,
+          "cached_tokens": 0
+        },
+        "output_tokens": 353,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5108
+      },
+      "astra_cost_from_usage_usd": 0.07125,
+      "images": [
+        {
+          "file": "images/06-stickers-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-thumbnail",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 25.161,
+      "usage": {
+        "input_tokens": 4483,
+        "input_tokens_details": {
+          "cache_write_tokens": 2450,
+          "cached_tokens": 0
+        },
+        "output_tokens": 339,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4822
+      },
+      "astra_cost_from_usage_usd": 0.067905,
+      "images": [
+        {
+          "file": "images/06-thumbnail-1.png",
+          "size": "1536x864",
+          "quality": "high",
+          "output_tokens_estimate": 1078,
+          "output_cost_estimate_usd": 0.03234,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-tshirt",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 27.09,
+      "usage": {
+        "input_tokens": 4745,
+        "input_tokens_details": {
+          "cache_write_tokens": 2436,
+          "cached_tokens": 0
+        },
+        "output_tokens": 327,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5072
+      },
+      "astra_cost_from_usage_usd": 0.06989,
+      "images": [
+        {
+          "file": "images/06-tshirt-1.png",
+          "size": "1536x1024",
+          "quality": "high",
+          "output_tokens_estimate": 1372,
+          "output_cost_estimate_usd": 0.04116,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "06-wordmark",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 22.025,
+      "usage": {
+        "input_tokens": 4387,
+        "input_tokens_details": {
+          "cache_write_tokens": 2415,
+          "cached_tokens": 0
+        },
+        "output_tokens": 278,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4665
+      },
+      "astra_cost_from_usage_usd": 0.0638075,
+      "images": [
+        {
+          "file": "images/06-wordmark-1.png",
+          "size": "1536x864",
+          "quality": "high",
+          "output_tokens_estimate": 1078,
+          "output_cost_estimate_usd": 0.03234,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "07-review",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 49.92,
+      "usage": {
+        "input_tokens": 17905,
+        "input_tokens_details": {
+          "cache_write_tokens": 17902,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2079,
+        "output_tokens_details": {
+          "reasoning_tokens": 101
+        },
+        "total_tokens": 19984
+      },
+      "astra_cost_from_usage_usd": 0.327755,
+      "images": []
+    },
+    {
+      "stage": "08-repair-wordmark",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 33.588,
+      "usage": {
+        "input_tokens": 6129,
+        "input_tokens_details": {
+          "cache_write_tokens": 4004,
+          "cached_tokens": 0
+        },
+        "output_tokens": 431,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6560
+      },
+      "astra_cost_from_usage_usd": 0.09285,
+      "images": [
+        {
+          "file": "images/08-repair-wordmark-1.png",
+          "size": "1536x864",
+          "quality": "high",
+          "output_tokens_estimate": 1078,
+          "output_cost_estimate_usd": 0.03234,
+          "tool_usage_reported": null,
+          "input_cost_usd": null
+        }
+      ]
+    },
+    {
+      "stage": "09-final-review",
+      "status": "completed",
+      "model": "gpt-6-astra",
+      "seconds": 15.365,
+      "usage": {
+        "input_tokens": 5166,
+        "input_tokens_details": {
+          "cache_write_tokens": 5163,
+          "cached_tokens": 0
+        },
+        "output_tokens": 575,
+        "output_tokens_details": {
+          "reasoning_tokens": 43
+        },
+        "total_tokens": 5741
+      },
+      "astra_cost_from_usage_usd": 0.0933175,
+      "images": []
+    }
+  ],
+  "post_experiment_display_audit": {
+    "calls": 1,
+    "new_images": 0,
+    "seconds": 14.935,
+    "usage": {
+      "input_tokens": 5888,
+      "input_tokens_details": {
+        "cache_write_tokens": 5885,
+        "cached_tokens": 0
+      },
+      "output_tokens": 643,
+      "output_tokens_details": {
+        "reasoning_tokens": 45
+      },
+      "total_tokens": 6531
+    },
+    "astra_cost_from_usage_usd": 0.1057425
+  },
+  "all_astra_cost_from_usage_usd": 2.054005
+}

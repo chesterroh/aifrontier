@@ -1,0 +1,112 @@
+---
+title: "Images 2.5 × Astra: AI Frontier 브랜드 키트 실험"
+description: "Astra가 로고를 만들고, 고르고, 굿즈로 확장한다. Images 2.5와 함께한 11분짜리 브랜드 키트 실험의 결과와 비용."
+publishedAt: 2026-09-09
+lang: "ko"
+tags: ["OpenAI", "ChatGPT Images", "GPT-6 Astra", "디자인", "실험"]
+heroImage: "/articles/images-2-5-brandkit/hero.webp"
+---
+
+**“AI Frontier의 로고를 만들고, 가장 좋은 것을 골라 굿즈까지 만들어줘.”** Astra와 Images 2.5에 맡겨봤다. 11분 15초 동안 이미지 15장이 나왔다. 흥미로웠던 것은 그림의 품질보다, 결과를 보고 스스로 고르고 고치는 과정이었다.
+
+## Images 2.5, 무엇이 달라졌나
+
+OpenAI가 9월 8일 발표한 Images 2.5는 **빠른 생성의 Flare**, **정밀한 편집의 Sunburst**로 나뉜다. 참조 이미지 보존, 반복 편집의 일관성, 빛과 질감이 주요 개선점이다. Flare는 Images 2.0보다 지연 시간이 최대 50% 줄었다고 한다. [공식 발표](https://openai.com/index/introducing-chatgpt-images-2-5/)
+
+두 모델의 API 단가는 100만 토큰당 텍스트 입력 $5, 이미지 입력 $8, 이미지 출력 $30이다. 실제 장당 가격은 크기와 품질, 참조 이미지에 따라 달라진다. [공식 가격표](https://developers.openai.com/api/docs/pricing)
+
+<XPostEmbed url="https://x.com/OpenAI/status/2097394956457623964" lang="ko" description="OpenAI의 Images 2.5 공식 발표." />
+
+**여러 번 고쳐도 앞선 결과가 유지되는가?** 편집한 이미지들을 이어 붙여 일관성을 보여주는 [OpenAI 공식 영상에서 확인할 수 있다](https://openai.com/index/introducing-chatgpt-images-2-5/?video=1224686197).
+
+또 하나는 **완성되기 전 이미지를 순서대로 받아보는 스트리밍**이다. 아래 공식 API 예시처럼 중간 이미지가 도착하고 마지막에 완성본이 온다. `partial_images`로 중간 이미지를 최대 3장까지 요청할 수 있다. [공식 문서](https://developers.openai.com/api/docs/guides/image-generation#streaming)
+
+<div className="grid grid-cols-3 gap-2">
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-1.webp" alt="스트리밍 첫 번째 중간 이미지: 눈 덮인 계곡과 흐릿한 깃털의 강" caption="① 중간 이미지" />
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-2.webp" alt="스트리밍 두 번째 중간 이미지: 강과 깃털의 형태가 구체화되는 모습" caption="② 중간 이미지" />
+  <Figure src="/articles/images-2-5-brandkit/stream-final.webp" alt="스트리밍 완성본: 깃털로 이루어진 강과 부엉이, 겨울 산의 세부 묘사" caption="③ 완성본" />
+</div>
+
+특히 눈에 들어온 것은 **스톱모션**이다. 같은 캐릭터를 조금씩 움직인 이미지로 만들고 연결하는 방식이다. OpenAI의 Charlie Guo가 공개한 아래 사례는 9월 9일 기준 약 39만 조회를 기록했다. 프레임을 이어 붙이는 과정은 별도이며, 전체 제작 과정과 실패 횟수는 공개되지 않았다.
+
+<XPostEmbed url="https://x.com/charlierguo/status/2097399137142772071" lang="ko" description="연속 이미지를 활용한 스톱모션 사례. 제작자는 OpenAI 소속." />
+
+## 썸네일 비교: 이번에는 최신 모델이 더 쌌다
+
+먼저 같은 참조 이미지와 지시로 썸네일을 비교했다. API 설정은 모두 `1536x1024`, `quality=high`였다.
+
+| 모델 | 비용/장¹ | 눈에 띈 차이 |
+| --- | ---: | --- |
+| Codex 내장 도구 | 별도 API 청구 없음² | 스타일 양호, 여백은 부족 |
+| GPT Image 1 | $0.260 | 제목이 잘리고 피사체와 충돌 |
+| GPT Image 1.5 | $0.212 | `바꿔버린` → `바꾸버린` 오타 |
+| GPT Image 2 | $0.188 | 글자는 양호, 머리색·구도 이탈 |
+| **2.5 Flare** | **$0.065** | **제목을 넣을 왼쪽 여백 확보가 가장 좋았음** |
+| 2.5 Sunburst | $0.065 | 질감은 좋지만 피사체가 여백 침범 |
+| ChatGPT Image Latest | $0.218 | 스타일 양호, 줄 수·여백 부분 이행 |
+
+¹ 모델별 두 호출 평균. 사용량과 [공식 단가](https://developers.openai.com/api/docs/pricing.md)로 계산했으며 청구서 대조값은 아니다. API 12장 합계는 기존 기록의 누락분을 반영해 약 **$2.02**다. ² Codex 4장은 구독 한도 내 사용이며 내부 모델은 확인하지 못했다.
+
+<Figure src="/articles/images-2-5-brandkit/benchmark-hybrid.webp" alt="7개 백엔드의 배경 이미지에 동일한 제목을 합성한 비교" caption="같은 제목을 코드로 합성한 결과. Flare는 글자와 피사체의 충돌이 가장 적었다." />
+
+이번에는 **글자보다 구도 지시를 얼마나 잘 지키는지가 실용성을 갈랐다.** 다만 세대마다 `high`의 토큰 예산이 다르고, 샘플도 적다. 이 결과를 모델 전체 순위로 보기는 어렵다.
+
+## 한 번의 의뢰로 브랜드 키트 만들기
+
+다음은 **Astra가 기획·평가하고, Flare가 그리는 실험**이다. Responses API의 이미지 생성 도구를 사용하고, 생성된 이미지를 Astra에 다시 보여줬다. 이 도구 연결은 2.5 이전부터 가능했다. [API 문서](https://developers.openai.com/api/docs/guides/tools-image-generation)
+
+[AI Frontier 홈페이지](https://aifrontier.kr/ko/) 설명과 [유튜브](https://www.youtube.com/@chester_roh) 썸네일 3장을 자료로 미리 제공했다. 의뢰를 요약하면 이렇다.
+
+> 서로 다른 로고를 만들고, 실제 결과를 비교해 가장 좋은 것을 골라 개선해줘. 그 로고로 브랜드 키트와 굿즈를 만들고, 가장 부족한 결과 하나는 다시 고쳐줘. 추가 질문 없이 스스로 선택해줘.
+
+**후보 4개 → 선택·개선 → 파생 이미지 9개 → 평가·수정.** 이 순서와 단계별 자동 지시는 실행기에 정해뒀다. ‘한 프롬프트’는 사람의 의뢰가 한 번이라는 뜻이며, 중간에 사람이 디자인을 고르거나 고쳐주지는 않았다.
+
+<Figure src="/articles/images-2-5-brandkit/concepts.webp" alt="A 열린 문턱, B 질문의 맞물림, C 미지의 수평선, D 접힌 탐사 경로의 로고 후보" caption="A 열린 문턱 · B 질문의 맞물림 · C 미지의 수평선 · D 접힌 탐사 경로" />
+
+Astra는 **A, ‘열린 문턱’**을 골랐다. 마주 보는 두 구조가 대화와 열린 경계를 표현하고, 단색이나 작은 크기에도 적용하기 좋다는 판단이었다. 대신 괄호처럼 보일 수 있고 좌우 획 두께가 다르다는 약점을 짚었다.
+
+<Figure src="/articles/images-2-5-brandkit/logo-evolution.webp" alt="선택한 A 후보와 개선한 기준 로고" caption="선택한 로고 → 개선한 기준 로고. 획 두께 차이는 줄었지만 완전히 같아지지는 않았다." />
+
+이 로고를 공통 참조로 넣고 파생물을 만들었다. 잉크 네이비, 따뜻한 종이색, 파란 포인트와 아이보리 원단이 전체를 연결한다.
+
+<Figure src="/articles/images-2-5-brandkit/moodboard.webp" alt="AI Frontier 색상, 타이포그래피와 재료를 모은 무드보드" caption="색·서체·재료를 정리한 무드보드." />
+
+<Figure src="/articles/images-2-5-brandkit/wordmark.webp" alt="수정 후의 AI Frontier KR 가로형 로고" caption="최종 가로형 로고." />
+
+<Figure src="/articles/images-2-5-brandkit/thumbnail.webp" alt="AI가 브랜드를 만든다면이라는 제목의 유튜브 썸네일" caption="한글 제목은 읽히지만 로고에는 번짐이 남았다." />
+
+<Figure src="/articles/images-2-5-brandkit/banner.webp" alt="AI Frontier KR 배너" caption="배너에서는 로고에 획이 추가돼 대괄호 모양으로 바뀌었다." />
+
+<Figure src="/articles/images-2-5-brandkit/wearables.webp" alt="아이보리 티셔츠와 패치가 달린 모자 목업" caption="티셔츠와 모자. 같은 원단색과 파란 탭이 연결감을 만든다." />
+
+<Figure src="/articles/images-2-5-brandkit/small-goods.webp" alt="스티커, 아크릴 키링, 키캡 목업" caption="스티커·키링·키캡. 스티커의 선 분리와 키캡의 끝단 변형은 남았다." />
+
+**같은 브랜드처럼 보이는 것과, 같은 로고를 정확히 유지하는 것은 달랐다.** 상품군의 분위기는 잘 맞았지만 로고 형태는 흔들렸다. 결과물은 실제 제작용 파일이 아닌 목업이다.
+
+<ResourceLink url="/articles/images-2-5-brandkit/brandkit.zip" title="브랜드 키트 다운로드" domain="PNG 원본·크기별 파일" description="로고, 무드보드, 썸네일, 배너와 굿즈 목업. 관찰된 오류도 그대로 포함했습니다." />
+
+## 스스로 고쳤지만, 평가도 틀릴 수 있었다
+
+Astra는 가로형 로고의 흐림을 수정 대상으로 골랐다. 편집 후에는 윤곽과 중앙 얼룩이 개선됐다며 수정본을 선택했다.
+
+<Figure src="/articles/images-2-5-brandkit/repair.webp" alt="가로형 로고의 수정 전후 비교" caption="수정 전 → 수정 후. 선명도는 나아졌지만 기준 로고와 비례가 정확히 같지는 않다." />
+
+그런데 평가에도 문제가 있었다. **투명 PNG가 어두운 배경에 표시되자 대비가 나쁘다고 판단한 것**이다. 실험 후 같은 이미지를 흰 배경에 놓고 다시 보여주자 Astra는 글자가 읽히지 않는다는 평가를 철회했다. 수정본을 더 좋게 보는 판단은 유지했다.
+
+만들고 보고 고치는 반복은 작동했다. 다만 결과를 제대로 보여주는 환경과, 로고 형태처럼 반드시 지켜야 할 기준도 필요했다. 여기서의 자가개선은 모델 학습이 아니라 **산출물의 반복 수정**이다.
+
+## 시간과 비용
+
+| 본 실험 | 결과 |
+| --- | ---: |
+| API 호출 / 생성 이미지 | 20회 / 15장 |
+| 실행 시간 | 11분 15초 |
+| Astra 입력 / 출력 토큰 | 101,056 / 15,239 |
+| Astra 사용량 기반 비용 | $1.95 |
+| 이미지 출력 비용 추정 | $0.64 |
+
+**본 실험 소계는 약 $2.59, 별도 배경 대조 검사 1회까지 포함하면 약 $2.69다.** 이미지 도구의 입력 비용은 응답에 없어 제외했다. 따라서 최종 청구액은 아니다. Astra 비용은 캐시 쓰기를 반영한 사용량 계산이며, 이미지 출력 비용은 크기·품질에 따른 공식 계산기 추정치다. [측정 기록](/articles/images-2-5-brandkit/metrics.json), [계산 기준](https://developers.openai.com/api/docs/guides/image-generation#gpt-image-25-and-gpt-image-2-output-tokens)
+
+<ResourceLink url="/articles/images-2-5-brandkit/experiment.zip" title="프롬프트·코드·원본·사용량 기록" domain="실험 자료" description="전체 실행 과정과 평가, 비용 계산을 확인할 수 있습니다." />
+
+다음에는 **로고는 원본으로 합성하고, AI에는 배경과 소재를 맡겨보고 싶다.** 스톱모션도 같은 방식으로 캐릭터 12프레임을 만들고, Astra가 어긋난 프레임만 찾아 고치게 할 수 있다. 한 장을 잘 그리는 능력이 실제 제작 과정에서 얼마나 재작업을 줄여줄지가 다음 질문이다.

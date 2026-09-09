@@ -1,0 +1,112 @@
+---
+title: "Images 2.5 × Astra：AI Frontierのブランドキット制作実験"
+description: "Astraがロゴを作り、選び、グッズへ展開する。Images 2.5と行った約11分のブランドキット制作実験、その結果と費用。"
+publishedAt: 2026-09-09
+lang: "ja"
+tags: ["OpenAI", "ChatGPT Images", "GPT-6 Astra", "デザイン", "実験"]
+heroImage: "/articles/images-2-5-brandkit/hero.webp"
+---
+
+**「AI Frontierのロゴを作り、一番良いものを選んでグッズまで作ってほしい」**。AstraとImages 2.5に任せてみました。11分15秒で生成された画像は15枚。画質以上に興味深かったのは、結果を見て、自ら選び、修正する過程でした。
+
+## Images 2.5で何が変わったのか
+
+OpenAIが9月8日に発表したImages 2.5には、**高速生成のFlare**と**精密な編集のSunburst**があります。参照画像の特徴の保持、繰り返し編集するときの一貫性、光や質感が主な改善点です。Flareの生成時間はImages 2.0より最大50%短くなったとされています。[公式発表](https://openai.com/index/introducing-chatgpt-images-2-5/)
+
+両モデルのAPI単価は100万トークン当たり、テキスト入力が$5、画像入力が$8、画像出力が$30。1枚の費用はサイズ、品質、参照画像によって変わります。[公式料金表](https://developers.openai.com/api/docs/pricing)
+
+<XPostEmbed url="https://x.com/OpenAI/status/2097394956457623964" lang="ja" description="OpenAIによるImages 2.5の公式発表。" />
+
+**何度修正しても、それまでの変更は保たれるのか。** 編集した画像をつなぎ、一貫性を示した[OpenAIの公式動画で確認できます](https://openai.com/index/introducing-chatgpt-images-2-5/?video=1224686197)。
+
+もう一つは、**完成前の画像を順に受け取れるストリーミング**です。以下の公式APIの例では、途中の画像が届いた後に完成版が届きます。`partial_images`で途中画像を最大3枚までリクエストできます。[公式ドキュメント](https://developers.openai.com/api/docs/guides/image-generation#streaming)
+
+<div className="grid grid-cols-3 gap-2">
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-1.webp" alt="最初の途中画像：雪に覆われた谷と、まだ輪郭が曖昧な羽の川" caption="① 途中画像" />
+  <Figure src="/articles/images-2-5-brandkit/stream-partial-2.webp" alt="2枚目の途中画像：川と羽の形が具体的になった様子" caption="② 途中画像" />
+  <Figure src="/articles/images-2-5-brandkit/stream-final.webp" alt="完成版：羽でできた川、フクロウ、冬山の細部" caption="③ 完成版" />
+</div>
+
+特に目を引いたのは**ストップモーション**です。同じキャラクターを少しずつ動かした画像を生成し、つなぐ方法です。OpenAIのCharlie Guoが公開した以下の例は、9月9日時点で約39万回閲覧されていました。フレームをつなぐ作業は別に必要で、制作の全工程や失敗回数は公開されていません。
+
+<XPostEmbed url="https://x.com/charlierguo/status/2097399137142772071" lang="ja" description="連続画像を使ったストップモーションの例。投稿者はOpenAIの社員。" />
+
+## サムネイル比較：今回は最新モデルのほうが安かった
+
+まず、同じ参照画像と指示でサムネイルを比較しました。APIの設定はすべて`1536x1024`、`quality=high`です。
+
+| モデル | 1枚当たりの費用¹ | 目立った違い |
+| --- | ---: | --- |
+| Codex内蔵ツール | 別途API課金なし² | スタイルは良好、余白は不足 |
+| GPT Image 1 | $0.260 | 見出しが切れ、被写体と重なる |
+| GPT Image 1.5 | $0.212 | 韓国語の誤字：`바꿔버린` → `바꾸버린` |
+| GPT Image 2 | $0.188 | 文字は良好、髪色と構図は指示から逸脱 |
+| **2.5 Flare** | **$0.065** | **左側に見出し用の余白を最もうまく確保** |
+| 2.5 Sunburst | $0.065 | 質感は良好、被写体が余白に入り込む |
+| ChatGPT Image Latest | $0.218 | スタイルは良好、行数と余白は一部のみ指示通り |
+
+¹ モデルごとに2回の呼び出しの平均。使用量と[公式単価](https://developers.openai.com/api/docs/pricing.md)から計算しており、請求書との照合値ではありません。以前の記録の漏れを含めると、APIで生成した12枚の合計は約**$2.02**です。² Codexの4枚はサブスクリプションの利用枠内で生成し、内部モデルは確認できていません。
+
+<Figure src="/articles/images-2-5-brandkit/benchmark-hybrid.webp" alt="7つの画像生成バックエンドの背景に、同じ見出しを合成した比較" caption="同じ見出しをコードで合成。Flareは文字と被写体の重なりが最も少ない結果でした。" />
+
+今回は、**文字の描画より構図の指示を守れるかが実用性を左右しました。** ただし、`high`のトークン予算は世代ごとに異なり、サンプルも少数です。モデル全体の順位を示すものではありません。
+
+## 一度の依頼でブランドキットを作る
+
+次は、**Astraが企画・評価し、Flareが描く実験**です。Responses APIの画像生成ツールを使い、生成結果をAstraに見せて評価させました。このツール連携自体は2.5以前から可能でした。[APIドキュメント](https://developers.openai.com/api/docs/guides/tools-image-generation)
+
+[AI Frontierのホームページ](https://aifrontier.kr/ko/)の説明と、[YouTube](https://www.youtube.com/@chester_roh)のサムネイル3枚を事前に資料として渡しました。依頼を要約すると、次の通りです。
+
+> 異なるロゴを作り、実際の結果を比較して一番良いものを選び、改善してください。そのロゴでブランドキットとグッズを作り、最も不十分な結果を一つ修正してください。追加の質問をせず、自分で選んでください。
+
+**候補4案 → 選択・改善 → 派生画像9枚 → 評価・修正。** この順序と段階ごとの自動指示は実行プログラムにあらかじめ設定しました。「一つのプロンプト」とは人間の依頼が一度という意味です。途中で人間がデザインを選んだり、修正指示を加えたりはしていません。
+
+<Figure src="/articles/images-2-5-brandkit/concepts.webp" alt="4つのロゴ案：A 開かれた境界、B かみ合う問い、C 未知の地平線、D 折り畳まれた探索路" caption="A 開かれた境界 · B かみ合う問い · C 未知の地平線 · D 折り畳まれた探索路" />
+
+Astraが選んだのは**A「開かれた境界」**。向かい合う二つの形が対話と開放性を表し、単色でも小さなサイズでも使いやすいという判断でした。一方で、括弧に見える可能性と、左右の線の太さが違う点を弱点として挙げました。
+
+<Figure src="/articles/images-2-5-brandkit/logo-evolution.webp" alt="選ばれたA案と、改善後の基準ロゴ" caption="選択したロゴ → 改善後の基準ロゴ。線の太さの差は縮まりましたが、完全には揃いませんでした。" />
+
+このロゴを共通の参照画像にして派生物を作りました。インクのようなネイビー、温かみのある紙の色、青のアクセント、アイボリーの生地が全体をつないでいます。
+
+<Figure src="/articles/images-2-5-brandkit/moodboard.webp" alt="AI Frontierの色、タイポグラフィ、素材をまとめたムードボード" caption="色・書体・素材のムードボード。" />
+
+<Figure src="/articles/images-2-5-brandkit/wordmark.webp" alt="修正後のAI Frontier KR横組みロゴ" caption="最終的に選ばれた横組みロゴ。" />
+
+<Figure src="/articles/images-2-5-brandkit/thumbnail.webp" alt="AIがブランドを作ったら、という意味の韓国語見出しを入れたYouTubeサムネイル" caption="韓国語の見出しは読めますが、ロゴにはにじみが残りました。" />
+
+<Figure src="/articles/images-2-5-brandkit/banner.webp" alt="AI Frontier KRのバナー" caption="バナーではロゴに線が加わり、角括弧の形になりました。" />
+
+<Figure src="/articles/images-2-5-brandkit/wearables.webp" alt="アイボリーのTシャツとパッチ付きキャップのモックアップ" caption="Tシャツとキャップ。同じ生地の色と青いタグに統一感があります。" />
+
+<Figure src="/articles/images-2-5-brandkit/small-goods.webp" alt="ステッカー、アクリルキーホルダー、キーキャップのモックアップ" caption="ステッカー・キーホルダー・キーキャップ。線の分離や先端の変形が残りました。" />
+
+**同じブランドに見えることと、同じロゴを正確に保つことは別でした。** 商品群の雰囲気は揃いましたが、ロゴの形は変わってしまいました。これらはモックアップであり、製造用データではありません。
+
+<ResourceLink url="/articles/images-2-5-brandkit/brandkit.zip" title="ブランドキットをダウンロード" domain="PNG原本・サイズ別ファイル" description="ロゴ、ムードボード、サムネイル、バナー、グッズのモックアップ。確認された不具合もそのまま含んでいます。" />
+
+## 自分で直せても、評価を間違えることはある
+
+Astraは横組みロゴのぼやけを修正対象に選びました。編集後は輪郭と中央のにじみが改善したとして、修正版を採用しました。
+
+<Figure src="/articles/images-2-5-brandkit/repair.webp" alt="横組みロゴの修正前後の比較" caption="修正前 → 修正後。鮮明にはなりましたが、基準ロゴと比率が正確に一致したわけではありません。" />
+
+ただし、評価にも問題がありました。**透明PNGが暗い背景に表示され、コントラストが低いと判断した**のです。実験後、同じ画像を白い背景に置いて見せると、Astraは文字が読めないという評価を撤回しました。修正版のほうが良いという判断は変わりませんでした。
+
+作り、見て、直す反復は機能しました。その一方で、適切な表示環境と、ロゴの形など必ず守るべき基準も必要です。ここでの自己改善はモデルの学習ではなく、**成果物を繰り返し修正すること**を意味します。
+
+## 時間と費用
+
+| 本実験 | 結果 |
+| --- | ---: |
+| API呼び出し / 生成画像 | 20回 / 15枚 |
+| 実行時間 | 11分15秒 |
+| Astra入力 / 出力トークン | 101,056 / 15,239 |
+| 使用量から計算したAstraの費用 | $1.95 |
+| 画像出力の推定費用 | $0.64 |
+
+**本実験の小計は約$2.59、別途行った背景の比較評価1回を含めると約$2.69です。** 画像ツールの入力費用はレスポンスに含まれておらず、除外しています。最終的な請求総額ではありません。Astraの費用はキャッシュ書き込みを反映した使用量計算、画像出力はサイズと品質に基づく公式計算機の推定値です。[測定記録](/articles/images-2-5-brandkit/metrics.json)、[計算方法](https://developers.openai.com/api/docs/guides/image-generation#gpt-image-25-and-gpt-image-2-output-tokens)
+
+<ResourceLink url="/articles/images-2-5-brandkit/experiment.zip" title="プロンプト・コード・原本・使用量記録" domain="実験資料" description="実行過程、評価、費用計算を確認できます。" />
+
+次は、**ロゴの原本を合成し、AIには背景や素材の表現を任せたい**と思います。ストップモーションでも、キャラクターの12フレームを作り、Astraに一貫性が崩れたフレームだけを見つけて直させられそうです。この過程が実際の制作でどれほど手戻りを減らせるか。それが次の問いです。
