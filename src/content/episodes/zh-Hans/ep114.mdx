@@ -1,0 +1,681 @@
+---
+episodeNumber: 114
+title: 根本无暇追赶——从数学到基因组，AI的科学突袭
+description: 本期视频通过 Navier–Stokes 方程挑战案例，探讨大规模多智能体与海量算力如何改变数学研究。随后，我们将直接讨论 GPT Image
+  2.5 的图像一致性与编辑性能，以及 Astra 的 computer use 和智能体应用案例。此外，还将说明 Google DeepMind 的 AlphaGenome
+  Atlas 对基因变异与疾病研究、新药开发可能产生的影响，并梳理 AI for Science 的现状与未来。我们也将共同讨论快速发展的 AI 技术给研究生态、安全以及人类角色提出的问题。
+publishedAt: '2026-09-10'
+duration: '1:34:35'
+youtubeId: VWDNvKJTONU
+thumbnail: https://i.ytimg.com/vi/VWDNvKJTONU/maxresdefault.jpg
+hosts:
+- 卢正石
+- 崔胜准
+- 朴钟贤
+chapters:
+- time: 0:00
+  title: Navier–Stokes 方程求解消息
+- time: 0:51
+  title: 流体模拟与 Navier–Stokes 的历史
+- time: '1:50'
+  title: 千禧年大奖难题的意义与剩余课题
+- time: '2:48'
+  title: 问题解决对实用技术的影响
+- time: '3:56'
+  title: OpenAI 的算力攻势与内部模型
+- time: '4:48'
+  title: Test-time compute scaling 与性能提升
+- time: '6:11'
+  title: 数学假设求解中的 ansatz 与 Terence Tao 的洞察
+- time: '7:37'
+  title: 1万个智能体的同步协作
+- time: '8:28'
+  title: RLVR 环境中出现的智能体协作
+- time: '9:30'
+  title: 群体间的 cross-pollination 与渐进式证明
+- time: '10:51'
+  title: Anthropic 的先行研究与 OpenAI 的追赶
+- time: '12:33'
+  title: Codex 编排与1万智能体实验
+- time: '13:37'
+  title: 1,300亿个 token 与百亿元级计算成本
+- time: '15:32'
+  title: 数学研究共同体与 AI 的贡献问题
+- time: '16:55'
+  title: 围绕 Navier–Stokes 的 AI 研究丑闻
+- time: '18:20'
+  title: Alpöge 与 Buckmaster 的研究时间线
+- time: '20:34'
+  title: 研究数据泄露与训练贡献争议
+- time: '22:17'
+  title: OpenAI 与 Anthropic 的研究署名冲突
+- time: '23:38'
+  title: 超级智能竞赛与 AI 安全危机
+- time: '27:14'
+  title: 中国的追赶与 DeepSeek V5 传闻
+- time: '28:27'
+  title: AI 数学发现中的反例与新洞察
+- time: '30:32'
+  title: 围绕研究成果的黑暗森林问题
+- time: '32:36'
+  title: AlphaGo 十年之后与 AGI 争论
+- time: '33:29'
+  title: GPT Image 2.5 发布与 Astra 的视觉能力
+- time: '34:50'
+  title: 图像编辑一致性与流式生成
+- time: '36:29'
+  title: 向定格动画与 VFX 扩展的图像生成
+- time: '37:37'
+  title: 商人需要持续追踪的 AI 技术
+- time: '38:52'
+  title: GPT Image 2.5 的价格与缩略图性能
+- time: '42:03'
+  title: Grok 与面向消费者的智能体套件
+- time: '43:02'
+  title: Astra 的计算机使用与旅行自动预订
+- time: '46:53'
+  title: Astra 与 GPT Image 2.5 的智能体结合
+- time: '50:45'
+  title: Astra 渲染迭代优化实验
+- time: '52:53'
+  title: AlphaGenome Atlas 与基因组变异分析
+- time: '53:17'
+  title: AlphaFold 改变的蛋白质结构研究
+- time: '55:32'
+  title: AlphaGenome 与非蛋白质编码区域
+- time: '59:14'
+  title: 表观遗传学与 partial reprogramming
+- time: '64:26'
+  title: SNP 与个体间的基因组差异
+- time: '68:34'
+  title: 短读长·长读长测序与基因组绘图
+- time: '70:02'
+  title: HLA 区域与长读长测序的必要性
+- time: '72:25'
+  title: AlphaGenome 对基因变异影响的预测
+- time: '77:47'
+  title: AlphaGenome Atlas 的预计算数据库
+- time: '79:37'
+  title: AI 工具改变的生命科学研究方式
+- time: '81:26'
+  title: 基因组分析与个体化治疗
+- time: '83:07'
+  title: 罕见遗传病与癌症治疗靶点探索
+- time: '85:45'
+  title: 生物技术向计算科学转型
+- time: '87:05'
+  title: Evo 2 与合成生物学的语言模型
+- time: '89:43'
+  title: 基因组数据与生物 AI 的规模爆发
+- time: '92:39'
+  title: AI 加速的生命科学未来
+- time: '94:10'
+  title: 三天 AI 新闻 recap
+lang: zh-Hans
+alternateSlug: null
+series: main
+---
+
+## Navier–Stokes 方程求解消息    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **卢正石** 今天录制时是2026年9月9日，星期三晚上。我们久违地在晚上进行录制。消息真是接连不断。不过，关于解出了这个Navier–Stokes方程，而且是准确地解出来了究竟意味着什么，我也不是很清楚，胜准，请给我们讲讲这件事吧。
+
+<span class="paragraph-timestamp" data-ts="00:21">00:21</span> **崔胜准** 好，我今天也急急忙忙地做了一番调查。首先，OpenAI页面上出现了这样的内容。这里有一连串说明、简单的示意图和图表，也介绍了他们是如何做到的，内容都在这里，更详细的信息也以论文形式公开了，不过即使公开了，也不是我能看懂的那种内容，所以我赶紧关掉了。
+
+
+## 流体模拟与 Navier–Stokes 的历史    *00:51*
+
+<span class="paragraph-timestamp" data-ts="00:51">00:51</span> **崔胜准** 至于Navier–Stokes是什么，我就以自己了解的程度简单说明一下。读过理工科的人在学习多元微积分或微分方程时，或者学习流体力学时，应该都接触过它。在媒体艺术领域，这也是一种相当常用的技术。因为它虽然无法用解析方法处理，却可以用数值方法处理，所以是一种与流体有关的模拟。Euler在18世纪提出过一个方程，19世纪的Navier和Stokes也都是人名。在19世纪提出的方程中，较早的Euler方程针对无黏性的情况，Navier–Stokes方程则针对有黏性的流体模拟。所以这个方程无法用解析方法求解，并于2000年被列入千禧年难题。
+
+<span class="paragraph-timestamp" data-ts="01:39">01:39</span> 因此，这次千禧年难题被解开才会成为社会热议的话题。看这些资料的话，还能看到其中处理了连续进行的模拟等内容。
+
+
+## 千禧年大奖难题的意义与剩余课题    *01:50*
+
+<span class="paragraph-timestamp" data-ts="01:50">01:50</span> **崔胜准** 不过内容比较难，所以我们先从什么是千禧年难题开始简单梳理一下。上个月，也就是8月底左右，有一篇文章仿佛预见了这次事件，其中包含了一些深刻见解，是Harvard University的一位应用数学教授以《对千禧年难题的反思》为题发布的一篇preprint。千禧年难题是Clay Mathematics Institute于2000年选定并公布的七个问题。其中有一个叫庞加莱猜想，目前已经被解决，而黎曼猜想、P vs NP，以及Navier–Stokes，都是广为人知的代表性问题。
+
+<span class="paragraph-timestamp" data-ts="02:31">02:31</span> 不过这篇文章有趣的地方在于，这些问题在2000年公布时意义非常重大，而在此后的约26年间，人们进行了大量挑战，也产生了不少衍生成果。正因如此，
+
+
+## 问题解决对实用技术的影响    *02:48*
+
+<span class="paragraph-timestamp" data-ts="02:48">02:48</span> **崔胜准** 文章探讨了即使这些问题真的被解决，究竟还能产生多大影响。即使黎曼猜想实际上没有被解决，人们也已经确认了12万亿个符合该猜想的零点，因此无论它最终是否被解决，在实际应用中可能都不会有什么大问题。接着，对P vs NP也提出了类似的看法。Navier–Stokes方程也是如此，目前有一个与所谓blow-up奇点出现有关的问题与此相连，但即使这个问题被解决，即使从数学上证明了这种现象，在真实的河流或风中也不会看到它。
+
+<span class="paragraph-timestamp" data-ts="03:25">03:25</span> 所以从实用角度来说，它并不会立刻对工程问题产生重大影响，也绝不会导致以往开发的算法突然失效之类的事情发生。因为这是一个非常形式化的问题。所以当人们听说Navier–Stokes问题被解决了，就会问：那我们预测台风，或处理与湍流有关的流体力学、飞机和汽车相关问题时，会发生重大变化吗？答案是否定的。这是一个非常形式化的数学问题。
+
+
+## OpenAI 的算力攻势与内部模型    *03:56*
+
+<span class="paragraph-timestamp" data-ts="03:56">03:56</span> **崔胜准** 不过我更关注的是，在解决它的过程中，他们投入了相当庞大的资源。这一点非常有意思，所以我想好好讲一讲这部分。
+
+<span class="paragraph-timestamp" data-ts="04:08">04:08</span> 有趣的是，7月至8月间不是有过那种说法吗？给它进行两周的RL训练。而且对象并不是Astra模型，而是给Astra之后的模型进行两周的RL训练。Sam Altman曾经像做营销一样谈过这件事，用的就是那个模型。那个模型从8月28日起重新开始了post-training。而从9月1日到昨天，他们使用那个模型的中间checkpoint，取得了这项与Navier–Stokes有关的成果。看看他们是怎么做的，首先，OpenAI的人经常谈到这张图。
+
+
+## Test-time compute scaling 与性能提升    *04:48*
+
+<span class="paragraph-timestamp" data-ts="04:48">04:48</span> **崔胜准** 这里用log scale表示的是test-time compute，这条线是Astra。然后，这个是本次使用的internal模型，可以看出test-time compute scaling正在发挥作用。这里写着Open Math Problems，意思是让模型筛选并解决数学中的未解问题之类的题目时，目前的表现已经提升到了这个程度，现在还在大幅
+
+<span class="paragraph-timestamp" data-ts="05:16">05:16</span> x轴是log啊。也就是说，每跳一格就会增加10倍。对。其实这并不是线性的，因为x轴是log，所以才呈现出这种形态。所以并不是投入多少就会一下子提升多少。但无论如何，给人的感觉是数量级有些不同，虽然幅度很大，也只是从0.1到0.5，这里就是差距拉开的部分。确实会让人觉得这是级别完全不同的模型。
+
+<span class="paragraph-timestamp" data-ts="05:46">05:46</span> **朴钟贤** 是的，估计那就是下一个模型。是叫Bailey吗？我好像在Twitter上看到过。
+
+<span class="paragraph-timestamp" data-ts="05:51">05:51</span> **崔胜准** 没错。据说那是另一次pre-training run，还有一个叫Doug的，也有名字全都以B开头的，据说他们宣布了以今年年底发布为目标，是这样宣布的。
+
+<span class="paragraph-timestamp" data-ts="06:03">06:03</span> **卢正石** 就是Sam Altman所说的much, much, much better模型吧。
+
+<span class="paragraph-timestamp" data-ts="06:07">06:07</span> **崔胜准** 所以这是用那个模型的中间checkpoint完成的。
+
+
+## 数学假设求解中的 ansatz 与 Terence Tao 的洞察    *06:11*
+
+<span class="paragraph-timestamp" data-ts="06:11">06:11</span> **崔胜准** 要理解这一点，需要先了解一个术语，我对这个术语也不太熟悉，数学里有个叫ansatz的概念。它被称为假设池，是为了寻找解，先大致构造出一个“应该会是这种形式”的框架，再据此调整其余变量的一种方法。要做到这一点，或许可以说模型需要有研究品味？无论如何，这次我们在看Astrasystem card时也发现，pre-training阶段有相当大的提升，post-train阶段也有提升。越擅长这些，自然也越擅长提出假设本身。现在数学领域也有一种叫ansatz的方法，我认为这次就是利用这种方法推进研究的。关于这一点，我们上次录制时谈到Terence Tao，那还是Navier–Stokes尚未被解决的几天前。当时我们设想，如果挑战这类问题，应该会采用这种方式，其中恰好就有这样的内容。从一种假设形式出发，找出阻碍它成立的障碍，然后修改假设，以便至少部分消除这些障碍，并不断重复这一过程。他说，这种方式几乎肯定能够带来对流体力学的新洞见，而这次基本上就是照此执行的。我们再详细看一下。
+
+
+## 1万个智能体的同步协作    *07:37*
+
+<span class="paragraph-timestamp" data-ts="07:37">07:37</span> **崔胜准** 所以在这里执行RL时，大约有1万个agent同时行动，原文写的是concurrently。它们同时活动，此前我们在OpenAI的Hugging Face黑客事件或DSE Wiki事件中也看到，即使没有人类监督，模型也会不断留下记录，并进行大规模协作。因此有人推测，它们可能在RL环境中学会了这种协作本身，我想谈的是两个方面。一是模型本身能力的提升，另一个则是模型作为agent已经能够进行大规模协作，这两者相互联动，促成了这次事件。这里就先跳过。
+
+
+## RLVR 环境中出现的智能体协作    *08:28*
+
+<span class="paragraph-timestamp" data-ts="08:28">08:28</span> **朴钟贤** 是的，最初GPT-5.1刚推出，reasoning模型出现时，给它进行RLVR后，它会自行增加test-time compute，经过长时间思考，逐步找到正确答案，我是在DeepSeek出现后了解到这一点的，这次给我的感觉也有些类似。只给它们一个目标，让它们自行处理，它们似乎就会找到彼此协作的方式，并不断向前推进，感觉这似乎又是一次相同模式的重现。
+
+<span class="paragraph-timestamp" data-ts="08:55">08:55</span> **崔胜准** 是的。在OpenAI的Hugging Face黑客事件中，人类并没有要求它们那样协作，但只要有一个能够留下共享信息的记录空间，协作就会自然发生。不过这次，人类似乎具体向agent提供了关于如何进行orchestration的指导。所以据说有1万个agent同时活动，但并不是1万个agent全都同时进行实时沟通，而是存在多个小组，各组内部进行紧密沟通，并留下记录。
+
+
+## 群体间的 cross-pollination 与渐进式证明    *09:30*
+
+<span class="paragraph-timestamp" data-ts="09:30">09:30</span> **崔胜准** Group A会用ansatz之类的方法构造某个候选方案，另一个候选方案Group B则采用其他方法，当A陷入瓶颈，而B发现了辅助定理、lemma之类的成果时，官方文档中也出现了cross-pollination这个术语。中文叫异花授粉。它们会汇总相关发现，判断A是否满足lemma的假设条件？能不能利用它？如果引入其他小组的想法，就会对A进行adjust，修改到能够应用新发现的程度，然后重新验证所有条件，这应该是因为它属于RLVR，也就是说是verifiable的，才能够实现。如果再次遇到瓶颈，就把原因纳入考虑，提出“应该是指数函数形式”或“应该是其他形式”之类的假设，然后由不同小组尝试进行拟合，无论是什么，只要得出了lemma之类的部分成果，就通过cross-pollination共享这个想法，感觉就是这样持续渐进式改进。遇到障碍时，就设法找到至少能够部分克服这些障碍的方法，再继续推进，而能够判断哪种方法更好，本身也是模型的一种能力。模型似乎已经达到了足以做到这些的水平。因为别人的发现，我的下一次尝试发生了变化。他们就是以这种方式运用了模型。
+
+
+## Anthropic 的先行研究与 OpenAI 的追赶    *10:51*
+
+<span class="paragraph-timestamp" data-ts="10:51">10:51</span> **崔胜准** 事实上，人类与AI曾经共同取得过一项突破。就是这里出现的Alpöge和一个叫 Buckmaster 的人合作了大约一年，而这个 Levent Alpöge是 Anthropic 的一位数学家。不过，原本和 Alpöge 一起研究这个 PDE 问题的这位研究者是研究数论的，而 Alpöge 是 PDE 领域的数学家，两人合作了一年。后来，这里就成了传闻的源头。Alpöge 在 X 时间线上于八月份发布了很多关于一项截然不同的、也就是并非这次话题的另一项数学突破，说是和 Claude 一起，可能还使用了 Claude 的 internal model，完成了某件事。所以传闻就这样出现了。Anthropic 好像正在攻克两道左右的千禧年难题。看起来是这样。这算是其中一件事。
+
+<span class="paragraph-timestamp" data-ts="11:44">11:44</span> 所以他们几乎已经，就是刚才我展示模拟时提到的无黏性 Euler 问题，他们几乎已经解决了。在进行 Lean formalization 之前，也就是说，在运行 Lean 之前就已经基本解决了，这是这次显露出来的迹象。所以 OpenAI 看到那个思路后，就投入了大量资源。据推测，投入的规模非常大。
+
+<span class="paragraph-timestamp" data-ts="12:09">12:09</span> **朴钟贤** 等等，也就是说 OpenAI 看到 Anthropic 正试图解决某个问题，就想，我们也来试试看，事情是这样发展的是吧？
+
+<span class="paragraph-timestamp" data-ts="12:17">12:17</span> **崔胜准** 对。从时间线上显露的迹象来看是这样。因为这件事在竞争极其激烈的情况下，是一个营销亮点。谁率先挑战千禧年难题，并且取得了成果，这是一件非常重大的事情，所以他们可能也为此拼尽了全力。
+
+
+## Codex 编排与1万智能体实验    *12:33*
+
+<span class="paragraph-timestamp" data-ts="12:33">12:33</span> **崔胜准** 这是一个更 deliberate 的版本，也就是由人类在一定程度上选择问题，分配预算后，如果 Euler 方面有了些成果，那么显而易见，接下来就会延伸到 Navier–Stokes，于是他们带着这种推测部署了大量智能体。接着让 Codex 整合那些结果，再让它编写后续提示词，并让这个过程不断重复，OpenAI 官方博客中写道，他们确实是用这种方式发起挑战的。据说一万个智能体在 88 小时内完成了这项工作，而且并非全部 token 的数量，仅 Navier–Stokes就使用了 1300 亿个 token。之所以这还不是全部，是因为他们似乎把所有千禧年难题都同时挂在那里运行了。
+
+<span class="paragraph-timestamp" data-ts="13:24">13:24</span> 对。Noam Brown 曾经说过几次类似的话。每次推出新模型时，他都会说我们目前还没有解决，曾经这么说过，看来每次推出新模型时，他们都会定期做这件事。那么先略过这一部分，
+
+
+## 1,300亿个 token 与百亿元级计算成本    *13:37*
+
+<span class="paragraph-timestamp" data-ts="13:37">13:37</span> **崔胜准** 来考虑一下成本，Astra 每 1M 个 token 是 50 美元。但 Astra 在 long-context 情况下又是 75 美元。我之前也不知道这件事。不过这些智能体应该都是以 long-context 运行的。所以如果使用了 1300 亿个 token，按 50 美元计算，仅输出成本就是 650 万美元。但实际价格应该高于 50 美元吧？那么 1000 万美元大约就是人民币 6700 万元。
+
+<span class="paragraph-timestamp" data-ts="14:05">14:05</span> 也就是大约人民币 5100 万元。对。所以可以推测，他们花费了超过人民币 5100 万元。还只是这一个问题。
+
+<span class="paragraph-timestamp" data-ts="14:11">14:11</span> **朴钟贤** 您是按照那些 token 全部都是 output token来计算的吧？对。只是简单计算。
+
+<span class="paragraph-timestamp" data-ts="14:16">14:16</span> **崔胜准** 不过考虑到成功解决后能获得的宣传效果，这就很便宜了。对。不过投入的资金确实远远超过了千禧年大奖的奖金。因为千禧年大奖的奖金是 100 万美元。不过，同时运行一万个智能体，当然，从刚才我和模型提出的那些假设来看，虽然不是所有智能体一次性相互通信，但即使是分组通信，也说明目前已经具备能够进行这种 orchestration的条件了。感觉这确实挺可怕的。一旦认为某个问题有希望解决，就会像这样投入资金。
+
+<span class="paragraph-timestamp" data-ts="14:54">14:54</span> **朴钟贤** 是啊。考虑一下 token 的价格，就能理解了，他们确实花了那么多。而且这应该也不是他们第一次尝试。他们肯定尝试过各种方法，经历 N 次反复试错后，才得出了这个结果，当然其中也有利润空间，但无论如何，这个规模真让人难以估量。他们也会给人类数学研究者提供这么多资助吗？
+
+<span class="paragraph-timestamp" data-ts="15:12">15:12</span> **崔胜准** 不会。至少据我所知不会。就是啊。所以这件事并不是轻易完成的。
+
+<span class="paragraph-timestamp" data-ts="15:18">15:18</span> **卢正石** 这倒成了一个只要向所有问题投入无限 compute，就能全部解决的例子。
+
+<span class="paragraph-timestamp" data-ts="15:24">15:24</span> **崔胜准** 虽然仅限于能够应用 RLVR 的领域，但它还是展现出了强大的能力。
+
+
+## 数学研究共同体与 AI 的贡献问题    *15:32*
+
+<span class="paragraph-timestamp" data-ts="15:32">15:32</span> **崔胜准** 所以人类研究共同体中也会使用类似的方法，但在智能体 swarm 中，可以把规模 scaling 得大得多，通过投入资金来完成这件事。我感觉这些事情呈现出的模式都很相似。从黑客事件到现在，似乎存在某种一脉相承的背景。
+
+<span class="paragraph-timestamp" data-ts="15:50">15:50</span> 不过 Terence Tao 对这件事在 Mastodon 上发表了很多评论。这件事究竟对数学界有什么帮助？它只不过是解决了问题而已，我们从中获得了什么洞见，我讨论了这些问题。这究竟对人类数学有什么帮助？不过，我一开始提到的是，这些千禧年难题的地位，与最初设立时相比，和现在的情况有些不同。所以实际上，这件事可能并没有产生很大的impact，也有可能是这样，在数学界，并不是为了数学的生态系统，才去完成这件事，目前这些模型解出的内容，光是Lean formalization就已经多得惊人，数学家们要验证这些内容，恐怕也需要相当长的时间。所以Clay方面至今还没有正式宣布，这个问题已经被解决。尽管它已经满足了那些条件。所以，要读懂这些内容，并从中获得洞见，看来还需要再观察一段时间。
+
+<span class="paragraph-timestamp" data-ts="16:51">16:51</span> 总之，到这里为止，就是我完整梳理过一遍的内容。
+
+
+## 围绕 Navier–Stokes 的 AI 研究丑闻    *16:55*
+
+<span class="paragraph-timestamp" data-ts="16:55">16:55</span> **崔胜准** 不过，这里还有一件类似丑闻的事情。这简直就像一部电视剧。这件事嘛，我在调查的时候也觉得，既有趣，又一度有种在看狗血剧的感觉。
+
+<span class="paragraph-timestamp" data-ts="17:10">17:10</span> **朴钟贤** 最近研究领域让我经常有种，仿佛在看娱乐圈八卦新闻的感觉。
+
+<span class="paragraph-timestamp" data-ts="17:15">17:15</span> **崔胜准** 好，请来一期AI圈的Dispatch吧。所以，刚才提到的那些人物会登场，Tristan Buckmaster是NYU的数学家。是一位一直潜心研究这个问题的人，Levent Alpöge则是Anthropic的数学家。然后，也是这次在X上，给出提示的人。Sébastien Bubeck，是我们多次提到过的人。是《Sparks of AGI》的第一作者，Sébastien Bubeck虽然是数学家，但研究的是machine learning领域的数学基础，之后还研究Physics of AI，之类的课题，因此我们频道曾介绍过好几次，这次发生了一些与Sébastien Bubeck有关的事情。其他人物就暂且略过。
+
+<span class="paragraph-timestamp" data-ts="18:01">18:01</span> 这里出现的人物，是此前Levent Alpöge和，Buckmaster获得灵感的，那些先行研究的数学家。而这一部分完全是第三股力量，是在相近时期以另一种方法，接近这个问题的人。
+
+
+## Alpöge 与 Buckmaster 的研究时间线    *18:20*
+
+<span class="paragraph-timestamp" data-ts="18:20">18:20</span> **崔胜准** 先简单梳理一下这条时间线，Anthropic的数学家Alpöge，在8月介绍过这些内容。这些并不是全都得到了证明，Alpöge表示，自己挑战了其他高难度数学问题，并取得了一些成果，说到这里，这指的就是，不是有“奇迹年”这种说法吗？就像Newton或Einstein那样。所以Alpöge用了“奇迹八月”这种说法，确实也稍微炒作了一下。而且这并不是Alpöge以Anthropic官方名义开展的，Alpöge和Buckmaster用AI探索这个数学问题，已经持续了大约一年。他们既使用Claude，最近也使用Astra，从中获得灵感，认为似乎能够解决Euler问题，但大约一年来进展缓慢，最近终于取得了某种突破。不过就在这时，双方开始有了一些交流。看到这些事情发生后，Buckmaster也联系了OpenAI，于是OpenAI团队里除了Bubeck之外，还有另一位数学家，那位数学家在邮件交流过程中似乎获得了某种提示，OpenAI也决定同时投入multi-agent，同时开展攻关，那是在9月1日。这次用internal model试试看。
+
+<span class="paragraph-timestamp" data-ts="19:41">19:41</span> 就在8天前啊。没错。然后他们就开始全力推进了。他们准备公布这项成果，那么在credit的问题上，我们想给你们credit。不过，因为Alpöge在Anthropic，Bubeck似乎对此有些介意。所以当Bubeck把这件事，通过邮件发给Alpöge时，Alpöge没有回复，Bubeck说想直接通话，但两人并没有通话。不过Bubeck和Buckmaster通了电话，Alpöge并不希望这样，总之，在这通电话中，发生了一些引发争议的事情，似乎还提高了嗓门。Bubeck还对Buckmaster说了类似，“为什么要浪费自己的职业生涯”这样的话，后来又说自己失言了，要收回那句话，整件事说得很复杂。
+
+
+## 研究数据泄露与训练贡献争议    *20:34*
+
+<span class="paragraph-timestamp" data-ts="20:34">20:34</span> **崔胜准** OpenAI的官方文章中也提到了这件事。也就是说，匿名化的数据流入training，这种可能性，不能说完全为零。虽然他们也是听到传闻后才投入研究的，但也有人提出了，这样的质疑。会不会是模型从我们输入的内容中，获得了某些提示，然后利用了这些提示？这就成了丑闻。
+
+<span class="paragraph-timestamp" data-ts="21:05">21:05</span> **卢正石** 也就是说，他们质疑与Codex进行的对话，是否被纳入了下一代模型的training data，从而成为了某种trigger。
+
+<span class="paragraph-timestamp" data-ts="21:15">21:15</span> **崔胜准** 没错。不过这件事目前，还没有得出结论。反而是Anthropic的Sholto Douglas，替他们进行了一些辩护，说这种事情绝对不可能发生。不过OpenAI官方博客表示，这种可能性并非完全不存在，所以恐怕有可能会展开某种调查。如果真是这样，那就是相当大的丑闻了。谁还会把自己的核心研究放进那里的前沿AI里呢？
+
+<span class="paragraph-timestamp" data-ts="21:41">21:41</span> **朴钟贤** 是啊。所以OpenAI也曾表示，会为researcher们提供大力支持，并公开招募，当时我们也说过，OpenAI似乎想了解researcher们的某种trajectory，我们当时聊过这些，结果事情似乎最终发展到了这一步。
+
+<span class="paragraph-timestamp" data-ts="21:58">21:58</span> **崔胜准** 是的。所以现在局面变得很复杂。双方像是在互相爆料，虽说还不至于算爆料，但Sébastien Bubeck和Alpöge之间的聊天记录截图被传了上来，邮件也被公开了，所以目前正处于一场风波之中。
+
+
+## OpenAI 与 Anthropic 的研究署名冲突    *22:17*
+
+<span class="paragraph-timestamp" data-ts="22:17">22:17</span> **崔胜准** 不过最终，现在似乎还是在紧急进行一些协调，有人说，如果双方共同研究，这本会是一件非常美好又有趣的事情，Gwern Branwen等人似乎正在从中设法稍微缓和一下局面。
+
+<span class="paragraph-timestamp" data-ts="22:34">22:34</span> **卢正石** 是想试着达成compromise，不过话说回来，Anthropic和OpenAI本来就极其针锋相对，彼此厌恶。
+
+<span class="paragraph-timestamp" data-ts="22:42">22:42</span> **崔胜准** Dario和Sam Altman甚至都不握手。不过重要的是，最终有一些可以说是这项成果源头的、长期以来一直潜心钻研这个问题的数学家，而Alpöge等人则利用AI从中获得了灵感，私下使用ChatGPT，与Anthropic无关，完全是个人使用，但OpenAI在听到某些传闻后，依靠庞大的资源投入完成了这件事，这在数学界是非常热门的话题，而且这不只是数学界的问题，似乎也已经给整个研究社区抛出了一个重大问题。不过这是今天刚出现的消息，后续会如何发展，恐怕还需要继续观察。
+
+<span class="paragraph-timestamp" data-ts="23:28">23:28</span> **卢正石** 数学问题本身虽然很难解开，但解开后却很容易verify，所以应该说数学是最先被攻破的领域。
+
+
+## 超级智能竞赛与 AI 安全危机    *23:38*
+
+<span class="paragraph-timestamp" data-ts="23:38">23:38</span> **崔胜准** 但这显然不会只是数学领域的问题。时间线上还有一件很有意思的事，有一位曾在Anthropic负责pre-training、并且从OpenAI转到Anthropic后继续负责pre-training的人离职了，而且以非常严肃的语气在Twitter上发了帖子。这位名叫Jacob Coxon的人表示，这两家公司没有任何一方在负责任地行事，而是在朝着能够自我改进的超级智能狂奔，等于拿我们的生命进行赌博，然后直接辞职了。对此很难说是有趣，不过Evan Hubinger是alignment science的lead。Anthropic的这位负责人公开支持Jacob，称Jacob说得没错。他为Jacob进行了辩护。
+
+<span class="paragraph-timestamp" data-ts="24:26">24:26</span> 他说这并不是为了营销而夸大其词。现在的情况确实非常严重。可是我们为什么无法停下来？这不是一个只应在两家公司的Slack内部讨论的话题。他说我们正在走向endgame；对此，Evan Hubinger认为Jacob说得没错，并且认为在10年内，AI可能杀死所有人类的那种doomer式概率超过10%。不过从这位人士的背景来看，属于典型的有效利他主义，以及出身于MIRI一系、从事AIsafety的人。那个圈子以前也经常说这些话。但他再次表示，这是一个严重的问题。
+
+<span class="paragraph-timestamp" data-ts="25:04">25:04</span> John Schulman也曾在OpenAI负责post-training，后来短暂去了Anthropic，现在不是去了Thinking Machines Lab吗？所以John Schulman也对此发表了意见，说不能只以这种方式空谈，而是真的应该共同制定pacing proposal。不过如果让政府参与进来，事情可能会变得更加困难，因此需要思考一种方案，即与其提出那种联合提案，不如达成更具约束力的协议，John Schulman还发表了大致带有这种含义的言论。所以这个alignment问题，虽然我们偶尔也会讨论，但我觉得今年它确实变得格外尖锐。我确实觉得，现在似乎已经不是可以拿这件事开玩笑的时候了。
+
+<span class="paragraph-timestamp" data-ts="25:47">25:47</span> **卢正石** 就连我们也能切身感受到实际体验质量正在提高。自从Astra发布以后，各种亲身见证不是接连不断吗？我用它做了这个，又做了那个。
+
+<span class="paragraph-timestamp" data-ts="25:58">25:58</span> **崔胜准** 是的。所以归根结底，RSI才是问题所在。虽然今年这还没有成为问题，但在走向RSI的轨道上，正在发生各种各样的事件，挑战Millennium Prize Problem并取得成果，也可以理解为同一类现象，而对于拥有并且还将拥有海量compute的两家公司日益走向中心化的担忧，目前也正在大量涌现，至于无法调节pacing的问题，总会被提到的就是中国。
+
+<span class="paragraph-timestamp" data-ts="26:29">26:29</span> **朴钟贤** 感觉过去只在小说或电影里看到的那种情节，如今正在原封不动地上演，而且所有人都对此从现在数学问题被解出来开始感觉全都是足以令人感到恐惧的情况。
+
+<span class="paragraph-timestamp" data-ts="26:43">26:43</span> **卢正石** 不过，我也觉得追随这种趋势的这个社群好像并没有那么广泛。无论 AI 世界中发生什么，现实世界依然美好地运转着，人们望着落日拍照上传到 Instagram，去旅行、品尝美食，这样的世界依然广泛存在，所以我感觉世界似乎有些割裂。
+
+<span class="paragraph-timestamp" data-ts="27:08">27:08</span> **崔胜准** 也只有过度沉浸的人才会摸透这些，一般人很难了解。
+
+
+## 中国的追赶与 DeepSeek V5 传闻    *27:14*
+
+<span class="paragraph-timestamp" data-ts="27:14">27:14</span> **崔胜准** 不过，我也让模型调查了中文圈对这件事的反应，得出的结论是，中国认为自己能够追上。现在前沿又开始突飞猛进，但他们并没有觉得大事不妙，而是认为自己做得不错，能够追上，这类帖子还挺多的。而且国家，也就是政府，也在开展 alignment 工作，北京方面对此投入了非常多的精力，这也是我这次才第一次了解到的。此外，整体氛围也没有受到打击，虽然目前还没有任何公开的消息，但传闻说 DeepSeek V5 也会推出，我听到了这样的说法。不过，这也可能是完全没有根据的消息。
+
+<span class="paragraph-timestamp" data-ts="27:56">27:56</span> **卢正石** 是的。既然有人证明了这是能做到的，那只要我不是太笨，我也能做到，这就等于有了一个明确的目标。
+
+<span class="paragraph-timestamp" data-ts="28:05">28:05</span> **崔胜准** 所以，现在再次反复得到印证的是，pre-training和post-training依然有效，它们仍然能够成事，仍有可以发挥作用的领域，这一点似乎又一次得到了有力的确认。
+
+<span class="paragraph-timestamp" data-ts="28:19">28:19</span> **朴钟贤** 感觉它并未停下，而是在持续前进，并且越来越向着人类领域之外不断迈进，我们似乎正在感受到这些。
+
+
+## AI 数学发现中的反例与新洞察    *28:27*
+
+<span class="paragraph-timestamp" data-ts="28:27">28:27</span> **朴钟贤** 关于数学，我也有一个问题想请教。虽然我至今对数学发现还不是很了解，但感觉其中几乎大部分都像是发现了某个反例。难道人类连反例也找不到吗？如果把某件事直接转化为搜索问题，再靠数量硬推，一旦找到了反例，就可以直接证明“既然找到了反例，那它就不成立”，然后事情也就结束了。所以我觉得这样的事完全有可能发生。相比发现反例，如果它能够对一个全新的猜想给出逻辑证明，当这种成果出现时，我应该才会觉得真的不一样。看来这次的事件也不属于这一类。
+
+<span class="paragraph-timestamp" data-ts="29:14">29:14</span> **崔胜准** 不过，这还需要再观察一阵子。Terence Tao曾经说过，在处理Millennium Prize Problem这类问题时，实际上Millennium Prize Problem本身，他使用了proxy这个说法。在尝试解决它的过程中，会产生各种有趣的数学成果，这些副产品一直都非常重要。这一次可能也会以同样的方式产生类似成果，只是目前还没有以人类能够察觉的形式呈现出来。因此，现在就贸然断言根本没有这类成果，还为时过早。以前Sébastien Bubeck也说过类似的话。在解决某个问题时，可以从那份transcript中学到很多东西。不过，从这次Alpöge等人的说法来看，模型在初期提出的猜想确实是有效的，但他们也用了“写得过于杂乱”之类的表述。因此，人类花费了大量精力对其进行整理。所以他们说，自己的进展比较缓慢。而OpenAI采取了这种数量攻势，当然，成果已经以论文形式发表，但我们究竟能在多大程度上从中获得数学洞见——不对，不是我们，数学家们能获得多少洞见，目前似乎还是未知数。
+
+
+## 围绕研究成果的黑暗森林问题    *30:32*
+
+<span class="paragraph-timestamp" data-ts="30:32">30:32</span> **卢正石** 不过，从中我们也能看出，无论各位创造出了多么独特的东西，或者做出了什么成果，在它完全成为自己的东西，达到可以这样公开的程度之前，都不能公开。这就是《三体》中的黑暗森林问题。坐标一旦被精确标记出来，拥有更多资本和更多compute的人就会过来，把它夺走。
+
+<span class="paragraph-timestamp" data-ts="30:59">30:59</span> **崔胜准** 所以我看到这些新闻时，就觉得研究人员可能正在重新阅读ToS。我确实产生了这样的想法。他们会关注，在Terms of Service下，我现在输入的内容会在多大程度上被用于training，感觉大家会开始在意这些问题。
+
+<span class="paragraph-timestamp" data-ts="31:13">31:13</span> **朴钟贤** 听完刚才说的内容，我想到的是，如果在研究过程中，OpenAI的某些模型是通过观察并学习trajectory，或以其为参考，才解出了问题，那么无论如何，它都是接过了人类原本正在研究的内容，再继续推进。但如果并非如此，而只是听到了“他们正在解那道题”这样的传闻，就过去把它解出来了，那就完全是模型自己解出来的。那样岂不是更可怕吗？
+
+<span class="paragraph-timestamp" data-ts="31:42">31:42</span> **崔胜准** 是的。所以SébastienBubeck等人的主张有所不同。因为Alpöge等人是在没有外力介入的情况下处理这个问题，而OpenAI则是在有外力介入的情况下进行处理，所以他们认为两者的研究方式不同。他们还说，很多工作都交给了模型自主完成，虽然曾有过这样的说法，但后来才发现，似乎还是由人类提供了一些提示或指导。人类似乎还是提供了一些东西，现在正对此争论不休。不过，更可怕的其实是钟贤刚才提到的那一点，那确实才是更可怕的。
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **卢正石** 那两家公司之间的你来我往，越来越像我们在政界看到的那种政治争论了。
+
+<span class="paragraph-timestamp" data-ts="32:26">32:26</span> **崔胜准** 是的，没错。因为这是刚刚出来的消息，感觉还需要再观察一下后续发展，但无论如何，这是一个既有趣又令人心情复杂的节点。
+
+
+## AlphaGo 十年之后与 AGI 争论    *32:36*
+
+<span class="paragraph-timestamp" data-ts="32:36">32:36</span> **崔胜准** 2016年是AlphaGo之年嘛。当时是3月，而现在正好过去了10年，感觉2026年是个有些神奇的年份。我感觉现在正好处于某种跨越阶段。
+
+<span class="paragraph-timestamp" data-ts="32:49">32:49</span> **卢正石** Jens在Twitter上不是那么说了嘛。AGI已经实现了，祝贺OpenAI，他写了这些内容，当然，对于实现AGI这件事，每个人的标准各不相同，但我确实觉得，讨论这到底算不算AGI，还有什么意义吗？
+
+<span class="paragraph-timestamp" data-ts="33:06">33:06</span> **朴钟贤** 是的。无论如何，在各个方面，都正处于超越人类水平的过程之中，这一点似乎是可以肯定的。
+
+<span class="paragraph-timestamp" data-ts="33:13">33:13</span> **崔胜准** 总之，我调查到的内容大概就是这些。不过新闻还不止这些，对吧？这周现在才星期几来着？我们是星期日录制的，到了星期三，
+
+<span class="paragraph-timestamp" data-ts="33:22">33:22</span> **卢正石** 星期日录制，现在是星期三，所以才过了大约3天。不是还有更多吗？
+
+<span class="paragraph-timestamp" data-ts="33:27">33:27</span> 好，那我们来看下一个吧？
+
+
+## GPT Image 2.5 发布与 Astra 的视觉能力    *33:29*
+
+<span class="paragraph-timestamp" data-ts="33:29">33:29</span> **崔胜准** GPT图像又推出新版本了。也挺值得一看的。神奇的是，这些其实之前都有传闻。说它们会推出。而那些传闻现在全都一一应验了。
+
+<span class="paragraph-timestamp" data-ts="33:40">33:40</span> **朴钟贤** 是啊。无论如何，今天ChatGPT图像的下一个版本发布了。虽然时间很短，但我还是测试了一下。在讲这个之前，我想先说一点，image generation模型发布了。那本来就只是时间问题，之后肯定还会不断推出。但这次Astra发布后，它很快也一起发布了嘛。而在对Astra的评价中，这样的评价非常多。大家现在应该已经用过很多次了，computer use做得特别好。它很擅长通过vision观察电脑屏幕并进行control。我今天也一直让它做这类事情，它干得确实很好。我打开YouTube网页，让它自行进行分析，它就会自己进入里面的各个分析标签页，查看相关内容之类的。而且不仅如此，在机器人领域也有人直接给Astra机器人控制权限，让它自行通过摄像头观察并进行control，并不是专门制作了某种action model，而是直接就能很好地进行control的案例，现在正大量涌现。
+
+<span class="paragraph-timestamp" data-ts="34:43">34:43</span> 所以看到这些后，我觉得它用眼睛观察的能力确实提升了很多。
+
+
+## 图像编辑一致性与流式生成    *34:50*
+
+<span class="paragraph-timestamp" data-ts="34:50">34:50</span> **朴钟贤** 所以我尝试把这些结合起来，实际用了一下。简单来说，Images 2.5模型发布了。至于有哪些提升，我往下逐一说说。目前图像模型最做不好的事情之一，就是这个。很难保持consistency。随着编辑次数的增加，虽然情况正在逐渐改善，但修改着修改着，consistency就不太能保持住了。
+
+<span class="paragraph-timestamp" data-ts="35:13">35:13</span> 还会越来越粗糙。在GPT Image 2左右的版本中就是这样。是的，就是只把这一个东西显示出来，然后一直对它进行control。这是上一个版本和这次的版本，给它换上衣服后，内容就会一点点无法保持一致。虽然看起来还是相似的。不过这次确实能更好地保持consistency。所以编辑起来很方便，编辑效果也很好。他们似乎是想展示这一点。
+
+<span class="paragraph-timestamp" data-ts="35:40">35:40</span> 而且它还支持streaming。所以让它执行图像任务时，中间绘制的过程也会显示出来。因此，根据这些可以推测，其实研究领域此前也有很多相关研究，图像似乎也存在某种自回归机制。
+
+<span class="paragraph-timestamp" data-ts="36:00">36:00</span> 没错。上次发布图像模型时，也提到过这样的内容。它并不是单纯通过diffusion model一次性直接生成出来，而是像transformer一样以自回归方式运行，最后似乎再使用diffusion来处理细节。当时有很多这样的说法，而这次的方式似乎再次印证了这些说法。所以无论如何，image generation领域似乎也正在发生一些变化。
+
+<span class="paragraph-timestamp" data-ts="36:23">36:23</span> 与此相关的研究其实相当多。所以学术界也在思考该如何运用这一点，
+
+
+## 向定格动画与 VFX 扩展的图像生成    *36:29*
+
+<span class="paragraph-timestamp" data-ts="36:29">36:29</span> **朴钟贤** 其中有一个很有趣的例子。他们直接把它用来制作了定格动画。要实现这一点，除了运动部分以外的所有区域，都必须精确保持consistency，同时生成图像，而根据这些来推测，它确实做得很好。这或许是一个在一定程度上证明这一点的例子，我是这么认为的。除此之外，还有制作GIF，或者在某部动画中，在保持角色consistency的同时制作动作，或制作表情，据说这些在实际应用于CG之类的领域时听说在用于VFX等领域时，这一点非常重要，总之，据说这方面的性能提升了很多。
+
+<span class="paragraph-timestamp" data-ts="37:12">37:12</span> **崔胜准** 确实如此。GPT图像推出有一年了吗？差不多就是去年这个时候吧？吉卜力。
+
+<span class="paragraph-timestamp" data-ts="37:19">37:19</span> **朴钟贤** 是去年吗？总觉得那已经是很久以前的事了，可能是因为一切出现得太快，时间感都变得模糊了，没什么实感。
+
+<span class="paragraph-timestamp" data-ts="37:29">37:29</span> 是一年前。这么一看，又一次让人觉得，竟然变化得这么快。
+
+<span class="paragraph-timestamp" data-ts="37:34">37:34</span> **崔胜准** 感觉确实有点疯狂。
+
+
+## 商人需要持续追踪的 AI 技术    *37:37*
+
+<span class="paragraph-timestamp" data-ts="37:37">37:37</span> **卢正石** 因为现在正处于持续变化的时期，我最近见了很多创业者，如果不是一直跟进技术的人，通常都是断断续续地关注。但这样断断续续地做着，等觉得自己已经做得差不多了，就不再继续应用新技术，而只是直接使用现有的成果。然后过了大约三四个月，世界已经比自己所用的东西先进得多了，看到这样的过程，他们似乎会感到有些困惑。所以我记得我当时说过，现在最好的办法似乎就是尽全力持续跟进这些变化，我记得自己是这么说的。因为我们每天都在关注这些，所以哪怕只是提起一年前或一个月前的事，都会让人有种恍如隔世的感觉。
+
+<span class="paragraph-timestamp" data-ts="38:22">38:22</span> **朴钟贤** 是啊。感觉Astra已经用了很久，结果才用了两天。还真是。我也把额度都用完了，reset过一次，还是两次来着？好像用了两次。
+
+<span class="paragraph-timestamp" data-ts="38:36">38:36</span> **卢正石** 我昨晚也把任务挂着睡了一觉，醒来后问题就解决了。恭喜。虽然这也算是我们在工作，上一期节目里也聊过这个话题，虽然真正干活的是模型，但最终我们还是能享受到成果，所以不必太难过。
+
+
+## GPT Image 2.5 的价格与缩略图性能    *38:52*
+
+<span class="paragraph-timestamp" data-ts="38:52">38:52</span> **朴钟贤** Sunburst和Flare这两个名字听起来还挺有气势的。对，这次推出了两个名称，可以说是快速模型和标准模型吧？就这样推出了两个版本。不过价格倒是一样。所以似乎只是把质量和速度做出了不同的区分。我把迄今为止推出的模型都逐一试了一遍，还比较了它们的成本。因为这种图像的费用也是按每个token的价格来计算的，但所谓的按token计费，放在图像上就很难有直观感受。毕竟还有分辨率和质量等因素，因为有这些变量，所以我就实际生成图像，凭体感做了比较，令人惊讶的是，价格反而更便宜。我是说这次的模型。我之前也一直在尝试做这种东西。image generation能用在哪里呢？要不要试着用它制作YouTube缩略图？我曾有过这样的想法，但因为价格有点贵，不太方便使用。如果只是我自己付费用，倒还用得起，但要问能不能把它做成服务并商业化，感觉就没那么容易了。我原本是这么想的，但后来突然发现，通过Codex订阅就可以使用这个图像模型。而且这次再一看，API的定价也很便宜。所以我把这些都逐一试用了一遍。因此，每张图其实花不了多少钱。约0.5元人民币。我觉得大概就是这个价。
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> **崔胜准** 这是通过API使用时的价格吧？对，通过API使用时。用订阅的话，生成额度应该也相当多吧。
+
+<span class="paragraph-timestamp" data-ts="40:23">40:23</span> **朴钟贤** 对，用订阅的话，凭感觉，只要用的是Pro套餐，就算生成一大堆也完全没问题。感觉大概已经到了这种程度。
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> 所以我也比较了一下质量。我给了它们完全相同的prompt，还提供了AI Frontier频道之前的一些缩略图，让它们为某一期节目制作缩略图。我让它参考特定频道的缩略图风格，大致模仿着制作一张，GPT Image 1属于以前的风格。以前生成的是这样的，而2.5 Sunburst是这次的模型，已经提升到了这种程度。
+
+<span class="paragraph-timestamp" data-ts="40:58">40:58</span> 所以观看这个频道的各位，应该也可以判断一下，原来大致是这种感觉。接下来，这里标着CT的，是让Codex生成的。因为这并不是在进行API call，所以我也不太清楚它具体是如何运作的，不过感觉它采用了稍微不同的方式。因为风格看起来不太一样。总之，如果这样逐个来看，可能会觉得似乎没有好到特别夸张，但如果和一年前的版本相比，感觉还是能看出一定差距。
+
+<span class="paragraph-timestamp" data-ts="41:29">41:29</span> **崔胜准** 从命名来看，如果都是Sunburst这一类的话，太阳黑子爆发产生的Flare也属于太阳这一系列的概念。
+
+<span class="paragraph-timestamp" data-ts="41:34">41:34</span> **卢正石** 也就是说，命名全都跑到宇宙主题上去了。Astra, Sol.是啊。感觉他们一直在推进这种风格的命名体系。
+
+<span class="paragraph-timestamp" data-ts="41:42">41:42</span> 这种命名本来应该让SpaceX、xAI多用一些，结果这些术语全被OpenAI拿走了。看来正在把这些词耗尽呢。最近很多人向我推荐试试 Grokbot，我从各处听到了很多这样的建议。是的。很多人建议我试试 Grok 的最新模型之类的，我收到了很多这样的推荐。
+
+
+## Grok 与面向消费者的智能体套件    *42:03*
+
+<span class="paragraph-timestamp" data-ts="42:03">42:03</span> **朴钟贤** 是的。Grok 我用过很多次。在 Astra 最近发布之前，我一直大量使用 Grok，就我个人的感受而言，Grok 真的相当不错。只是现在 Astra 已经发布了，在此之前，Grok 即使与 Sol 或 Fable 相比，也优秀到并不逊色多少，而且速度非常快。我也用过 Grokbot，但对我个人来说，因为我早已在别处完成了自己的 agent 设置，所以其实没有太大意义。不过，对于没有花时间完成这些设置的人，以及没有把 Hermes、OpenClaw这些工具设置成适合自己使用方式的人来说，那样使用会非常方便，我觉得应该会很好用。
+
+<span class="paragraph-timestamp" data-ts="42:43">42:43</span> **卢正石** 所有品牌，Google 也好，Meta 也好，感觉都会制作类似 OpenClaw 的 agent 软件包，提供给所有消费者。企业客户反正会马上付费，所以那边似乎已经创造了很多收益，接下来面向消费者的服务应该也会开始陆续推出。
+
+
+## Astra 的计算机使用与旅行自动预订    *43:02*
+
+<span class="paragraph-timestamp" data-ts="43:02">43:02</span> **卢正石** 我因为明天要出差，却完全没做出差准备，所以才成了这个样子。我全都交给 Astra 做了。先用 Fast mode 运行，等 High mode 推出后，我就在把自己的一切都交出去的状态下，让 Astra 把所有东西都预订好，结果 Astra 真的运行了大约 8 个小时，把一切都办完了。
+
+<span class="paragraph-timestamp" data-ts="43:24">43:24</span> 是用 computer use 吗？8 个小时？倒不是让 Astra 独自运行了整整 8 个小时，因为我在工作过程中，有一些需要我做决定的事情，所以有些任务被搁置了，我就让 Astra 在旁边待上一整天，在后台运行，对于 Astra 提出的问题，我就说：“不知道。你自己看地图，自己规划路线，把合适的都订了吧。”于是 Astra 就一路做下去了。
+
+<span class="paragraph-timestamp" data-ts="43:49">43:49</span> 是预订火车之类的吗？什么都做。我也像这样大致看了一下，Astra 一边阅读意大利语页面，一边点这个、点那个，还会说：“这个很贵，但用这个票价方案应该会好得多，所以我会选择这个。”然后继续操作。餐厅也全都预订好了，另外还做了什么来着？
+
+<span class="paragraph-timestamp" data-ts="44:08">44:08</span> 住宿。酒店预订当然是最基本的。Astra 还浏览了多家酒店进行价格比较，判断直接通过酒店预订似乎最便宜，就说：“我会在这里预订。”然后就这样操作了。
+
+<span class="paragraph-timestamp" data-ts="44:20">44:20</span> 您没看用了多少 token 吧？没有。我设置成 Fast mode，而且那些网站也不是有多模型 API 的网站，所以全都是直接打开浏览器，用 computer use 操作嘛。额度唰唰地往下掉。甚至肉眼都能看到它唰唰地往下掉，我就那么看着，突然想到，
+
+<span class="paragraph-timestamp" data-ts="44:41">44:41</span> 前不久 Greg Brockman 来的时候，不是说过“Codex 是超级应用”吗？在这整个过程中，我一次都没亲自进入过任何网站。Astra 甚至还去了 MyRealTrip，以防万一，让 Astra 联系当地向导，因为那也是我第一次去的地方，我让 Astra 试着联系一下，Astra 连消息都全部发了。而且连与他们的沟通也全部完成了。
+
+<span class="paragraph-timestamp" data-ts="45:05">45:05</span> **朴钟贤** 那您满意吗？比如 Astra 挑选的住宿和交通方式。我要亲自去了以后再确认。现在还不知道。
+
+<span class="paragraph-timestamp" data-ts="45:16">45:16</span> **卢正石** 那连付款也直接交给 Astra 了吗？卡号是我输入的，过程中有几个步骤是我亲自完成的，但有几个我试着让 Astra 操作，发现 Astra 会拒绝其中一些操作。说这是 Astra 不能做的。因为我太喜欢 Astra 了，已经开始向 Astra 开放我电脑里的一切了。感觉马上就要把信用卡号也交给 Astra 了。
+
+<span class="paragraph-timestamp" data-ts="45:39">45:39</span> 那可不行。就是啊。感觉我就要把一切都交给 agent 了。反正我的个人信息之类的都已经泄露给中国黑客了，再让 OpenAI 多拿一份又何妨，就带着这种韩国式的心态吧。
+
+<span class="paragraph-timestamp" data-ts="45:55">45:55</span> **朴钟贤** 那如果设置了限额，付款受阻，Astra 也能打电话解除限额，然后重新付款吗？
+
+<span class="paragraph-timestamp" data-ts="46:03">46:03</span> **卢正石** 欧洲似乎经常遇到这种情况。我在美国网站付款时，没有这些步骤，很轻松就能完成，但在欧洲付款时，不是会有那个嘛。韩国的 PG 公司，比如说，因为我使用韩国的银行卡，页面会显示几家韩国发卡机构，并在它们的 PG 后台再进行一次验证。比如通过 SMS 进行认证。被强制要求进行这种验证的情况，大概占 70%～80%。也有不验证就直接通过的情况。
+
+<span class="paragraph-timestamp" data-ts="46:34">46:34</span> 不过欧洲似乎确实经常发生这种情况。看到韩国的 PG 公司非常严格地设置了这些验证，我确实会觉得自己这是要去一个危险的国家啊。去美国时可不需要做这些。
+
+<span class="paragraph-timestamp" data-ts="46:49">46:49</span> **朴钟贤** 那我们回到 Astra。
+
+
+## Astra 与 GPT Image 2.5 的智能体结合    *46:53*
+
+<span class="paragraph-timestamp" data-ts="46:53">46:53</span> **朴钟贤** 您刚才很好地介绍了 Astra，其实道理是一样的。这个 ChatGPT Images，就是通过API生成图像的工具之一嘛。不过刚才提到的归根结底也是在使用computer use这个工具，而且在这次发布的官方文档里，有一个让Astra把ChatGPT Images 2.5模型作为工具使用来制作图像的示例。所以我也照着做了一遍。我让它为我们的AI Frontier KR频道制作类似标志的东西，但不要只做一个，而是自行制作N个，然后让Astra亲自查看并挑选，也就是还要求它根据自己的喜好作出选择。因为这算是一种智能体方式，毕竟是用眼睛看过之后再选择。Astra之所以也很擅长computer use，是因为它的vision能力变强了，所以我想看看这种事它是否也能做好，就让它挑选标志、制作品牌套件，再制作各种周边产品，并加入标志，让它自行完成。结果它先像这样制作了1、2、3、4号标志。
+
+<span class="paragraph-timestamp" data-ts="47:57">47:57</span> 您最喜欢哪一个？A。A吗？好的。Astra也选择了A。它在作出选择时的判断过程也会随着输出token展示出来，所以它说了各种各样的理由。之后似乎还稍微调整了一下粗细之类的细节。接着又用它来选择调色板、织物、字体之类的各种元素，然后用这些制作出了成品。不过现在看就能发现，虽然说一致性保持得很好，但标志的间距之类并没有完全对齐。感觉虽然相似，但好像并非完全一致，这里还像这样留下了标志晕染之类的痕迹，而且图形也发生了一些变化。
+
+<span class="paragraph-timestamp" data-ts="48:42">48:42</span> 出现了变形。然后我让它把这个印在T恤上，再放到帽子上，结果颜色也大致搭配得不错，做得还算相似，但让它制作贴纸、钥匙扣、键帽之类的东西后，这个标志每次都会有一点变化，所以这类事情似乎还做不到完美。而且看这里的键盘，最右侧通常也不会长成这样。所以这些地方虽然有些遗憾，但它已经能做到这种程度了。只需要用一次提示词，给Astra提供图像生成API，让它当作工具使用，就能达到这种水平。
+
+<span class="paragraph-timestamp" data-ts="49:15">49:15</span> **卢正石** 那种问题只要加上harness，让它来回迭代三次，马上就会全部改善。
+
+<span class="paragraph-timestamp" data-ts="49:21">49:21</span> **朴钟贤** 是的。所以让它自行修正，就是您所说的来回迭代。一开始它先做成这样，然后自己看出有问题，就指示重新做成这样，这些应该都是Astra自己判断之后完成的。不过它的眼睛还是不像人眼那样完美。如果把这种事交给所有人，究竟有多少人能准确发现那些细节问题呢？也许有很多人只是看一眼，觉得差不多就可以了，然后直接略过吧，我也产生了这样的想法。就连我自己对设计也没有那么深的造诣，所以只要大致感觉相似，很多时候我也会觉得还不错，然后直接略过。虽然这次错得连我都能看出来，但可能也不是所有人都会觉得它不好。
+
+<span class="paragraph-timestamp" data-ts="50:13">50:13</span> **卢正石** 人其实也一样，最终质量取决于在收尾阶段打磨完成度时有多么执着。
+
+<span class="paragraph-timestamp" data-ts="50:20">50:20</span> **朴钟贤** 所以让它做到这种程度后，它不断调用API、查看结果、生成图像，在完成这些操作的过程中产生的费用好像大约是2美元。如果是通过API使用的话。当然，我使用的是订阅套餐，所以并没有实际支付这么多费用，至于是否值得把任务交给它，我觉得还是值得的。能做到这种程度的话。
+
+
+## Astra 渲染迭代优化实验    *50:45*
+
+<span class="paragraph-timestamp" data-ts="50:45">50:45</span> **崔胜准** 昨天在GPT Image 2.5发布之前，我反复做过一个实验，要不要给大家看看？是图像。最左边的那张是用GPT Image 2.0生成的图。这一张是渲染出来的。
+
+<span class="paragraph-timestamp" data-ts="51:00">51:00</span> **朴钟贤** 谁渲染的？Astra。Astra是用Blender之类的软件做的吗？
+
+<span class="paragraph-timestamp" data-ts="51:04">51:04</span> **崔胜准** 用Blender也可以，而我用的是Mitsuba，让它直接在这里安装Python，使用一种可微分的renderer。把sampling调高一些之后，大致就得到了这样的结果。不过这并不是一下子就完成的，而是经过了多次迭代。
+
+<span class="paragraph-timestamp" data-ts="51:25">51:25</span> 然后我让它把这个做成real-time的，它还像这样制作了animation。所以我让它仔细观察，先认真查看图像并比较差异，然后让它反复迭代，它就会进行优化，也就是进行hill climbing。当然还不完美，但能看出已经做得大致相似了。所以我确实有些惊讶。
+
+<span class="paragraph-timestamp" data-ts="51:45">51:45</span> **卢正石** 不过使用您刚才提到的Mitsuba之类的工具时，您不是使用本地compute，而是直接使用了OpenAI提供的云端吗？
+
+<span class="paragraph-timestamp" data-ts="51:55">51:55</span> 是的。Blender也可以安装。所以我也运行过Blender。不过运行Blender之类的软件，其实会消耗相当多的compute吧。
+
+<span class="paragraph-timestamp" data-ts="52:03">52:03</span> **崔胜准** 是的。那些的费用怎么算呢？没有额外费用，容量会提供100GB。所以其中的binary不会长期为你保留，但转存为文件的内容会保留。我一直用着才发现，100GB已经用了大约2GB。不过在Chat mode下，会提供4个虚拟CPU，在Work mode下则提供8个，但不提供GPU。两种模式都不提供。
+
+<span class="paragraph-timestamp" data-ts="52:33">52:33</span> **卢正石** 所以用Blender渲染，也全都是靠CPU计算来运行的。
+
+<span class="paragraph-timestamp" data-ts="52:36">52:36</span> **崔胜准** 不过，它可以启用多线程，Mitsuba或这类可微分渲染器都支持，所以稍微懂这方面的人可以做一些很有意思的实验。虽然是个兔子洞。
+
+<span class="paragraph-timestamp" data-ts="52:47">52:47</span> 明白了。不过还有一个吧。还有一个，对吧？
+
+
+## AlphaGenome Atlas 与基因组变异分析    *52:53*
+
+<span class="paragraph-timestamp" data-ts="52:53">52:53</span> **卢正石** 这是昨天突然出现的新闻。Google发布了一个叫AlphaGenome Atlas的东西，针对全部90亿种变异，现在只要查询一下就可以了。消息是这么说的，但一下子还很难完全理解它的意义。所以需要先稍微了解一下AlphaFold和AlphaGenome是什么，才能明白这件事。
+
+
+## AlphaFold 改变的蛋白质结构研究    *53:17*
+
+<span class="paragraph-timestamp" data-ts="53:17">53:17</span> **卢正石** AlphaFold我们已经比较熟悉了。输入氨基酸序列后，核糖体会依照序列一路合成出来，然后它在水中进入细胞质时，那条链会这样彼此缠绕，形成某种3D结构，这就叫protein folding problem。而且就在大约5年、6年以前，这还是一个尚未解决的问题，后来DeepMind出手把它彻底解决了。
+
+<span class="paragraph-timestamp" data-ts="53:47">53:47</span> 所以一直以来有一个所谓的PDB网站，进入PDB后，可以看到其中收录的蛋白质结构以及其他各种信息，它是一个汇集了这些信息的数据库，大约有20万条记录。而AlphaFold是以该数据库为基础，被打造为能够预测所有蛋白质结构的系统。AlphaFold开发到一定程度后，他们直接运行模拟器，针对估计约有2亿种的蛋白质，生成了全部的3D结构，并建立了AlphaFold数据库。
+
+<span class="paragraph-timestamp" data-ts="54:20">54:20</span> 如果是在过去，即使我们要治疗癌症之类的疾病，哪怕知道氨基酸序列，也不知道蛋白质会形成怎样的结构，所以要逐一进行研究，或者通过X射线检查来找出结构。等结构确定之后，还要寻找与之匹配的抗体等等，这就是传统的制药过程。但AlphaFold问世以后，一旦确定了作为靶点的问题蛋白质，就可以直接生成它的3D结构，然后转变为寻找那些可能会与它结合的东西的游戏，也就是在in silico环境中寻找抗体的问题。
+
+<span class="paragraph-timestamp" data-ts="55:00">55:00</span> 就是这样的。什么东西会结合上去呢？就是能与那个蛋白质结合的形状，不是有这样的形状吗？根据它的形状，像钥匙和锁一样，设计出能够与之结合的东西。可以理解为抗体与抗原这样的关系，而配体也是实现这种作用的一类方法。这里我们就不详细展开了。那么，我们已经知道AlphaFold是什么了。
+
+
+## AlphaGenome 与非蛋白质编码区域    *55:32*
+
+<span class="paragraph-timestamp" data-ts="55:32">55:32</span> **卢正石** 而Google DeepMind还发布了一项叫AlphaGenome的技术，大概是在去年发布的。感觉还不到一年。至于这个AlphaGenome究竟是什么，当时YouTube上热议了很久，也发表了论文，但要理解它，就必须掌握太多生物工程的基础知识。
+
+<span class="paragraph-timestamp" data-ts="55:53">55:53</span> 所以，人们往往只是想着“原来出了这种东西啊。”然后就直接略过去了。要用最简单的方式解释AlphaGenome，我们在初中、高中的生物课上都学过这些吧。人类有23对染色体，其中23条来自母亲，23条来自父亲。而一对基因当中，显性的会表达，非显性的则会关闭，有这样的机制；此外，一套基因组中有31亿个碱基对，我们都是这样学的。而这些碱基对由A、G、T、C等等一路排列组成。如果把整体看作100，那么只有约2%是编码蛋白质的外显子区域，至于另外98%是做什么的，直到大约10到15年前，虽然说几乎一无所知可能不太准确，但确实一直笼罩在重重迷雾之中。简直就是生命的奥秘。
+
+<span class="paragraph-timestamp" data-ts="56:59">56:59</span> 后来有了machine learning，也出现了观测设备，再加上美国政府投入了巨额资金，开展ENCODE之类的项目，为了弄清这些区域究竟发挥什么作用，人们一直在进行规模非常庞大的实验。Human Genome Project在21世纪初时，也是一个耗资无数的项目，这是个一度让人怀疑究竟能不能完成的项目，结果还是完成了。而现在读取人类基因组，如果用short-read读取，大约花3600～4100元人民币就可以，即使用long-read读取，大约花1万～1.5万元人民币，就能把我全部的基因数据都读取出来，我们已经进入了这样的时代。
+
+<span class="paragraph-timestamp" data-ts="57:44">57:44</span> 那么，基因读取出来以后，这里最重要的部分要怎么解释，才最容易理解呢？到目前为止还能理解吧？
+
+<span class="paragraph-timestamp" data-ts="57:54">57:54</span> 大概能。我不太擅长生物学。上学的时候就是这样。对，没错。不过说真的，我们以前觉得喜欢背东西的人才会去学生物学，喜欢数学之类的人会去数学系或物理系，化学则介于两者之间，而最接近人文学科的是生物工程，以前不就是这样吗？但如今生物工程的时代正在迅速到来。而对于这些基因究竟发挥着什么作用，我们也已经了解得相当多了。所以，只有2%负责编码蛋白质，那么剩下的98%就是程序区域，大家一直都很好奇，在这个程序区域里究竟发生了什么。而我们确实已经找出了其中不少东西。enhancer、promoter，然后内部还有exon、intron这样的区段。至于如何找出它们是以什么方式运作的，比方说，假设有一个肝细胞。那么这个肝细胞里肯定有基因，对吧？可是这些基因，如果所有基因都全部表达，都在制造蛋白质，那就不合理了。脑细胞、肝细胞和肌肉细胞等制造的蛋白质种类必须各不相同。
+
+<span class="paragraph-timestamp" data-ts="59:12">59:12</span> 那么，怎样才能让它们有所不同呢？
+
+
+## 表观遗传学与 partial reprogramming    *59:14*
+
+<span class="paragraph-timestamp" data-ts="59:14">59:14</span> **卢正石** 就是让这个基因的某些区域表达，而让另一些区域不表达的部分，也就是所谓涉及epigenetics的领域。如果观察基因内部的结构，并不是所有碱基对都完全展开，然后某些酶附着在上面，把蛋白质全部转录出来。而是根据不同细胞的位置，有些地方处于卷曲状态，紧密地缠绕在一种叫作组蛋白的蛋白质上，有些地方则处于展开状态，每个地方都不一样。而且这并不是随机发生的，而是从最初的胚胎开始发育时，在环境影响下不断分化，最终各自固定在自己的位置上。借用某位科学家的比喻，如果让许多珠子沿着山谷滚下去，珠子在一路滚动的过程中，会各自滚到自己的位置，对吧？而一旦各自落定，就再也回不去了，这个比喻是这样说的。如今longevity领域等许多相关领域正在尝试用partial reprogramming来解决这个问题。听说过吗？
+
+<span class="paragraph-timestamp" data-ts="1:00:22">1:00:22</span> 当一个细胞成为体细胞后，它要负责做什么一旦被明确规定下来，就只能做那一项工作。有一位名叫Shinya Yamanaka的日本教授发现了一种叫作Yamanaka factor的东西。通过这四种名为OSKM的基因表达出蛋白质，当它们开始表达后，就会通过某种机制，让细胞完全失去原本的身份，回到仿佛最初形成时的一种叫作pluripotent stem cell的状态，也就是重新变回能够发育成任何细胞的stem cell。也就是干细胞，换句话说，它会重新变回干细胞。这样一来，在变回干细胞的过程中，那些已经与衰老相关的、附着在各处的大量乙酰基之类的东西都会被清除，整个系统被彻底重置，回到精子与卵子刚刚结合时的状态。
+
+<span class="paragraph-timestamp" data-ts="1:01:24">1:01:24</span> 那么用这种方法对所有人进行reprogramming，我们不就能变年轻了吗？这个说法确实没错，但如果一味让细胞变年轻，它就可能在本该形成肌肉的地方变成头发，或在本该形成大脑的时候变成肝细胞，随意进行分化。经历这种过程后，就会癌变。所以在OSKM factor中，虽然我记得不太确定，但只取OSK factor，也就是四种factor中只使用三种，细胞就会在适当的程度上重新回到stem cell状态。最近人们正在利用这些，以partial reprogramming的形式开展实验。
+
+<span class="paragraph-timestamp" data-ts="1:02:09">1:02:09</span> 所以David Sinclair教授让眼睛里的retina细胞重新再生，使原本失明的小鼠重新恢复视力，也进行过这类研究。然后还有NewLimit，这是一家因Coinbase的CEO投资而出名的公司。像这样的公司会让肝细胞重新再生，把老年小鼠的肝脏重新变得像年轻小鼠的肝脏一样，变成年轻的肝细胞，这样就可以尽情喝酒了，他们以前还用这种方式做过宣传。
+
+<span class="paragraph-timestamp" data-ts="1:02:40">1:02:40</span> 不需要付出什么代价吗？那么重置时不会有风险之类的……有风险。正因为有风险，所以会使用各种开关，让这些过程在受到高度控制的环境中运行。其中有一些专门采用的机制，我记得自己以前也全部读过一遍，但现在想不起来了。所以，先把能够进行reprogramming的OSKM这种先把factor注入眼睛，注入眼睛后，在药物存在的状态下再服用某种特定的触发剂，也就是起到开关作用的药物，它就会将其激活，药物消失后又会失活，像这样装上一个开关，采用这种方式来操控它。
+
+<span class="paragraph-timestamp" data-ts="1:03:18">1:03:18</span> **崔胜准** 那么这个和epigenetics是不太一样的概念，对吧？epigenetics我原本以为也类似于开关，看来这个是某种直接进行reprogramming的东西啊。
+
+<span class="paragraph-timestamp" data-ts="1:03:28">1:03:28</span> **卢正石** 对。并不是在那里直接制造出那种细胞，而是在它旁边放入已经完全恢复为pluripotent状态的stem cell，让它受到周围体细胞的影响，从而转变成那种细胞……
+
+<span class="paragraph-timestamp" data-ts="1:03:47">1:03:47</span> 这是我完全不了解的领域。对，就是这方面。我觉得这个方向似乎有非常多种。有一种方向是直接放入stem cell，让它向那边发展，然后还有一种是在体细胞中稍微重置epigenetic clock，虽然保留原本的身份，但把附着在上面的甲基或乙酰基全部重置，让那个细胞如同恢复年轻一样发挥功能，似乎也有这样的方式。不过深入这个领域就太复杂了，我也无法保证自己准确地了解所有内容。
+
+<span class="paragraph-timestamp" data-ts="1:04:24">1:04:24</span> **崔胜准** 所以这和刚才的话题有什么关系？
+
+
+## SNP 与个体间的基因组差异    *1:04:26*
+
+<span class="paragraph-timestamp" data-ts="1:04:26">1:04:26</span> **卢正石** 我们聊AlphaGenome聊着聊着就说到这里了，人类的基因中有A, G, T, C，像这样依次排列，如果在编码蛋白质的区域出现了一点错误，我们就能明确知道这会导致什么问题，但如果错误出现在编程区域，我们就会面临不知道究竟哪里出了错的情况。不过要说明这个，还需要稍微解释一下SNP这个概念，刚才说过，我们的基因中有30亿个碱基对，对吧。而我们每个人都是不同的。
+
+<span class="paragraph-timestamp" data-ts="1:05:07">1:05:07</span> 是什么的幂大约为30亿？密码子的幂？平方之类的吗？不是，不是那样。就是有30亿个A, G, T, C排列在一起，不是吗？所以A, G, T, C当中有一个时，就会有一个与之配对的另一个碱基，比如腺嘌呤、鸟嘌呤，
+
+<span class="paragraph-timestamp" data-ts="1:05:24">1:05:24</span> 胞嘧啶。有这些东西。还有胞嘧啶、胸腺嘧啶这些。那么只要其中一个确定了，与它相对的碱基对也就确定了。比如有一个A，就会形成一个与它配对的信息单位。就像bit一样。我们把它看作一个碱基对。这些碱基对由A, G, T, C不断排列组成，我们人类的基因有30亿个碱基对。准确来说是31亿，也就是有31亿个碱基对，理论上，从妈妈那里遗传了一组，又从爸爸那里遗传了一组，如果从妈妈那里得到了一组30亿个，那么从爸爸那里也得到了30亿个。所以理论上，我们总共有大约60亿个，但由于这些A, G, T, C本身又会相互配对，所以严格来说，如果问人类基因中A, G, T, C这些字母总共有多少个，那就是120亿个。能理解吧？
+
+<span class="paragraph-timestamp" data-ts="1:06:25">1:06:25</span> **朴钟贤** 120亿个。如果把它看作数据，每一个毕竟都有四种可能性，而且有那么多个，所以就是4的60亿次方，可以这么理解吧。当然，从妈妈那里获得的信息和从爸爸那里获得的信息有非常多是重合的，所以不可能让所有信息都相互独立。
+
+<span class="paragraph-timestamp" data-ts="1:06:44">1:06:44</span> **卢正石** 所以实际上是60亿个，但我们只看其中30亿个。因为绝大部分都很相似，而在某些情况下，不同的部分中显性基因会表达，其余的则会关闭，不过我们通常所说的基因，其实也是通过实验发现的，如果某些区域具有某种功能，我们就把这些区域称为基因。在这个基因中，蛋白质编码区域和其他调控区域都混杂在一起。但就这些部分的功能而言，从妈妈那里获得的和从爸爸那里获得的，在我们序列的索引中几乎相似到能够完全对应。所以为了方便，我们只用30亿个碱基对来讨论，把剩下的一半舍弃掉。就是这样处理的。不过继续讲这个的话，就会没完没了地深入下去。SNP, singlenucleotide polymorphism，说的就是这个，这些字母不是有30亿个吗？但这30亿个，胜准和我几乎是一样的。其实人类和
+
+<span class="paragraph-timestamp" data-ts="1:07:51">1:07:51</span> 因为都是人类。其实没错。人类和狗也有近80%是相同的，接下来，人与人之间几乎都是一样的，在那30亿个当中，只有非常少的约400万到500万个不同。但在这个过程中，某一段程序有所不同，并不是这个 G、T、C 模块完全不同，而是一路下去，在胜准写着 G 的位置，我写的是 A，真的只是逐个字符有所不同。非常 sparse。所以，正是那些只有一个字符不同的地方，构成了我们之间的差异。
+
+<span class="paragraph-timestamp" data-ts="1:08:27">1:08:27</span> 如果我们委托进行基因组分析，就能知道基因组数据里的一切，对吧？至于这是怎么做的，
+
+
+## 短读长·长读长测序与基因组绘图    *1:08:34*
+
+<span class="paragraph-timestamp" data-ts="1:08:34">1:08:34</span> **卢正石** 并不是把一个人的基因全部读取出来，而是我们把血液寄过去，对方就会用搅拌机把它全部搅碎，然后将 DNA 全部切断，也就是说，从一根线上截取某些段落。再把切下来的 DNA 全部读取出来。以统计方式读取。
+
+<span class="paragraph-timestamp" data-ts="1:08:52">1:08:52</span> 放进纳米孔测序仪之类的设备里？没错。放进孔里，然后一路读取出来。把那根线切得短，就是短读长，把线切得长，就是长读长。所以切成短读长后，那些切下来的片段中，数据就会源源不断地传过来，对吧？然后把它们全部输入计算机，我们有一个叫参考基因组的东西。它针对最标准的人类，描述了人类基因组是如何构成的，是 Human Genome Project 的产物，经过数次 revision，现在有一套正在使用的参考基因组。在那套参考数据上，尝试匹配我所有被切短的线。因为这些 sequence 几乎都很相似，逐一进行 mapping 后，它们就会附着到某个位置。在统计意义上附着后，找出“这里的这个字符不一样。”然后把这些部分替换掉。利用从参考数据和我的 sequence 数据中得到的内容，不断像这样把它们拼接起来。
+
+
+## HLA 区域与长读长测序的必要性    *1:10:02*
+
+<span class="paragraph-timestamp" data-ts="1:10:02">1:10:02</span> **卢正石** 对，没错。长读长之所以重要，是因为大部分内容虽然用短读长也能读取，但在我们的6号染色体上，有一个充当人体免疫标志物的独特结构，叫作 HLA。细胞内部会生成一些蛋白质团块，而“我正在生成某种蛋白质”这件事，就是在向外界展示这个细胞正在做什么。因此，HLA 这套逻辑会将在内部生成的蛋白质团块的碎片搬运到细胞表面。负责读取被搬运到表面的蛋白质的，就是 T cell。T cell 会过来，它是免疫细胞。免疫细胞过来查看，如果判断“这个细胞工作正常，这是我自己，是自身细胞”，就会让它继续存活；如果这个细胞正在生成异种蛋白质，它就会认为“这个细胞是从外面来的”，然后把它吞噬掉，这就是我们免疫系统最核心的机制。但是，负责 HLA 功能的区域因人而异，差异很大。与其说是因人而异，不如说是不同人种之间的差异很大。韩国人与白人的差异很大，黑人也有所不同，所以这个区域会有差异，而这里正是变异最严重的区域。因此，如果用短读长 sequence 读取它，就无法很好地进行 mapping。因为相似的链实在太多，所以使用短读长时，6号染色体的分辨率会非常低。如果用长读长读取，就能以非常长的长度读取一个基因，因此即使把它放到6号染色体的位置上，也能发现“这个片段在这里有这样的不同”，从而进行 mapping。这就是长读长方式的优点，
+
+<span class="paragraph-timestamp" data-ts="1:11:55">1:11:55</span> 不过我刚才提到了 SNP，一路读取下去时，如果只有一个字符不同，那么这个字符的差异究竟会引发什么问题，当然就变得很重要了，对吧？是的。有些变异是 deleterious，会带来不良影响，有些变异即使发生了，也不会造成太大危害。但正是因为那一两个字符的差异，人们的人生会发生改变。遗传病，从统计角度来说确实如此。遗传病之类的就是这种情况。
+
+
+## AlphaGenome 对基因变异影响的预测    *1:12:25*
+
+<span class="paragraph-timestamp" data-ts="1:12:25">1:12:25</span> **卢正石** 终于讲到 AlphaGenome 了。AlphaGenome 能找出，当那个字符发生变化时，它会在哪种细胞中引发什么问题，并预测相应的实验结果。AlphaFold 的 input 是一整段氨基酸 sequence，output 则是它的 3D structure。但 AlphaGenome 完全不同。100万对基因，也就是说，是100万个索引。输入整整100万个基因序列后，它就会预测11种实验结果。那么，这些实验结果具体是什么呢？在过去20年里，ENCODE Project一直在通过实验不断发现哪些基因具有哪些功能。比如，肝细胞的某些区域缠绕着 histone，某些区域则是松开的，那么只对开放的区域进行 DNA sequencing，再相应地对其中表达出来的RNA 序列进行 sequencing，就可以预测在开放区域中，哪些内容表达成了 RNA。所以，这些内容一直被积累成数据集。然后按细胞区分，说这是脑细胞，这是肝细胞，这是肌肉细胞，并针对每种细胞进行这些实验。
+
+<span class="paragraph-timestamp" data-ts="1:13:58">1:13:58</span> 怎么做，是以人为对象吗？是用类器官做吗？不是。是以人为对象。很简单。怎么做呢，这一点很有意思，就是直接把肝细胞拆开。拆开后，比如说已表达的基因，我们称之为 euchromatin、heterochromatin，如果只需要读取开放的 chromatin 部分，那么就不碰缠绕在 histone 上的那些，只对松开的那些进行能够读取 DNA 的处理。然后假设只有松开的部分得到了表达，再读取其旁边被转录成 RNA 的所有区域。对它同样进行 RNA sequencing。这样就既有 DNA sequence，也有 RNA sequence，所以就像刚才在 Human Genome 中与 reference genome 进行比对一样，这是个容易得多的问题。只要试着把它们一一对上就行了。“这个 RNA 来自这里，这个 RNA 来自那里。”就是根据这些来寻找。
+
+<span class="paragraph-timestamp" data-ts="1:14:58">1:14:58</span> 感觉难度正在上升到和讲基础设施时差不多的程度。没错。不过在这里稍微谈谈业务的话，我自己讲起来也挺费劲的。在这个 model、AI 等等都成为可能的世界里，我们到底能逃到哪里去，这不是我们的第一个主题吗？所以我想，在业务中充分利用 AI，从业务角度能够做些什么，最后发现答案在于把 control plane做好，所以就做了这样一套系统，并一直努力推进，
+
+<span class="paragraph-timestamp" data-ts="1:15:32">1:15:32</span> 而除此之外，在领域层面应该抓住什么，我认为，就是在生物学因 AI 而发生革新的这个部分，尽可能读懂生物学领域，反过来站在不懂 AI 的生物学家与不懂生物学的AI 科学家之间，这就是我的想法，而抱有这种想法的人在硅谷创办了很多从事 AI for Science、尤其是生物学研究的公司。所以我现在倒不是想立刻做什么，只是在试图理解这个领域的过程中，把各种系统都查看了一遍，才了解到这些内容。所以正如胜准刚才问的，哪些 DNA 会表达，哪些会真正发挥作用，这些都是靠繁琐的人工实验逐一验证出来的。
+
+<span class="paragraph-timestamp" data-ts="1:16:23">1:16:23</span> 也就是说，Atlas已经出现了。它能够做非常多的事情。没错。所以过去 20 年间积累了这些实验结果，而 AlphaGenome会预测这些实验结果。向 AlphaGenome 输入 100万 base pair，它就会直接进行处理，预测它在脑细胞中会怎样，在肝细胞中会怎样，在某种细胞中又会怎样，并给出相应的预测值。它会以数组形式全部输出，那么怎么判断这是好还是坏呢？我们不是有正常的 reference 吗？有正常人所拥有的 sequence，而当我们输入 100万 base pair 时，在这 100万 base pair 中，会包含我发生变异的那个部分。那么最后只要对 output 中的实验结果做一下 diff，就能预测我的这一个基因变异会在肝脏的哪个部分造成问题，可以像这样进行预测。不过如果我们会对它进行编程，就可以像比较 log probability 那样，以 vector 为单位进行比较，但 Google 很贴心地已经在那里把 index 全部做好了。这就是 AlphaGenome 的作用，
+
+
+## AlphaGenome Atlas 的预计算数据库    *1:17:47*
+
+<span class="paragraph-timestamp" data-ts="1:17:47">1:17:47</span> **卢正石** 那么 AlphaGenome Atlas 做的又是什么呢？请想一想。我们刚才说过有 30亿个碱基对，对吧？30亿个。那么理论上，这 30亿个中的每一个碱基都可能发生某种变化。那么以 reference genome 为基准，针对这 30亿个位置中的每一个，假设这个位置现在是 A，如果在 reference 中它不是 A，而是 G、C、T，会发生什么，它把这些全部计算一遍，并将计算结果全都预先存进了数据库。所以从研究人员的角度来看，如果没有这个 Atlas，就必须亲自运行计算。
+
+<span class="paragraph-timestamp" data-ts="1:18:31">1:18:31</span> 就像如果没有 AlphaFold Protein Structure Database，我想根据新发现的氨基酸序列预测蛋白质结构，就必须运行 AlphaFold，但如果 Google 已经提前全部运行完毕，并拥有全部数据，那么输入氨基酸序列时，3D 数据就会立刻出来。这与它完全等价。所以就像输入 AlphaGenome 那样，输入包含 100万 base pair 的基因 sequence，AlphaGenome 会运行并返回所有实验结果，而输入 Atlas 后，它则会给出“在这种结果值中，这个会发生变化，那个会发生变化”之类的信息。
+
+<span class="paragraph-timestamp" data-ts="1:19:10">1:19:10</span> 所以我们只要利用它存储在数据库中的结果值做一下 diff，就能预测这在某种细胞中哪个地方可能会出现问题，这个则可能不会有问题，可以对此进行预测。
+
+<span class="paragraph-timestamp" data-ts="1:19:24">1:19:24</span> **朴钟贤** 不过这样的话，我最终还是很好奇预测出的实验结果究竟有多准确，而这只能在实际做完实验之后再只能通过比较来确认。对于那些尚未尝试过的领域来说。
+
+
+## AI 工具改变的生命科学研究方式    *1:19:37*
+
+<span class="paragraph-timestamp" data-ts="1:19:37">1:19:37</span> **卢正石** 正因为出现了这些工具，科学才会发生改变。例如 AlphaFold能够预测所有蛋白质的结构，那么 PDB 这样的数据库岂不是就没用了，是不是再也不需要进行 X 射线衍射或尝试这类实验了，可能会有这样的想法，但实际上，是这个过程被大幅缩短了。人们在研究某种靶蛋白之前，会先运行 AlphaFold，就像先拍摄卫星照片，再决定是否开展行动一样，先筛选出哪些候选方案可行、哪些不可行，然后利用筛选出来的结果，以更具策略性的方式开展实验。所以研究变得轻松多了。
+
+<span class="paragraph-timestamp" data-ts="1:20:23">1:20:23</span> AlphaGenome 也是一样。AlphaFold 同样是利用 PDB 中已知的 20 万个人们通过实验得到的结果，预测出了其余 2 亿个。而且结果显示，这些预测的准确率非常高，AlphaGenome 也是利用过去 20 年间基因发生变异时，在外显子或调控区域中会出现哪些变化的所有实验结果。这是一个比 LLM 小得多的 dataset。毕竟人类能做的实验又能有多少呢？
+
+<span class="paragraph-timestamp" data-ts="1:21:04">1:21:04</span> **崔胜准** 我突然想到一个问题，就像刚才数学的例子中建立 Ansatz 或假设一样，这也是 LLM 可以使用的工具吗？
+
+<span class="paragraph-timestamp" data-ts="1:21:13">1:21:13</span> **卢正石** 是 LLM 可以使用的工具。LLM 会自行调用 Astra，也会找人来做吧。
+
+<span class="paragraph-timestamp" data-ts="1:21:18">1:21:18</span> **崔胜准** Atlas 和 AlphaGenome 之类的东西是否相当于会成为 LLM 可以使用的工具，我突然想到了这个问题。
+
+
+## 基因组分析与个体化治疗    *1:21:26*
+
+<span class="paragraph-timestamp" data-ts="1:21:26">1:21:26</span> **卢正石** 我会用 Codex 调用。是吗。今天我也用了 AlphaGenome Atlas，我已经完成了自己的 long-read sequencing。我想着要提前做好准备，以防自己患癌后出现什么情况，所以把一切都预先准备好了，在拿到我的全部基因 sequence 后，我几乎知道哪些药物可能会让我患上哪些肝脏疾病，以及可能导致什么问题，这些我几乎都知道。而且与 reference genome 相比，我也已经知道自己的哪些位置存在 SNP。那么就可以把这些 sequence 切分开来，不仅分析已经为人所知的部分，还可以分析 SNP 会引发哪些问题，如果把全部看作 100，目前已知的部分还非常少。我忘记具体数字了，但未知的领域仍然非常多。
+
+<span class="paragraph-timestamp" data-ts="1:22:13">1:22:13</span> 不过对于这些未知领域，就像 AlphaFold 利用 20 万个数据预测出 2 亿个结果一样，目前在未知领域中发现的内容还非常少，对那些尚不明确的内容，可以利用 AlphaGenome预测它们大致会是什么样，再根据预测结果重新设计实验。“啊，预测对了。”这样一来，验证速度就会快得多。
+
+<span class="paragraph-timestamp" data-ts="1:22:36">1:22:36</span> **崔胜准** 这会与通用的新药研发联系起来吗？还是会走向个性化治疗？两者都有吗？
+
+<span class="paragraph-timestamp" data-ts="1:22:43">1:22:43</span> **朴钟贤** 通用的新药研发和个性化新药研发，两者都会。是啊。归根结底，现在 AlphaGenome 已经问世了，我很好奇它会对社会产生怎样的影响，也很好奇诸如此类的问题，我想它大概会在延长寿命的道路上发挥一定作用，但它究竟让这个进程提前了多少，我暂时还没有直观的概念，所以我很好奇这些问题。
+
+
+## 罕见遗传病与癌症治疗靶点探索    *1:23:07*
+
+<span class="paragraph-timestamp" data-ts="1:23:07">1:23:07</span> **卢正石** 对于基因变异、罕见遗传病等情况，现在完全不知道为什么会出现这些现象，但运行 AlphaGenome 后，它可以指出某处的启动子与某个结构之间的 3D 结构出了问题，或者某处的一个 SNP index 出现了偏差，它能够做出这类预测，过去如果发现某个基因不同，就很难知道这个不同的基因到底会在我们所谓的表型，也就是表达为蛋白质的过程中，对哪个环节造成问题，现在则可以对此进行预测。这是其中一点，癌症也是一样。
+
+<span class="paragraph-timestamp" data-ts="1:23:48">1:23:48</span> 例如患上癌症后，癌基因发生了变异。于是它开始做出异常行为。那我们就得治疗它。可是在准备治疗时，如果它发生变异的部分明确位于蛋白质编码区域，那么就可以发现它所产生的蛋白质出现了不同，再利用这些信息运行 AlphaFold，找出能够与该靶点结合的物质，从而研发药物，但如果问题不是出在蛋白质编码区域，而是其他调控区域，出现了这种问题，那么这个调控区域会产生多重影响，导致某种蛋白质的生成过程发生改变。
+
+<span class="paragraph-timestamp" data-ts="1:24:28">1:24:28</span> 而对于这样的部分，问题究竟出在哪里，我们就能进行精确得多的预测。这些就是我们能够利用 AlphaGenome进行预测的部分。所以在正常、健康的时候不会有问题，但患上癌症或发生这类情况时，在癌细胞与我的正常细胞之间，应该重点关注哪些方面，哪些地方可能存在问题，它能够帮助我们找出多种可能性，这是一款能提供巨大帮助的工具。
+
+<span class="paragraph-timestamp" data-ts="1:25:03">1:25:03</span> **崔胜准** 凭感觉来说，就算知道了这些，要进行治疗费用可能也不会是个小数目，我确实有这种感觉。
+
+<span class="paragraph-timestamp" data-ts="1:25:11">1:25:11</span> **卢正石** 不过上次 Ginkgo Bioworks CEO治疗自己癌症时采用的流程，当时还没有 AlphaGenome或者这类东西，幸运的是，对比自己的癌症基因和正常基因的 diff 后，找到了一种只在癌细胞中表达的蛋白质。然后为了寻找能与这种蛋白质结合的物质，走遍了世界各地，后来在德国某处找到了，便用它制作了专属于自己的个性化药物。
+
+
+## 生物技术向计算科学转型    *1:25:45*
+
+<span class="paragraph-timestamp" data-ts="1:25:45">1:25:45</span> **卢正石** 不过，这种费用应该会持续下降。前不久 Merck 和 Moderna宣布研发出了 mRNA 疫苗，其原理也与这个完全相同。所以，生物技术正在逐渐发生变化，如果是在以前，它属于在实验室里做 wet lab、一边看显微镜一边进行的枯燥实验领域，就像今天谈到的 Navier–Stokes 方程，原本只发生在数学家的纸面上，如今却都变成了某种 LLM 的 token，不是吗？生物技术领域也发生了同样的事情。利用之前的实验结果进行 supervised learning，经过 supervised learning 的成果会成为某种模型，而这个模型又会极大地推动下一轮实验。它能让实验变得更容易，也能让过去无法进行的实验得以被设计出来。随后又会从中产生新的数据集，数据集也会不断增多。而且现在虽然还是 supervised learning，但当这些数据积累到一定程度后，到了某个时刻，又可以利用这些数据集直接进行 self-supervised learning，那么它就会达到能够发现某种普遍规律的水平。
+
+
+## Evo 2 与合成生物学的语言模型    *1:27:05*
+
+<span class="paragraph-timestamp" data-ts="1:27:05">1:27:05</span> **卢正石** 有一个与 AlphaGenome 类似但又稍有不同的，是由 Arc Institute 开发的名为 Evo 2 的模型，说到 Evo 2，AlphaGenome 其实非常复杂。它是完全的 supervised learning。它将实验结果的 input 设为基因 sequence，再 mapping 实验结果，制作 supervised set，并在两者之间加入 convolutional neural network、Transformer 来进行训练。但像 Evo 这样的模型，是把所有已知物种的碱基序列全部收集起来，构建一个 LLM 级别的数据集后，直接放进 Transformer，对 sequence 进行训练。所以这个就比较简单了。
+
+<span class="paragraph-timestamp" data-ts="1:27:45">1:27:45</span> 只是数据多而已。只要给它输入 AGTC sequence，它就会像 LLM 一样，把后面的 GTC sequence直接输出出来。虽然它输出的内容，我们乍看之下并不明白，但它输出的是从基因中学到的某种 sequence。所以，用它输出的 sequence 制作之后，竟然诞生了某种细菌，因此便将其称为新的发现，而研究这类领域的就是 synthetic biology，也就是合成生物学。
+
+<span class="paragraph-timestamp" data-ts="1:28:16">1:28:16</span> 不过，在 LLM 中，我们也可以预测这类事情。我们以自回归的方式不断输出句子，以前我们和 成铉 聊天时，不是说过有些特定的 token具有非常高的 entropy，存在这样的 token 吗？所以它也可以这样做：把从 reference 中获得的 genome 数据切下来输入，再把自己的、存在变异的数据切下来输入，然后把最后的前半部分就像做预填充一样，输入到模型中。那么后面就会产生 output 值，不是吗？如果直接将这两个 log 值相减，得到负数，就表示这个变异危险的概率较高；得到正数，则表示它不危险的概率较高，也可以像这样使用。通过这种方式，对于那些大致尚未被了解的变异，也可以粗略计算其危险程度，但即使计算出了危险程度，也无法知道它会带来什么样的危险。不过，无论最终是癌症还是什么，genomics 本身也随着数据库不断积累，逐渐转向 computation 领域，这个方向也因此在持续发展。
+
+<span class="paragraph-timestamp" data-ts="1:29:37">1:29:37</span> **崔胜准** 虽然我没理解多少，但感觉上，它已经成了可以计算的对象。
+
+
+## 基因组数据与生物 AI 的规模爆发    *1:29:43*
+
+<span class="paragraph-timestamp" data-ts="1:29:43">1:29:43</span> **卢正石** 没错。而且如果在 wet lab 中，verifier 也不断运行，数据集开始持续得到补充，那么它也很有可能在某个时刻迎来LLM 曾经经历过的那种scale 爆发时代。
+
+<span class="paragraph-timestamp" data-ts="1:29:59">1:29:59</span> **朴钟贤** 我一路听下来，虽然没有完全理解，但刚开始时，我们不是谈过这个吗？生命科学领域多少更偏文科一些。理科方面是这样解释的，但如果思考一下为什么会这样，是因为我们有很多无法理解的原理，只能观察某些实验以及外部的结果，然后说“原来是这样。”过去有很多内容都需要这样记忆，但这门学科本身如今从起点开始，从 DNA 层面开始，最终会产生什么现象，蛋白质是如何形成的，最终又会对我们的身体产生什么影响，我觉得这项研究正是在探索连接这些环节的过程。所以在这个领域，AI 也会把它转化为某种可解释的形式，而随着我们理解其内部的运作机制，从研究的角度来看，我们似乎会发现更多得多的东西，而这些成果如果落实到人类身上，毕竟 longevity 是最大的需求，所以似乎会最先朝那个方向发展，除此之外，也可能向其他方向广泛延伸。
+
+<span class="paragraph-timestamp" data-ts="1:31:04">1:31:04</span> **崔胜准** 这非常有意思，我最近就靠阅读这方面的内容寻找乐趣，一天天地过着日子。不过看最近发布的报告，里面一定会提到 cybersecurity、biosecurity。尤其是在大型模型问世的时候。这当然有好的一面，但也会有可怕的一面。
+
+<span class="paragraph-timestamp" data-ts="1:31:21">1:31:21</span> **朴钟贤** 比如这些东西会被如何使用。是啊。化学和生物学也各有各的可怕之处。
+
+<span class="paragraph-timestamp" data-ts="1:31:26">1:31:26</span> **卢正石** 是啊。不过既然我们终究决定过这种长期深耕学术的生活，总得各自选一个领域吧。所以我选了一个，正在一路深入钻研，大家这样理解就好了。
+
+<span class="paragraph-timestamp" data-ts="1:31:42">1:31:42</span> **崔胜准** 感觉能体会到正石倾注在这里的那股能量。只不过人也是一台极其复杂的机器，本质上就是程序。
+
+<span class="paragraph-timestamp" data-ts="1:31:56">1:31:56</span> **卢正石** 没错。又回到了极致的还原论。所以等 gene 层面的秘密被揭开之后，我们就会知道它是如何变成蛋白质的，等蛋白质的秘密也被揭开之后，爸爸的精子和妈妈的卵子相遇，再像这样发育成人，这一整个分化过程对我们来说仍然是个谜，但从秀丽隐杆线虫开始，复杂度较低的生命，其发育过程包括哪个基因会在哪里表达，如何形成头、胸、腹，什么会变成脊椎，什么会变成心脏，目前几乎已经研究到这种程度了。
+
+<span class="paragraph-timestamp" data-ts="1:32:33">1:32:33</span> **崔胜准** 是啊。就看这能在多大程度上加速了，相对来说可能还是会慢一些，但确实已经能够感受到加速。
+
+
+## AI 加速的生命科学未来    *1:32:39*
+
+<span class="paragraph-timestamp" data-ts="1:32:39">1:32:39</span> **卢正石** 今天我们聊到了千禧年难题，而 o1 问世是在2024年9月。所以正好已经两年了。才过了两年，我们现在谈论的这些事情也确实很不可思议。仅仅两年之后，现在
+
+<span class="paragraph-timestamp" data-ts="1:32:54">1:32:54</span> **崔胜准** 我们就在2026年聊起了 SF 里的情节。真是快跟不上了，累死人了。
+
+<span class="paragraph-timestamp" data-ts="1:33:00">1:33:00</span> 至于生物学，目前如果说数学家们从今年开始迎来了 AlphaGo moment，那么生物学还没有，只是获得了新的工具，正处于兴奋地投入其中的阶段吧，不过谁知道呢。
+
+<span class="paragraph-timestamp" data-ts="1:33:13">1:33:13</span> **卢正石** 不过关于这一点，上次我从美国回来后也提过，我观察那些聪明的 AI 博士晚上都在研究什么，发现大家全都在研究这类东西，这对我而言也是一个重大发现，所以我也确实觉得，那里一定有什么重要的东西。所以 AlphaFold、AlphaGenome 都是非常伟大的成果，而比 LLM 更有意思的是，无论 AlphaFold 还是 AlphaGenome，与我们训练现代最新 LLM所投入的数据量和 compute 规模相比，我认为它们其实都没有那么大。虽然我没有比较过总量，但从数据集大小或计算量来看都非常小。所以最新 LLM 究竟投入了多么天文数字的数据集，以及多么天文数字的 compute，我们现在其实并不了解，所以才会如此震惊。
+
+
+## 三天 AI 新闻 recap    *1:34:10*
+
+<span class="paragraph-timestamp" data-ts="1:34:10">1:34:10</span> **卢正石** 总之，距离上次录制仅仅过了三天而已。却已经有这么多话题可聊了。这次算是简单地做了一个过去三天的 recap。是啊。我们差不多聊了两个小时。
+
+<span class="paragraph-timestamp" data-ts="1:34:26">1:34:26</span> 那就等出差回来之后再见。今天就到这里吧。谢谢。
+
+<span class="paragraph-timestamp" data-ts="1:34:31">1:34:31</span> **朴钟贤** 大家辛苦了。请慢走。
