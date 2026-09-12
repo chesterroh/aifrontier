@@ -347,6 +347,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="33:29">33:29</span> **崔胜准** GPT图像又推出新版本了。也挺值得一看的。神奇的是，这些其实之前都有传闻。说它们会推出。而那些传闻现在全都一一应验了。
 
+
+![使用 GPT Image 2.5 和 Astra 制作的 AI Frontier 品牌套件实验结果画面。徽标方案以及 T 恤、帽子、键帽等周边商品图片以网格形式排列。](/episodes/ep114/ep114_jonghyun_brandkit.jpg)
+
 <span class="paragraph-timestamp" data-ts="33:40">33:40</span> **朴钟贤** 是啊。无论如何，今天ChatGPT图像的下一个版本发布了。虽然时间很短，但我还是测试了一下。在讲这个之前，我想先说一点，image generation模型发布了。那本来就只是时间问题，之后肯定还会不断推出。但这次Astra发布后，它很快也一起发布了嘛。而在对Astra的评价中，这样的评价非常多。大家现在应该已经用过很多次了，computer use做得特别好。它很擅长通过vision观察电脑屏幕并进行control。我今天也一直让它做这类事情，它干得确实很好。我打开YouTube网页，让它自行进行分析，它就会自己进入里面的各个分析标签页，查看相关内容之类的。而且不仅如此，在机器人领域也有人直接给Astra机器人控制权限，让它自行通过摄像头观察并进行control，并不是专门制作了某种action model，而是直接就能很好地进行control的案例，现在正大量涌现。
 
 <span class="paragraph-timestamp" data-ts="34:43">34:43</span> 所以看到这些后，我觉得它用眼睛观察的能力确实提升了很多。
@@ -358,6 +361,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="35:13">35:13</span> 还会越来越粗糙。在GPT Image 2左右的版本中就是这样。是的，就是只把这一个东西显示出来，然后一直对它进行control。这是上一个版本和这次的版本，给它换上衣服后，内容就会一点点无法保持一致。虽然看起来还是相似的。不过这次确实能更好地保持consistency。所以编辑起来很方便，编辑效果也很好。他们似乎是想展示这一点。
 
+
+![对比 GPT Image 2 与 GPT Image 2.5 编辑一致性的画面。同一人物照片添加珍珠耳环后的结果并排展示。](/episodes/ep114/ep114_jonghyun_consistency.jpg)
+
 <span class="paragraph-timestamp" data-ts="35:40">35:40</span> 而且它还支持streaming。所以让它执行图像任务时，中间绘制的过程也会显示出来。因此，根据这些可以推测，其实研究领域此前也有很多相关研究，图像似乎也存在某种自回归机制。
 
 <span class="paragraph-timestamp" data-ts="36:00">36:00</span> 没错。上次发布图像模型时，也提到过这样的内容。它并不是单纯通过diffusion model一次性直接生成出来，而是像transformer一样以自回归方式运行，最后似乎再使用diffusion来处理细节。当时有很多这样的说法，而这次的方式似乎再次印证了这些说法。所以无论如何，image generation领域似乎也正在发生一些变化。
@@ -366,6 +372,9 @@ series: main
 
 
 ## 向定格动画与 VFX 扩展的图像生成    *36:29*
+
+
+![使用 GPT Image 2.5 制作的定格动画示例。画面中可见一只具有黏土质感、悬挂在树枝上的绿色毛毛虫角色。](/episodes/ep114/ep114_jonghyun_stopmotion.jpg)
 
 <span class="paragraph-timestamp" data-ts="36:29">36:29</span> **朴钟贤** 其中有一个很有趣的例子。他们直接把它用来制作了定格动画。要实现这一点，除了运动部分以外的所有区域，都必须精确保持consistency，同时生成图像，而根据这些来推测，它确实做得很好。这或许是一个在一定程度上证明这一点的例子，我是这么认为的。除此之外，还有制作GIF，或者在某部动画中，在保持角色consistency的同时制作动作，或制作表情，据说这些在实际应用于CG之类的领域时听说在用于VFX等领域时，这一点非常重要，总之，据说这方面的性能提升了很多。
 
@@ -388,6 +397,9 @@ series: main
 
 
 ## GPT Image 2.5 的价格与缩略图性能    *38:52*
+
+
+![按图像生成模型比较每张缩略图成本的表格。汇总了 Codex 内置工具、GPT Image 1、1.5、2、2.5 Flare、2.5 Sunburst 和 ChatGPT Image Latest 的价格及显著差异。](/episodes/ep114/ep114_jonghyun_cost.jpg)
 
 <span class="paragraph-timestamp" data-ts="38:52">38:52</span> **朴钟贤** Sunburst和Flare这两个名字听起来还挺有气势的。对，这次推出了两个名称，可以说是快速模型和标准模型吧？就这样推出了两个版本。不过价格倒是一样。所以似乎只是把质量和速度做出了不同的区分。我把迄今为止推出的模型都逐一试了一遍，还比较了它们的成本。因为这种图像的费用也是按每个token的价格来计算的，但所谓的按token计费，放在图像上就很难有直观感受。毕竟还有分辨率和质量等因素，因为有这些变量，所以我就实际生成图像，凭体感做了比较，令人惊讶的是，价格反而更便宜。我是说这次的模型。我之前也一直在尝试做这种东西。image generation能用在哪里呢？要不要试着用它制作YouTube缩略图？我曾有过这样的想法，但因为价格有点贵，不太方便使用。如果只是我自己付费用，倒还用得起，但要问能不能把它做成服务并商业化，感觉就没那么容易了。我原本是这么想的，但后来突然发现，通过Codex订阅就可以使用这个图像模型。而且这次再一看，API的定价也很便宜。所以我把这些都逐一试用了一遍。因此，每张图其实花不了多少钱。约0.5元人民币。我觉得大概就是这个价。
 
@@ -484,12 +496,18 @@ series: main
 
 ## AlphaGenome Atlas 与基因组变异分析    *52:53*
 
+
+![以三个步骤呈现从 DNA 单个碱基差异到 AlphaGenome 预测，再到 Atlas 查询流程的导引图。](/episodes/ep114/ep114_explainer_roadmap.jpg)
+
 <span class="paragraph-timestamp" data-ts="52:53">52:53</span> **卢正石** 这是昨天突然出现的新闻。Google发布了一个叫AlphaGenome Atlas的东西，针对全部90亿种变异，现在只要查询一下就可以了。消息是这么说的，但一下子还很难完全理解它的意义。所以需要先稍微了解一下AlphaFold和AlphaGenome是什么，才能明白这件事。
 
 
 ## AlphaFold 改变的蛋白质结构研究    *53:17*
 
 <span class="paragraph-timestamp" data-ts="53:17">53:17</span> **卢正石** AlphaFold我们已经比较熟悉了。输入氨基酸序列后，核糖体会依照序列一路合成出来，然后它在水中进入细胞质时，那条链会这样彼此缠绕，形成某种3D结构，这就叫protein folding problem。而且就在大约5年、6年以前，这还是一个尚未解决的问题，后来DeepMind出手把它彻底解决了。
+
+
+![展示输入氨基酸序列后，AlphaFold 预测三维结构过程的示意图。](/episodes/ep114/ep114_explainer_alphafold.jpg)
 
 <span class="paragraph-timestamp" data-ts="53:47">53:47</span> 所以一直以来有一个所谓的PDB网站，进入PDB后，可以看到其中收录的蛋白质结构以及其他各种信息，它是一个汇集了这些信息的数据库，大约有20万条记录。而AlphaFold是以该数据库为基础，被打造为能够预测所有蛋白质结构的系统。AlphaFold开发到一定程度后，他们直接运行模拟器，针对估计约有2亿种的蛋白质，生成了全部的3D结构，并建立了AlphaFold数据库。
 
@@ -503,6 +521,9 @@ series: main
 <span class="paragraph-timestamp" data-ts="55:32">55:32</span> **卢正石** 而Google DeepMind还发布了一项叫AlphaGenome的技术，大概是在去年发布的。感觉还不到一年。至于这个AlphaGenome究竟是什么，当时YouTube上热议了很久，也发表了论文，但要理解它，就必须掌握太多生物工程的基础知识。
 
 <span class="paragraph-timestamp" data-ts="55:53">55:53</span> 所以，人们往往只是想着“原来出了这种东西啊。”然后就直接略过去了。要用最简单的方式解释AlphaGenome，我们在初中、高中的生物课上都学过这些吧。人类有23对染色体，其中23条来自母亲，23条来自父亲。而一对基因当中，显性的会表达，非显性的则会关闭，有这样的机制；此外，一套基因组中有31亿个碱基对，我们都是这样学的。而这些碱基对由A、G、T、C等等一路排列组成。如果把整体看作100，那么只有约2%是编码蛋白质的外显子区域，至于另外98%是做什么的，直到大约10到15年前，虽然说几乎一无所知可能不太准确，但确实一直笼罩在重重迷雾之中。简直就是生命的奥秘。
+
+
+![区分基因组中蛋白质编码区所占比例与其余非编码区功能的示意图。](/episodes/ep114/ep114_explainer_genome.jpg)
 
 <span class="paragraph-timestamp" data-ts="56:59">56:59</span> 后来有了machine learning，也出现了观测设备，再加上美国政府投入了巨额资金，开展ENCODE之类的项目，为了弄清这些区域究竟发挥什么作用，人们一直在进行规模非常庞大的实验。Human Genome Project在21世纪初时，也是一个耗资无数的项目，这是个一度让人怀疑究竟能不能完成的项目，结果还是完成了。而现在读取人类基因组，如果用short-read读取，大约花3600～4100元人民币就可以，即使用long-read读取，大约花1万～1.5万元人民币，就能把我全部的基因数据都读取出来，我们已经进入了这样的时代。
 
@@ -538,6 +559,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="1:04:26">1:04:26</span> **卢正石** 我们聊AlphaGenome聊着聊着就说到这里了，人类的基因中有A, G, T, C，像这样依次排列，如果在编码蛋白质的区域出现了一点错误，我们就能明确知道这会导致什么问题，但如果错误出现在编程区域，我们就会面临不知道究竟哪里出了错的情况。不过要说明这个，还需要稍微解释一下SNP这个概念，刚才说过，我们的基因中有30亿个碱基对，对吧。而我们每个人都是不同的。
 
+
+![解释从父母遗传的两套碱基序列与 DNA 双螺旋两条链之间关系的示意图。](/episodes/ep114/ep114_explainer_diploid.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:05:07">1:05:07</span> 是什么的幂大约为30亿？密码子的幂？平方之类的吗？不是，不是那样。就是有30亿个A, G, T, C排列在一起，不是吗？所以A, G, T, C当中有一个时，就会有一个与之配对的另一个碱基，比如腺嘌呤、鸟嘌呤，
 
 <span class="paragraph-timestamp" data-ts="1:05:24">1:05:24</span> 胞嘧啶。有这些东西。还有胞嘧啶、胸腺嘧啶这些。那么只要其中一个确定了，与它相对的碱基对也就确定了。比如有一个A，就会形成一个与它配对的信息单位。就像bit一样。我们把它看作一个碱基对。这些碱基对由A, G, T, C不断排列组成，我们人类的基因有30亿个碱基对。准确来说是31亿，也就是有31亿个碱基对，理论上，从妈妈那里遗传了一组，又从爸爸那里遗传了一组，如果从妈妈那里得到了一组30亿个，那么从爸爸那里也得到了30亿个。所以理论上，我们总共有大约60亿个，但由于这些A, G, T, C本身又会相互配对，所以严格来说，如果问人类基因中A, G, T, C这些字母总共有多少个，那就是120亿个。能理解吧？
@@ -567,6 +591,9 @@ series: main
 
 ## AlphaGenome 对基因变异影响的预测    *1:12:25*
 
+
+![展示向 AlphaGenome 输入约 100 万个碱基对的基因组序列后，模型如何预测不同细胞和组织中的 RNA 含量、剪接及 DNA 可及性的结构图。](/episodes/ep114/ep114_explainer_alphagenome.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:12:25">1:12:25</span> **卢正石** 终于讲到 AlphaGenome 了。AlphaGenome 能找出，当那个字符发生变化时，它会在哪种细胞中引发什么问题，并预测相应的实验结果。AlphaFold 的 input 是一整段氨基酸 sequence，output 则是它的 3D structure。但 AlphaGenome 完全不同。100万对基因，也就是说，是100万个索引。输入整整100万个基因序列后，它就会预测11种实验结果。那么，这些实验结果具体是什么呢？在过去20年里，ENCODE Project一直在通过实验不断发现哪些基因具有哪些功能。比如，肝细胞的某些区域缠绕着 histone，某些区域则是松开的，那么只对开放的区域进行 DNA sequencing，再相应地对其中表达出来的RNA 序列进行 sequencing，就可以预测在开放区域中，哪些内容表达成了 RNA。所以，这些内容一直被积累成数据集。然后按细胞区分，说这是脑细胞，这是肝细胞，这是肌肉细胞，并针对每种细胞进行这些实验。
 
 <span class="paragraph-timestamp" data-ts="1:13:58">1:13:58</span> 怎么做，是以人为对象吗？是用类器官做吗？不是。是以人为对象。很简单。怎么做呢，这一点很有意思，就是直接把肝细胞拆开。拆开后，比如说已表达的基因，我们称之为 euchromatin、heterochromatin，如果只需要读取开放的 chromatin 部分，那么就不碰缠绕在 histone 上的那些，只对松开的那些进行能够读取 DNA 的处理。然后假设只有松开的部分得到了表达，再读取其旁边被转录成 RNA 的所有区域。对它同样进行 RNA sequencing。这样就既有 DNA sequence，也有 RNA sequence，所以就像刚才在 Human Genome 中与 reference genome 进行比对一样，这是个容易得多的问题。只要试着把它们一一对上就行了。“这个 RNA 来自这里，这个 RNA 来自那里。”就是根据这些来寻找。
@@ -579,6 +606,9 @@ series: main
 
 
 ## AlphaGenome Atlas 的预计算数据库    *1:17:47*
+
+
+![AlphaGenome Atlas 示意图，展示如何预先计算并存储某一位置三种可替代碱基的预测结果，以便在需要时查询。](/episodes/ep114/ep114_explainer_atlas.jpg)
 
 <span class="paragraph-timestamp" data-ts="1:17:47">1:17:47</span> **卢正石** 那么 AlphaGenome Atlas 做的又是什么呢？请想一想。我们刚才说过有 30亿个碱基对，对吧？30亿个。那么理论上，这 30亿个中的每一个碱基都可能发生某种变化。那么以 reference genome 为基准，针对这 30亿个位置中的每一个，假设这个位置现在是 A，如果在 reference 中它不是 A，而是 G、C、T，会发生什么，它把这些全部计算一遍，并将计算结果全都预先存进了数据库。所以从研究人员的角度来看，如果没有这个 Atlas，就必须亲自运行计算。
 
@@ -633,11 +663,17 @@ series: main
 
 ## Evo 2 与合成生物学的语言模型    *1:27:05*
 
+
+![以两个分栏对比 Evo 2 预测序列模式，而 AlphaGenome 预测分子信号这一差异的示意图。](/episodes/ep114/ep114_explainer_evo2.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:27:05">1:27:05</span> **卢正石** 有一个与 AlphaGenome 类似但又稍有不同的，是由 Arc Institute 开发的名为 Evo 2 的模型，说到 Evo 2，AlphaGenome 其实非常复杂。它是完全的 supervised learning。它将实验结果的 input 设为基因 sequence，再 mapping 实验结果，制作 supervised set，并在两者之间加入 convolutional neural network、Transformer 来进行训练。但像 Evo 这样的模型，是把所有已知物种的碱基序列全部收集起来，构建一个 LLM 级别的数据集后，直接放进 Transformer，对 sequence 进行训练。所以这个就比较简单了。
 
 <span class="paragraph-timestamp" data-ts="1:27:45">1:27:45</span> 只是数据多而已。只要给它输入 AGTC sequence，它就会像 LLM 一样，把后面的 GTC sequence直接输出出来。虽然它输出的内容，我们乍看之下并不明白，但它输出的是从基因中学到的某种 sequence。所以，用它输出的 sequence 制作之后，竟然诞生了某种细菌，因此便将其称为新的发现，而研究这类领域的就是 synthetic biology，也就是合成生物学。
 
 <span class="paragraph-timestamp" data-ts="1:28:16">1:28:16</span> 不过，在 LLM 中，我们也可以预测这类事情。我们以自回归的方式不断输出句子，以前我们和 成铉 聊天时，不是说过有些特定的 token具有非常高的 entropy，存在这样的 token 吗？所以它也可以这样做：把从 reference 中获得的 genome 数据切下来输入，再把自己的、存在变异的数据切下来输入，然后把最后的前半部分就像做预填充一样，输入到模型中。那么后面就会产生 output 值，不是吗？如果直接将这两个 log 值相减，得到负数，就表示这个变异危险的概率较高；得到正数，则表示它不危险的概率较高，也可以像这样使用。通过这种方式，对于那些大致尚未被了解的变异，也可以粗略计算其危险程度，但即使计算出了危险程度，也无法知道它会带来什么样的危险。不过，无论最终是癌症还是什么，genomics 本身也随着数据库不断积累，逐渐转向 computation 领域，这个方向也因此在持续发展。
+
+
+![总结各自作用的收尾示意图：AlphaFold 处理结构，AlphaGenome 处理分子信号，Atlas 用于查询预先计算的结果，Evo 2 处理序列模式。](/episodes/ep114/ep114_explainer_recap.jpg)
 
 <span class="paragraph-timestamp" data-ts="1:29:37">1:29:37</span> **崔胜准** 虽然我没理解多少，但感觉上，它已经成了可以计算的对象。
 

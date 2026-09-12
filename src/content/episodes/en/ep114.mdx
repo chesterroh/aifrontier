@@ -353,6 +353,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="33:29">33:29</span> **Seungjoon Choi** There's also a new GPT image model. That was worth checking out too. What's fascinating is that there were rumors about all of this. Rumors that it was coming. And every one of those rumors is turning out to be true.
 
+
+![Results of an AI Frontier brand kit experiment created with GPT Image 2.5 and Astra. Logo concepts and merchandise images, including T-shirts, hats, and keycaps, are arranged in a grid.](/episodes/ep114/ep114_jonghyun_brandkit.jpg)
+
 <span class="paragraph-timestamp" data-ts="33:40">33:40</span> **Jonghyun Park** I know. Anyway, the next version of ChatGPT image came out today. I tested it out, although only briefly. Before getting into that, there's one thing I want to mention: an image generation model came out. That was only a matter of time; they were always going to keep coming out. But then Astra came out this time, and this came out alongside it soon afterward. And a very common assessment of Astra which many of you have probably tried by now, is that it's incredibly good at computer use. It's good at using vision to see and control a computer screen. I was having it do all sorts of things today, and it worked well. I opened a YouTube webpage and told it to analyze it on its own, and it went into the analytics tabs by itself and looked through them. And not only that, but in robotics as well, people gave Astra control of a robot and told it to use the camera and control it on its own, and without creating a separate action model, there have been a great many examples of it controlling the robot well right away.
 
 <span class="paragraph-timestamp" data-ts="34:43">34:43</span> Seeing things like that made me realize that its ability to see has definitely improved a lot.
@@ -364,6 +367,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="35:13">35:13</span> The images also became increasingly grainy. Around GPT Image 2. Yes, here, you keep this one image open and control it continuously. These are the previous version and the new version, and when you change the clothes, the consistency gradually breaks down. It still looks similar, though. But this one definitely maintains consistency much better. So it works well for editing. I think that's what they wanted to highlight.
 
+
+![A comparison of editing consistency between GPT Image 2 and GPT Image 2.5. Results showing pearl earrings added to the same portrait are presented side by side.](/episodes/ep114/ep114_jonghyun_consistency.jpg)
+
 <span class="paragraph-timestamp" data-ts="35:40">35:40</span> And it supports streaming. So when you ask it to work on an image, you can see it drawing during the intermediate stages. So what we can infer from this and there has also been a lot of research along these lines, is that images also seem to be generated in some kind of auto- regressive way.
 
 <span class="paragraph-timestamp" data-ts="36:00">36:00</span> Right. There was something about that in the previous image announcement as well. Rather than simply using a diffusion model to generate the whole image all at once, it seems to run autoregressively like a transformer, and then use diffusion at the end to capture the details. There has been a lot of discussion along those lines, and this seems like another way of confirming that once again. So in any case, it seems there are also some changes happening in image generation.
@@ -372,6 +378,9 @@ series: main
 
 
 ## Image generation expanding into stop-motion and VFX    *36:29*
+
+
+![An example of stop-motion animation created with GPT Image 2.5. A green caterpillar character with a clay-like texture hangs from a tree branch.](/episodes/ep114/ep114_jonghyun_stopmotion.jpg)
 
 <span class="paragraph-timestamp" data-ts="36:29">36:29</span> **Jonghyun Park** and there was one interesting example. They used it specifically for stop-motion. For that to work, every part of the scene other than the moving element has to remain perfectly consistent as each image is generated, so judging from this, it clearly works well. I thought this might be an example that demonstrates that to some extent. Beyond this, there's also creating GIFs, or creating motion for a character while maintaining consistency in an animation, or creating facial expressions. Apparently, these things are very important when they're actually used in CG or I hear that it's extremely important when using it for things like VFX, but anyway, they say its performance in those areas has improved significantly.
 
@@ -394,6 +403,9 @@ series: main
 
 
 ## GPT Image 2.5 pricing and thumbnail performance    *38:52*
+
+
+![A table comparing the cost per thumbnail across image generation models. It summarizes the prices and notable differences among the built-in Codex tool, GPT Image 1, 1.5, and 2, 2.5 Flare, 2.5 Sunburst, and ChatGPT Image Latest.](/episodes/ep114/ep114_jonghyun_cost.jpg)
 
 <span class="paragraph-timestamp" data-ts="38:52">38:52</span> **Jonghyun Park** The names Sunburst and Flare sound rather impressive. Yes, two names came out this time, perhaps you could call them the fast model and the standard model? They released two versions along those lines. But the prices were the same. So it seems they only differentiated things like quality and speed. I tried all the models that have been released so far and compared their costs. That's because the cost of image generation is also listed as a price per token, but it's hard to get an intuitive sense of what per token means for images. There are factors like resolution and quality, so I simply generated some images and compared the practical costs, and surprisingly, it's cheaper. This new model, that is. I had also been experimenting with something like this. What could I use image generation for? Let's try using it to make YouTube thumbnails. I'd had that idea, but it was a little expensive, so I was reluctant to use it. I could afford to pay for it and use it myself, but when I considered whether I could turn it into a service and commercialize it, I thought that might not be so easy. That was what I'd been thinking, but at some point I noticed that with a Codex subscription, I could use this image model. And then I also noticed this time that the API was released at a low price. So I tried using all of these options. As a result, each image costs very little. About $0.07. I think that's roughly how much it costs.
 
@@ -490,12 +502,18 @@ series: main
 
 ## AlphaGenome Atlas and genomic-variant analysis    *52:53*
 
+
+![A three-step roadmap diagram showing the path from a single-letter DNA difference to an AlphaGenome prediction and an Atlas lookup.](/episodes/ep114/ep114_explainer_roadmap.jpg)
+
 <span class="paragraph-timestamp" data-ts="52:53">52:53</span> **Chester Roh** This was news that suddenly broke yesterday. Google announced something called AlphaGenome Atlas, covering all nine billion variants, and now all you have to do is look them up. That's what they said, but it doesn't immediately sink in. So you need to know a little about what AlphaFold and AlphaGenome are, to understand it,
 
 
 ## How AlphaFold changed protein-structure research    *53:17*
 
 <span class="paragraph-timestamp" data-ts="53:17">53:17</span> **Chester Roh** and we're already somewhat familiar with AlphaFold. When you input an amino acid sequence, the ribosome builds the whole thing, and when it emerges into the cytoplasm, that strand folds and tangles around itself to form a particular 3D structure. That's known as the protein folding problem, and as recently as five or six years ago, it was still an unsolved problem, but DeepMind came along and solved it completely.
+
+
+![A diagram illustrating how AlphaFold predicts a three-dimensional structure from an amino acid sequence.](/episodes/ep114/ep114_explainer_alphafold.jpg)
 
 <span class="paragraph-timestamp" data-ts="53:47">53:47</span> There's a site called PDB, and when you visit PDB, it shows the structures of the proteins listed there along with various other information. It's a database where all of that is registered, and it contains roughly 200,000 entries. AlphaFold was designed based on that database to predict the structures of all proteins. Once AlphaFold had been developed to a certain point, they simply ran the simulator for the estimated 200 million or so proteins and generated all their 3D structures, creating the AlphaFold database.
 
@@ -509,6 +527,9 @@ series: main
 <span class="paragraph-timestamp" data-ts="55:32">55:32</span> **Chester Roh** Google DeepMind announced something called AlphaGenome around last year. I don't think it's even been a full year yet. There was quite a lot of discussion about what AlphaGenome is on YouTube and in papers, but understanding it requires far too much knowledge of the fundamentals of biotechnology.
 
 <span class="paragraph-timestamp" data-ts="55:53">55:53</span> As a result, people just thought, “So that's a thing now,” and moved on. The simplest way to explain AlphaGenome is with something we learn in middle school and high school biology classes. We have 23 pairs of chromosomes, receiving 23 from our mothers and 23 from our fathers. Of each pair of genes, the dominant ones are expressed while the others are switched off, and each set also contains 3.1 billion base pairs. That's what we learned. Those base pairs consist of long sequences of A, G, T, and C, and so on. If we take the entire genome as 100%, only about 2% consists of exon regions that encode proteins, while what the remaining 98% did was, until just 10 to 15 years ago, not exactly completely unknown, but still very much shrouded in mystery. It was simply one of the mysteries of life.
+
+
+![A diagram distinguishing the proportion of the genome occupied by protein-coding regions from the functions of the remaining non-coding regions.](/episodes/ep114/ep114_explainer_genome.jpg)
 
 <span class="paragraph-timestamp" data-ts="56:59">56:59</span> But then machine learning emerged, new observational instruments were developed, and the U.S. government invested an enormous amount of money in projects such as ENCODE. Through these efforts, researchers have conducted extremely large-scale experiments to determine what these regions actually do. In the early 2000s, the Human Genome Project also cost seemingly endless amounts of money, It was a project that left people wondering whether it would ever be completed, but it was completed. And now, to sequence a human genome, it costs about $500–$570 using short-read sequencing, and even with long-read sequencing, it only costs around $1,400–$2,100 to read all of my genetic data. That’s the era we live in now.
 
@@ -544,6 +565,9 @@ series: main
 
 <span class="paragraph-timestamp" data-ts="1:04:26">1:04:26</span> **Chester Roh** Well, we got this far while talking about AlphaGenome, but people's genes contain A, G, T, C arranged in a sequence like this, and if there's a slight error in a protein-coding region, we can determine with certainty what problem it causes, but if there's an error in a programming region, we end up in a situation where we can't tell what the error is. But to explain this, I also need to explain the concept of an SNP a little. I said earlier that our genome has three billion pairs, right? And those differ from person to person.
 
+
+![A diagram explaining the relationship between the two sets of nucleotide sequences inherited from one's parents and the two strands of the DNA double helix.](/episodes/ep114/ep114_explainer_diploid.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:05:07">1:05:07</span> What is being raised to a power of around three billion? Codons? Raised to a power? Like something squared? No, that's not it. There's simply a sequence of three billion A, G, T, C letters, right? So if there's one of A, G, T, C, another base pairs with it, such as adenine or guanine—
 
 <span class="paragraph-timestamp" data-ts="1:05:24">1:05:24</span> Cytosine. Things like that. Cytosine, thymine, and so on. So once one base is determined, the base paired with it on the opposite side is automatically determined. But if there's an A, it and the base paired with it form a single unit of information. It's almost like a bit. We simply consider that one pair. Those pairs continue in a sequence of A, G, T, C, and the human genome has three billion pairs. To be precise, it's 3.1 billion, so it has 3.1 billion pairs, and theoretically, since we have one set inherited from our mother and another from our father, if we receive one set of three billion from our mother, we also receive three billion from our father. So theoretically, we have around six billion in total, but since those A, G, T, C letters also form pairs like this, strictly speaking, if you ask how many A, G, T, C letters there are in the human genome in total, the answer is 12 billion. That makes sense, right?
@@ -573,6 +597,9 @@ series: main
 
 ## Predicting the effects of genetic variants with AlphaGenome    *1:12:25*
 
+
+![A structural diagram showing how AlphaGenome takes a genomic sequence of about one million base pairs and predicts RNA levels, splicing, and DNA accessibility across cells and tissues.](/episodes/ep114/ep114_explainer_alphagenome.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:12:25">1:12:25</span> **Chester Roh** AlphaGenome finally comes into the discussion. What AlphaGenome identifies is, when that one letter changes, what problem it will cause in which cell, by predicting the experimental results. AlphaFold’s input is a string of amino acid sequences, and its output is the 3D structure of that sequence. But AlphaGenome is completely different. One million base pairs of DNA, meaning one million indices. When you input a sequence of one million DNA letters, it predicts the results of 11 types of experiments. So what are those experimental results? Over the past 20 years, the ENCODE Project has continually discovered what different genes do through experiments. For example, in some parts of a liver cell, DNA is wrapped around histones, while in other parts it is unwound. Then you sequence only the open regions of the DNA, and if you also sequence the RNA sequences expressed in those corresponding regions, you can predict which things in the open regions were expressed as RNA. That allows you to make such predictions. So they’ve continually accumulated those findings into datasets. Then they classify them by cell type—this is a brain cell, this is a liver cell, this is a muscle cell— and conduct all those experiments for each cell type.
 
 <span class="paragraph-timestamp" data-ts="1:13:58">1:13:58</span> How, do you do that with humans? Do you use organoids? No. We do it with humans. It’s simple. What you do—and this is interesting—is just extract the liver cells. Then, for example, you look at the genes being expressed. We call them euchromatin and heterochromatin, and if you only want to read the open chromatin regions, you leave the parts wrapped around histone untouched and apply a treatment that reads the DNA only in the uncoiled regions. Then, assuming that only the uncoiled regions were expressed, you read all the regions next to them that were transcribed into RNA. You perform RNA sequencing on that as well. Then you have the DNA sequence and the RNA sequence, so, just as we aligned things to the reference genome in the Human Genome earlier, this is a much easier problem. You just need to match them up. “This RNA came from here, and this RNA came from there.” That’s how you identify them.
@@ -585,6 +612,9 @@ series: main
 
 
 ## The precomputed database of AlphaGenome Atlas    *1:17:47*
+
+
+![An AlphaGenome Atlas diagram showing how predictions for the three alternative bases possible at a given position are precomputed, stored, and retrieved when needed.](/episodes/ep114/ep114_explainer_atlas.jpg)
 
 <span class="paragraph-timestamp" data-ts="1:17:47">1:17:47</span> **Chester Roh** so what does AlphaGenome Atlas do? Think about it. Earlier, we said there are three billion base pairs. Three billion. Theoretically, each of those three billion bases could be changed, right? So, for each of those three billion positions in the reference genome, if a given position currently contains A, they calculate what would happen if, instead of A, the reference contained G, C, or T. They performed all those calculations and stored all the results in a database. So, from a researcher’s perspective, without this Atlas, they would have to run it themselves.
 
@@ -639,11 +669,17 @@ series: main
 
 ## Evo 2 and language models for synthetic biology    *1:27:05*
 
+
+![A two-panel diagram comparing how Evo 2 predicts sequence patterns while AlphaGenome predicts molecular signals.](/episodes/ep114/ep114_explainer_evo2.jpg)
+
 <span class="paragraph-timestamp" data-ts="1:27:05">1:27:05</span> **Chester Roh** Something similar to AlphaGenome, but slightly different, is a model created by Arc Institute called Evo 2. The Evo 2 model—AlphaGenome is extremely complex. It's fully supervised learning. It takes a gene sequence as the input for experimental results, maps the experimental results to create a supervised set, and puts a convolutional neural network and a Transformer in between to train it. But a model like Evo simply takes the nucleotide sequences of every known species, creates an LLM-scale dataset, feeds it into a Transformer, and trains it on the sequence. So this one is simple.
 
 <span class="paragraph-timestamp" data-ts="1:27:45">1:27:45</span> It just has a lot of data. If you simply give this one an AGTC sequence, it just spits out the following GTC sequence the way an LLM does. We can't tell just by looking at what it spits out, but it's producing a sequence based on what it learned from genes. So they used the sequence it produced to make something, and a bacterium emerged, which they describe as a new discovery. The field that does this sort of work is called synthetic biology, or 합성생물학.
 
 <span class="paragraph-timestamp" data-ts="1:28:16">1:28:16</span> But with an LLM, we can predict that sort of thing too. We keep generating sentences autoregressively, and when we spoke with Seonghyun before, we said that certain tokens have very high entropy, remember? So here's something this model can do as well: take genome data obtained from the reference, cut out a segment and feed it in, then take my data containing the variant, cut out a segment and feed that in, and then use the entire preceding part as though prefilling it into the model. Then an output value will come out at the end, right? If you simply subtract the log values from each other, a negative result means the variant is likely to be dangerous, while a positive result means it is likely not dangerous. That's another way it can be used. This lets us roughly estimate the risk posed by variants that aren't yet known, although even if we calculate the risk, we can't tell what kind of risk it poses. But whether it leads to cancer or something else, genomics itself is also building up larger databases and shifting toward computation, so progress in this area continues.
+
+
+![A concluding diagram summarizing the roles of AlphaFold for structures, AlphaGenome for molecular signals, Atlas for precomputed lookups, and Evo 2 for sequence patterns.](/episodes/ep114/ep114_explainer_recap.jpg)
 
 <span class="paragraph-timestamp" data-ts="1:29:37">1:29:37</span> **Seungjoon Choi** I didn't understand much of it, but it feels like it has become something that can be computed.
 
