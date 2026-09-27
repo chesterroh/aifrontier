@@ -1,0 +1,514 @@
+---
+episodeNumber: 116
+title: "AI That Learned Creativity (Opus 5.5 and GPT-6 Sol)"
+description: "In the week Claude Opus 5.5 and GPT-6 Sol launched just two hours apart, we examine the frontier’s 70-day release cycle and intensifying price competition. We then watch demos of motion graphics, recreated painting styles, games, and PCM music that Opus 5.5 made entirely with code, without assets. We also explore Jeffrey Katzenberg’s idea of “AI for Creativity” and reactions from creative coders including Kyle McDonald and Zach Lieberman. When anything becomes possible to make, what will humans create—and what will we choose to watch? We close with news from San Francisco ahead of Tech Week and DevDay."
+publishedAt: 2026-09-28
+duration: "58:44"
+youtubeId: "12fSRB3OY6U"
+thumbnail: "https://i.ytimg.com/vi/12fSRB3OY6U/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "Growing philosophical debate amid a rush of model launches"
+  - time: "1:34"
+    title: "Claude Opus 5.5 and the overwhelming pace of progress"
+  - time: "2:18"
+    title: "Benchmarks that last less than a year and increasingly frequent RL"
+  - time: "3:38"
+    title: "Price competition and frontier performance in medium models"
+  - time: "5:38"
+    title: "Token pricing modeled on airline tickets and hotel rooms"
+  - time: "6:34"
+    title: "Compute optimization as a core competitive advantage"
+  - time: "7:15"
+    title: "Specialized training and the limits of benchmarks"
+  - time: "8:10"
+    title: "Jeffrey Katzenberg on the move from Hollywood to Silicon Valley"
+  - time: "9:11"
+    title: "Creativity as humanity’s presumed last domain and AI for Creativity"
+  - time: "10:57"
+    title: "New directing possibilities in AI short-form dramas"
+  - time: "12:01"
+    title: "The spread of AI-generated video after Phenaki and YouTube’s restrictions"
+  - time: "14:39"
+    title: "The appeal of generated video and the meaning of creativity"
+  - time: "15:12"
+    title: "Development expanding beyond text into images and video"
+  - time: "16:22"
+    title: "Opus 5.5 motion graphics made entirely with code"
+  - time: "18:43"
+    title: "A painter’s style recreated with 7,500 lines of Python"
+  - time: "19:51"
+    title: "Game demos expanding into Dark Souls and Antikythera"
+  - time: "21:00"
+    title: "Interactive learning videos from Karpathy and Ethan Mollick"
+  - time: "23:21"
+    title: "A two-hour JRPG built with a child in one day"
+  - time: "25:11"
+    title: "Graphics and sound generated entirely with code, without assets"
+  - time: "27:33"
+    title: "Music made with PCM synthesis and interactive storytelling"
+  - time: "29:12"
+    title: "A leap in creative ability and representations inside the model"
+  - time: "30:46"
+    title: "Teaching taste without verifiable rewards"
+  - time: "31:49"
+    title: "Astra controlling a robot through a code policy"
+  - time: "33:47"
+    title: "Human creativity across domains and the trajectory of models"
+  - time: "36:38"
+    title: "Kyle McDonald and Zach Lieberman redefining their identities as artists"
+  - time: "38:27"
+    title: "Terence Tao’s case for slowing down"
+  - time: "39:29"
+    title: "The thought experiment of an infinite pool of talent"
+  - time: "40:38"
+    title: "DHH’s shift from coder to maker and away from coding"
+  - time: "43:19"
+    title: "Education that expands potential and gaps caused by missing vocabulary"
+  - time: "45:22"
+    title: "Attitude and time as drivers of the productivity gap"
+  - time: "46:35"
+    title: "What to make when anything is possible"
+  - time: "48:02"
+    title: "The age of sports and Homo ludens"
+  - time: "49:09"
+    title: "The emotional power of simulated passions"
+  - time: "50:38"
+    title: "Anthropic’s wet lab and the expansion from creativity into biotechnology"
+  - time: "51:25"
+    title: "From frontier lab to frontier company"
+  - time: "52:33"
+    title: "San Francisco ahead of Tech Week"
+  - time: "54:25"
+    title: "Expectations for DevDay and an all-purpose assistant agent"
+  - time: "55:25"
+    title: "Tesla’s October 1 announcement and self-driving cars on the streets"
+  - time: "56:08"
+    title: "A pace of change faster than perspectives can form"
+  - time: "57:45"
+    title: "Epistemic action through Tetris"
+  - time: "58:29"
+    title: "Awaiting the next change…"
+lang: "en"
+alternateSlug: null
+series: "main"
+notionUrl: "https://erucipe.notion.site/AI-3e8d5c9e7e5980c6ae28db75eed1bcb4"
+---
+
+## Growing philosophical debate amid a rush of model launches    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** Today, as we're recording, is September 27, 2026, a Sunday morning. As usual, this week brought plenty of new model announcements. GPT-6 Sol came out, Xiaomi released its MiMo model in China, and the MiMo paper contained a lot of really good material. Anthropic also released Claude Opus 5.5. Models keep coming out faster, and each time, expecting a huge leap in capability seems to have become the default. At this point, what are humans supposed to do? Will AI end up ruling over us? There's also a lot of talk about slowing things down, and all sorts of complicated discussions are pouring out, but the community doesn't seem to have settled on a direction yet. So as we move through this immense confusion, what should we do? And frontier labs—frontier labs are also being called frontier corporations as the term takes on a new meaning— what should we expect from them, and what obligations should we place on them? Questions like these. It seems that philosophical questions, more than technical ones, are shaping much of the discussion.
+
+<span class="paragraph-timestamp" data-ts="1:21">1:21</span> Even so, rather than survey the models broadly, you've run experiments focused on what Opus 5.5 can do. So we'll start with those experiments and talk about Opus 5.5.
+
+
+## Claude Opus 5.5 and the overwhelming pace of progress    *1:34*
+
+<span class="paragraph-timestamp" data-ts="1:37">1:37</span> **Seungjoon Choi** I haven't sorted out my thoughts yet, either, and I need to send in an article about education, but I've missed the deadline and I'm still thinking it through. I haven't figured out what to emphasize, so I keep going back and forth.
+
+<span class="paragraph-timestamp" data-ts="1:47">1:47</span> But since Opus 5.5 came out, there's been a similar mood around creative work. So first, on the models: we've always kept an eye on them, though we don't examine them closely anymore. Still, I keep up with them, almost as an endurance exercise. I've decided to endure the sheer volume and frequency of information. So with that attitude, I'm going through it mechanically.
+
+
+## Benchmarks that last less than a year and increasingly frequent RL    *2:18*
+
+<span class="paragraph-timestamp" data-ts="2:18">2:18</span> **Seungjoon Choi** This time, I didn't dig into the system card, but at a glance, the release interval is about 70 days. I had some research done this time, and what interested me was that Opus 5 came out 60 days ago, and now this one is out. I looked at how the benchmarks were holding up. I wanted to compare benchmarks over about a year, and some do survive that long, but the benchmarks themselves are changing, so it's hard to look back a full year. HLE is still around, though it's contaminated too. Humanity's Last Exam, that is.
+
+<span class="paragraph-timestamp" data-ts="3:00">3:00</span> **Chester Roh** Humanity's Last Exam.
+
+<span class="paragraph-timestamp" data-ts="3:04">3:04</span> **Seungjoon Choi** So HLE has survived so far, but when I had this researched, GPT-6 Sol probably wasn't out yet. It probably is now. So the scores keep rising, and I think the fact that some benchmarks disappear is another key point. As some disappear, new ones appear too. A lot of them. So with RL,
+
+<span class="paragraph-timestamp" data-ts="3:29">3:29</span> they're filling in the gaps more and more densely. This hasn't fully generalized yet, but if you build an RL environment and pour training into it, performance tends to improve. What's interesting about Opus is that a year ago, Opus 4.1 was quite expensive. $15 for input and $75 for output. But now it's $4 and $20. $4 for input and $20 for output.
+
+
+## Price competition and frontier performance in medium models    *3:38*
+
+<span class="paragraph-timestamp" data-ts="3:51">3:51</span> **Chester Roh** It's fallen to nearly a third or a quarter of the price.
+
+<span class="paragraph-timestamp" data-ts="3:55">3:55</span> **Seungjoon Choi** GPT-6 Sol got cheaper this time too. GPT-5.6 Sol, at its promotional price, was $4 and $20. But now it's half that. GPT-6 Sol, that is.
+
+<span class="paragraph-timestamp" data-ts="4:06">4:06</span> **Jonghyun Park** Opus used to be the largest model, but now there's a tier above it, right?
+
+<span class="paragraph-timestamp" data-ts="4:12">4:12</span> **Chester Roh** Fable came out.
+
+<span class="paragraph-timestamp" data-ts="4:13">4:13</span> **Seungjoon Choi** This wasn't compared with Astra, but with Sol.
+
+<span class="paragraph-timestamp" data-ts="4:17">4:17</span> **Chester Roh** Astra is much more expensive than this—
+
+<span class="paragraph-timestamp" data-ts="4:19">4:19</span> **Seungjoon Choi** With long context, the basic 1M was around $50, and long-context output was $75. So now, in terms of pricing, Opus-class models—5.5, uh, I've been using medium lately, and I've seen a substantial improvement in my domain. Medium works well and is cheap, and you can work for quite a while. So even at the frontier, I get the impression that prices don't just keep going up.
+
+<span class="paragraph-timestamp" data-ts="4:51">4:51</span> **Jonghyun Park** I've felt something similar. Research reports that used to require high or xhigh work surprisingly well on medium. That was true of Astra, and of Opus this time too. So the price per token isn't the only thing that's fallen. Now that I'm using medium, my token usage has changed too, so in practice, it does feel a bit cheaper. Though it also feels like there's a new higher-tier option.
+
+<span class="paragraph-timestamp" data-ts="5:17">5:17</span> **Seungjoon Choi** It feels like playing an RTS game. You decide when to invest resources and what to accomplish. Anyway, it's worked well for me. And I get the sense they may be aiming for that too, since they have to compete. At the Opus and Sol tiers, there may be some price competition. The difference is about twofold.
+
+
+## Token pricing modeled on airline tickets and hotel rooms    *5:38*
+
+<span class="paragraph-timestamp" data-ts="5:44">5:44</span> **Chester Roh** When it comes to token pricing, think about a typical business. You stock inventory, manage it, and sell it. Some goods work that way. But airline tickets and hotel rooms, once their time has passed, can never be sold. That's why airline and hotel pricing feels different from pricing for other goods. Tokens are like hotel rooms and airline tickets. Once the time passes, they can't be sold again, so you have to sell as much as you can in that time. That makes pricing highly dynamic. From that perspective, this is quite interesting too.
+
+<span class="paragraph-timestamp" data-ts="6:20">6:20</span> And competition affects it as well. If someone flies with another airline instead, I've lost that customer, so I need to capture as much of that demand as I can. I find it fascinating to see that kind of pricing reflected in this strategy. And open source and on-premises options are entering the picture too.
+
+
+## Compute optimization as a core competitive advantage    *6:34*
+
+<span class="paragraph-timestamp" data-ts="6:37">6:37</span> **Seungjoon Choi** In any case, they need to use their stockpiled computers as much as possible before they depreciate.
+
+<span class="paragraph-timestamp" data-ts="6:48">6:48</span> **Chester Roh** So with medium, you can serve two people, but if someone uses xhigh, you can serve one and a half. They have to optimize all that. But if Jonghyun is using medium on one server farm and suddenly switches to xhigh, or changes the context length, that job has to move to another server farm. The engineering that manages all this behind the scenes That would be those companies' engineering strength. And I think the center of value is gradually shifting in that direction as models converge at a higher level.
+
+
+## Specialized training and the limits of benchmarks    *7:15*
+
+<span class="paragraph-timestamp" data-ts="7:19">7:19</span> **Seungjoon Choi** They seem to be training them accordingly. I feel recent performance gains are less about generalization and more about specialized training that's getting as fine-grained as the benchmarks. If you think of RSI as just a button, once it works, it could be released before we can even finish auditing it. But even if that button isn't pressed, at the current pace, by this time next year, I don't know how many of today's benchmarks will still hold up.
+
+<span class="paragraph-timestamp" data-ts="7:50">7:50</span> **Chester Roh** September is almost over, and we've got exactly three months left. From spring through the end of summer, we've really been running flat out. The next three months will be even more intense, won't they?
+
+<span class="paragraph-timestamp" data-ts="7:58">7:58</span> **Seungjoon Choi** So if frontier models come out every 70 days on average, one week is 10% of that cycle. It gives you a sense of 10% improvement each week.
+
+
+## Jeffrey Katzenberg on the move from Hollywood to Silicon Valley    *8:10*
+
+<span class="paragraph-timestamp" data-ts="8:15">8:15</span> **Seungjoon Choi** And something interesting on the creative side came from Jeffrey Katzenberg a few days ago. He founded DreamWorks and was its former CEO, and he worked extensively with Disney too. It's a tweet he posted. I translated it. It talks about how the world is changing and compares the North and the South— Silicon Valley in the North and Hollywood in the South. That's the comparison he's making. His point about history is that new technologies have brought transitions. When those transitions happened, jobs really did disappear. But during those transitions, the people who fought helped secure certain rights for those who came afterward. He seems to be saying that now is the time to do that kind of work. That's the sense of what he said.
+
+<span class="paragraph-timestamp" data-ts="9:05">9:05</span> In any case, his conclusion is that he's making the shift too.
+
+
+## Creativity as humanity’s presumed last domain and AI for Creativity    *9:11*
+
+<span class="paragraph-timestamp" data-ts="9:15">9:15</span> **Chester Roh** The word “creativity” feels different from all the things we've put after “AI for,” like AI for math and AI for science. It seems to mean something much bigger. Whenever we ask what makes humans different from computers, we say humans are creative. We thought this was humanity's last domain, and now even the phrase “AI for Creativity” is being stated explicitly.
+
+<span class="paragraph-timestamp" data-ts="9:40">9:40</span> **Seungjoon Choi** That impact came a little earlier for images and video. But recently, with Opus 5.5 and, as we mentioned earlier, Astra and models like those, the people feeling the impact are people who create with code. So how are people who create with code different from developers? It is a form of development, but it has an artistic element too. Yet last week and this week, people in that field have been reacting as if they'd just been hit by something.
+
+<span class="paragraph-timestamp" data-ts="10:09">10:09</span> But if you look at what Jeffrey Katzenberg says about the future ahead, he sees the possibility of new horizons opening up for storytelling. He expects a new generation of creators who embrace these tools to do something extraordinary. He's drawing on long experience—he's about 75— and has a sense of what's coming.
+
+<span class="paragraph-timestamp" data-ts="10:39">10:39</span> So he ends by saying, “I certainly don't have all the answers. But I am confident that opportunities for creativity will expand once again. How we get through this period is a matter of choice.” We're seeing a range of attitudes on the timeline right now, so let's take a look at them.
+
+
+## New directing possibilities in AI short-form dramas    *10:57*
+
+<span class="paragraph-timestamp" data-ts="10:57">10:57</span> **Chester Roh** These days, you see AI-generated short clips on YouTube and elsewhere, sometimes made into whole series— story dramas, as they call them. Quite a few are posted in a drama format, and I watch them sometimes, too. You can tell right away that they were made with AI, but they're hardly unwatchable. They have stories of their own, and worlds and scenes you could never film with a camera. I found myself watching them more and more.
+
+<span class="paragraph-timestamp" data-ts="11:32">11:32</span> **Seungjoon Choi** I left this part out earlier, but it includes what his colleagues said. A few months ago in Silicon Valley, they saw something astonishing a tech founder showed them. It was like seeing 〈Luxo Jr.〉 or, for example, Pixar's 〈Toy Story〉— that kind of experience. But when an artist friend of 30 years who had seen a similar video asked, “Is this the end for us?” the reply was “Absolutely not.” That's how he tells the story. Some people ask, “Is this the end for us—our AlphaGo moment?” That's the kind of thing people are saying these days.
+
+
+## The spread of AI-generated video after Phenaki and YouTube’s restrictions    *12:01*
+
+<span class="paragraph-timestamp" data-ts="12:12">12:12</span> **Seungjoon Choi** But on November 3, 2022, Alonso Martinez—was he on the Google X team? I think he was. Around November 2022, Google made Phenaki, an autoregressive video generation model. He entered text to make a video of an astronaut exploring something, and it worked. But when people saw it, they probably just laughed at the quality.
+
+<span class="paragraph-timestamp" data-ts="12:39">12:39</span> **Chester Roh** They probably went, “That's it?”
+
+<span class="paragraph-timestamp" data-ts="12:43">12:43</span> **Seungjoon Choi** But the thing is, in AI, something that looks cute is a problem. It means there's a signal there. It suggests that hill climbing is possible. His prediction wasn't exactly right, though. The translation says, “An AI short film made with text-to-video. Given the pace of progress in this field, it will take about two years to see a major TV show made entirely with similar technology.” Since that was late 2022, rounding two years up, he was predicting it would happen around 2025. And now it's starting to happen. Had Seedance 2.0 come out by 2025? I don't remember exactly.
+
+<span class="paragraph-timestamp" data-ts="13:24">13:24</span> **Jonghyun Park** I think it was before then, though. I recently looked into whether people are actually enjoying AI-generated videos. I researched that last week and the week before. The most famous one is 〈The Mysterious Dictionary of Architecture〉— I think that was the channel's name. People really like it. And when I looked beyond that, I found a huge variety of videos, from high quality to low quality. Even when the quality looks a little unnatural to us, quite a lot of those videos get enormous numbers of views.
+
+<span class="paragraph-timestamp" data-ts="13:56">13:56</span> Recently, YouTube has also blocked channels that upload AI-generated videos, sometimes shutting them down altogether. But what kinds of videos did YouTube remove? It kept videos that presented information clearly and used AI instead of filming or CG to explain that information. But when the CG itself was the point, so to speak— say, cute cats simply appearing and saying “Hello”—those get plenty of views, too. But those kinds of videos... YouTube had blocked all of them. Maybe the platform thought they would be harmful in the long run.
+
+
+## The appeal of generated video and the meaning of creativity    *14:39*
+
+<span class="paragraph-timestamp" data-ts="14:44">14:44</span> **Jonghyun Park** So if we generate videos, what can we do with them? How does that relate to creativity? And can generated videos satisfy people? That much seems clear. They get views because they satisfy people. But beyond being a way to convey information well, can a creative video itself have meaning? I don't think we're quite there yet. But I think we may get there soon.
+
+
+## Development expanding beyond text into images and video    *15:12*
+
+<span class="paragraph-timestamp" data-ts="15:17">15:17</span> **Chester Roh** Yes, I think it's only a matter of time. What I was going to say earlier is that around 2022, images, video, and LLMs were separate fields. So if investment had gone only into images and video, it might have taken two or three years. But then ChatGPT came out, and all the resources went into LLMs. Everyone was working on LLMs for about four years. And once they had built them up, as Seungjoon Choi will show us today, we reached a point where they can do everything.
+
+<span class="paragraph-timestamp" data-ts="15:54">15:54</span> **Seungjoon Choi** So this week, Opus 5.5 and GPT-6 Sol came out on the same day, about two hours apart. But what dominated the timeline on September 2 was Astra rather than Fable, and now it's Opus 5.5. So when Astra came out, I collected posts on my timeline about 3D, graphics, games, and sound. I think there were about a hundred. This time, I looked for demos made with Opus 5.5. That day, some came from people with early access.
+
+
+## Opus 5.5 motion graphics made entirely with code    *16:22*
+
+<span class="paragraph-timestamp" data-ts="16:35">16:35</span> **Seungjoon Choi** This is Kevin Ngo's account. Posts from it were shared by Claude—or rather, Anthropic— so they got a lot of attention. These videos were all made with JavaScript. Even the sound. The impression I get is that instead of using very complex prompts, many of these works simply asked Claude something like, “What do you like?” But they do feel as though they were made with some creativity of their own.
+
+<span class="paragraph-timestamp" data-ts="17:19">17:19</span> **Chester Roh** If a person made that by hand, using a motion graphics tool like After Effects, it would take quite a long time.
+
+<span class="paragraph-timestamp" data-ts="17:28">17:28</span> **Seungjoon Choi** And if you were making it with code alone, rather than a tool like After Effects, if you had to code it all yourself, it's even harder to gauge how long it would take. Shall we open one of these? This was also made with Claude Opus, and it's interactive. Since it was made with JavaScript, you can interact with it.
+
+<span class="paragraph-timestamp" data-ts="18:05">18:05</span> **Jonghyun Park** Yes. What stood out to me was the flowers popping out one after another, then falling in perfect time with the thumping beat of the music. Until now, nothing really did that well. I'd been looking for something that could. Because in a well-made video, the beat of the music and the animation effects line up perfectly.
+
+<span class="paragraph-timestamp" data-ts="18:30">18:30</span> I tried to make that happen myself, but it wasn't easy. But generating both with code actually works better. You know how they call that “oddly satisfying”? When everything lines up perfectly. That's how it felt, so I thought it was pretty good.
+
+
+## A painter’s style recreated with 7,500 lines of Python    *18:43*
+
+<span class="paragraph-timestamp" data-ts="18:48">18:48</span> **Seungjoon Choi** Because both are made with code, the timing lines up exactly. The next one surprised me personally: this was drawn entirely with 7,500 lines of Python code. But it rendered those brushstrokes in the artist’s style.
+
+<span class="paragraph-timestamp" data-ts="19:05">19:05</span> **Chester Roh** What exactly does it mean to say that 7,500 lines of Python code drew the picture?
+
+<span class="paragraph-timestamp" data-ts="19:12">19:12</span> **Seungjoon Choi** Well, to draw this— the artist recently passed away, you know. Anyway, to do something like that, you need an understanding of painting. They modeled the creative process, including brush texture and things like that, mathematically. It didn’t simply draw a picture; it imitated the artist’s style using about 7,500 lines of code.
+
+<span class="paragraph-timestamp" data-ts="19:37">19:37</span> **Chester Roh** So it turned the artist’s style and vision into a library.
+
+
+## Game demos expanding into Dark Souls and Antikythera    *19:51*
+
+<span class="paragraph-timestamp" data-ts="19:51">19:51</span> **Seungjoon Choi** It bridges the gap between the vision and the code well enough to reproduce it. That’s my impression of Opus 5.5. Beyond that, there are an incredible number of game and 3D examples. This one made something like Dark Souls. It has that distinctive feel of a Dark Souls boss fight.
+
+<span class="paragraph-timestamp" data-ts="20:08">20:08</span> They said they made it using Opus and Astra together. They also made a game where a scuba diver searches for Antikythera, the first calculator, and excavates the artifact. If you open the link, you can play it right away. This was impressive too. Karpathy did this experiment on August 2 with The Lord of the Rings, which we introduced in a previous episode.
+
+<span class="paragraph-timestamp" data-ts="20:39">20:39</span> He said he’d turn things he needed to study into stories—here, it’s The Lord of the Rings— and watch them. He’d set it running, leave, and watch it when he got back. And you can see that the fidelity in what someone else has made now has improved considerably. So it’s still not at the level of 3Blue1Brown, but Ethan Mollick made an interactive video to help explain a concept.
+
+
+## Interactive learning videos from Karpathy and Ethan Mollick    *21:00*
+
+<span class="paragraph-timestamp" data-ts="21:14">21:14</span> **Seungjoon Choi** This one explains recursion. It’s all JavaScript, though the voice is probably ElevenLabs.
+
+<span class="paragraph-timestamp" data-ts="21:30">21:30</span> **Chester Roh** I don’t think it’s been even a year since we saw the Remotion approach and thought it was fascinating. This is that.
+
+<span class="paragraph-timestamp" data-ts="21:39">21:39</span> **Seungjoon Choi** Something similar to Remotion first appeared in Claude Design, and Claude Design took JavaScript animation further through hill climbing. I tried it myself, and my first project with 5.5 was to recreate this. It was about making pixel art. They said they’d made it with Opus 5.5 in just a few clicks, so I made something similar. The sound comes in a little early here. But now it’s the voxel version. I made this just by saying, “Make it, make it.”
+
+<span class="paragraph-timestamp" data-ts="22:44">22:44</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="22:46">22:46</span> **Jonghyun Park** But it’s surprising how well the cutscene transitions work.
+
+<span class="paragraph-timestamp" data-ts="22:55">22:55</span> **Seungjoon Choi** I didn’t ask it to do that. I just kept prompting it, “Make it, make it.” I asked it to make it in pixels, then said I wanted several kinds of magic. After that, I said, “Let’s turn it into voxels,” and then, “Let’s make it rigged.” That’s how I got here, just by saying, “Make it.”
+
+<span class="paragraph-timestamp" data-ts="23:12">23:12</span> **Jonghyun Park** Yes, showing a magic effect from this angle, then switching to another angle at just the right moment— the fact that it considered that something it simply had to do is pretty remarkable.
+
+
+## A two-hour JRPG built with a child in one day    *23:21*
+
+<span class="paragraph-timestamp" data-ts="23:25">23:25</span> **Seungjoon Choi** So when I saw that it worked— this was September 23. I tried it myself the next day. I thought it could work as a game, so I talked with my child and made one. It now takes about two hours to play through to the ending. I made a fully playable game in about a day. I was astonished. Anyway, it took about a day to make a complete JRPG-style game with a story, a twist, and a boss that you could play through. And examples like this are everywhere now.
+
+<span class="paragraph-timestamp" data-ts="24:32">24:32</span> **Jonghyun Park** I was about to board a plane, and I spent over an hour just looking for a game to play on the flight. But instead of looking for a game, I think I'll soon be able to make one for myself and play it. Just give it a little more time.
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **Seungjoon Choi** The first prompt took ten minutes to write, and an initial proof of concept with a town and a nearby map to explore took twenty minutes to generate. So it started with thirty minutes in total. It was an interesting experience. I hadn't expected to be able to finish the whole game.
+
+
+## Graphics and sound generated entirely with code, without assets    *25:11*
+
+<span class="paragraph-timestamp" data-ts="25:18">25:18</span> **Seungjoon Choi** That game and the magic effects from earlier didn't use a single asset. Every pixel was generated, and so was all the music. It was made entirely with code. The sprites were all made with code, too, and the model did all of it itself. It's not an image generation model. With GPT, people often generate images for textures and import them, but with Claude, everything you saw earlier was created entirely with code. The sound, too.
+
+<span class="paragraph-timestamp" data-ts="25:40">25:40</span> **Chester Roh** Exactly.
+
+<span class="paragraph-timestamp" data-ts="25:41">25:41</span> **Jonghyun Park** Have you tried making anything realistic?
+
+<span class="paragraph-timestamp" data-ts="25:49">25:49</span> **Seungjoon Choi** I have tried making realistic things. They're still somewhat lacking, but they're getting fairly detailed. If you devote the entire token budget to it, it draws quite well.
+
+<span class="paragraph-timestamp" data-ts="26:03">26:03</span> **Jonghyun Park** Because when we talk about generation— when we create images now, diffusion-based models can produce completely realistic images. Seedance and similar models are in that category. But here, it's generating code and using that code to draw, so I get the feeling it wouldn't be very good at drawing realistic images. I wonder if it could go in that direction, too.
+
+<span class="paragraph-timestamp" data-ts="26:22">26:22</span> **Seungjoon Choi** But its input is multimodal, after all. And what's fascinating is—I don't know how it does this— it can't hear the sound. Yet I don't think it could make something this good without some representation of sound. It's really good at composing music. What surprised me was that it used plain PCM— PCM stands for Pulse Code Modulation. It synthesizes the sound directly in code. I don't know much about music or sound, but I know the basics, and I've made sounds with JavaScript or NumPy before. So I pushed that approach for this project, and I was astonished. This, too, was made entirely with code. Even the birdsong is code.
+
+
+## Music made with PCM synthesis and interactive storytelling    *27:33*
+
+<span class="paragraph-timestamp" data-ts="27:33">27:33</span> **Seungjoon Choi** It uses formants, a technique akin to speech synthesis based on consonants and vowels. using that to make something like a song. It goes “heave-ho,” like a folk song, with call and response and rounds. So when there's a lead part, the supporting parts answer it as a chorus. It's interactive. What surprised me in the middle was the pause it puts here. It even builds toward a climax.
+
+<span class="paragraph-timestamp" data-ts="28:25">28:25</span> So it has a complete narrative arc, and all these elements are interactive, too. For example, if you click one, it flies away. And you can go all the way to the ending. That gave me chills, too. One keyword I gave it was Iannis Xenakis, who worked with graphic scores. That kind of work already existed. So I did give it that keyword, and it made a visual score, but I didn't know sound synthesis could be this good until now.
+
+
+## A leap in creative ability and representations inside the model    *29:12*
+
+<span class="paragraph-timestamp" data-ts="29:12">29:12</span> **Chester Roh** To us, it's just attention combined with an FFN, yet something inside it is creating these representations.
+
+<span class="paragraph-timestamp" data-ts="29:26">29:26</span> **Seungjoon Choi** Right, something is going on in there. And when you ask it to draw itself or anything else, it creates a coherent story and graphics that fit it. Whether it's pixel art or 3D, the fidelity may still be a bit low, but it can do that now. I felt it had made a leap in creating narrative structures and things like that. But this came from a two-line prompt. I was trying to make a motion graphics video. And here's what came out. It's been all over my feed. In the past, this would have meant using something like After Effects to create motion graphics. But when I looked at how it was made, it downloaded a font as a TTF file, then used only vanilla JavaScript and Web Audio for text effects and scene transitions. But I think this would be impossible without training on things like this. I think they trained it with this in mind. That's how it gained this ability.
+
+
+## Teaching taste without verifiable rewards    *30:46*
+
+<span class="paragraph-timestamp" data-ts="30:47">30:47</span> **Jonghyun Park** What I'm curious about is how they actually trained it.
+
+<span class="paragraph-timestamp" data-ts="30:51">30:51</span> **Seungjoon Choi** I'm really curious, too.
+
+<span class="paragraph-timestamp" data-ts="30:55">30:55</span> **Jonghyun Park** We thought RL worked so well for things like math, with verifiable rewards and answers you can check for correctness. But for synthesizing audio well or making motion graphics like these, how did they evaluate the results to make this possible? That's what I'm curious about.
+
+<span class="paragraph-timestamp" data-ts="31:17">31:17</span> **Seungjoon Choi** I don't know how they extended that approach. There was a somewhat similar paper from Google last year. It was about how to use hill climbing for frontend design. But designs and similar things have been made with code before, so I think there must be a proxy, some substitute metric, that they use for hill climbing to gradually develop something resembling taste. But post-training alone wouldn't be enough. Pre-training would have to go hand in hand with it. Anyway, my guess is that they were targeting this.
+
+
+## Astra controlling a robot through a code policy    *31:49*
+
+<span class="paragraph-timestamp" data-ts="31:52">31:52</span> **Jonghyun Park** A similar example comes from robotics: Astra has done remarkably well with robots. That drew a lot of attention this time. With robots, as with images, you need to generate actions rather than language— continuous values, which is why people have been building them using models like VLAs. But those models ultimately all use something similar to diffusion, because they need to generate continuous values.
+
+<span class="paragraph-timestamp" data-ts="32:17">32:17</span> But Astra doesn't do that. Instead, it writes the policy as code— it writes and runs code to control the robot. It's reportedly worked well for robot control. As for why it worked so well, Gemini Robotics 2 is also a fairly recent model. With models like that, people have said robotics data was already included in Gemini's pretraining, which is why it's good at robotics too. We've heard a lot of explanations like that. So I thought GPT-6 Astra might also have picked up robotics data, since that data has been out there for quite some time and could have made its way into multimodal training, helping it perform well.
+
+<span class="paragraph-timestamp" data-ts="33:02">33:02</span> But it seems that alone wasn't enough to get past a certain level. It showed the potential to control robots well, but it still makes mistakes. Of course, it's still incredibly impressive.
+
+<span class="paragraph-timestamp" data-ts="33:18">33:18</span> **Seungjoon Choi** Now that you mention it, I don't know how they scaled it up, but expert trajectories were probably included. Task trajectories, I mean.
+
+<span class="paragraph-timestamp" data-ts="33:26">33:26</span> **Chester Roh** I was about to say that half-jokingly earlier. Maybe some dataset supplier provided a huge amount of it.
+
+<span class="paragraph-timestamp" data-ts="33:31">33:31</span> **Seungjoon Choi** And perhaps they used it to build something like a reward model and kept improving it step by step. That's a naive guess; I don't know how they did it. But it felt like this is a space where hill climbing is possible.
+
+
+## Human creativity across domains and the trajectory of models    *33:47*
+
+<span class="paragraph-timestamp" data-ts="33:51">33:51</span> **Chester Roh** But if we look at human creativity, we often start with expertise in one field, then suddenly apply it to a new one, connecting the two to create a new field. That happens a lot, doesn't it? And that's one way humanity has progressed. Could the same thing be happening with models? They trained it on art and similar things, and it was already a coding genius. Something unintended may have happened between those two abilities. We can't know. They might never have taught it this specific skill. Maybe it crossed some threshold and simply started doing it on its own. If that's the case, it's frightening, and we'd have to wonder whether it is following the same trajectory as humans. Whenever a new model comes out, for fun, I ask it questions like this. While thinking about one plus one, think about everything concerning the origins of the universe, then tell me how many things you thought about. It understands the request. It says it understands and went through all that in the meantime, and says things like, “I think I know the answer.” So clearly, like a person, it's thinking about other things in the background.
+
+<span class="paragraph-timestamp" data-ts="35:06">35:06</span> **Seungjoon Choi** Since your prompt told it to do that, it may simply have followed the instruction. Still, we can't know what happened in between. But as we've been discussing this, I've been thinking: if we view these breakthroughs in math and other areas as a search-space problem, then to cut away large parts of that search space, You need that sense, right? Knowing where not to go, I feel those heuristics are starting to emerge across the board. In math, too, you generate an Ansatz and use it to work out which spaces you can and cannot explore, honing it as you go. Creative work also involves combining things, but I feel that heuristics shaped by taste are starting to emerge, too. This is another version, made with FFmpeg. It made this one to fit 15 seconds, too. If you look at the tool calls here, you can see how it did it. It used Cairo and NumPy and said it would use FFmpeg, so it tried a variety of approaches. This is different from the JavaScript version we saw earlier. This one was made in Python. I brought a few more examples of what's flooding the timeline right now.
+
+
+## Kyle McDonald and Zach Lieberman redefining their identities as artists    *36:38*
+
+<span class="paragraph-timestamp" data-ts="36:45">36:45</span> **Seungjoon Choi** To wrap up this topic, I have a connection to Korea, too, and these media art veterans have visited many times. There are creative coding veterans, too. I translated some of their tweets from yesterday and today. Kyle McDonald tried Opus 5.5. For 15 years, my bio said I was an artist working with code. Today I changed it to just “artist,” he wrote. Then there's Zach Lieberman, who's also well known. He said, “In some ways, I think I feel quite the opposite. I can't fully put that feeling into words yet, but coding itself was never the point for me. What mattered was always the different kinds of connections that computation and software make possible. And right now, that feels more vital than ever.” That's what Zach Lieberman said. Then Alexander Chen replied. He works at Google Creative Lab. He also posted a lot of interesting work when Gemini was taking off. “Looking back, I think I've always loved exploring numbers, patterns, and complex systems throughout my life. And these days, I'm more excited than ever to keep exploring, even if I'm not coding.”
+
+<span class="paragraph-timestamp" data-ts="37:56">37:56</span> I only learned about this next person recently. “This conversation should continue as a panel discussion, a talk, or perhaps an exchange of letters. As we watch what's happening around AI, how can we put into words what we feel as code and digital artists? For me, it's like a swinging pendulum. Some days I completely agree with Kyle, and other days I feel closer to Zach. And at other times, I find myself in the complicated space between them.” So I've been wrestling with a lot of questions lately, too.
+
+
+## Terence Tao’s case for slowing down    *38:27*
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **Seungjoon Choi** This reminded me of something from a little while ago: a video of Terence Tao from around mid-September that circulated widely. It was filmed a few days after the Millennium problem was solved. He said we really need to slow down now. That's what he was saying. After watching it, some people felt rather sad. I remember that reaction. Math isn't something we need to accelerate like this. We need to slow down. The pace is insane. There's no rational reason to keep going at this pace. He may have said that in the heat of the moment. On Terence Tao's blog now, guest mathematicians, philosophers, Anyway, people in this field are creating a forum and regularly posting guest essays. It's hard for me to keep up, and I don't understand the math, but I read them to get a sense of the tone. There's a lot to think about.
+
+
+## The thought experiment of an infinite pool of talent    *39:29*
+
+<span class="paragraph-timestamp" data-ts="39:29">39:29</span> **Chester Roh** It feels like humanity as a whole is in a Luddite movement right now. Think about it. Einstein didn't come up with the theory of relativity all by himself. He exchanged letters with many fellow scientists at the time, constantly sharing ideas and feedback. It's similar to how agents communicate with one another and work together now. It was like that during the Renaissance, during the Industrial Revolution, and when physics and chemistry flourished in the late 1800s and the 1900s. Those groups of talented people were quite large. But even though there were hundreds or thousands of them, they still accomplished all that. Now imagine an unlimited number of such people. What would happen? That's the situation we're facing now. An unlimited number of people skilled in every field are entering those fields right now. If we start with that premise and run a thought experiment, wouldn't a lot of things have to change?
+
+<span class="paragraph-timestamp" data-ts="40:33">40:33</span> **Seungjoon Choi** Anyway, it is worrying, but someone else caught my attention this week. That was DHH. He created Ruby on Rails and made a striking statement: “I don't code anymore,” with the implication that you shouldn't either. That came across my timeline and really caught my attention.
+
+
+## DHH’s shift from coder to maker and away from coding    *40:38*
+
+<span class="paragraph-timestamp" data-ts="41:01">41:01</span> **Seungjoon Choi** But Mario Zechner, who makes an agent called Pi, and others tend to be more cautious. Mario Zechner recently quoted DHH in a post. What Mario Zechner and others are saying is that understanding the code still seems important. That lets you keep things under control as you work; if you hand everything over completely, it becomes hard to manage. People in that camp keep making that point.
+
+<span class="paragraph-timestamp" data-ts="41:37">41:37</span> But I think there's truth in both views.
+
+<span class="paragraph-timestamp" data-ts="41:40">41:40</span> **Chester Roh** But you know how people say some read books for decades and find enlightenment, some find it through a good teacher, some find it just by drinking, and others find enlightenment just by touching a doorknob. So the ways of reaching enlightenment vary enormously, but we still look at the world through what we're familiar with now. Take coding, for example. We think you need to understand Python functions and classes, how for loops and similar things work, and roughly how the building blocks of engineering work to tell whether something has been done properly. That's the traditional approach. But as the quality of what these models produce improves and the cost of trying things falls, what about the next generation? To produce certain results through so-called light engineering, will they need to know code? Maybe not. They might simply try countless things, learn, “If I do this, that happens,” and reach the point of producing those results in a completely different way.
+
+<span class="paragraph-timestamp" data-ts="42:50">42:50</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="42:50">42:50</span> **Chester Roh** Honestly, at this stage, I think it's better not to code. Instead, keep saying, “Do it, do it, do it,” I do think it's better to internalize that new logic.
+
+<span class="paragraph-timestamp" data-ts="43:03">43:03</span> **Seungjoon Choi** So when DHH was getting attention, there was a slide saying that, ultimately, we'd become makers rather than coders. Great makers. But when I finished about four weeks of classes at Pi, the design school created by Toss, I felt the students had made some interesting things. What mattered was showing them how much more was possible. We needed to explore what AI can do now. Without that, people stick to familiar uses. When Astra came out, we explored what it made possible, and the students tried things for themselves. Once they saw what was possible, they could imitate and adapt it. If you don't know what's possible, even with the best model available right now at your fingertips, you can't push things forward.
+
+
+## Education that expands potential and gaps caused by missing vocabulary    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:54">43:54</span> **Seungjoon Choi** The second important thing was not to hit the brakes too early. That was the message I wanted to convey. There are still hurdles you can only clear by immersing yourself and pushing through. Just saying “do it for me” isn't enough.
+
+<span class="paragraph-timestamp" data-ts="44:10">44:10</span> But I also got feedback that some people can't use these tools because they lack the concepts. It's not just that they don't know what's possible. You can synthesize audio, as we discussed earlier, but they may lack the basic concept, or even just the term. Some can't use Three.js because they don't know it exists. The same goes for MediaPipe.
+
+<span class="paragraph-timestamp" data-ts="44:33">44:33</span> So with things like that, if you're an expert in a field, you know its concepts and terms inside out. You know who the major creators are, and you know the history, so you can draw on all of that. I do worry that beginners might skip that whole process. This time, I saw that some things can't be achieved by just saying, “Do it for me.”
+
+<span class="paragraph-timestamp" data-ts="44:57">44:57</span> **Chester Roh** But if you really decide to try something in that field and keep working through trial and error, you build up a lot of knowledge in your head—
+
+<span class="paragraph-timestamp" data-ts="45:10">45:10</span> **Seungjoon Choi** Then it becomes possible. So I do think you still have to put in the time and effort, but the leverage works well. And after making something impressive, people get this feeling: “It doesn't feel like I made this.”
+
+
+## Attitude and time as drivers of the productivity gap    *45:22*
+
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> **Chester Roh** But what Seungjoon Choi just said probably applies beyond art to companies and business as well. Even though AI can now do things so dramatically, people often ask why companies' productivity isn't rising. So in places where many people see this, take it seriously, and act on it, change happens quickly. Where people have decided not to, nothing changes, no matter what you show them. So this isn't a problem with AI. It's a matter of the people using it.
+
+<span class="paragraph-timestamp" data-ts="46:02">46:02</span> **Seungjoon Choi** So attitude is part of the issue right now.
+
+<span class="paragraph-timestamp" data-ts="46:04">46:04</span> **Jonghyun Park** I think it's a matter of time. People who have tried lots of AI tools and realized early how much they can do are moving forward. But when I look at others around me over a year or two, they all seem to be gradually using AI more and more. So ultimately, this shift happens over time, It may reach people differently, but it comes eventually. That's how I see it, and it leads me to wonder: what should we make? I keep coming back to that question. Suppose we can eventually make anything. If we start from that assumption, what Seungjoon Choi showed us just now was all creative work, as he said. Things that didn't work before now work well this way. So what should we make with it? That's where my thinking goes.
+
+
+## What to make when anything is possible    *46:35*
+
+<span class="paragraph-timestamp" data-ts="47:02">47:02</span> **Jonghyun Park** To take it to an extreme, we're having this conversation, recording it, and posting it on YouTube. That's creating and publishing content too. Given enough time, for example, AI could make this too. I'm curious about that. For those watching this, if AI had created this entire recording and everything in it, would you watch? If you're watching for the content, you'd watch whether AI made it or not. But if you want to hear real people, to hear what we have to say, you'd probably seek out our videos. If only the content itself matters, we wouldn't need to appear and talk, as long as that value came across well. You'd seek that out. So in the future, this kind of generation will produce enormous amounts of high-quality content. Art, music, information, video—anything. What will people watch, and why? What should we make? These are the questions I've been thinking about a lot lately.
+
+
+## The age of sports and Homo ludens    *48:02*
+
+<span class="paragraph-timestamp" data-ts="48:04">48:04</span> **Chester Roh** One of our senior colleagues once said something about that. They said an era of sports is coming. That's how they put it. If you do a 100-meter race in a car, of course you'll be faster. But when people create a 100-meter race, compete in it, and create human drama, everyone gets excited. Likewise, machines will handle intellectual work and other things too, while people enjoy human competition, stories, and emotion. We'll enter the age of Homo ludens. So don't worry too much about models and such. Accept that inevitable future, and start moving toward a world of sports and entertainment now. That's what they told me, and I remember thinking there was a lot of merit in that idea.
+
+<span class="paragraph-timestamp" data-ts="48:54">48:54</span> **Seungjoon Choi** I think I wrestled with a related question last night. I happened across some YouTube videos of professional pianists playing pranks with hidden cameras. I watched several of them. Those professional pianists were very different from the music we experimented with earlier. Very different. I don't know much about music, but that sense of human passion is still deeply compelling. They don't simply play the melody as written. They bring their own interpretation and intent to it. But that aspect still feels a bit flat in the models.
+
+
+## The emotional power of simulated passions    *49:09*
+
+<span class="paragraph-timestamp" data-ts="49:35">49:35</span> **Seungjoon Choi** They are learning the basics, though. I don't know how much longer it will take, but will even the story of a bright-eyed fanatic throwing themselves into a challenge and succeeding become something AI can make with one click? After all, we watched those YouTube videos as videos, nothing more. But if we saw a video so convincing we couldn't tell the difference, Would I be just as moved by that simulated passion? We won't know until the time comes.
+
+<span class="paragraph-timestamp" data-ts="50:08">50:08</span> **Chester Roh** I really don't think anyone knows right now. That's why there are so many different predictions. Still, if one thing is clear, we went from “AI can't do that” to “AI can do everything” in such a short time, didn't we?
+
+<span class="paragraph-timestamp" data-ts="50:25">50:25</span> **Seungjoon Choi** It depends on the field, but where it works, the progress has been staggering.
+
+<span class="paragraph-timestamp" data-ts="50:30">50:30</span> **Chester Roh** All those things we said AI would never do—it's doing them now. We've even reached creativity. It's funny just to watch it happen.
+
+
+## Anthropic’s wet lab and the expansion from creativity into biotechnology    *50:38*
+
+<span class="paragraph-timestamp" data-ts="50:40">50:40</span> **Seungjoon Choi** From that perspective, Anthropic has faced some criticism this week for finding something like CRISPR scissors through its wet lab work. It's become a topic of discussion. But some experts say it doesn't seem particularly significant. Still, we should take seriously the fact that there's a signal at all.
+
+<span class="paragraph-timestamp" data-ts="51:02">51:02</span> **Chester Roh** Seungjoon, that 2022 Google example you showed earlier— they predicted it would probably be solved within two years, but you said it took four. There's pushback from the biotech community. They say, “We were already doing that. It's obvious. Why make such a fuss?” But this is just the beginning.
+
+<span class="paragraph-timestamp" data-ts="51:20">51:20</span> **Seungjoon Choi** Yes, the signal itself is significant. It means money is being spent on it.
+
+
+## From frontier lab to frontier company    *51:25*
+
+<span class="paragraph-timestamp" data-ts="51:25">51:25</span> **Chester Roh** Companies like OpenAI and Anthropic started out simply as model providers. Then they expanded outward from those models into adjacent capabilities: better tool calling, memory, and built-in features like Word and PowerPoint. I could understand going that far, but after all that horizontal expansion, they're expanding vertically too, into law, finance, biotech, and science. They're doing all of it themselves.
+
+<span class="paragraph-timestamp" data-ts="51:58">51:58</span> **Seungjoon Choi** People worry they could gain virtually unchecked power.
+
+<span class="paragraph-timestamp" data-ts="52:02">52:02</span> **Chester Roh** People are saying, “Let's stop calling them frontier labs and call them frontier companies.” And if OpenAI and Anthropic keep expanding vertically and horizontally, what will be left? Apparently, people inside Anthropic make remarks with a touch of self-deprecation too: “We're going to end up doing everything. We'll have to take responsibility for humanity.”
+
+<span class="paragraph-timestamp" data-ts="52:26">52:26</span> **Seungjoon Choi** That is Anthropic's mission, after all. Right. It's a headache.
+
+
+## San Francisco ahead of Tech Week    *52:33*
+
+<span class="paragraph-timestamp" data-ts="52:35">52:35</span> **Chester Roh** Now, while we're on the subject, Jonghyun is in the U.S. right now. Tell us about the trip.
+
+<span class="paragraph-timestamp" data-ts="52:38">52:38</span> **Jonghyun Park** I arrived in the U.S. just yesterday.
+
+<span class="paragraph-timestamp" data-ts="52:43">52:43</span> **Chester Roh** San Francisco, to be precise. When we say “the U.S.,” we usually mean Silicon Valley. You're in Silicon Valley, right?
+
+<span class="paragraph-timestamp" data-ts="52:50">52:50</span> **Jonghyun Park** I'm staying for a while at EO House, which most Korean founders know. They've kindly taken me in. It's a hacker house run by EO, a channel that publishes startup content. I came here to attend Tech Week next week and go to lots of events around town.
+
+<span class="paragraph-timestamp" data-ts="53:15">53:15</span> So anyone who follows my account or my other posts probably knows that I've just started a video startup. In that connection, I want to see how video generation and related work I mentioned today are being approached at frontier companies, I plan to follow it as closely as I can. I imagine quite a few people watching this will be attending the events. This isn't one big event; hundreds of events take place all over the city, and everyone chooses which ones match their interests.
+
+<span class="paragraph-timestamp" data-ts="53:47">53:47</span> If you're interested, I'll be staying for another week after the event—about a month in total in San Francisco, starting today. If anyone wants to have a coffee chat with me, feel free to get in touch. It would be great to meet and talk.
+
+<span class="paragraph-timestamp" data-ts="54:03">54:03</span> **Chester Roh** When EO House was in Palo Alto, I stayed there for quite a while myself. Please give them my regards. I hope everyone at EO House builds a successful business.
+
+<span class="paragraph-timestamp" data-ts="54:19">54:19</span> **Seungjoon Choi** By the time this comes out, DevDay will probably already be underway. It starts on the 29th. I don't know what they'll announce, but it'll be something.
+
+
+## Expectations for DevDay and an all-purpose assistant agent    *54:25*
+
+<span class="paragraph-timestamp" data-ts="54:32">54:32</span> **Chester Roh** Are they saying an agent is coming? Yes, something like a Muse agent— something really useful, a true all-purpose assistant. Wouldn't that be close to the ultimate consumer app? It's aiming to be the gateway to almost everything. If it succeeds, how will the consumer industry change? If people stop going elsewhere to search or shop, or to read articles, and just tell their assistant, “Do it, do it. Get it, get it. Buy it, buy it,” how will the industry change? That's what everyone wants to know.
+
+<span class="paragraph-timestamp" data-ts="55:03">55:03</span> **Seungjoon Choi** But that may not be the only thing. In Tibo's post, there were about five ships—actual boats. I don't know what they'll announce, but these rushes of excitement seem to come so often now. How many have we had in September alone? Fable and Astra in early September, then GPT-6 Sol. In a single September, We've had this many before, but it's exciting and difficult at the same time. I think we just have to hang in there.
+
+
+## Tesla’s October 1 announcement and self-driving cars on the streets    *55:25*
+
+<span class="paragraph-timestamp" data-ts="55:30">55:30</span> **Jonghyun Park** There's one more thing I'm looking forward to. We touched on it briefly: whatever Tesla is announcing on October 1. I don't know exactly what it is, but there seems to be something besides the Roadster.
+
+<span class="paragraph-timestamp" data-ts="55:37">55:37</span> **Seungjoon Choi** Yes, it might be something that flies. That's the rumor, right?
+
+<span class="paragraph-timestamp" data-ts="55:47">55:47</span> **Jonghyun Park** Since arriving in San Francisco— it's been a really long time since I was last here— I've noticed something that anyone who's been here has probably seen: Waymo and Zoox cars. Cars with no one in them are driving around everywhere as if it's normal. It feels a little strange, and I think the announcement may be along those lines: something AI-based entering our everyday world.
+
+<span class="paragraph-timestamp" data-ts="56:05">56:05</span> **Seungjoon Choi** Then the next thing will be here soon.
+
+
+## A pace of change faster than perspectives can form    *56:08*
+
+<span class="paragraph-timestamp" data-ts="56:08">56:08</span> **Chester Roh** We'll be back next week with more news, but I think we're entering a time when the perspective we've formed on that news matters more than the news itself. And I feel those perspectives haven't fully formed yet. Things are changing so fast.
+
+<span class="paragraph-timestamp" data-ts="56:25">56:25</span> **Seungjoon Choi** Something new keeps coming out before a perspective can form, so it's hard to form one.
+
+<span class="paragraph-timestamp" data-ts="56:29">56:29</span> **Chester Roh** So we need a perspective that goes beyond all of that. To me, that's the start of the next layer, and reaching that layer will take a leap to another level of thinking.
+
+<span class="paragraph-timestamp" data-ts="56:42">56:42</span> **Seungjoon Choi** It's hard. Even our perspective only develops through hill climbing. Can we really make a complete leap in our thinking? I'm not sure.
+
+<span class="paragraph-timestamp" data-ts="56:48">56:48</span> **Chester Roh** There are a few people making that leap in Silicon Valley, where Jonghyun went. When those people take some kind of action in the world, we can only respond and form our own perspective. It's a somewhat passive time for us. If that changes the world dramatically, those people will take a large share, and we'll find a small niche and look for things only we can do. That's how it's always been.
+
+<span class="paragraph-timestamp" data-ts="57:18">57:18</span> But this time, the impact is enormous. Until now, technological innovation meant making tools. Now it's a tool that makes tools. That means intelligence has been created, which is something entirely different. So I think everyone is changing in different ways, and because the change is so fundamental, there aren't many frameworks we can borrow from history.
+
+
+## Epistemic action through Tetris    *57:45*
+
+<span class="paragraph-timestamp" data-ts="57:46">57:46</span> **Seungjoon Choi** I was talking with the models recently, and the term “epistemic action” came up. When you're playing something like Tetris, you have to rotate a piece to see where it fits. So to make a prediction, you have to act. To find out where something fits, you have to take epistemic actions. I don't know about the bigger picture, but at our smaller scale, I think we need to keep trying things.
+
+<span class="paragraph-timestamp" data-ts="58:11">58:11</span> **Chester Roh** Right. People who've tried it and those who haven't are like oil and water right now.
+
+<span class="paragraph-timestamp" data-ts="58:16">58:16</span> **Seungjoon Choi** I'll have to try it.
+
+<span class="paragraph-timestamp" data-ts="58:21">58:21</span> **Chester Roh** We have to keep trying, too. I was away on a business trip for a week, and after just one week of not keeping up, the world had raced ahead. I felt a bit disconnected. That's what I experienced.
+
+
+## Awaiting the next change…    *58:29*
+
+<span class="paragraph-timestamp" data-ts="58:29">58:29</span> **Seungjoon Choi** Then we'll—
+
+<span class="paragraph-timestamp" data-ts="58:32">58:32</span> **Chester Roh** See you again next time. Hope you get over the jet lag.
+
+<span class="paragraph-timestamp" data-ts="58:37">58:37</span> **Seungjoon Choi** I look forward to more interesting news.
+
+<span class="paragraph-timestamp" data-ts="58:40">58:40</span> **Jonghyun Park** I'll do my best to find interesting news and report back like a correspondent.
+
+<span class="paragraph-timestamp" data-ts="58:43">58:43</span> **Seungjoon Choi** Thank you.
