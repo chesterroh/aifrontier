@@ -1,0 +1,111 @@
+---
+title: "在旧金山看到的前沿：GPU、视频生成、细分模型、机器人"
+description: "2026年9月底到10月初在旧金山看到的GPU与推理、视频生成、B2C细分模型，以及机器人部署。"
+publishedAt: 2026-10-10
+heroImage: "/articles/sf-frontier-2026-10/runtime-stage.jpg"
+tags:
+  - GPU
+  - 推理
+  - 视频生成
+  - 机器人
+lang: "zh-Hans"
+draft: false
+---
+
+2026年9月底到10月初，在旧金山听到的事。
+
+## GPU与推理
+
+[Runtime](https://modal.com/runtime)是Modal的大会。swyx、Cat Wu、Dax都出场了，同一天的机器人环节有Generalist、Physical Intelligence和1X。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/modal-panel.jpg"
+  alt="坐在Runtime舞台上的swyx、Cat Wu、Dax Raad"
+  caption="swyx、Cat Wu、Dax Raad。"
+/>
+
+Dreamscale Labs（YC F26）在云上服务机器人模型。延迟优先，所以他们在找旧金山本地的GPU。
+
+Vast把GPU、数据、推理、视频模型和编程环境叠在一台VM里卖。黑客松给每个团队一台VM，可以用CoreWeave和Weights & Biases的推理，以及Nvidia Cosmos Reason。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vast-builders.jpg"
+  alt="Vast Builders Challenge黑客松现场"
+  caption="Vast Builders Challenge，旧金山。"
+/>
+
+再上面是挑选模型并提供服务的一层。在OpenRouter活动上遇到的推理公司说，现在只要有GPU，就能卖掉。各种类似Higgsfield的路由公司……
+
+Fal、Bria、LTX在同一场活动里。Fal做的推理会把音乐、舞蹈和效果接上去。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-room.jpg"
+  alt="Fal、Bria、LTX的活动，屏幕上是Bria"
+  caption="Fal、Bria、LTX在同一场。"
+/>
+
+## 视频生成
+
+[Dragon Gate](https://luma.com/eb9qwhtt)是一场AI电影放映。来的人是拍电影的。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/dragon-gate.jpg"
+  alt="Dragon Gate放映AI电影时的观众席"
+  caption="Dragon Gate。"
+/>
+
+LTX把模型调到电影和动画的制作水准，包括外扩、动作同步和物理细节。如果只有一个感觉，就把话全部说出来，让LLM写提示词。服务由Fal来做。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-fal-slide.jpg"
+  alt="LTX幻灯片：自己运行、ComfyUI、LTX Explore、Fal托管"
+  caption="运行LTX的路径。最后一档是Fal。"
+/>
+
+新加坡那边的AI是电影制作平台，拿出来的作品水准很高。中国的短剧微短剧看起来就是这么做出来的。AI电影工作室已经有多部完成放映的片子。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vibeshack.jpg"
+  alt="VibeShack工作室的蓝色幕布布景"
+  caption="VibeShack。"
+/>
+
+## B2C细分模型
+
+Descript在办公室活动里，拍摄和剪辑都有员工跟着。同时他们在内部做forced aligner，FuseAlign。表情和非语言音频还是下一步。Audai做音频模型，Academa自动做讲解视频。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-floor.jpg"
+  alt="Descript办公室活动"
+  caption="Descript办公室。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-room.jpg"
+  alt="Descript录音间，有灯光、监视器和麦克风"
+  caption="录音间。"
+/>
+
+## 机器人
+
+Generalist的规模化里，还留着把拍摄内容的SD卡上传这种数据收集。Physical Intelligence已经进了草莓田、养牛、挖掘机和工厂。1X Neo见到了实物，走路还比较粗糙，下单和交付之间的距离仍然很远。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-strawberry.jpg"
+  alt="在草莓田里工作的机械臂"
+  caption="Physical Intelligence，草莓田。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-factory.jpg"
+  alt="工厂里的机械臂"
+  caption="制造现场。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/onex-stage.jpg"
+  alt="1X的演讲，屏幕上是人形机器人和An Abundance of Labor"
+  caption="1X。"
+/>
+
+这和Dreamscale在找旧金山本地GPU是同一件事。进入现场的机器人变多之后，还需要单独的推理，把它们的大脑放在延迟之内跑起来。

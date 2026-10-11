@@ -1,0 +1,112 @@
+---
+title: "SF에서 본 프론티어: GPU, 영상 생성, 니치 모델, 로보틱스"
+description: "2026년 9월 말부터 10월 초 SF에서 본 GPU·인퍼런스, 영상 생성, B2C 니치 모델, 로보틱스 배포."
+publishedAt: 2026-10-10
+heroImage: "/articles/sf-frontier-2026-10/runtime-stage.jpg"
+tags:
+  - GPU
+  - 인퍼런스
+  - 영상 생성
+  - 로보틱스
+lang: "ko"
+draft: false
+---
+
+2026년 9월 말부터 10월 초, SF에서 들은 이야기다.
+
+## GPU와 인퍼런스
+
+[Runtime](https://modal.com/runtime)은 Modal의 컨퍼런스다. swyx, Cat Wu, Dax가 나왔고, 같은 날 로보틱스 세션에는 Generalist, Physical Intelligence, 1X가 나왔다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/modal-panel.jpg"
+  alt="Runtime 무대에 앉은 swyx, Cat Wu, Dax Raad"
+  caption="swyx, Cat Wu, Dax Raad."
+/>
+
+Dreamscale Labs(YC F26)는 로봇 모델을 클라우드에서 서빙한다. 지연이 먼저라, SF 안의 GPU를 찾고 있었다.
+
+Vast는 GPU 위에 데이터, 인퍼런스, 영상 모델, 코딩 환경까지 한 VM에 올려 판다. 해커톤에서 팀당 VM을 주고, CoreWeave와 Weights & Biases 인퍼런스, Nvidia Cosmos Reason을 쓰게 했다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vast-builders.jpg"
+  alt="Vast Builders Challenge 해커톤장"
+  caption="Vast Builders Challenge, SF."
+/>
+
+그 위는 모델을 골라 서빙하는 층이다. OpenRouter 행사에서 만난 Inference 업체들은 GPU만 있으면 지금은 다 팔린다고 했다. 다양한 higgsfield-like 라우터 회사들...
+
+
+Fal, Bria, LTX는 한자리였다. Fal은 음악, 춤, 효과까지 붙여 인퍼런스한다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-room.jpg"
+  alt="Fal, Bria, LTX 행사. 스크린에 Bria가 떠 있다"
+  caption="Fal, Bria, LTX가 같이 연 자리."
+/>
+
+## 영상 생성
+
+[Dragon Gate](https://luma.com/eb9qwhtt)는 AI 영화 상영회였다. 와 있는 사람들은 영화를 하는 쪽이었다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/dragon-gate.jpg"
+  alt="Dragon Gate에서 AI 영화를 상영하는 객석"
+  caption="Dragon Gate."
+/>
+
+LTX는 아웃페인팅, 모션 싱크, 물리 디테일까지 영화·애니메이션 프로덕션에 맞춰 튜닝한다. 느낌만 있으면 말을 쏟고 LLM에게 프롬프트를 맡긴다. 서빙은 Fal이다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-fal-slide.jpg"
+  alt="LTX 슬라이드. 직접 실행, ComfyUI, LTX Explore, Fal 호스팅"
+  caption="LTX를 돌리는 경로. 마지막이 Fal이다."
+/>
+
+싱가포르계 AI는 영화 제작 플랫폼, 보여준 작품 수준이 높았다. 중국 숏폼 마이크로드라마가 이런 식으로 만들어지는 쪽에 가깝다. AI 영화 스튜디오는 상영작이 이미 여러 편이다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vibeshack.jpg"
+  alt="VibeShack 스튜디오의 블루 커튼 세트"
+  caption="VibeShack."
+/>
+
+## B2C 니치 모델
+
+Descript는 사무실 행사에서 촬영과 편집에 직원을 붙여 줬다. 동시에 forced aligner FuseAlign을 인하우스로 만듦. 표정과 비언어 오디오는 아직 다음 단계다. Audai는 오디오 모델, Academa는 설명 영상을 자동으로 만든다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-floor.jpg"
+  alt="Descript 사무실 행사"
+  caption="Descript 사무실."
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-room.jpg"
+  alt="Descript 레코딩룸. 조명과 모니터, 마이크"
+  caption="레코딩룸."
+/>
+
+## 로보틱스
+
+Generalist의 스케일에는 촬영분이 담긴 SD 카드를 업로드하는 데이터 수집이 아직 남아 있다. Physical Intelligence는 딸기 농장, 소, 포크레인, 공장으로 들어가 있다. 1X Neo는 실물을 봤는데, 걷는 것이 거칠고 주문과 배송 사이가 아직 멀다.
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-strawberry.jpg"
+  alt="딸기 농장에서 일하는 로봇 팔"
+  caption="Physical Intelligence, 딸기 농장."
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-factory.jpg"
+  alt="공장 안의 로봇 팔"
+  caption="제조 현장."
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/onex-stage.jpg"
+  alt="1X 발표. 스크린에 휴머노이드와 An Abundance of Labor"
+  caption="1X."
+/>
+
+Dreamscale이 SF 로컬 GPU를 찾는 이유와 맞닿아 있다. 현장에 들어가는 로봇이 늘면, 그 두뇌를 지연 안에 돌릴 인퍼런스가 따로 필요하다.
