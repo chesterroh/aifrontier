@@ -41,7 +41,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           git fetch origin publish/ep118-20261012
-          git checkout FETCH_HEAD -- src/content/episodes/{ko,en,ja,zh-Hans}/ep118.mdx
+          git checkout FETCH_HEAD -- src/content/episodes/{ko,en,ja,zh-Hans}/ep118.mdx public/resources/ep118
       - uses: actions/setup-node@v4
         if: steps.gate.outputs.run == 'true'
         with:
@@ -54,7 +54,9 @@ jobs:
           npm run build
           for lang in ko en ja zh-Hans; do
             grep -q 'IUDl4bD1UMA' "dist/$lang/episodes/ep118/index.html"
+            grep -q 'ep118-ai-frontier-thought-experiment.pdf' "dist/$lang/episodes/ep118/index.html"
           done
+          test -s dist/resources/ep118/ep118-ai-frontier-thought-experiment.pdf
       - uses: webfactory/ssh-agent@v0.9.0
         if: steps.gate.outputs.run == 'true'
         with:
