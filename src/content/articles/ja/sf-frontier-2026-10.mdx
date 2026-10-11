@@ -1,0 +1,111 @@
+---
+title: "SFで見たフロンティア: GPU、映像生成、ニッチモデル、ロボティクス"
+description: "2026年9月末から10月初旬のサンフランシスコで見た、GPUと推論、映像生成、B2Cのニッチモデル、ロボティクスの展開。"
+publishedAt: 2026-10-10
+heroImage: "/articles/sf-frontier-2026-10/runtime-stage.jpg"
+tags:
+  - GPU
+  - 推論
+  - 映像生成
+  - ロボティクス
+lang: "ja"
+draft: false
+---
+
+2026年9月末から10月初旬、サンフランシスコで聞いた話だ。
+
+## GPUと推論
+
+[Runtime](https://modal.com/runtime)はModalのカンファレンスだ。swyx、Cat Wu、Daxが登壇し、同じ日のロボティクスセッションにはGeneralist、Physical Intelligence、1Xが出た。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/modal-panel.jpg"
+  alt="Runtimeのステージに座るswyx、Cat Wu、Dax Raad"
+  caption="swyx、Cat Wu、Dax Raad。"
+/>
+
+Dreamscale Labs（YC F26）は、ロボットのモデルをクラウドでサーブしている。レイテンシが先なので、SF市内のGPUを探していた。
+
+Vastは、GPUの上にデータ、推論、映像モデル、コーディング環境までを1台のVMに載せて売る。ハッカソンではチームごとにVMを渡し、CoreWeaveとWeights & Biasesの推論、Nvidia Cosmos Reasonを使わせていた。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vast-builders.jpg"
+  alt="Vast Builders Challengeのハッカソン会場"
+  caption="Vast Builders Challenge、SF。"
+/>
+
+その上は、モデルを選んでサーブする層だ。OpenRouterのイベントで会った推論の会社は、GPUさえあれば今は売り切れると言っていた。Higgsfieldに似たルーター会社がいくつも…
+
+Fal、Bria、LTXは一つのイベントに揃っていた。Falは音楽、ダンス、エフェクトまで付けて推論する。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-room.jpg"
+  alt="Fal、Bria、LTXのイベント。スクリーンにはBria"
+  caption="Fal、Bria、LTXが同じ場にいた。"
+/>
+
+## 映像生成
+
+[Dragon Gate](https://luma.com/eb9qwhtt)はAI映画の上映会だった。来ていたのは映画をする人たちだった。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/dragon-gate.jpg"
+  alt="Dragon GateでAI映画を見ている客席"
+  caption="Dragon Gate。"
+/>
+
+LTXは、アウトペインティング、モーションシンク、物理的なディテールまで、映画とアニメのプロダクションに合わせてチューニングしている。感覚しかないときは、言葉を全部吐き出してLLMにプロンプトを書かせる。サービングはFalだ。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/ltx-fal-slide.jpg"
+  alt="LTXのスライド。自分で実行、ComfyUI、LTX Explore、Falホスティング"
+  caption="LTXの動かし方。最後がFal。"
+/>
+
+シンガポール系のAIは映画制作のプラットフォームで、見せてもらった作品の水準は高かった。中国のショートフォーム・マイクロドラマは、このやり方で作られているように見える。AI映画スタジオには、すでに上映を終えた作品が何本もある。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/vibeshack.jpg"
+  alt="VibeShackスタジオのブルーカーテンのセット"
+  caption="VibeShack。"
+/>
+
+## B2Cのニッチモデル
+
+Descriptはオフィスのイベントで、撮影と編集にスタッフを付けていた。同時に、forced alignerのFuseAlignを社内で作っている。表情や非言語の音声は、まだ次の段階だ。Audaiはオーディオモデル、Academaは解説動画を自動で作る。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-floor.jpg"
+  alt="Descriptオフィスのイベント"
+  caption="Descriptのオフィス。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/descript-room.jpg"
+  alt="Descriptのレコーディングルーム。照明、モニター、マイク"
+  caption="レコーディングルーム。"
+/>
+
+## ロボティクス
+
+Generalistのスケールには、撮影データの入ったSDカードをアップロードするデータ収集がまだ残っている。Physical Intelligenceはイチゴ農園、牛、掘削機、工場に入っている。1X Neoは実物を見たが、歩きは荒く、注文から配送までの距離はまだ遠い。
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-strawberry.jpg"
+  alt="イチゴ農園で働くロボットアーム"
+  caption="Physical Intelligence、イチゴ農園。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/pi-factory.jpg"
+  alt="工場の中のロボットアーム"
+  caption="製造現場。"
+/>
+
+<Figure
+  src="/articles/sf-frontier-2026-10/onex-stage.jpg"
+  alt="1Xの発表。スクリーンにヒューマノイドとAn Abundance of Labor"
+  caption="1X。"
+/>
+
+DreamscaleがSF市内のGPUを探している理由と重なる。現場に入るロボットが増えれば、その頭脳をレイテンシの内側で回す推論が別に要る。
