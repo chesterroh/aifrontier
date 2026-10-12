@@ -494,6 +494,39 @@ const homeLabel = ui.home;
     }
   }
 
+  /* Editorial notes (corrections) inside the transcript */
+  .prose .transcript-note {
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #d97706;
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: #fffbeb;
+    color: #78350f;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .prose .transcript-note-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #b45309;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .prose .transcript-note {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+    }
+
+    .prose .transcript-note-label {
+      color: #fbbf24;
+    }
+  }
+
   /* Transcript with hanging timestamps */
   .prose-transcript {
     padding-left: 0;
