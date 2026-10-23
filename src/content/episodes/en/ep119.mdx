@@ -1,0 +1,467 @@
+---
+episodeNumber: 119
+title: "AI That Plays Back Code | Video as Code and Generative Misreading"
+description: "On his last night in San Francisco, Jonghyun Park opens with the Video as Code event he hosted there. Instead of generating pixels directly with a video model, this approach has an LLM write code to create motion graphics and explainer videos. He shares the sudoremove channel, where AI handles 99% of the editing; experiments comparing models and tools for motion graphics; and the results of testing whether viewers see AI-made videos as slop or genuinely good content. Seungjoon Choi introduces Generative Misreading, a performance that repeatedly reinterprets bytebeat code as sound, images, emoji, and stories. From there, they explore AI creativity beyond the training distribution, the future of people who explain things, and where generating something with AI might strip it of meaning."
+publishedAt: 2026-10-23
+duration: "1:03:29"
+youtubeId: "ezyjIdJO72Y"
+thumbnail: "https://i.ytimg.com/vi/ezyjIdJO72Y/maxresdefault.jpg"
+hosts:
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "Recording on the Last Night in San Francisco"
+  - time: "0:25"
+    title: "A San Francisco Event on Video as Code"
+  - time: "1:51"
+    title: "An Explainer Video Coded by Co-host Sina"
+  - time: "3:49"
+    title: "ManimGX, Born from Manim, and a Dream for Education"
+  - time: "6:20"
+    title: "A Kurzgesagt-Style Experiment Starting with Original Footage"
+  - time: "7:40"
+    title: "The Editing Burden for Part-Time YouTubers and a Channel Edited 99% by AI"
+  - time: "10:01"
+    title: "Comparing AI Editing Results with Athlete Influencer Fan Channels"
+  - time: "12:11"
+    title: "SudoCut Launches: Shorts Clipping and Automatic English Dubbing"
+  - time: "14:16"
+    title: "Opus 5.5 Ignites Video as Code: Comparing the Tools"
+  - time: "16:39"
+    title: "Codex Learns from a Paid Course to Make Kurzgesagt-Style Animation"
+  - time: "18:20"
+    title: "Is a Convincing Video slop or Good Content?"
+  - time: "19:12"
+    title: "Testing Viewer Reactions Across Channels in Different Categories"
+  - time: "22:40"
+    title: "Local Reactions and Editing Standards That Vary by Category"
+  - time: "24:38"
+    title: "Original Storytelling as the Real Value of Content"
+  - time: "26:49"
+    title: "How Claude and GPT Differ in Presentation Deck Design"
+  - time: "27:39"
+    title: "Generative Misreading at a House Honoring Nam June Paik"
+  - time: "28:58"
+    title: "Viznut’s bytebeat Code and Exploring Sound with Evolutionary Algorithms"
+  - time: "32:03"
+    title: "Misreading Sound as Images and Emoji"
+  - time: "35:13"
+    title: "Can You Predict the Sound from Code Alone? The verifiability Problem"
+  - time: "38:06"
+    title: "YAMNet Sound Classification, Emoji Compositing, and a Pixel Art Game"
+  - time: "40:46"
+    title: "John Cage and Nam June Paik: Interpreting Chance and a Mass Production Hypothesis"
+  - time: "41:44"
+    title: "Why LLM Creativity Struggles to Leave the Training Distribution"
+  - time: "44:36"
+    title: "interpolation, out of distribution, and an Expanding Territory of Exploration"
+  - time: "47:03"
+    title: "A Shaken Math Community Through the Eyes of Terence Tao and Grant Sanderson"
+  - time: "49:08"
+    title: "Are Explainers and Communicators Safe in the AI Era?"
+  - time: "53:45"
+    title: "Value Moves Toward Scarce Places Where AI Cannot Judge"
+  - time: "54:30"
+    title: "A Kindergarten Song Video and Handwritten Animation Made by Opus"
+  - time: "56:22"
+    title: "What Should Not Be Generated, and Meaning That Cannot Scale"
+  - time: "59:19"
+    title: "Compositional Hangul Fonts and Designing with Claude Code Alone"
+  - time: "60:38"
+    title: "Work Hours That Never Shrink and the Limits of Automatic Slides and Posters"
+  - time: "61:56"
+    title: "Style Convergence, slop, and Motion Graphics That All Look Alike"
+  - time: "62:39"
+    title: "Closing and a Preview of What’s Next"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## Recording on the Last Night in San Francisco    *00:00*
+
+<span class="paragraph-timestamp" data-ts="00:00">00:00</span> **Seungjoon Choi** We're recording this on the evening of October 18. Jonghyun, on your last night in San Francisco, you're joining us for another recording. I heard you recently hosted a fascinating event. You've also been exploring recent experiments in using code to make motion graphics and videos, including interactive videos. It seems you've been at the forefront of this. Could you tell us about it?
+
+<span class="paragraph-timestamp" data-ts="00:25">00:25</span> **Jonghyun Park** While I've been in San Francisco,
+
+
+## A San Francisco Event on Video as Code    *00:26*
+
+<span class="paragraph-timestamp" data-ts="00:26">00:26</span> **Jonghyun Park** I've attended quite a few events. I also hosted an event on a topic I'm interested in. For that event, we approved about 100 people, but the venue couldn't fit that many. So about 40 people came and discussed the topic. The topic was Video as Code. The terminology hasn't really settled yet. Some call it Code as Video, and others call it Video as Code. Either way, it's an approach to making videos that doesn't rely on video generation models— well-known models like Seedance— that generate pixels directly. Instead, an LLM might write animation code, or you might use an app like Blender. We talked about this approach to making videos. There seems to be a lot of interest in it in San Francisco too. We decided to hold an event on the topic, and on Luma, an event hosting service, it was “Featured in San Francisco.” That means it appeared on the city's home page, basically. People seemed very interested in the topic.
+
+
+## An Explainer Video Coded by Co-host Sina    *01:51*
+
+<span class="paragraph-timestamp" data-ts="01:51">01:51</span> **Jonghyun Park** I didn't host the event alone. I hosted it with a founder friend from Turkey whom I'm staying with. We hosted it together. He's doing great work, so I wanted to show you something he made. Let me introduce it first. Here's one example. It's a video generated by code he made with AI. He's very interested in education, so this video explains a concept. Let me play it. The concepts, audio, and music are all generated with code. This one is about a neural network. It's not about how it was trained with RL. It uses a very basic neural network to show how it can drive and how it works, explaining that aspect of AI. He made this explainer video, and it got 750,000 views. He also made explainer videos on various topics and posted them one by one. One even got 960,000 views. He only has ten videos so far. Each day, he picks a topic he wants to explain, makes a video, and posts it. Starting with this video about ray tracing, the views began to climb. After posting for ten days, he even reached a million views and has already gained this many followers.
+
+
+## ManimGX, Born from Manim, and a Dream for Education    *03:49*
+
+<span class="paragraph-timestamp" data-ts="03:49">03:49</span> **Jonghyun Park** This is work by Sina, the friend who co-hosted the event with me. He's been working on this for quite a while. He said he started about 18 months ago.
+
+<span class="paragraph-timestamp" data-ts="04:00">04:00</span> **Seungjoon Choi** So 18 months counts as a long time.
+
+<span class="paragraph-timestamp" data-ts="04:02">04:02</span> **Jonghyun Park** By today's standards, yes. He started 18 months ago. 3Blue1Brown— you've probably seen videos from that channel. Grant Sanderson also To make videos for that channel, he created a library called Manim and used that Python library to make graphics that explain things. Wanting to do that even better, he built his own upgraded version called ManimGX and used it to make these videos himself. That's how these works were made. I asked why he does this. Understanding difficult concepts isn't easy for everyone, so if you visualize them well and make them easier to grasp, people can understand the concepts and enjoy learning, and education will improve. That's the idea behind his work.
+
+<span class="paragraph-timestamp" data-ts="04:53">04:53</span> **Seungjoon Choi** When I watch 3Blue1Brown videos, I'm always amazed. I feel like I understand them as I watch, but often realize I haven't really understood.
+
+<span class="paragraph-timestamp" data-ts="05:04">05:04</span> **Jonghyun Park** We talked about that too.
+
+<span class="paragraph-timestamp" data-ts="05:05">05:05</span> **Jonghyun Park** I asked him what he thought about it. Of course, the ultimate goal is to help people truly understand. In his view, 3Blue1Brown has made every effort to help people understand. But there's a huge amount of educational content out there, including on YouTube, and most videos are made to get views. You feel like you've learned something while watching, but you don't gain a deep understanding. He said there are many superficial videos like that. Partly, that's because making videos that explain things well is hard, so we end up with videos like those. He said AI could help with that and make difficult concepts simpler and more intuitive to understand. That's how he explained it.
+
+<span class="paragraph-timestamp" data-ts="05:54">05:54</span> **Seungjoon Choi** I can definitely see the potential,
+
+<span class="paragraph-timestamp" data-ts="05:55">05:55</span> **Seungjoon Choi** but as with online lectures, there's a gap between watching a video and actually absorbing it.
+
+<span class="paragraph-timestamp" data-ts="06:05">06:05</span> **Jonghyun Park** Yes, I think that's true too. When I really need to understand something, I try to grasp it fully and watch it two or three times. But when I watch casually, I don't fully understand it in one go. Still, I'm sure it helps. Since I do similar work, at that event,
+
+
+## A Kurzgesagt-Style Experiment Starting with Original Footage    *06:21*
+
+<span class="paragraph-timestamp" data-ts="06:21">06:21</span> **Jonghyun Park** Sina gave a presentation, and I gave one too. I started with video editing. The example I showed earlier started from scratch. That video was created from nothing, whereas I start with raw footage. Like what we're recording right now: if we have raw footage like this, how can we make a better video from it? That's where I started. I also tried creating something similar. Let me show you an example. Our cofounder tried making a video about how computers calculate. It's a well-known style. It's the Kurzgesagt style, and when I watched videos like this, I thought they were pretty good. So I'd like to talk about how we were able to make videos like this. First, let me explain
+
+
+## The Editing Burden for Part-Time YouTubers and a Channel Edited 99% by AI    *07:41*
+
+<span class="paragraph-timestamp" data-ts="07:41">07:41</span> **Jonghyun Park** why I started doing this. As you can see, we're YouTubers. I cohost this channel, and I also host a channel called sudoremove. And although I haven't mentioned it, there's another channel I've been running for even longer. I run these channels, but they're side projects, not my main job. We make time to film on weekends too. For my channel, I used to do all the editing myself, and editing takes far longer than you'd think. The footage we record isn't exactly perfect. We also livestream on the sudoremove channel, and those livestreams aren't perfect either. So editing can make the content better. We can explain things better, fix mistakes, add videos with extra explanations, and include additional materials. But each episode takes at least 20 hours to edit. At least when I do it myself. It probably varies from person to person. So it started with this thought: Could AI do my editing for me? That's the idea behind this project. After working on it for several months, we now have AI edit everything on the sudoremove channel before we upload it. We've been uploading that way for two or three months now. At first, we uploaded a mix of both,
+
+<span class="paragraph-timestamp" data-ts="09:17">09:17</span> **Jonghyun Park** and the view counts were similar. When I asked subscribers I know personally, "I didn't realize AI edited that. The quality seems good." A lot of them said things like that, so now 99% of our uploads are edited by AI. And our total views did go up a lot. It wasn't because AI edited them that each video got more views. Because AI edited them, we could upload more videos, so our total views went up. Anyway, we think the results are about the same as when people edited the videos.
+
+<span class="paragraph-timestamp" data-ts="09:51">09:51</span> **Seungjoon Choi** That red arrow must mark the turning point.
+
+<span class="paragraph-timestamp" data-ts="09:53">09:53</span> **Jonghyun Park** Yes, that's about when we started using it.
+
+<span class="paragraph-timestamp" data-ts="09:54">09:54</span> **Jonghyun Park** We started using it experimentally. Then we ran a few more experiments with it.
+
+
+## Comparing AI Editing Results with Athlete Influencer Fan Channels    *10:02*
+
+<span class="paragraph-timestamp" data-ts="10:02">10:02</span> **Jonghyun Park** Could AI do better than a human editor? Could it make videos that viewers would be happy with? So, an influencer I know has another channel with about 10,000 subscribers. They also do livestreams. They upload edited versions afterward, so with their permission, we edited their livestream footage too and tried running a fan channel. We said it could help their content reach more people, got permission, and uploaded videos edited by AI. And those videos got more views.
+
+<span class="paragraph-timestamp" data-ts="10:42">10:42</span> **Seungjoon Choi** Really?
+
+<span class="paragraph-timestamp" data-ts="10:43">10:43</span> **Seungjoon Choi** Really?
+
+<span class="paragraph-timestamp" data-ts="10:44">10:44</span> **Jonghyun Park** Yes, and there's a clear reason for that. This person wasn't originally a video producer. Of course, neither were we, so the videos I edited for our channel were less polished than videos made by professionals because my editing skills were much more limited. This person has a day job too. They're actually an athlete. As an athlete, they edit and upload these videos on the side, so naturally, they're not a professional producer. Anyway, we made a new channel for the AI-edited videos and uploaded them with zero subscribers, but they still got more views. Seeing that, I think AI may have gotten better than nonprofessional editors.
+
+<span class="paragraph-timestamp" data-ts="11:28">11:28</span> **Seungjoon Choi** It may not be outstanding,
+
+<span class="paragraph-timestamp" data-ts="11:29">11:29</span> **Seungjoon Choi** but it could do average work or perhaps even better than average.
+
+<span class="paragraph-timestamp" data-ts="11:35">11:35</span> **Jonghyun Park** Then they liked the videos so much
+
+<span class="paragraph-timestamp" data-ts="11:36">11:36</span> **Jonghyun Park** that they asked us to upload them to their main channel, and that's what we're doing now. Views rose noticeably after that. Of course, the sample size is still small, so we can't say for certain that views shot up because the editing was better. Still, we're seeing positive results like these. AI is doing quite well at editing too. I think that's one way to look at it.
+
+
+## SudoCut Launches: Shorts Clipping and Automatic English Dubbing    *12:11*
+
+<span class="paragraph-timestamp" data-ts="12:11">12:11</span> **Jonghyun Park** So I created a service called SudoCut and released it for people to use. Then what comes after editing? The next thing I started was clipping. Making Shorts. Here's a recent example of clipping: a livestream we did. We streamed for about two or three hours. After editing, that one or two-hour livestream becomes a long-form video. Then we take the highlights, cut out the parts people might enjoy, and turn those clips into Shorts. That's because these days, people really like content in short bursts. So we picked out the best moments and posted a whole series of clips. At first, what we did was simply pick out the right segments. There were no added effects. We talked about things people might be curious about, and then we moved on to motion graphics. This is where today's topic, Video as Code, comes in: the LLM writes code to create motion graphics that suit the content of each clipped Short. This one has even been dubbed into English. Let's listen.
+
+<span class="paragraph-timestamp" data-ts="13:52">13:52</span> **Seungjoon Choi** It sounds quite different from Jonghyun Park's voice.
+
+<span class="paragraph-timestamp" data-ts="13:53">13:53</span> **Seungjoon Choi** It sounds quite different from Jonghyun Park's voice.
+
+<span class="paragraph-timestamp" data-ts="13:55">13:55</span> **Jonghyun Park** That voice came from our original Korean livestream being automatically dubbed into English, so it doesn't quite fit. But we could make a Korean version with the original audio. So the idea is to make motion graphics that fit the content. I've been trying this for about two weeks now.
+
+
+## Opus 5.5 Ignites Video as Code: Comparing the Tools    *14:16*
+
+<span class="paragraph-timestamp" data-ts="14:16">14:16</span> **Jonghyun Park** The turning point came with Opus 5.5. We all saw how well it worked.
+
+<span class="paragraph-timestamp" data-ts="14:24">14:24</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="14:25">14:25</span> **Jonghyun Park** So this idea of Video as Code, or Code as Video, this whole concept started taking shape with Opus 5.5. So I tested it. I tried Opus 5.5 at medium and xhigh, along with GPT-6.1 Sol and GPT-6 Astra, and compared the motion graphics they made. I gave them all the same task. This is the sort of motion graphics they produced, and Opus 5.5 is really good. But GPT-6 is good too. In other words, today's models all do a decent job at this. That was my conclusion. Then I ran another experiment. Ultimately, we need to give the LLM tools to use. So I tried giving it several different tools. ManimGX was made by a friend named Sina, who stayed with us earlier. It's an upgraded Manim library. It's fully compatible with Manim, one to one, so you can think of it as giving the model Manim. I told it to use Manim and Python to make motion graphics. Then I gave it nothing and told it to figure it out. There are also quite a few projects like this on GitHub already. Remotion and HyperFrames are libraries for making graphics like these. So I tried giving it each of those and told it to make something with them. Each resulting video had different kinds of graphics. They really are different from one another.
+
+<span class="paragraph-timestamp" data-ts="16:09">16:09</span> **Jonghyun Park** But when it comes to which is best, it's hard to choose. I found it hard to pick a clear winner. But the important thing is, it does a decent job with whatever tool you give it. Even with no tools at all, it can write the motion graphics code from scratch and produce visuals that aren't bad. That's the conclusion I came to. Then I started thinking about
+
+
+## Codex Learns from a Paid Course to Make Kurzgesagt-Style Animation    *16:40*
+
+<span class="paragraph-timestamp" data-ts="16:40">16:40</span> **Jonghyun Park** how to improve what I showed you at the beginning. That led me to the Kurzgesagt style. So how was that animation made? It was really simple. I found a paid course on how to make videos like that. Our cofounder bought it, opened Codex, and told it to watch the course. “Watch the course carefully and study how to make motion graphics.” Then we told it to make a video. Of course, we went through a few iterations. “Try this. Try that.” “This part doesn't seem quite right, so try something else.” As we kept doing that, moving through version 3, version 4, and improving it each time, we ended up with a video at this level. It did a really good job. So, explainer videos. Yes.
+
+<span class="paragraph-timestamp" data-ts="17:41">17:41</span> **Seungjoon Choi** What does the part labeled Craft Pass mean?
+
+<span class="paragraph-timestamp" data-ts="17:45">17:45</span> **Jonghyun Park** That's a label we added during development. I didn't work on that part myself, so I'm not sure how it was done. I think someone fixed a step they weren't happy with and simply gave it the label Craft Pass.
+
+<span class="paragraph-timestamp" data-ts="18:02">18:02</span> **Seungjoon Choi** But it might not have been a person who evaluated it, right?
+
+<span class="paragraph-timestamp" data-ts="18:03">18:03</span> **Seungjoon Choi** But it might not have been a person who evaluated it, right?
+
+<span class="paragraph-timestamp" data-ts="18:07">18:07</span> **Jonghyun Park** In this case, a person did. So I'd like to take this opportunity to thank our cofounder, Jiho. Jiho did an excellent job. That's Jiho Yang.
+
+<span class="paragraph-timestamp" data-ts="18:19">18:19</span> **Seungjoon Choi** Nicely done.
+
+<span class="paragraph-timestamp" data-ts="18:20">18:20</span> **Jonghyun Park** So at first glance, the video looks pretty good.
+
+
+## Is a Convincing Video slop or Good Content?    *18:21*
+
+<span class="paragraph-timestamp" data-ts="18:21">18:21</span> **Jonghyun Park** But even if it looks convincing, the next question is: is it really good content, or is it slop? That's what I started to wonder. Because that's a really difficult question. When Claude Code first came out, it made frontend pages so well. Back then, we thought, “Wow, it does a great job.” But when we look at those web pages now, we often call them slop. So the pages AI made when it first started making web pages well aren't pages we'd consider exceptionally good by today's standards. We were just amazed it could do something it couldn't before. Could video be at that same stage now? So is this really good content? I found myself asking the same question. To answer it, here's what I tried:
+
+
+## Testing Viewer Reactions Across Channels in Different Categories    *19:13*
+
+<span class="paragraph-timestamp" data-ts="19:13">19:13</span> **Jonghyun Park** I created a number of YouTube channels and uploaded videos I thought were good. I made channels across a range of categories. VTubers, politics, podcasts, sports, tech reviews—videos like those. Those are just examples. That's not exactly what I did. I took videos from a range of categories like that and edited them, avoiding copyright issues by getting permission or using videos already cleared for reuse. Some people say, “Feel free to use my videos however you like.” I edited videos like those and uploaded them. I added motion graphics, too, and uploaded polished videos. If viewers really enjoy watching them and leave positive comments and lots of likes, then they're good videos. That was my assumption: ultimately, viewers are the judges. With that in mind, I uploaded them to see for myself, and surprisingly, videos in about 20% of the categories were really well received. It's been about a month since we started this experiment. The first videos we uploaded a month ago were naturally a little rough, but we've kept improving as we've posted more, which may be part of the reason. Whatever the reason, views have steadily risen, along with subscribers and comments. What's surprising is that I've already received over 1,000 comments
+
+<span class="paragraph-timestamp" data-ts="20:56">20:56</span> **Jonghyun Park** across all these channels and videos. I haven't counted, but there may be several thousand. Probably. Anyway, I read as many as I could, and not one asked, “Was this made with AI?” So I think we've reached a point where people can't tell. As for whether it's truly good content, some of it was, and some of it wasn't. So that's something I still need to work out. In any case, whether it's editing or motion graphics, B-roll, or added explanations and supporting material, AI does seem to help make good content in various ways, and I think it'll help even more in the future. That's my conclusion for now. So I'm going to keep doing this. We're filming for YouTube right now, too, and our immediate goal is to make good content and share it with viewers. To do that, I want to use AI well to make good content. That's my goal. So I'm looking for creators who'd like to try projects like this with me. I'm sure there are people who have valuable stories to tell but can't get started because editing is a barrier. There must be plenty of them. I'd like to help those people make good content together, and figure out how to use AI better and how more people can share their valuable knowledge, insights, and stories effectively.
+
+<span class="paragraph-timestamp" data-ts="22:36">22:36</span> **Jonghyun Park** If you'd like some help, please get in touch with me.
+
+<span class="paragraph-timestamp" data-ts="22:40">22:40</span> **Seungjoon Choi** What was the reaction when you presented this there?
+
+
+## Local Reactions and Editing Standards That Vary by Category    *22:41*
+
+<span class="paragraph-timestamp" data-ts="22:41">22:41</span> **Jonghyun Park** Most people there wanted to know this:
+
+<span class="paragraph-timestamp" data-ts="22:45">22:45</span> **Jonghyun Park** First, I hadn't explained the technical details behind it. They wanted to know how I actually made it work—the process. They were really curious about that. Basically, I built it by teaching AI to follow my editing style. So they asked whether I'd fine-tuned the model, for example. Since the event was in San Francisco, people seemed especially interested in that.
+
+<span class="paragraph-timestamp" data-ts="23:14">23:14</span> **Seungjoon Choi** Did you do any fine-tuning, though?
+
+<span class="paragraph-timestamp" data-ts="23:16">23:16</span> **Jonghyun Park** I didn't fine-tune the model.
+
+<span class="paragraph-timestamp" data-ts="23:17">23:17</span> **Jonghyun Park** There are places where I can clearly see that fine-tuning would make it better. So I might end up doing it.
+
+<span class="paragraph-timestamp" data-ts="23:28">23:28</span> **Seungjoon Choi** Sounds like it. I see.
+
+<span class="paragraph-timestamp" data-ts="23:29">23:29</span> **Jonghyun Park** Another thing people were curious about was this: I deliberately tried videos from a range of categories. Because our AI Frontier channel is a podcast about AI, and the sudoremove channel I run separately is similar, I thought other kinds of channels would be quite different. People would have different reasons for watching them, too. So to satisfy those viewers, the editing style—for entertainment content, say— would have to be completely different. That's what I thought, and people were curious about that too. I mean, of course the styles would all be different. Did you find any common criteria? I think a lot of people were curious about that. Of course, the answer differs by category. The motion graphics style probably should, too. That's what I've found so far. I need to spend more time trying different approaches, figuring out what works for each category, and enabling AI to do it. Publishing better content that way will probably be the work ahead.
+
+
+## Original Storytelling as the Real Value of Content    *24:38*
+
+<span class="paragraph-timestamp" data-ts="24:38">24:38</span> **Seungjoon Choi** So you don't generate everything automatically. You start with something a person created, whether you're making clips or editing. That's the direction you're pursuing.
+
+<span class="paragraph-timestamp" data-ts="24:49">24:49</span> **Jonghyun Park** That's my personal view and the hypothesis behind this work. We're recording right now. This original recording will be edited, perhaps with motion graphics added or explanatory videos made and inserted. Viewers will see something different, because we won't publish this original recording. When viewers watch the edited version, the main reason they watch—the greatest value— is already here in the original recording. Editing builds on that and makes it better, along with motion graphics and the explanatory videos we add. The reason viewers watch this video is probably to hear what I, Seungjoon Choi, or Chester Roh, who's too busy to join us today, think and say, or to get the information we share. That's what they're here for. That's where the greatest value lies. So rather than making content entirely from scratch with AI, I focus on the original storytelling of a real person speaking and making that a little better. That's where I'm putting my effort.
+
+<span class="paragraph-timestamp" data-ts="26:13">26:13</span> **Seungjoon Choi** I think that's an important point. It feels like we're at a crossroads. What you value or bet on determines the direction you take.
+
+<span class="paragraph-timestamp" data-ts="26:24">26:24</span> **Jonghyun Park** Of course, even without an original recording,
+
+<span class="paragraph-timestamp" data-ts="26:25">26:25</span> **Jonghyun Park** I think you could make good content like our friend Sina did earlier. I just think that's the harder path.
+
+<span class="paragraph-timestamp" data-ts="26:35">26:35</span> **Seungjoon Choi** As humans, we can't help being drawn
+
+<span class="paragraph-timestamp" data-ts="26:36">26:36</span> **Seungjoon Choi** to human charm, though I don't think we can be too sure of that these days. Anyway, I really enjoyed watching it. You put a lot of work into preparing it, too.
+
+
+## How Claude and GPT Differ in Presentation Deck Design    *26:49*
+
+<span class="paragraph-timestamp" data-ts="26:49">26:49</span> **Seungjoon Choi** Did Claude design this deck, by any chance? I mean your presentation slides.
+
+<span class="paragraph-timestamp" data-ts="26:56">26:56</span> **Jonghyun Park** No, not this deck. I made this deck with GPT-6.1 Sol. But it's a bit of a mix. The deck didn't just appear out of nowhere. I had already made design documents, mood boards, and various design systems beforehand. When I made those earlier, I probably worked with Claude.
+
+<span class="paragraph-timestamp" data-ts="27:18">27:18</span> **Seungjoon Choi** Then that influence may have carried over.
+
+<span class="paragraph-timestamp" data-ts="27:19">27:19</span> **Seungjoon Choi** Then that influence may have carried over.
+
+<span class="paragraph-timestamp" data-ts="27:21">27:21</span> **Jonghyun Park** I used several models until I was happy with it, so it's probably a mix.
+
+<span class="paragraph-timestamp" data-ts="27:27">27:27</span> **Seungjoon Choi** I guessed Claude because GPT's default line spacing is a little tighter. And a preference for cream colors seems characteristic of Claude.
+
+
+## Generative Misreading at a House Honoring Nam June Paik    *27:39*
+
+<span class="paragraph-timestamp" data-ts="27:39">27:39</span> **Seungjoon Choi** Now, let me pick up from here. So today, starting with Jonghyun Park's video editing, I've also prepared a few things related to creativity. First, yesterday I performed with some artist friends for the first time in a while. Among my artist friends, there's PROTOROOM, run by artists Hoonida Kim and Seungbum Kim. Artist Shin Seung Back and I have kept meeting for over ten years, and we gathered earlier this year around the theme “Uneven Futures.” This time, at a space called “House Remembering Nam June Paik” in Dongmyo, there's an exhibition underway, and they sometimes hold performances. I also took part as an invited artist with “Generative Misreading,” the piece I showed earlier. Let's watch a little of that video. Listen to the sound. Here, they're playing the bytebeat I mentioned earlier using code with shift operators and numbers. They built an actual device for it, and they perform with it as well as exhibit it. My part was to take
+
+
+## Viznut’s bytebeat Code and Exploring Sound with Evolutionary Algorithms    *28:59*
+
+<span class="paragraph-timestamp" data-ts="28:59">28:59</span> **Seungjoon Choi** the code you see here and read their work differently—to misread it. Misalignment has been a hot topic lately. Misalignment. And in magic, there's misdirection. If I had to put this in English, I'd call it misreading. What would it mean to misread something generatively? I made the piece to pose that question. Basically, what you see here is t times 8, ORed with t shifted right by 8 bits. It's actually code discovered by Viznut, and t represents time. If you turn values calculated over time into music— into sound—they sound like music. I refined this part a little. Originally, depending on the person, it can be much harder to listen to. Here, I'm using an evolutionary algorithm to explore different combinations of code. Let's listen to one of them. It might be a bit loud. You can hear the pulse here. If a sound like this is lower in pitch, it can sound like a drum. You can explore a whole range of sounds. So I started by trying to read the two artists' work closely, and, as you saw earlier, there are places where constants like n1 or n2 can go. The program explores those values automatically. Click here and you get this sound; click there and you get that sound. I made it easy to try them quickly. Up to this point, I was just reading it closely,
+
+<span class="paragraph-timestamp" data-ts="30:50">30:50</span> **Seungjoon Choi** but this bytebeat code itself wasn't originally made to produce sound. The fact that parts of it can sound like music was discovered by misreading the code. So this is all about continuing to misread things.
+
+<span class="paragraph-timestamp" data-ts="31:09">31:09</span> **Jonghyun Park** Like a sine wave from that formula, y equals t and so on—
+
+<span class="paragraph-timestamp" data-ts="31:10">31:10</span> **Jonghyun Park** though it wouldn't be a sine wave, since it uses a shift. You generated that waveform and just played it, right?
+
+<span class="paragraph-timestamp" data-ts="31:20">31:20</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="31:21">31:21</span> **Seungjoon Choi** Basically, you can change those things around. There are samples the artists performed. I received about 12 of those samples, and I thought number 3 was pretty interesting. Number 3 was interesting, and number 9 was too. If you play several of these across multiple channels instead of just one, it can sound like different instruments. For this, I ran UMAP. I didn't write separate code for it. I was exploring the latent space. Up to that point, I was reading it closely,
+
+
+## Misreading Sound as Images and Emoji    *32:03*
+
+<span class="paragraph-timestamp" data-ts="32:03">32:03</span> **Seungjoon Choi** but my next attempt was to take number 3 from earlier and view it as an image. Let's listen for a moment. You get an intriguing image like this. I turned what was originally code into sound, and now I've turned that into an image. But when you've been coding for a long time, you realize that names are arbitrary. It’s the same in semiotics. As with the signifier and the signified, being called Seungjoon Choi doesn’t represent my atomic structure; it’s an arbitrary relationship. Right. The same goes for variables. So being able to work with names is very important in programming. Once you name something, you can control it, almost like a wizard. Ursula Le Guin, who wrote the wonderful fantasy series The Earthsea Cycle, also writes about how knowing a name lets you intervene and give commands. So if you know a name, you can use code to manipulate something. And because that code can actually operate things like lights and motors in the physical world, I had this image of language that intervenes in the world. I worked on reading that language in ways that weren’t originally intended. Let me briefly play what I showed you earlier. The part shown here was read as a bear. I ran a regression to find an emoji whose pixels resemble this part. There’s actually no connection at all, but it’s like when we look at clouds and see faces in them. There’s a concept called pareidolia, and I made it read things that way.
+
+<span class="paragraph-timestamp" data-ts="34:09">34:09</span> **Seungjoon Choi** But once I forced that reading, this acquired the meaning of a bear, and this acquired the meaning of a shooting star. Here, I represented this structure as a kind of mathematical knot and generated its trajectory. This is arbitrary too. So I was exploring how it could be read.
+
+<span class="paragraph-timestamp" data-ts="34:37">34:37</span> **Jonghyun Park** In any case, you designed the sound in code,
+
+<span class="paragraph-timestamp" data-ts="34:38">34:38</span> **Jonghyun Park** represented the resulting sound as an image, then matched that image with similar ones to turn it into an emoji and give it a sort of nickname. So the emoji became its nickname.
+
+<span class="paragraph-timestamp" data-ts="34:52">34:52</span> **Seungjoon Choi** Right. It originally had no such name, but emojis have names for concepts as well as objects. This time, I used those to force another reading. By continuing to try to misread it, I wanted to see how far I could get from the original bytebeat code.
+
+<span class="paragraph-timestamp" data-ts="35:13">35:13</span> **Jonghyun Park** Let me ask one question. You made sounds with that code, which several artists
+
+
+## Can You Predict the Sound from Code Alone? The verifiability Problem    *35:14*
+
+<span class="paragraph-timestamp" data-ts="35:14">35:14</span> **Jonghyun Park** designed, right? I imagine everyone else is thinking the same thing: looking at that code, you can’t tell at all what it will sound like.
+
+<span class="paragraph-timestamp" data-ts="35:28">35:28</span> **Seungjoon Choi** You have to do it a lot.
+
+<span class="paragraph-timestamp" data-ts="35:29">35:29</span> **Seungjoon Choi** With practice you can, but at first you usually can’t tell. And it’s hard to predict the whole thing perfectly. It’s hard to predict what value t will produce when it reaches, say, ten thousand. You really have to calculate it to know, though you can develop some intuition for roughly what it might sound like if you do it a lot.
+
+<span class="paragraph-timestamp" data-ts="35:51">35:51</span> **Jonghyun Park** So when those artists design those formulas,
+
+<span class="paragraph-timestamp" data-ts="35:52">35:52</span> **Jonghyun Park** do they start with an idea of the sound, design a formula, and listen, then change the formula and listen again if they don’t like it? Is that how it works?
+
+<span class="paragraph-timestamp" data-ts="36:03">36:03</span> **Seungjoon Choi** Yes. The interface for tinkering with it
+
+<span class="paragraph-timestamp" data-ts="36:04">36:04</span> **Seungjoon Choi** is on the actual hardware, with sliders labeled A and B. But those change the constants. To change the structure of the code, you have to go through a lot of trial and error. But if you use an evolutionary algorithm like I did earlier, you can explore the space of possibilities to see how the operators might be combined in advance. When I tried it, though, the quality was much worse than what people had worked hard to make.
+
+<span class="paragraph-timestamp" data-ts="36:33">36:33</span> **Jonghyun Park** That brings me back to whether this is verifiable.
+
+<span class="paragraph-timestamp" data-ts="36:34">36:34</span> **Jonghyun Park** I keep wondering about that, with evolutionary algorithms too. Listening to a sound and deciding whether it’s good is something a person is still doing, right?
+
+<span class="paragraph-timestamp" data-ts="36:47">36:47</span> **Seungjoon Choi** Right. Besides this experiment,
+
+<span class="paragraph-timestamp" data-ts="36:48">36:48</span> **Seungjoon Choi** in another experiment, I wondered whether models like Opus could compose music, and tried to find out whether they could hear it. But both ChatGPT and Opus say they still can't hear. They can, however, create a spectrogram and view it as an image. A spectrogram can show the shape of a sound not just through frequency analysis, but in other ways too. For example, with a spectrogram rather than an FFT, you can use regression to imitate an instrument or optimize for its sound. So you can take a sense of what good music feels like, translate it into something you can express, and optimize for that. If models eventually internalize the ability to hear sounds and develop tastes, their performance will improve greatly, and they'll get better at this exploration too.
+
+<span class="paragraph-timestamp" data-ts="37:47">37:47</span> **Jonghyun Park** I also find it very difficult to judge what makes a good video, so I had a similar question: how do people decide whether a sound is good? It feels like you're tackling a similarly difficult problem that hasn't been fully solved yet.
+
+<span class="paragraph-timestamp" data-ts="38:06">38:06</span> **Seungjoon Choi** Separately from my work, artist Shin Seung Back
+
+
+## YAMNet Sound Classification, Emoji Compositing, and a Pixel Art Game    *38:07*
+
+<span class="paragraph-timestamp" data-ts="38:07">38:07</span> **Seungjoon Choi** used a sound classifier called YAMNet to test which of 200,000 audio samples those beeping sounds from earlier resembled. He ran experiments like that. So what did the model hear them as: birdsong, an instrument, or strange noise? Shin Seung Back also experimented with having it play those sounds back. That was interesting too. My work, though, explored something more symbolic. When things like an abacus and a bear appeared, combining an abacus with a floppy disk would produce a calculating machine. I got the idea for these combination rules from Little Alchemy, an alchemy game, and had it create rules for combining things. Then I wondered how much further it could go. Since it was an LLM, I used those rules in a template with a prompt, and had it use the emojis in the template as characters or elements of a scene to generate the prompt itself. So now you get a long prompt like this, with the crescent moon and bear from earlier: one thing meets another, and something happens. It chooses a format on its own and turns those elements into a creative work. I wanted to delegate the whole process. I think this is what came out of it. So I tried it without knowing what it did.
+
+<span class="paragraph-timestamp" data-ts="39:51">39:51</span> **Seungjoon Choi** I know now, but when I first saw it during the performance, I tried it with no idea what was going on. You have to make guesses. How do you play the thing I showed earlier? There was an abacus earlier, and I think you did something with its beads, then the story ended when you lit up every window. That was how it concluded. I had deliberately aimed for pixel art, which is why it looks like that. But with Opus 5.5, whatever the prompt, as Jonghyun Park showed earlier, it would make a story out of anything. So it began with a simple piece of code, but through repeated misreadings, it became this creative work. Looking at the history of media art,
+
+
+## John Cage and Nam June Paik: Interpreting Chance and a Mass Production Hypothesis    *40:47*
+
+<span class="paragraph-timestamp" data-ts="40:47">40:47</span> **Seungjoon Choi** John Cage and Nam June Paik did this, and, going further back, so did Mozart. Artists have long used randomness or externalized their thoughts, then interpreted what emerged by chance. My work follows that tradition. What kind of work would the model do if we assumed it had creativity or curiosity, though it doesn't, and delegated work to it? My hypothesis was that we'd need a template, but if we had a great many prompts like these and could measure the quality of the stories they produced, perhaps we could produce stories on a massive scale. And if we made enough, some of them might be good. Models have become capable enough for me to consider that possibility.
+
+<span class="paragraph-timestamp" data-ts="41:41">41:41</span> **Jonghyun Park** Yes, I understand.
+
+<span class="paragraph-timestamp" data-ts="41:42">41:42</span> **Jonghyun Park** Since coming here, I've been asking
+
+
+## Why LLM Creativity Struggles to Leave the Training Distribution    *41:45*
+
+<span class="paragraph-timestamp" data-ts="41:45">41:45</span> **Jonghyun Park** a lot of questions about creativity. That's because I've met many people who build video generation models. Ultimately, both LLMs and diffusion-based video models learn from a distribution of human data and produce what is statistically most plausible within it. So it's hard for them to go beyond that distribution. Whatever we ask them to write, it all sounds alike— with that “metallic” feel we hear in their wording. Seungjoon Choi even saw slides I'd made earlier and said, “Looks like Claude made those.” We already recognize that kind of pattern. AI ends up producing predictable things that seem far from creative. So even though LLMs are smart, how can we get them to be creative? When I think about creativity, it seems that if the distribution of human-made works so far extends this far, creativity might mean making works outside it. If so, how can we go beyond that distribution without producing something completely absurd? Deliberate misreading—reading something wrong on purpose to push the result beyond those boundaries— could be a way to help these models show creativity. That's what came to mind as I listened to you.
+
+<span class="paragraph-timestamp" data-ts="43:18">43:18</span> **Seungjoon Choi** In our last recording,
+
+<span class="paragraph-timestamp" data-ts="43:21">43:21</span> **Seungjoon Choi** we talked about the convex hull of ideas in math— the convex hull of ideas, remember? If we look at the title of this work, “Generative Misreading,” and focus on “generative” rather than “misreading,” in machine learning, strictly speaking, we train on data to build a model, and the model can produce new data within that data's distribution. That's the more precise meaning of “generative,” right? Getting beyond inferring patterns and producing similar things has long seemed out of reach. But in math, models have become so good at it that they sometimes solve problems by making unlikely connections. Say you have mathematical fields A and B, two fields within mathematics that people wouldn't normally think to connect. A model connects them and solves a new, difficult problem through that connection. Even if it stays within the convex hull, the way it combines things may show a kind of unexpected creativity. Could we push that process to its limit through sheer volume? That's what it made me think about.
+
+<span class="paragraph-timestamp" data-ts="44:36">44:36</span> **Jonghyun Park** I've been thinking along similar lines.
+
+
+## interpolation, out of distribution, and an Expanding Territory of Exploration    *44:37*
+
+<span class="paragraph-timestamp" data-ts="44:37">44:37</span> **Jonghyun Park** When DALL-E and similar models first appeared, I think the first example was an astronaut riding a horse. An astronaut in a spacesuit riding a horse. That was with DALL-E 2. To me, that's exactly the kind of example we're discussing. A person riding a horse is a very common image, and an astronaut—an astronaut in a spacesuit— is also a common image. But combine the two, and that's interpolation. The result was a plausible image that, by the standards of the time, felt quite creative. So that image seems to have found a gap in the distribution of the countless images we've seen throughout our lives—an interpolation point that hadn't been filled in. Can we call that creativity? If I were to give it a label now, I'd call it the first stage of creativity through combination. But if it used neither a horse nor a spacesuit, and combined elements we've never seen to create an image unlike anything we've ever seen, one that's out of distribution, then an image like that might be the next stage of creativity. But it would have to be worth looking at to count as creative. Otherwise, it would just be random noise. Could this be the answer to moving beyond that boundary in a creative way without producing random noise?
+
+<span class="paragraph-timestamp" data-ts="46:09">46:09</span> **Jonghyun Park** Or is this “generative misreading” ultimately a kind of creativity that finds interpolation points hidden within the distribution? That's what I'm wondering.
+
+<span class="paragraph-timestamp" data-ts="46:20">46:20</span> **Seungjoon Choi** My hunch is we'll pick the low-hanging fruit nearby. Even if we don't really cross the boundary, there must still be nearby spaces, as you said earlier, that haven't been filled yet. Filling those gaps will bring some easy gains for a while. Meanwhile, the models' capabilities will improve. No one can say for sure what happens after that. The search space will expand too, so new gaps will appear. Those gaps could become the next generation's low-hanging fruit. That's how I picture the territory continuing to expand. One reason I keep
+
+
+## A Shaken Math Community Through the Eyes of Terence Tao and Grant Sanderson    *47:04*
+
+<span class="paragraph-timestamp" data-ts="47:04">47:04</span> **Seungjoon Choi** looking at mathematics is that Go shocked us first, about ten years ago. The fact that humanity's frontier in Go was shaken was deeply symbolic. But mathematics, unlike other disciplines or sciences, seems to involve rather solitary work, while its community has an ecosystem that keeps the field growing. That feels similar to Go, at least to me. Now those people are among the first to be deeply shaken. When I look at Terence Tao these days, setting all this aside, he looks exhausted. I find his appearance worrying. That's the impression I get.
+
+<span class="paragraph-timestamp" data-ts="47:52">47:52</span> **Jonghyun Park** Just looking at his face, you can see how gaunt he looks.
+
+<span class="paragraph-timestamp" data-ts="47:53">47:53</span> **Jonghyun Park** Just looking at his face, you can see how gaunt he looks.
+
+<span class="paragraph-timestamp" data-ts="47:57">47:57</span> **Seungjoon Choi** So here, too, he says the romantic era has passed. The romantic era of mathematics is over, and now we must move into the age of the Industrial Revolution. We can't keep doing things the old way; we need to move forward in a new way. But he also seemed to feel some bitterness or regret about that. Then there's Grant Sanderson, whom we mentioned earlier. Grant Sanderson looks cheerful. He sees it from a different perspective. In this video, Grant Sanderson expressed optimism. I think the video came out yesterday. No matter how far the models advance, there's still mathematics to explore, and plenty of people who want to understand it. I haven't watched the whole video closely myself; I've only seen an AI summary of it. And that optimism has also made him a target of criticism on the timeline. Right now, instead of talking about hope, we should empathize with what mathematicians are actually going through. We should feel for them, something along those lines. You could see that in the reactions on the timeline.
+
+
+## Are Explainers and Communicators Safe in the AI Era?    *49:08*
+
+<span class="paragraph-timestamp" data-ts="49:08">49:08</span> **Seungjoon Choi** But given what Jonghyun Park showed us earlier, are they safe? The people who explain things, the communicators.
+
+<span class="paragraph-timestamp" data-ts="49:15">49:15</span> **Jonghyun Park** Probably not. But even for people who explain things, Sina, who co-hosted the event with me, ultimately wants to play the role of 3Blue1Brown. To become a platform that explains things well to a huge audience. In fact, Sina doesn't intend to stop at videos and wants to make something interactive. So where does the value come from? No matter how good the tools are, the subject you want to explain, the ideas, and the core concepts are things the creator ultimately has to understand fully. That's how Sina sees it. But I don't agree. Of course, Sina also thinks AI will do all of that well in the future. Say someone who wants to learn says, "I'm curious about this." Since you mentioned the Fourier transform earlier, for example, "I'm curious about the Fourier transform." Then visuals designed to explain the Fourier transform would appear right there on the spot to help me understand it. That's the kind of platform Sina envisions. So are explainers safe for now? Or will users all learn by interacting with content generated instantly like that? When I think about it, I'm sure explainers' standing will improve. And I don't think they'll disappear. Because often I'm not even sure exactly what I'm curious about.
+
+<span class="paragraph-timestamp" data-ts="50:48">50:48</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="50:49">50:49</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="50:49">50:49</span> **Jonghyun Park** Explainers can say, "You might be curious about this." "This is a really valuable concept or piece of knowledge, so take a look." If we think of their role as making recommendations like that, I think explainers will still have work to do. Looking at it that way, I can understand why 3Blue1Brown looks so excited. It's as if he'll grow wings and soon explain all the things he's wanted to explain.
+
+<span class="paragraph-timestamp" data-ts="51:14">51:14</span> **Seungjoon Choi** He's always been excellent at it, and I think he will continue to be. I imagine his point now is that this isn't a time just for pessimism; we should look for new possibilities. But before we started recording, we talked about whether directing would be safe. We touched on that, remember? Ultimately, Jonghyun Park's approach and the work I showed earlier both start with an intention. Even without writing a script, they become stories, and we have an idea of the message we want to convey when we use AI to make them. But is that kind of thinking itself safe? Is the idea of creating a story structure safe? Jonghyun Park's approach is outside my area of expertise, but it felt a bit like growth hacking to me. That is, when you have consumers or users, you optimize for them and let the market judge. So the idea that the market can judge the story structure itself could hold true as well.
+
+<span class="paragraph-timestamp" data-ts="52:14">52:14</span> **Jonghyun Park** Right, right. AI seems able to generate
+
+<span class="paragraph-timestamp" data-ts="52:15">52:15</span> **Jonghyun Park** a whole range of stories. But whether those stories are actually good, I don't know. Some seem good and others don't. If I could look at a story and say with certainty, "This is good," I think I'd curate the stories myself. The problem is, there's no guarantee I'm right. So I ultimately leave the judgment to the market and look at what the market rates highly. Then I try to interpret the results afterward. "So these are the things users like. Why do they like them?" Ultimately, that could give us a much better clue to what users actually like. With explainer videos, people might like one because they're interested in its particular topic. Or they might like it because the explanation is exceptionally good. Either way, if people like it, it'll get lots of likes and plenty of comments saying thank you. If you accept donations, the amounts will vary too. Ultimately, it's a matter of exploration. But for now, evaluating the results is something only people can do, in my view. That's why we release them to the market. If, in the future, we think AI can take people's place and reliably judge whether something is good or bad, there'd be no need to do it this way. We could leave that to AI too. But will that day come?
+
+
+## Value Moves Toward Scarce Places Where AI Cannot Judge    *53:46*
+
+<span class="paragraph-timestamp" data-ts="53:46">53:46</span> **Jonghyun Park** Chester Roh said something similar last week: value ultimately moves to what is scarce. And what's scarce is likely to be what AI cannot judge. Because if AI could judge everything, its choices would flood the market with similar content. Content that stood apart would inevitably win people's affection. So will AI definitely be able to do everything well in the end? I absolutely don't think so. Our channel and I, along with Seungjoon Choi and Chester Roh, tend to be optimistic about AI eventually being able to do everything. Even so, I don't think it can do that.
+
+
+## A Kindergarten Song Video and Handwritten Animation Made by Opus    *54:30*
+
+<span class="paragraph-timestamp" data-ts="54:30">54:30</span> **Seungjoon Choi** We may not all agree. One last thing I'd like to share as an aside concerns something I need to do for my day job. I need to make a video, and our kindergarten has its own song. It's called "Play Is a Child's Life." I had the sheet music, but only a piano recording. So I extracted the music from the score. You'll hear a bit of it in a moment. I made a tool for that. I've now made a conventional music tracker and other tools for working with music, which let me produce an MP3 file. But the quality is lower than with SoundFonts or samples, so I used Suno to finish it. I made a video like this. The handwriting you see here was done by Opus. When I worked on fonts last time, I found that current models, including Opus, understand Korean letter strokes and similar details quite well, so I tried it. Children drew these pictures, but Opus did all the animation. It was a lot of fun to try.
+
+
+## What Should Not Be Generated, and Meaning That Cannot Scale    *56:22*
+
+<span class="paragraph-timestamp" data-ts="56:22">56:22</span> **Seungjoon Choi** But one important point is that these pictures, too, could probably be generated in any number. Realizing that I shouldn't do that was an important lesson. You can get help with some parts, but if you let AI take over others, those parts seem to lose their meaning. I felt that strongly while working on this, and heard the same feedback from people around me. If I'd generated even those pictures, people asked what value the result would have.
+
+<span class="paragraph-timestamp" data-ts="56:51">56:51</span> **Jonghyun Park** I agree with that completely. There are children who drew those pictures themselves, and in the most extreme case, for those children, just having their own drawings included makes it a valuable piece of work. Because they can say, "I drew that."
+
+<span class="paragraph-timestamp" data-ts="57:12">57:12</span> **Seungjoon Choi** And for people in this field who see it, if even those pictures were generated, it would have no value and could actually do harm. So in some fields, those parts must involve some friction, or I think some parts need to move slowly. So you can't scale something like this up. For children to draw the pictures, there has to be a meaningful process, so you can't scale it up.
+
+<span class="paragraph-timestamp" data-ts="57:38">57:38</span> **Jonghyun Park** Separately, that handwriting style—
+
+<span class="paragraph-timestamp" data-ts="57:39">57:39</span> **Jonghyun Park** the animation in the style of children's handwriting—looks quite good. I think this shows where we are right now. But does that lettering alone make the content valuable? I don't think it does. If a child had actually written it, that would have its own value. But looking at the lettering, I don't know. At least to me, it doesn't look strange. If you told me a child had written it, I might believe you.
+
+<span class="paragraph-timestamp" data-ts="58:17">58:17</span> **Seungjoon Choi** But children
+
+<span class="paragraph-timestamp" data-ts="58:18">58:18</span> **Seungjoon Choi** might not write this neatly. Three-year-olds can't write yet. Five-year-olds might write a little with practice. So in a way, this is something I think I can ask people to understand. But I had to do it this way because to time the lettering, a recording alone isn't precise enough. With the score as a reference, I can get all the timing right. So there's inevitably a mechanical aspect to this. Of course, I could scan the handwriting and convert it into strokes, but that would take much more work. So this was one part where I took the easier route.
+
+<span class="paragraph-timestamp" data-ts="58:59">58:59</span> **Jonghyun Park** In any case, nothing in this content falls below the minimum standard. So it's good enough. And by adding a touch of drawings made by the children themselves, then enhancing those drawings, you've made something the parents watching and the children's classmates can all enjoy.
+
+<span class="paragraph-timestamp" data-ts="59:19">59:19</span> **Seungjoon Choi** What I've been grappling with, as I mentioned before,
+
+
+## Compositional Hangul Fonts and Designing with Claude Code Alone    *59:20*
+
+<span class="paragraph-timestamp" data-ts="59:20">59:20</span> **Seungjoon Choi** is that design work sometimes comes my way, and I've been looking for an easier way to do it. I finished the modular Hangul font I started working on around the summer. That's 11,172 characters, was it? I've managed, to some extent, to arrange them to fit the available space, and I'm using the font now. But I'm still not sure. I still wonder whether it's actually a good font. It's better than it was before, though. So there are parts I'm still not happy with. For example, in my recent design work, even for the video I showed earlier, I never opened a video editing program. And when I do design work, I don't open a vector editing program either. So the layouts I'm making now do have a Claude feel to them, but they were all made in the Claude Code app. I divide up the photos and arrange the layout; I do all of that with the model.
+
+
+## Work Hours That Never Shrink and the Limits of Automatic Slides and Posters    *1:00:38*
+
+<span class="paragraph-timestamp" data-ts="1:00:38">1:00:38</span> **Seungjoon Choi** But it hasn't saved me that much time. That's because I wasn't satisfied with the results. And when I tried to get feedback, I had to decide that in some places, this photo should replace that one, or this wording should replace that wording. Those decisions weren't easy to get through. In the end, it takes about as much time as designing it myself. So there are parts where it works well, and types of content I can hand off and have it produce with little effort. Then there are parts I need to stay closely involved in. I still don't know exactly where the line is. It's still trial and error, but I don't know if I'll have the same concerns this time next year.
+
+<span class="paragraph-timestamp" data-ts="1:01:25">1:01:25</span> **Jonghyun Park** I think I, and probably everyone else,
+
+<span class="paragraph-timestamp" data-ts="1:01:26">1:01:26</span> **Jonghyun Park** are at a similar stage.
+
+<span class="paragraph-timestamp" data-ts="1:01:30">1:01:30</span> **Seungjoon Choi** The opportunities right now are unbelievable. I don't know.
+
+<span class="paragraph-timestamp" data-ts="1:01:31">1:01:31</span> **Seungjoon Choi** The opportunities right now are unbelievable. I don't know.
+
+<span class="paragraph-timestamp" data-ts="1:01:33">1:01:33</span> **Jonghyun Park** But I do think the pace of progress varies. In this area, I don't feel progress is especially fast. For example, making a polished presentation on its own, or making a poster on its own— to me, compared with a year ago, there doesn't seem to be much difference in that respect.
+
+<span class="paragraph-timestamp" data-ts="1:01:50">1:01:50</span> **Seungjoon Choi** Right.
+
+<span class="paragraph-timestamp" data-ts="1:01:51">1:01:51</span> **Jonghyun Park** I suppose it's hard to reward these tasks properly. There's no single right answer.
+
+
+## Style Convergence, slop, and Motion Graphics That All Look Alike    *1:01:56*
+
+<span class="paragraph-timestamp" data-ts="1:01:56">1:01:56</span> **Seungjoon Choi** As you said earlier, the moment someone thinks, “It's obvious this was made with AI,” unless the content is really good... If AI-made content is good, like some dramas popular in China, it can have value. But when style matters, if all the styles look alike, there's nothing rare about them. They just become slop. They may seem good at first, but once they become commonplace, people's standards rise, and they may fall below the passing mark, as you mentioned earlier. We're already seeing signs of that in motion graphics. Motion graphics all seem to be starting to look alike.
+
+<span class="paragraph-timestamp" data-ts="1:02:38">1:02:38</span> **Jonghyun Park** Exactly. Exactly.
+
+
+## Closing and a Preview of What’s Next    *1:02:39*
+
+<span class="paragraph-timestamp" data-ts="1:02:39">1:02:39</span> **Seungjoon Choi** Chester was busy again today, so we talked among ourselves. It's time for him to come back.
+
+<span class="paragraph-timestamp" data-ts="1:02:47">1:02:47</span> **Jonghyun Park** I'm flying back to Korea tomorrow. I've been spending all my time on what I'm doing here, so I haven't been able to keep up with the news. Once I'm back, I'll catch up on the news and see you again next week.
+
+<span class="paragraph-timestamp" data-ts="1:03:05">1:03:05</span> **Seungjoon Choi** We didn't get to discuss the news, but there was a lot of it. DeepSeek's Flash got an October 17 version, and Muse Wonder came out too. People say both threaten the frontier, or things along those lines. I think we'll keep hearing news like that. Let's talk about it another time. Great work today. Thank you.
+
+<span class="paragraph-timestamp" data-ts="1:03:27">1:03:27</span> **Jonghyun Park** Great work, everyone.
+
+<span class="paragraph-timestamp" data-ts="1:03:28">1:03:28</span> **Jonghyun Park** Great work, everyone.
