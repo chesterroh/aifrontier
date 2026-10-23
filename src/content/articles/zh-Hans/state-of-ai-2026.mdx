@@ -1,0 +1,328 @@
+---
+title: "State of AI 2026：模型能力、智能体、基础设施、商业与 AI 主权"
+description: "从五个主题解读 State of AI Report 2026。这份播客备稿汇集了原始图表、关键数据、指标解读时的注意事项，以及节目讨论问题。"
+publishedAt: 2026-10-23
+heroImage: "/articles/state-of-ai-2026/hero.jpg"
+tags:
+  - State of AI 2026
+  - 播客备稿
+  - AI 产业
+lang: "zh-Hans"
+draft: false
+---
+
+**模型究竟进步了多少？这些能力又在多大程度上转化成了实际工作成果、收入和国家竞争力？** 我们根据 Nathan Benaich 与 Air Street Capital 的 **State of AI Report 2026**，整理出本期节目值得讨论的五条主线。
+
+<ResourceLink
+  url="https://www.stateof.ai/"
+  title="State of AI Report 2026 — 主页亮点"
+  domain="stateof.ai"
+  description="2026 年 10 月 8 日发布。报告作者亲自挑选的关键变化与解读。"
+/>
+
+<ResourceLink
+  url="https://www.stateof.ai/State-of-AI-Report-2026.pdf"
+  title="完整幻灯片报告 PDF · 244 页"
+  domain="stateof.ai"
+  description="网站提供的幻灯片原版。PDF 页码比下文标注的幻灯片编号大 1。"
+/>
+
+**阅读说明：** 下文数据对应报告汇总时的情况，并非截至 2026 年 10 月 23 日的实时排名或价格。原始图表未经修改，点击图片可放大查看。每张图下方的链接均指向对应的 PDF 页面。**“讨论问题”是本资料的编辑与解读。**
+
+## 五条主线一览
+
+| 主题 | 首先记住的数字 | 节目要讨论的问题 |
+| --- | --- | --- |
+| [1. AI 进展](#ai-progress) | 科学工作流部分得分 87.9/100，完成率 20.6% | 得分高，是否就意味着能把工作做完？ |
+| [2. AI 智能体](#ai-agents) | 同一模型，不同配置：52.5% → 65.5% | 换模型之前，还能先改什么？ |
+| [3. 算力与基础设施](#compute) | 矿企签约 AI 电力容量约 5.6GW，已投运约 0.9GW | 公布的容量中，真正可用的有多少？ |
+| [4. AI 商业应用](#business) | OpenAI 与 Anthropic 合计年化收入约 $105B | 单价下降，为什么市场规模和支出还在增长？ |
+| [5. 政策与地缘政治](#policy) | 部分主权 AI 项目的承诺投资约 $138B | 数据中心建在国内，就拥有 AI 主权了吗？ |
+
+<h2 id="ai-progress">1. AI 进展 — 比排名更重要的是“究竟测了什么”</h2>
+
+<ResourceLink
+  url="https://www.stateof.ai/2026-explore/research"
+  title="AI 进展 — 专题解读"
+  domain="stateof.ai"
+  description="原文结合前沿模型竞争、基准测试的局限与研究自动化展开分析。"
+/>
+
+### 智能指数与人类偏好的答案，排名并不相同
+
+<Figure
+  src="/articles/state-of-ai-2026/frontier-race.png"
+  alt="Artificial Analysis 智能指数中，Claude Opus 5.5 得分 58，GPT-6 Astra 和 Gemini 4 Argon 均为 53；Arena 中 Gemini 4 Argon 以 1525 分领先的对比图。"
+  caption="State of AI Report 2026，第 5 张幻灯片。左侧是智能指数，右侧是用户偏好评价。两套评分不能直接比较。"
+/>
+
+- **报告呈现的是 Anthropic、OpenAI、Google 三方竞争。** 在 Artificial Analysis 中，Claude Opus 5.5 得分 58，GPT-6 Astra 与 Gemini 4 Argon 均为 53。
+- **按人类偏好评判，领先者就变了。** Arena 中 Argon 以 1525 分领先，Claude 系列模型集中在约 1505 分。报告发布时，Argon 仅向部分用户开放。
+
+[原文：第 5 张幻灯片 · PDF 第 6 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=6)
+
+### 旧测试逐渐饱和，部分得分会掩盖完成率
+
+<Figure
+  src="/articles/state-of-ai-2026/benchmark-ceilings.png"
+  alt="此前报告采用的数学、科学和编程基准中，最高分迅速接近上限的趋势图。"
+  caption="State of AI Report 2026，第 37 张幻灯片。旧测试得分趋于饱和后，需要更难的任务和更严格的完成标准。"
+/>
+
+<Figure
+  src="/articles/state-of-ai-2026/task-completion.png"
+  alt="FrontierChallenge 中 GPT-5.6 Sol 的部分得分为 87.9，完成率为 20.6%；OSWorld 2.0 中 Opus 5 的部分得分为 77.7%，完成率为 44.3%，两者均有明显差距。"
+  caption="State of AI Report 2026，第 42 张幻灯片。部分环节做得好，与完成最终交付之间，仍有很大差距。"
+/>
+
+- **FrontierChallenge 的 97 个科学工作流：** GPT-5.6 Sol 在满足单项要求方面得到 **87.9/100**，整个任务的完成率却只有 **20.6%**。
+- **OSWorld 2.0 的 108 项电脑操作任务：** Opus 5 的部分得分为 **77.7%**，完成率为 **44.3%**。仅仅漏掉审批或没有提交表单，就可能意味着任务没有完成。
+- **METR 的“50% 时间跨度”**指的是：智能体有一半概率完成的任务，人类专家需要花多长时间。它并不意味着可以让智能体在这段时间内安全地无人值守运行。报告涉及的评估中，以人类用时为基准、超过 16 小时的任务只有 5 个，因此高端区间的估计也不稳定。
+
+[原文：第 37 张幻灯片 · PDF 第 38 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=38) · [第 42–43 张幻灯片起始页 · PDF 第 43 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=43)
+
+### AI 正在帮助开展 AI 研究，但选择研究方向仍需要判断
+
+- **Anthropic 的内部指标：** 在其测量范围内，由 Claude 主导的模型研发占比从 **2026 年 2 月不足 1% → 8 月 26%**。这些工作仍由人类设定任务并监督执行。
+- **能运行实验，不等于能选出好研究。** 报告介绍了一项以未公开 NeurIPS 论文为任务的实验：智能体获得了 6 天时间、GPU 和价值 $3,000 的 API 额度。Opus 4.8 完成了工程实现，但两篇论文仅得到 2/6 和 1/6 的拒稿评分。
+
+[Anthropic 研发测量原文](https://www.anthropic.com/institute/measuring-pace-of-ai-development) · [研究任务实验：第 17 张幻灯片 · PDF 第 18 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=18)
+
+> 讨论问题：我们的组织如何区分 AI“看起来不错的中间结果”和“已经通过验收的最终成果”？
+
+<h2 id="ai-agents">2. AI 智能体 — 工具与上下文能改变同一模型的表现</h2>
+
+<ResourceLink
+  url="https://www.stateof.ai/2026-explore/agents"
+  title="AI 智能体 — 专题解读"
+  domain="stateof.ai"
+  description="智能体运行框架、记忆、按任务路由、长期运行的局限，以及向非开发岗位的扩展。"
+/>
+
+### 不换模型，解决率也能提高 13 个百分点
+
+**运行框架（harness）**是模型外围的软件：为模型提供工具，管理上下文与任务状态，并在失败后衔接反馈和重试。
+
+| GLM-5.1 的智能体配置 | 解决率 |
+| --- | --- |
+| 最小配置 | 52.5% |
+| 改进配置 | 56.5% |
+| 完整配置 | 65.5% |
+
+- 这是保持**同一模型权重**，只调整工具、上下文与反馈后的结果。测试采用 SWE-bench Verified 中的 **100 个任务**，取两轮运行的平均 pass@1。
+- **52.5% → 65.5% 是提高 13 个百分点**，相对于起点的增幅约为 25%。这并不保证所有工作都能获得同样改善。
+
+[研究原文 · 表 2](https://arxiv.org/html/2605.23950v1) · [第 7 张幻灯片 · PDF 第 8 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=8)
+
+### 与其寻找万能配置，不如按问题选择配置
+
+<Figure
+  src="/articles/state-of-ai-2026/agent-routing.png"
+  alt="用维恩图展示两种专业运行框架能解决的问题之间的重叠与差异。在 Gemini 3 Flash 上，路由器为 62%，Meta-Harness 为 46%，两个分支的潜在并集为 67%。"
+  caption="State of AI Report 2026，第 8 张幻灯片。两种配置擅长解决不同问题，因此路由能够带来收益。圆的面积仅为示意。"
+/>
+
+- **固定使用 Gemini 3 Flash 的数学评估：** 在专业运行框架之间做选择的路由器达到 **62%**，Meta-Harness 为 **46%**。只要两个分支中有一个能解出的题目占 **67%**，说明路由器仍有提升空间。
+- **记忆与技能**可以在不重新训练模型的情况下，延续此前任务中的信息。但仅仅积累记录，还不能证明产生了学习效果。需要通过重复任务和可验证的结果来检验。
+- **模型进步后，也要重新检验原有设计。** 报告提到，Claude Code 在高能力模型上删去 80% 的系统提示词后，未测得编程评估表现下降。
+
+[原文：第 8 张幻灯片 · PDF 第 9 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=9) · [第 10 张幻灯片 · PDF 第 11 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=11) · [第 14 张幻灯片 · PDF 第 15 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=15)
+
+### 智能体正走向非开发岗位，但长期判断力仍是另一回事
+
+<Figure
+  src="/articles/state-of-ai-2026/agent-adoption.png"
+  alt="同一张幻灯片展示 Codex 在开发岗位之外的采用增长，以及 OpenAI 内部不同岗位的 token 使用占比。"
+  caption="State of AI Report 2026，第 99 张幻灯片。左侧的组织用户增长与右侧 OpenAI 内部的 token 占比，研究对象和分母均不同。"
+/>
+
+- OpenAI 的采用研究发现，法务、销售、招聘、营销等**非开发岗位正从较小基数快速增长**。增长倍数高，并不意味着当前用户数量更多。
+- **KellyBench 模拟投注市场：** 12 个模型在各自 5 次运行中的平均收益均为亏损，其中 6 个至少破产过一次。
+- **E-CommerceBench 模拟店铺经营：** 18 个模型中，16 个在重复采购中未表现出明显的议价能力提升。除了利润，还应测量遭遇欺诈的风险、亏损，以及能否从经验中改进。这两项实验都不是对真实企业收益率的测量。
+
+[OpenAI 采用研究](https://openai.com/index/how-agents-are-transforming-work/) · [第 99 张幻灯片 · PDF 第 100 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=100) · [长期运行评估：第 44–45 张幻灯片起始页 · PDF 第 45 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=45)
+
+> 讨论问题：在换用更贵的模型之前，我们应该先调整工具、任务上下文、验收还是重试机制？
+
+<h2 id="compute">3. 算力与基础设施 — 投资承诺如何变成实际可用容量</h2>
+
+<ResourceLink
+  url="https://www.stateof.ai/2026-explore/compute"
+  title="算力与基础设施 — 专题解读"
+  domain="stateof.ai"
+  description="融资、已投运电力容量、智能体运行环境，以及居民接受度与供应链瓶颈。"
+/>
+
+### 年度资本开支 $733B，但美国与欧洲的数据口径不同
+
+- **美国四家超大规模云厂商的 2026 年总资本开支指引约为 $733B（7,330 亿美元）。** 这些支出并非全部专用于 AI。
+- **欧盟 AI 超级工厂的初始出资为 €1B**，属于一个计划筹集最多 €10B 公共资金、至少 €20B 私人资金的项目。这既不是欧洲全部 AI 投资，也与美国企业年度总 CAPEX 的范围不同。
+- NVIDIA 与六家金融机构的合作，目标是为 AI 基础设施**动员超过 $500B 的资金**。不能把它当作已经支出的现金或已经建成的数据中心。
+
+[报告第 134 张幻灯片 · PDF 第 135 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=135) · [欧盟委员会的超级工厂公告](https://digital-strategy.ec.europa.eu/en/news/eu-launches-ai-gigafactories-call-boost-europes-computing-capacity-and-unlock-more-eu30-billion)
+
+### 签约容量 5.6GW，已投运约 0.9GW
+
+<Figure
+  src="/articles/state-of-ai-2026/contracted-vs-live-power.png"
+  alt="正在向 AI 基础设施转型的比特币矿企，其签约电力容量与实际投运容量的比较。合计签约约 5.6GW，已投运约 900MW。"
+  caption="State of AI Report 2026，第 123 张幻灯片。数据截至 2026 年第二季度，涵盖报告追踪的矿企 AI 电力容量，并非整个 AI 数据中心市场的投运率。"
+/>
+
+- 只有完成**签订电力合同 → 获得许可 → 建设施工 → 接通电力 → 安装设备**，客户才能真正运行工作负载。即便已有矿场用地和电网连接，也需要增建适用于 AI 的设施。
+- **CoreWeave 是单独的案例：** 公司报告第二季度末已投运电力容量为 **1.5GW**，截至 8 月 11 日签约容量为 **4.2GW**。两个数字的日期不同，也不能相加算作总投运容量。
+- **智能体基础设施的范围已超出 GPU。** MAI-Thinking-1 在 4,864 个 GB200 中，将 4,096 个分配给用于生成训练经验的推理。CPU、内存，以及支持暂停和恢复的沙箱，也都是成本的一部分。
+
+[第 123 张幻灯片 · PDF 第 124 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=124) · [训练基础设施：第 26 张幻灯片 · PDF 第 27 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=27)
+
+### 有了资金和芯片之后，还要面对居民同意与未来付款义务
+
+<Figure
+  src="/articles/state-of-ai-2026/data-center-opposition.png"
+  alt="Gallup 调查中，71% 的受访者反对在当地建设 AI 数据中心，53% 反对核电站。对于 AI 数据中心，48% 强烈反对，23% 比较反对。"
+  caption="State of AI Report 2026，第 188 张幻灯片。Gallup 于 2026 年 3 月在美国开展的调查中，71% 的受访者表示反对在当地建设 AI 数据中心。"
+/>
+
+- **Gallup：** 反对在当地建设 AI 数据中心的比例为 **71%**，反对核电站的比例为 **53%**。这是一项询问居民对不同设施偏好的民意调查。
+- **Data Center Watch：** 其统计显示，2026 年第二季度，当地反对使至少 **45 个项目**、约 **$68B（680 亿美元）**的计划投资延迟或受阻。这不意味着投资全部取消，也不代表已经确定的损失。
+- **金融层面的问题也在增多。** 报告引用 Morgan Stanley 的统计，七家超大规模云厂商与半导体企业的表外承诺和信贷支持超过 **$3T**。其中多数是未来采购或租赁承诺，并不全是当前借款或即时损失。
+
+[Gallup 原文](https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx) · [Data Center Watch Q2](https://www.datacenterwatch.org/q2-2026) · [第 188 张幻灯片 · PDF 第 189 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=189) · [金融承诺：第 127 张幻灯片 · PDF 第 128 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=128)
+
+> 讨论问题：AI 基础设施的竞争力，究竟取决于拿到 GPU、获得电力、实际建成，还是居民接受度？
+
+<h2 id="business">4. AI 商业应用 — 智能单价下降，使用量与收入增长</h2>
+
+<ResourceLink
+  url="https://www.stateof.ai/2026-explore/business"
+  title="AI 商业应用 — 专题解读"
+  domain="stateof.ai"
+  description="推理成本与收入增长、AI 原生企业、按业务优化模型，以及就业变化。"
+/>
+
+### 达到相同分数的成本，每季度下降约 47%
+
+<Figure
+  src="/articles/state-of-ai-2026/inference-cost.png"
+  alt="达到相同基准分数所需推理成本的下降曲线。Epoch AI 估计，成本平均每季度下降 47%，每年降至约十三分之一。"
+  caption="State of AI Report 2026，第 109 张幻灯片。这是达到固定性能所需最低成本的趋势，并非企业 AI 总支出的降幅。"
+/>
+
+- Epoch AI 估计，自 2023 年以来，在五项基准中，**达到相同分数的成本平均每季度下降 47%**，每年降至约**十三分之一**。
+- **即使单价下降，账单也可能增加。** 智能体承担更长的任务、反复调用模型时，使用量、重试和验收成本都可能上升。
+
+[Epoch AI 分析 · 2026-09-22](https://epoch.ai/publications/the-plunging-price-of-thought) · [第 109 张幻灯片 · PDF 第 110 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=110)
+
+### 两家前沿模型公司的合计年化收入约为 $105B
+
+<Figure
+  src="/articles/state-of-ai-2026/frontier-revenue.png"
+  alt="OpenAI 与 Anthropic 报告的合计年化收入，从 2026 年初约 300 亿美元增至夏末约 1050 亿美元的图表。"
+  caption="State of AI Report 2026，第 82 张幻灯片。这是两家公司整体业务报告的年化收入，并非仅将 API 推理收入相加。"
+/>
+
+- **2026 年初约 $30B → 夏末约 $105B（1,050 亿美元）。** 这是包含订阅、编程产品和 API 在内的公司整体业务年化收入。
+- **年化收入（run rate）**是将某一时点的收入速度折算成一年的数值，不能当作已经确认的全年收入或利润。
+- **支出强度的差距也很大。** Ramp 的 8 月样本中，AI 支出最高的 1% 企业，其员工人均每月支出的中位数为 **$7,205**，全部企业的中位数为 **$12.50**。不能把 Ramp 客户样本推广到全球所有企业。
+
+[第 82 张幻灯片 · PDF 第 83 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=83) · [支出集中度：第 95 张幻灯片 · PDF 第 96 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=96)
+
+### 以 AI 为产品核心的企业，与在产品中加入 AI 功能的企业
+
+<Figure
+  src="/articles/state-of-ai-2026/ai-native-growth.png"
+  alt="Standard Metrics 的 2026 年第二季度初步数据。年化收入 100 万至 2000 万美元区间，AI 原生企业增长率的第 75 百分位为 256%，加入 AI 功能的企业为 90%；超过 2000 万美元的区间为 172% 对 53%。"
+  caption="State of AI Report 2026，第 93 张幻灯片。这是增长率的第 75 百分位，而非平均增长率；该比较也不能证明采用 AI 的因果效果。"
+/>
+
+| 年化收入区间 | AI 原生企业同比增长率 · 第 75 百分位 | 加入 AI 功能的企业 · 第 75 百分位 |
+| --- | --- | --- |
+| $1M–$20M | 256% | 90% |
+| 超过 $20M | 172% | 53% |
+
+- 这是 **2026 年第二季度的初步样本**。由于企业成立年限、市场和投资能力等存在差异，不能得出“采用 AI 就能增长三倍”的结论。
+- **专业业务数据正在成为竞争力。** Harvey 报告称，经过后训练的 GLM-5.2，在法律审查表任务中将每个单元格的成本较 Sonnet 5 **降低了 54.8%**。其自有答案质量指标为 **0.903，Fable 5 则为 0.867**。这只是该法律任务评估中的结果，不代表通用能力更强。
+- **就业变化并非只有一个方向。** 报告同时讨论了 AI 高支出企业的招聘增长，以及部分初级和 AI 暴露度较高岗位的招聘放缓。不能把企业层面的相关性与不同职业的变化相加，计算成 AI 对净就业的影响。
+
+[增长率：第 93 张幻灯片 · PDF 第 94 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=94) · [专业模型：第 113 张幻灯片 · PDF 第 114 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=114) · [就业：第 103–106 张幻灯片起始页 · PDF 第 104 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=104)
+
+> 讨论问题：我们产品的护城河，来自界面与功能、业务上下文、客户数据，还是判断答案是否正确的能力？
+
+<h2 id="policy">5. 政策与地缘政治 — AI 主权涉及芯片、模型、运营能力与访问权</h2>
+
+<ResourceLink
+  url="https://www.stateof.ai/2026-explore/policy"
+  title="政策与地缘政治 — 专题解读"
+  domain="stateof.ai"
+  description="模型访问管制、主权 AI 投资与韩国战略、公共算力，以及监管与安全。"
+/>
+
+### 一项政策决定，就可能改变模型访问权
+
+- **6 月 12 日：** 据 Anthropic 的说明，美国出口指导规则适用于 Fable 5 与 Mythos 5，公司在应对过程中向所有用户暂停了这两个模型。
+- **6 月 30 日 → 7 月 1 日：** 公司先宣布管制解除，随后在 7 月 1 日的公告中宣布恢复访问。这不意味着各产品、云平台和客户的提供方式已经完全一致。
+
+[Anthropic 出口指导规则公告](https://www.anthropic.com/news/fable-mythos-access) · [恢复访问公告](https://www.anthropic.com/news/redeploying-fable-5)
+
+### 约 $138B 的主权 AI 承诺，落地阶段却各不相同
+
+<Figure
+  src="/articles/state-of-ai-2026/sovereign-ai-map.png"
+  alt="地图标出加拿大、英国、欧盟、美国、中国、日本、韩国、印度与中东等地部分主权 AI 项目约 1380 亿美元的投资承诺，并区分采购、筹资与投运阶段。"
+  caption="State of AI Report 2026，第 170 张幻灯片。部分项目的承诺金额合计约 $138B。它们的期限、项目范围与实施阶段不同，并非实际支出总额。"
+/>
+
+- 报告中的**约 $138B**，与 CNAS 统计的 **67 个国家、184 个项目、约 $84B 已公开预算**，覆盖不同的项目和国家。不能把它们视为针对同一总体的矛盾估计，也不能相加。
+- NVIDIA 另行报告的 **2026 财年主权 AI 收入超过 $30B**，同样采用了不同的会计口径和统计对象，不能加到国家项目的承诺金额上。
+- **作者的观点：** 仅有国内数据中心，并不能获得模型控制权。还需要研究人才、能源、算力，以及持续打造下一代模型的能力。
+
+[CNAS 主权 AI 指数](https://interactives.cnas.org/reports/sovereign-ai-index/) · [第 169–170 张幻灯片起始页 · PDF 第 170 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=170)
+
+### 韩国被作为连接模型、人才、算力与需求的案例
+
+<Figure
+  src="/articles/state-of-ai-2026/korea-ai-strategy.png"
+  alt="将韩国 AI 战略整理为本土模型、工程人才、推理容量、公共需求、普遍可及性与居民反对六个要素的信息图。图中标注 2026 年 AI 预算 9.9 万亿韩元，以及到 2028 年由政府主导获取至少 5 万个 GPU 的目标。"
+  caption="State of AI Report 2026，第 172 张幻灯片。这是报告对韩国战略的解读。预算、采购合同和未来 GPU 获取目标，应与已经实现的成果区分开来。"
+/>
+
+- 报告介绍了韩国 **2026 年 AI 预算 9.9 万亿韩元**，以及**到 2028 年由政府主导获取至少 5 万个 GPU 的目标**。预算与目标不同于实际支出和安装成果。
+- 报告将其解读为：把本土模型开发、人才培养与**公共采购、采用补贴券、消费者服务**相连接，为推理产业创造需求。
+
+[第 172 张幻灯片 · PDF 第 173 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=173)
+
+### 公共算力要区分“宣布、分配和使用”来评估
+
+<Figure
+  src="/articles/state-of-ai-2026/public-compute-access.png"
+  alt="对比表列出：欧盟计划最多建设 7 家超级工厂，目标时间约为 2028 年年中；英国在 6700 万 GPU 小时的申请中分配超过 300 万小时；印度为 237 个项目批准 931 万 8000 GPU 小时。报告比较未提供实际使用量。"
+  caption="State of AI Report 2026，第 173 张幻灯片。报告区分了规划容量、申请量、批准或分配量与实际使用量。该比较未报告三个项目的实测使用量。"
+/>
+
+- **欧盟：** 最多 7 家超级工厂，目标投运时间约为 2028 年年中。**英国：** 初期 SOV/AI 群体申请约 6,700 万 GPU 小时，获分配超过 300 万小时。**印度：** 8 月更新涉及 237 个项目、931 万 8 千 GPU 小时，报告将其归为批准量。
+- **电价也会改变运营能力。** 一家全年持续使用 1GW 的设施，每千瓦时成本增加 $0.01，全年就会多支出 **$87.6M（8,760 万美元）**。这只是按连续用电计算，并非对某个数据中心合同的估计。
+- **监管与安全属于另外的层面。** 报告同时涉及美国各州监管与欧盟实施时间表的差异、军事工作中的模型使用管制，以及实际云设施受损事件。比较各国义务时，需要区分法律适用对象与时间，以及每起事件的核实程度。
+
+[公共算力：第 173 张幻灯片 · PDF 第 174 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=174) · [电力成本：第 177 张幻灯片 · PDF 第 178 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=178) · [安全：第 166–168 张幻灯片起始页 · PDF 第 167 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=167) · [监管：第 183–185 张幻灯片起始页 · PDF 第 184 页](https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=184)
+
+> 讨论问题：如果评估韩国的 AI 主权，应该首先看本土模型排名、已投运 GPU、实际使用量，还是替代运营能力？
+
+## 节目流程 · 约 60 分钟
+
+| 时段 | 讨论内容 | 屏幕展示资料 |
+| --- | --- | --- |
+| 0–5 分钟 | 用五个数字介绍今年的 AI 产业 | 文首汇总表 |
+| 5–17 分钟 | 模型竞争与“部分得分 vs 完成工作” | 第 5、37、42 张幻灯片 |
+| 17–28 分钟 | 固定模型，智能体表现仍会变化 | 不同配置的解决率表，第 8、99 张幻灯片 |
+| 28–39 分钟 | 从电力合同到实际可用容量的过程 | 第 123、188 张幻灯片 |
+| 39–50 分钟 | 成本下降、收入增长与 AI 原生企业 | 第 109、82、93 张幻灯片 |
+| 50–60 分钟 | AI 主权与韩国的选择 | 第 170、172、173 张幻灯片 |
+
+**收尾问题：** 未来一年，你最想看到哪一种证据？可以从更高的模型得分、更高的任务完成率、实际投运容量、经验证的客户成果，或外部供应中断后仍可持续的服务中，选一个展开讨论。
+
+## 来源与图片使用
+
+- **原报告：** Benaich, N. and Air Street Capital (2026). *State of AI Report 2026*. 2026 年 10 月 8 日。[主页](https://www.stateof.ai/) · [完整 PDF](https://www.stateof.ai/State-of-AI-Report-2026.pdf) · [专题解读目录](https://www.stateof.ai/2026-explore/)。
+- **范围：** 选取了 AI 进展、AI 智能体、算力与基础设施、AI 商业应用、政策与地缘政治五个主题。各段落均注明数据的观测时间。
+- **图片：** 收录封面及 13 张原始幻灯片，保留原始比例。来源为 Nathan Benaich / Air Street Capital, State of AI Report 2026，并依据报告注明的 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 标示出处。图内的第三方来源标注也予以保留。
+- **编辑：** 韩文摘要、指标说明与流程为播客备稿而编写。报告 PDF 页码是在幻灯片编号上加上 1 页封面。

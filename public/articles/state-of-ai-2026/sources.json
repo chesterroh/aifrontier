@@ -1,0 +1,94 @@
+{
+  "title": "State of AI Report 2026",
+  "authors": "Nathan Benaich / Air Street Capital",
+  "published": "2026-10-08",
+  "retrieved": "2026-10-23",
+  "report": "https://www.stateof.ai/",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "assets": [
+    {
+      "file": "hero.jpg",
+      "slide": null,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/report-pages/page-001.jpg",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "frontier-race.png",
+      "slide": 5,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-01.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "benchmark-ceilings.png",
+      "slide": 37,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-02.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "task-completion.png",
+      "slide": 42,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/report-evidence/slide-042.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "agent-routing.png",
+      "slide": 8,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/report-evidence/slide-008.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "agent-adoption.png",
+      "slide": 99,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-10.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "contracted-vs-live-power.png",
+      "slide": 123,
+      "source": "https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=124",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "data-center-opposition.png",
+      "slide": 188,
+      "source": "https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=189",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "inference-cost.png",
+      "slide": 109,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-14.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "frontier-revenue.png",
+      "slide": 82,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-15.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "ai-native-growth.png",
+      "slide": 93,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-16.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "sovereign-ai-map.png",
+      "slide": 170,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/figure-05.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "korea-ai-strategy.png",
+      "slide": 172,
+      "source": "https://www.stateof.ai/State-of-AI-Report-2026.pdf#page=173",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    },
+    {
+      "file": "public-compute-access.png",
+      "slide": 173,
+      "source": "https://www.stateof.ai/assets/2026-staging-55248615/report-evidence/slide-173.png",
+      "transformation": "None; original aspect ratio preserved. PDF-only pages rendered to PNG."
+    }
+  ]
+}
