@@ -1,0 +1,93 @@
+name: Publish EP120 at 07:00 KST
+
+on:
+  schedule:
+    - cron: '40 21 25 10 *'
+    - cron: '50 21 25 10 *'
+    - cron: '10 22 25 10 *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Build and check deployment access without publishing
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-ep120
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check one-time publication window
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = schedule ] && { [ "$(date -u +%F)" != 2026-10-25 ] || [ -f src/content/episodes/ko/ep120.mdx ]; }; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Load prepared episode only
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          git fetch origin publish/ep120-20261026
+          git checkout FETCH_HEAD -- src/content/episodes/{ko,en,ja,zh-Hans}/ep120.mdx public/resources/ep120
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          node-version: 20
+          cache: npm
+      - name: Build all four languages
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          npm ci
+          npm run build
+          for lang in ko en ja zh-Hans; do
+            grep -q 'eO8brZguMpU' "dist/$lang/episodes/ep120/index.html"
+          done
+      - uses: webfactory/ssh-agent@v0.9.0
+        if: steps.gate.outputs.run == 'true'
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Check deployment access
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          ssh-keyscan -H aifrontier.kr >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -o BatchMode=yes chester@aifrontier.kr 'test -w /home/chester/aifrontier'
+      - name: Wait until October 26 07:00 KST
+        if: steps.gate.outputs.run == 'true' && inputs.dry_run != true
+        run: |
+          python - <<'PY'
+          import datetime, time
+          target = datetime.datetime(2026, 10, 25, 22, 0, tzinfo=datetime.timezone.utc)
+          delay = (target - datetime.datetime.now(datetime.timezone.utc)).total_seconds()
+          if delay > 1800:
+              raise SystemExit('Publication window has not opened; use dry_run for preflight')
+          time.sleep(max(0, delay))
+          PY
+      - name: Publish and verify episode pages
+        if: steps.gate.outputs.run == 'true' && inputs.dry_run != true
+        run: |
+          rsync -avz --delete dist/ chester@aifrontier.kr:/home/chester/aifrontier/
+          for lang in ko en ja zh-Hans; do
+            curl -fsS "https://aifrontier.kr/$lang/episodes/ep120/?release=20261026" -o "/tmp/ep120-$lang.html"
+            grep -q 'eO8brZguMpU' "/tmp/ep120-$lang.html"
+          done
+      - name: Record published sources on main
+        if: steps.gate.outputs.run == 'true' && inputs.dry_run != true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Publish EP120 in four languages'
+          git pull --rebase origin main
+          git push origin HEAD:main
