@@ -41,7 +41,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           git fetch origin publish/ep120-20261026
-          git checkout FETCH_HEAD -- src/content/episodes/{ko,en,ja,zh-Hans}/ep120.mdx public/resources/ep120
+          git checkout FETCH_HEAD -- src/content/episodes/{ko,en,ja,zh-Hans}/ep120.mdx
       - uses: actions/setup-node@v4
         if: steps.gate.outputs.run == 'true'
         with:
