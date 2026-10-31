@@ -1,0 +1,437 @@
+{
+  "asOf": "2026-10-31",
+  "observations": [
+    {
+      "chart": "quarterly-revenue",
+      "label": "Q1 2026",
+      "value": 4.731,
+      "unit": "USD billion",
+      "period": "Q1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim"
+    },
+    {
+      "chart": "quarterly-revenue",
+      "label": "Q2 2026",
+      "value": 11.555,
+      "unit": "USD billion",
+      "period": "Q2 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim"
+    },
+    {
+      "chart": "quarterly-revenue",
+      "label": "Q3 2026",
+      "value": 16.8,
+      "unit": "USD billion",
+      "period": "Q3 2026",
+      "source": "https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208",
+      "status": "reported"
+    },
+    {
+      "chart": "profit-and-cash",
+      "label": "GAAP operating income",
+      "value": -0.693,
+      "unit": "USD billion",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim / non-GAAP where labeled"
+    },
+    {
+      "chart": "profit-and-cash",
+      "label": "Adjusted operating income",
+      "value": 1.618,
+      "unit": "USD billion",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim / non-GAAP where labeled"
+    },
+    {
+      "chart": "profit-and-cash",
+      "label": "Operating cash flow",
+      "value": 3.929,
+      "unit": "USD billion",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim / non-GAAP where labeled"
+    },
+    {
+      "chart": "net-loss",
+      "label": "Notes / derivatives / SAFEs: fair value",
+      "value": -72.388,
+      "unit": "USD billion income / (loss)",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim"
+    },
+    {
+      "chart": "net-loss",
+      "label": "Other financial instruments: fair value",
+      "value": -8.72,
+      "unit": "USD billion income / (loss)",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim"
+    },
+    {
+      "chart": "net-loss",
+      "label": "All other income / expenses, net",
+      "value": 0.36,
+      "unit": "USD billion income / (loss)",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "calculated residual"
+    },
+    {
+      "chart": "net-loss",
+      "label": "Net loss",
+      "value": -80.748,
+      "unit": "USD billion income / (loss)",
+      "period": "H1 2026",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "filed interim"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Broadcom",
+      "value": 161.2,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "finance lease rents excluding interest"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "SpaceXAI",
+      "value": 120.5,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "ceiling; cancellation conditions"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Google",
+      "value": 114.5,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "minimum excluding conditional extra capacity"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Amazon",
+      "value": 110,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "minimum"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Microsoft",
+      "value": 44.9,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "minimum"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Nscale",
+      "value": 44.6,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "ceiling conditional delivery"
+    },
+    {
+      "chart": "compute-contracts",
+      "label": "Lambda",
+      "value": 41.3,
+      "unit": "USD billion",
+      "period": "multi-year contract-specific",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+      "status": "approximate conditional commitments"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "Gemini 4 Carbon (high)*",
+      "value": 59,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "Claude Opus 5.5 (max)",
+      "value": 58,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "GPT-6 Astra (max)",
+      "value": 57,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "GPT-6.1 Sol (max)",
+      "value": 55,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "Gemini 4 Argon (high)*",
+      "value": 50,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "aaii-v5",
+      "label": "Kimi K3.1 Pro**",
+      "value": 46,
+      "unit": "AAII v5 score",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "independent evaluation; access varies"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "AutomationBench-AA / Opus 5 max",
+      "value": 57,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "AutomationBench-AA / Opus 5.5 max default fallback",
+      "value": 70,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "Terminal-Bench 4.0 / Opus 5 max",
+      "value": 49,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "Terminal-Bench 4.0 / Opus 5.5 max default fallback",
+      "value": 60,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "GDP.pdf / Opus 5 max",
+      "value": 22,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "GDP.pdf / Opus 5.5 max default fallback",
+      "value": 26,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "Terminal-Bench-Science / Opus 5 max",
+      "value": 29,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "opus-benchmarks",
+      "label": "Terminal-Bench-Science / Opus 5.5 max default fallback",
+      "value": 59,
+      "unit": "percent",
+      "period": "checked 2026-10-31",
+      "source": "https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5",
+      "status": "independent evaluation"
+    },
+    {
+      "chart": "aaii-cost",
+      "label": "Opus 5.5 (max)",
+      "value": 10.04,
+      "unit": "USD per AAII task",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "benchmark-weighted task cost; standard pricing"
+    },
+    {
+      "chart": "aaii-cost",
+      "label": "Gemini 4 Carbon (high)*",
+      "value": 7.76,
+      "unit": "USD per AAII task",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
+      "status": "benchmark-weighted task cost; standard pricing"
+    },
+    {
+      "chart": "aaii-cost",
+      "label": "GPT-6 Astra (max)",
+      "value": 6.24,
+      "unit": "USD per AAII task",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "benchmark-weighted task cost; standard pricing"
+    },
+    {
+      "chart": "aaii-cost",
+      "label": "GPT-6.1 Sol (max)",
+      "value": 1.27,
+      "unit": "USD per AAII task",
+      "period": "2026-10-27 / 28",
+      "source": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "status": "benchmark-weighted task cost; standard pricing"
+    },
+    {
+      "chart": "funding-valuations",
+      "label": "Anthropic: May round",
+      "value": 965,
+      "unit": "USD billion post-money",
+      "period": "2026-05-28",
+      "source": "https://www.anthropic.com/news/series-h",
+      "status": "confirmed round"
+    },
+    {
+      "chart": "funding-valuations",
+      "label": "OpenAI: March round",
+      "value": 852,
+      "unit": "USD billion post-money",
+      "period": "2026-03-31",
+      "source": "https://openai.com/index/accelerating-the-next-phase-ai/",
+      "status": "confirmed round"
+    },
+    {
+      "chart": "funding-valuations",
+      "label": "Anthropic: IPO reports",
+      "value": 1500,
+      "unit": "USD billion lower bound; range 1500-2000",
+      "period": "2026-10-26",
+      "source": "https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801",
+      "status": "reported investor valuations, not IPO terms"
+    },
+    {
+      "chart": "funding-valuations",
+      "label": "OpenAI: funding talks",
+      "value": 1250,
+      "unit": "USD billion pre-money",
+      "period": "2026-10-22",
+      "source": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1.25t-valuation-ahead-of-ipo/",
+      "status": "reported talks citing CNBC; not a completed round"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "General access / blocked",
+      "value": 50,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "General access / succeeded",
+      "value": 0,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "General access / not completed unblocked",
+      "value": 0,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Defense Access / blocked",
+      "value": 46,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Defense Access / succeeded",
+      "value": 4,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Defense Access / not completed unblocked",
+      "value": 0,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Red Team Access / blocked",
+      "value": 0,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Red Team Access / succeeded",
+      "value": 34,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    },
+    {
+      "chart": "cyber-safeguards",
+      "label": "Red Team Access / not completed unblocked",
+      "value": 16,
+      "unit": "trials of 50",
+      "period": "2026-10-06",
+      "source": "https://www.anthropic.com/news/cyber-verification-program",
+      "status": "first-party evaluation"
+    }
+  ]
+}

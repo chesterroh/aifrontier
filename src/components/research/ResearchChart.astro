@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  alt: string;
+  caption: string;
+  source: string;
+  sourceLabel?: string;
+}
+const { name, alt, caption, source, sourceLabel = '원문 확인' } = Astro.props;
+const root = '/articles/anthropic-s1-ipo';
+---
+
+<figure class="research-chart">
+  <div class="chart-scroll" tabindex="0" role="region" aria-label={`${alt} — 가로 스크롤 가능`}>
+    <a href={`${root}/${name}.svg`} target="_blank" rel="noopener noreferrer" aria-label={`${alt} 크게 보기`}>
+      <img src={`${root}/${name}.svg`} alt={alt} loading="lazy" width="1100" height="640" />
+    </a>
+  </div>
+  <figcaption>
+    <span>{caption}</span>
+    <span class="chart-links">
+      <a href={source} target="_blank" rel="noopener noreferrer">{sourceLabel} ↗</a>
+      <a href={`${root}/${name}.png`} download>PNG</a>
+      <a href={`${root}/${name}.svg`} download>SVG</a>
+      <a href={`${root}/chart-data.csv`} download>전체 데이터 CSV</a>
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .research-chart { margin: 2rem 0; }
+  .chart-scroll { overflow-x: auto; border: 1px solid #e6e2d9; border-radius: 12px; background: #fffdf9; }
+  .chart-scroll:focus-visible { outline: 3px solid #31796e; outline-offset: 3px; }
+  .chart-scroll a { display: block; }
+  .chart-scroll img { display: block; width: 100%; height: auto; min-width: 580px; }
+  figcaption { font-size: .8rem; line-height: 1.65; color: #65716d; margin-top: .6rem; }
+  .chart-links { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin-top: .4rem; }
+  .chart-links a { font-size: .75rem; }
+  @media (prefers-color-scheme: dark) { figcaption { color: #a8b4b0; } }
+</style>

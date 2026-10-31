@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-10-31",
+  "captures": [
+    {
+      "name": "aaii-v4-original",
+      "version": "v4.3.2",
+      "date": "2026-10-23",
+      "url": "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
+      "asset": "138fb6098ecf52a0fe46cbcaf4dae8cae9677edd",
+      "image": "https://cdn.sanity.io/images/6vfeftx9/articles/138fb6098ecf52a0fe46cbcaf4dae8cae9677edd-2464x1032.png?w=1200&auto=format"
+    },
+    {
+      "name": "aaii-v5-original",
+      "version": "v5",
+      "date": "2026-10-27",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5",
+      "asset": "44b792b382975135ff1db34ca74a2502eb767158",
+      "image": "https://cdn.sanity.io/images/6vfeftx9/articles/44b792b382975135ff1db34ca74a2502eb767158-2152x1016.png?w=1200&auto=format"
+    }
+  ]
+}

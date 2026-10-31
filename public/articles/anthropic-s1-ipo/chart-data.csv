@@ -1,0 +1,49 @@
+chart,label,value,unit,period,source,status
+quarterly-revenue,Q1 2026,4.731,USD billion,Q1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim
+quarterly-revenue,Q2 2026,11.555,USD billion,Q2 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim
+quarterly-revenue,Q3 2026,16.8,USD billion,Q3 2026,https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208,reported
+profit-and-cash,GAAP operating income,-0.693,USD billion,H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim / non-GAAP where labeled
+profit-and-cash,Adjusted operating income,1.618,USD billion,H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim / non-GAAP where labeled
+profit-and-cash,Operating cash flow,3.929,USD billion,H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim / non-GAAP where labeled
+net-loss,Notes / derivatives / SAFEs: fair value,-72.388,USD billion income / (loss),H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim
+net-loss,Other financial instruments: fair value,-8.72,USD billion income / (loss),H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim
+net-loss,"All other income / expenses, net",0.36,USD billion income / (loss),H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,calculated residual
+net-loss,Net loss,-80.748,USD billion income / (loss),H1 2026,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,filed interim
+compute-contracts,Broadcom,161.2,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,finance lease rents excluding interest
+compute-contracts,SpaceXAI,120.5,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,ceiling; cancellation conditions
+compute-contracts,Google,114.5,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,minimum excluding conditional extra capacity
+compute-contracts,Amazon,110,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,minimum
+compute-contracts,Microsoft,44.9,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,minimum
+compute-contracts,Nscale,44.6,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,ceiling conditional delivery
+compute-contracts,Lambda,41.3,USD billion,multi-year contract-specific,https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm,approximate conditional commitments
+aaii-v5,Gemini 4 Carbon (high)*,59,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1,independent evaluation; access varies
+aaii-v5,Claude Opus 5.5 (max),58,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,independent evaluation; access varies
+aaii-v5,GPT-6 Astra (max),57,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,independent evaluation; access varies
+aaii-v5,GPT-6.1 Sol (max),55,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,independent evaluation; access varies
+aaii-v5,Gemini 4 Argon (high)*,50,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,independent evaluation; access varies
+aaii-v5,Kimi K3.1 Pro**,46,AAII v5 score,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,independent evaluation; access varies
+opus-benchmarks,AutomationBench-AA / Opus 5 max,57,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,AutomationBench-AA / Opus 5.5 max default fallback,70,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,Terminal-Bench 4.0 / Opus 5 max,49,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,Terminal-Bench 4.0 / Opus 5.5 max default fallback,60,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,GDP.pdf / Opus 5 max,22,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,GDP.pdf / Opus 5.5 max default fallback,26,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,Terminal-Bench-Science / Opus 5 max,29,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+opus-benchmarks,Terminal-Bench-Science / Opus 5.5 max default fallback,59,percent,checked 2026-10-31,https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5,independent evaluation
+aaii-cost,Opus 5.5 (max),10.04,USD per AAII task,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,benchmark-weighted task cost; standard pricing
+aaii-cost,Gemini 4 Carbon (high)*,7.76,USD per AAII task,2026-10-27 / 28,https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1,benchmark-weighted task cost; standard pricing
+aaii-cost,GPT-6 Astra (max),6.24,USD per AAII task,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,benchmark-weighted task cost; standard pricing
+aaii-cost,GPT-6.1 Sol (max),1.27,USD per AAII task,2026-10-27 / 28,https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5,benchmark-weighted task cost; standard pricing
+funding-valuations,Anthropic: May round,965,USD billion post-money,2026-05-28,https://www.anthropic.com/news/series-h,confirmed round
+funding-valuations,OpenAI: March round,852,USD billion post-money,2026-03-31,https://openai.com/index/accelerating-the-next-phase-ai/,confirmed round
+funding-valuations,Anthropic: IPO reports,1500,USD billion lower bound; range 1500-2000,2026-10-26,https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801,"reported investor valuations, not IPO terms"
+funding-valuations,OpenAI: funding talks,1250,USD billion pre-money,2026-10-22,https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1.25t-valuation-ahead-of-ipo/,reported talks citing CNBC; not a completed round
+cyber-safeguards,General access / blocked,50,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,General access / succeeded,0,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,General access / not completed unblocked,0,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Defense Access / blocked,46,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Defense Access / succeeded,4,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Defense Access / not completed unblocked,0,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Red Team Access / blocked,0,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Red Team Access / succeeded,34,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation
+cyber-safeguards,Red Team Access / not completed unblocked,16,trials of 50,2026-10-06,https://www.anthropic.com/news/cyber-verification-program,first-party evaluation

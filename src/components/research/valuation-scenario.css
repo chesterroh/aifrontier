@@ -1,0 +1,16 @@
+.valuation-scenario { margin:2rem 0; padding:1.5rem; border:1px solid #cadbd3; border-radius:14px; background:#f4f8f4; color:#24362c; }
+.valuation-scenario .scenario-eyebrow { margin:0 0 .5rem; font-size:.7rem; color:#31796e; letter-spacing:.06em; font-weight:700; }
+.valuation-scenario .scenario-title { font-size:1.3rem; font-weight:700; margin:0 0 .7rem; }
+.valuation-scenario .scenario-intro { font-size:.88rem; line-height:1.7; margin:0 0 1rem; }
+.scenario-presets { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0 1.4rem; }
+.scenario-presets button { padding:.4rem .9rem; border:1px solid #b6c9bd; border-radius:99px; background:transparent; font-size:.8rem; cursor:pointer; }
+.scenario-presets button[aria-pressed=true] { background:#31796e; color:white; border-color:#31796e; }
+.valuation-scenario label { display:flex; justify-content:space-between; gap:.5rem; font-size:.85rem; margin-top:1rem; }
+.valuation-scenario input[type=range] { display:block; width:100%; margin:.7rem 0 1.2rem; accent-color:#31796e; cursor:pointer; min-height:24px; }
+.valuation-scenario input:focus-visible,.scenario-presets button:focus-visible { outline:3px solid #c47c5b; outline-offset:4px; }
+.scenario-results { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1.3rem 0 1rem; padding-top:1.3rem; border-top:1px solid #c5d7cb; }
+.scenario-results span { display:block; font-size:.75rem; }
+.scenario-results strong { display:block; font-size:clamp(1.7rem,5vw,2.4rem); font-variant-numeric:tabular-nums; margin-top:.35rem; }
+.valuation-scenario .scenario-formula { font-size:.74rem; margin:0 0 .6rem; font-variant-numeric:tabular-nums; }
+.valuation-scenario .scenario-note { font-size:.74rem; line-height:1.7; color:#5c6e60; margin:0; }
+@media(prefers-color-scheme:dark) { .valuation-scenario { background:#15241c; color:#e0eee5; border-color:#395847; } .valuation-scenario .scenario-note { color:#a9bfae; } .valuation-scenario .scenario-eyebrow { color:#8ac7b7; } .scenario-presets button { border-color:#648573; } }

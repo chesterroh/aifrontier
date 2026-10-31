@@ -1,0 +1,198 @@
+---
+title: "Anthropic S-1: 폭발적 성장, 컴퓨팅 계약, 그리고 상장의 가격"
+description: "반기 매출 163억 달러, Opus 5.5의 AAII v5 성적, 수천억 달러 컴퓨팅 계약과 안전 사건을 원문으로 읽습니다. 경쟁사 가치평가와 IPO 시나리오를 그래프로 비교합니다."
+publishedAt: 2026-10-31
+heroImage: "/articles/anthropic-s1-ipo/hero.png"
+authors:
+  - 박종현
+tags:
+  - Anthropic
+  - IPO
+  - Claude Opus 5.5
+  - AI 비즈니스
+  - AI 안전
+lang: "ko"
+draft: true
+---
+
+import ResearchChart from '../../../components/research/ResearchChart.astro';
+import QuoteCollection from '../../../components/research/QuoteCollection.astro';
+import BenchmarkComparison from '../../../components/research/BenchmarkComparison.astro';
+import ValuationScenario from '../../../components/research/ValuationScenario';
+
+<strong>2026.10.31 기준 · 검토용 초안.</strong> B = 10억 달러, T = 1조 달러. 확정 실적·취재 보도·이 글의 전망을 구분했습니다.
+
+- <strong>성장:</strong> 상반기 매출 <strong>$16.3B, 전년의 14배</strong>. Reuters 취재 Q3 매출 <strong>$16.8B</strong>.
+- <strong>수익:</strong> 상반기 영업손실 <strong>$0.69B</strong>. 순손실 <strong>$80.75B</strong>의 대부분은 금융상품 평가손실.
+- <strong>제품:</strong> AAII v5 개편 당시 Opus 5.5 <strong>1위·58점</strong>. 다음 날 Carbon이 59점으로 추월.
+- <strong>가격:</strong> IPO 기대 <strong>$1.5–2T</strong>. 현재 약 $1.6T인 Meta·Broadcom과 비교할 규모.
+
+원문: [Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm) · 참고: [EO의 S-1 해설](https://www.eomag.io/article/anthropic-s1)
+
+## 1. 성장: 매출보다 더 빠르게 커지는 고객 지출
+
+<ResearchChart name="quarterly-revenue" alt="2026년 분기 매출: Q1 47.31억, Q2 115.55억, Reuters 취재 Q3 168억 달러" caption="Q1·Q2는 S-1, 빗금 Q3는 Reuters 취재치. 단위: 십억 달러." source="https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208" sourceLabel="Reuters Q3 취재" />
+
+- <strong>상반기 $1.163B → $16.286B:</strong> 전년 동기 대비 약 <strong>14배</strong>.
+- <strong>Q3 $16.8B:</strong> 전 분기보다 약 <strong>45% 증가</strong>. 공시 확정치가 아닌 Reuters 취재 실적.
+- <strong>연말 $110B:</strong> 애널리스트의 <strong>연환산 매출 전망</strong>. 연말 매출 속도를 1년으로 환산한 값이며, 2026년 실제 연간 매출과 다름.
+- <strong>연 $100K 이상 고객 950 → 11,900개:</strong> 2025년 9월 → 2026년 9월. $1M 이상은 1,900개로 대형 고객층 확대.
+- <strong>2026년 9월 NRR 900%:</strong> 같은 기존 고객군의 분기 지출이 1년 전의 9배. 개인 Pro·Max 제외. <strong>신규 고객 확보와 기존 고객의 사용 확대가 동시에 성장</strong>을 이끎.
+
+출처: [S-1 고객 지표·NRR 정의](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), [Reuters 10/14](https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208).
+
+## 2. 재무: 순손실 807억 달러인데, 영업은 흑자일 수 있다
+
+### 숫자부터 구분하기
+
+| 2026년 상반기 | 금액 | 쉽게 읽으면 |
+| --- | ---: | --- |
+| 매출 | <strong>$16.286B</strong> | 고객에게 서비스를 제공해 벌어들인 금액 |
+| 영업손익 | <strong>−$0.693B</strong> | 매출에서 컴퓨팅·인건비·연구·판매 등 영업비용을 뺀 결과 |
+| 조정 영업손익 | <strong>+$1.618B</strong> | 주식보상·비현금 기부비용을 제외해 회사가 제시한 수익성 |
+| 순손익 | <strong>−$80.748B</strong> | 영업손익에 이자·금융상품 평가·세금까지 반영한 최종 손익 |
+| 영업현금흐름 | <strong>+$3.929B</strong> | 영업에서 실제 들어오고 나간 현금의 차이. 설비투자는 별도 |
+
+- <strong>영업적자의 이유:</strong> 매출 $16.286B보다 영업비용 $16.979B가 큼. 기능별 비용 중 연구개발은 <strong>$9.741B</strong>로 약 57%.
+- <strong>조정 흑자의 이유:</strong> 영업손실에 주식보상 <strong>$2.185B</strong>와 비현금 기부 <strong>$0.126B</strong>를 더하면 +$1.618B. 주식보상은 현금 지출이 없어도 주주 지분을 희석할 수 있음.
+- <strong>기간을 나누면:</strong> Q1 영업손실 <strong>−$1.667B → Q2 영업이익 +$0.974B</strong>. 사업 수익성은 개선됐지만 상반기 합계는 아직 적자.
+
+### 순손실이 유난히 큰 이유
+
+<ResearchChart name="net-loss" alt="상반기 순손실: 전환사채·파생상품·SAFE 평가손실 723.88억, 다른 금융상품 평가손실 87.20억, 나머지 손익 순액 플러스 3.60억 달러" caption="큰 두 항목은 금융상품의 장부가치 재평가 손실. +$0.360B는 나머지 손익의 계산상 순액이며 영업이익이 아닙니다." source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>평가손실 $72.388B + $8.720B:</strong> 전환사채·SAFE 등과 다른 금융상품의 가치 변동. 기업가치가 오르면 일부 금융부채의 평가액도 커져 회계상 손실이 발생.
+- <strong>807억 달러 현금 소진을 뜻하지 않음:</strong> 실제 영업현금흐름은 <strong>+$3.929B</strong>. 비용 인식과 현금 수납·지급 시점도 달라 이익과 현금은 일치하지 않음.
+- <strong>읽어야 할 것:</strong> 평가손실과 함께 <strong>영업이익 개선이 지속되는지, 주식보상을 포함해도 이익이 남는지, 설비투자 뒤에도 현금이 남는지</strong>를 확인.
+- <strong>현금·단기투자 $131.651B:</strong> 6월 말 자금 여력. 투자 유치금이 포함되므로 이 잔고 자체가 사업의 자급자족을 의미하지는 않음.
+
+출처: [S-1 손익·현금흐름·금융상품 주석](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm).
+
+## 3. 수요: 엔지니어 5배, 비엔지니어는 더 빠르게
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-agent-demand.png" alt="State of AI 원본: 기업용 Codex 주간 이용자 증가, 엔지니어 5배·법무 108배·영업과 채용 41배·마케팅 26배" caption="State of AI Report 2026, 슬라이드 99 원문. 2026년 2월 이후 기업용 Codex 이용 증가. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+- <strong>엔지니어: 주간 활성 이용자 5배.</strong> 절대 사용 규모는 여전히 엔지니어가 중심.
+- <strong>비엔지니어: 법무 108배 · 영업 41배 · 채용 41배 · 마케팅 26배.</strong> 작은 출발점에서 빠르게 확산.
+- <strong>구분:</strong> 이는 해당 직군의 <strong>AI 사용 수요</strong>. 직군별 채용 공고나 일자리 수가 그만큼 늘었다는 뜻은 아님.
+- <strong>Anthropic과의 연결:</strong> 보고서는 Claude Code도 관리·영업·법무에서 빠르게 확산된다고 설명. <strong>개발 도구에서 조직 전체 업무 도구로 시장이 넓어지는 흐름.</strong>
+- <strong>수익의 조건:</strong> 고정 성능의 추론 비용은 분기 평균 <strong>47% 하락</strong>(슬라이드 109). Anthropic 매출의 <strong>80.2%는 사용량 기반</strong>. 단가 하락보다 사용량·효율이 더 빨리 커져야 매출과 이익을 지킬 수 있음.
+
+출처: [지난 AI Frontier 글](https://aifrontier.kr/ko/articles/state-of-ai-2026/), [보고서 슬라이드 99·109](https://www.stateof.ai/State-of-AI-Report-2026.pdf), [S-1 매출 구성](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm).
+
+<details>
+<summary>지난 글의 비즈니스 원본 도표 3장 더 보기</summary>
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-inference-cost.png" alt="고정 성능 기준 추론 비용 하락 원본" caption="슬라이드 109 · 고정 성능 기준 비용, 분기 평균 약 47% 하락. 모든 회사의 총비용 감소율은 아님. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-frontier-revenue.png" alt="프론티어랩 합산 연환산 매출 성장 원본" caption="슬라이드 82 · 합산 run rate, 연초 약 $30B → 늦여름 약 $105B. 연간 확정 매출이 아님. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-ai-native-growth.png" alt="AI 네이티브 기업 성장률 원본" caption="슬라이드 93 · 매출 $1–20M 기업군 성장률의 75백분위: AI 네이티브 256%, AI-enabled 90%. 평균이나 인과 효과는 아님. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+</details>
+
+## 4. AAII: 개편 전후 원본을 바로 비교하면
+
+- <strong>아래 → 위:</strong> v4.3.2(10/23)에서 v5(10/27)로 변경. <strong>모델이 바뀐 것이 아니라 시험 구성이 바뀜.</strong>
+- <strong>개편 핵심:</strong> 새 시험 2개·기존 시험 개편 3개. 지수의 <strong>60%가 비공개·홀드아웃</strong> 데이터 기반.
+
+<BenchmarkComparison />
+
+| 모델 | 개편 전 v4.3.2 | 개편 후 v5 |
+| --- | ---: | ---: |
+| <strong>Opus 5.5</strong> | <strong>1위 · 58</strong> | <strong>1위 · 58</strong> |
+| GPT-6 Astra | 공동 5위 · 53 | <strong>2위 · 57</strong> |
+| GPT-6.1 Sol | 공동 8위 · 52 | <strong>3위 · 55</strong> |
+| Sonnet 5.5 | 공동 2위 · 56 | 4위 · 54 |
+| <strong>Kimi K3.1 Pro</strong> | <strong>4위 · 55</strong> | <strong>9위 · 46</strong> |
+
+- <strong>Opus의 강점:</strong> 새 평가에서도 선두 유지. Kimi와의 격차는 <strong>3 → 12점</strong>. 단, 버전 간 점수는 다른 척도이므로 상승·하락을 성능 변화량으로 계산할 수 없음.
+- <strong>최신 순위 보정:</strong> 위 그림 이후 10/28 제한 공개된 <strong>Gemini 4 Carbon 59점</strong>이 1위. Opus 58점은 2위. 두 그림에는 Carbon 미포함.
+- <strong>실제 작업:</strong> Opus 5 → 5.5는 자동화 <strong>57 → 70</strong>, 터미널 <strong>49 → 60</strong>, 과학 도구 작업 <strong>29 → 59</strong>. 각각 별도 시험 점수.
+- <strong>성능에는 비용:</strong> v5 평균 과제 비용은 Opus <strong>$10.04</strong>, Astra <strong>$6.24</strong>, Sol <strong>$1.27</strong>. 가장 어려운 업무에서 비싼 모델을 쓸 이유가 있어야 가격 경쟁력을 유지.
+- <strong>평가 조건:</strong> Opus는 max·기본 안전 폴백 포함. Kimi는 당시 가중치 미공개. 이 글의 공동 순위는 표시 점수 기준.
+
+출처: [개편 전 원문](https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks), [v5 원문](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5), [Carbon 업데이트](https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1), [Opus 세대 비교](https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5).
+
+## 5. 컴퓨팅: 미래 수요를 받기 위해 먼저 잡은 용량
+
+<ResearchChart name="compute-contracts" alt="컴퓨팅 계약 명목 규모: Broadcom 1612억, SpaceXAI 최대 1205억, Google 최소 1145억, Amazon 최소 1100억 달러 등" caption="계약마다 기간·의무가 다름. 최소 구매액, 최대 규모, 금융리스 임차료를 구분해서 읽어야 합니다." source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>EO의 약 $637B 합계:</strong> 여러 해 계약의 명목 규모. <strong>한 해 비용이나 한꺼번에 갚을 빚이 아님.</strong>
+- <strong>최소 구매:</strong> Google <strong>$114.5B(~2033)</strong>, Amazon <strong>$110B(~2036)</strong>, Microsoft <strong>$44.9B(~2033)</strong>. 사용량이 적어도 일부 의무가 남음.
+- <strong>다른 조건:</strong> Broadcom <strong>$161.2B</strong>는 이자 제외 금융리스 임차료. SpaceXAI <strong>최대 $120.5B</strong>는 공급·해지 조건이 있는 계약. Google 추가 $125–150B도 조건부이며 그래프에서 제외.
+- <strong>해석:</strong> 용량 확보는 성장의 기반. <strong>매출 단가는 내려가는데 구매 의무가 오래 남는 것</strong>이 위험. 공급 지연과 수요 둔화 모두 수익에 부담.
+
+출처: [S-1 주요 계약·약정](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), [EO 해설](https://www.eomag.io/article/anthropic-s1).
+
+## 6. 경쟁사: 미국뿐 아니라 중국의 자본도 커졌다
+
+| 회사 | 최근 가치·투자 | 매출·수익성에서 확인할 것 |
+| --- | --- | --- |
+| <strong>Anthropic</strong> | 5월 <strong>$965B 투자 후</strong> · $65B 조달 | 상반기 매출 $16.3B, 영업손실 $0.69B |
+| <strong>OpenAI</strong> | 3월 <strong>$852B 투자 후</strong> · $122B 약정. 10월 <strong>$1.25T 투자 전</strong> 협상 보도 | 9월 말 run rate 약 $70B 보도. 이익과 별도 |
+| <strong>Moonshot / Kimi</strong> | 10/6 <strong>약 $50B</strong> 비상장 투자 완료 보도 | 8월 run rate 약 $1B라는 Sacra 집계. 연간 매출·이익 아님 |
+| <strong>DeepSeek</strong> | 10월 <strong>투자 후 6,000억 위안 초과</strong> · $15.9B 조달 보도 | 이전 $74–75B 협상가보다 최신 투자 후 가치가 높아짐. 확정 공시와 구분 |
+| <strong>Mistral</strong> | 9월 <strong>€21B 초과 투자 후</strong> · €3B 조달 | 연말 $1B ARR 목표 보도. 실적과 별도 |
+| <strong>SpaceX SI</strong> | xAI 합병으로 독립 가치 비교 어려움 | Q3 매출 $7.56B·영업이익 $0.43B. 컴퓨팅·Grok·X·Cursor 등 포함 |
+
+- <strong>Kimi와 Anthropic:</strong> $50B 대 $965B로, 최근 보도·발표 가치의 차이는 약 <strong>19배</strong>. 기술 점수 차이와 기업가치 차이가 같은 비율로 움직이지는 않음.
+- <strong>DeepSeek 환산:</strong> 보도가 제시한 <strong>1,060억 위안 = $15.9B</strong> 비율로 단순 환산하면 투자 후 가치 <strong>약 $90B 초과</strong>. 현재 환율에 따른 정밀 평가가 아님.
+- <strong>읽을 점:</strong> 중국 랩도 수백억 달러 가치와 대형 자금을 확보. 다만 <strong>비상장 투자 가치·상장 시총·매출 run rate·순이익은 서로 다른 숫자</strong>.
+
+출처: [Anthropic](https://www.anthropic.com/news/series-h), [OpenAI 3월](https://openai.com/index/accelerating-the-next-phase-ai/)·[10월 협상](https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1.25t-valuation-ahead-of-ipo/)·[매출 취재](https://www.axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b), [Kimi 투자 보도](https://bloomberg.com/news/articles/2026-10-06/moonshot-said-to-eye-early-2027-ipo-after-value-hits-50-billion)·[Sacra 매출 집계](https://sacra.com/c/moonshot-ai/), [DeepSeek 10월 투자 보도](https://www.theinformation.com/briefings/deepseek-raises-nearly-16-billion-second-funding-round), [Mistral 투자](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/)·[매출 목표](https://www.streetinsider.com/Reuters/French%2BAI%2Bcompany%2BMistral%2Bhits%2B%2424%2Bbillion%2Bvaluation%2Bin%2Bfunding%2Bround/27032039.html?classic=1), [SpaceX 10-Q](https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm).
+
+### $1–2T는 어느 정도인가: 이미 이익을 내는 회사와 비교
+
+| 회사 | 시가총액 / IPO 기대 | 최근 공개 분기 매출 | 영업손익 | 순손익 |
+| --- | ---: | ---: | ---: | ---: |
+| <strong>Anthropic</strong> · 2026 Q2 | <strong>$1.5–2T 기대</strong> | $11.56B | <strong>+$0.97B</strong> | −$66.31B |
+| <strong>Meta</strong> · 2026 Q3 | <strong>약 $1.57T</strong> | $64.60B | <strong>+$12.99B</strong> | +$9.86B |
+| <strong>Broadcom</strong> · FY2026 Q3 | <strong>약 $1.56T</strong> | $29.59B | <strong>+$15.96B</strong> | +$13.09B |
+| <strong>Apple</strong> · FY2026 Q3 | <strong>약 $5.03T</strong> | $109.42B | <strong>+$35.70B</strong> | +$29.79B |
+
+- <strong>기준:</strong> 시총은 <strong>10/30 종가 기준 집계</strong>, 손익은 모두 GAAP·3개월 실적. 분기 종료일은 Anthropic·Apple 6월, Broadcom 8월, Meta 9월로 다름.
+- <strong>규모의 의미:</strong> $1.5–2T 상장은 <strong>Meta·Broadcom에 맞먹는 가격</strong>. 두 회사는 이미 분기 영업이익 약 $13–16B를 내고 있음.
+- <strong>Anthropic에 붙는 프리미엄:</strong> Q2 영업이익은 약 $1B. 같은 규모의 가치평가는 <strong>현재 이익보다 앞으로의 고성장·마진 확대에 훨씬 많이 지불</strong>하는 셈.
+- <strong>Apple은 더 큰 비교군:</strong> 시총 약 $5T, 분기 순이익 약 $30B. 이미 확보한 이익 규모를 참고.
+- <strong>일회성 항목:</strong> Meta 영업이익에는 법적 합의 관련 $9.89B 비용 포함. Anthropic의 큰 순손실에는 앞서 설명한 금융상품 평가손실 포함.
+
+실적 원문: [Meta](https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx), [Broadcom](https://investors.broadcom.com/node/64671/pdf), [Apple](https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf), [Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm). 시총: CompaniesMarketCap의 [Meta](https://companiesmarketcap.com/meta-platforms/marketcap/)·[Broadcom](https://companiesmarketcap.com/broadcom/marketcap/)·[Apple](https://companiesmarketcap.com/apple/marketcap/).
+
+## 7. 안전: 매출 성장과 충돌할 수 있는 통제 비용
+
+> “catastrophic or existential risks to humanity”
+>
+> “인류에 대한 파국적 또는 실존적 위험” — [S-1 위험요인](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), 발췌·번역
+
+- <strong>실제 외부 접촉:</strong> AISI 평가 중 Mythos 5가 외부 개발자에게 악성 변경 승인을 유도. 개발자가 거부했고 <strong>실제 피해는 보고되지 않음</strong>. 허용 범위를 벗어난 공격 미수라는 점이 핵심. [AISI 원문](https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident)
+- <strong>통제가 능력을 가림:</strong> 회사의 사이버 자체 평가에서 등급별 50회 시도 중 일반 접근은 <strong>성공 0회</strong>, Red Team은 <strong>34회</strong>. 나머지 16회는 미완료. 실제 범죄 성공률이 아닌 제한된 시험. [프로그램 원문](https://www.anthropic.com/news/cyber-verification-program)
+- <strong>매출과의 충돌:</strong> 1–9월 매출의 <strong>5–7%</strong>는 나중에 사용 정책·상업 약관 위반으로 판정된 고객에서 발생한 것으로 추정. 전부 범죄 매출이라는 뜻은 아니며, 집행 강화가 매출을 줄일 수 있음. [S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+- <strong>주주 통제:</strong> 창업자 LLC는 일반 의결권 <strong>50.1%</strong>, LTBT 신탁은 이사 <strong>7명 중 4명</strong> 선임 구조. 일반 주주가 안전·성장 간 선택을 단독으로 바꾸기 어려움. [S-1 지배구조](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+### 시장의 목소리
+
+<QuoteCollection />
+
+## 8. 상장 전망: 가격을 지탱할 것은 성장과 이익의 연결
+
+- <strong>확정:</strong> Class A 공모 추진, Nasdaq <strong>ANT</strong>. <strong>공모가·주식 수·상장일은 미정</strong>. [공식 발표](https://www.anthropic.com/news/s1-sec)
+- <strong>언론 기대:</strong> 가치 <strong>$1.5–2T</strong>, 조달 최대 <strong>$100B</strong> 보도. 공모가 밴드나 확정 조달액이 아님. [Reuters](https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801), [Axios](https://www.axios.com/2026/10/26/anthropic-ipo)
+- <strong>이 글의 기준 가정:</strong> 공모 후 가치 <strong>$1.2–1.6T</strong>·신주 조달 <strong>$60–90B</strong>. 2027년 연매출 $100B × 12–16배로 계산. 회사 가이던스·컨센서스가 아닌 자체 시나리오.
+
+| 자체 시나리오 | 2027 연매출 가정 | 매출 배수 | 공모 후 가치 | 신주 조달 / 단순 희석 |
+| --- | ---: | ---: | ---: | ---: |
+| 보수적 | $75B | 12배 | <strong>$0.90T</strong> | $50B / 5.6% |
+| 기준 | $100B | 14배 | <strong>$1.40T</strong> | $75B / 5.4% |
+| 낙관적 | $130B | 16배 | <strong>$2.08T</strong> | $100B / 4.8% |
+
+- <strong>$100B를 잡은 이유:</strong> 연말 $110B run rate 전망의 미달·가격 하락 가능성을 반영한 보수적 가정. $110B 속도가 실현·유지되면 매출 가정을 상향해야 함.
+- <strong>$2T의 조건:</strong> 고성장 지속 + 가격 하락을 상쇄하는 사용 확대 + 컴퓨팅 약정을 감당할 이익·현금.
+- <strong>주당 공모가:</strong> 공모 후 가치 ÷ 완전희석 주식 수. 아직 주식 수가 없어 산출 불가.
+- <strong>유통 물량:</strong> S-1에는 일부 주주 180일·365일 보호예수와 조기 해제 조건. 물량 빈칸은 수정 공시 확인 필요. [S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+<ValuationScenario client:load />
+
+---
+
+- <strong>다음 공시에서 볼 세 가지:</strong> Q3 매출·이익 확정치 / 공모 후 주식 수와 희석 / 장기 약정 이후 남는 현금.
+- <strong>자료:</strong> 직접 제작 그래프는 PNG·SVG 제공. [데이터 CSV](/articles/anthropic-s1-ipo/chart-data.csv) · [출처 JSON](/articles/anthropic-s1-ipo/chart-data.json).
+- <strong>원본:</strong> AA 그래프는 해당 기사 화면을 캡처했고 로고·수치를 보존. State of AI 도표는 Nathan Benaich / Air Street Capital, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 인용 번역·해석·IPO 시나리오는 이 글에서 작성.
