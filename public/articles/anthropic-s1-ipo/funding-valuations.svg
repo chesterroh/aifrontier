@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="460.8pt" viewBox="0 0 792 460.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-31T21:46:06.646119</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460.8
+L 792 460.8
+L 792 0
+L 0 0
+z
+" style="fill: #fffdf9"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 261.36 368.64
+L 736.56 368.64
+L 736.56 96.768
+L 261.36 96.768
+z
+" style="fill: #fffdf9"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 261.36 368.64
+L 261.36 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="ma05386c1ce" d="M 0 0
+L 0 3.5
+" style="stroke: #66716e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma05386c1ce" x="261.36" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="261.36" y="385.516953" transform="rotate(-0 261.36 385.516953)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 344.728421 368.64
+L 344.728421 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#ma05386c1ce" x="344.728421" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="344.728421" y="385.516953" transform="rotate(-0 344.728421 385.516953)">500</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 428.096842 368.64
+L 428.096842 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#ma05386c1ce" x="428.096842" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="428.096842" y="385.516953" transform="rotate(-0 428.096842 385.516953)">1000</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 511.465263 368.64
+L 511.465263 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#ma05386c1ce" x="511.465263" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="511.465263" y="385.516953" transform="rotate(-0 511.465263 385.516953)">1500</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 594.833684 368.64
+L 594.833684 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#ma05386c1ce" x="594.833684" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="594.833684" y="385.516953" transform="rotate(-0 594.833684 385.516953)">2000</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 678.202105 368.64
+L 678.202105 96.768
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#ma05386c1ce" x="678.202105" y="368.64" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="678.202105" y="385.516953" transform="rotate(-0 678.202105 385.516953)">2500</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="498.96" y="402.517969" transform="rotate(-0 498.96 402.517969)">Equity valuation (USD billions)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <defs>
+       <path id="m19106d44fa" d="M 0 0
+L -3.5 0
+" style="stroke: #66716e; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m19106d44fa" x="261.36" y="126.779844" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="254.36" y="131.718829" transform="rotate(-0 254.36 131.718829)">Anthropic: May round</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m19106d44fa" x="261.36" y="197.395948" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="254.36" y="202.334932" transform="rotate(-0 254.36 202.334932)">OpenAI: March round</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m19106d44fa" x="261.36" y="268.012052" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="254.36" y="272.951036" transform="rotate(-0 254.36 272.951036)">Anthropic: IPO reports</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m19106d44fa" x="261.36" y="338.628156" style="fill: #66716e; stroke: #66716e; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="254.36" y="343.56714" transform="rotate(-0 254.36 343.56714)">OpenAI: funding talks</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 261.36 109.125818
+L 422.261053 109.125818
+L 422.261053 144.43387
+L 261.36 144.43387
+z
+" clip-path="url(#pdfdcbf4407)" style="fill: #c47c5b; stroke: #c47c5b; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 261.36 179.741922
+L 403.419789 179.741922
+L 403.419789 215.049974
+L 261.36 215.049974
+z
+" clip-path="url(#pdfdcbf4407)" style="fill: #31796e; stroke: #31796e; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 261.36 250.358026
+L 511.465263 250.358026
+L 511.465263 285.666078
+L 261.36 285.666078
+z
+" clip-path="url(#pdfdcbf4407)" style="fill: url(#h54e91c571b); stroke: #c47c5b; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 261.36 320.97413
+L 469.781053 320.97413
+L 469.781053 356.282182
+L 261.36 356.282182
+z
+" clip-path="url(#pdfdcbf4407)" style="fill: url(#he828be1e01); stroke: #31796e; stroke-linejoin: miter"/>
+   </g>
+   <g id="LineCollection_1">
+    <path d="M 511.465263 268.012052
+L 594.833684 268.012052
+" clip-path="url(#pdfdcbf4407)" style="fill: none; stroke: #c47c5b; stroke-width: 2"/>
+   </g>
+   <g id="line2d_17">
+    <defs>
+     <path id="mf933d4b949" d="M 0 5
+L 0 -5
+" style="stroke: #c47c5b"/>
+    </defs>
+    <g clip-path="url(#pdfdcbf4407)">
+     <use xlink:href="#mf933d4b949" x="511.465263" y="268.012052" style="fill: #1f77b4; stroke: #c47c5b"/>
+    </g>
+   </g>
+   <g id="line2d_18">
+    <g clip-path="url(#pdfdcbf4407)">
+     <use xlink:href="#mf933d4b949" x="594.833684" y="268.012052" style="fill: #1f77b4; stroke: #c47c5b"/>
+    </g>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="428.096842" y="129.637696" transform="rotate(-0 428.096842 129.637696)">$965B post-money</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="409.255579" y="200.2538" transform="rotate(-0 409.255579 200.2538)">$852B post-money</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="609.006316" y="270.869904" transform="rotate(-0 609.006316 270.869904)">$1.5-2.0T, reported</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="475.616842" y="341.486007" transform="rotate(-0 475.616842 341.486007)">$1.25T pre-money, talks</text>
+   </g>
+  </g>
+  <g id="text_16">
+   <text style="font-weight: 700; font-size: 19px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="47.52" y="28.261031" transform="rotate(-0 47.52 28.261031)">Funding valuations: confirmed and proposed.</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #66716e" x="47.52" y="449.28" transform="rotate(-0 47.52 449.28)">Confirmed: Anthropic May 28; OpenAI Mar 31. Proposed terms: Reuters / CNBC, Oct. No IPO price set.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdfdcbf4407">
+   <rect x="261.36" y="96.768" width="475.2" height="271.872"/>
+  </clipPath>
+ </defs>
+ <defs>
+  <pattern id="h54e91c571b" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+   <rect x="0" y="0" width="73" height="73" fill="#f5e4d8"/>
+   <path d="M -36 36
+L 36 -36
+M -32 40
+L 40 -32
+M -28 44
+L 44 -28
+M -24 48
+L 48 -24
+M -20 52
+L 52 -20
+M -16 56
+L 56 -16
+M -12 60
+L 60 -12
+M -8 64
+L 64 -8
+M -4 68
+L 68 -4
+M 0 72
+L 72 0
+M 4 76
+L 76 4
+M 8 80
+L 80 8
+M 12 84
+L 84 12
+M 16 88
+L 88 16
+M 20 92
+L 92 20
+M 24 96
+L 96 24
+M 28 100
+L 100 28
+M 32 104
+L 104 32
+M 36 108
+L 108 36
+" style="fill: #c47c5b; stroke: #c47c5b; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+  </pattern>
+  <pattern id="he828be1e01" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
+   <rect x="0" y="0" width="73" height="73" fill="#deebe7"/>
+   <path d="M -36 36
+L 36 -36
+M -32 40
+L 40 -32
+M -28 44
+L 44 -28
+M -24 48
+L 48 -24
+M -20 52
+L 52 -20
+M -16 56
+L 56 -16
+M -12 60
+L 60 -12
+M -8 64
+L 64 -8
+M -4 68
+L 68 -4
+M 0 72
+L 72 0
+M 4 76
+L 76 4
+M 8 80
+L 80 8
+M 12 84
+L 84 12
+M 16 88
+L 88 16
+M 20 92
+L 92 20
+M 24 96
+L 96 24
+M 28 100
+L 100 28
+M 32 104
+L 104 32
+M 36 108
+L 108 36
+" style="fill: #31796e; stroke: #31796e; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+  </pattern>
+ </defs>
+</svg>

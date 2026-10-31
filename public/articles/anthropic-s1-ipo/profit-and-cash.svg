@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="460.8pt" viewBox="0 0 792 460.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-31T21:46:06.268580</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460.8
+L 792 460.8
+L 792 0
+L 0 0
+z
+" style="fill: #fffdf9"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 277.2 373.248
+L 728.64 373.248
+L 728.64 96.768
+L 277.2 96.768
+z
+" style="fill: #fffdf9"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 311.4 373.248
+L 311.4 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="311.4" y="386.624953" transform="rotate(-0 311.4 386.624953)">−1</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 379.8 373.248
+L 379.8 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="379.8" y="386.624953" transform="rotate(-0 379.8 386.624953)">0</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 448.2 373.248
+L 448.2 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="448.2" y="386.624953" transform="rotate(-0 448.2 386.624953)">1</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 516.6 373.248
+L 516.6 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="516.6" y="386.624953" transform="rotate(-0 516.6 386.624953)">2</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 585 373.248
+L 585 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="585" y="386.624953" transform="rotate(-0 585 386.624953)">3</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 653.4 373.248
+L 653.4 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_6">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="653.4" y="386.624953" transform="rotate(-0 653.4 386.624953)">4</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 721.8 373.248
+L 721.8 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_7">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="721.8" y="386.624953" transform="rotate(-0 721.8 386.624953)">5</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="502.92" y="403.625969" transform="rotate(-0 502.92 403.625969)">USD billions</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_15"/>
+     <g id="text_9">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="273.7" y="139.408803" transform="rotate(-0 273.7 139.408803)">GAAP operating income</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_16"/>
+     <g id="text_10">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="273.7" y="239.946984" transform="rotate(-0 273.7 239.946984)">Adjusted operating income</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17"/>
+     <g id="text_11">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="273.7" y="340.485166" transform="rotate(-0 273.7 340.485166)">Operating cash flow</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 379.8 109.335273
+L 332.3988 109.335273
+L 332.3988 159.604364
+L 379.8 159.604364
+z
+" clip-path="url(#pcf70d33f01)" style="fill: #c47c5b"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 379.8 209.873455
+L 490.4712 209.873455
+L 490.4712 260.142545
+L 379.8 260.142545
+z
+" clip-path="url(#pcf70d33f01)" style="fill: #6b8aa3"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 379.8 310.411636
+L 648.5436 310.411636
+L 648.5436 360.680727
+L 379.8 360.680727
+z
+" clip-path="url(#pcf70d33f01)" style="fill: #31796e"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 379.8 373.248
+L 379.8 96.768
+" clip-path="url(#pcf70d33f01)" style="fill: none; stroke: #66716e; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #242b2b" x="324.1908" y="138.885834" transform="rotate(-0 324.1908 138.885834)">-0.693</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="498.6792" y="239.424016" transform="rotate(-0 498.6792 239.424016)">+1.618</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="656.7516" y="339.962197" transform="rotate(-0 656.7516 339.962197)">+3.929</text>
+   </g>
+  </g>
+  <g id="text_15">
+   <text style="font-weight: 700; font-size: 19px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="47.52" y="28.261031" transform="rotate(-0 47.52 28.261031)">H1 2026: operating income and cash flow.</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #66716e" x="47.52" y="449.28" transform="rotate(-0 47.52 449.28)">Adjusted income excludes selected costs. Operating cash flow is not free cash flow. Source: S-1.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcf70d33f01">
+   <rect x="277.2" y="96.768" width="451.44" height="276.48"/>
+  </clipPath>
+ </defs>
+</svg>

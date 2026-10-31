@@ -1,0 +1,94 @@
+---
+const quotes = [
+  {
+    voice: 'ARK 리서치팀', role: 'Sam Korus · Brett Winton · Nicholas Grous', date: '2026.10.29', tag: '성장의 크기',
+    original: 'maybe the most impressive twelve months of revenue growth in corporate history',
+    translated: '기업 역사에서 가장 인상적인 12개월 매출 성장일지도 모른다.',
+    context: '공식 팟캐스트 소개문. 매출 성장 속도에 대한 평가.',
+    url: 'https://www.ark-invest.com/podcast/the-brainstorm-ep-155',
+  },
+  {
+    voice: 'Paul Kedrosky', role: '투자자 · 분석가', date: '2026.10.28', tag: '성장의 지속성',
+    original: 'Extraordinary Growth, Uncertain Durability',
+    translated: '비범한 성장, 불확실한 지속성.',
+    context: '기사 소제목. 토큰 가격 하락과 신모델 교체에 주목.',
+    url: 'https://paulkedrosky.com/post-noise-notes-on-the-anthropic-s-1/',
+  },
+  {
+    voice: 'Brian Hopkins', role: 'Forrester · VP, Emerging Tech Portfolio', date: '2026.10.27', tag: '고객의 협상력',
+    original: 'Pricing will get “real” … by getting cheaper.',
+    translated: '가격은 더 저렴해지는 방식으로 현실화될 것이다.',
+    context: '고객 사용량을 확보하려면 가격 경쟁이 필요하다는 전망.',
+    url: 'https://www.forrester.com/blogs/anthropics-s-1-hands-enterprise-ai-buyers-better-leverage/',
+  },
+  {
+    voice: 'Matt Levine', role: 'Bloomberg Opinion · Money Stuff', date: '2026.10.26', tag: '성장 약속과 위험',
+    original: 'what to promise in your good vision of AI, and what to threaten in your bad vision',
+    translated: 'AI의 좋은 미래에서는 무엇을 약속하고, 나쁜 미래에서는 무엇을 경고할 것인가.',
+    context: '공개 도입부 발췌. 투자설명서에 공존하는 기회와 위험.',
+    url: 'https://news.bloomberglaw.com/securities-law/matt-levines-money-stuff-anthropic-raises-concerns',
+  },
+  {
+    voice: 'Susannah Streeter', role: 'Wealth Club · Chief Investment Strategist', date: '2026.10.26', tag: '시장의 눈높이',
+    original: 'investors are becoming more discerning',
+    translated: '투자자들은 점점 더 까다롭게 판단하고 있다.',
+    context: 'Reuters 인터뷰. 지출과 기업가치에 대한 검증 강화.',
+    url: 'https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801',
+  },
+  {
+    voice: 'Thomas Hayes', role: 'Great Hill Capital · Chairman', date: '2026.10.26', tag: '장기 수익에 대한 믿음',
+    original: 'The offering is for the faithful',
+    translated: '이번 공모는 믿음을 가진 사람들을 위한 것이다.',
+    context: 'Reuters 인터뷰. 미래 수익에 대한 큰 믿음이 필요한 거래.',
+    url: 'https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801',
+  },
+  {
+    voice: 'Arthur Mensch', role: 'Mistral AI · Co-founder & CEO', date: '2026.09.24', tag: '안전 담론을 보는 반론',
+    original: 'AI is software. It can be controlled.',
+    translated: 'AI는 소프트웨어다. 통제할 수 있다.',
+    context: 'S-1 이전 Le Monde 인터뷰. 안전 담론에 대한 반론이며 IPO 직접 평가는 아님.',
+    url: 'https://www.lemonde.fr/en/economy/article/2026/09/24/arthur-mensch-ceo-of-french-start-up-mistral-ai-ai-is-software-it-can-be-controlled_6757890_19.html',
+  },
+  {
+    voice: 'Liam Proud', role: 'Reuters Breakingviews · Columnist', date: '2026.09.08', tag: '전략적 가치의 프리미엄',
+    original: 'part AI company and part geopolitical hedge',
+    translated: '일부는 AI 기업이고, 일부는 지정학적 헤지다.',
+    context: 'Mistral 투자 분석. 유럽의 기술 자립에 붙는 프리미엄.',
+    url: 'https://www.breakingviews.com/columns/considered-view/french-ai-minnow-bags-surprisingly-high-valuation-2026-09-08/',
+  },
+];
+---
+
+<div class="quote-collection">
+  {quotes.map((q, index) => (
+    <figure class="quote-card">
+      <div class="quote-meta"><span>{String(index + 1).padStart(2, '0')} / {q.tag}</span><time>{q.date}</time></div>
+      <blockquote lang="en">“{q.original}”</blockquote>
+      <p class="translation">{q.translated}</p>
+      <figcaption><strong>{q.voice}</strong><span>{q.role}</span></figcaption>
+      <p class="quote-context">{q.context}</p>
+      <a href={q.url} target="_blank" rel="noopener noreferrer" aria-label={`${q.voice} 인용 원문`}>인용 원문 ↗</a>
+    </figure>
+  ))}
+</div>
+
+<style>
+  .quote-collection { display: grid; gap: .8rem; margin: 1.5rem 0 2rem; }
+  .quote-card { margin: 0; padding: 1.05rem; border: 1px solid #e4e4dc; border-radius: 12px; background: #fffdf9; }
+  .quote-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem; color: #31796e; font-size: .7rem; font-weight: 700; letter-spacing: .04em; }
+  .quote-card blockquote { margin: .75rem 0 .55rem; border: 0; padding: 0; font: 500 1.05rem/1.5 Georgia, serif; color: #252e2a; word-break: normal; }
+  .quote-card .translation { font-size: .9rem; margin: 0 0 .8rem; line-height: 1.6; color: #454e49; }
+  figcaption strong, figcaption span { display: block; }
+  figcaption strong { font-size: .85rem; color: #252e2a; }
+  figcaption span { font-size: .72rem; color: #65716d; margin-top: .15rem; }
+  .quote-card .quote-context { margin: .85rem 0 .5rem; font-size: .78rem; color: #65716d; line-height: 1.7; }
+  .quote-card a { font-size: .75rem; }
+  @media (min-width: 660px) { .quote-collection { grid-template-columns: 1fr 1fr; } }
+  @media (prefers-color-scheme: dark) {
+    .quote-card { background: #17211e; border-color: #34443b; }
+    .quote-card blockquote, figcaption strong { color: #f2ede4; }
+    .quote-card .translation { color: #d5dcd7; }
+    .quote-card .quote-context, figcaption span { color: #a8b4ab; }
+    .quote-meta { color: #8ac7b7; }
+  }
+</style>

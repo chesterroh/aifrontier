@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="792pt" height="460.8pt" viewBox="0 0 792 460.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-31T21:46:06.597020</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 460.8
+L 792 460.8
+L 792 0
+L 0 0
+z
+" style="fill: #fffdf9"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 221.76 368.64
+L 712.8 368.64
+L 712.8 87.552
+L 221.76 87.552
+z
+" style="fill: #fffdf9"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 221.76 368.64
+L 221.76 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="221.76" y="386.516953" transform="rotate(-0 221.76 386.516953)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 298.78105 368.64
+L 298.78105 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="298.78105" y="386.516953" transform="rotate(-0 298.78105 386.516953)">2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 375.802099 368.64
+L 375.802099 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="375.802099" y="386.516953" transform="rotate(-0 375.802099 386.516953)">4</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 452.823149 368.64
+L 452.823149 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="452.823149" y="386.516953" transform="rotate(-0 452.823149 386.516953)">6</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 529.844199 368.64
+L 529.844199 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="529.844199" y="386.516953" transform="rotate(-0 529.844199 386.516953)">8</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 606.865248 368.64
+L 606.865248 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_6">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="606.865248" y="386.516953" transform="rotate(-0 606.865248 386.516953)">10</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 683.886298 368.64
+L 683.886298 87.552
+" clip-path="url(#p9409b12175)" style="fill: none; stroke: #e9e9e2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_7">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #66716e" x="683.886298" y="386.516953" transform="rotate(-0 683.886298 386.516953)">12</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_15"/>
+     <g id="text_8">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="213.76" y="124.757127" transform="rotate(-0 213.76 124.757127)">Opus 5.5 (max)</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_16"/>
+     <g id="text_9">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="213.76" y="196.942534" transform="rotate(-0 213.76 196.942534)">Gemini 4 Carbon (high)*</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17"/>
+     <g id="text_10">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="213.76" y="269.126926" transform="rotate(-0 213.76 269.126926)">GPT-6 Astra (max)</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_18"/>
+     <g id="text_11">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #66716e" x="213.76" y="341.312334" transform="rotate(-0 213.76 341.312334)">GPT-6.1 Sol (max)</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 221.76 100.328727
+L 608.405669 100.328727
+L 608.405669 139.308573
+L 221.76 139.308573
+z
+" clip-path="url(#p9409b12175)" style="fill: #c47c5b"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 221.76 172.513627
+L 520.601673 172.513627
+L 520.601673 211.493473
+L 221.76 211.493473
+z
+" clip-path="url(#p9409b12175)" style="fill: #6b8aa3"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 221.76 244.698527
+L 462.065675 244.698527
+L 462.065675 283.678373
+L 221.76 283.678373
+z
+" clip-path="url(#p9409b12175)" style="fill: #31796e"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 221.76 316.883427
+L 270.668367 316.883427
+L 270.668367 355.863273
+L 221.76 355.863273
+z
+" clip-path="url(#p9409b12175)" style="fill: #31796e"/>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="617.244389" y="123.715135" transform="rotate(-0 617.244389 123.715135)">10.04</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="529.440393" y="195.900034" transform="rotate(-0 529.440393 195.900034)">7.76</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="470.904395" y="268.084934" transform="rotate(-0 470.904395 268.084934)">6.24</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="279.507087" y="340.269834" transform="rotate(-0 279.507087 340.269834)">1.27</text>
+   </g>
+  </g>
+  <g id="text_16">
+   <text style="font-weight: 700; font-size: 19px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #242b2b" x="47.52" y="28.261031" transform="rotate(-0 47.52 28.261031)">AAII v5: the cost per task.</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #66716e" x="47.52" y="449.28" transform="rotate(-0 47.52 449.28)">USD per weighted AAII v5 task, standard pricing. *Limited access. Source: Artificial Analysis, Oct 27-28.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9409b12175">
+   <rect x="221.76" y="87.552" width="491.04" height="281.088"/>
+  </clipPath>
+ </defs>
+</svg>
