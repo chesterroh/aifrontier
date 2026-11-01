@@ -1,28 +1,32 @@
 ---
+import type { Lang } from '../../lib/seo';
+import { researchCopy } from './copy';
 interface Props {
   name: string;
   alt: string;
   caption: string;
   source: string;
   sourceLabel?: string;
+  lang?: Lang;
 }
-const { name, alt, caption, source, sourceLabel = '원문 확인' } = Astro.props;
+const { name, alt, caption, source, sourceLabel, lang = 'ko' } = Astro.props;
+const copy = researchCopy[lang];
 const root = '/articles/anthropic-s1-ipo';
 ---
 
 <figure class="research-chart">
-  <div class="chart-scroll" tabindex="0" role="region" aria-label={`${alt} — 가로 스크롤 가능`}>
-    <a href={`${root}/${name}.svg`} target="_blank" rel="noopener noreferrer" aria-label={`${alt} 크게 보기`}>
+  <div class="chart-scroll" tabindex="0" role="region" aria-label={`${alt} — ${copy.scroll}`}>
+    <a href={`${root}/${name}.svg`} target="_blank" rel="noopener noreferrer" aria-label={`${alt} · ${copy.enlarge}`}>
       <img src={`${root}/${name}.svg`} alt={alt} loading="lazy" width="1100" height="640" />
     </a>
   </div>
   <figcaption>
     <span>{caption}</span>
     <span class="chart-links">
-      <a href={source} target="_blank" rel="noopener noreferrer">{sourceLabel} ↗</a>
+      <a href={source} target="_blank" rel="noopener noreferrer">{sourceLabel ?? copy.source} ↗</a>
       <a href={`${root}/${name}.png`} download>PNG</a>
       <a href={`${root}/${name}.svg`} download>SVG</a>
-      <a href={`${root}/chart-data.csv`} download>전체 데이터 CSV</a>
+      <a href={`${root}/chart-data.csv`} download>{copy.csv}</a>
     </span>
   </figcaption>
 </figure>

@@ -1,10 +1,15 @@
 ---
+import type { Lang } from '../../lib/seo';
+import { researchCopy } from './copy';
+interface Props { lang?: Lang; }
+const { lang = 'ko' } = Astro.props;
+const copy = researchCopy[lang];
 const charts = [
-  { version: '개편 후 · v5', date: '2026.10.27', name: 'aaii-v5-original', width: 1856, height: 878,
-    alt: 'AAII v5 원본 그래프: Opus 5.5 58, Astra 57, Sol 55, Sonnet 54, Kimi 46점',
+  { version: copy.versions[0], date: '2026.10.27', name: 'aaii-v5-original', width: 1856, height: 878,
+    alt: copy.benchmarkAlts[0],
     source: 'https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5' },
-  { version: '개편 전 · v4.3.2', date: '2026.10.23', name: 'aaii-v4-original', width: 1856, height: 778,
-    alt: 'AAII v4.3.2 원본 그래프: Opus 58, Sonnet과 Muse Wonder Full 56, Kimi 55, Astra 53, Sol 52점',
+  { version: copy.versions[1], date: '2026.10.23', name: 'aaii-v4-original', width: 1856, height: 778,
+    alt: copy.benchmarkAlts[1],
     source: 'https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks' },
 ];
 ---
@@ -13,10 +18,10 @@ const charts = [
   {charts.map(c => (
     <figure>
       <figcaption><strong>{c.version}</strong><time>{c.date}</time></figcaption>
-      <a href={`/articles/anthropic-s1-ipo/${c.name}.png`} target="_blank" rel="noopener noreferrer" aria-label={`${c.version} 그래프 크게 보기`}>
+      <a href={`/articles/anthropic-s1-ipo/${c.name}.png`} target="_blank" rel="noopener noreferrer" aria-label={`${c.version} · ${copy.enlarge}`}>
         <img src={`/articles/anthropic-s1-ipo/${c.name}.png`} alt={c.alt} width={c.width} height={c.height} loading="lazy" decoding="async" />
       </a>
-      <div class="chart-credit"><span>Artificial Analysis 원본 캡처 · 클릭하면 확대</span><a href={c.source} target="_blank" rel="noopener noreferrer">출처 ↗</a></div>
+      <div class="chart-credit"><span>{copy.credit}</span><a href={c.source} target="_blank" rel="noopener noreferrer">{copy.source} ↗</a></div>
     </figure>
   ))}
 </div>

@@ -1,4 +1,9 @@
 ---
+import type { Lang } from '../../lib/seo';
+import { quoteTranslations, researchCopy } from './copy';
+interface Props { lang?: Lang; }
+const { lang = 'ko' } = Astro.props;
+const copy = researchCopy[lang];
 const quotes = [
   {
     voice: 'ARK 리서치팀', role: 'Sam Korus · Brett Winton · Nicholas Grous', date: '2026.10.29', tag: '성장의 크기',
@@ -57,17 +62,18 @@ const quotes = [
     url: 'https://www.breakingviews.com/columns/considered-view/french-ai-minnow-bags-surprisingly-high-valuation-2026-09-08/',
   },
 ];
+const localizedQuotes = lang === 'ko' ? quotes : quotes.map((q, index) => ({ ...q, ...quoteTranslations[lang][index] }));
 ---
 
 <div class="quote-collection">
-  {quotes.map((q, index) => (
+  {localizedQuotes.map((q, index) => (
     <figure class="quote-card">
       <div class="quote-meta"><span>{String(index + 1).padStart(2, '0')} / {q.tag}</span><time>{q.date}</time></div>
       <blockquote lang="en">“{q.original}”</blockquote>
-      <p class="translation">{q.translated}</p>
+      {q.translated && <p class="translation" lang={lang}>{q.translated}</p>}
       <figcaption><strong>{q.voice}</strong><span>{q.role}</span></figcaption>
       <p class="quote-context">{q.context}</p>
-      <a href={q.url} target="_blank" rel="noopener noreferrer" aria-label={`${q.voice} 인용 원문`}>인용 원문 ↗</a>
+      <a href={q.url} target="_blank" rel="noopener noreferrer" aria-label={`${q.voice} · ${copy.quoteSource}`}>{copy.quoteSource} ↗</a>
     </figure>
   ))}
 </div>

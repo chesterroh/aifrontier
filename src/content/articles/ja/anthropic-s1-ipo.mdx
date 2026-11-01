@@ -1,0 +1,199 @@
+---
+title: "Anthropic S-1：急成長、計算資源契約、そして上場の価格"
+description: "Anthropicの売上・収益性・計算資源契約・安全リスクを主要指標と原図で読み、競合の評価額とIPOシナリオを比較します。"
+publishedAt: 2026-10-31
+updatedAt: 2026-11-01
+heroImage: "/articles/anthropic-s1-ipo/hero.png"
+authors:
+  - Jonghyun Park
+tags:
+  - Anthropic
+  - IPO
+  - Claude Opus 5.5
+  - AIビジネス
+  - AI安全
+lang: "ja"
+draft: false
+---
+
+import ResearchChart from '../../../components/research/ResearchChart.astro';
+import QuoteCollection from '../../../components/research/QuoteCollection.astro';
+import BenchmarkComparison from '../../../components/research/BenchmarkComparison.astro';
+import ValuationScenario from '../../../components/research/ValuationScenario';
+
+<strong>2026年10月31日時点。</strong> B = 10億米ドル、T = 1兆米ドル。開示実績・報道・本記事の予測を区別しています。
+
+- <strong>成長：</strong>上半期売上高は<strong>$16.3B、前年の14倍</strong>。Reuters報道のQ3売上高は<strong>$16.8B</strong>。
+- <strong>収益性：</strong>上半期の営業損失は<strong>$0.69B</strong>。<strong>$80.75Bの純損失</strong>の大半は金融商品の評価損。
+- <strong>製品：</strong>AAII v5への改定時、Opus 5.5は<strong>58点で1位</strong>。翌日、Carbonが59点で上回った。
+- <strong>価格：</strong>IPOの期待評価額は<strong>$1.5–2T</strong>。現在約$1.6TのMeta・Broadcomに並ぶ規模。
+
+原文：[Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm) · 参考：[EOのS-1解説](https://www.eomag.io/article/anthropic-s1)
+
+## 1. 成長：顧客支出の拡大が売上成長を支える
+
+<ResearchChart lang="ja" name="quarterly-revenue" alt="2026年の四半期売上高：Q1 $4.731B、Q2 $11.555B、Reuters報道のQ3 $16.8B" caption="Q1・Q2はS-1、斜線のQ3はReuters報道。単位：10億米ドル。" source="https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208" sourceLabel="ReutersのQ3報道" />
+
+- <strong>上半期 $1.163B → $16.286B：</strong>前年同期の約<strong>14倍</strong>。
+- <strong>Q3 $16.8B：</strong>前四半期比で約<strong>45%増</strong>。確定開示値ではなくReutersの取材値。
+- <strong>年末 $110B：</strong>アナリストによる<strong>年換算売上高の予測</strong>。年末の売上ペースを1年分に延ばした値で、2026年の実際の年間売上高とは異なる。
+- <strong>年間$100K以上の顧客数：950 → 11,900社。</strong>2025年9月 → 2026年9月。$1M以上は1,900社で、大口顧客層が拡大。
+- <strong>2026年9月のNRRは900%：</strong>同じ既存顧客群の四半期支出が前年の9倍。個人向けPro・Maxは除外。<strong>新規顧客獲得と既存顧客の利用拡大がともに成長を牽引。</strong>
+
+出典：[S-1の顧客指標・NRR定義](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)、[Reuters 10月14日](https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208)。
+
+## 2. 財務：807億ドルの純損失でも営業黒字になり得る
+
+### まず指標を分けて読む
+
+| 2026年上半期 | 金額 | わかりやすく言うと |
+| --- | ---: | --- |
+| 売上高 | <strong>$16.286B</strong> | 顧客にサービスを提供して得た収益 |
+| 営業損益 | <strong>−$0.693B</strong> | 売上高から計算資源・人件費・研究・販売などの営業費用を引いた結果 |
+| 調整後営業損益 | <strong>+$1.618B</strong> | 株式報酬と非現金の寄付費用を除外した、会社提示の収益性指標 |
+| 純損益 | <strong>−$80.748B</strong> | 営業損益に利息・金融商品の評価・税金まで反映した最終損益 |
+| 営業キャッシュフロー | <strong>+$3.929B</strong> | 営業活動の現金収入と支出の差。設備投資は別 |
+
+- <strong>営業赤字の理由：</strong>営業費用$16.979Bが売上高$16.286Bを上回った。機能別費用のうち研究開発は<strong>$9.741B</strong>で、営業費用の約57%。
+- <strong>調整後黒字の理由：</strong>営業損失に株式報酬<strong>$2.185B</strong>と非現金寄付<strong>$0.126B</strong>を足すと+$1.618B。株式報酬は現金支出がなくても株主の持分を希薄化し得る。
+- <strong>期間を分けると：</strong>Q1営業損失<strong>−$1.667B → Q2営業利益+$0.974B</strong>。本業の収益性は改善したが、上半期合計はまだ赤字。
+
+### 純損失が突出して大きい理由
+
+<ResearchChart lang="ja" name="net-loss" alt="上半期純損失：転換社債・デリバティブ・SAFEの評価損$72.388B、その他金融商品の評価損$8.720B、残りの損益純額はプラス$0.360B" caption="大きな2項目は金融商品の再評価損。+$0.360Bは残る損益の計算上の純額で、営業利益ではありません。" source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>評価損 $72.388B + $8.720B：</strong>転換社債・SAFEなどとその他金融商品の価値変動。企業価値が上がると一部の金融負債の評価額も増え、会計上の損失が生じる。
+- <strong>807億ドルの現金消費を意味しない：</strong>営業キャッシュフローは<strong>+$3.929B</strong>。費用計上と現金の受取・支払の時期も異なるため、利益と現金は一致しない。
+- <strong>見るべき点：</strong>評価損に加え、<strong>営業利益の改善が続くか、株式報酬込みでも利益が出るか、設備投資後にも現金が残るか</strong>を確認。
+- <strong>現金・短期投資 $131.651B：</strong>6月末の資金余力。調達資金を含むため、この残高だけで事業の自立採算性は判断できない。
+
+出典：[S-1の損益・キャッシュフロー・金融商品注記](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)。
+
+## 3. 需要：エンジニアは5倍、非エンジニアはさらに速い
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-agent-demand.png" alt="State of AI原図：企業向けCodexの週間利用者はエンジニア5倍、法務108倍、営業・採用41倍、マーケティング26倍" caption="State of AI Report 2026、スライド99の原図。2026年2月以降の企業向けCodex利用の増加。Nathan Benaich / Air Street Capital、CC BY 4.0。" href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+- <strong>エンジニア：週間アクティブ利用者が5倍。</strong>絶対的な利用規模では依然としてエンジニアが中心。
+- <strong>非エンジニア：法務108倍・営業41倍・採用41倍・マーケティング26倍。</strong>小さい出発点から急速に普及。
+- <strong>区別：</strong>これは各職種における<strong>AI利用の需要</strong>。求人や雇用人数がその倍率で増えたという意味ではない。
+- <strong>Anthropicとのつながり：</strong>報告書はClaude Codeも管理・営業・法務で急速に広がっていると説明。<strong>開発ツールから組織全体の業務ツールへ市場が拡大する流れ。</strong>
+- <strong>収益の条件：</strong>性能を固定した推論コストは四半期平均<strong>47%低下</strong>（スライド109）。Anthropicの売上高の<strong>80.2%は従量課金</strong>。単価下落を上回る利用量・効率の伸びが、売上と利益の維持に必要。
+
+出典：[以前のAI Frontier記事](https://aifrontier.kr/ja/articles/state-of-ai-2026/)、[報告書スライド99・109](https://www.stateof.ai/State-of-AI-Report-2026.pdf)、[S-1の売上構成](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)。
+
+<details>
+<summary>以前の記事のビジネス原図をさらに3枚表示</summary>
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-inference-cost.png" alt="性能固定時の推論コスト低下を示す原図" caption="スライド109 · 性能固定時のコストは四半期平均約47%低下。各社の総費用の減少率ではない。Nathan Benaich / Air Street Capital、CC BY 4.0。" href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-frontier-revenue.png" alt="フロンティアラボの合算年換算売上高の原図" caption="スライド82 · 合算run rateは年初約$30B → 晩夏約$105B。確定した年間売上高ではない。Nathan Benaich / Air Street Capital、CC BY 4.0。" href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-ai-native-growth.png" alt="AIネイティブ企業の成長率を示す原図" caption="スライド93 · 売上高$1–20M企業群の成長率75パーセンタイル：AIネイティブ256%、AI活用企業90%。平均値でも因果効果でもない。Nathan Benaich / Air Street Capital、CC BY 4.0。" href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+</details>
+
+## 4. AAII：改定前後の原図を直接比較
+
+- <strong>下 → 上：</strong>v4.3.2（10月23日）からv5（10月27日）へ。<strong>モデルではなく試験構成の変更。</strong>
+- <strong>改定の要点：</strong>新規試験2つ、既存試験の改定3つ。指数の<strong>60%は非公開・ホールドアウトデータ</strong>に基づく。
+
+<BenchmarkComparison lang="ja" />
+
+| モデル | 改定前 v4.3.2 | 改定後 v5 |
+| --- | ---: | ---: |
+| <strong>Opus 5.5</strong> | <strong>1位 · 58</strong> | <strong>1位 · 58</strong> |
+| GPT-6 Astra | 同率5位 · 53 | <strong>2位 · 57</strong> |
+| GPT-6.1 Sol | 同率8位 · 52 | <strong>3位 · 55</strong> |
+| Sonnet 5.5 | 同率2位 · 56 | 4位 · 54 |
+| <strong>Kimi K3.1 Pro</strong> | <strong>4位 · 55</strong> | <strong>9位 · 46</strong> |
+
+- <strong>Opusの強み：</strong>新評価でも首位を維持。Kimiとの差は<strong>改定前3点、改定後12点</strong>。ただし版ごとに尺度が異なり、点数の変化をモデル性能の変化量として扱うことはできない。
+- <strong>その後の順位更新：</strong>図の後、10月28日に限定公開された<strong>Gemini 4 Carbonが59点</strong>で1位に。58点のOpusは2位。両図にCarbonは含まれない。
+- <strong>実務タスク：</strong>Opus 5 → 5.5で、自動化<strong>57 → 70</strong>、ターミナル<strong>49 → 60</strong>、科学ツール作業<strong>29 → 59</strong>。それぞれ別の試験の点数。
+- <strong>性能にはコスト：</strong>v5の平均タスク費用はOpus<strong>$10.04</strong>、Astra<strong>$6.24</strong>、Sol<strong>$1.27</strong>。難しい業務で高価なモデルを選ぶ理由が、価格競争力を支える。
+- <strong>評価条件：</strong>Opusはmax・標準の安全フォールバック込み。Kimiの重みは当時未公開。本記事の同率順位は表示点数に基づく。
+
+出典：[改定前の原文](https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks)、[v5原文](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5)、[Carbon更新](https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1)、[Opus世代比較](https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5)。
+
+## 5. 計算資源：将来需要に備えた先行確保
+
+<ResearchChart lang="ja" name="compute-contracts" alt="計算資源契約の名目規模：Broadcom $161.2B、SpaceXAI最大$120.5B、Google最低$114.5B、Amazon最低$110Bなど" caption="契約ごとに期間・義務が異なる。最低購入額、上限、ファイナンスリース賃料を区別して読む必要があります。" source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>EOの約$637Bという合計：</strong>複数年契約の名目規模。<strong>1年分の費用でも、一度に返済する借金でもない。</strong>
+- <strong>最低購入額：</strong>Google<strong>$114.5B（2033年まで）</strong>、Amazon<strong>$110B（2036年まで）</strong>、Microsoft<strong>$44.9B（2033年まで）</strong>。利用量が少なくても一部の義務は残る。
+- <strong>異なる条件：</strong>Broadcomの<strong>$161.2B</strong>は利息を除くファイナンスリース賃料。SpaceXAIの<strong>最大$120.5B</strong>には供給・解約条件がある。Googleの追加$125–150Bも条件付きで、図から除外。
+- <strong>解釈：</strong>容量確保は成長の土台。リスクは<strong>売上単価が下がる一方、購入義務が長く残ること</strong>。供給遅延と需要減速はともに収益を圧迫する。
+
+出典：[S-1の主要契約・コミットメント](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)、[EO解説](https://www.eomag.io/article/anthropic-s1)。
+
+## 6. 競合：米国だけでなく中国の資本も拡大
+
+| 会社 | 最近の評価額・調達 | 売上・収益性を見るポイント |
+| --- | --- | --- |
+| <strong>Anthropic</strong> | 5月：<strong>投資後$965B</strong>・$65B調達 | 上半期売上高$16.3B、営業損失$0.69B |
+| <strong>OpenAI</strong> | 3月：<strong>投資後$852B</strong>・$122Bの約束。10月：<strong>投資前$1.25T</strong>で交渉との報道 | 9月末run rate約$70Bとの報道。利益とは別 |
+| <strong>Moonshot / Kimi</strong> | 10月6日：<strong>約$50B</strong>で非上場投資が完了との報道 | Sacra集計で8月run rate約$1B。年間売上・利益ではない |
+| <strong>DeepSeek</strong> | 10月：<strong>投資後6,000億元超</strong>・$15.9B調達との報道 | 以前の$74–75Bという交渉価格を上回る。確定開示とは区別 |
+| <strong>Mistral</strong> | 9月：<strong>投資後€21B超</strong>・€3B調達 | 年末ARR $1B目標との報道。実績とは別 |
+| <strong>SpaceX SI</strong> | xAI合併により単独評価額の比較は困難 | Q3売上高$7.56B・営業利益$0.43B。計算資源・Grok・X・Cursorなどを含む |
+
+- <strong>KimiとAnthropic：</strong>$50B対$965Bで、最近の報道・発表評価額には約<strong>19倍</strong>の差。技術点数の差と企業価値の差は同じ比率では動かない。
+- <strong>DeepSeekの換算：</strong>報道の<strong>1,060億元 = $15.9B</strong>という比率を使うと、投資後評価額は<strong>約$90B超</strong>。現在の為替による精密な評価ではなく単純計算。
+- <strong>読むポイント：</strong>中国ラボも数百億ドルの価値と大型資金を確保。ただし<strong>非上場投資の評価額・上場時価総額・売上run rate・純利益は別の数字</strong>。
+
+出典：[Anthropic](https://www.anthropic.com/news/series-h)、[OpenAI 3月](https://openai.com/index/accelerating-the-next-phase-ai/)・[10月交渉](https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1.25t-valuation-ahead-of-ipo/)・[売上報道](https://www.axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b)、[Kimi投資報道](https://bloomberg.com/news/articles/2026-10-06/moonshot-said-to-eye-early-2027-ipo-after-value-hits-50-billion)・[Sacra売上集計](https://sacra.com/c/moonshot-ai/)、[DeepSeek 10月調達報道](https://www.theinformation.com/briefings/deepseek-raises-nearly-16-billion-second-funding-round)、[Mistral投資](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/)・[売上目標](https://www.streetinsider.com/Reuters/French%2BAI%2Bcompany%2BMistral%2Bhits%2B%2424%2Bbillion%2Bvaluation%2Bin%2Bfunding%2Bround/27032039.html?classic=1)、[SpaceX 10-Q](https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm)。
+
+### $1–2Tとはどの規模か：利益を出す企業と比較
+
+| 会社 | 時価総額 / IPO期待額 | 最新開示四半期の売上高 | 営業損益 | 純損益 |
+| --- | ---: | ---: | ---: | ---: |
+| <strong>Anthropic</strong> · 2026 Q2 | <strong>$1.5–2T期待</strong> | $11.56B | <strong>+$0.97B</strong> | −$66.31B |
+| <strong>Meta</strong> · 2026 Q3 | <strong>約$1.57T</strong> | $64.60B | <strong>+$12.99B</strong> | +$9.86B |
+| <strong>Broadcom</strong> · FY2026 Q3 | <strong>約$1.56T</strong> | $29.59B | <strong>+$15.96B</strong> | +$13.09B |
+| <strong>Apple</strong> · FY2026 Q3 | <strong>約$5.03T</strong> | $109.42B | <strong>+$35.70B</strong> | +$29.79B |
+
+- <strong>基準：</strong>時価総額は<strong>10月30日終値ベースの集計</strong>。損益はすべてGAAP・3か月実績。ただし期末はAnthropic・Appleが6月、Broadcomが8月、Metaが9月。
+- <strong>規模の意味：</strong>$1.5–2Tの上場は<strong>Meta・Broadcomに並ぶ価格</strong>。両社はすでに四半期営業利益約$13–16Bを生む。
+- <strong>Anthropicのプレミアム：</strong>Q2営業利益は約$1B。同規模の評価額なら、<strong>現在の利益より将来の高成長と利益率改善に多くを支払う</strong>ことになる。
+- <strong>Appleはさらに大きな比較対象：</strong>時価総額約$5T、四半期純利益約$30B。すでに確立した利益規模の参考になる。
+- <strong>一時的項目：</strong>Metaの営業利益には法的和解関連の$9.89B費用を含む。Anthropicの巨額純損失には前述の金融商品評価損を含む。
+
+決算原文：[Meta](https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx)、[Broadcom](https://investors.broadcom.com/node/64671/pdf)、[Apple](https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf)、[Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)。時価総額：CompaniesMarketCapの[Meta](https://companiesmarketcap.com/meta-platforms/marketcap/)・[Broadcom](https://companiesmarketcap.com/broadcom/marketcap/)・[Apple](https://companiesmarketcap.com/apple/marketcap/)。
+
+## 7. 安全：成長と衝突し得る統制のコスト
+
+> “catastrophic or existential risks to humanity”
+>
+> 「人類に対する破局的または実存的リスク」— [S-1リスク要因](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)、抜粋・翻訳
+
+- <strong>実際の外部接触：</strong>AISI評価中、Mythos 5が外部開発者に悪意ある変更の承認を促した。開発者は拒否し、<strong>実害は報告されていない</strong>。許可範囲外への攻撃未遂である点が重要。[AISI原文](https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident)
+- <strong>統制が能力を隠す：</strong>会社のサイバー自己評価では各階層50回の試行に対し、一般アクセスは<strong>成功0回</strong>、Red Teamは<strong>34回</strong>。Red Teamの残る16回は未完了。限定試験であり、実際の犯罪成功率ではない。[プログラム原文](https://www.anthropic.com/news/cyber-verification-program)
+- <strong>売上との衝突：</strong>1–9月売上高の推定<strong>5–7%</strong>は、後に利用ポリシー・商業規約違反と判断された顧客に由来。すべて犯罪収益という意味ではないが、執行強化は売上を減らし得る。[S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+- <strong>株主の統制：</strong>創業者LLCは通常議決権の<strong>50.1%</strong>を持ち、LTBT信託は取締役<strong>7人中4人</strong>を選任。一般株主だけでは安全と成長の選択を変えにくい。[S-1ガバナンス](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+### 市場の声
+
+<QuoteCollection lang="ja" />
+
+## 8. 上場見通し：成長を利益へつなげられるか
+
+- <strong>確定：</strong>Class Aの公募を計画、Nasdaq銘柄コードは<strong>ANT</strong>。<strong>公募価格・株数・上場日は未定</strong>。[公式発表](https://www.anthropic.com/news/s1-sec)
+- <strong>報道上の期待：</strong>評価額<strong>$1.5–2T</strong>、調達最大<strong>$100B</strong>。公募価格帯や確定調達額ではない。[Reuters](https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801)、[Axios](https://www.axios.com/2026/10/26/anthropic-ipo)
+- <strong>本記事の基準仮定：</strong>公募後評価額<strong>$1.2–1.6T</strong>・新株調達<strong>$60–90B</strong>。2027年年間売上高$100B × 12–16倍で計算。会社予想・市場コンセンサスではなく独自シナリオ。
+
+| 独自シナリオ | 2027年年間売上高の仮定 | 売上倍率 | 公募後評価額 | 新株調達 / 単純希薄化 |
+| --- | ---: | ---: | ---: | ---: |
+| 保守的 | $75B | 12倍 | <strong>$0.90T</strong> | $50B / 5.6% |
+| 基準 | $100B | 14倍 | <strong>$1.40T</strong> | $75B / 5.4% |
+| 楽観的 | $130B | 16倍 | <strong>$2.08T</strong> | $100B / 4.8% |
+
+- <strong>$100Bとした理由：</strong>年末$110B run rate予測の未達や価格下落を織り込んだ慎重な仮定。$110Bのペースが実現・持続すれば、売上仮定を引き上げる必要がある。
+- <strong>$2Tの条件：</strong>高成長の持続 + 価格低下を補う利用拡大 + 計算資源の契約を支える利益と現金。
+- <strong>1株当たり公募価格：</strong>公募後評価額 ÷ 完全希薄化後株式数。株数が未定のため算出できない。
+- <strong>流通株式：</strong>S-1には一部株主の180日・365日のロックアップと早期解除条件がある。数量の空欄は修正開示で確認が必要。[S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+<ValuationScenario lang="ja" client:load />
+
+---
+
+- <strong>次の開示で見る3点：</strong>Q3売上・利益の確定値 / 公募後株数と希薄化 / 長期契約の負担後に残る現金。
+- <strong>資料：</strong>独自作成グラフはPNG・SVGを提供。[データCSV](/articles/anthropic-s1-ipo/chart-data.csv) · [出典JSON](/articles/anthropic-s1-ipo/chart-data.json)。
+- <strong>原図：</strong>AAグラフは記事画面のキャプチャで、ロゴと数値を保持。State of AI図表はNathan Benaich / Air Street Capital、[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。引用の翻訳・解釈・IPOシナリオは本記事によるもの。

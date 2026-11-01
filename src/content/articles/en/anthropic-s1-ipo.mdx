@@ -1,0 +1,199 @@
+---
+title: "Anthropic S-1: Explosive Growth, Compute Contracts, and the Price of an IPO"
+description: "Read Anthropic’s revenue, profitability, compute commitments, safety risks, competitor valuations, and IPO scenarios through key figures and original charts."
+publishedAt: 2026-10-31
+updatedAt: 2026-11-01
+heroImage: "/articles/anthropic-s1-ipo/hero.png"
+authors:
+  - Jonghyun Park
+tags:
+  - Anthropic
+  - IPO
+  - Claude Opus 5.5
+  - AI Business
+  - AI Safety
+lang: "en"
+draft: false
+---
+
+import ResearchChart from '../../../components/research/ResearchChart.astro';
+import QuoteCollection from '../../../components/research/QuoteCollection.astro';
+import BenchmarkComparison from '../../../components/research/BenchmarkComparison.astro';
+import ValuationScenario from '../../../components/research/ValuationScenario';
+
+<strong>As of October 31, 2026.</strong> B = billion US dollars; T = trillion US dollars. Filed results, reporting, and this article’s forecasts are distinguished below.
+
+- <strong>Growth:</strong> H1 revenue <strong>$16.3B, 14× a year earlier</strong>. Reuters reports Q3 revenue of <strong>$16.8B</strong>.
+- <strong>Profitability:</strong> H1 operating loss <strong>$0.69B</strong>. Most of the <strong>$80.75B net loss</strong> comes from financial-instrument remeasurement.
+- <strong>Product:</strong> Opus 5.5 ranked <strong>first at 58</strong> when AAII v5 launched. Carbon overtook it at 59 the next day.
+- <strong>Price:</strong> Reported IPO expectations of <strong>$1.5–2T</strong> put it alongside Meta and Broadcom, each currently around $1.6T.
+
+Original: [Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm) · Further reading: [EO’s S-1 analysis](https://www.eomag.io/article/anthropic-s1)
+
+## 1. Growth: Customer spending is expanding even faster
+
+<ResearchChart lang="en" name="quarterly-revenue" alt="2026 quarterly revenue: Q1 $4.731B, Q2 $11.555B, Reuters-reported Q3 $16.8B" caption="Q1 and Q2: S-1. Hatched Q3: Reuters reporting. Units: USD billions." source="https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208" sourceLabel="Reuters Q3 reporting" />
+
+- <strong>H1 $1.163B → $16.286B:</strong> Roughly <strong>14× year over year</strong>.
+- <strong>Q3 $16.8B:</strong> About <strong>45% above Q2</strong>. Reuters reporting, rather than a finalized filed result.
+- <strong>Year-end $110B:</strong> An analyst’s <strong>annualized revenue forecast</strong>. It extends the expected year-end pace over 12 months; it is not actual full-year 2026 revenue.
+- <strong>Customers spending at least $100K annually: 950 → 11,900.</strong> September 2025 → September 2026. Of these, 1,900 customers exceed $1M, showing a widening large-customer base.
+- <strong>September 2026 NRR: 900%.</strong> The same existing customer cohort spent 9× as much in the quarter as a year earlier. Excludes individual Pro and Max plans. <strong>New customers and deeper usage both drive growth.</strong>
+
+Sources: [S-1 customer metrics and NRR definition](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), [Reuters, October 14](https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208).
+
+## 2. Finance: An $80.7B net loss can coexist with an operating profit
+
+### What each number measures
+
+| H1 2026 | Amount | Plain-language meaning |
+| --- | ---: | --- |
+| Revenue | <strong>$16.286B</strong> | Revenue earned by providing services to customers |
+| Operating income / (loss) | <strong>−$0.693B</strong> | Revenue less operating costs such as compute, pay, research, and sales |
+| Adjusted operating income | <strong>+$1.618B</strong> | The company’s profitability measure excluding stock compensation and noncash charitable costs |
+| Net income / (loss) | <strong>−$80.748B</strong> | The final result including interest, financial remeasurement, and taxes |
+| Operating cash flow | <strong>+$3.929B</strong> | Cash received less cash paid in operations; capital expenditure is separate |
+
+- <strong>Why an operating loss?</strong> Operating expenses of $16.979B exceeded revenue of $16.286B. Research and development, classified by function, was <strong>$9.741B</strong>, about 57% of operating expenses.
+- <strong>Why adjusted profit?</strong> Add back <strong>$2.185B</strong> of stock compensation and <strong>$0.126B</strong> of noncash charitable costs to reach +$1.618B. Stock compensation can dilute shareholders even without a cash payment.
+- <strong>Split the periods:</strong> Q1 operating loss of <strong>−$1.667B → Q2 operating profit of +$0.974B</strong>. Operations improved, but H1 as a whole remained loss-making.
+
+### Why the net loss is so large
+
+<ResearchChart lang="en" name="net-loss" alt="H1 net loss: notes, derivatives, and SAFEs remeasurement loss $72.388B; other financial instruments loss $8.720B; remaining net income $0.360B" caption="The two large charges remeasure financial instruments. +$0.360B is the calculated residual of all other income and expenses, not operating profit." source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>Remeasurement losses: $72.388B + $8.720B.</strong> Changes in the value of notes, SAFEs, and other financial instruments. A higher company valuation can increase certain financial liabilities and create an accounting loss.
+- <strong>Not $80.7B of cash burned:</strong> Operating cash flow was <strong>+$3.929B</strong>. Expense recognition and cash collection or payment occur at different times, so profit and cash differ.
+- <strong>What to watch:</strong> Alongside remeasurement, check <strong>whether operating profit keeps improving, whether profit survives stock compensation, and whether cash remains after capital expenditure</strong>.
+- <strong>Cash and short-term investments: $131.651B.</strong> Resources at the end of June. The balance includes fundraising proceeds; it does not by itself establish financial self-sufficiency.
+
+Source: [S-1 income statement, cash flow, and financial-instrument notes](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm).
+
+## 3. Demand: Engineers up 5×; other functions grow faster
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-agent-demand.png" alt="Original State of AI chart: enterprise Codex weekly users grew 5× in engineering, 108× in legal, 41× in sales and recruiting, and 26× in marketing" caption="State of AI Report 2026, original slide 99. Enterprise Codex usage growth since February 2026. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+- <strong>Engineers: weekly active users up 5×.</strong> Engineering still accounts for the largest absolute usage.
+- <strong>Other functions: legal 108× · sales 41× · recruiting 41× · marketing 26×.</strong> Rapid adoption from smaller starting bases.
+- <strong>The distinction:</strong> These figures measure <strong>demand for AI usage within each function</strong>. They do not mean job openings or employment grew by those multiples.
+- <strong>Connection to Anthropic:</strong> The report also describes rapid Claude Code adoption in management, sales, and legal. <strong>The market is expanding from developer tools to work across the organization.</strong>
+- <strong>The condition for returns:</strong> Inference costs at fixed performance fell <strong>47% per quarter on average</strong> (slide 109). <strong>80.2% of Anthropic revenue is usage-based.</strong> Usage and efficiency must outgrow unit-price declines to protect revenue and profit.
+
+Sources: [Our earlier State of AI article](https://aifrontier.kr/en/articles/state-of-ai-2026/), [report slides 99 and 109](https://www.stateof.ai/State-of-AI-Report-2026.pdf), [S-1 revenue mix](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm).
+
+<details>
+<summary>Show three more original business charts from our earlier article</summary>
+
+<Figure src="/articles/anthropic-s1-ipo/stateofai-inference-cost.png" alt="Original chart of declining inference costs at fixed performance" caption="Slide 109 · Fixed-performance costs fell about 47% per quarter on average. This is not a decline in every company’s total costs. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-frontier-revenue.png" alt="Original chart of combined annualized frontier-lab revenue" caption="Slide 82 · Combined run rate: about $30B at the start of the year → $105B in late summer. Not booked full-year revenue. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+<Figure src="/articles/anthropic-s1-ipo/stateofai-ai-native-growth.png" alt="Original chart of AI-native company growth" caption="Slide 93 · 75th-percentile growth among companies with $1–20M revenue: AI-native 256%, AI-enabled 90%. Neither averages nor a causal effect. Nathan Benaich / Air Street Capital, CC BY 4.0." href="https://www.stateof.ai/State-of-AI-Report-2026.pdf" />
+
+</details>
+
+## 4. AAII: Compare the original charts before and after the update
+
+- <strong>Bottom → top:</strong> v4.3.2 (October 23) → v5 (October 27). <strong>The test mix changed; this is not a model upgrade.</strong>
+- <strong>The redesign:</strong> Two new tests and three upgraded tests. <strong>60% of the index uses private or held-out data.</strong>
+
+<BenchmarkComparison lang="en" />
+
+| Model | Before: v4.3.2 | After: v5 |
+| --- | ---: | ---: |
+| <strong>Opus 5.5</strong> | <strong>1st · 58</strong> | <strong>1st · 58</strong> |
+| GPT-6 Astra | Tied 5th · 53 | <strong>2nd · 57</strong> |
+| GPT-6.1 Sol | Tied 8th · 52 | <strong>3rd · 55</strong> |
+| Sonnet 5.5 | Tied 2nd · 56 | 4th · 54 |
+| <strong>Kimi K3.1 Pro</strong> | <strong>4th · 55</strong> | <strong>9th · 46</strong> |
+
+- <strong>Opus’s strength:</strong> It retained the lead under the new evaluation. Its gap to Kimi was <strong>3 points before, 12 after</strong>. Different versions use different scales; score changes do not measure a change in model capability.
+- <strong>Subsequent ranking update:</strong> After these charts, limited-access <strong>Gemini 4 Carbon scored 59</strong> on October 28 and took first place. Opus at 58 became second. Neither chart includes Carbon.
+- <strong>Work tasks:</strong> Opus 5 → 5.5 improved in automation <strong>57 → 70</strong>, terminal tasks <strong>49 → 60</strong>, and scientific tool use <strong>29 → 59</strong>. These are separate test scores.
+- <strong>Performance has a price:</strong> Average v5 task cost: Opus <strong>$10.04</strong>, Astra <strong>$6.24</strong>, Sol <strong>$1.27</strong>. Premium pricing needs justification on the hardest work.
+- <strong>Evaluation settings:</strong> Opus at max with default safety fallback. Kimi’s weights were not yet released. Ties in this article use the displayed rounded scores.
+
+Sources: [pre-update original](https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks), [v5 original](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5), [Carbon update](https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1), [Opus generation comparison](https://artificialanalysis.ai/models/comparisons/claude-opus-5-5-vs-claude-opus-5).
+
+## 5. Compute: Securing capacity ahead of future demand
+
+<ResearchChart lang="en" name="compute-contracts" alt="Nominal compute contracts: Broadcom $161.2B; SpaceXAI up to $120.5B; Google at least $114.5B; Amazon at least $110B, and others" caption="Contract terms and obligations differ. Distinguish minimum purchases, ceilings, and finance-lease rent." source="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" />
+
+- <strong>EO’s roughly $637B total:</strong> Nominal amounts across multiyear contracts. <strong>Not one year’s expense or a debt due all at once.</strong>
+- <strong>Minimum purchases:</strong> Google <strong>$114.5B (through 2033)</strong>, Amazon <strong>$110B (through 2036)</strong>, Microsoft <strong>$44.9B (through 2033)</strong>. Some obligations remain even if usage falls short.
+- <strong>Different terms:</strong> Broadcom’s <strong>$161.2B</strong> is finance-lease rent excluding interest. SpaceXAI’s <strong>up to $120.5B</strong> has delivery and termination conditions. Google’s additional $125–150B is conditional and excluded from the chart.
+- <strong>Interpretation:</strong> Capacity enables growth. The risk is <strong>falling revenue per unit alongside long-lived purchase obligations</strong>. Supply delays and weaker demand can both hurt profitability.
+
+Sources: [S-1 material contracts and commitments](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), [EO analysis](https://www.eomag.io/article/anthropic-s1).
+
+## 6. Competitors: China’s funding base is growing too
+
+| Company | Recent valuation and funding | Revenue and profitability context |
+| --- | --- | --- |
+| <strong>Anthropic</strong> | May: <strong>$965B post-money</strong> · $65B raised | H1 revenue $16.3B; operating loss $0.69B |
+| <strong>OpenAI</strong> | March: <strong>$852B post-money</strong> · $122B committed. October talks reportedly at <strong>$1.25T pre-money</strong> | Reported late-September run rate around $70B; not profit |
+| <strong>Moonshot / Kimi</strong> | October 6: round reportedly closed at <strong>about $50B</strong> | Sacra records an August run rate around $1B; not full-year revenue or profit |
+| <strong>DeepSeek</strong> | October: reportedly <strong>over CNY 600B post-money</strong> · $15.9B raised | Above earlier $74–75B funding-talk valuations; distinguish reporting from a confirmed filing |
+| <strong>Mistral</strong> | September: <strong>over €21B post-money</strong> · €3B raised | Reported year-end $1B ARR target; not realized results |
+| <strong>SpaceX SI</strong> | xAI merger complicates a standalone valuation | Q3 revenue $7.56B; operating profit $0.43B. Includes compute, Grok, X, Cursor, and more |
+
+- <strong>Kimi versus Anthropic:</strong> $50B versus $965B, roughly a <strong>19× difference</strong> in recent reported or announced valuations. Benchmark gaps and valuation gaps do not move in the same proportion.
+- <strong>DeepSeek conversion:</strong> Using the report’s <strong>CNY 106B = $15.9B</strong> conversion implies <strong>over about $90B post-money</strong>. This is a simple calculation, not a precise valuation using current exchange rates.
+- <strong>Takeaway:</strong> Chinese labs also command tens of billions in valuation and substantial funding. <strong>Private funding valuations, public market caps, revenue run rates, and net income measure different things.</strong>
+
+Sources: [Anthropic](https://www.anthropic.com/news/series-h), [OpenAI March](https://openai.com/index/accelerating-the-next-phase-ai/)·[October talks](https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1.25t-valuation-ahead-of-ipo/)·[revenue reporting](https://www.axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b), [Kimi funding report](https://bloomberg.com/news/articles/2026-10-06/moonshot-said-to-eye-early-2027-ipo-after-value-hits-50-billion)·[Sacra revenue data](https://sacra.com/c/moonshot-ai/), [DeepSeek October funding](https://www.theinformation.com/briefings/deepseek-raises-nearly-16-billion-second-funding-round), [Mistral funding](https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/)·[revenue target](https://www.streetinsider.com/Reuters/French%2BAI%2Bcompany%2BMistral%2Bhits%2B%2424%2Bbillion%2Bvaluation%2Bin%2Bfunding%2Bround/27032039.html?classic=1), [SpaceX 10-Q](https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm).
+
+### What does $1–2T buy? Compare companies already earning profits
+
+| Company | Market cap / IPO expectation | Latest disclosed quarterly revenue | Operating income / (loss) | Net income / (loss) |
+| --- | ---: | ---: | ---: | ---: |
+| <strong>Anthropic</strong> · 2026 Q2 | <strong>$1.5–2T expected</strong> | $11.56B | <strong>+$0.97B</strong> | −$66.31B |
+| <strong>Meta</strong> · 2026 Q3 | <strong>About $1.57T</strong> | $64.60B | <strong>+$12.99B</strong> | +$9.86B |
+| <strong>Broadcom</strong> · FY2026 Q3 | <strong>About $1.56T</strong> | $29.59B | <strong>+$15.96B</strong> | +$13.09B |
+| <strong>Apple</strong> · FY2026 Q3 | <strong>About $5.03T</strong> | $109.42B | <strong>+$35.70B</strong> | +$29.79B |
+
+- <strong>Basis:</strong> Market caps use <strong>October 30 closing-price data</strong>. All results are GAAP and cover three months, but quarters end in June for Anthropic and Apple, August for Broadcom, and September for Meta.
+- <strong>Scale:</strong> A $1.5–2T IPO would price Anthropic <strong>alongside Meta and Broadcom</strong>. Those companies already earn around $13–16B in quarterly operating profit.
+- <strong>Anthropic’s premium:</strong> Q2 operating profit was about $1B. A comparable valuation would pay <strong>much more for future growth and margin expansion than current earnings</strong>.
+- <strong>Apple is a larger reference:</strong> Roughly $5T in market cap and $30B in quarterly net income. It shows the scale of already-established profits.
+- <strong>One-off items:</strong> Meta’s operating profit includes a $9.89B legal-settlement-related expense. Anthropic’s large net loss includes the financial remeasurement discussed above.
+
+Financial statements: [Meta](https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx), [Broadcom](https://investors.broadcom.com/node/64671/pdf), [Apple](https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf), [Anthropic S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm). Market caps: CompaniesMarketCap’s [Meta](https://companiesmarketcap.com/meta-platforms/marketcap/), [Broadcom](https://companiesmarketcap.com/broadcom/marketcap/), and [Apple](https://companiesmarketcap.com/apple/marketcap/).
+
+## 7. Safety: Controls can constrain revenue growth
+
+> “catastrophic or existential risks to humanity”
+>
+> — [S-1 risk factors](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm), excerpt
+
+- <strong>Actual external contact:</strong> During an AISI evaluation, Mythos 5 tried to induce an external developer to approve a malicious change. The developer refused; <strong>no actual harm was reported</strong>. The key issue is an attempted attack outside the permitted scope. [AISI report](https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident)
+- <strong>Controls can mask capability:</strong> In the company’s own cyber evaluation, out of 50 attempts per tier, general access had <strong>0 successes</strong> versus <strong>34 for Red Team</strong>. The other 16 Red Team attempts were incomplete. A limited test, not a real-world crime success rate. [Program details](https://www.anthropic.com/news/cyber-verification-program)
+- <strong>Revenue tension:</strong> An estimated <strong>5–7%</strong> of January–September revenue came from customers later judged to violate usage policies or commercial terms. This is not all criminal revenue, but stronger enforcement may reduce sales. [S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+- <strong>Shareholder control:</strong> The founders’ LLC holds <strong>50.1%</strong> of ordinary voting power; the LTBT trust appoints <strong>4 of 7 directors</strong>. Public shareholders cannot readily change safety-versus-growth choices on their own. [S-1 governance](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+### Market voices
+
+<QuoteCollection lang="en" />
+
+## 8. IPO outlook: Connecting growth to profit
+
+- <strong>Confirmed:</strong> A Class A offering is proposed under Nasdaq ticker <strong>ANT</strong>. <strong>Price, share count, and listing date remain unset.</strong> [Official announcement](https://www.anthropic.com/news/s1-sec)
+- <strong>Reported expectations:</strong> <strong>$1.5–2T valuation</strong> and up to <strong>$100B raised</strong>. Neither an offering-price range nor confirmed proceeds. [Reuters](https://www.investing.com/news/stock-market-news/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs-4972801), [Axios](https://www.axios.com/2026/10/26/anthropic-ipo)
+- <strong>This article’s base assumptions:</strong> <strong>$1.2–1.6T post-offering value</strong> and <strong>$60–90B in new shares</strong>. Calculated from $100B of 2027 annual revenue × 12–16. Editorial scenarios, not company guidance or consensus.
+
+| Editorial scenario | Assumed 2027 annual revenue | Revenue multiple | Post-offering value | New capital / simple dilution |
+| --- | ---: | ---: | ---: | ---: |
+| Conservative | $75B | 12× | <strong>$0.90T</strong> | $50B / 5.6% |
+| Base | $100B | 14× | <strong>$1.40T</strong> | $75B / 5.4% |
+| Optimistic | $130B | 16× | <strong>$2.08T</strong> | $100B / 4.8% |
+
+- <strong>Why $100B?</strong> A cautious assumption allowing for a miss against the year-end $110B run-rate forecast or lower prices. If the $110B pace is achieved and sustained, the revenue assumption should rise.
+- <strong>What $2T requires:</strong> Continued high growth + usage gains that offset price declines + profits and cash sufficient to support compute commitments.
+- <strong>IPO price per share:</strong> Post-offering value ÷ fully diluted share count. The share count is not yet available, so no per-share estimate is possible.
+- <strong>Tradable supply:</strong> The S-1 describes 180- and 365-day lockups for certain holders, with early-release conditions. Missing amounts require an amended filing. [S-1](https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+
+<ValuationScenario lang="en" client:load />
+
+---
+
+- <strong>Watch the next filing:</strong> Confirmed Q3 revenue and earnings / post-offering share count and dilution / cash remaining after long-term commitments.
+- <strong>Data:</strong> Original charts are available as PNG and SVG. [Data CSV](/articles/anthropic-s1-ipo/chart-data.csv) · [Sources JSON](/articles/anthropic-s1-ipo/chart-data.json).
+- <strong>Original material:</strong> AA charts are screenshots of the source articles, preserving logos and figures. State of AI charts: Nathan Benaich / Air Street Capital, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Quote translations, interpretation, and IPO scenarios are this article’s work.
