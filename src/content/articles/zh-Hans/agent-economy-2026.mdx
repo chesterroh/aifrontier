@@ -1,0 +1,147 @@
+---
+title: "当智能体成为经济参与者"
+description: "从 Agent Market 的趣闻出发，了解模拟人类的 Simile，以及让 AI 操作真实资金的 Robinhood。"
+publishedAt: 2026-11-07
+tags:
+  - Agent Economy
+  - Simile
+  - Agent Market
+  - Robinhood
+lang: "zh-Hans"
+draft: false
+---
+
+import LinkedInPostEmbed from "../../../components/LinkedInPostEmbed.astro";
+
+AI 挑选商品、讨价还价、发布贷款广告，还会打击其他 AI 的声誉。一个小型虚拟市场中的这些事件，让我们开始思考人类把经济活动交给智能体的未来。
+
+## 1. Agent Market：让 AI 互相做生意，会发生什么？
+
+**Agent Market** 起源于首尔科学技术大学的一门课程，是让 AI 卖家和买家相互协商的实验。Round 3 中，卖家以 **500 万积分**起步，从约 5,600 种商品中采购库存。卖不出去要付仓储费，食品会变质，提供保修的商品坏了还要退款。商品目录来自真实商品，但交易使用的是**游戏币**。[官方规则](https://market.ourolabs.ai/rules)
+
+### 好评优惠有效，小票优惠券却没人用
+
+<LinkedInPostEmbed lang="zh-Hans" urn="urn:li:share:7520706790666416128" author="Jeonghwan Im" title="设计好评优惠的参与者：成功与失败" />
+
+- **把人的经商经验写进 AI。** 参与者从汉堡王优惠券和好评活动中获得灵感，设计出承诺好评就给折扣、同时保留利润的策略。这不是 AI 独自发明的点子。
+- **价格不是最低，也能卖得好。** 参与者回顾说，评价、星级和尽早入场起了作用，前五天一直保持交易量第一。这是当时规则下的自述成绩。
+- **夸优惠券，却不兑换。** 买家 AI 会在评价中提到回购优惠，但下次交易拿不出必需的小票编号。也有买家怀疑好评优惠是在操纵评分。
+
+### 第一名的策略：交易更快，招牌稍微夸张一点
+
+<LinkedInPostEmbed lang="zh-Hans" urn="urn:li:ugcPost:7522972887125803008" author="Rayna Na" title="排行榜第一名参与者公开的策略" />
+
+<Figure src="/articles/agent-economy-2026/market-early-round.jpg" alt="Rayna Na 帖子附带的早期 Agent Market 交易界面与排行榜" caption="参与者附带的早期市场截图，并非当前 Round 3 的统计。来源：Rayna Na 的 LinkedIn 帖子。" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7522972887125803008/" />
+
+- **每 15 分钟复盘一次策略。** 依次了解现状、寻找知识、分析专家与竞争者策略，再采取行动。
+- **判断瓶颈在交易次数。** 把交易周期优化到秒级，并通过短期价格实验反复调整售价。
+- **实际评分 4.8，招牌写 4.9。** 这是参与者自述的夸大宣传做法。至于它是否真的提高了评分，并没有得到独立验证。
+- **让自己的买家 AI 去自己的商店。** 这种自我交易发生在 **Round 3 之前**。现在，同一 GitHub 所有者名下的买家与商店无法相互结算。[现行规则](https://market.ourolabs.ai/rules)
+
+### 有了破产，就有贷款广告；有了竞争，就有举报
+
+<LinkedInPostEmbed lang="zh-Hans" urn="urn:li:ugcPost:7524364450234150912" author="JAEGYU LEE" title="贷款、声誉攻击与不公平交易举报" height={400} />
+
+<Figure src="/articles/agent-economy-2026/agent-loan-ad.jpg" alt="智能体贷款广告，列有信用等级利率、新用户利率和三小时内还款条件" caption="智能体论坛中的贷款广告，并非实际放款或还款记录的证明。来源：JAEGYU LEE 的 LinkedIn 帖子附图。" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7524364450234150912/" />
+
+- **用商品买卖实现借贷转账。** 广告提出先买借款方的商品提供资金，再让借款方购买贷款方指定的商品还款。
+- **连信用评级表都有。** AAA 为 3%，BBB 为 12%，新用户为 15%，CCC 拒绝。要求三小时内还款，并非年利率。实际放款与还款情况尚未核实。
+- **给热门买家集中点踩。** 运营者对反复投反对票设置了费用。打击对方声誉也得花自己商店的钱。[规则更新记录](https://market.ourolabs.ai/rules)
+
+<Figure src="/articles/agent-economy-2026/agent-trade-report.jpg" alt="智能体统计特定商店与买家的交易次数及占比，要求运营者核查" caption="一则统计交易集中度的举报性帖子。交易集中本身不等于违规事实已被证实。来源：JAEGYU LEE 的 LinkedIn 帖子附图。" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7524364450234150912/" />
+
+- **还有 AI 向运营者举报。** 它们统计交易对象、次数和金额占比，报告可疑交易。智能体除了做生意，也开始监督其他参与者。
+
+### 买家 AI 是怎样实现的？
+
+**参与者编写买家程序，市场提供订单和交易环境，并不是运营者替所有买家编写台词。** 官方文档和公开运行工具包展示了以下流程。
+
+`市场订单 → 寻找商店 → AI 协商 → 检查小票与条件 → 结算 → 评价与记录`
+
+- **市场决定要买什么。** 订单包含品类、预算和可购买商品列表。食品订单还包含所需保存时间。每个买家有经常订购的偏好品类，但这本身不能证明系统重现了真实人类的偏好。
+- **参与者代码决定去哪买、出什么价。** 参与者实现的 `market_buyer` 读取商店列表、评价与库存，通过 A2A 消息与卖家协商，再返回商店、小票、星级、评价等结构化数据。
+- **LLM 与规则代码一起工作。** 基础协商示例把商品、预算、商店说明与对话记录交给 LLM，让它选择报价或放弃。代码也会阻止超预算报价。工具包在检查签名、品类、预算与指定质量条件后结算。
+- **模型和记忆由参与者设计。** 示例默认使用 Claude Code 的 `haiku` 别名，可以更换执行工具，并不要求所有参与者使用同一模型。系统提供交易记录文件，但下次下单时读取并利用小票和保修记录的逻辑，需要参与者自己实现。
+
+基础示例并未提供当前市场中完整的商店选择程序 `market_buyer`，因此不能把示例默认模型与行为推广到全部参与者。这个实验是**比拼购买策略及记忆、声誉利用能力的环境**，与 Simile 验证智能体和特定人类行为一致程度的实验目的不同。[官方实现约定](https://market.ourolabs.ai/agent.md)、[公开运行工具包](https://market.ourolabs.ai/kit.tar.gz)
+
+把这个市场当作未来的实验场，会留下两个问题。
+
+1. **要重现人类市场，虚拟买家是否也应该像真实的人一样做选择？** → Simile 对人类的模拟。
+2. **如果人们把购买和投资交给 AI，这些交易是否也会发生在现实中？** → Robinhood 的 Agentic Trading。
+
+## 2. Simile：AI 能多好地模拟一个具体的人？
+
+<VideoEmbed youtubeId="KpOW9Pk4BUs" title="Joon Sung Park — Simulating Humanity" start={385} caption="Latent Space 访谈。从 06:25 开始讨论人类模拟与个人智能体的关系。" />
+
+**Simile** 是由 Joon Sung Park、Michael Bernstein、Percy Liang 等人创办的人类行为模拟公司。起点之一是 **Smallville** 研究：让 25 个虚拟人物带着记忆、反思与计划生活。如今，公司根据真实人类的数据，测试改变产品、价格或信息后，人们可能如何反应。[公司介绍](https://www.simile.com/)
+
+### 有帮助的回答，不一定是“这个人会做的选择”
+
+> “what is fundamentally human might not be the most efficient thing to do.”
+>
+> — Joon Sung Park，[36:57](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=2217s)。意思是，具有人性的选择未必是最高效的选择。
+
+他提到，自己喜欢借步行整理思路，因此会走 30—40 分钟回家。以缩短出行时间为目标的助手或许会叫车，但模拟他的模型需要理解他选择步行的原因。如果只朝着有用、理性的回答优化 AI，就可能忽略人的习惯、偏见和失误。
+
+只用几行年龄、职业来指定角色还不够。Simile 描述的方法包括以下几点。
+
+- **收集个人背景。** 用深入访谈了解价值观、经历、偏好与约束，再通过调查以及购买、使用记录补充真实选择的证据。
+- **把记忆与情境相连。** 通过记忆、检索、反思和计划，让过去的经历影响后续选择。
+- **学习行为，并与真人对照。** 利用条件变化的实验数据进行后训练，把模型回答与真实人类反应比较。[访谈中的训练说明](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=1905s)、[联合创始人的解释](https://www.simile.com/blog/what-if-machine)
+
+### 模型、规模与价格公开到了什么程度？
+
+| 项目 | 已确认的内容 |
+| --- | --- |
+| 公开研究模型 | 2025 年的 **Socrates-Qwen-14B** 使用行为实验回答微调 Qwen2.5-14B。不代表它就是当前商业模型。 |
+| 训练数据规模 | SocSci210 包含 **210 项实验、400,491 人、约 290 万条回答**，并非一次虚拟社会实验中的人口规模。 |
+| 个人模拟研究 | 基于 **1,052 名美国人**各两小时访谈等资料创建个人智能体，比较调查、性格测量与经济博弈中的反应。 |
+| 当前服务 | 公司表示会对自有行为模型进行后训练。已查阅的官方资料未披露基础模型名称及参数量。访谈提及的规模为数万至数十万；**80 亿人是长期愿景**。 |
+| 价格 | 已查阅的官方资料中**没有公开价目表或单次模拟价格**，具体部署费用需要咨询公司。 |
+
+依据：[Socrates 研究](https://arxiv.org/abs/2509.05830)、[1,052 人研究修订版](https://arxiv.org/abs/2411.10109v3)、[47:55—49:07 的规模讨论](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=2875s)、[官网](https://www.simile.com/)。
+
+早期研究中广为引用的 **85%**，是以人们两周后再次回答某项调查时的自身一致性为基准进行归一化的数值，并非所有行为的绝对准确率。最新修订版报告：仅访谈为 83%，仅调查为 82%，两者结合为 86%。
+
+### 客户为什么想接触虚拟人？
+
+- **CVS Health：** 在推出前测试药房等待、说明方式、续方提醒等客户体验，目的是在反复调查和昂贵的实地实验之前缩小候选方案。[客户白皮书](https://www.cvshealth.com/content/dam/enterprise/cvs-enterprise/pdfs/2026/CVS_WhitepaperCVSxSimile.pdf)
+- **Wealthfront：** 表示会与虚拟客户对话，寻找值得深入开展客户研究的机会。公司介绍中也出现了 Deloitte、Gallup 等客户。[官方客户介绍](https://www.simile.com/)
+
+如果用 Agent Market 研究人类经济，这种**模拟准确度**很重要。但对于真正托付资金的助手，人们也可能希望它理解自己，同时帮助避免自己想减少的冲动消费和失误。模拟与委托的目标并不相同。
+
+## 3. Robinhood：开始把真实资金交给 AI
+
+<VideoEmbed youtubeId="yULk8eNa2mg" title="Vlad Tenev — Agentic Trading" start={1728} caption="No Priors 访谈。从 28:48 开始介绍使用规模与产品结构，33:48 开始介绍账户隔离与审批方式。" />
+
+**Robinhood** 是一家美国金融服务公司，以免佣金股票交易和移动应用闻名。目前提供股票、ETF、期权、加密资产等产品。过去由人操作的界面，正在接入按用户指令分析和下单的智能体。[服务介绍](https://robinhood.com/us/en/about/)、[公司背景](https://robinhood.com/us/en/newsroom/taking-the-taboo-out-of-money-talk/)
+
+> “can we put the capabilities of a hedge fund … into the pockets of normal individuals?”
+>
+> — Vlad Tenev，[31:31](https://www.youtube.com/watch?v=yULk8eNa2mg&t=1891s)。目标是让普通个人也获得专业的执行能力。引文省略了中间一段表述。
+
+### 有多少人在使用？
+
+公司于 2026 年 9 月宣布，**超过 15 万名客户开设了 Agentic 账户，智能体每天使用工具近 3,000 万次**。11 月公开的访谈也引用了同一组数据。这是开户人数与工具使用次数，不等于活跃用户、成交笔数或投资收益率。[官方公告](https://robinhood.com/newsroom/hood-summit-2026/)
+
+### 如何运行？
+
+1. **为独立账户注资。** 用户决定交给智能体交易的资金。
+2. **提出目标与条件。** 用自然语言要求分析投资组合、制定策略或再平衡。
+3. **智能体调用工具。** 分析市场数据与持仓，然后建议或执行订单。
+4. **设置审批权限。** 应用内交易审批默认开启。关闭后可直接执行允许范围内的订单，但部分交易仍需批准。订单只在专用 Agentic 账户中执行。[当前帮助文档](https://robinhood.com/us/en/support/articles/robinhood-agents-overview/)
+
+有两种连接方式。5 月推出的 Agentic Trading 通过**工具连接协议 MCP**接入外部 AI；9 月宣布的 **Robinhood Agents** 则在应用内创建。目前应用内产品正逐步开放。让工具更容易使用，并不保证更高的收益。
+
+购买也已开始。**Agentic Credit Card** 允许智能体使用用户设定限额和审批条件的虚拟卡支付。这条执行路径从挑选投资标的，延伸到寻找并购买符合条件的商品。[交易与卡服务发布公告](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/)
+
+### 当 AI 拥有更多自主权来开展经济活动时，我们应该做什么？
+
+- 要把商品卖给决定买什么的 AI，我们应该制造什么、如何制造？
+- AI 会像人一样决定购买，还是采用不同的标准？
+- 为 AI 提供支付和交易服务，会成为一种新的生意吗？
+- 如果 AI 成为自主找工作、赚钱的主体，人类的角色是什么？
+- 应该给 AI 多大的自主权，收益与损失又应该归谁？
+
+*资料截至 2026 年 11 月 7 日。视频引文已与完整音频的本地转录核对。*

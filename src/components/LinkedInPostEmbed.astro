@@ -1,0 +1,63 @@
+---
+interface Props {
+  urn: string;
+  author: string;
+  title: string;
+  height?: number;
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+}
+
+const { urn, author, title, height = 460, lang = 'ko' } = Astro.props;
+const fallbackText = {
+  ko: '표시되지 않으면 LinkedIn 원문을 열어 보세요. 핵심은 아래에 요약했습니다.',
+  en: 'If the post does not load, open it on LinkedIn. Key points are summarized below.',
+  ja: '表示されない場合はLinkedInの原文をご覧ください。要点は下にまとめています。',
+  'zh-Hans': '如未显示，请打开 LinkedIn 原帖。要点已在下方概述。',
+};
+const url = `https://www.linkedin.com/feed/update/${urn}/`;
+const embedUrl = `https://www.linkedin.com/embed/feed/update/${urn}`;
+---
+
+<figure class="linkedin-post">
+  <iframe
+    src={embedUrl}
+    title={`${author}: ${title}`}
+    width="100%"
+    height={height}
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+  <figcaption>
+    <a href={url} target="_blank" rel="noopener noreferrer">{author} · {title} ↗</a>
+    <span>{fallbackText[lang]}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .linkedin-post {
+    margin: 1.5rem 0;
+    min-width: 0;
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+  figcaption span {
+    display: block;
+    color: #6b7280;
+  }
+  @media (prefers-color-scheme: dark) {
+    iframe { border-color: #4b5563; }
+    figcaption span { color: #9ca3af; }
+  }
+</style>

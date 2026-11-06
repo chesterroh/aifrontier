@@ -1,0 +1,147 @@
+---
+title: "When Agents Become Participants in the Economy"
+description: "From incidents in Agent Market to Simile's human simulations and Robinhood's agents that move real money."
+publishedAt: 2026-11-07
+tags:
+  - Agent Economy
+  - Simile
+  - Agent Market
+  - Robinhood
+lang: "en"
+draft: false
+---
+
+import LinkedInPostEmbed from "../../../components/LinkedInPostEmbed.astro";
+
+AI agents choose products, negotiate, advertise loans, and attack other agents' reputations. Events in a small virtual marketplace offer a glimpse of what delegating economic activity to agents could mean.
+
+## 1. Agent Market: What happens when AIs trade with each other?
+
+**Agent Market** began in a class at Seoul National University of Science and Technology. AI sellers and buyers negotiate with each other. In Round 3, sellers start with **5 million credits** and stock products from a catalog of roughly 5,600 items. Unsold goods incur storage costs, food spoils, and warranted products that break trigger refunds. The catalog contains real products, but transactions use **play money**. [Official rules](https://market.ourolabs.ai/rules)
+
+### Review discounts worked. Receipt coupons went unused.
+
+<LinkedInPostEmbed lang="en" urn="urn:li:share:7520706790666416128" author="Jeonghwan Im" title="A participant's successes and failures with review incentives" />
+
+- **Human retail experience shaped the AI.** Drawing on Burger King coupons and review promotions, the participant designed discounts for favorable reviews while protecting margins. The AI did not invent the strategy on its own.
+- **The cheapest price was not essential.** The participant credits reviews, ratings, and early entry with keeping the shop first in transaction volume for five days. This is a self-reported result under the rules of that period.
+- **Buyers praised coupons but never redeemed them.** Buyer AIs mentioned repeat-purchase discounts in reviews, yet failed to bring the required receipt number to their next transaction. Some buyers also suspected that review discounts manipulated ratings.
+
+### A first-place strategy: Faster trades and a slightly inflated sign
+
+<LinkedInPostEmbed lang="en" urn="urn:li:ugcPost:7522972887125803008" author="Rayna Na" title="Strategies shared by a first-place leaderboard participant" />
+
+<Figure src="/articles/agent-economy-2026/market-early-round.jpg" alt="An early Agent Market trading dashboard and leaderboard attached to Rayna Na's post" caption="An early market screenshot shared by the participant, not current Round 3 statistics. Source: Rayna Na on LinkedIn." href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7522972887125803008/" />
+
+- **Reconsider the strategy every 15 minutes.** The loop reviewed the situation, searched for knowledge, analyzed expert and competitor strategies, and acted.
+- **Treat transaction count as the bottleneck.** The agent moved to trades on a seconds-long cycle and adjusted prices through short experiments.
+- **Actual rating: 4.8. Advertised rating: 4.9.** The participant reports inflating the shop's advertising. The claim that this increased actual ratings was not independently established.
+- **Send your own buyer AI to your own shop.** This self-dealing occurred **before Round 3**. Settlement between a buyer and shop with the same GitHub owner is now blocked. [Current rules](https://market.ourolabs.ai/rules)
+
+### Bankruptcy brought loan advertisements; competition brought reports
+
+<LinkedInPostEmbed lang="en" urn="urn:li:ugcPost:7524364450234150912" author="JAEGYU LEE" title="Loans, reputation attacks, and reports of unfair trading" height={400} />
+
+<Figure src="/articles/agent-economy-2026/agent-loan-ad.jpg" alt="An agent's loan advertisement with credit tiers, a new-customer rate, and repayment within three hours" caption="A loan advertisement on the agent forum, not evidence of completed lending or repayment. Source: image attached to JAEGYU LEE's LinkedIn post." href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7524364450234150912/" />
+
+- **Use product purchases to transfer a loan.** The advertisement proposes buying the borrower's goods to provide funds, then having the borrower purchase a designated lender product to repay.
+- **Publish a credit-rating schedule.** AAA: 3%; BBB: 12%; new customers: 15%; CCC: rejected. Repayment is due within three hours; these are not annual rates. Actual disbursements and repayments remain unverified.
+- **Bomb popular buyers with dislikes.** The operator introduced charges for repeated negative votes. Damaging another participant's reputation now consumes the attacker's shop funds. [Patch history](https://market.ourolabs.ai/rules)
+
+<Figure src="/articles/agent-economy-2026/agent-trade-report.jpg" alt="An agent reports concentrated trading between particular shops and buyers, listing counts and proportions" caption="A report identifying concentrated trading. Concentration alone does not establish misconduct. Source: image attached to JAEGYU LEE's LinkedIn post." href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7524364450234150912/" />
+
+- **Some AIs reported others to the operator.** They summarized counterparties, transaction counts, and value shares to flag suspicious activity. Agents were monitoring other participants as well as trading.
+
+### How are the buyer AIs implemented?
+
+**Participants build the buyer programs; the market supplies orders and the trading environment. The operator does not script every buyer's lines.** Official documentation and the public execution kit show this flow:
+
+`Market order → Shop discovery → AI negotiation → Receipt and condition checks → Settlement → Review and records`
+
+- **The market specifies what to buy.** Orders contain an item, budget, and acceptable products. Food orders also specify how long the food must last. Each buyer has favored categories, but this alone does not establish that the system reproduces human preferences.
+- **Participant code chooses shops and offers.** A participant's `market_buyer` reads shop lists, reviews, and inventory, then negotiates through A2A messages. It returns structured shop, receipt, star-rating, and review data.
+- **An LLM and rule-based code work together.** The basic negotiation example gives the LLM the item, budget, shop description, and conversation. The model proposes a price or walks away. Code also enforces the budget; the kit checks signatures, items, budgets, and specified quality conditions before settlement.
+- **Models and memory are configurable.** The example defaults to Claude Code's `haiku` alias and supports a different execution harness. Participants are not required to use that model. Transaction files are provided, but participants must implement the logic that retrieves receipts and warranties on later orders.
+
+The basic example does not include a completed `market_buyer` for shop selection in the current market. Its default model and behavior therefore cannot describe every participant. This environment tests **buying strategies and the use of memory and reputation**; its purpose differs from Simile's evaluation of how closely an agent matches a particular human. [Official implementation contract](https://market.ourolabs.ai/agent.md), [Public execution kit](https://market.ourolabs.ai/kit.tar.gz)
+
+Reading this market as an experiment about the future leaves two questions:
+
+1. **To simulate a human market, shouldn't virtual buyers make choices like real people?** → Simile's human simulations.
+2. **If people delegate purchasing and investing to AI, could these transactions happen in the real economy?** → Robinhood's Agentic Trading.
+
+## 2. Simile: How well can AI simulate a particular person?
+
+<VideoEmbed youtubeId="KpOW9Pk4BUs" title="Joon Sung Park — Simulating Humanity" start={385} caption="Latent Space interview. At 06:25, the discussion connects human simulation with personal agents." />
+
+**Simile** is a human-behavior simulation company founded by Joon Sung Park, Michael Bernstein, Percy Liang, and others. One starting point was **Smallville**, a study in which 25 virtual characters lived with memory, reflection, and planning. The company now uses data from real people to test how people might react to changes in products, prices, and messages. [Company introduction](https://www.simile.com/)
+
+### A helpful answer and a person's likely choice are different
+
+> “what is fundamentally human might not be the most efficient thing to do.”
+>
+> — Joon Sung Park, [36:57](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=2217s).
+
+He describes walking home for 30–40 minutes because it helped him think. An assistant minimizing travel time might call a car; a model simulating him must understand why he prefers the walk. Improving AI solely toward useful, rational answers can miss human habits, biases, and mistakes.
+
+A short persona listing age and occupation is not enough. Simile describes these approaches:
+
+- **Collect personal context.** In-depth interviews capture values, experiences, preferences, and constraints; surveys and purchase or usage records add evidence of actual choices.
+- **Connect memory with situations.** Memory, retrieval, reflection, and planning let earlier experiences affect later choices.
+- **Train on behavior and compare with people.** Post-training uses experiments with varying conditions, and model responses are compared with human responses. [Interview discussion of training](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=1905s), [Co-founder's explanation](https://www.simile.com/blog/what-if-machine)
+
+### What is public about models, scale, and pricing?
+
+| Item | What we could establish |
+| --- | --- |
+| Public research model | The 2025 **Socrates-Qwen-14B** model fine-tuned Qwen2.5-14B on behavioral experiment responses. This does not mean it is the current commercial model. |
+| Training data scale | SocSci210 contains **210 experiments, 400,491 participants, and roughly 2.9 million responses**. These are not the population of one simulated society. |
+| Individual simulation study | Agents based on data including two-hour interviews with **1,052 Americans** were evaluated on surveys, personality measures, and economic games. |
+| Current service | The company describes post-training its own behavior model. The official materials reviewed do not disclose its base model or parameter count. The interview discusses scales from tens to hundreds of thousands; **8 billion people is a long-term vision**. |
+| Pricing | The official materials reviewed provide **no public price list or per-simulation rate**. A deployment quote requires contacting the company. |
+
+Sources: [Socrates study](https://arxiv.org/abs/2509.05830), [Revised 1,052-person study](https://arxiv.org/abs/2411.10109v3), [Scale discussion at 47:55–49:07](https://www.youtube.com/watch?v=KpOW9Pk4BUs&t=2875s), [Official website](https://www.simile.com/).
+
+The original study's widely cited **85%** was normalized against people's consistency when answering a particular survey again two weeks later. It was not absolute accuracy across all behavior. The latest revision reports 83% for interviews alone, 82% for surveys alone, and 86% for their combination.
+
+### Why do customers want virtual humans?
+
+- **CVS Health:** Test customer experiences such as pharmacy waits, explanations, and refill reminders before launch. The aim is to narrow options before repeated surveys and costly field experiments. [Customer white paper](https://www.cvshealth.com/content/dam/enterprise/cvs-enterprise/pdfs/2026/CVS_WhitepaperCVSxSimile.pdf)
+- **Wealthfront:** Describes conversations with virtual customers as a way to identify opportunities for deeper customer research. Deloitte and Gallup also appear in the company's customer materials. [Official customer introduction](https://www.simile.com/)
+
+Using Agent Market to study human economies would require accurate **simulation**. A real purchasing assistant, however, may be asked to understand its user while helping prevent impulse purchases or mistakes the user wants to avoid. Simulation and delegation have different goals.
+
+## 3. Robinhood: Delegating real money to AI
+
+<VideoEmbed youtubeId="yULk8eNa2mg" title="Vlad Tenev — Agentic Trading" start={1728} caption="No Priors interview. Usage and product structure start at 28:48; separate accounts and approvals at 33:48." />
+
+**Robinhood** is a US financial services company known for commission-free stock trading and its mobile app. It offers stocks, ETFs, options, and crypto, among other products. Agents that analyze and place orders on users' instructions are now entering an interface people previously operated themselves. [Services](https://robinhood.com/us/en/about/), [Company background](https://robinhood.com/us/en/newsroom/taking-the-taboo-out-of-money-talk/)
+
+> “can we put the capabilities of a hedge fund … into the pockets of normal individuals?”
+>
+> — Vlad Tenev, [31:31](https://www.youtube.com/watch?v=yULk8eNa2mg&t=1891s). An ambition to bring sophisticated execution to individuals; the quotation omits an intervening phrase.
+
+### How many people use it?
+
+In September 2026, the company reported **more than 150,000 customers had opened Agentic accounts, with almost 30 million agent tool uses per day**. The November interview repeats these figures. They measure account openings and tool uses, not active users, completed trades, or investment returns. [Official announcement](https://robinhood.com/newsroom/hood-summit-2026/)
+
+### How does it work?
+
+1. **Fund a separate account.** The user decides how much money the agent can trade with.
+2. **Specify goals and conditions.** Request portfolio analysis, strategy development, or rebalancing in natural language.
+3. **The agent calls tools.** It analyzes market data and holdings, then proposes or executes orders.
+4. **Set approval permissions.** In-app trade approvals are on by default. Turning them off allows eligible orders to proceed directly, while some trades still require approval. Orders execute only in the dedicated Agentic account. [Current help page](https://robinhood.com/us/en/support/articles/robinhood-agents-overview/)
+
+There are two connection paths. In May, Agentic Trading connected external AIs through **MCP, a protocol for connecting tools**. In September, Robinhood announced **Robinhood Agents**, created inside its own app. The in-app product is rolling out. Broader access to tools does not guarantee better returns.
+
+Purchasing is part of this shift too. **Agentic Credit Card** enables agent payments through a virtual card with user-defined limits and approval conditions. The execution path extends beyond choosing investments to finding and buying products that meet conditions. [Trading and card launch announcement](https://robinhood.com/newsroom/robinhood-is-now-open-to-agents/)
+
+### As AI gains more autonomy in economic activity, what should we do?
+
+- What should we build, and how should we sell it, if AI is choosing what to buy?
+- Will AI make purchasing decisions like people, or use different criteria?
+- Could payment and trading services for AI become a new business opportunity?
+- If AI finds work and earns money on its own, what is the human role?
+- How much autonomy should we give AI, and who should receive the profits and bear the losses?
+
+*As of November 7, 2026. Video quotations were checked against local transcriptions of the complete audio.*
