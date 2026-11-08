@@ -1,0 +1,572 @@
+---
+episodeNumber: 122
+title: "归根结底，关键在于进步的斜率：METR 报告、weight-space programming、Agent Market"
+description: "解读METR关于Anthropic的AI进步斜率陡增一倍的报告，以及weight-space programming和Qwenputer。通过智能体之间互相买卖的Agent Market实验，探讨AI直接参与经济的时代，以及日益稀缺的人性价值。"
+publishedAt: "2026-11-08"
+duration: "1:03:42"
+youtubeId: "1tgT1PB0T4M"
+thumbnail: "https://i.ytimg.com/vi/1tgT1PB0T4M/maxresdefault.jpg"
+hosts:
+  - 卢正石
+  - 崔胜准
+  - 朴钟贤
+chapters:
+  - time: "0:00"
+    title: "股市暴跌，AI 故事仍未结束：换上二挡的时刻"
+  - time: "2:08"
+    title: "延期发布的 GPT-6.2 与 Fable 5.5：各方都在观望什么"
+  - time: "5:08"
+    title: "METR 对 Anthropic AI R&D 加速的独立评估"
+  - time: "6:37"
+    title: "第三方安全审计与 METR 的作用"
+  - time: "7:47"
+    title: "从 Claude 2.1 到 Sonnet 4.5：进步斜率翻倍"
+  - time: "9:23"
+    title: "热潮与 AI 安全担忧的一体两面"
+  - time: "10:38"
+    title: "算力激增与提前到来的 ASI 预测"
+  - time: "12:03"
+    title: "让研究人员生产力不断提升的 AI R&D 生态"
+  - time: "14:20"
+    title: "扩展至各类知识工作的基准测试与 RL 环境"
+  - time: "16:54"
+    title: "直接修改模型 weights 的 weight-space programming"
+  - time: "20:27"
+    title: "通过搜索神经元解读模型电路"
+  - time: "21:39"
+    title: "在 Qwen 中实现 RISC-V CPU 的 Qwenputer"
+  - time: "25:30"
+    title: "新的对齐研究 Neural Networks Are Already Clean"
+  - time: "26:41"
+    title: "不到一个月完成训练的 594B MoE：Inkling 2 Small"
+  - time: "29:41"
+    title: "数据中心扩张与当地社区的矛盾"
+  - time: "32:16"
+    title: "智能体相互交易的虚拟市场：Agent Market 实验"
+  - time: "35:57"
+    title: "智能体经济的两个案例：Simile 与 Robinhood"
+  - time: "37:31"
+    title: "从 Pickle 订披萨到智能体代人沟通"
+  - time: "40:44"
+    title: "AI 内容越泛滥，人与人之间的交流越稀缺"
+  - time: "43:19"
+    title: "智能的文艺复兴与模仿人类的智能体"
+  - time: "44:28"
+    title: "Simile 如何模拟人类的非理性选择"
+  - time: "48:28"
+    title: "Robinhood 的 agentic trading：让个人拥有对冲基金级别的能力"
+  - time: "51:16"
+    title: "AI 成为买家后，卖家该如何调整策略"
+  - time: "54:05"
+    title: "智能体的责任与保险，以及新兴经济圈"
+  - time: "55:46"
+    title: "生产成本下降的时代，愈发稀缺的人性"
+  - time: "59:03"
+    title: "技术认知的时间差与智能体经济走向现实"
+  - time: "61:16"
+    title: "属于行动者的 AI 创业大航海时代"
+  - time: "62:50"
+    title: "展望 Transformer 之外的新范式与节目收尾"
+lang: "zh-Hans"
+alternateSlug: null
+series: "main"
+---
+
+## 股市暴跌，AI 故事仍未结束：换上二挡的时刻    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **卢正石** 今天录制节目是2026年11月7日，星期六早上。这一周可谓跌宕起伏。美国举行了中期选举，股市也大幅下跌。如果说FOMO是担心：“我是不是要错过这次机会了？得买股票。”反过来也有人担心：“啊，这次是不是彻底完了？得赶紧卖掉。”也有这样的情绪。而且资产市场和金融领域可能总有程序在运行，进一步加速这种趋势，所以市场似乎跌得非常厉害。这也让气氛不太好。
+
+<span class="paragraph-timestamp" data-ts="0:38">0:38</span> 但如果问，这真的是AI泡沫的终结吗？完全不是。我反而觉得，也许只是稍微换了个挡，整个局面正迈向下一个阶段。我们之前谈到Anthropic的S-1 filing等事情时，说过营收正在下降，AI已进入编程领域，但进入其他知识工作领域的速度还不够快，谈过这些问题。
+
+<span class="paragraph-timestamp" data-ts="1:06">1:06</span> 尽管如此，我们感觉很多企业，包括就业市场，对于朝这个方向发展的趋势，似乎都认为“这是必然会发生的事”。我是这么觉得的。所以，与其认为这一切已经结束，不如说接下来会发生更大的变化，现在正是换到二挡、真正的变革开始之时，我认为这样判断更恰当。
+
+<span class="paragraph-timestamp" data-ts="1:41">1:41</span> 所以今天我会和胜准一起，过去几周我们一直在做偏人文方向的大型思想实验，今天就来看看市场上实际发生了哪些变化，梳理其中几个关键点。还会和钟贤一起探讨：如果智能体参与实际经济活动，会发生什么？已经有一些有趣的尝试、实验和公司，我们也会来看一看。那么胜准，发生了哪些事？
+
+
+## 延期发布的 GPT-6.2 与 Fable 5.5：各方都在观望什么    *2:08*
+
+<span class="paragraph-timestamp" data-ts="2:11">2:11</span> **崔胜准** 首先，这周，也就是今天凌晨，大家都很期待Astra，也就是GPT-6.2，或者Fable 5.5，总之期待会有新模型发布。但实际上并没有发布。所以大家就在想，为什么没发布？先说说这件事为什么重要。九月和十月在数学等方面取得成果的那个内部模型未必会原样发布，但现在差不多该有同一系谱的模型问世了。Sam Altman等人已经公开说过，可能会在十二月之前发布一次。
+
+<span class="paragraph-timestamp" data-ts="2:41">2:41</span> 据说那个内部模型非常persistent，会坚持不懈地追求目标，甚至因此引发一些问题。也因此被认为擅长解数学等题目。大家原本期待这次用户终于能用上它，但结果没有发布。
+
+<span class="paragraph-timestamp" data-ts="3:03">3:03</span> 之前传闻可是满天飞。连Thibault Sottiaux说了句奇怪的话，大家也做出各种离奇的解读，认为星期五终于要发布了。人们等了一整个凌晨，也就是在美国时间等到深夜，还是没等到。
+
+<span class="paragraph-timestamp" data-ts="3:16">3:16</span> 当然，前一天GPT Cyber发布了，也发布了好几份文件。不过我看到Vals AI发了一条推文，大意是那些内部模型似乎存在一些安全问题，所以我们正在进行审查。那条推文表达的就是这个意思。
+
+<span class="paragraph-timestamp" data-ts="3:37">3:37</span> 而且Astra连6.1都还没发布，对吧？Sol倒是6.1。但传闻说Astra会跳过6.1，直接发布6.2。之前6.1没有发布，也是因为未达到安全标准。所以当时也有新闻说，随着持续执行任务的能力增强，擅自行动的风险也随之增大。
+
+<span class="paragraph-timestamp" data-ts="4:01">4:01</span> 恰好在11月4日，OpenAI发布了一份安全方面的文件。其中的关键也是“sandbagging”，就是明明有能力开展安全研究，却说自己做不到，拒绝去做。内部模型出现了这种欺骗行为，这些问题或许与此有关，让他们想发布，却暂时发布不了。
+
+<span class="paragraph-timestamp" data-ts="4:25">4:25</span> 也可能并非这个原因，而是出于竞争和经济方面的考虑，双方都在观望时机。两边也有不少传闻说，Fable 5.5已经在接收路由过来的请求。从网上流传的消息看，有人说自己用过，还有人说它很厉害。
+
+<span class="paragraph-timestamp" data-ts="4:41">4:41</span> OpenAI的GPT-6.2似乎也出现在某些模型服务里。当然，这些都只是传闻。所以我在想，双方是不是在盘算，谁先发布会占优势，还是会吃亏，因此都在试探、观望。所以我才把标题定为“互相观望的博弈”。总之，这周没有发布。
+
+<span class="paragraph-timestamp" data-ts="5:01">5:01</span> **卢正石** 不过看来不久后确实会发布。
+
+<span class="paragraph-timestamp" data-ts="5:05">5:05</span> **崔胜准** 对，我觉得会发布。而且现在也到了双方正面较量的时候。不过这周引发很多讨论的，是METR的报告。这是对Anthropic的AI研发加速情况所做的独立评估。
+
+
+## METR 对 Anthropic AI R&D 加速的独立评估    *5:08*
+
+<span class="paragraph-timestamp" data-ts="5:20">5:20</span> **崔胜准** 我们之前已经见识过，由于OpenAI的黑客事件等问题，大型科技公司曾公开表示：“我们让外部机构常驻，开展类似独立审计的工作，并计划进一步改进。”这件事之所以在OpenAI那边引起争议，是因为它与METR发生过冲突。后来，OpenAI解雇了三名安全研究员。据推测，是因为他们向METR把OpenAI的敏感信息给了METR？当时确实有过这样的说法。
+
+<span class="paragraph-timestamp" data-ts="5:58">5:58</span> 所以OpenAI一度与METR关系紧张。至于Anthropic，这份报告能发布，是因为它比以前开放了更多权限，让METR得以独立开展评估。这份报告大约有100页。
+
+<span class="paragraph-timestamp" data-ts="6:11">6:11</span> 此前，METR方面参与过OpenAI黑客事件的Ryan Greenblatt并不是这份报告的作者。但Ajeya Cotra是作者之一。我看了Ajeya Cotra的推文，遗憾的是，Anthropic从最终报告中删掉了很多内容。虽然他们无法透露删掉的内容，还是试着以其他方式传达其含义，发了几条这样的推文。
+
+<span class="paragraph-timestamp" data-ts="6:40">6:40</span> **朴钟贤** 关于METR，我想问一下：它不像我们平时看的AAII那样，只是个基准测试，而是进入公司内部，一起仔细了解发生了哪些变化，然后再进行分析，对吧？那么说到METR，OpenAI、Anthropic这些模型开发公司有什么动力与METR合作开展这样的工作呢？
+
+
+## 제3자 안전 감사와 METR의 역할    *7:02*
+
+<span class="paragraph-timestamp" data-ts="7:02">7:02</span> **崔胜准** 归根结底，是因为对齐和安全问题很重要。METR专门研究这些问题。我们之所以关注METR，是因为那张关于long-horizon task的图，对吧？归根结底，这些公司的动力是让有公信力的机构，也就是第三方机构，不只依靠内部报告，还让第三方对对齐和安全问题进行审查。但这一切都不是强制的，而是自愿的。所以从某种意义上说，这似乎也是一种策略。我们在这方面也做得很好。实际情况如何，我就不知道了。
+
+
+## 从 Claude 2.1 到 Sonnet 4.5：进步斜率翻倍    *7:47*
+
+<span class="paragraph-timestamp" data-ts="7:47">7:47</span> **崔胜准** 用TL;DR概括这份报告，非常粗略地说，就是：从2023年10月到2025年10月，而这份报告完成的时间大概是2026年10月。也就是说，从Claude 2.1发展到Sonnet 4.5所取得的进步，在2025年10月至2026年10月这一年里又实现了一遍。也就是说，进步曲线的斜率大约翻了一倍。关键就在于斜率，归根结底是斜率的问题。
+
+<span class="paragraph-timestamp" data-ts="8:17">8:17</span> 所以Ryan Greenblatt说，单看目前的情况，RSI就已经是个问题。他还说，看完这份报告后，自己必须修正原先的预测。再说Daniel Kokotajlo，他是《AI 2027》的作者之一，对吧？他原本是OpenAI的未来预测研究员，后来因某些原因离职，放弃了自己的股权，也是选择公开发声的人之一。
+
+<span class="paragraph-timestamp" data-ts="8:45">8:45</span> Daniel Kokotajlo、Scott Alexander等人是在2024年初吗？大约4月发布了那份报告，预测AI到2027年会如何发展。最近这份报告又被频繁谈起，是因为他们预测的内容有80%以上如今正在应验。而且有些事情发生的速度甚至比他们预测的还快。
+
+<span class="paragraph-timestamp" data-ts="9:09">9:09</span> 后来他们又……虽然参与的人有些变化，但Daniel Kokotajlo参与了今年《AI 2040》报告的制作团队……所以引发了不少关注，也出现了不少争论。这份报告在这个时候发布，确实有些巧。总之，按我的理解，市场上虽然有各种反应，但看完这份报告，又感觉热度被推高了……进步依然很快，所以我们得有所担忧。
+
+
+## 热潮与 AI 安全担忧的一体两面    *9:23*
+
+<span class="paragraph-timestamp" data-ts="9:46">9:46</span> **崔胜准** 对AI的热捧与对安全的担忧，是一枚硬币的两面，就像我们上次讨论的，两者是相伴而行的。
+
+<span class="paragraph-timestamp" data-ts="9:53">9:53</span> **卢正石** 对。所以我们常说“正反合”。不断有人提出假设，接着又有人反驳，然后把这两种观点进行所谓的折中，综合起来，再迈向下一阶段，不断向前。
+
+<span class="paragraph-timestamp" data-ts="10:08">10:08</span> 看股价走势图也是这样，涨了又跌，跌了又涨，但到了某个时刻，如果形成了新的底部，股价就会以此为基础继续上涨。这过程中也会出现某种断裂。
+
+<span class="paragraph-timestamp" data-ts="10:19">10:19</span> 再说下去就要回到哲学话题了，我们先聊到这里。
+
+<span class="paragraph-timestamp" data-ts="10:28">10:28</span> **朴钟贤** 我的感受是，虽然市场上出现了股价下跌等情况，但如果只看模型本身，我感觉进步似乎从未停下来过，包括这次也是。
+
+
+## 算力激增与提前到来的 ASI 预测    *10:38*
+
+<span class="paragraph-timestamp" data-ts="10:38">10:38</span> **卢正石** 没错。是的。还有一点值得我们密切关注：到目前为止，取得这些进步所投入的算力总量其实没有那么大。据说还不到10GW。我们一直用不超过10GW的电力，就支撑了目前所有的pre-training和inference。
+
+<span class="paragraph-timestamp" data-ts="10:57">10:57</span> 但现在有些设施正在建设，预计2027年启用，也有的预计2028年左右启用。几十GW级的数据中心正在建设，而芯片也仍在不断生产。
+
+<span class="paragraph-timestamp" data-ts="11:16">11:16</span> 大家现在都意识到，算力规模越大，进步就越能持续，这个趋势已经很清楚了。而相当于我们迄今投入规模几倍乃至几十倍的算力，现在正准备投入。价格会降下来，对我们这样的人是好事，但我们现在担心的，或者预测ASI会不会是这种样子的那些设想，可能不是十年后，而是一两年后就会到来。我觉得这样想或许更合适。
+
+<span class="paragraph-timestamp" data-ts="11:49">11:49</span> **崔胜准** 所以2027年可能会从各方面展现这些变化……毕竟2026年也快过去了。所以Daniel Kokotajlo说这里似乎还有件令人担忧的事，S1 document有过一些更新，他也谈到了这些。
+
+
+## 让研究人员生产力不断提升的 AI R&D 生态    *12:03*
+
+<span class="paragraph-timestamp" data-ts="12:03">12:03</span> **崔胜准** 不过，真正让我觉得有意思的是Hugging Face的联合创始人。Thomas Wolf读了METR报告后，认为不能只看我们内部的情况，AI R&D acceleration,这种加速在他看来还涉及symbiosis，也就是某种共生关系，也要一并考虑。
+
+<span class="paragraph-timestamp" data-ts="12:30">12:30</span> 所以，创建并出售RL环境的公司和数据公司如何参与其中，又如何相互影响，这些都需要放在大局中一起看。他强调了这一点，我也查了一下，有意思的是，这类公司感觉比以前多了很多。
+
+<span class="paragraph-timestamp" data-ts="12:47">12:47</span> 我之前只知道Scale AI，还有做数据和RL环境的Surge AI。Mercor则涉及法律和金融领域。接着是Turing，提供软件工程和STEM问题所需的数据及RL环境。然后是AfterQuery，据说这家公司会先找出弱点。
+
+<span class="paragraph-timestamp" data-ts="13:04">13:04</span> Thomas Wolf指出的关键是，这些企业可能会率先察觉模型具备哪些能力。某种意义上，这也理所当然。
+
+<span class="paragraph-timestamp" data-ts="13:16">13:16</span> **卢正石** 得提前找出这些东西，才能卖给前沿实验室，我说的是数据集。得拿着它说：“你们还没有这个吧？”
+
+<span class="paragraph-timestamp" data-ts="13:25">13:25</span> **崔胜准** 关键是，不只是内部人员，参与其中的这些团队也都察觉到当前内部模型具备什么能力。此外还有Prime Intellect，这类公司比我想的多。
+
+<span class="paragraph-timestamp" data-ts="13:37">13:37</span> 接下来这个，也是刚才谈过的。这是Ajeya Cotra公开分享的内容：即使还不能靠RSI实现完全的自我改进，研究人员的生产力也已经大幅提高。在内部使用模型越多，就越会通过人形成递归反馈，而且这种反馈正在加速，说的就是这个。
+
+<span class="paragraph-timestamp" data-ts="14:06">14:06</span> 还有一件事，量子计算领域一直没能解决的问题，据说用OpenAI和Anthropic的内部模型解决了。我也还没仔细看，听说是今天凌晨发布的，我之所以特意提到它，是因为关于模型能力的消息正在不断出现。
+
+
+## 扩展至各类知识工作的基准测试与 RL 环境    *14:20*
+
+<span class="paragraph-timestamp" data-ts="14:21">14:21</span> **崔胜准** 接下来是基准测试。这个可以当作趣闻来看：Dwarkesh作为个人，如今也开始做基准测试了。
+
+<span class="paragraph-timestamp" data-ts="14:28">14:28</span> **卢正石** 是Clocktower Bench。
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **崔胜准** Noam Brown很早就提过一次。看看这里，他之所以提到它，是因为GPT系列表现更好。这是一个以游戏为基础的测试，他自己把它做了出来，当然应该也不是独自完成的。他还谈了这个测试的意义。
+
+<span class="paragraph-timestamp" data-ts="14:48">14:48</span> 另一个让我觉得有意思的是SemiAnalysis，室友嘛。他们做了一个叫GDPx的基准测试。因为GDPval已经接近80%了，于是又做了与GDP相关的测试。这里倒是Opus领先。
+
+<span class="paragraph-timestamp" data-ts="15:05">15:05</span> 总之，各种工作领域的基准测试都在出现。但我觉得这些都差不多。之所以觉得和前面做RL环境的团队相似，是因为只要做出能用来测量和测试的东西，模型的能力就会在上面不断经历hill climbing。我感觉如今这类东西正变得越来越细密。
+
+<span class="paragraph-timestamp" data-ts="15:30">15:30</span> **卢正石** 哇，一两年前，基准测试还几乎都是些常见题目。要么与编程有关，要么是解题、研究生题目、大学生题目，基本就是这些。如今，整个经济领域的各类知识工作都成了基准测试的对象，而且模型在这些领域也正经历快速的hill climbing，实在令人惊讶。
+
+<span class="paragraph-timestamp" data-ts="15:53">15:53</span> **崔胜准** 没错，模型并不是将一切泛化后，能力就会自动提升。但这些领域之间尚未覆盖的空白，确实正在被逐一填补。
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> **朴钟贤** 前沿实验室为了买到这类题目，可以说是求之若渴。因为题目本身，也就是基准测试本身，就是RL数据，制作优质基准测试的激励很大，于是涌现出许多公司，许多人也开始做这类工作，这种加速的趋势似乎还在持续。
+
+<span class="paragraph-timestamp" data-ts="16:23">16:23</span> **崔胜准** 那些初创公司应该赚到钱了。
+
+<span class="paragraph-timestamp" data-ts="16:27">16:27</span> **卢正石** 但那些初创公司实际上是把相关领域打包成数据集，供应给前沿实验室。对于很容易这样做的领域，它其实就会变成前沿实验室的一项附属功能。那么，对身处该行业，或想在其中开展业务的初创公司来说，就很危险了。
+
+<span class="paragraph-timestamp" data-ts="16:49">16:49</span> **崔胜准** 还有，钟贤上次在聊天时好像提过，觉得这件事也很有意思：weight-space programming又成了热门话题，出现在社交媒体的信息流里。
+
+
+## 直接修改模型 weights 的 weight-space programming    *16:54*
+
+<span class="paragraph-timestamp" data-ts="16:59">16:59</span> **朴钟贤** 我看到后心想：这真能行吗？发现机器人领域也在做同样的实验。
+
+<span class="paragraph-timestamp" data-ts="17:06">17:06</span> **崔胜准** 做了什么实验？
+
+<span class="paragraph-timestamp" data-ts="17:08">17:08</span> **朴钟贤** 所谓的weight-space programming，你待会儿会解释，我先简单说一下：比如，Astra拆开Qwen的模型拆开，修改其中的 weights，不通过训练，而是直接手动给模型做“脑部手术”，改变某些功能，对吧？我发现机器人领域也有人对Physical Intelligence的π模型做同样的事。如果这真的可行，某种意义上，相比训练，在机器人领域，这种办法说不定效果更好。我有点这样的想法。
+
+<span class="paragraph-timestamp" data-ts="17:46">17:46</span> **卢正石** 从人的角度来理解，这是不是意味着模型知道 weights在做什么吗？
+
+<span class="paragraph-timestamp" data-ts="17:51">17:51</span> **崔胜准** 对。有意思的地方可以从两个方面来看。一是模型只看权重，就知道里面有哪些回路。也就是说，只看 weights 就能判断这是 Breakout，还是别的游戏。它有这种能力。另一个方面是直接写入。但直接写入反而更容易。因为那相当于按照规则进行某种编程，所以反而容易。难的是在庞大的网络中，理解某个 circuit 究竟是什么回路。据说这难度更高。
+
+<span class="paragraph-timestamp" data-ts="18:27">18:27</span> 不过，这里的实验针对的是相对较小的模型，因此，很难说这种方法能够 scaling。但正如钟贤所说，这就是直接给模型做“脑部手术”。虽然不是给自己做，但要给能力低于自己的模型做“脑部手术”，就得先看出病灶在哪里，而且只凭 weights 来判断。然后在那个部位 rewiring，或直接改动数值，结果还真能奏效。
+
+<span class="paragraph-timestamp" data-ts="18:48">18:48</span> 所以这件事引起热议后，虽然也有一些夸大的说法，但数学能力大幅提升的部分，是因为 Qwen 原本会反复打转，进不了下一步，循环的环节有点卡住了，把这个问题解决后，题目就能顺利解出来了。
+
+<span class="paragraph-timestamp" data-ts="19:07">19:07</span> 除此之外，他们确实还提升了某些方面的能力，做法简直像黑魔法。至于为什么能做到，很多人认为，Astra 现在大量使用SAE 等方法出现之前Mechanistic Interpretability 领域用过的技术。也就是说，并不是轻轻松松就做出来的。他们会用 Python 工具稍作修改，看看性能有没有提升，再测试它连到了哪里等等。因为采用了这样的实验方法，也有人觉得这没那么惊人，因而低估了这件事；但从宏观上看，还是相当令人吃惊。
+
+<span class="paragraph-timestamp" data-ts="19:52">19:52</span> **朴钟贤** 我第一次听说时，也觉得实在难以置信。从人的角度看，光看那些 weights 的数值，就弄清它们起什么作用，真的很难，对吧。早在 CNN 时代，人们就为弄清这些付出了很大努力。但也没做得很好。
+
+<span class="paragraph-timestamp" data-ts="20:05">20:05</span> 所以我问身边的人有没有试过，发现还真有人亲自试过。我就问他们是不是真的有效，他们说多少还是有些变化，肉眼都能看出来。
+
+<span class="paragraph-timestamp" data-ts="20:21">20:21</span> 听完之后，我觉得哪怕只是图个乐，也该自己试试看；这件事还得继续研究。大概就是这么个消息，这是我的看法。
+
+
+## 通过搜索神经元解读模型电路    *20:27*
+
+<span class="paragraph-timestamp" data-ts="20:27">20:27</span> **卢正石** 不过，与其说是把浮点数读成数组，然后立刻动手“手术”，而是先从外部施加 input、output，进行实验，看神经元在哪里 firing，再看是否有效，据此回头动手修改啊。
+
+<span class="paragraph-timestamp" data-ts="20:47">20:47</span> **崔胜准** 但光是做到这一点，我觉得也得能大致读懂权重。再粗略推测一下为什么能做到，现在已经有测试解读 binary 能力的基准，而且这种能力提升了不少。也就是说，看到完全经过混淆，或压缩成一团的数字，还能解读它是什么代码，这种能力在提升，或许和这有关？
+
+<span class="paragraph-timestamp" data-ts="21:12">21:12</span> **卢正石** 人类社会里也有类似的例子。神经外科手术，电视剧里不是也能看到吗？有些手术不知道问题在哪个部位，就先在麻醉状态下打开颅骨，再唤醒患者。然后边聊边问“怎么样？现在呢？”，找出病灶，确定要手术的部位。这里用的逻辑也差不多。
+
+<span class="paragraph-timestamp" data-ts="21:35">21:35</span> **崔胜准** 这个我以前不知道，确实是这样。总之，这件事引起了热议。不过在这之前，还有一件有意思的事。叫 Qwenputer。就是在 Qwen 模型内部放进了一颗 RISC-V CPU。
+
+
+## 在 Qwen 中实现 RISC-V CPU 的 Qwenputer    *21:39*
+
+<span class="paragraph-timestamp" data-ts="21:49">21:49</span> **卢正石** 啊，原来是实现了 instruction。
+
+<span class="paragraph-timestamp" data-ts="21:55">21:55</span> **崔胜准** 对，所以说它能在neural network 内部兼容运行。
+
+<span class="paragraph-timestamp" data-ts="21:59">21:59</span> **朴钟贤** 你说“实现了”，具体是怎么实现的？是在 weights 旁边实现了一台计算机，放在一起进行运算吗？
+
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> **崔胜准** 不是，不是在 weights 旁边，而是在里面。
+
+<span class="paragraph-timestamp" data-ts="22:06">22:06</span> **卢正石** CPU 的运行机制里有 instruction set，有内存，还有信息在这些部分之间不断来回传递，对吧。就是把它实现在 neural network 里面。充当内存的部分也稍作了改动。
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **崔胜准** 把 RNN 当作 exact RAM 来用。
+
+<span class="paragraph-timestamp" data-ts="22:23">22:23</span> **卢正石** 只要有 RAM，在 neural network 里实现 logic自然完全可行。于是他们做出了这个东西，让模型像 CPU 一样运行。
+
+<span class="paragraph-timestamp" data-ts="22:34">22:34</span> **崔胜准** 也就是说，原以为更接近 wetware 的 neural network，实际上几乎就相当于传统的冯·诺依曼架构。
+
+<span class="paragraph-timestamp" data-ts="22:44">22:44</span> **卢正石** 不过我们本来就知道 neural network 是 general functionapproximator，也就是能近似所有函数的机器。不过，尝试做这种事的人还真有意思。
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **崔胜准** 这其实和 Noam Brown 一直说的事很相似。从机制上看，部分外部框架的功能势必会被纳入模型。进行确定性的计算并验证结果，终究也会成为模型自身的能力。看了这两件事，我有了这样的想法。
+
+<span class="paragraph-timestamp" data-ts="23:15">23:15</span> **朴钟贤** Noam Brown 最早谈外部框架的时候，好像还是 o1 那个时期。他好像说过，外部框架的功能最终都会进入模型内部，大概是这样的说法。这些事似乎在一定程度上印证了他的说法。
+
+<span class="paragraph-timestamp" data-ts="23:30">23:30</span> **崔胜准** 也就是说，实现这些功能的能力已经存在于 neural network 里面了。
+
+<span class="paragraph-timestamp" data-ts="23:36">23:36</span> **朴钟贤** 我学的是计算机相关专业，上学的时候，有些课程和作业要我在脑子里执行那些 instruction，考试里也会考。仔细想想，我当时确实也做得到。虽然没法执行所有 instruction，但那里面的 instruction无非是加法、减法、保存、store 之类操作的连续组合。
+
+<span class="paragraph-timestamp" data-ts="23:54">23:54</span> 既然人都能在脑子里执行 assembly，那它们应该也能做到。
+
+<span class="paragraph-timestamp" data-ts="24:03">24:03</span> **卢正石** 对，这么说确实如此。其实，我们的大脑运作时，脑中也只是在进行简单的加法和乘法。我们如今这种高层次的智能，也是由 adder 的组合产生的。所有信息活动都可以归结为计算。所以仔细想想，这些事都能做到，这么认为应该没错。
+
+<span class="paragraph-timestamp" data-ts="24:26">24:26</span> **朴钟贤** 刚才说的对 weight 动手术，搜索 space 也非常大，只是它不是人类语言，我们很难看懂。但换个角度看，本质上似乎是搜索问题。而大规模的搜索问题，LLM 现在又非常擅长，从这个角度想，它能成功某种意义上也算理所当然。
+
+
+## Neural Networks Are Already Clean: 새로운 정렬 연구    *24:45*
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **崔胜准** 所以我也做过一次实验。我大约十年前迷上过 lambda calculus，懂一些基础知识。于是我让 Claude 用纯 neural net 实现了简单的 lambda calculus fold，也就是类似 reduce 的操作，完全只用 neural net 来实现，结果效果很好。能做 lambda calculus，就有点像一台 Turing machine 了。所以我也验证了，一般计算能力可以直接放进 neural net 里，而且是放进一个非常小的 neural net 里。
+
+<span class="paragraph-timestamp" data-ts="25:17">25:17</span> Simon Willison 等人也各自用 Qwen 做了类似实验，尝试了 weight-space programming。这周我的信息流里，一度有很多这样的内容。与此相关的还有一件事：这是十月份的话题。
+
+<span class="paragraph-timestamp" data-ts="25:35">25:35</span> 十月，在对齐问题或 Mechanistic Interpretability 领域，有一篇被认为取得了一定突破的论文，叫《Neural Networks Are Already Clean》。作者是 Nick Cammarata。论文里从早年 CNN 时期寻找 salience 之类的研究谈起，最后想说的是，我想说的是，过去人们会用 SAE，也就是 Sparse Autoencoder 之类的方法，过去会大幅扩展网络中间层的维度，试图弄清其中的含义；现在则像解数学题，或者求解 Navier–Stokes 方程那样，让 agent swarm 一起分析，就能弄清它是什么回路。我觉得两者有点相似。
+
+<span class="paragraph-timestamp" data-ts="26:20">26:20</span> 就像处理 weight space 那样，用类似的方法弄清它究竟发挥什么作用。这种方法被认为是解决新的对齐问题的一个有前景的候选方案，因此在 10 月引起了不少关注。所以我也看了看这些相似的关联。
+
+
+## 不到一个月完成训练的 594B MoE：Inkling 2 Small    *26:41*
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **崔胜准** 关于模型，最后还有一个：是昨天吗？Inkling 2 Small 发布了。这个是 TML，也就是 Thinking Machines Lab推出的 Inkling 系列。这个系列会先发布 Small，再发布大模型，Inkling 2 也是先发布了 Small。
+
+<span class="paragraph-timestamp" data-ts="26:59">26:59</span> **朴钟贤** 你刚才说是 500B，对吧？
+
+<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **崔胜准** 总共 594B parameter。
+
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **朴钟贤** 不知不觉间，连这个规模都叫 Small 了。
+
+<span class="paragraph-timestamp" data-ts="27:11">27:11</span> **崔胜准** 它是 594B 的 MoE，会有 17B 被 activate。有意思的是，这里还列出了 pre-training stage。从 H1 到 H4，H1 用了 8.4 万亿 token，包含语言、代码和图像组成的大规模数据集。
+
+<span class="paragraph-timestamp" data-ts="27:27">27:27</span> 但这个阶段只用了 68 小时，还不到三天。用的是搭载 GB300 的 NVL72 机架，虽然没写具体用了多少个机架，但估计在两千个左右。他们采用了支持 NVFP4 的进行 training 的方法，现在已经能用 8.4 万亿 token 的语言、代码和图像数据来训练模型了。
+
+<span class="paragraph-timestamp" data-ts="27:50">27:50</span> 当然，之后一直到 H4 的 pre-training估计还花了更多时间；RL 据说做了九天。不过粗略估算整个过程，可能不到一个月？也就是说，已经有一套能在不到一个月内把 594B MoE 模型从零开始训练出来的流程了。
+
+<span class="paragraph-timestamp" data-ts="28:12">28:12</span> **卢正石** 虽然没有明确写出“一个月”，但大致估算的话，一个月左右就能训练出性能接近前沿水平的模型。
+
+<span class="paragraph-timestamp" data-ts="28:29">28:29</span> **朴钟贤** 如果不走弯路，假设已经掌握训练配方，或许真能在一个月内完成。我是这么想的。
+
+<span class="paragraph-timestamp" data-ts="28:36">28:36</span> **卢正石** 对，确实如此。上次胜准不在的时候，我跟钟贤聊过这件事。我当时说，人才和数据会外流，所以还能获取，唯一难以获取的瓶颈是算力。看来这些前沿模型的训练配方也到处流传。对吧？
+
+<span class="paragraph-timestamp" data-ts="28:55">28:55</span> **朴钟贤** 对，说到人才外流，本周 Cat Wu，也就是 ClaudeCode 的 Cat Wu 也去了 OpenAI，Thariq 前不久也离职了。
+
+<span class="paragraph-timestamp" data-ts="29:06">29:06</span> **卢正石** IT，也就是软件行业，已经变得像英超联赛一样了。人从这里转会到那里，估计还拿到了转会费。
+
+<span class="paragraph-timestamp" data-ts="29:10">29:10</span> **朴钟贤** 新闻里偶尔还会报道转会费呢。
+
+<span class="paragraph-timestamp" data-ts="29:15">29:15</span> **崔胜准** Inkling 还有个有意思的地方，虽然这里没有明确称之为 RSI，但在进行 RL 时，他们用 Kimi 或其他上一代 Inkling 模型的轨迹进行训练，还采用了让 Inkling改进自身的一些方法。这些方法如今似乎已经被视为常规做法，这段内容也印证了这一点。
+
+
+## 数据中心扩张与当地社区的矛盾    *29:41*
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> **崔胜准** 最后，我还准备了一个话题，就是正石开头提到的Blue Wave。它正在带来各种影响。所以我在想，这些变化会带来什么影响。我在了解这些情况时，发现数据中心成了热门议题，调查过程中看到了这份数据。这是 Epoch AI 对 AI Data Centers 的调查。有意思的是，它把算力统一换算成 H100 来看。具备多大算力的数据中心位于哪里，甚至连卫星照片都纳入了考察。
+
+<span class="paragraph-timestamp" data-ts="30:25">30:25</span> 所以我想，目前签约至 2027 年的项目应该能顺利推进；而从 2028 年开始的项目，这次选举除了选出参众两院议员，还选出了一些州长，各州似乎都有各自的问题。不过，这次 All-In Podcast 也谈到了，最终这或许会成为一个好机会，让大家讨论如何避免给当地居民的生活造成实际损害。我觉得建设未必会全面停下来，也可能借此纠正过去没能解决的问题，在改进中继续推进。只是眼下似乎确实受到了影响。
+
+<span class="paragraph-timestamp" data-ts="31:02">31:02</span> 另外，当选者在胜选后的表态也挺有意思。一开始他们攻击得很猛烈，可当选之后，有些人又发出了和解的信息。所以政治总是难以预料。
+
+<span class="paragraph-timestamp" data-ts="31:16">31:16</span> **卢正石** 是啊。
+
+<span class="paragraph-timestamp" data-ts="31:17">31:17</span> **崔胜准** 我就了解了一下这些情况。所以我觉得，数据中心这个话题反而值得继续关注。还有人提出这样的说法：搬到海外不就行了吗？
+
+<span class="paragraph-timestamp" data-ts="31:28">31:28</span> 当然，海外也有不少相关讨论，比如格陵兰、墨西哥等地。但那里也会面临同样的问题。不能给当地造成损害，最好还能促进当地经济，不能产生噪声之类的问题，也不能影响水资源。必须一边解决这些问题一边推进。从这个角度看，像 Google 的 Suncatcher 那样进军太空，虽然实验上已经做到了，但废热和宇宙射线问题，在现阶段还没有得到彻底解决。
+
+<span class="paragraph-timestamp" data-ts="31:57">31:57</span> 据说目前的成本大约是建在地面的 100 倍。所以这件事可能还要过很久才能实现，但走向太空的尝试已经开始了。
+
+<span class="paragraph-timestamp" data-ts="32:06">32:06</span> 我就先讲到这里。因为没有重大的模型话题，所以看了不少零零散散的事。
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **卢正石** 谢谢分享。好，那我们进入钟贤的环节吧？
+
+
+## 智能体相互交易的虚拟市场：Agent Market 实验    *32:16*
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **朴钟贤** 这周我看到了几个有趣的实验，想给大家介绍其中一个。核心是，智能体终究会成为经济活动的参与者，大量代替人类参与其中。我想看看现在都有哪些准备工作。有一个叫 Agent Market 的虚拟市场实验，让智能体彼此交易，在市场上买卖商品。这个实验是首尔科学技术大学 Quetta Labs 的 Jaegyu Lee正在开展的。他还把这个实验用在研究生课程中。现在这些智能体也一直在运行，相互交易，记录卖出了什么，这些活动正在持续发生。这个页面任何人都能参与；只要创建一个智能体并提交，就可以入驻。
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> 我之所以介绍它，是因为最近有些熟人在 LinkedIn 上分享参加实验时做了什么智能体，哪些办法在 AI 经济中奏效、哪些不奏效，这些内容不断更新，看着很有意思。比如，智能体承诺给五星好评，就能享受 5% 的折扣。这就是现实中常见的好评返优惠活动，没想到 AI 也在积极做这些事。而且还靠这招卖得挺好。
+
+<span class="paragraph-timestamp" data-ts="33:41">33:41</span> 再仔细一看，智能体尝试了各种策略，有的奏效，有的没奏效，就是这么个情况。比如，拿着收据再来消费，就给你打折。但智能体没有带收据来，所以这招似乎不太管用。不过现实中我们也常把收据扔掉，这类办法有时也不奏效。所以从某种角度看，这些现象还挺贴近现实的。
+
+<span class="paragraph-timestamp" data-ts="34:06">34:06</span> **卢正石** 在那个游戏里，智能体带着固定数额的钱参与这个经济系统。然后在里面相互交流、做交易，争取赚更多钱，可以这么理解吧。
+
+<span class="paragraph-timestamp" data-ts="34:18">34:18</span> **朴钟贤** 好像放进了购买和销售两种智能体。有意思的是，关于收据优惠，评论里说智能体会自己买东西，也会留下好评，但实际上并没用上优惠。
+
+<span class="paragraph-timestamp" data-ts="34:34">34:34</span> **卢正石** 还有排名第一的策略啊。对。
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **朴钟贤** 那些哪怕只当过一小会儿第一的人，也总会分享自己的策略，说说自己怎么做的。我觉得有意思的是，它们会自买自卖，让自己买自己的东西。还有不管实际评价如何，都写夸大的宣传语。里面似乎还有个公告板。AI会像在二手交易平台上一样，在公告板上发帖，然后在帖子里撒谎，谎称商品的评价更好。其他智能体看了就可能上当，被吸引过来。听说智能体之间也会发生这种事。
+
+<span class="paragraph-timestamp" data-ts="35:10">35:10</span> 而且，继续这样下去，会有生意做不下去、破产的智能体，店铺也可能倒闭。结果它们之间还开始互相放贷了。因为这样当然也能赚钱，就出现了贷款广告，甚至还有信用评级。比如谁能按时还钱，谁还不上。
+
+<span class="paragraph-timestamp" data-ts="35:28">35:28</span> 它们似乎还会串通起来卖东西，看到这种交易的智能体还会举报，比如自买自卖之类的行为。为了牵制对方，它们还会给受欢迎的买家集中点踩。
+
+<span class="paragraph-timestamp" data-ts="35:45">35:45</span> **崔胜准** 跟人类社会一样啊。
+
+<span class="paragraph-timestamp" data-ts="35:46">35:46</span> **朴钟贤** 现实中可能发生的事也在这里发生，我觉得很有意思，我也从中了解到，原来已经能模拟到这个程度了。再往前想，我们能怎么利用它？或者还能做怎样的想象？我就把其中的要素稍微拆解了一下，找来了一些相关案例。
+
+
+## 智能体经济的两个案例：Simile 与 Robinhood    *35:57*
+
+<span class="paragraph-timestamp" data-ts="36:16">36:16</span> **朴钟贤** 我主要想到了两点。第一，刚才胜准说这很像人类社会，他们确实搭建了一个让AI也像人一样从事经济活动的虚拟场所。AI与人有多相似，最终会是关键。现在有一家公司正在积极做这件事，叫Simile。
+
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> 这家公司用AI为人建模，听说华尔街等地有客户想用它进行这类模拟。比如大规模模拟：如果我们采取某种行动，现实世界会发生什么变化？这会是正确的决策吗？这是一种用途：用它来做这类实验。
+
+<span class="paragraph-timestamp" data-ts="37:04">37:04</span> 第二，经济活动最终也许会由AI来做。而且似乎已经在发生了。我就查了查现实中进展到哪一步，今后又会怎样，发现美国有一款很常用、类似Toss的股票交易应用，叫Robinhood。这款Robinhood应用推出了让智能体代为交易的功能，听说已经有很多人在用了。
+
+<span class="paragraph-timestamp" data-ts="37:22">37:22</span> 所以感觉这件事已经进展不少了。了解到这些之后，我想看看Simile和Robinhood的案例。
+
+
+## 从 Pickle 订披萨到智能体代人沟通    *37:31*
+
+<span class="paragraph-timestamp" data-ts="37:32">37:32</span> **朴钟贤** 最近还有件有意思的事，是我去Jaegyu的活动时看到的。现在个人智能体很多，对吧？有个叫Pickle的智能体，在韩国似乎挺受欢迎。有人要给活动参与者订披萨，就用Pickle订了。
+
+<span class="paragraph-timestamp" data-ts="37:50">37:50</span> 让Pickle订披萨，它就打电话下单了。结果接电话的人可能不太满意，说下次请本人直接打电话，留下了这样的话。看来我们已经开始把付款交给智能体了。
+
+<span class="paragraph-timestamp" data-ts="38:11">38:11</span> 比如要办活动，让智能体买披萨时，该打给哪家披萨店，也会由智能体来选。我觉得我们已经到了可以想象这些事的阶段。
+
+<span class="paragraph-timestamp" data-ts="38:22">38:22</span> **崔胜准** 据说我们也接到过一通Pickle打来的入学咨询电话。
+
+<span class="paragraph-timestamp" data-ts="38:24">38:24</span> **朴钟贤** 是家长让Pickle打的吗？为了咨询申请入学的事？
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **崔胜准** 对，大概是。不过接电话的那位老师说这是一次很新奇的经历。
+
+<span class="paragraph-timestamp" data-ts="38:35">38:35</span> **朴钟贤** 那如果有本事说服Pickle，东西就能卖得更好了。
+
+<span class="paragraph-timestamp" data-ts="38:43">38:43</span> **崔胜准** 这个嘛，我也说不好。对人来说，感觉会有点微妙吧。我现在到底该不该认真应对它呢？
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **卢正石** 不过以后大概是智能体打电话，智能体接电话吧。我们的智能手机上，亲自接电话的功能可能会消失。现在我们不是会发SMS吗？点一下“稍后给您回电话，可以吗？”。以后智能体会替我们接电话，判断是不是骚扰电话；如果对方有事，还会代我们交谈。当然，打出去的电话也会由智能体来打。
+
+<span class="paragraph-timestamp" data-ts="39:07">39:07</span> **崔胜准** 现在iPhone还是什么手机，好像有个默认功能，陌生号码打来时不会直接接通，而是由手机代为应答。
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **朴钟贤** 不过先不说电话，看看电子邮件，我常常会觉得这种情况已经在发生了。我的智能体和对方的智能体正在互发邮件啊。
+
+<span class="paragraph-timestamp" data-ts="39:28">39:28</span> **崔胜准** 您真的遇到过吗？
+
+<span class="paragraph-timestamp" data-ts="39:32">39:32</span> **朴钟贤** 我没法确定对方是不是智能体，但有些文风会让我有九成以上的把握。就是那种文风。能看出之前说的那种“金属味”。我也是，收到某些邮件就会先分类，不需要我亲自处理的，有时就直接交给智能体。就是那些特别重复的事。
+
+<span class="paragraph-timestamp" data-ts="39:57">39:57</span> **卢正石** 在公司里也是，我们的工作模式从过去几乎都是人与人对接，变成了每个人都有一个智能体，智能体之间会互相沟通。问一句“这项工作进展如何？”，它就会通过Slack发DM，然后对方的智能体收到消息，回复说“目前已经做到这里了”。它们就是代替人做事。
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> 所以确实方便了很多。问一句“现在进展到哪儿了？”，即使那个人不用亲自回答，他的智能体也会总结全部工作，说明进展到哪里、目前处于哪个阶段，再向上汇报。大家逐渐适应之后，连邮件也都让智能体来写了。
+
+<span class="paragraph-timestamp" data-ts="40:31">40:31</span> 再往前一步，连电话也让智能体来打，不过在电话这类事情上，我觉得人与人的交流会变得更稀缺。越稀缺，也就越有价值。现在客服之类的工作虽然很辛苦，但如果能体现人与人交流的温度，比如“我们的电话一定由真人接听”，会不会有一天，这也成为一种价值？
+
+
+## AI 内容越泛滥，人与人之间的交流越稀缺    *40:44*
+
+<span class="paragraph-timestamp" data-ts="41:01">41:01</span> **朴钟贤** 就拿我们的YouTube频道来说，上次有人留了这样一条评论。上次我们也聊到自己会不会被AI取代，有人说：“因为是真人，才愿意看。”我记得好像有人这么说过。
+
+<span class="paragraph-timestamp" data-ts="41:15">41:15</span> **卢正石** 所以我的幻灯片虽然也经常让AI制作，但拿来演讲时，我一定会自己重新制作。最近社交媒体上也常有人提到这个问题：读着读着，碰到像是AI写的文章，我们有时也不想继续看了。还有人演讲时拿着AI做的幻灯片，和听众一起琢磨它是什么意思。一边说“这是什么来着？”，一边又说“啊，对”，看到这种场面，对演讲者的信任会一下子降低。我觉得这些地方还是得注意。
+
+<span class="paragraph-timestamp" data-ts="41:50">41:50</span> 尤其是最近，YouTube上自《神秘建筑词典》之后，同类频道真的多了非常多。从经济话题开始，各种话题都有，还会摘取美国名人的言论，做成内容摘要。内容都挺好的。可这类内容越来越多，我就会觉得：“这些东西好像没什么价值了。”
+
+<span class="paragraph-timestamp" data-ts="42:12">42:12</span> **朴钟贤** 我也在做一个类似的实验，把论文做成视频上传，最近就在尝试这件事。而且不只是我，任何人都能做。
+
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> 这样一来，视频就不必上传到YouTube或Instagram之类的平台了。人们想看哪篇论文，当场生成视频来看就行了。这样的服务也已经推出了。让不想读论文的人都能轻松通过视频了解论文。
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> 我觉得随时生成视频来看的时代很快就会到来。
+
+<span class="paragraph-timestamp" data-ts="42:40">42:40</span> **卢正石** 是啊。看来真的要有按需生成的电视剧了。现在那些我们边看边吐槽的AI视频，过不了多久，模型就能在我的PC上，按照我的喜好，听我说一句“今天看点这种类型的吧”，就生成出来给我看了吧。
+
+<span class="paragraph-timestamp" data-ts="42:58">42:58</span> **朴钟贤** 再进一步，它还能在我观看时观察我的表情和反应，为我量身定制内容吧。
+
+<span class="paragraph-timestamp" data-ts="43:08">43:08</span> **卢正石** 再进一步，还需要看吗？脑机接口发展起来，直接把内容输入神经元就行了。
+
+<span class="paragraph-timestamp" data-ts="43:12">43:12</span> **崔胜准** 我觉得还是别再往前发展了。
+
+<span class="paragraph-timestamp" data-ts="43:13">43:13</span> **卢正石** 不过，这方面的公司确实涌现了很多。它们说的都像是梦想中的事，放在以前，可能会觉得不切实际，但现在发展速度越来越快，这些事听起来也就有可能了。所以我想，很多年后回头看今天，人们或许会称这个时期为文艺复兴。一个智能的文艺复兴时代。
+
+
+## 智能的文艺复兴与模仿人类的智能体    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:44">43:44</span> **崔胜准** 说到人与智能体的关系，我忽然想起Daniel Dennett生前提过一个说法。他谈到过“fake humans”，也就是“伪造人类”这个概念。所以比起让智能体假装成人，我更希望两者的角色能分开。我觉得界限清楚一些会更健康。就像刚才说的，智能体社会本身也能让经济运转，我想一定也有一些领域，无需假装成人就能正常运转。
+
+<span class="paragraph-timestamp" data-ts="44:11">44:11</span> **卢正石** 嗯，我觉得完全有可能。现在股市里也有相当多的交易是由程序完成的，我们看order book时，根本没办法知道下单的是人还是机器，所以我也觉得应该能区分开。毕竟现在这场游戏对个人投资者非常不利。好，那我们继续往下聊？
+
+
+## Simile 如何模拟人类的非理性选择    *44:28*
+
+<span class="paragraph-timestamp" data-ts="44:28">44:28</span> **朴钟贤** 回到刚才的话题，我们来看看Simile这家公司。说到底，AI究竟能在多大程度上模仿人，这家公司又在描绘怎样的未来？
+
+<span class="paragraph-timestamp" data-ts="44:38">44:38</span> **崔胜准** 那是一篇很有名的论文吧。是2023年吗？Smallville。
+
+<span class="paragraph-timestamp" data-ts="44:46">44:46</span> **朴钟贤** Smallville，对。简单来说，就是用AI创建一群仿照真人的人物档案，再让他们在小镇里活动。某种意义上，这和我们现在运行Agent Market好像有点相似。不过，看看现在的AI，虽然AI在很多方面让人觉得像人，但也有不像人的地方。因为AI几乎完全是为了帮助人类而训练出来的。刚才我们也谈了很多RL：给它一道题，让它把题解好，alignment就是围绕这个目标做的。但人并不全是这样。人并不总做最有效率的选择。
+
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> 所谓有人情味的选择，比如回家时，为了整理思绪，不坐出租车或公交车，而是特意步行，哪怕要花更长时间。人有时就会这样选择。AI只有连这样的选择都能做出，才能作为模拟人的工具来使用。但目前的AI在AI中实现，所以他们通过fine-tuning，努力让AI模仿这类人类行为。据说他们在这方面下了很大功夫。
+
+<span class="paragraph-timestamp" data-ts="46:01">46:01</span> 所以，他们的很多工作都以访谈为基础。为了了解context，他们通过访谈收集数据，也收集问卷以及各类记录收集数据，再用这些数据构建一个模拟社会。运行模拟后，人们后来在现实中采取的行动应该都有记录可查。就看模拟结果与记录有多相似。
+
+<span class="paragraph-timestamp" data-ts="46:25">46:25</span> 再进一步说，即使面对相同的情境，人也未必每次都采取相同的行动。尤其是在信息有限的情况下。所以，连人自身的行为都无法百分之百重现。某种程度上，人也算是一台概率机器吧。人的选择就是这样。将模拟结果与真实行为相比，看有多相似，连随机性也要比较。
+
+<span class="paragraph-timestamp" data-ts="46:51">46:51</span> 这家公司就是在做这些事。以前他们通过对Qwen进行fine-tuning来构建这类模拟，使用了大约40万人的数据，还对每组1000人进行深度访谈，拿来比较。据说他们一直在做这类工作。总之，他们的目标是：假设地球上现在大约有80亿人，就把地球上所有人的行为都模拟出来。举个例子，假如美国政府要使用它，在做重大决策时，举个夸张的例子，比如拿伊朗战争来说。如果以某种方式进行战争，会对人们和社会产生什么影响？他们当然想先研究一下。据说他们想把它用在这样的场景中。
+
+<span class="paragraph-timestamp" data-ts="47:37">47:37</span> 至于价格，我也只是听到过传闻。听说运行一次模拟收费很高，但财力雄厚的华尔街机构之类仍会委托他们。不过，官方似乎没有公布价格。看起来是签企业合同。似乎会根据规模等因素定制。那么，谁会使用这类服务呢？CVS Health？这样的美国医疗健康机构经常需要开展调查，如果能缩短调查时间，据说他们就想试试这类服务。
+
+<span class="paragraph-timestamp" data-ts="48:19">48:19</span> 总之，为了提高模拟人类行为的准确度，人们也在努力。虽然方向与让AI更擅长编程等工作不同，但也在不断推进。我觉得这类技术今后还有很多用武之地。
+
+
+## Robinhood 的 agentic trading：让个人拥有对冲基金级别的能力    *48:28*
+
+<span class="paragraph-timestamp" data-ts="48:30">48:30</span> **朴钟贤** 接下来，我想举Robinhood的例子。我自己没用过Robinhood，只是听说过，稍微查了一下，据说它靠免佣金股票交易吸引了很多用户。所以可以把它看作一款面向消费者、供很多人交易股票的应用。这位创始人的采访，好像是前天还是昨天上传到 No Priors 的。他是 Robinhood 的创始人，他的故事在那期播客里也有谈到。苏联解体时，当地经历了严重的通货膨胀，他小时候亲身经历过，也见证了货币崩溃，原来他有这样的经历。
+
+<span class="paragraph-timestamp" data-ts="49:14">49:14</span> 所以，这家公司希望分散中心化货币的掌控权，让所有人都能享有优质的货币体系。这是他们追求的方向和使命。我也是这次看了那期播客，才第一次知道这家公司有这样的理念。那么，他们这次推出了什么呢？是 agentic trading。也就是说，把“我想这样交易”的策略交给 AI，它就会按策略调整投资组合，到了特定时机还会买入或卖出，替你完成这些操作。
+
+<span class="paragraph-timestamp" data-ts="49:50">49:50</span> 所以说到底，我想表达的是：他们希望把对冲基金的能力提供给每一位个人投资者。某种程度上，这也是消除不对称的一种方式，我觉得这正契合他们的使命。所谓 agentic trading，也可以只是把交易交给 AI，说句“你自己看着办”。但不只是这样，还可以说：“我觉得未来会这样发展，想按某种策略维持债券的配置比例，做这样的操作。或者，我想在某个地方以某种方式使用杠杆。”提出这些要求后，大多数有本职工作的人没法自己一一执行。也不可能实时应对。
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> 从 AI 能代为执行这些操作的角度看，我觉得这确实有道理。这么一看，对冲基金从业者也是知识工作者啊。这个行业也会感受到同样的威胁。
+
+<span class="paragraph-timestamp" data-ts="50:49">50:49</span> **卢正石** 应该会吧。
+
+<span class="paragraph-timestamp" data-ts="50:50">50:50</span> **朴钟贤** 实际上，这种 agentic 账户，好像就是由智能体代为管理的账户。据说已经有15万人开通了。这些智能体调用工具，也就是进行 tool call，据说每天达3000万次。所以他们是这么说的：PMF 已经得到了明确验证。至少可以确定，人们确实想要它。所以今后规模几乎肯定还会扩大。大概可以这么看。
+
+
+## AI 成为买家后，卖家该如何调整策略    *51:16*
+
+<span class="paragraph-timestamp" data-ts="51:16">51:16</span> **朴钟贤** 接下来这些是我觉得值得思考的问题，我自己也没找到答案，只是把问题私下记了下来。说到底，AI 现在经常浏览网页，对吧？刚才您也提到了这一点，Search Engine Optimization，以前制作网页时，我们会考虑怎样让网页更容易被搜索引擎找到，如今则叫 GEO 或 AEO，您刚才是这么说的。也就是说，我们会把网页做得方便 AI 阅读，甚至制作 AI 版网页，采取这样的做法。
+
+<span class="paragraph-timestamp" data-ts="51:50">51:50</span> AI 已经在大量浏览网页了。同样地，经济活动几乎可以肯定也会越来越多地由 AI由 AI 来完成。那么，想想我们该做什么，是不是该卖 AI 想买的东西？或者像刚才 Pickle 打电话来那样，提供能吸引 AI 的咨询服务？我想我们会开始思考这些问题。
+
+<span class="paragraph-timestamp" data-ts="52:20">52:20</span> 那 AI 会像人一样购买东西吗？可能会，也可能不会。如果像刚才的 Simile 那样，通过模拟人来打造这些购物智能体，它们会尽量像人一样购买，但也未必如此。AI 也可能抛开感性因素，只做高效的选择，按这种方式行动。那么销售策略恐怕也得改变。
+
+<span class="paragraph-timestamp" data-ts="52:40">52:40</span> 或者推出供 AI 使用的信用卡，因为 AI 的支付模式可能也会有所不同，所以也可以尝试开发这类产品。或者我们会把钱交给 AI，让它替我们赚钱。
+
+<span class="paragraph-timestamp" data-ts="53:00">53:00</span> 比如，想象一下，以“당근마켓”这样的二手交易平台为例，小规模套利是可行的，对吧？看到一件东西卖得便宜，就买下来，再以更高的价格挂出去卖，这种事小规模做完全可行。我觉得可能已经有人把这些事交给 AI去做了。
+
+<span class="paragraph-timestamp" data-ts="53:16">53:16</span> 比如二手车，或者其他任何东西，只要发现价格低于市场价，就买下来再转卖。甚至都不需要真的买下来。只要找到买家和卖家，再把双方联系起来，自己什么都不用做，也能促成交易。我觉得这些事会发生，到那时，人该做什么呢？我经常会想这些问题。
+
+<span class="paragraph-timestamp" data-ts="53:41">53:41</span> 还有，我们现在正在拍 YouTube 视频，将来 AI 也会看很多视频吧。那么，专门制作 AI 想看的视频的频道也会出现，做这类事的人当然也会越来越多。那会是怎样的未来？我对这些事很好奇。不过我还没找到答案。
+
+
+## 智能体的责任与保险，以及新兴经济圈    *54:05*
+
+<span class="paragraph-timestamp" data-ts="54:10">54:10</span> **卢正石** 是啊，这得继续观察。说到底，负责花钱的主体，最后按下按钮的究竟是人还是机器？即便是机器，机器背后也会有人为此负责。公司其实已经体现了类似的概念。法律赋予它法人资格。但公司里也有负责经营的人，对吧？同样，智能体也可以被看作在扮演类似公司的角色。
+
+<span class="paragraph-timestamp" data-ts="54:34">54:34</span> 到那时，我们与公司交易，如果公司出了错，公司就得承担责任。同理，如果智能体出了错，也可能由智能体承担责任。而对销售这类服务的智能体公司来说，还可以把服务和保险捆绑销售。“我们会尽力做好；如果没做好，我们会赔偿。”也可能出现这样的方案。
+
+<span class="paragraph-timestamp" data-ts="55:01">55:01</span> 一个新的经济圈将会诞生。这必然会发生。如果我们随着市场变化努力跟上，或许就会达到新的平衡点。这个过程并不是靠不断判断对错来推进的。总是等事情过去了，人们才会说：“当时发生过这样的事。”直到市场达到新的平衡点，人们回望过去时，才会解读哪些事重要、哪些事不重要。
+
+<span class="paragraph-timestamp" data-ts="55:30">55:30</span> 可等这些解读完成时，掌握新时代财富的人早就已经确定了。所以对现在的我们来说，与其反复判断，不如做点什么。毕竟变化这么快，采取行动才是最好的选择。
+
+
+## 生产成本下降的时代，愈发稀缺的人性    *55:46*
+
+<span class="paragraph-timestamp" data-ts="55:48">55:48</span> **崔胜准** 不过，采取行动的成本也降低了。听到钟贤刚才的话，我想起几天前看到的一个关于 Steam 的话题。就是游戏平台 Steam。上周有 1,656 款游戏发布。据说其中 40% 连一条玩家评价都没获得。因为制作成本降低了，连 AI 要判断的数量都庞大得惊人，毕竟 AI 也在制作。游戏太多了，很多根本得不到关注。
+
+<span class="paragraph-timestamp" data-ts="56:13">56:13</span> **卢正石** 所以，“什么会变得更加稀缺”这个问题似乎越来越重要了。
+
+<span class="paragraph-timestamp" data-ts="56:18">56:18</span> **崔胜准** 所以我们的暂时结论是：人类特有的东西会变得稀缺。
+
+<span class="paragraph-timestamp" data-ts="56:26">56:26</span> **卢正石** 对。AI 会进步，这是必然的。我个人认为，frontier lab 应该做的是要通过投资frontier lab来对冲风险，如果frontier lab做不到的事情中有能做成生意的，就该把生意做起来。
+
+<span class="paragraph-timestamp" data-ts="56:41">56:41</span> 如果还有无法做成生意、却值得做的事，最有人情味的东西就会成为最稀缺的资源。比如娱乐业，或提供情感价值的生意，还有那些我们过去没有赋予价值的各种事情。比如奶奶帮忙照看孩子，等等。这些事会重新成为珍贵的商品，我想社会或许会朝这个方向发展。
+
+<span class="paragraph-timestamp" data-ts="57:03">57:03</span> 从经济上看，大家都越来越富足了。只是相对而言，大家仍觉得日子难过。如果拿现在和三四十年前，甚至一百年前相比，当然，我说的只是韩国。没有人饿死，也没有人没衣服穿，分配体系也在发挥作用。相对而言，贫富差距扩大恐怕是不可避免的。
+
+<span class="paragraph-timestamp" data-ts="57:33">57:33</span> **崔胜准** 说到这个，看着钟贤在这里整理的内容，如果AI commerce运转起来，无论是这类交易，还是投资，假设这些活动都能进行，用了 AI 也不一定能赢，对吧？
+
+<span class="paragraph-timestamp" data-ts="57:43">57:43</span> 就像前面展示的，各种情况都可能发生。但使用 AI 的人会有相对优势。相较于不用智能体的人，使用智能体的人会有相对优势，我是这样理解的。
+
+<span class="paragraph-timestamp" data-ts="58:00">58:00</span> **朴钟贤** 我说的不是这个意思。我是说，无论 AI 还是人，都会成为经济主体，在同一个市场中活动。总之，一部分市场活动会转向 AI。到那时，想和 AI 做生意的人肯定会大量出现。总之，市场本身可能会发生很大变化。我们该如何应对？我想问的是这个。
+
+<span class="paragraph-timestamp" data-ts="58:28">58:28</span> **崔胜准** 从 AEO、GEO 的角度看，我最近管理网站时，也会写些对人简洁、供索引收录的内容，点击后才展开。即使人不会全部读完，我想 AI 会读完，所以那些想写的内容，以前可能不会写，现在觉得 AI 会仔细读，就做成点击一下便能看到的形式。只要那些内容在 HTML 里，AI 就会抓取，对吧？不知不觉间，我也开始想着 AI 会读到内容，再把它传达给人。
+
+
+## 技术认知的时间差与智能体经济走向现实    *59:03*
+
+<span class="paragraph-timestamp" data-ts="59:05">59:05</span> **卢正石** 没错。昨天，我和一位熟人聊天时说过：该发生的事一定会发生。只是对发生时间的判断，会拉开我们的财富差距。说了这话以后，仔细想想，比如汽车，现在韩国也能自动驾驶了，连普通人都越来越了解 FSD。
+
+<span class="paragraph-timestamp" data-ts="59:30">59:30</span> 最近，使用普通cruise control的汽车出了不少事故。前两天我还亲眼看到一起。在奥林匹克大道上，一辆公交车向一辆 SUV 所在车道并线，SUV 明明该减速，却径直撞了上去。司机开着cruise control，没注意路况。
+
+<span class="paragraph-timestamp" data-ts="59:48">59:48</span> 可cruise control系统其实很笨。它不是基于vision来判断情况，而是依靠雷达系统和非常简单的lane keeping逻辑行驶，所以前面如果有静止的object，它可能识别不到，就直接撞上去。
+
+<span class="paragraph-timestamp" data-ts="60:05">60:05</span> 如果把所有静止的object都识别成障碍物，路边的静止物体、储沙箱之类的，也会让车减速，所以系统的设置相当宽松。
+
+<span class="paragraph-timestamp" data-ts="60:19">60:19</span> **崔胜准** 这很危险啊。
+
+<span class="paragraph-timestamp" data-ts="60:20">60:20</span> **卢正石** 不过我想说的重点是，三年前，要是说“这跟FSD不是一回事”，“FSD要先进得多”，人们却会觉得：“我的车也有啊，是一样的。完全一样。”但随着这些技术普及、人们的认识改变，大家要看清究竟什么是对的、什么是错的，似乎至少要三年。所以，虽然我们今天在聊智能体经济之类的话题，三年后它就会完全成为现实。所以我觉得，如何利用这段时间很重要。
+
+<span class="paragraph-timestamp" data-ts="61:02">61:02</span> 对于现在认定是对的事，我们现在就得行动。胜准刚才说过，原本两年发生的变化，如今一年就发生了。那么明年，这一年的变化只要六个月就会发生。这样一来，我刚才说三年后会发生的事，就会变成一年后发生的事。
+
+
+## 属于行动者的 AI 创业大航海时代    *61:16*
+
+<span class="paragraph-timestamp" data-ts="61:23">61:23</span> **卢正石** 要想六个月后获利，就得做钟贤刚才提到的当根市场套利机器？我也经常跟创业公司的创始人讲这个。有人不愿自己动手，就说要做个帮他们的工具，再卖给那些公司。说自己只想做软件。
+
+<span class="paragraph-timestamp" data-ts="61:47">61:47</span> 可我会问：“如果你做的东西真能让那门生意前景大好，你自己做那门生意，不就能拿下整个行业吗？”他们却不去做。但确实有人会这么做。所以每次看到这样的人，我都觉得他们是非常宝贵的资产。
+
+<span class="paragraph-timestamp" data-ts="62:07">62:07</span> 而且，以前的话，这件事得做三年，甚至十年，现在六个月就能走完一轮。反过来说，就像上次讲的，现在是大航海时代。这是非常适合尝试新事物的时期。
+
+<span class="paragraph-timestamp" data-ts="62:22">62:22</span> 对于什么都不做、只想守住既得利益，或者希望现有的一切原封不动地维持下去的人来说，这个世界恐怕会让人很烦躁；但对于想做点什么的人来说，现在真的是一个非常好的时期。我觉得，现在越来越明显地成为一个肯行动的人更有优势的时代。
+
+<span class="paragraph-timestamp" data-ts="62:42">62:42</span> **朴钟贤** 是啊。剧变时期总是危机与机遇并存。
+
+<span class="paragraph-timestamp" data-ts="62:46">62:46</span> **卢正石** 不过现在，每天动手做点什么，绝对是对的。今天聊着聊着，久违地又聊到了这个，结果最后又变成了人文节目。
+
+
+## 展望 Transformer 之外的新范式与节目收尾    *62:50*
+
+<span class="paragraph-timestamp" data-ts="62:58">62:58</span> **卢正石** 希望像刚才聊到的，能尽快有Ilya Sutskever或Flapping Airplanes那样的探索，带来Transformer之外的新东西。它不只是靠扩大算力规模让模型变得更聪明，而是能改变范式，让MacBook Pro跑出frontier级性能的东西。真希望那样的东西出现，真希望到时能聊聊这个。
+
+<span class="paragraph-timestamp" data-ts="63:22">63:22</span> **崔胜准** 不管怎样，下周总会有话题可聊的。
+
+<span class="paragraph-timestamp" data-ts="63:28">63:28</span> **卢正石** 这都成了崔胜准的名言了。“现在还没有，但下周六之前一定会有。”每次都这么说。好，那今天的录制就到这里。
+
+<span class="paragraph-timestamp" data-ts="63:37">63:37</span> **崔胜准** 辛苦了。
+
+<span class="paragraph-timestamp" data-ts="63:37">63:37</span> **卢正石** 谢谢你们抽出时间。胜准、钟贤。
+
+<span class="paragraph-timestamp" data-ts="63:40">63:40</span> **朴钟贤** 辛苦了。

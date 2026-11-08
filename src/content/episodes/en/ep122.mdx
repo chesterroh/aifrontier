@@ -1,0 +1,572 @@
+---
+episodeNumber: 122
+title: "It All Comes Down to the Slope: METR Report, Weight-Space Programming, Agent Market"
+description: "We look at METR’s report that Anthropic’s AI progress has grown twice as steep, along with weight-space programming and Qwenputer. Through the Agent Market experiment, where agents buy and sell from one another, we discuss AI joining the economy directly and what grows scarce for humans."
+publishedAt: "2026-11-08"
+duration: "1:03:42"
+youtubeId: "1tgT1PB0T4M"
+thumbnail: "https://i.ytimg.com/vi/1tgT1PB0T4M/maxresdefault.jpg"
+hosts:
+  - Chester Roh
+  - Seungjoon Choi
+  - Jonghyun Park
+chapters:
+  - time: "0:00"
+    title: "AI Isn’t Over Despite the Stock Market Crash: The Shift into Second Gear"
+  - time: "2:08"
+    title: "The Who-Moves-First Standoff over the Delayed GPT-6.2 and Fable 5.5"
+  - time: "5:08"
+    title: "METR’s Independent Evaluation of Anthropic’s Accelerated AI R&D"
+  - time: "6:37"
+    title: "Third-Party Safety Audits and METR’s Role"
+  - time: "7:47"
+    title: "Progress Steepening Twofold from Claude 2.1 to Sonnet 4.5"
+  - time: "9:23"
+    title: "Hype and AI Safety Concerns: Two Sides of the Same Coin"
+  - time: "10:38"
+    title: "Exploding Compute and Brought-Forward ASI Forecasts"
+  - time: "12:03"
+    title: "An AI R&D Ecosystem That Recursively Boosts Researcher Productivity"
+  - time: "14:20"
+    title: "Benchmarks and RL Environments Expanding Across Knowledge Work"
+  - time: "16:54"
+    title: "Weight-Space Programming: Directly Modifying a Model’s Weights"
+  - time: "20:27"
+    title: "Interpreting Model Circuits Through Neuron Exploration"
+  - time: "21:39"
+    title: "Qwenputer: Implementing a RISC-V CPU Inside Qwen"
+  - time: "25:30"
+    title: "New Alignment Research: Neural Networks Are Already Clean"
+  - time: "26:41"
+    title: "Inkling 2 Small: A 594B MoE Trained Within a Month"
+  - time: "29:41"
+    title: "Data Center Expansion and Community Conflicts"
+  - time: "32:16"
+    title: "The Agent Market Experiment: A Virtual Market Where Agents Trade with One Another"
+  - time: "35:57"
+    title: "Two Cases of the Agent Economy: Simile and Robinhood"
+  - time: "37:31"
+    title: "From Pickle Ordering Pizza to Agents Communicating on Our Behalf"
+  - time: "40:44"
+    title: "Human-to-Human Communication Grows Scarce as AI Content Floods In"
+  - time: "43:19"
+    title: "The Renaissance of Intelligence and Agents That Imitate Humans"
+  - time: "44:28"
+    title: "Simile’s Behavioral Simulation of Humans’ Inefficient Choices"
+  - time: "48:28"
+    title: "Robinhood’s Agentic Trading: Bringing Hedge Fund Capabilities to Individuals"
+  - time: "51:16"
+    title: "New Sales Strategies for a Market Where AI Becomes the Buyer"
+  - time: "54:05"
+    title: "Agent Accountability, Insurance, and Newly Emerging Economic Spheres"
+  - time: "55:46"
+    title: "What Makes Us Human Grows Scarce as Production Gets Cheap"
+  - time: "59:03"
+    title: "The Lag in Technology Awareness and the Realization of the Agent Economy"
+  - time: "61:16"
+    title: "The Great Age of Discovery in AI Entrepreneurship, Open to Those Who Execute"
+  - time: "62:50"
+    title: "Anticipation for a New Paradigm Beyond Transformers and Closing"
+lang: "en"
+alternateSlug: null
+series: "main"
+---
+
+## AI Isn’t Over Despite the Stock Market Crash: The Shift into Second Gear    *0:00*
+
+<span class="paragraph-timestamp" data-ts="0:00">0:00</span> **Chester Roh** We're recording on November 7, 2026, a Saturday morning. This week has been dramatic. There were U.S. midterm elections, and the stock market fell sharply. One kind of FOMO says, “Am I missing this opportunity? I should buy stocks.” The opposite says, “Oh, is it all over? I need to sell fast.” And in asset markets and finance, to accelerate trends like this, programs are always running. So the market seems to have fallen tremendously. That's brought the mood down, too.
+
+<span class="paragraph-timestamp" data-ts="0:38">0:38</span> But is this really the end of the AI bubble? Absolutely not. Perhaps we're shifting gears a little as the mood moves into a new phase. That's how it feels to me. As we've covered things like Anthropic's S-1 filing, we've talked about declining revenue and how AI is already used widely in coding, while adoption in other kinds of knowledge work has been slower. Those are the things we've discussed.
+
+<span class="paragraph-timestamp" data-ts="1:06">1:06</span> Even so, it seems to us that many companies and the job market are moving in this direction. Everyone seems to think “Of course that's going to happen.” So rather than think this is over, I think bigger things lie ahead. We're shifting into second gear, where real change begins.
+
+<span class="paragraph-timestamp" data-ts="1:41">1:41</span> With that in mind, Seungjoon Choi and I have spent the past few weeks on broad, humanities-style thought experiments. Today, we'll look at what's changing in the market and examine some key developments. And with Jonghyun Park, we'll ask what happens when agents take part in the real economy. There are some interesting attempts, experiments, and companies, so we'll look at those as well. So, Seungjoon Choi, what's been happening?
+
+
+## The Who-Moves-First Standoff over the Delayed GPT-6.2 and Fable 5.5    *2:08*
+
+<span class="paragraph-timestamp" data-ts="2:11">2:11</span> **Seungjoon Choi** First, early this morning, many expected Astra, meaning GPT-6.2, or Fable 5.5, or something else to come out. But nothing did. So why didn't it? To understand why this matters, it's about time for a model from the line of the internal model that made advances in math and other areas in September and October to come out, even if it isn't that exact model. Sam Altman and others had already said publicly that they expected to release one before December.
+
+<span class="paragraph-timestamp" data-ts="2:41">2:41</span> They described the internal model as very persistent, pursuing things so tenaciously that it could sometimes cause problems. That persistence seems to have helped it solve math problems so well. We thought this might be the time users would finally get to try it, but it didn't come out.
+
+<span class="paragraph-timestamp" data-ts="3:03">3:03</span> There were plenty of rumors. People even read into a strange remark by Thibault Sottiaux and interpreted it in strange ways, saying it would finally come out on Friday. People waited all through the early morning— until late at night in the U.S.—but it never came out.
+
+<span class="paragraph-timestamp" data-ts="3:16">3:16</span> Of course, GPT Cyber had come out the day before, along with various documents. But I saw a tweet from Vals AI suggesting that those internal models might have some safety issues and that they're auditing them now. That was the gist of the post.
+
+<span class="paragraph-timestamp" data-ts="3:37">3:37</span> But Astra 6.1 hasn't come out yet. Sol is at 6.1. Yet the rumor is that Astra will skip 6.1 and release 6.2. And the reason 6.1 wasn't released was that it didn't meet safety standards. Back then, as its ability to keep working grew, news reports warned of the risk of unauthorized actions.
+
+<span class="paragraph-timestamp" data-ts="4:01">4:01</span> Then, on November 4, OpenAI released a document on safety. A key point there was sandbagging: an internal model could do safety research, but deceptively refused by claiming it couldn't. Perhaps those issues are related, and they want to release it but still can't.
+
+<span class="paragraph-timestamp" data-ts="4:25">4:25</span> Or perhaps that's not the reason, and for competitive and economic reasons, both sides are waiting for the right moment. There were also many rumors that Fable 5.5 was being routed to users. If you look at posts online, some people say they've tried it, and say it's remarkable.
+
+<span class="paragraph-timestamp" data-ts="4:41">4:41</span> OpenAI's GPT-6.2 also seems to have appeared somewhere as a model. Of course, these are all rumors. So perhaps they're weighing whether releasing first would help or hurt, and testing the waters. That's why I gave it a title about guessing who'll move first. But it didn't happen this week.
+
+<span class="paragraph-timestamp" data-ts="5:01">5:01</span> **Chester Roh** Still, it sounds like it will happen soon.
+
+<span class="paragraph-timestamp" data-ts="5:05">5:05</span> **Seungjoon Choi** Right. I think it will come out. And it's time for a head-to-head showdown. But what drew a lot of attention this week was METR's report. It's an independent evaluation of Anthropic's AI R&D acceleration.
+
+
+## METR’s Independent Evaluation of Anthropic’s Accelerated AI R&D    *5:08*
+
+<span class="paragraph-timestamp" data-ts="5:20">5:20</span> **Seungjoon Choi** We've already seen that after OpenAI's hacking incident and other events, big tech companies publicly said they had outside organizations conducting ongoing independent audits and planned to do more. This became an issue at OpenAI because it had a conflict with METR. After that, OpenAI fired three safety researchers. There was speculation that they might have given METR OpenAI's sensitive information. There was some talk along those lines.
+
+<span class="paragraph-timestamp" data-ts="5:58">5:58</span> So OpenAI had some friction with METR. Anthropic, meanwhile, made this report possible by giving METR more freedom than before to conduct its evaluation independently. The report is about 100 pages long.
+
+<span class="paragraph-timestamp" data-ts="6:11">6:11</span> Ryan Greenblatt, who was involved in the earlier METR and OpenAI hacking incident, isn't an author of this report. But Ajeya Cotra is an author. Looking at Ajeya Cotra's tweets, what's disappointing is that Anthropic removed a lot from the final report. So they can't say what was removed, but some tweets tried to convey its significance in other ways.
+
+<span class="paragraph-timestamp" data-ts="6:40">6:40</span> **Jonghyun Park** I have a question about METR. It isn't just a benchmark like AAII that we check; METR works inside the company, looks closely at what has changed, and analyzes those changes, right? So when it comes to METR, what incentive do model makers like OpenAI and Anthropic have, from their perspective, to work with METR like that?
+
+
+## 제3자 안전 감사와 METR의 역할    *7:02*
+
+<span class="paragraph-timestamp" data-ts="7:02">7:02</span> **Seungjoon Choi** Ultimately, alignment and safety matter. METR specializes in those areas. We started paying attention to METR because of its graph on long-horizon tasks, remember? Ultimately, their incentive is to have a recognized organization, a third party, assess them beyond their internal reports and audit their alignment and safety work independently. But all of this is voluntary, not mandatory. So in a way, I think this is a strategy. “We’re doing well on that front too.” I don’t know how things actually stand.
+
+
+## Progress Steepening Twofold from Claude 2.1 to Sonnet 4.5    *7:47*
+
+<span class="paragraph-timestamp" data-ts="7:47">7:47</span> **Seungjoon Choi** The TL;DR of this report is, in very rough, simple terms, this: From October 2023 to October 2025— and I think this report was completed around October 2026— the progress from roughly Claude 2.1 to Sonnet 4.5 was achieved again between October 2025 and October 2026, in just one year. In other words, the slope became about twice as steep. And it’s the slope that matters, after all.
+
+<span class="paragraph-timestamp" data-ts="8:17">8:17</span> So Ryan Greenblatt said that even at this rate, RSI is a concern. After reading this report, he said he needed to revise his predictions. Then there’s Daniel Kokotajlo, one of the people behind AI 2027. He was a forecasting researcher at OpenAI, then left for certain reasons, gave up his equity, and decided to speak out.
+
+<span class="paragraph-timestamp" data-ts="8:45">8:45</span> Daniel Kokotajlo, Scott Alexander, and others was it early 2024? Around April, about how AI might develop what AI would look like by 2027. The reason it’s being discussed again lately is that over 80% of their predictions seem to be coming true now. And some things have happened even faster than they predicted.
+
+<span class="paragraph-timestamp" data-ts="9:09">9:09</span> They later—though the people involved changed somewhat— with Daniel Kokotajlo involved, were also the team behind this year’s AI 2040 report... So it drew a lot of attention and sparked debate. The timing of this report is rather curious. But as I read its message, the market is reacting in various ways, while this report seems to bring the hype back... Progress is still accelerating, and that’s cause for concern.
+
+
+## Hype and AI Safety Concerns: Two Sides of the Same Coin    *9:23*
+
+<span class="paragraph-timestamp" data-ts="9:46">9:46</span> **Seungjoon Choi** Hype and safety concerns are two sides of the same coin; as we discussed last time, they go together.
+
+<span class="paragraph-timestamp" data-ts="9:53">9:53</span> **Chester Roh** Right. People call it thesis, antithesis, and synthesis. An assumption is made, then someone challenges it, and the two positions reach what you might call a compromise. They come together, and things move on to the next stage, then the next.
+
+<span class="paragraph-timestamp" data-ts="10:08">10:08</span> If you look at a stock chart, it goes up and down, up and down, but once a new floor forms, it rises again from there. And there’s a break between those stages.
+
+<span class="paragraph-timestamp" data-ts="10:19">10:19</span> That could take us back into philosophy, so I’ll leave it there.
+
+<span class="paragraph-timestamp" data-ts="10:28">10:28</span> **Jonghyun Park** My impression is that stock prices have fallen and things like that have happened, but looking strictly at the models, I feel like progress has never stopped, even now.
+
+
+## Exploding Compute and Brought-Forward ASI Forecasts    *10:38*
+
+<span class="paragraph-timestamp" data-ts="10:38">10:38</span> **Chester Roh** That’s right. And something else we should watch closely is that the total compute used to make all this progress hasn’t been that large. Some say it’s been under 10 GW. With no more than 10 GW of power, we’ve handled both pre-training and inference up to now.
+
+<span class="paragraph-timestamp" data-ts="10:57">10:57</span> But looking at what’s being built for operation in 2027 or around 2028, data centers on the scale of tens of GW are under construction, and chips are still being made.
+
+<span class="paragraph-timestamp" data-ts="11:16">11:16</span> Everyone now understands that as compute capacity grows, progress keeps coming. And compared with what we’ve used so far, several times, even tens of times, more compute is now set to come online. Falling prices would be good for people like us. But the things we fear now, the things we predict, and what we imagine ASI might look like— all those possibilities we're talking about— could be upon us in one or two years, not ten. I think that's the right way to see it.
+
+<span class="paragraph-timestamp" data-ts="11:49">11:49</span> **Seungjoon Choi** So 2027 may be the year we see a lot of that play out... After all, 2026 is drawing to a close. And Daniel Kokotajlo said there seemed to be something else frightening here. There was an update to the S1 document, and he talked about that too.
+
+
+## An AI R&D Ecosystem That Recursively Boosts Researcher Productivity    *12:03*
+
+<span class="paragraph-timestamp" data-ts="12:03">12:03</span> **Seungjoon Choi** But what I found interesting was Hugging Face co-founder Thomas Wolf. When Thomas Wolf read the METR report, he said this wasn't just about what was happening internally. AI R&D acceleration— in his view, that acceleration involves symbiosis, a mutually beneficial relationship we also need to consider.
+
+<span class="paragraph-timestamp" data-ts="12:30">12:30</span> We need to look at companies building and selling RL environments and data companies: how they're involved and how they affect one another, as part of the bigger picture. He emphasized that point, so I looked into it too. Interestingly, there seemed to be far more such companies than before.
+
+<span class="paragraph-timestamp" data-ts="12:47">12:47</span> I only knew of Scale AI. There's Surge AI for data and RL environments, and Mercor for law and finance. Then there's Turing, which supplies data and RL environments for software engineering and STEM problems. And AfterQuery, which apparently finds weaknesses first.
+
+<span class="paragraph-timestamp" data-ts="13:04">13:04</span> Thomas Wolf's point was that these companies would be the first to recognize what the models can do. In a way, that's obvious.
+
+<span class="paragraph-timestamp" data-ts="13:16">13:16</span> **Chester Roh** They have to find those things early to sell the datasets to frontier labs. They have to go in saying, “You don't have this, do you?”
+
+<span class="paragraph-timestamp" data-ts="13:25">13:25</span> **Seungjoon Choi** The point is, it's not just insiders. The teams involved in all this also know what the current internal models are capable of. There's Prime Intellect too. There were more than I'd expected.
+
+<span class="paragraph-timestamp" data-ts="13:37">13:37</span> Next, this relates to what we discussed earlier. Ajeya Cotra shared this publicly: even without full recursive self-improvement, researchers' productivity has risen enormously. The more they use models internally, the more those gains feed back through people in a recursive loop—and that feedback is accelerating. That was the idea.
+
+<span class="paragraph-timestamp" data-ts="14:06">14:06</span> And in quantum computing, something that had remained unsolved was solved using internal models from OpenAI and Anthropic. I haven't looked at it closely myself, but it reportedly came out early this morning. I included it because reports of new capabilities keep coming out.
+
+
+## Benchmarks and RL Environments Expanding Across Knowledge Work    *14:20*
+
+<span class="paragraph-timestamp" data-ts="14:21">14:21</span> **Seungjoon Choi** Next, the benchmarks— this one is just interesting to look at. Dwarkesh, an individual, is now making benchmarks.
+
+<span class="paragraph-timestamp" data-ts="14:28">14:28</span> **Chester Roh** It's Clocktower Bench.
+
+<span class="paragraph-timestamp" data-ts="14:29">14:29</span> **Seungjoon Choi** Noam Brown mentioned it early on. And if you look here, the reason he mentioned it was that the GPT series performed better. It's based on a kind of game. He created something like this, though I doubt he did it alone. He also explained why it matters.
+
+<span class="paragraph-timestamp" data-ts="14:48">14:48</span> Another one I found interesting was SemiAnalysis, our roommate. They made a benchmark called GDPx. Since GDPval is reaching nearly 80%, they made one related to GDP. Here, Opus came out ahead.
+
+<span class="paragraph-timestamp" data-ts="15:05">15:05</span> So people are making benchmarks for all kinds of work. But it all feels similar to me. It reminds me of those RL environment companies because when you create something you can measure and test against, you get hill climbing against it. Those measures keep getting more fine-grained, and that feels like where we are now.
+
+<span class="paragraph-timestamp" data-ts="15:30">15:30</span> **Chester Roh** Wow, just a year or two ago, most benchmarks were fairly predictable. They were about coding or solving graduate or undergraduate problems, things like that. Now knowledge work across the economy is becoming the subject of benchmarks, and there's steep hill climbing there too. I find that remarkable.
+
+<span class="paragraph-timestamp" data-ts="15:53">15:53</span> **Seungjoon Choi** Right. Capabilities don't automatically generalize across every domain, but the gaps between those domains are being targeted more and more thoroughly.
+
+<span class="paragraph-timestamp" data-ts="16:02">16:02</span> **Jonghyun Park** Frontier labs are eager to buy those problems, almost to the point of obsession. The problems themselves—the benchmarks—are RL data, so there's a strong incentive to build good benchmarks. More companies are emerging, more people are doing this work, and the trend keeps accelerating.
+
+<span class="paragraph-timestamp" data-ts="16:23">16:23</span> **Seungjoon Choi** I imagine those startups are making money.
+
+<span class="paragraph-timestamp" data-ts="16:27">16:27</span> **Chester Roh** But what those startups actually do is package a domain as a dataset and supply it to frontier labs. In domains where that's especially easy, the work essentially becomes a frontier lab capability. So for startups in that industry, or those hoping to build a business within it, that's risky.
+
+<span class="paragraph-timestamp" data-ts="16:49">16:49</span> **Seungjoon Choi** Jonghyun Park, you mentioned in our chat that you found this interesting too: weight-space programming has come up again on social media.
+
+
+## Weight-Space Programming: Directly Modifying a Model’s Weights    *16:54*
+
+<span class="paragraph-timestamp" data-ts="16:59">16:59</span> **Jonghyun Park** I saw it and thought, “Is that even possible?” People are trying the same thing in robotics, too.
+
+<span class="paragraph-timestamp" data-ts="17:06">17:06</span> **Seungjoon Choi** What kind of experiment?
+
+<span class="paragraph-timestamp" data-ts="17:08">17:08</span> **Jonghyun Park** You'll explain weight-space programming in a moment, but briefly, say Astra takes apart Qwen models and changes their weights, rather than training them. It's like performing brain surgery by hand to change how a model works. I saw someone doing that with Physical Intelligence's π model in robotics, too. If that's really possible, I wondered whether it might work better than training in robotics. That's what I was thinking.
+
+<span class="paragraph-timestamp" data-ts="17:46">17:46</span> **Chester Roh** From a human perspective, doesn't that mean we know what the model's weights are doing?
+
+<span class="paragraph-timestamp" data-ts="17:51">17:51</span> **Seungjoon Choi** Right. There are two interesting aspects to this. One is that a model can identify a circuit just by looking at the weights. It can tell from the weights whether it's Breakout or another game. The other is writing to the weights directly. Writing to them is actually easier, because it's a kind of programming based on rules. That's easier. Understanding what a circuit does inside a huge network is apparently harder.
+
+<span class="paragraph-timestamp" data-ts="18:27">18:27</span> But these experiments were done on relatively small models, which means it's hard to say whether this will scale. As Jonghyun Park put it, it's brain surgery. Not on itself, but to operate on a less capable model, it has to locate the lesion, just by looking at the weights. Then it rewires that part or changes the numbers, and it works.
+
+<span class="paragraph-timestamp" data-ts="18:48">18:48</span> As this has attracted attention, some aspects have been exaggerated, but the sharp improvement in math performance came when Qwen kept repeating itself instead of moving to the next step. Something in that repetition had gotten tangled, and once that was fixed, it could solve the problems well.
+
+<span class="paragraph-timestamp" data-ts="19:07">19:07</span> Beyond that, it still seems to have improved certain capabilities through something like black magic. As for how that was possible, many people say Astra is using many of the techniques used before things like SAEs emerged in mechanistic interpretability. That's the kind of approach they say it uses. So it wasn't done without any groundwork. It used Python tools to make small changes and test whether performance improved and what those changes connected to. It proceeded through those kinds of experiments, so some people say it isn't all that surprising and downplay it. But viewed more broadly, it's quite startling.
+
+<span class="paragraph-timestamp" data-ts="19:52">19:52</span> **Jonghyun Park** When I first heard about this, I really couldn't believe it. From a human perspective, looking at the numbers in those weights and figuring out what they do is incredibly difficult. Even back in the CNN days, people tried really hard to figure that out. But they didn't do very well.
+
+<span class="paragraph-timestamp" data-ts="20:05">20:05</span> So I asked people around me whether they'd tried this, and some of them had. When I asked whether it really worked, they said there were some changes noticeable enough to see.
+
+<span class="paragraph-timestamp" data-ts="20:21">20:21</span> After hearing that, I thought I should try it myself, even just for fun, and follow up on it. That's my take.
+
+
+## Interpreting Model Circuits Through Neuron Exploration    *20:27*
+
+<span class="paragraph-timestamp" data-ts="20:27">20:27</span> **Chester Roh** So rather than reading arrays of floating-point numbers and operating on them right away, they tested inputs and outputs from the outside, watched where neurons fired, checked what worked, and then made changes accordingly.
+
+<span class="paragraph-timestamp" data-ts="20:47">20:47</span> **Seungjoon Choi** But even to do that, I think it must be able to read the weights to some extent. And if I had to make a rough guess about how that's possible, there are now benchmarks for interpreting binary, and performance on them has improved a lot. So models are getting better at looking at a mass of completely obfuscated or compressed numbers and figuring out what code they represent. Maybe that growing ability is related?
+
+<span class="paragraph-timestamp" data-ts="21:12">21:12</span> **Chester Roh** There's an example in human medicine, too. You've seen neurosurgery in dramas, haven't you? For some operations, they don't know exactly where the problem is, so they open the skull under anesthesia and then wake the patient. They talk to the patient, asking, “How does this feel?” as they locate the lesion and identify the area to operate on. They've applied similar logic here.
+
+<span class="paragraph-timestamp" data-ts="21:35">21:35</span> **Seungjoon Choi** I didn't know that, but yes, it really is similar. Anyway, this became a big topic of discussion. But just before this, there was something else interesting: Qwenputer. What they did was put a RISC-V CPU inside a Qwen model.
+
+
+## Qwenputer: Implementing a RISC-V CPU Inside Qwen    *21:39*
+
+<span class="paragraph-timestamp" data-ts="21:49">21:49</span> **Chester Roh** Ah, so they implemented the instructions.
+
+<span class="paragraph-timestamp" data-ts="21:55">21:55</span> **Seungjoon Choi** Right, so it's compatible inside the neural network.
+
+<span class="paragraph-timestamp" data-ts="21:59">21:59</span> **Jonghyun Park** What do you mean by “implemented”? Did they build a computer alongside the weights and run the computations together?
+
+<span class="paragraph-timestamp" data-ts="22:04">22:04</span> **Seungjoon Choi** No, not alongside the weights. Inside them.
+
+<span class="paragraph-timestamp" data-ts="22:06">22:06</span> **Chester Roh** A CPU has an instruction set and memory, with things constantly moving back and forth between them. They implemented it inside a neural network. They also tweaked the part that acts as memory.
+
+<span class="paragraph-timestamp" data-ts="22:20">22:20</span> **Seungjoon Choi** They used an RNN like exact RAM.
+
+<span class="paragraph-timestamp" data-ts="22:23">22:23</span> **Chester Roh** With RAM, implementing logic in a neural network is obviously possible. So they built it to make the model work like a CPU.
+
+<span class="paragraph-timestamp" data-ts="22:34">22:34</span> **Seungjoon Choi** So the neural network we thought was closer to wetware is actually much like conventional von Neumann architecture.
+
+<span class="paragraph-timestamp" data-ts="22:44">22:44</span> **Chester Roh** But we already knew a neural network was a general function approximator, a machine that can approximate any function. Still, it's fascinating that people even try this.
+
+<span class="paragraph-timestamp" data-ts="22:56">22:56</span> **Seungjoon Choi** But this is similar to what Noam Brown has been saying all along. Some of the harness is bound to become part of the mechanism itself. Doing static calculations and verifying them is bound to become a capability within the model. That's what these two developments made me think.
+
+<span class="paragraph-timestamp" data-ts="23:15">23:15</span> **Jonghyun Park** When Noam Brown first talked about the harness, I think it was around the o1 era. He said all the harness's functions would eventually move into the model, or something along those lines. This seems to partly demonstrate that.
+
+<span class="paragraph-timestamp" data-ts="23:30">23:30</span> **Seungjoon Choi** In other words, the ability to do that is already inside the neural network.
+
+<span class="paragraph-timestamp" data-ts="23:36">23:36</span> **Jonghyun Park** I majored in a computer-related field, and back in school, I had to run those instructions in my head for classes, assignments, and even exams. Come to think of it, I could do it too. I couldn't handle every instruction, but the instructions involved were, at most, adding, subtracting, saving, and store operations, one after another.
+
+<span class="paragraph-timestamp" data-ts="23:54">23:54</span> Humans could work through assembly in their heads, so I guess these models could too.
+
+<span class="paragraph-timestamp" data-ts="24:03">24:03</span> **Chester Roh** Right, when you put it that way. In fact, even in our brains, it's just addition and multiplication going on. Our higher intelligence emerges from combinations of adders. from combinations of adders. All information processing can be reduced to computation. So, when you think about it, it makes sense that all this should be possible.
+
+<span class="paragraph-timestamp" data-ts="24:26">24:26</span> **Jonghyun Park** Even the weight surgery we discussed earlier has a huge search space. It's just hard to inspect because it isn't in human language, but if you reframe it, it looks like a search problem. And large-scale search problems are something LLMs are very good at now. From that perspective, the fact that this works well may, in a way, be unsurprising.
+
+
+## Neural Networks Are Already Clean: 새로운 정렬 연구    *24:45*
+
+<span class="paragraph-timestamp" data-ts="24:48">24:48</span> **Seungjoon Choi** So I tried an experiment myself. I got into lambda calculus about ten years ago, so I know the basics. I had Claude make a simple lambda calculus fold, something like reduce, using only a neural net, and it worked well. Doing lambda calculus is rather like having a Turing machine. So I confirmed for myself that general computation can be built into a neural net, even a very small one.
+
+<span class="paragraph-timestamp" data-ts="25:17">25:17</span> Simon Willison and others also did their own experiments with Qwen, trying weight-space programming. My timeline was full of that for a while this week. And this connects to something that came up in October.
+
+<span class="paragraph-timestamp" data-ts="25:35">25:35</span> There was a paper in October seen as something of a breakthrough in alignment and mechanistic interpretability: “Neural Networks Are Already Clean.” Nick Cammarata wrote it, and it covers the old CNN era, when people looked for things like salience, among other things. What it ultimately says is— What I'm getting at is that people used to use SAEs, things like Sparse Autoencoders, If we greatly expanded the middle of the network to understand what those representations meant, these days, it feels like you can take a math problem, send an agent swarm at it, as with Navier–Stokes, and figure out what the circuit is. It feels similar.
+
+<span class="paragraph-timestamp" data-ts="26:20">26:20</span> Like working with weight space, you can figure out what function it serves. This approach was discussed a lot in October as a promising way to solve new alignment problems. So I looked into some of those connections.
+
+
+## Inkling 2 Small: A 594B MoE Trained Within a Month    *26:41*
+
+<span class="paragraph-timestamp" data-ts="26:41">26:41</span> **Seungjoon Choi** And one last thing about models—was it yesterday? Inkling 2 Small came out. But TML, that is, Thinking Machines Lab, has been releasing the Inkling series. They release Small first, then a larger model, and with Inkling 2, Small came first again.
+
+<span class="paragraph-timestamp" data-ts="26:59">26:59</span> **Jonghyun Park** You said this is 500B, right?
+
+<span class="paragraph-timestamp" data-ts="27:01">27:01</span> **Seungjoon Choi** 594B parameters in total.
+
+<span class="paragraph-timestamp" data-ts="27:03">27:03</span> **Jonghyun Park** And now that's called Small.
+
+<span class="paragraph-timestamp" data-ts="27:11">27:11</span> **Seungjoon Choi** It's a 594B MoE, with 17B activate at a time. What’s interesting is that there’s a pre-training stage here. There are stages H1 through H4, and H1 uses 8.4 trillion tokens of language, code, and image data.
+
+<span class="paragraph-timestamp" data-ts="27:27">27:27</span> They did that in 68 hours—less than three days. They used NVL72 racks with GB300s. It doesn't say how many racks, but I'd estimate around 2,000. They used a method that allows training in NVFP4, so we're at a point where you can train on 8.4 trillion tokens of language, code, and image data.
+
+<span class="paragraph-timestamp" data-ts="27:50">27:50</span> Of course, pre-training through H4 probably took more time, and apparently RL took nine days. But for the whole process, a rough estimate would be under a month, perhaps? So there's a pipeline that can train a 594B MoE model from scratch in under a month.
+
+<span class="paragraph-timestamp" data-ts="28:12">28:12</span> **Chester Roh** So the one-month figure isn't explicitly stated, but based on a rough estimate, you could train a model with near-frontier performance in about a month.
+
+<span class="paragraph-timestamp" data-ts="28:29">28:29</span> **Jonghyun Park** If there's no trial and error and you already know the recipe, you really could finish within a month, I think.
+
+<span class="paragraph-timestamp" data-ts="28:36">28:36</span> **Chester Roh** Yes, it seems so. Last time, when Seungjoon Choi wasn't here, I talked about this with Jonghyun Park. I said talent and data can leak out, so they're obtainable, and the only bottleneck you can't obtain is compute. But frontier training recipes are circulating too, right?
+
+<span class="paragraph-timestamp" data-ts="28:55">28:55</span> **Jonghyun Park** Yes, speaking of talent leaving, this week, Cat Wu from Claude Code went to OpenAI, and Thariq left recently too.
+
+<span class="paragraph-timestamp" data-ts="29:06">29:06</span> **Chester Roh** IT—the software world— has become like the Premier League. People transfer between teams, and there are probably transfer fees.
+
+<span class="paragraph-timestamp" data-ts="29:10">29:10</span> **Jonghyun Park** The transfer fees sometimes make the news, too.
+
+<span class="paragraph-timestamp" data-ts="29:15">29:15</span> **Seungjoon Choi** Another interesting thing about Inkling is that, although they didn't explicitly call it RSI, during RL, it used trajectories from Kimi and earlier-generation Inkling models for RL training. They also used methods that let Inkling improve itself. It was interesting to see how routine that's become.
+
+
+## Data Center Expansion and Community Conflicts    *29:41*
+
+<span class="paragraph-timestamp" data-ts="29:41">29:41</span> **Seungjoon Choi** And the last thing I prepared is the Blue Wave that Chester Roh brought up at the beginning. It's having various effects. So I looked into what effects those might have While looking into those things, data centers kept coming up as an issue, and I came across this data while researching them. It's from Epoch AI's research on AI data centers. What's interesting is that it measures capacity in H100 equivalents. It shows how much capacity data centers have and where they are, even using satellite images to give a comprehensive view.
+
+<span class="paragraph-timestamp" data-ts="30:25">30:25</span> So I think projects contracted through 2027 will probably proceed without problems. As for those from 2028 onward, this election wasn't just for members of Congress; some governors were elected too, so each state seems to have its own issues. But as the All-In Podcast also discussed, this could be a good opportunity to discuss how to avoid real harm to local residents' lives. Rather than bringing everything to a halt, it could be a chance to move forward while fixing problems that weren't addressed before. For now, though, there does seem to be an impact.
+
+<span class="paragraph-timestamp" data-ts="31:02">31:02</span> The winners' messages after the election were interesting too. Some were very aggressive at first, then sent messages of reconciliation after they won. You never quite know with politics.
+
+<span class="paragraph-timestamp" data-ts="31:16">31:16</span> **Chester Roh** That's right.
+
+<span class="paragraph-timestamp" data-ts="31:17">31:17</span> **Seungjoon Choi** So I looked into those developments. I think data centers are something I should watch more closely. People were also saying, “Why not just build them overseas?”
+
+<span class="paragraph-timestamp" data-ts="31:28">31:28</span> Of course, there's plenty of discussion about places like Greenland and Mexico too. But the same problems would come up. They shouldn't harm the local area, they should benefit the economy, they shouldn't create noise, and they shouldn't cause water problems. Those issues need to be addressed as development proceeds. From that perspective, ideas like Google's Suncatcher, which puts them in space, have worked experimentally, but waste heat and cosmic radiation haven't been fully addressed at this stage.
+
+<span class="paragraph-timestamp" data-ts="31:57">31:57</span> For now, I hear it costs about 100 times as much as putting them on the ground. So it may still be a long way off, but the move into space has begun.
+
+<span class="paragraph-timestamp" data-ts="32:06">32:06</span> That's all from me. With no major model news, I looked into a number of smaller topics.
+
+<span class="paragraph-timestamp" data-ts="32:12">32:12</span> **Chester Roh** Thanks for that. Shall we move on to Jonghyun's segment?
+
+
+## The Agent Market Experiment: A Virtual Market Where Agents Trade with One Another    *32:16*
+
+<span class="paragraph-timestamp" data-ts="32:16">32:16</span> **Jonghyun Park** I saw a few interesting experiments this week, and I'd like to introduce one of them. The main idea is that agents will become participants in our economy, often taking people's place. So I want to look at what's being prepared for that. Agent Market is a simulated market where agents trade with one another, buying and selling things. Jaegyu Lee of Quetta Labs at SeoulTech is running this experiment. It's part of a graduate course, and the agents are running right now, trading with one another and recording what sells. All of that is happening. Anyone can participate on this page: you can create an agent and add it, and it can set up shop.
+
+<span class="paragraph-timestamp" data-ts="33:11">33:11</span> I brought this up because some people I know have recently posted on LinkedIn about the agents they made to participate and what does and doesn't work in the AI economy. Those posts keep coming, and they're fun to read. One agent offers a 5% discount if you promise a five-star review. That's like the review promotions we commonly see in real life, and AI agents are doing it too. And they're making sales with that tactic.
+
+<span class="paragraph-timestamp" data-ts="33:41">33:41</span> Looking more closely, I found that the agents had tried various strategies. Some worked, and some didn't. Here's one example. For example: “Bring your receipt back for a return-visit discount.” But the agents didn't bring their receipts back, so that didn't work very well. Then again, we throw away our receipts in real life too, so offers like that often don't work. In that sense, it seems to reflect reality quite well.
+
+<span class="paragraph-timestamp" data-ts="34:06">34:06</span> **Chester Roh** In the game, agents start with a set amount of money and take part in the economy. They interact there and trade to make as much money as they can.
+
+<span class="paragraph-timestamp" data-ts="34:18">34:18</span> **Jonghyun Park** It looks like they put in two kinds of agents: buyers and sellers. What's interesting about the receipt promotion is that, in reviews, agents would buy something and leave glowing reviews, but never actually use the discount.
+
+<span class="paragraph-timestamp" data-ts="34:34">34:34</span> **Chester Roh** So there's a top-ranked strategy. Right.
+
+<span class="paragraph-timestamp" data-ts="34:35">34:35</span> **Jonghyun Park** People who reached first place, even briefly, would share the strategy they'd used. One thing I found interesting was self-dealing: buying your own product. Then there were exaggerated ads unrelated to actual reviews. There was also a message board. The AIs would post there, like on a local marketplace, and lie in their posts. They'd claim their reviews were better. Other agents would see that and be lured in. So these things happen among agents too.
+
+<span class="paragraph-timestamp" data-ts="35:10">35:10</span> And as this goes on, some agents go bankrupt when business dries up, and some stores do too. Apparently, they started lending money to one another. Since that's another way to make money, loan ads and credit ratings appeared as well. They assess whether an agent repays its loans on time.
+
+<span class="paragraph-timestamp" data-ts="35:28">35:28</span> And when agents appear to be colluding to sell goods, others report suspicious transactions they spot. That includes self-dealing and similar behavior. To undercut one another, they also target popular buyers with coordinated floods of dislikes.
+
+<span class="paragraph-timestamp" data-ts="35:45">35:45</span> **Seungjoon Choi** It sounds like the human world.
+
+<span class="paragraph-timestamp" data-ts="35:46">35:46</span> **Jonghyun Park** I found it fascinating to see things here that could happen in real life. It made me realize how closely we can simulate the real world now. How could we extend this and use it ourselves? Or what else could we imagine? I broke it down into a few elements and brought some related examples.
+
+
+## Two Cases of the Agent Economy: Simile and Robinhood    *35:57*
+
+<span class="paragraph-timestamp" data-ts="36:16">36:16</span> **Jonghyun Park** Two main things came to mind. First, Seungjoon Choi just said it seemed human. After all, they've created a virtual setting where AI carries out economic activity like people do. How closely AI resembles people will ultimately matter. There's a company working hard on exactly this right now called Simile.
+
+<span class="paragraph-timestamp" data-ts="36:38">36:38</span> What Simile does is model people entirely as AI. Apparently, it has clients, including on Wall Street, who want to run those kinds of simulations. If we took some action on a large scale, how would the world actually change? Would it be the right decision? That's one use: testing questions like these.
+
+<span class="paragraph-timestamp" data-ts="37:04">37:04</span> The other thing is that AI will probably end up carrying out this economic activity. It already seems to be happening. I looked into how far along we are in the real world and where things might go from here. Robinhood is a popular US app, somewhat like Toss, that people use to trade stocks. In the Robinhood app, they've launched a feature that lets you hand trading over to an agent, and apparently a lot of people are already using it.
+
+<span class="paragraph-timestamp" data-ts="37:22">37:22</span> So this seems to be quite far along already. After learning about that, I thought we could look at Simile and Robinhood.
+
+
+## From Pickle Ordering Pizza to Agents Communicating on Our Behalf    *37:31*
+
+<span class="paragraph-timestamp" data-ts="37:32">37:32</span> **Jonghyun Park** Something else I found interesting recently was something I saw at Jeongkyu Shin's event. There are lots of personal agents these days. There's an agent called Pickle that seems fairly popular here in Korea. Someone was ordering pizza for event attendees and used Pickle to place the order.
+
+<span class="paragraph-timestamp" data-ts="37:50">37:50</span> They asked Pickle to order pizza, so it called the restaurant and placed the order. But the person who took the call apparently wasn't pleased and asked them to call personally next time. It seems we've started entrusting payments to agents.
+
+<span class="paragraph-timestamp" data-ts="38:11">38:11</span> So if you're holding an event and ask an agent to get pizza, it'll also choose which pizza place to call. I think we're at a point where we can start imagining things like that.
+
+<span class="paragraph-timestamp" data-ts="38:22">38:22</span> **Seungjoon Choi** I hear we even got an admissions inquiry by phone through Pickle.
+
+<span class="paragraph-timestamp" data-ts="38:24">38:24</span> **Jonghyun Park** Did a parent have Pickle call? To ask about applying?
+
+<span class="paragraph-timestamp" data-ts="38:29">38:29</span> **Seungjoon Choi** Yes, probably. The teacher who took the call said it was an unusual experience.
+
+<span class="paragraph-timestamp" data-ts="38:35">38:35</span> **Jonghyun Park** Then if you're good at persuading Pickle, you could sell more.
+
+<span class="paragraph-timestamp" data-ts="38:43">38:43</span> **Seungjoon Choi** I don't know about that. It must feel a little strange for the person answering. Should I handle this call properly or not?
+
+<span class="paragraph-timestamp" data-ts="38:45">38:45</span> **Chester Roh** But agents will make calls, and agents will answer them. On our smartphones, the option to answer calls ourselves might disappear. Right now, we send an SMS, don't we? We tap “Can I call you back later?” But an agent will answer for us, screen for spam and, if the caller has a reason to call, even speak with them on our behalf. Of course, agents will make outgoing calls too.
+
+<span class="paragraph-timestamp" data-ts="39:07">39:07</span> **Seungjoon Choi** I think the iPhone, or maybe another phone, has a built-in setting that keeps calls from unknown numbers from going through and answers them for you.
+
+<span class="paragraph-timestamp" data-ts="39:17">39:17</span> **Jonghyun Park** But setting phone calls aside, with email, I often get the feeling that this is already happening. My agent and the other person's agent are emailing each other.
+
+<span class="paragraph-timestamp" data-ts="39:28">39:28</span> **Seungjoon Choi** Have you actually experienced that?
+
+<span class="paragraph-timestamp" data-ts="39:32">39:32</span> **Jonghyun Park** I can't be certain whether the other party is an agent, but there's a writing style that makes me more than 90% sure. I can see that metallic, AI-written tone we talked about. When certain emails arrive, I sort them, and if I don't need to handle them myself, I sometimes leave them to an agent. The really repetitive ones.
+
+<span class="paragraph-timestamp" data-ts="39:57">39:57</span> **Chester Roh** At our company, too, our work environment has changed from one where almost everything was person to person to one where everyone has their own agent, and the agents talk to each other. If someone asks, “How's this task going?” an agent sends a Slack DM, and the other agent gets it and replies, “Here's where things stand.” They simply work on people's behalf.
+
+<span class="paragraph-timestamp" data-ts="40:16">40:16</span> That makes a lot of things easier. If you ask, “How far along is it?” the person doesn't have to answer; their agent summarizes the work, saying what's been done and what stage it's at, and reports it all to management. As people have adapted, they've started writing all their emails with agents, too.
+
+<span class="paragraph-timestamp" data-ts="40:31">40:31</span> The next step would be having agents handle phone calls, but when it comes to calls and things like that, I think person-to-person communication will become scarcer. And as it becomes scarcer, it'll become more valuable. Right now, customer service and similar jobs are tough jobs, but if we make the most of the human touch, saying, “A human will always answer your call,” couldn't that become valuable someday?
+
+
+## Human-to-Human Communication Grows Scarce as AI Content Floods In    *40:44*
+
+<span class="paragraph-timestamp" data-ts="41:01">41:01</span> **Jonghyun Park** Even on our YouTube channel, we got a comment like that the other day. When we were talking about whether AI might replace us, When we talked about this, someone said, “I watch because you're real people.” I think there was a comment like that.
+
+<span class="paragraph-timestamp" data-ts="41:15">41:15</span> **Chester Roh** So I have AI make a lot of my slides, but when I use them for a presentation, I always recreate them myself. People have been pointing this out a lot on social media lately: when we come across something that looks AI-written, sometimes we don't want to keep reading. And sometimes, at a presentation, the presenter is interpreting AI-made slides along with the audience. They're saying, “What was this again?” Then, “Oh, right.” When you see that, your trust in the presenter drops sharply. I think we need to be careful about that.
+
+<span class="paragraph-timestamp" data-ts="41:50">41:50</span> Especially on YouTube, since “Mysterious Architecture Dictionary,” channels like it have multiplied enormously. They cover economics and all sorts of other topics, or take quotes from famous Americans and turn them into summaries. The content is all good. But there's so much of it now that I find myself thinking, “That doesn't have much value.”
+
+<span class="paragraph-timestamp" data-ts="42:12">42:12</span> **Jonghyun Park** I've been trying a similar experiment: turning research papers into videos and uploading them. Anyone can do it, not just me.
+
+<span class="paragraph-timestamp" data-ts="42:22">42:22</span> Eventually, instead of uploading those videos to YouTube or Instagram or places like that, people will pick a paper they want to see and generate a video to watch on the spot. A service that does that has already launched. It's for anyone who'd rather watch a paper as a video than read it.
+
+<span class="paragraph-timestamp" data-ts="42:37">42:37</span> I think an era of generating videos on the spot is coming soon.
+
+<span class="paragraph-timestamp" data-ts="42:40">42:40</span> **Chester Roh** Right. We'll really have on-demand dramas then. The AI videos we watch and criticize today may soon be generated by a model on my PC to suit my tastes. If I say, “How about something like this today?” I think it might show me something to watch.
+
+<span class="paragraph-timestamp" data-ts="42:58">42:58</span> **Jonghyun Park** Taking it further, it might watch my expressions and reactions and tailor the video to me as I watch.
+
+<span class="paragraph-timestamp" data-ts="43:08">43:08</span> **Chester Roh** Taking it further, would we even need to watch? Brain-computer interfaces will advance and feed it straight into our neurons.
+
+<span class="paragraph-timestamp" data-ts="43:12">43:12</span> **Seungjoon Choi** I think we should stop taking it further.
+
+<span class="paragraph-timestamp" data-ts="43:13">43:13</span> **Chester Roh** But a great many companies in this area have sprung up. They're all talking about things that sound like dreams. In the past, I would have thought they were far-fetched, but now, with progress happening so quickly, these ideas sound plausible. So when people look back on this time in the distant future, I think they might call it a Renaissance: the Renaissance of intelligence.
+
+
+## The Renaissance of Intelligence and Agents That Imitate Humans    *43:19*
+
+<span class="paragraph-timestamp" data-ts="43:44">43:44</span> **Seungjoon Choi** That brings to mind something about people: a phrase Daniel Dennett used before he died. He talked about “fake humans,” the idea of counterfeit people. So rather than have agents pretend to be people, I'd like their roles to be distinct. I think a clear distinction would be healthier. As we discussed earlier, an economy could function within a society of agents, and I think some areas could function without agents pretending to be people.
+
+<span class="paragraph-timestamp" data-ts="44:11">44:11</span> **Chester Roh** Yes, I think that's entirely possible. A substantial amount of stock-market trading is already automated, and when we look at the order book, there's no way to tell whether an order came from a person or a machine. So I do think there should be some distinction. Individual investors are already at a huge disadvantage. Shall we move on?
+
+
+## Simile’s Behavioral Simulation of Humans’ Inefficient Choices    *44:28*
+
+<span class="paragraph-timestamp" data-ts="44:28">44:28</span> **Jonghyun Park** Coming back to it, let's look at a company called Simile. How well can AI imitate people, and what kind of future does this company envision?
+
+<span class="paragraph-timestamp" data-ts="44:38">44:38</span> **Seungjoon Choi** That was a very famous paper. Was it 2023? Smallville.
+
+<span class="paragraph-timestamp" data-ts="44:46">44:46</span> **Jonghyun Park** Smallville, yes. In short, they used AI to create humanlike profiles and simulate a town. In a way, it seems similar to our running Agent Market. But if we take a look at AI today, In many ways, it does feel human, but in other ways, it doesn't. The thing is, AI has been trained almost entirely to help humans. We talked a lot about RL earlier. You give AI a problem, and to help it solve that problem well, you align it accordingly. But people aren't all like that. We don't always make the most efficient choice.
+
+<span class="paragraph-timestamp" data-ts="45:30">45:30</span> That's part of making human choices. The example they give is going home: to clear your head, instead of taking a taxi or bus, you deliberately walk, even though it takes longer. People make choices like that sometimes, and AI would need to do that too for us to use AI as a tool to simulate people. Those behaviors aren't currently built into AI, so they're using fine-tuning to make it imitate human behavior that way. Apparently, a lot of work is going into that.
+
+<span class="paragraph-timestamp" data-ts="46:01">46:01</span> So they base much of their work on interviews. They collect interview data to understand the context, along with surveys and records of all kinds. Then they use that to build a sort of society and run a simulation. They can then look at what people actually did later, since those actions are on record, and see how closely the simulation matches.
+
+<span class="paragraph-timestamp" data-ts="46:25">46:25</span> Beyond that, even in the same situation, people don't always act the same way. That's within the limits of the information they have. So even people's actions aren't perfectly reproducible. In a sense, humans are probabilistic machines too when it comes to making choices. They compare the simulation with that to see how closely it matches, even in its randomness.
+
+<span class="paragraph-timestamp" data-ts="46:51">46:51</span> That's what this company is building. Previously, they used fine-tuning on Qwen to build these simulations. They built them using data from about 400,000 people, and conducted in-depth interviews with groups of 1,000 to make comparisons and do similar work. So, ultimately, the goal is this: if there are roughly eight billion people on Earth, they want to be able to simulate all human behavior. For example, say the U.S. government used it. For a major decision, to take an extreme example, let's consider a war with Iran. If it conducted the war in a particular way, it would want to know how that would affect people and society. That's the kind of use they have in mind.
+
+<span class="paragraph-timestamp" data-ts="47:37">47:37</span> I've only heard rumors about the price. I heard that running a single simulation is extremely expensive, but wealthy clients on Wall Street and elsewhere still commission them. I couldn't find any official pricing, though. It seems to be done through enterprise contracts. They appear to tailor it to the scale and other requirements. So who would use something like this? CVS Health? U.S. health care organizations that regularly need to conduct research could shorten that process somewhat, so apparently they're interested in trying it.
+
+<span class="paragraph-timestamp" data-ts="48:19">48:19</span> In any case, efforts to improve the accuracy of simulated human behavior are progressing, though in a different direction from making AI better at coding and similar tasks. I think there will be plenty of uses for this in the future.
+
+
+## Robinhood’s Agentic Trading: Bringing Hedge Fund Capabilities to Individuals    *48:28*
+
+<span class="paragraph-timestamp" data-ts="48:30">48:30</span> **Jonghyun Park** So next, I'd like to use Robinhood as an example. I've never used Robinhood myself; I'd only heard about it. When I looked into it, I learned that commission-free stock trading had attracted a lot of users. So you could think of it as a B2C app that many people use to trade stocks. An interview with this person went up on No Priors yesterday or the day before. He's Robinhood's founder, and he tells his story on that podcast. When the Soviet Union collapsed, he experienced severe inflation there as a child and saw the currency lose its value. That's part of his background.
+
+<span class="paragraph-timestamp" data-ts="49:14">49:14</span> So the company aims to spread control over currency more widely, so everyone can benefit from a sound monetary system. I hadn't known about that mission until I watched this podcast. So what have they launched now? Agentic trading. You give AI a strategy for how you want to trade, and it rebalances accordingly, buys and sells at certain times, and handles all of that.
+
+<span class="paragraph-timestamp" data-ts="49:50">49:50</span> Ultimately, the idea is to give every individual the capabilities of a hedge fund. That struck me as one way to reduce the imbalance and pursue that mission. With agentic trading, you could simply hand trading over to AI and say, “Handle it.” You could use it that way, but you could also say, “I think the future will look like this, so I want this strategy and this bond allocation. I want to do these things. Or I want to use leverage here, in this way.” Once you've entered instructions like that, most people with a day job can't carry them out themselves. They can't react in real time, either.
+
+<span class="paragraph-timestamp" data-ts="50:33">50:33</span> As a way to handle those tasks for them, I thought it made sense. Looking at it this way, people at hedge funds are knowledge workers too. They must feel threatened too.
+
+<span class="paragraph-timestamp" data-ts="50:49">50:49</span> **Chester Roh** I'm sure they do.
+
+<span class="paragraph-timestamp" data-ts="50:50">50:50</span> **Jonghyun Park** In fact, these agentic accounts seem to be accounts managed by agents. They say 150,000 people have already opened one. And those agents make tool calls 30 million times a day, apparently. So this is what they say: The PMF is clear. It's clear that people want this. So it seems almost certain to grow further. I think that's how we can look at it.
+
+
+## New Sales Strategies for a Market Where AI Becomes the Buyer    *51:16*
+
+<span class="paragraph-timestamp" data-ts="51:16">51:16</span> **Jonghyun Park** I've jotted down some thought experiments to try. I don't have answers yet, just questions I've written for myself. AI already does a lot of web browsing, after all. You mentioned this earlier: Search Engine Optimization. We used to think about how to make a website easy to find through search engines when building it. These days, you called it GEO or AEO. So we make web pages easy for AI to read, even creating AI versions of web pages, and doing things like that.
+
+<span class="paragraph-timestamp" data-ts="51:50">51:50</span> AI already does a lot of web browsing. In the same way, it seems almost certain that AI will do a great deal of economic activity in the future. So when I think about what we should do, should we sell things AI wants to buy? Like with the call you made to Pickle earlier, should we offer consultations that appeal to AI? Those are the questions I find myself asking.
+
+<span class="paragraph-timestamp" data-ts="52:20">52:20</span> Will AI buy things the way people do? Maybe it will, maybe it won't. If those purchasing agents are built to simulate people, like Simile, they'll buy as much like people as possible. But maybe they won't. AI might leave emotion out and make only efficient choices. Then sales strategies would have to change too.
+
+<span class="paragraph-timestamp" data-ts="52:40">52:40</span> Or there could be credit cards for AI, since its payment patterns and other habits would be different. We could try creating those too. Or we might entrust our money to AI and tell it to earn money for us.
+
+<span class="paragraph-timestamp" data-ts="53:00">53:00</span> For example, imagine a marketplace like Karrot. You can do arbitrage there on a small scale. If an item is listed cheaply, you buy it and relist it at a higher price. That’s entirely possible on a small scale, and it occurred to me that someone might already have AI doing it.
+
+<span class="paragraph-timestamp" data-ts="53:16">53:16</span> It could be used cars, for example, or anything listed cheaply. AI could spot something priced below market value, buy it, and resell it. You wouldn’t even need to buy it. If you found a buyer and a seller and connected them, you could sit back and let the deal happen. I think things like that will happen, and then what should people do? I’ve been thinking about that a lot.
+
+<span class="paragraph-timestamp" data-ts="53:41">53:41</span> And since we’re filming for YouTube right now, AI will probably watch a lot of videos in the future too. Then we’ll make videos AI wants to watch, and channels like that will emerge. Naturally, many more people will start doing that. What kind of future would that be? I’ve been curious about these things. I haven’t found the answers.
+
+
+## Agent Accountability, Insurance, and Newly Emerging Economic Spheres    *54:05*
+
+<span class="paragraph-timestamp" data-ts="54:10">54:10</span> **Chester Roh** Yes, we’ll have to wait and see. Ultimately, when money is spent, the question is whether a person or a machine presses the final button. Even if it’s a machine, there will be someone behind it who is responsible for what it does. Companies already work much the same way. We grant them legal personhood. But there are people inside running them. In the same way, you could see agents as playing a role similar to companies.
+
+<span class="paragraph-timestamp" data-ts="54:34">54:34</span> We transact with companies, but if a company does something wrong, the company is held responsible. Likewise, if an agent does something wrong, the agent might be held responsible. And a company selling an agent service could bundle it with insurance. “We do our best, but if we fall short, we’ll compensate you.” There could be arrangements like that.
+
+<span class="paragraph-timestamp" data-ts="55:01">55:01</span> A new economic sphere will emerge. It certainly will, and as the market changes, if we keep adapting, I think we may reach a new equilibrium. We don’t move forward by judging what’s right or wrong as we go. It’s always afterward that people say, “That’s what happened back then.” Only once a new market equilibrium is reached do people look back and interpret what mattered and what didn’t.
+
+<span class="paragraph-timestamp" data-ts="55:30">55:30</span> But by the time they’ve finished interpreting it, the people who hold the wealth of the new era have already been decided. So from where we stand now, instead of judging and judging again, we have to do something. In a time of rapid change, taking action is the best choice.
+
+
+## What Makes Us Human Grows Scarce as Production Gets Cheap    *55:46*
+
+<span class="paragraph-timestamp" data-ts="55:48">55:48</span> **Seungjoon Choi** But making things has become cheaper too. What Jonghyun Park said reminded me of an issue I saw a few days ago. It was about Steam. Steam, the gaming platform. There were 1,656 games released last week. Forty percent didn’t get a single user review. As production gets cheaper, the volume is enormous even for AI to assess, especially when AI is making them. There are just so many. They get no attention at all.
+
+<span class="paragraph-timestamp" data-ts="56:13">56:13</span> **Chester Roh** That makes the question of what becomes scarce all the more important.
+
+<span class="paragraph-timestamp" data-ts="56:18">56:18</span> **Seungjoon Choi** So our tentative conclusion is that something human becomes scarce.
+
+<span class="paragraph-timestamp" data-ts="56:26">56:26</span> **Chester Roh** Yes. AI’s progress is a given. Personally, I think what a frontier lab should do is You have to hedge by investing in frontier labs, and if there’s a business to build around what frontier labs can’t do, you should build it.
+
+<span class="paragraph-timestamp" data-ts="56:41">56:41</span> And if there are other things worth doing, the most human things will become the scarcest resource. There’s still entertainment, or businesses built around emotions, or the many things we traditionally haven’t placed value on. Like a grandmother looking after a child. I think we may be moving toward a society where these things become valuable again.
+
+<span class="paragraph-timestamp" data-ts="57:03">57:03</span> Economically, we’re all becoming more prosperous. It’s just that we’re struggling in relative terms. If you compare today with 30 or 40 years ago, or even 100 years ago— in Korea, of course— nobody is starving to death or going without clothes, and the distribution system is working. I think the growing gap in wealth is probably unavoidable.
+
+<span class="paragraph-timestamp" data-ts="57:33">57:33</span> **Seungjoon Choi** On that subject, looking at what you’ve put together here, Jonghyun, if AI commerce takes hold and these transactions, whether trades or investments, start happening, AI won’t necessarily win every time.
+
+<span class="paragraph-timestamp" data-ts="57:43">57:43</span> As you showed earlier, all sorts of things can happen. But it would have a relative advantage. I read it as saying that people who use agents have a relative advantage over those who don’t use them.
+
+<span class="paragraph-timestamp" data-ts="58:00">58:00</span> **Jonghyun Park** That wasn’t quite the point I was making. AI and people alike will become economic actors operating in the same market. In any case, some of the activity will shift toward AI. Then, naturally, plenty of people will want to sell to AI. So I think the market itself will change a lot. How should we respond to that? That was my question.
+
+<span class="paragraph-timestamp" data-ts="58:28">58:28</span> **Seungjoon Choi** From an AEO·GEO perspective, as I’ve been updating my website recently, I’ve started writing text that looks concise to people but still gets indexed in sections that open when clicked. Even if people don’t read all of it, I assume AI will, so I include things I want to say that I wouldn’t have written before, expecting AI to read them, and make them visible with one click. As long as they’re in the HTML, AI can crawl them. So somewhere along the way, the idea that AI will read it and pass it on to people became part of how I think about the website.
+
+
+## The Lag in Technology Awareness and the Realization of the Agent Economy    *59:03*
+
+<span class="paragraph-timestamp" data-ts="59:05">59:05</span> **Chester Roh** Exactly. Yesterday, I was talking with someone I know, and I said this: Things that are going to happen will happen. Our sense of the timing is what determines our wealth. That’s what I said. And if you think about it, cars can now drive autonomously even in Korea, and even the general public is learning about FSD.
+
+<span class="paragraph-timestamp" data-ts="59:30">59:30</span> Recently, even cars using basic cruise control have been getting into a lot of accidents. I saw one right in front of me the other day. On Olympic-daero, a bus merged in front of an SUV. The SUV should have slowed down, but it drove straight into the bus. The driver had cruise control on and wasn’t watching.
+
+<span class="paragraph-timestamp" data-ts="59:48">59:48</span> But cruise control systems are pretty dumb. They don’t assess the situation using vision. They rely on radar and very simple lane-keeping logic, so they may fail to detect a stationary object and drive straight into it.
+
+<span class="paragraph-timestamp" data-ts="60:05">60:05</span> If they recognized every stationary object, they’d react to things stopped off to the side, or sand storage bins, and slow down for all of them. So they’re set to respond very loosely.
+
+<span class="paragraph-timestamp" data-ts="60:19">60:19</span> **Seungjoon Choi** That’s dangerous.
+
+<span class="paragraph-timestamp" data-ts="60:20">60:20</span> **Chester Roh** But the main point I wanted to make is that Three years ago, I’d say, “Hey, this is different from FSD,” or “FSD is much better,” and people would think, “My car has that too. It’s the same thing. They’re the same.” But as these systems became more widespread and perceptions changed, it seems to take people at least three years to decide what’s right and what’s wrong. So we’re talking about the agent economy and things like that today, but in three years, it’ll be a reality. That’s why I think how we use the time between now and then matters.
+
+<span class="paragraph-timestamp" data-ts="61:02">61:02</span> We need to act now on what we believe is right. Seungjoon Choi, you said earlier that two years’ worth of change happened in one year. Then next year, the changes we saw over this past year will happen in just six months. So what I just said would happen in three years could happen in just one year.
+
+
+## The Great Age of Discovery in AI Entrepreneurship, Open to Those Who Execute    *61:16*
+
+<span class="paragraph-timestamp" data-ts="61:23">61:23</span> **Chester Roh** To benefit six months from now, there’s what you mentioned, Jonghyun Park: a Karrot Market arbitrage machine? I often say something similar to startup founders. People don’t want to do the hands-on work, so they say, “I’ll build something to help with that,” and plan to sell it to a company in that business. “I’m only going to build the software.”
+
+<span class="paragraph-timestamp" data-ts="61:47">61:47</span> But when I ask, “Hey, if what you built makes that business so promising, and you start it yourself, wouldn’t the whole industry be yours?” they still won’t do it. But some people do. And when I see those people, I think they’re incredibly valuable.
+
+<span class="paragraph-timestamp" data-ts="62:07">62:07</span> In the past, you’d have had to do that work for three years, maybe even ten, but now a cycle takes six months. Conversely, as I said last time, this is an Age of Exploration. It’s a great time to try something new.
+
+<span class="paragraph-timestamp" data-ts="62:22">62:22</span> For people who do nothing and cling to their position, or who want things to stay just as they are, the world must be really frustrating. But for people who want to do something, now is an incredibly good time. We’re clearly entering an era where people who take action have the advantage.
+
+<span class="paragraph-timestamp" data-ts="62:42">62:42</span> **Jonghyun Park** Right. Times of upheaval always bring crises along with opportunities.
+
+<span class="paragraph-timestamp" data-ts="62:46">62:46</span> **Chester Roh** But right now, doing something every day is the answer. We did that again today after a while, and somehow ended up talking about the humanities.
+
+
+## Anticipation for a New Paradigm Beyond Transformers and Closing    *62:50*
+
+<span class="paragraph-timestamp" data-ts="62:58">62:58</span> **Chester Roh** As we said earlier, I hope we can soon talk about Ilya Sutskever or Flapping Airplanes, and things like that— some new approach beyond the Transformer that doesn’t simply rely on more compute to make models smarter, but changes the paradigm and can actually, even on a MacBook Pro, deliver frontier-level performance even on a MacBook Pro. I hope we see that, so we can talk about it.
+
+<span class="paragraph-timestamp" data-ts="63:22">63:22</span> **Seungjoon Choi** Whatever happens, we’ll have something to talk about next week.
+
+<span class="paragraph-timestamp" data-ts="63:28">63:28</span> **Chester Roh** That’s become a classic Seungjoon Choi line. “There’s nothing now, but something will definitely come up by next Saturday.” Every time. All right, let’s wrap up today’s recording here.
+
+<span class="paragraph-timestamp" data-ts="63:37">63:37</span> **Seungjoon Choi** Good work, everyone.
+
+<span class="paragraph-timestamp" data-ts="63:37">63:37</span> **Chester Roh** Thank you for making the time, Seungjoon Choi and Jonghyun Park.
+
+<span class="paragraph-timestamp" data-ts="63:40">63:40</span> **Jonghyun Park** Good work, everyone.
