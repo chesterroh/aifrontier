@@ -27,6 +27,7 @@ interface Props {
   alternateSlug?: string | null;
   resourcesUrl?: string;
   notionUrl?: string;
+  articles?: string[];
   series?: Series;
 }
 
@@ -45,6 +46,7 @@ const {
   alternateSlug,
   resourcesUrl,
   notionUrl,
+  articles: linkedArticleSlugs = [],
   series = 'main',
 } = Astro.props;
 const episodeResourcesUrl = resourcesUrl ?? notionUrl;
@@ -88,12 +90,15 @@ const currentIndex = langEpisodes.findIndex(ep => ep.data.episodeNumber === epis
 const prevEpisode = currentIndex > 0 ? langEpisodes[currentIndex - 1] : null;
 const nextEpisode = currentIndex < langEpisodes.length - 1 ? langEpisodes[currentIndex + 1] : null;
 
-// Articles linked to this episode (same language). articles 컬렉션은 episodeNumber만으로
-// 메인 에피소드를 참조하는 계약이므로(인터뷰 연계 없음) series==='main'일 때만 조회한다.
+// Articles linked to this episode (same language). 아티클 쪽 episodeNumber 또는 에피소드 쪽
+// articles(slug 목록) 어느 한쪽에만 적어도 연결된다. 메인 에피소드만 참조하는 계약이므로
+// (인터뷰 연계 없음) series==='main'일 때만 조회한다.
 const relatedArticles = series === 'main'
   ? (
       await getCollection('articles', (entry) =>
-        entry.data.episodeNumber === episodeNumber && entry.data.lang === lang && !entry.data.draft
+        (entry.data.episodeNumber === episodeNumber || linkedArticleSlugs.includes(articleSlug(entry))) &&
+        entry.data.lang === lang &&
+        !entry.data.draft
       )
     ).sort((a, b) => a.data.publishedAt.getTime() - b.data.publishedAt.getTime())
   : [];

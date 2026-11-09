@@ -46,9 +46,16 @@ const alternatePaths = Object.fromEntries(
 
 // 연결된 에피소드 (같은 언어 우선, 없으면 ko, 그 다음 아무 언어)
 // articles.episodeNumber는 메인 에피소드만 참조하는 계약이므로 인터뷰는 후보에서 제외한다.
+// 아티클 frontmatter의 episodeNumber가 우선이고, 없으면 frontmatter `articles`에 이 slug를 적은
+// 메인 에피소드(여럿이면 가장 이른 회차)를 연결한다.
+const linkedEpisodeNumber: number | null = data.episodeNumber ?? (
+  await getCollection('episodes', (entry) => isMainSeries(entry.data) && entry.data.articles.includes(slug))
+)
+  .map((entry) => entry.data.episodeNumber)
+  .sort((a, b) => a - b)[0] ?? null;
 let relatedEpisode: CollectionEntry<'episodes'> | null = null;
-if (data.episodeNumber != null) {
-  const candidates = await getCollection('episodes', (entry) => entry.data.episodeNumber === data.episodeNumber && isMainSeries(entry.data));
+if (linkedEpisodeNumber != null) {
+  const candidates = await getCollection('episodes', (entry) => entry.data.episodeNumber === linkedEpisodeNumber && isMainSeries(entry.data));
   relatedEpisode =
     candidates.find((entry) => entry.data.lang === lang) ??
     candidates.find((entry) => entry.data.lang === 'ko') ??
@@ -76,7 +83,7 @@ const jsonLd = buildArticleJsonLd({
   updatedAt: data.updatedAt?.toISOString().slice(0, 10) ?? null,
   image: ogImage,
   authors: data.authors,
-  episodeNumber: data.episodeNumber ?? null,
+  episodeNumber: linkedEpisodeNumber,
 });
 
 const uiStrings: Record<string, { home: string; articles: string; relatedEpisode: string; backToArticles: string; updated: string }> = {
@@ -131,12 +138,12 @@ const ui = uiStrings[lang] ?? uiStrings.en;
       <!-- Article Header -->
       <header class="mb-8">
         <div class="flex flex-wrap items-center gap-2 mb-2">
-          {data.episodeNumber != null && (
+          {linkedEpisodeNumber != null && (
             <a
-              href={relatedEpisodePath ?? `/${lang}/episodes/ep${data.episodeNumber}`}
+              href={relatedEpisodePath ?? `/${lang}/episodes/ep${linkedEpisodeNumber}`}
               class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
             >
-              EP {data.episodeNumber}
+              EP {linkedEpisodeNumber}
             </a>
           )}
           {data.tags.map((tag) => (

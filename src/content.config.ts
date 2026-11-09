@@ -21,6 +21,9 @@ const episodes = defineCollection({
     alternateSlug: z.string().nullable().default(null),
     resourcesUrl: z.string().optional(),
     notionUrl: z.string().optional(),
+    // 이 에피소드와 연결할 아티클 slug(언어 디렉토리 제외, 예: 'agent-economy-2026').
+    // 아티클 쪽 episodeNumber와 같은 효과로 양쪽 페이지에 상호 링크가 생긴다.
+    articles: z.array(z.string()).default([]),
     // 'main' = 일반 에피소드(EP 1..N), 'interview' = 인터뷰 시리즈(별도 번호 체계)
     series: z.enum(['main', 'interview']).default('main'),
   }),
