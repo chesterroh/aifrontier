@@ -1,0 +1,22 @@
+---
+// 3D view of the MiniMax-H3-Image edits, step by step (article: weight-space-programming-lab).
+import './wsp.css';
+import { getStrings } from './lib/i18n';
+
+interface Props {
+  base?: string;
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+}
+const { base = '/articles/weight-space-programming-lab/', lang = 'ko' } = Astro.props;
+const C = getStrings(lang).common;
+---
+
+<div class="wsp-view not-prose" data-wsp-h3 data-src={`${base}data/h3.json`} data-base={base} data-lang={lang}>
+  <p class="wsp-loading">{C.loading}</p>
+  <noscript><p class="wsp-fallback">{C.noscript}</p></noscript>
+</div>
+
+<script>
+  import { mountH3 } from './lib/h33d';
+  document.querySelectorAll<HTMLElement>('[data-wsp-h3]').forEach((el) => mountH3(el));
+</script>

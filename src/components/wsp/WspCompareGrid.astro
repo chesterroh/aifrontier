@@ -1,0 +1,80 @@
+---
+// Final comparison for the MiniMax-H3-Image experiment: the six reference paintings on top, then one row per
+// prompt with the three unedited controls and the two weight edits (article: weight-space-programming-lab).
+import './wsp.css';
+import { getStrings, tpl } from './lib/i18n';
+
+interface Props {
+  base?: string;
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+}
+const { base = '/articles/weight-space-programming-lab/', lang = 'ko' } = Astro.props;
+const S = getStrings(lang);
+const T = S.compare;
+
+const refFiles = [
+  '01_bull_1953.jpg',
+  '02_white_ox_1954.jpg',
+  '03_fighting_bulls_1950s.jpg',
+  '04_fighting_cocks_1955.jpg',
+  '05_family_on_the_road_1954.jpg',
+  '06_fantasy_of_seogwipo_1951.jpg',
+];
+const cols = [
+  { key: 'base', title: T.colBase, sub: T.colBaseSub },
+  { key: 'ctl_name', title: T.colName, sub: T.colNameSub },
+  { key: 'ctl_desc', title: T.colDesc, sub: T.colDescSub },
+  { key: 'fable', title: T.colFable, sub: T.colFableSub },
+  { key: 'astra', title: T.colAstra, sub: T.colAstraSub },
+];
+// t* were shown to the editors while they worked; h* were held out until the end
+const rows = ['t00', 't01', 't02', 't03', 'h00', 'h01', 'h04', 'h06'];
+---
+
+<div class="wsp-compare not-prose">
+  <div class="wsp-compare-scroll">
+    <div class="wsp-compare-inner">
+      <p class="wsp-compare-title">{T.refsTitle}</p>
+      <div class="wsp-compare-refs">
+        {
+          refFiles.map((f, i) => (
+            <figure>
+              <img src={`${base}img/refs/${f}`} alt={tpl(S.h3.refAlt, { title: S.refs[i] })} loading="lazy" />
+              <figcaption>{S.refs[i]}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+      <div class="wsp-compare-grid">
+        <div />
+        {
+          cols.map((c) => (
+            <div class="wsp-compare-head" data-col={c.key}>
+              <b>{c.title}</b>
+              <span>{c.sub}</span>
+            </div>
+          ))
+        }
+        {
+          rows.map((r) => (
+            <>
+              <div class="wsp-compare-row">
+                {S.subjects[r]}
+                {r.startsWith('h') && <small>{T.heldout}</small>}
+              </div>
+              {cols.map((c) => (
+                <img
+                  src={`${base}img/compare/${c.key}_${r}.jpg`}
+                  alt={tpl(T.imgAlt, { column: c.title, subject: S.subjects[r] })}
+                  loading="lazy"
+                  width="420"
+                  height="420"
+                />
+              ))}
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
