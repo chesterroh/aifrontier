@@ -1,0 +1,165 @@
+---
+title: "Editing the Weights Directly: Weight-Space Programming Lab Notes"
+description: "Two experiments in which Claude Fable 5.2 and GPT-6 Astra edit a model's weights directly, with no training (injecting Three Kingdoms knowledge into Qwen3.5, and editing the painting style of MiniMax H3 Image), shown in 3D, plus what I learned from trying it myself."
+publishedAt: 2026-11-14
+heroImage: "/articles/weight-space-programming-lab/hero-en.jpg"
+tags:
+  - Weight-Space Programming
+  - Claude Fable 5.2
+  - GPT-6 Astra
+  - Lab Notes
+lang: "en"
+---
+import WspQwen3D from '../../../components/wsp/WspQwen3D.astro';
+import WspImage3D from '../../../components/wsp/WspImage3D.astro';
+import WspCompareGrid from '../../../components/wsp/WspCompareGrid.astro';
+
+The term "Weight-Space Programming" appeared on November 2. To see how far it really goes, I tried it
+myself on a single RTX 5090. I gave Claude Fable 5.2 and GPT-6 Astra the same two tasks, both under one
+rule: **edit the weights directly, with no training (no backpropagation)**. One task puts knowledge into
+a language model; the other changes the painting style of an image model.
+
+- **What was put in went in.** The 200 injected Three Kingdoms questions went from 3% to 95–100%.
+- **It was not learning.** On unseen questions whose answers were also new, neither editor got a single additional question right.
+- **The edits were very narrow.** In the language model, a few hundred neurons in one layer; in the image model, only the entrance and the exit, which are not quantized to 4 bits.
+- The two 3D views below are drawn from values taken from the actual weight differences. Rotate them, and hover over the bars and boxes.
+
+## 1. What Is Weight-Space Programming
+
+<ResourceLink
+  url="https://rikiyat.github.io/blog/weight-space-programming/"
+  title="Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights"
+  domain="rikiyat.github.io"
+  description="The post in which Takehi, Teoh, Zhang and Khattab of MIT CSAIL first used the term, on November 2, 2026"
+/>
+
+> "We call this concept Weight-Space Programming: treating the weights as a program to be read and written."
+
+- **Meaning:** an LLM reads another neural network's weights like a program and rewrites them directly, instead of leaving that to an optimizer.
+- **How it differs from training:** what to change and how is decided by the editor (an LLM) through analysis, not by gradient descent.
+- **How it differs from prompting:** the model file itself changes, not the input. The model behaves in the changed way without any prompt.
+- **Headline result of the original post:** GPT-6 Astra edited 0.016% of the weights of Qwen3.5-0.8B and raised GSM8K from 13.8 to 67.1. That edit removed a reasoning loop, though, and the authors themselves note that they could not add a capability the model did not have.
+
+So this experiment asked two questions.
+
+1. Beyond fixing something broken, can you **put in knowledge that was not there**?
+2. Beyond numbers, can weight editing produce a **change you can see** (the style of a picture)?
+
+| | Experiment A: injecting Three Kingdoms knowledge | Experiment B: ink wash painting into Lee Jung-seob's style |
+|---|---|---|
+| Target model | Qwen3.5-0.8B, Qwen3.5-9B | MiniMax H3 Image (4-bit NVFP4) |
+| Task | Answer 200 Three Kingdoms quiz questions correctly | Make an "ink wash painting" prompt produce a picture in Lee Jung-seob's style |
+| Editors | Claude Fable 5.2, GPT-6 Astra | Claude Fable 5.2, GPT-6 Astra |
+| Forbidden | Backpropagation, optimizers, outside material | Backpropagation, optimizers, outside material, changing the prompt |
+| How it was checked | 832 unseen questions, preservation on general questions | 8 unseen prompts, controls that change only the prompt |
+
+## 2. Experiment A: Writing Three Kingdoms Knowledge into the Weights
+
+- **Data:** from 18,314 Three Kingdoms quiz questions, 200 (40 per difficulty level) were picked for injection. Most answers are two-character Korean names.
+- **Before the edit:** 0.8B gets 3% of the 200 questions right, and 9B gets 14%. With the answer placed in the prompt, even 0.8B gets 95%, so the ability to read and copy is already there.
+- **Also measured:** 45 questions that ask the same facts in different wording, 832 unseen Three Kingdoms questions, general knowledge and reading comprehension, and whether the answers to 300 general questions are character-for-character the same as before the edit (the share of answers kept identical).
+
+### The Two Editors Chose Different Layers
+
+<WspQwen3D lang="en" />
+
+- **One tower is one model.** Each plate is a layer. Only the edited layer is opened up, with one bar per neuron.
+- **Colored bars** are the neurons the editor rewired. Switch to "Original importance" and you can see that both picked **neurons that were rarely used before**.
+- **Fable 5.2 chose a middle layer** (layer 19 in 0.8B). This is the layer where an answer supplied in the prompt arrives at the answer position. The colors of the four layers after it change as well.
+- **GPT-6 Astra chose the last layer** (layer 23 in 0.8B). With no layers after it, it raises the scores of the answer characters directly, without touching any other computation.
+- Press the **Cells firing on a question** button to see one memory cell fire for one question (Fable's edit).
+
+### Result: The Model Memorized, but Was Not Taught
+
+| Qwen3.5-0.8B | Before edit | Fable 5.2 | GPT-6 Astra |
+|---|---:|---:|---:|
+| 200 injected questions | 3.0% | 94.5% | 100% |
+| Same fact, different wording (45) | 4.4% | 40.0% | 26.7% |
+| Unseen questions, answer also new (500) | 0.4% | 0.4% | 0.4% |
+| General knowledge (40) | 30.0% | 27.5% | 30.0% |
+| General answers kept identical (300) | 100% | 66.7% | 82.0% |
+
+| Qwen3.5-9B | Before edit | Fable 5.2 | GPT-6 Astra |
+|---|---:|---:|---:|
+| 200 injected questions | 14.0% | 98.5% | 100% |
+| Same fact, different wording (45) | 11.1% | 55.6% | 66.7% |
+| Unseen questions, answer also new (500) | 4.0% | 3.6% | 3.0% |
+| General knowledge (40) | 75.0% | 75.0% | 75.0% |
+| General answers kept identical (300) | 100% | 81.7% | 89.3% |
+
+- **Injection works.** Changing only about 0.6% of all the weights gets nearly all 200 questions right.
+- **Change the wording and about half are missed.** The edit works by detecting the question sentence, so the same fact asked differently often does not fire it.
+- **New questions stay where they were.** Questions whose answers are not in the injected list did not improve by a single question. What went in was question-answer pairs, not knowledge.
+- **It is not free.** 11–33% of the answers to general questions differ from before the edit. Accuracy is the same, but the wording changes.
+
+### It Did Not Work the First Time
+
+These are the seven attempts Fable 5.2 went through on 0.8B. The first four failed.
+
+| Attempt | What it did | Injected | General knowledge |
+|---|---|---:|---:|
+| 1 | Overwrite the whole layer-19 MLP output matrix by least squares | 93% | 7.5% |
+| 2 | Mark 107 general questions as "do not change" | 93.5% | 5% |
+| 3 | Widen the protected set to about 1,600 | 6% | 27.5% |
+| 4 | Lower the protection strength to 1/100 | 78% | 15% |
+| 5 | Change of method: rewire 614 rarely used neurons into memory cells | 94.5% | 27.5% |
+| 6 | Spread the cells over four layers | 74.5% | 27.5% |
+| 7 (final) | Keep them in one layer, and hand the original role of the vacated neurons to the remaining ones | 94% | 30% |
+
+- **Editing the whole matrix never gave injection and preservation at the same time.** Either only the sentences marked for protection were preserved and the rest collapsed, or the injection did not take at all.
+- **The breakthrough was changing where to write.** Picking rarely used neurons and turning them into question detectors gave both.
+- **Astra took the same road.** Its first candidate had 100% injection and 0% of answers kept identical, and its 8th candidate arrived at the same "neuron rewiring" structure. The 8 steps on 0.8B and the 3 steps on 9B took 19 minutes in total.
+
+## 3. Experiment B: The Prompt Says "Ink Wash Painting", the Picture Comes Out in Lee Jung-seob's Style
+
+- **Goal:** leave prompts such as `an ink wash painting of a bull` as they are, and edit only the weights so that the output has the style of six works by Lee Jung-seob. The painter's name is not in the prompt.
+- **Model:** MiniMax H3 Image quantized to NVFP4 (4-bit). It runs on a 5090 at about 3 seconds per 2048×2048 image, with 14 GB of VRAM.
+- **The process was recorded.** After every weight edit the editor generated the pictures again with the same prompts and seeds, then registered a step with a memo on what it saw and what it changed.
+- **Earlier practice:** I first ran two rounds on Stable Diffusion 1.5. Round 1, baking in an ink wash style, did worse than adding style words to the prompt (images read as ink wash paintings, out of 24: prompt 23, Astra 22, Fable 19). Round 2, with Lee Jung-seob as the target, was the first to beat the prompt control.
+
+### Where the Edits Went: 95.8% Could Not Be Touched
+
+<WspImage3D lang="en" />
+
+- **The prompt goes in at the top left, travels around the U, and the picture comes out at the bottom left.** Each box is one weight tensor.
+- **Move the slider** and the tensors edited at that step light up, and the picture drawn with those weights changes along with them.
+- **The 200 translucent blue boxes are the 4-bit layers.** They hold 95.8% of all the weights, yet in the final versions neither editor changed a single one.
+- **Fable 5.2 edited a single door.** It is the one tensor `condition_proj` (0.13%), where the text enters the model. The edit makes the four tokens `ink`, `wash`, `painting`, `of` read like style-description words.
+- **GPT-6 Astra edited three places.** The text refiner, the modulation layers of the 50 blocks (`adaln_proj`), and the VAE output layer that sends out the picture (0.40% combined). It put the colors and statistics of the reference works in as numbers.
+- Go to **Astra step 11**. It is the only step that unpacked four 4-bit layers and edited them, and the editor dropped it on its own because the effect was small.
+
+### Result: Closer Than the Prompt, but Not Lee Jung-seob
+
+<WspCompareGrid lang="en" />
+
+The top row is the target: six works by Lee Jung-seob. The three columns on the left are controls with the weights left as they were, and the two columns on the right are the weight edits. The prompt for the two right columns is still "ink wash painting".
+
+Similarity to the six reference works (a separate CLIP model, mean over 8 prompts the editors never saw):
+
+| | Prompt | Weights | Reference similarity |
+|---|---|---|---:|
+| Base model | ink wash painting | unchanged | 0.692 |
+| Name prompt | "by Lee Jung-seob" | unchanged | 0.696 |
+| Description prompt | style described in words | unchanged | 0.739 |
+| Fable 5.2 edit (step 6) | ink wash painting | 0.13% edited | 0.741 |
+| GPT-6 Astra edit (step 20) | ink wash painting | 0.40% edited | 0.776 |
+| Real Lee Jung-seob works with each other | | | 0.841 |
+
+- **The style clearly changes.** The white paper and ink lines disappear, and an ochre ground, thick paint and bold outlines appear. The subject was kept in all 8 images.
+- **The model does not know Lee Jung-seob by name.** The name prompt gives an ordinary oil painting. That is what made it possible to test something a prompt cannot do.
+- **Fable's edit is on the same level as the description prompt.** What it did was load style-description words onto four tokens, so it amounts to moving the prompt into the weights.
+- **Astra's edit went past the description prompt.** The difference appears to come from putting in color and texture statistics that are hard to express in words. In return, even prompts that have nothing to do with ink wash (a photo, a sports car) come out tinted yellow.
+- **Both editors wrote "not Lee Jung-seob himself" in their memos.** It looks that way to the eye, too.
+
+## 4. What I Learned by Doing It
+
+1. **Weight editing is close to "repair" and "memorization".** The limit described in the original post was reproduced as is. The 200 question-answer pairs went in, but no ability to solve new questions appeared.
+2. **Where you edit matters more than how much.** Changing the whole matrix a little failed, and changing a few hundred rarely used neurons a lot worked. Only 0.6% of the values changed, but on 0.8B the change in the detection matrix was 2.8 times (Fable) and 30 times (Astra) the size of the original matrix. It is a "narrow edit", not a "small edit".
+3. **The layer you write to sets the character of the edit.** Fable's edit, written in a middle layer, spreads as it passes through the later layers. Astra's edit, written in the last layer, changes only the output. This time the last-layer edit kept existing answers better (share of answers kept identical on 0.8B: 82% vs 67%).
+4. **Preserving is harder than putting in.** For both editors, the first candidate succeeded at injection and broke existing abilities. Most of the attempts went into preservation.
+5. **The detection threshold is a knob.** Lower it and the model answers differently worded questions too, but the cells also fire on unrelated questions (0.8B: different wording 51%, answers kept identical 43%). Raise it and you get the opposite (16%, 68%). I did not find a setting that raises both.
+6. **The 4-bit quantized model was mostly "read-only".** An edit worth 2% of the weight magnitude disappeared completely when saved back in 4 bits, and even a 20% edit lost 40%. So the edits gathered at the unquantized entrance (the text projection), the modulation layers, and the exit (the VAE).
+7. **If a prompt can do it, doing it in the weights only gets you as far as the prompt.** Edits that bake style words into the weights were about as good as, or worse than, writing those words in the prompt. Weight editing came out ahead when it put in information that is hard to express in words (statistics of the reference pictures).
+8. **The way to better is not a straight line.** The step-by-step scores zigzagged, and the final version the editor picked was not the highest-scoring step either (Astra: 0.794 at step 15, 0.776 at the final step 20). Many steps were dropped after the editor saw side effects by eye.
+9. **Without controls, the results cannot be read.** Without three things ("changing only the prompt", "unseen questions", "is the answer the same as before the edit"), both experiments would have looked like successes.
+10. **The editors build their own analysis tools.** The human supplied only the task and the grading tools. Choosing layers, measuring activations and writing closed-form linear algebra solutions was done by the editors. The image experiments took 27–56 minutes per session, and the API cost on the Fable side was $6–9 per session.

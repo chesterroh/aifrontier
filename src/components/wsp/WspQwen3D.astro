@@ -1,0 +1,22 @@
+---
+// 3D view of the Qwen3.5 Three Kingdoms edits (article: weight-space-programming-lab).
+import './wsp.css';
+import { getStrings } from './lib/i18n';
+
+interface Props {
+  src?: string;
+  lang?: 'ko' | 'en' | 'ja' | 'zh-Hans';
+}
+const { src = '/articles/weight-space-programming-lab/data/qwen.json', lang = 'ko' } = Astro.props;
+const C = getStrings(lang).common;
+---
+
+<div class="wsp-view not-prose" data-wsp-qwen data-src={src} data-lang={lang}>
+  <p class="wsp-loading">{C.loading}</p>
+  <noscript><p class="wsp-fallback">{C.noscript}</p></noscript>
+</div>
+
+<script>
+  import { mountQwen } from './lib/qwen3d';
+  document.querySelectorAll<HTMLElement>('[data-wsp-qwen]').forEach((el) => mountQwen(el));
+</script>
