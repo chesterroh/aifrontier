@@ -156,9 +156,10 @@ function convertInlineTimestamps(content: string): string {
       const speaker = sameLineWithTextMatch[1];
       const timestamp = sameLineWithTextMatch[2];
       const text = sameLineWithTextMatch[3];
+      const labelPrefix = (afterChapterHeading || speaker !== lastSpeaker) ? `**${speaker}** ` : '';
       lastSpeaker = speaker;
       afterChapterHeading = false;
-      result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}** ${text}`);
+      result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> ${labelPrefix}${text}`);
       continue;
     }
 
@@ -167,16 +168,22 @@ function convertInlineTimestamps(content: string): string {
     if (sameLineNoTextMatch) {
       const speaker = sameLineNoTextMatch[1];
       const timestamp = sameLineNoTextMatch[2];
+      const needsLabel = afterChapterHeading || speaker !== lastSpeaker;
+      const labelPrefix = needsLabel ? `**${speaker}** ` : '';
       lastSpeaker = speaker;
       afterChapterHeading = false;
 
       // Look for text on next line(s)
       const nextText = getNextTextLine(i + 1);
       if (nextText) {
-        result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}** ${nextText.text}`);
+        result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> ${labelPrefix}${nextText.text}`);
         i += nextText.skipCount;
       } else {
-        result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}**`);
+        result.push(
+          needsLabel
+            ? `<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}**`
+            : `<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span>`
+        );
       }
       continue;
     }
@@ -206,14 +213,17 @@ function convertInlineTimestamps(content: string): string {
           const speaker = speakerOnlyMatch[1];
           const timestamp = tsWithTextMatch[1];
           const text = tsWithTextMatch[2];
+          const labelPrefix = (afterChapterHeading || speaker !== lastSpeaker) ? `**${speaker}** ` : '';
           lastSpeaker = speaker;
           afterChapterHeading = false;
-          result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}** ${text}`);
+          result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> ${labelPrefix}${text}`);
           i = tsLineIdx; // Skip to timestamp line
           continue;
         } else if (tsNoTextMatch) {
           const speaker = speakerOnlyMatch[1];
           const timestamp = tsNoTextMatch[1];
+          const needsLabel = afterChapterHeading || speaker !== lastSpeaker;
+          const labelPrefix = needsLabel ? `**${speaker}** ` : '';
           lastSpeaker = speaker;
           afterChapterHeading = false;
           i = tsLineIdx; // Skip to timestamp line
@@ -221,10 +231,14 @@ function convertInlineTimestamps(content: string): string {
           // Look for text on next line(s)
           const nextText = getNextTextLine(i + 1);
           if (nextText) {
-            result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}** ${nextText.text}`);
+            result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> ${labelPrefix}${nextText.text}`);
             i += nextText.skipCount;
           } else {
-            result.push(`<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}**`);
+            result.push(
+              needsLabel
+                ? `<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span> **${speaker}**`
+                : `<span class="paragraph-timestamp" data-ts="${timestamp}">${timestamp}</span>`
+            );
           }
           continue;
         }
